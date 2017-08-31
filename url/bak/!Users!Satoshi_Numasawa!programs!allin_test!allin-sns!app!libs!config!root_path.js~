@@ -1,0 +1,12 @@
+function appRootFolder() {
+    const splitted_current_path = path.dirname(require.main.filename).split(path.sep)
+    const app_dir = splitted_current_path.indexOf("app")
+
+    const root_path = splitted_current_path.splice(0, app_dir + 1)
+    root_path = root_path.join("/")
+
+    return root_path
+}
+
+
+module.exports = appRootFolder();

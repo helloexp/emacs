@@ -1,0 +1,340 @@
+
+
+
+acc
+----------------------------------------------------------------
+    - Twiiter
+    --------------------------------
+        login acc : mruby0901 (edited)
+        pass      : mruby0225
+
+        Consumer Key (API Key)       : hGXnBypOsG40sTVTr9vtGLmjT
+        Consumer Secret (API Secret) : 2NYSk2dcKaFkGc9gFXo5OxOETSee0n9HKdLLdsbChkQriiSmPM
+        Access Token                 : 3040525110-m1WDikMktLXYFGwMkRpaPqzINa2JZBMrX09qPFw
+        Access Token Secret          : EfrkZQLG8E6JlQMCoww7nV4Y1HwCgwAVJcC6RGm2IhOl1
+
+        permission : read & write
+
+
+    - Instagram
+    --------------------------------
+        login acc : mruby0901 (edited)
+        pass      : mruby0225
+
+        Client ID      : 65bfae25a972496985e349a3d5467dba
+        Client Secret  : 64eb28aca5bd47f3bafda2fea7138477
+        Website URL    : http://dummy.com
+        Redirect URI   : http://localhost
+        token          : 1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f
+
+        permission : basic, comment, likes
+
+
+    - Facebook
+    --------------------------------
+        login acc : sns@mruby.jp (edited)
+        pass      : mruby0224
+
+
+        ※ Acc発行後に取得
+        ※ 必要なpermission(権限)の確認が必要
+
+
+
+
+
+Twitter
+----------------------------------------------------------------
+    - 参考サイト
+    ----------------------------------------------------------------
+        token get flow :  http://pocketstudio.jp/log3/2012/02/12/how_to_get_twitter_apikey_and_token/
+        token get flow :  http://geektrainee.hatenablog.jp/entry/2014/03/06/231633
+        gem            :  http://qiita.com/gosshys/items/d31b4ef37f7614363029
+        methods        :  http://route477.net/w/RubyTwitterJa.html
+        permission     :  http://so-zou.jp/web-app/tech/web-api/twitter/authorization/
+
+        
+        
+    - 事前認証
+    ----------------------------------------------------------------
+        メールアドレス認証
+        電話番号登録が必須
+
+        
+    - 作成手順
+    ----------------------------------------------------------------
+        - [https://apps.twitter.com/] へアクセス
+        - [Create New App] を選択
+        
+            - 以下入力
+                - Name        : application name 
+                - Description : app 概要
+                - Website     : web site URL (テスト時は、http://localhost.com/ で通った)
+                - Callback URL: 任意
+
+            - [Yes, I agree] へチェック
+            - [Create your Twitter application] を押下
+
+        - 成功すればapp画面へ遷移
+            - [key and Access Tokens] を選択
+            - [Create my access token] を選択
+
+            当該page上に、API key, API secret, Access token, Access token secret
+            が表示される。
+
+
+        - permission
+            - Permissionタブを選択
+            - permission 3種から選択する
+                read
+                read & write
+                read, write and Access direct message
+                
+        
+    - sumple code
+    ----------------------------------------------------------------
+        # -*- coding: utf-8 -*-
+        require 'twitter'
+        require 'pp'
+
+        require "twitter"
+
+        client = Twitter::REST::Client.new do |config|
+            config.consumer_key        = "QlgoLGYSidrM9UTYFEmYAzthw"
+            config.consumer_secret     = "i3Wzlf2GHFFgAGcv3jDE8G2t6dJ28nx68HDSc7qIboCisKPUgo"
+            config.access_token        = "3040525110-aHCCceqnKV8tqUHTCumut51YLyzXfxE0Jg8jADS"
+            config.access_token_secret = "XahsPYPRjALjG8CKtPhJofXwrN0LQpyKrUnGgzK0ll6Gj"
+        end
+
+
+        #自分のタイムラインの取得
+        #pp client.home_timeline
+        #自分宛てのReplyの取得
+        #pp client.mentions
+        #自分宛てのDMの取得
+        #pp client.direct_messages
+        #発言する
+        #client.update("テストです。")
+
+
+        limit   = 10     # 取得するツイートの上限数
+        keyword = "cat"   # ハッシュタグによる検索を行う際のキーワード
+
+        # limitで指定された数だけツイートを取得
+        client.search("#{keyword} -rt", :locale => "ja", :result_type => "recent", :include_entity => true).take(limit).map do |tweet|
+            # entities内にメディア(画像等)を含む場合の処理
+            if tweet.media? then
+                tweet.media.each do |value|
+                    puts value.media_uri
+                end
+            end
+        end
+
+
+
+
+Instagram
+----------------------------------------------------------------
+    - 参考
+    ----------------------------------------------------------------
+        token get flow  :  http://qiita.com/zurg/items/4c423b93b6a7f1ac737d
+        gem             :  https://gist.github.com/masato-nakamura/5943770
+        API             :  http://www.dcrew.jp/ja-instagram-api-doc-v1/index.php/auth
+        API             :  http://www.rubydoc.info/github/Instagram/instagram-ruby-gem/Instagram/Client
+        scope           :  http://syncer.jp/instagram-api-matome
+
+
+    - 登録手順
+    ----------------------------------------------------------------
+        - https://instagram.com/developer/clients/manage/
+        - 画面右上の、[Manage Clients] を選択
+        - 画面右上の、緑色の [Register a New Client] を選択
+
+        - 入力項目
+            - Applictaiton Name      : アプリケーションの名前
+            - Dscription             : 説明などを入力
+            - Website                : サイトのURLを入力（適当でOK）
+            - OAuth redirect_uri     : アクセストークンを取得する際にリダイレクトされるURL（適当でもOK）
+            - Disable implicit OAuth : チェック入れたまま
+            - Enforce signed header  : チェックしないまま
+
+        - access codeを取得 (one time code)
+            - 通常
+                https://api.instagram.com/oauth/authorize/?client_id=CLIENT-ID&redirect_uri=REDIRECT-URI&response_type=code
+                上記へ値入力しアクセスすると、codeが返り値として得られる
+
+
+            - scope設定付与する場合
+                前項のURLへ追加権限パラメータを追記。
+                [ &scope=basic+comment+likes+relationship ]
+
+                ※ 許可を求める画面の後、tokenが表示される
+
+                
+        - access token取得
+            curl \-F 'client_id=CLIENT-ID' \
+                -F 'client_secret=CLIENT-SECRET' \
+                -F 'grant_type=authorization_code' \
+                -F 'redirect_uri=YOUR-REDIRECT-URI' \
+                -F 'code=CODE' \https://api.instagram.com/oauth/access_token
+
+            上記へ値を入力し、コマンドラインから実行すると、access tokenなどが返り値として得られる。
+            
+
+        - data取得例
+            https://api.instagram.com/v1/users/self/media/recent/?access_token=ACCESS-TOKEN
+
+            access tokenを入力し、アクセスすると返り値として自己投稿データが得られる。
+            関数は未調査
+        
+
+    - account 
+    ----------------------------------------------------------------
+        - webから参照
+            - instagramへアクセスしログイン
+            - 画面最下部のAPIを選択
+            - 右上のmanage clientを選択
+            - 登録済みの情報が表示される
+
+            ※ tokenは表示されない
+            
+            
+        - accs
+            Client ID       65bfae25a972496985e349a3d5467dba
+            Client Secret   64eb28aca5bd47f3bafda2fea7138477
+            Website URL     http://dummy.com
+            Redirect URI    http://localhost
+            code            [都度変わる]
+            token           1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f
+
+
+    - scope
+    ----------------------------------------------------------------
+        - permission list
+            basic         - to read any and all data related to a user (e.g. following/followed-by lists, photos, etc.) (granted by default)
+            comments      - to create or delete comments on a user’s behalf (this permission is restricted to approved apps only. See the documentation for more details)
+            relationships - to follow and unfollow users on a user’s behalf
+            likes         - to like and unlike items on a user’s behalf
+
+
+    - test code
+    ----------------------------------------------------------------
+        require "instagram"
+        Instagram.configure do |config|
+            config.client_id = "65bfae25a972496985e349a3d5467dba"
+            config.access_token = "1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f"
+        end
+
+        photos = Instagram.user_recent_media("1723080740",{count:5})
+        photos.each do |photo|
+            print photo["link"]
+        end
+
+        pp Instagram.tag_recent_media("uniqlo")
+
+
+
+    - test code
+    ----------------------------------------------------------------
+        https://api.instagram.com/v1/tags/#uniqlo/media/recent?access_token=&client_id=65bfae25a972496985e349a3d5467dba&count=10
+        
+
+
+
+Facebook
+----------------------------------------------------------------
+    - 参考HP
+    ----------------------------------------------------------------
+        etc                 :  http://komasaru.github.io/blog/2013/08/29/facebook-api-access-token/
+        get token official  :  https://developers.facebook.com/docs/facebook-login/access-tokens
+        mk APP              :  https://smashballoon.com/custom-facebook-feed/access-token/
+        mk APP              :  https://smashballoon.com/custom-facebook-feed/docs/get-extended-facebook-user-access-token/
+        page token          :  http://qiita.com/dogyear/items/e4de999971fbf7231496                                           
+        graph API ref       :  http://facebook-docs.oklahome.net/archives/51906043.html
+
+
+
+    - develop site
+    ----------------------------------------------------------------
+        https://developers.facebook.com/
+
+        
+    - user token取得
+    ----------------------------------------------------------------
+        - webから
+            - develop siteを開く
+            - [My APP] を選択 (appがなければ、Appを作成)
+            
+            - [Tool&Support] を選択
+            - [Graph API Exploere] を選択
+            - [Application] プルダウンから、対象appを選択
+            - [Get APP Token] を選択
+            - [Permission] を選択
+            - 左側フォームにTokenが表示される
+
+        - 期限2ヶ月のuser tokenへupdate
+            https://graph.facebook.com/oauth/access_token?
+                grant_type=fb_exchange_token&
+                client_id={app-id}&
+                client_secret={app-secret}&
+                fb_exchange_token={short-lived-token}
+
+            // app id            = web app画面から
+            // app secret        = 同上
+            // short-lived-token = 前項で発行した、user token id
+                
+
+    - app token 取得
+    ----------------------------------------------------------------
+        - httpから取得
+            https://graph.facebook.com/oauth/access_token?
+                client_id={app-id}&
+                client_secret={app-secret}&
+                grant_type=client_credentials
+
+        - webから
+            - develop siteを開く
+            - [My APP] を選択 (appがなければ、Appを作成)
+            
+            - [Tool&Support] を選択
+            - [Graph API Exploere] を選択
+            - [Application] プルダウンから、対象appを選択
+            - [Get APP Token] を選択
+            - 左側フォームにTokenが表示される
+
+
+
+    - page token
+    ----------------------------------------------------------------
+        - http
+            https://graph.facebook.com/me/accounts?access_token={user_token}
+
+            {user_token} へ、user_tokenを入力。
+            返り値として、user page listと対応する、tokenが得られる。
+            ※ manage_pageのpermissionが必要
+
+
+        - webから
+            - develop siteを開く
+            - [My APP] を選択 (appがなければ、Appを作成)
+            
+            - [Tool&Support] を選択
+            - [Graph API Exploere] を選択
+            - [Application] プルダウンから、対象appを選択
+            - [Get APP Token] を選択
+            - コマンドへ [me/accounts] を入力して実行
+            - 返り値として、自己管理しているpageの一覧が得られる
+
+        
+    - token一覧
+    ----------------------------------------------------------------
+        - https://developers.facebook.com/tools/access_token/
+            // develop画面の、[Tool&Support]
+            // [Access Token Tool]
+
+
+
+
+
+
+476342872512690|9FOu4HQV5yGw6QSCM6FQbLKtY20

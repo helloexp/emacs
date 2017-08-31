@@ -1,0 +1,100 @@
+
+
+
+以下、2server共通項
+
+[prd01-a-tky-admin-influencer-uniqlo]
+[prd01-a-tky-batch-influencer-uniqlo] 
+----------------------------------------------------------------
+    以下、web閲覧不可、各プロセスが落ちた際の復旧方法。
+    
+
+    - nginx daemon (web server)
+    --------------------------------
+        - [root] で以下をコマンドを実行
+            # /etc/init.d/nginx restart
+            --------------------------------
+            Stopping nginx:  [  OK  ]
+            Starting nginx:  [  OK  ]
+            --------------------------------
+
+        - ps コマンドにて、プロセス確認
+            ps aux | grep nginx
+            --------------------------------
+            root     10349  0.0  0.0 109464  2164 ?        Ss   07:44   0:00 nginx: master process /usr/sbin/nginx -c /etc/nginx/nginx.conf
+            nginx    10350  0.0  0.0 109828  3292 ?        S    07:44   0:00 nginx: worker process  
+            --------------------------------
+            ※ 設定により、2〜プロセスが表示がされる
+
+        - web正常性確認
+            - ブラウザなどから、/status.htmlより200okが返る事。
+
+        
+    - unicorn daemon (backend app)
+    --------------------------------
+        - [www] ユーザーでlogin
+        
+        - [/var/rails/influencer/current/] へ移動
+        
+        - 以下コマンドで、railsを立ち上げる
+            $ bundle exec unicorn_rails -c ./config/unicorn.rb -E production -D
+
+            # 通常、エラー表示なく、コンソールが入力待ち状態に戻る
+
+        - ps コマンドにてプロセス状態を確認
+            以下の様に、プロセスが起動している事を確認。
+        
+            $ ps aux | grep unicorn
+            ----------------------------------------------------------------
+            www     7658 22.5  2.7 448308 111384 ?       Sl   07:39   0:01 unicorn_rails master -c ./config/unicorn.rb -E production -D                                                 
+            www     7662  0.0  2.6 448176 105924 ?       Sl   07:39   0:00 unicorn_rails worker[0] -c ./config/unicorn.rb -E production -D                                              
+            www     7671  0.0  2.6 448320 105976 ?       Sl   07:39   0:00 unicorn_rails worker[1] -c ./config/unicorn.rb -E production -D
+            ----------------------------------------------------------------
+            # 設定により10〜20processが存在
+
+
+
+    - http無応答
+    --------------------------------
+        - unicorn, nginx process状態確認
+            ps aux | grep unicorn
+            ps aux | grep nginx
+            
+        - processが存在しない場合
+            前項の、[nginx daemon], [unicorn daemon] の手順にて
+            プロセスを起動する。
+            
+
+
+以下、batch server限定
+
+[prd01-a-tky-batch-influencer-uniqlo] 
+--------------------------------------------------------------------------------------------------------------------------------
+    twitter 情報取得プロセスが落ちた場合の復旧方法
+
+    - [www] ユーザーにてログイン
+      
+    - プロセス状態確認
+        通常、[twitter_daemon_proc] が起動している
+        
+        $ ps aux | grep twitter
+        ----------------------------------------------------------------
+        mruby    21919  0.0  2.4 407476 100084 ?       Sl   Mar26   0:01 twitter_daemon_proc 
+        ----------------------------------------------------------------
+
+    - プロセスが存在しない場合
+        - [/var/rails/influencer/script/sns] へ移動
+        
+        - 以下コマンドにて、プロセスを起動
+            $ ./twitter_stream.sh
+            --------------------------------
+            2015年 3月 27日 金曜日 08:04:05 UTC :{"result":"twitter_daemon_proc: running [pid 5418]\n"}
+            --------------------------------
+
+            ※ 上記の様にプロセスIDが表示され正常
+
+        - プロセス状態を再確認
+            $ ps aux | grep twitter
+            ----------------------------------------------------------------
+            mruby    21919  0.0  2.4 407476 100084 ?       Sl   Mar26   0:01 twitter_daemon_proc 
+            ----------------------------------------------------------------

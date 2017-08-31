@@ -1,0 +1,51 @@
+
+
+
+
+env
+----------------------------------------------------------------
+    - 現状のdevelop server IP
+        54.92.111.233
+
+
+
+users
+----------------------------------------------------------------
+    - shibata   : 追加ユーザー
+    - kobayashi : 追加ユーザー
+    - numasawa  : 追加ユーザー
+    - cap       : rails起動ユーザー (当ユーザーを用いる)
+
+
+
+
+source dir
+----------------------------------------------------------------
+    - Original
+        /var/rails/marunouchi_pix/current/
+
+
+    - Develop
+        /home/cap/rails/marunouchi_pix-develop/
+
+        # git clone済み
+        # cap userで作業
+
+
+
+
+cap user commands
+----------------------------------------------------------------
+    - $ marupix_start      : original環境 unicron/rails 起動
+    - $ marupix_kill       : original環境 unicron/rails 終了
+    - $ marupix_reboot     : original環境 unicron/rails 再起動
+
+    - $ marupix_env_start  : 開発環境 unicron/rails 起動
+    - $ marupix_env_kill   : 開発環境 unicron/rails 終了
+    - $ marupix_env_reboot : 開発環境 unicron/rails 再起動
+
+ 
+
+
+
+

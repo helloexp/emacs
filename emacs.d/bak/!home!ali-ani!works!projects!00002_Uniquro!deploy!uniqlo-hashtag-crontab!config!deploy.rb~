@@ -1,0 +1,126 @@
+# -*- coding: utf-8 -*-
+
+# log level
+set :log_level, :debug
+
+
+# deploy dir
+set :deploy_to, '/var/rails/uniqlo'
+
+
+# git
+set :repo_url, 'git@github.com:Ruby-Corporation/uniqlo-hashtag-crontab'
+fetch :repo_url
+#set :pty, true
+
+
+set :keep_releases, 16
+set :linked_files, %w{ config/database.yml config/unicorn.rb tmp/pids/unicorn.pid}
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+
+
+#
+set :rbenv_type, :system # :system or :user
+set :rbenv_ruby, '2.2.0'
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+set :rbenv_roles, :all # default value
+
+
+# bundle
+set :bundle_env_variables, { nokogiri_use_system_libraries: 1 }
+#set :bundle_flags, ''
+#set :bundle_env_variables, {} 
+
+
+set :default_env, {
+  rbenv_root: "/usr/local/rbenv",
+  path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH"
+}
+
+
+# unicorn
+set :unicorn_rack_env, "none"
+set :unicorn_config_path, 'config/unicorn.rb'
+
+
+# deploy exclude
+set :copy_exclude, ["Capfile", "config/deploy.rb", "config/deploy/*", "lib/capistrano/*"]
+
+
+
+
+# ----------------------------------------------------------------
+# after 'deploy:publishing', 'deploy:restart'
+# ----------------------------------------------------------------
+namespace :deploy do
+    after :restart, :assets_precompile do
+        on roles(:app), in: :groups, limit: 3, wait: 10 do
+            within release_path do
+                with rails_env: :production do
+                    execute :rake, 'assets:precompile'
+                end
+            end
+        end
+    end
+
+
+
+    
+    desc 'Upload database.yml'
+    task :upload do
+        on roles(:app) do |host|
+            if test "[ ! -d #{shared_path}/config ]"
+                execute "mkdir -p #{shared_path}/config"
+            end
+            upload!('config/deploy/database.yml', "#{shared_path}/config/database.yml")
+        end
+        on roles(:app) do |host|
+            if test "[ ! -d #{shared_path}/config ]"
+                execute "mkdir -p #{shared_path}/config"
+            end
+            upload!('config/deploy/unicorn/production.rb', "#{shared_path}/config/unicorn.rb")
+        end
+    end
+
+
+    
+
+    desc 'unicorn'
+    task :start do
+        on roles(:app) do |host|
+            #run "cd #{current_path} && BUNDLE_GEMFILE=#{current_path}/Gemfile bundle exec unicorn_rails -c #{current_path}/config/unicorn.rb -E production -D"
+            execute "cd #{current_path} && bundle exec unicorn_rails -c #{current_path}/config/unicorn.rb -E production -D"
+        end
+    end
+
+
+    
+    
+    task :stop do
+        on roles(:app) do |host|
+            execute "kill `cat #{current_path}/tmp/pids/unicorn.pid`"
+        end
+    end
+
+
+    
+    
+    task :restart do
+        on roles(:app) do |host|
+            execute "kill `cat #{current_path}/tmp/pids/unicorn.pid`"
+        end
+        on roles(:app) do |host|
+            execute "cd #{current_path} && bundle exec unicorn_rails -c #{current_path}/config/unicorn.rb -E production -D"
+        end
+    end
+
+    
+
+    
+    before :starting,   :config
+    after  :starting,   'deploy:upload'
+    after  :publishing, :restart
+    after  :finishing,  'deploy:cleanup'
+end
+

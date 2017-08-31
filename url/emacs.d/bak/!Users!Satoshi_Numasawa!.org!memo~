@@ -1,0 +1,37 @@
+
+Instagram - on sns server
+----------------------------------------------------------------
+    - on sns server
+        # 30分毎  :  Instagramから取得できるかぎりの写真をタグ検索します。
+
+            0,30 * * * * rake instagram:get_by_rest
+
+        # 10分毎  :  Instagramから直近未取得の写真をタグ検索します
+            10,20,40,50 * * * * rake instagram:get_by_rest_except_imported_media
+
+        # 20分毎  :  優先度の高い投稿を更新します
+            3,23,43 * * * * rake instagram:media:maintain_recent_media
+
+        # 60分毎  :  ユーザーアカウント情報を更新します
+            0 * * * * rake instagram:user_accounts:get_by_rest
+
+    - on admin
+        # 10分毎  :  Instagram側で削除された投稿を論理削除する
+            5,15,25,35,45,55 * * * * rake instagram:clean[all] --silent >> log/sns/cron.log 2>&1'
+
+        # 10分毎  :  TwitterのFavorite数とコメントの存在確認を行う
+            0,10,20,30,40,50 * * * * rake twitter:sync --silent >> log/sns/cron.log 2>&1'
+
+
+Twitter
+----------------------------------------------------------------
+    - on sns server
+      以下の、streming daemonが常駐
+      動作内容は記憶が曖昧です。(即時反映された様な…)
+
+      /usr/local/rbenv/versions/2.2.0/bin/ruby bin/rails runner TwitterStreamingDaemon.run run
+
+
+    - on admin
+        # 10分毎  :  TwitterのFavorite数とコメントの存在確認を行う
+            0,10,20,30,40,50 * * * * rake twitter:sync --silent >> log/sns/cron.log 2>&1'

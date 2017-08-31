@@ -1,0 +1,13 @@
+
+
+git make gcc gcc-c++
+openssl gdbm
+sqlite sqlite-devel
+ruby-devel
+nodejs npm --enablerepo=epel
+
+libxml2 libxml2-devel
+libxslt libxslt-devel
+
+readline-devel openssl-devel zlib-devel gdbm-devel libffi-devel libyaml-devel libicu-devel rubygems-devel
+

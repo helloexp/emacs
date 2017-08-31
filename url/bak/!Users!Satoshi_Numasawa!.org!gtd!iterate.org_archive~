@@ -1,0 +1,110 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /Users/Numasawa/.org/gtd/iterate.org
+
+
+* Todo [#G] 勤務表
+SCHEDULED: <2016-01-21 Thu +1m>
+- State "Done"       from "Todo"       [2016-01-20 Wed 12:52]
+- State "Done"       from "Todo"       [2015-10-01 Thu 13:37]
+- State "Done"       from "Todo"       [2015-09-03 Thu 06:33]
+- State "Done"       from "Todo"       [2015-08-06 Thu 17:52]
+- State "Done"       from "Todo"       [2015-06-30 Tue 09:35]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2016-01-20 Wed 12:52]
+:ARCHIVE_TIME: 2016-01-29 Fri 13:49
+:ARCHIVE_FILE: ~/.org/gtd/iterate.org
+:ARCHIVE_OLPATH: todos
+:ARCHIVE_CATEGORY: iterate
+:ARCHIVE_TODO: Todo
+:END:
+
+月の勤務表 / 代休申請
+
+
+- 提出方法
+    - [ ] : 柴田さんへ確認メール
+    - [ ] : その後、大吉さんへ提出メール
+
+- 代休
+    以下、例
+    https://drive.google.com/drive/folders/0ByHzvhUxlVRLQ3NrZlMyNWVpVzA
+
+
+- カレンダーへ入力
+    - 代休 : 沼沢
+    - 休出 : 沼沢
+    - 休み : 沼沢
+
+* Done [#G] daily report
+SCHEDULED: <2015-08-26 Wed>
+- State "Paused"     from "Todo"       [2015-08-24 Mon 14:33]
+- State "Paused"     from "Todo"       [2015-08-24 Mon 14:33]
+- State "Done"       from "Todo"       [2015-08-19 Wed 22:03]
+- State "Done"       from "Todo"       [2015-08-13 Thu 02:32]
+- State "Done"       from "Todo"       [2015-08-04 Tue 19:42]
+- State "Done"       from "Todo"       [2015-08-01 Sat 04:56]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2015-08-24 Mon 14:33]
+:ARCHIVE_TIME: 2016-03-29 Tue 14:48
+:ARCHIVE_FILE: ~/.org/gtd/iterate.org
+:ARCHIVE_OLPATH: todos
+:ARCHIVE_CATEGORY: iterate
+:ARCHIVE_TODO: Done
+:END:
+
+柴田 @y-shibata(Tokyo) [2:29 PM]
+@s-numasawa: 日報メールは、もう辞やめようと思います。
+Googleドキュメントで管理できてるので。
+今まで、ありがとう。
+
+* Todo [#G] Roadmap
+SCHEDULED: <2016-07-12 Tue +1d>
+- State "Done"       from "Todo"       [2016-07-11 Mon 09:40]
+- State "Done"       from "Todo"       [2016-07-07 Thu 09:53]
+- State "Done"       from "Todo"       [2016-07-06 Wed 10:11]
+- State "Done"       from "Todo"       [2016-07-06 Wed 10:07]
+- State "Done"       from "Todo"       [2016-07-05 Tue 10:54]
+- State "Done"       from "Todo"       [2016-07-03 Sun 09:40]
+- State "Done"       from "Todo"       [2016-07-02 Sat 09:58]
+- State "Done"       from "Todo"       [2016-07-01 Fri 09:21]
+- State "Done"       from "Todo"       [2016-06-30 Thu 08:40]
+- State "Done"       from "Todo"       [2016-06-29 Wed 09:17]
+- State "Done"       from "Todo"       [2016-06-28 Tue 09:36]
+- State "Done"       from "Todo"       [2016-06-24 Fri 10:34]
+- State "Done"       from "Todo"       [2016-06-22 Wed 09:48]
+- State "Done"       from "Todo"       [2016-06-21 Tue 12:50]
+- State "Done"       from "Todo"       [2016-06-20 Mon 17:24]
+- State "Done"       from "Todo"       [2016-06-15 Wed 12:07]
+- State "Done"       from "Todo"       [2016-06-13 Mon 18:20]
+- State "Done"       from "Todo"       [2016-06-10 Fri 10:11]
+- State "Done"       from "Todo"       [2016-06-09 Thu 09:42]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2016-07-11 Mon 09:40]
+:ARCHIVE_TIME: 2016-07-12 Tue 09:59
+:ARCHIVE_FILE: ~/.org/gtd/iterate.org
+:ARCHIVE_OLPATH: todos
+:ARCHIVE_CATEGORY: iterate
+:ARCHIVE_TODO: Todo
+:END:
+
+
+- IoT
+    - [X] influxdb / chronograph
+    - [X] raspberry pi 3 setting
+    - [X] IoT 資料まとめ
+- allin
+    - [X] mailへの参加
+    - [X] mail QA
+    - [X] vagrant環境の構築
+    - [ ] snsへのembed
+    - [ ] これらに目処がついたら、chat系の打ち合わせ
+- AWS
+    - [ ] AWS inspecter 調査

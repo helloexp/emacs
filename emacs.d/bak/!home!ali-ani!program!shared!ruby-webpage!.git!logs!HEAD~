@@ -1,0 +1,50 @@
+0000000000000000000000000000000000000000 eb20812859a0a2040069440e78cc9933f0ba11dd ali-ani <ruby.spheres@gmail.com> 1437643200 +0900	clone: from git@github:Ruby-Corporation/ruby-webpage.git
+eb20812859a0a2040069440e78cc9933f0ba11dd 3696e92f7eb412c6e217a557853c8b9a1d985542 ali-ani <ruby.spheres@gmail.com> 1437648673 +0900	commit: [#98610418] edit rspec : instance変数をletへ変更
+3696e92f7eb412c6e217a557853c8b9a1d985542 359cb0494bb46feae61aec1f7e1e10f941d21cb3 ali-ani <ruby.spheres@gmail.com> 1437718062 +0900	checkout: moving from partner_offer to create-top-page
+359cb0494bb46feae61aec1f7e1e10f941d21cb3 d38e82ea0ca884f69f1353b8d67d853cc8d4877a ali-ani <ruby.spheres@gmail.com> 1437721868 +0900	checkout: moving from create-top-page to master
+d38e82ea0ca884f69f1353b8d67d853cc8d4877a d38e82ea0ca884f69f1353b8d67d853cc8d4877a ali-ani <ruby.spheres@gmail.com> 1437722557 +0900	checkout: moving from master to recruiting
+d38e82ea0ca884f69f1353b8d67d853cc8d4877a 359cb0494bb46feae61aec1f7e1e10f941d21cb3 ali-ani <ruby.spheres@gmail.com> 1437739596 +0900	checkout: moving from recruiting to create-top-page
+359cb0494bb46feae61aec1f7e1e10f941d21cb3 cae317391fd4d06353632f02a7a5436aaae86994 ali-ani <ruby.spheres@gmail.com> 1437739798 +0900	pull: Fast-forward
+cae317391fd4d06353632f02a7a5436aaae86994 d38e82ea0ca884f69f1353b8d67d853cc8d4877a ali-ani <ruby.spheres@gmail.com> 1437740102 +0900	checkout: moving from create-top-page to master
+d38e82ea0ca884f69f1353b8d67d853cc8d4877a cae317391fd4d06353632f02a7a5436aaae86994 ali-ani <ruby.spheres@gmail.com> 1437740171 +0900	checkout: moving from master to create-top-page
+cae317391fd4d06353632f02a7a5436aaae86994 3696e92f7eb412c6e217a557853c8b9a1d985542 ali-ani <ruby.spheres@gmail.com> 1437955382 +0900	checkout: moving from create-top-page to partner_offer
+3696e92f7eb412c6e217a557853c8b9a1d985542 d38e82ea0ca884f69f1353b8d67d853cc8d4877a ali-ani <ruby.spheres@gmail.com> 1437975093 +0900	checkout: moving from partner_offer to master
+d38e82ea0ca884f69f1353b8d67d853cc8d4877a d38e82ea0ca884f69f1353b8d67d853cc8d4877a ali-ani <ruby.spheres@gmail.com> 1437977318 +0900	checkout: moving from master to recruiting
+d38e82ea0ca884f69f1353b8d67d853cc8d4877a d38e82ea0ca884f69f1353b8d67d853cc8d4877a ali-ani <ruby.spheres@gmail.com> 1437977929 +0900	checkout: moving from recruiting to master
+d38e82ea0ca884f69f1353b8d67d853cc8d4877a d38e82ea0ca884f69f1353b8d67d853cc8d4877a ali-ani <ruby.spheres@gmail.com> 1437977969 +0900	checkout: moving from master to recruiting_rails
+d38e82ea0ca884f69f1353b8d67d853cc8d4877a d38e82ea0ca884f69f1353b8d67d853cc8d4877a ali-ani <ruby.spheres@gmail.com> 1437978040 +0900	checkout: moving from recruiting_rails to master
+d38e82ea0ca884f69f1353b8d67d853cc8d4877a d38e82ea0ca884f69f1353b8d67d853cc8d4877a ali-ani <ruby.spheres@gmail.com> 1437978053 +0900	checkout: moving from master to recruiting
+d38e82ea0ca884f69f1353b8d67d853cc8d4877a d38e82ea0ca884f69f1353b8d67d853cc8d4877a ali-ani <ruby.spheres@gmail.com> 1437978147 +0900	checkout: moving from recruiting to master
+d38e82ea0ca884f69f1353b8d67d853cc8d4877a 688b49e323e3ba93f75cc804a9d491e163cb5854 ali-ani <ruby.spheres@gmail.com> 1437978160 +0900	pull: Fast-forward
+688b49e323e3ba93f75cc804a9d491e163cb5854 d38e82ea0ca884f69f1353b8d67d853cc8d4877a ali-ani <ruby.spheres@gmail.com> 1437978175 +0900	checkout: moving from master to recruiting
+d38e82ea0ca884f69f1353b8d67d853cc8d4877a 688b49e323e3ba93f75cc804a9d491e163cb5854 ali-ani <ruby.spheres@gmail.com> 1437978182 +0900	checkout: moving from recruiting to master
+688b49e323e3ba93f75cc804a9d491e163cb5854 688b49e323e3ba93f75cc804a9d491e163cb5854 ali-ani <ruby.spheres@gmail.com> 1437978219 +0900	checkout: moving from master to recruiting
+688b49e323e3ba93f75cc804a9d491e163cb5854 8c3963101a6d2edfd93fb342f1a80a02d72025e5 ali-ani <ruby.spheres@gmail.com> 1437988650 +0900	commit: add images
+8c3963101a6d2edfd93fb342f1a80a02d72025e5 16dfbc882256004c549c5964f9214a953599f72d ali-ani <ruby.spheres@gmail.com> 1437988672 +0900	commit: add scss
+16dfbc882256004c549c5964f9214a953599f72d 8c3963101a6d2edfd93fb342f1a80a02d72025e5 ali-ani <ruby.spheres@gmail.com> 1437988764 +0900	reset: moving to HEAD^
+8c3963101a6d2edfd93fb342f1a80a02d72025e5 368e79332d74fdda77105f220782a61d715c4f35 ali-ani <ruby.spheres@gmail.com> 1437988817 +0900	commit: add slim, scss
+368e79332d74fdda77105f220782a61d715c4f35 d2136a15cafe3068a62252f793fda32f77ddbb2a ali-ani <ruby.spheres@gmail.com> 1437988840 +0900	commit: add spec
+d2136a15cafe3068a62252f793fda32f77ddbb2a 146828c816cd81a57f89a64e3772552fcf2e0a88 ali-ani <ruby.spheres@gmail.com> 1437988908 +0900	commit: add staff : controller, route, view
+146828c816cd81a57f89a64e3772552fcf2e0a88 7705b8ea9c3a9bd58df3055f8c3b732b8f783d62 ali-ani <ruby.spheres@gmail.com> 1437989423 +0900	commit: edit spec : staff page check追記
+7705b8ea9c3a9bd58df3055f8c3b732b8f783d62 e4a719fcee5b0067d67aa34e0e158d0553c76540 ali-ani <ruby.spheres@gmail.com> 1437989495 +0900	commit (amend): edit spec : staff page check追記
+e4a719fcee5b0067d67aa34e0e158d0553c76540 11ed02def9991ac0a4172458705e02ce5672e0a2 ali-ani <ruby.spheres@gmail.com> 1437989588 +0900	commit: mend
+11ed02def9991ac0a4172458705e02ce5672e0a2 8330bf798d2543e9dedf46a2ab2a26b74c34b2d6 ali-ani <ruby.spheres@gmail.com> 1437989600 +0900	commit (amend): mend
+8330bf798d2543e9dedf46a2ab2a26b74c34b2d6 e4a719fcee5b0067d67aa34e0e158d0553c76540 ali-ani <ruby.spheres@gmail.com> 1437989619 +0900	reset: moving to HEAD^
+e4a719fcee5b0067d67aa34e0e158d0553c76540 d2e462700397786ef696fb26bc4361cf791466be ali-ani <ruby.spheres@gmail.com> 1437990529 +0900	commit: edit css : link hover部追記
+d2e462700397786ef696fb26bc4361cf791466be 9e03e8567165f1a31ce9ae5f311ddb829c4da3dc ali-ani <ruby.spheres@gmail.com> 1437990954 +0900	commit: edit slim : fix following err [RuboCop: Space missing after colon.]
+9e03e8567165f1a31ce9ae5f311ddb829c4da3dc 537bc20822cd5f3347b0f87e9cc8c4f88b0570fd ali-ani <ruby.spheres@gmail.com> 1437991099 +0900	commit: edit scss : tab混入。削除
+537bc20822cd5f3347b0f87e9cc8c4f88b0570fd 688b49e323e3ba93f75cc804a9d491e163cb5854 ali-ani <ruby.spheres@gmail.com> 1437992285 +0900	checkout: moving from recruiting to master
+688b49e323e3ba93f75cc804a9d491e163cb5854 3696e92f7eb412c6e217a557853c8b9a1d985542 ali-ani <ruby.spheres@gmail.com> 1437992444 +0900	checkout: moving from master to policy
+3696e92f7eb412c6e217a557853c8b9a1d985542 688b49e323e3ba93f75cc804a9d491e163cb5854 ali-ani <ruby.spheres@gmail.com> 1437992491 +0900	checkout: moving from policy to master
+688b49e323e3ba93f75cc804a9d491e163cb5854 3696e92f7eb412c6e217a557853c8b9a1d985542 ali-ani <ruby.spheres@gmail.com> 1437992514 +0900	checkout: moving from master to policy
+3696e92f7eb412c6e217a557853c8b9a1d985542 688b49e323e3ba93f75cc804a9d491e163cb5854 ali-ani <ruby.spheres@gmail.com> 1437992523 +0900	checkout: moving from policy to master
+688b49e323e3ba93f75cc804a9d491e163cb5854 3696e92f7eb412c6e217a557853c8b9a1d985542 ali-ani <ruby.spheres@gmail.com> 1437992605 +0900	checkout: moving from master to policy
+3696e92f7eb412c6e217a557853c8b9a1d985542 537bc20822cd5f3347b0f87e9cc8c4f88b0570fd ali-ani <ruby.spheres@gmail.com> 1437992640 +0900	checkout: moving from policy to recruiting
+537bc20822cd5f3347b0f87e9cc8c4f88b0570fd 3696e92f7eb412c6e217a557853c8b9a1d985542 ali-ani <ruby.spheres@gmail.com> 1437992670 +0900	checkout: moving from recruiting to policy
+3696e92f7eb412c6e217a557853c8b9a1d985542 b958d4f587345b8071b96d272bc8e356f8089794 ali-ani <ruby.spheres@gmail.com> 1437992951 +0900	commit: title追記。spec追記
+b958d4f587345b8071b96d272bc8e356f8089794 3696e92f7eb412c6e217a557853c8b9a1d985542 ali-ani <ruby.spheres@gmail.com> 1437993194 +0900	checkout: moving from policy to partner_offer
+3696e92f7eb412c6e217a557853c8b9a1d985542 cfed5335ff4f597e18562c5b951e1af814e42283 ali-ani <ruby.spheres@gmail.com> 1437993292 +0900	commit: title追記。spec追記
+cfed5335ff4f597e18562c5b951e1af814e42283 688b49e323e3ba93f75cc804a9d491e163cb5854 Satoshi-Numasawa <ruby.spheres@gmail.com> 1437994275 +0900	checkout: moving from partner_offer to master
+688b49e323e3ba93f75cc804a9d491e163cb5854 cfed5335ff4f597e18562c5b951e1af814e42283 Satoshi-Numasawa <ruby.spheres@gmail.com> 1437994385 +0900	checkout: moving from master to partner_offer
+cfed5335ff4f597e18562c5b951e1af814e42283 688b49e323e3ba93f75cc804a9d491e163cb5854 Satoshi-Numasawa <ruby.spheres@gmail.com> 1437994772 +0900	checkout: moving from partner_offer to master
+688b49e323e3ba93f75cc804a9d491e163cb5854 537bc20822cd5f3347b0f87e9cc8c4f88b0570fd Satoshi-Numasawa <ruby.spheres@gmail.com> 1437995079 +0900	checkout: moving from master to recruiting

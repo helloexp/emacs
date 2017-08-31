@@ -1,0 +1,29 @@
+.qulification_img {
+  width               : 965px;
+  height              : 430px;
+  margin              : 20px auto 0px auto;
+  background-image    : image-url("qualification_support/mein_06.png"); /* 社員募集 */
+  background-repeat   : no-repeat;
+  background-position : center;
+  overflow            : hidden;
+}
+
+.qulification_head_Text {
+  width                 : 500px;
+  margin                : 30px 5px 30px 5px;
+  font-size             : 150%;
+  font-weight           : normal;
+  padding               : 20px 10px 5px 10px;
+  text-align            : center;
+  line-height           : 2.1;
+}
+
+
+.qulification_cop_left {
+  float               : left;
+  width               : 510px;
+  margin              : 5px 0px 0px 0px;
+  padding             : 15px 5px 15px 30px;
+  line-height         : 2.4;
+  font-size           : 120%;
+}

@@ -1,0 +1,22 @@
+
+
+hardstatus alwayslastline "[%02c] %`%-w%{=b d} %n %t %{-}%+w"
+
+idle 360
+# blankerprg /usr/games/fortune
+
+startup_message off
+shell bash
+log on
+logfile ~/i.screen.d/%y_%m_%d-%n.log
+
+
+escape ^t^t
+
+bind 2 split
+bind o focus
+bind 1 only
+bind 0 remove
+
+
+defscrollback 10000

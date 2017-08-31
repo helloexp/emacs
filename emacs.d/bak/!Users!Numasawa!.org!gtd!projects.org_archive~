@@ -1,0 +1,84 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /Users/Numasawa/.org/gtd/projects.org
+
+
+* Todo [#B] ruby-dev214へgitlab URL記述
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-03-28 Mon 17:40
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: SNS/todos
+:ARCHIVE_CATEGORY: projects
+:ARCHIVE_TODO: Todo
+:ARCHIVE_ITAGS: bb BB
+:END:
+- [X] : ruby-dev214へgitlab URL記述
+  https://git.ruby-dev.jp/business_bank_group/allin-sns/issues/20
+
+* road map
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-04-04 Mon 17:17
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: SNS
+:ARCHIVE_CATEGORY: projects
+:ARCHIVE_ITAGS: bb BB
+:END:
+https://docs.google.com/spreadsheets/d/1EBNm4FDyQKAq_wT_STuFh3Lbw7P6srfqdHBFRoUV660/edit#gid=0
+https://docs.google.com/spreadsheets/d/1uEiI2SFBPv-Z_WgswEhY24NnGe3Z3THCCzRZhmCDbRk/edit#gid=1069237278
+
+** mine
+- [2016-03-22 Tue] -[2016-03-27 Sun]
+    - [ ] : test作成
+
+- [ ] : development環境update
+- [ ] : production環境構築の必要事項列挙
+- [ ] : production環境構築
+- [ ] : deploy手法のdocument化
+- [ ] : 負荷試験
+- [ ] : security試験?
+- [ ] : 監視設定
+** sibata san no
+- [ ] 3/17〜3/27：テスト
+    - [ ] feature
+        - [ ] APIテスト
+        - [ ] WS通知テスト
+        - [ ] 認証テスト
+        - [ ] アクセス制御テスト
+    - [ ] モデル
+        - [ ] feed
+        - [ ] comment
+        - [ ] attachment
+        - [ ] allinAccount
+    - [ ] コントローラ
+        - [ ] feed
+        - [ ] comment
+        - [ ] attachment
+    - [ ] ルート
+        - [ ] WebAPI
+- [ ] クライアントとの接続シーケンス（dispatch）の追加
+- [ ] AttachmentsController証明書の期限
+- [ ] ファイルアップロードの制限を5Mまでにする。
+- [ ] 認証＆権限のレビュー
+- [ ] WSの再接続
+    - [ ] クライアント側
+        - [ ] 初回接続時、ELBへ接続
+        - [ ] disconnectを検出したら、接続先をELBへ戻して接続
+    - [ ] サーバサイド
+        - [ ] 必要な処理がないか確認する。
+- [ ] AttachmentsController
+    - [ ] エラー処理でのファイルの削除
+- [ ] 3/27：DBのインデックス設定
+- [ ] 3/27：セキュリティー
+    - [ ] helmetの設定
+    - [ ] crosの設定
+    - [ ] 書籍からその他
+- [ ] commentクラスのリファクタリング
+- [ ] feedクラスのリファクタリング
+- [ ] AttachmentsControllerの非同期処理の改善
+- [-] 運用環境での動作確認
+    - [ ] 3/23：AWSの料金説明
+    - [ ] 3/23〜3/25：プロダクション環境の構築
+    - [ ] 3/28〜3/31：プロダクション環境での動作テスト
+    - [ ] 4/1〜4/3：運用環境での負荷試験とセキュリティー試験
+    - [X] DBのバックアップは差分バックアップが可能か？

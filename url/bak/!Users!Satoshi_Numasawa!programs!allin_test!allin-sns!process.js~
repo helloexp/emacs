@@ -1,0 +1,70 @@
+'use strict';
+var kue = require('kue');
+var jobs = kue.createQueue();
+
+kue.app.listen(3000);
+
+
+const metaphor = require('metaphor');
+
+let linkify = require('linkifyjs');
+require('linkifyjs/plugins/hashtag')(linkify); // optional
+let linkifyHtml = require('linkifyjs/html');
+
+
+
+
+class Linkify {
+    constructor() {
+        this.res = null;
+        this.urls = null;
+    }
+
+    analyze(text) {
+        // TODO: 空判定を確実に
+        if (text != null) {
+            this.res = linkify.find(text);
+        }
+    }
+
+    filter() {
+        if (this.res.length != 0) {
+            this.urls = this.res.filter((v) => {
+                return v.type == 'url'
+            })
+        }
+    }
+
+    find_url(text) {
+        this.analyze(text)
+        this.filter()
+        return this.urls
+    }
+}
+
+
+function ob (url){
+    url = url || '';
+    var job = jobs.create('web_scrape', {
+        title : 'web_scrape',
+        name : 'web_scrape',
+        url  : url
+    }).delay(10000);
+
+    job
+        .on('complete', () => {
+            console.log('Job', job.id, 'with name', job.data.name, 'is    done');
+        })
+        .on('failed', () => {
+            console.log('Job', job.id, 'with name', job.data.name, 'has  failed');
+        });
+
+    job.save();
+}
+
+
+
+setInterval(function (){
+    let url = 'http://www.ruby-dev.jp'
+    ob(url);
+}, 10000);

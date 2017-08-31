@@ -1,0 +1,46 @@
+/* eslint no-unused-vars: 1 */
+'use strict';
+
+const events = require('./events');
+const Attachment = require('../models/attachment');
+const multiparty = require('multiparty');
+const path = require('path');
+const uuid = require('node-uuid');
+const fs = require('fs');
+const mv = require('mv');
+const AWS = require('aws-sdk');
+const config = require('../config/config').attachmentsConfig;
+const Feed = require('../models/feed');
+const Comment = require('../models/comment');
+const logger = require('../config/logger');
+const co = require('co');
+
+class EmbedController {
+    destroy(req, res, next) {
+        // Attachment.destroy(req, (err, attachment) => {
+        //     if (err || !attachment) {
+        //         return next(err);
+        //     } else {
+        //         if (attachment.feed_id !== null) {
+        //             Feed.findById(attachment.feed_id, (err, feed) => {
+        //                 if (err) {
+        //                     return next(err);
+        //                 }
+        //                 events.feed.update(req.user.group_names[req.query.group_id], feed);
+        //                 res.json({id: req.params.id});
+        //             });
+        //         } else {
+        //             Comment.findById(attachment.comment_id, (err, comment) => {
+        //                 if (err) {
+        //                     return next(err);
+        //                 }
+        //                 events.comment.update(req.user.group_names[req.query.group_id], comment);
+        //                 res.json({id: req.params.id});
+        //             });
+        //         }
+        //     }
+        // });
+    }
+}
+
+module.exports = EmbedController;

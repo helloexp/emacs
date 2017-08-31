@@ -1,0 +1,19 @@
+set :stage, :staging
+
+role :app, %w(54.65.203.149)
+role :web, %w(54.65.203.149)
+role :db, %w(54.65.203.149), primary: true
+role :resque_worker, %w(54.65.203.149)
+role :cron, %w(54.65.203.149)
+role :job_runner, %w(54.65.203.149)
+
+set :user, "svc"
+set :use_sudo, false
+
+set :branch, "deploy/staging"
+
+set :rails_env, "staging"
+set :unicorn_rack_env, "staging"
+set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
+
+set :workers, YAML.load_file(File.join(File.dirname(__FILE__), "..", "resque_workers.yml"))["staging"]

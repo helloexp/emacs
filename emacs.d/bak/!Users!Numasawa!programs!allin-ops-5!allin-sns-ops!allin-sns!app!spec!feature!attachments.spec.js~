@@ -1,0 +1,530 @@
+'use strict';
+
+process.env.NODE_ENV = 'test';
+
+const supertest = require('supertest');
+const app       = require('../../app');
+const request   = supertest(app);
+
+const url    = '/api/v1/feeds/';
+const should = require('chai').should();
+
+describe('/api/v1', () => {
+    const ok           = 200;
+
+    const bad_request  = 400;
+    const unauthorized = 401;
+    const not_found    = 404;
+    const error        = 500;
+
+    const bad_request_code_message  = 'bad_request';
+    const bad_request_error_message = 'required';
+
+    const mock_auth_node = require('../lib/mock_server');
+    const mongodb        = require('../lib/db');
+    const fixture        = require('../lib/fixture');
+
+
+    const Feed    = require('../../models/feed');
+    const Comment = require('../../models/comment');
+
+
+    before( (done) => {
+        Feed.collection.drop();
+        fixture.create_feed_data();
+        done();
+    });
+
+    beforeEach( (done) => {
+        mock_auth_node.create();
+        done();
+    });
+
+    afterEach( (done) => {
+        mock_auth_node.close();
+        done();
+    });
+
+    after( (done) => {
+        mongodb.clean();
+        done();
+    });
+
+
+    function feed_attachment_url(id, group_id) {
+        const url = '/api/v1/attachments/upload/?feed_id='
+        return `${url}${id}&group_id=${group_id}`
+    }
+
+    function comment_attachment_url(id, group_id) {
+        const url = '/api/v1/attachments/upload/?comment_id='
+        return `${url}${id}$group_id={group_id}`
+    }
+
+    function delete_attachment_url(id, group_id) {
+        const url = '/api/v1/attachments/'
+        return `${url}${id}?group_id=${group_id}`
+    }
+
+
+    describe('/feeds', () => {
+        it('get : return 5 json data when limit 5', (done) => {
+            Feed.find({'posted_by': fixture.valid_seeds[0].account_id}, (err, pre_feeds) => {
+                if (err) return done(err);
+
+                const uri = feed_attachment_url(pre_feeds[0].id, fixture.valid_seeds[0].group_id)
+                console.log(uri)
+
+                request
+                    .post(uri)
+                    .attach('avatar', 'app/spec/lib/fixtures/test.jpq')
+                    .set('Accept',        fixture.valid_seeds[0].header)
+                    .set('Content-type',  fixture.valid_seeds[0].header)
+                    .set('Authorization', fixture.valid_seeds[0].authorization)
+                    .end((err, res) => {
+                        if (err) return done(err);
+
+                        should.exist(res.statusCode);
+                        res.statusCode.should.equal(ok);
+                        done();
+                    });
+            });
+        });
+
+        // it('get : failed authenticate with no header', (done) => {
+        //     const limit  = 1;
+        //     const offset = 0;
+        //     const uri = `${url}?group_id=${fixture.valid_seeds[0].group_id}&limit=${limit}&offset=${offset}`;
+
+        //     request
+        //         .get(uri)
+        //         .end((err, res) => {
+        //             if (err) return done(err);
+
+        //             res.statusCode.should.equal(unauthorized);
+
+        //             // TODO: error時のres.body内容不明
+        //             res.body.should.be.empty;
+        //             done();
+        //         });
+        // });
+
+        // it('get : failed authenticate with invalid token', (done) => {
+        //     const body   = {'contents':''};
+        //     const limit  = 1;
+        //     const offset = 0;
+        //     const uri = `${url}?group_id=${fixture.valid_seeds[0].group_id}&limit=${limit}&offset=${offset}`;
+
+        //     request
+        //         .get(uri)
+        //         .send(body)
+        //         .set('Accept',        fixture.valid_seeds[0].header)
+        //         .set('Content-type',  fixture.valid_seeds[0].header)
+        //         .set('Authorization', fixture.invalid_seeds[0].authorization)
+        //         .end((err, res) => {
+        //             if (err) return done(err);
+        //             res.statusCode.should.equal(error);
+        //             done();
+        //         });
+        // });
+
+
+        // it('get : return 3 json data with another compnay_id and group_id', (done) => {
+        //     // group_id固定されているため、割愛
+        //     done();
+        // });
+
+        // it('get : return 1 json data with another compnay_id', (done) => {
+        //     // before処理の以下で、事前投入済み
+        //     //    fixture.create_feed_data();
+
+        //     const limit  = 10;
+        //     const offset = 0;
+        //     const uri = `${url}?group_id=${fixture.valid_seeds[0].group_id}&limit=${limit}&offset=${offset}`;
+
+        //     request
+        //         .get(uri)
+        //         .set('Accept',        fixture.valid_seeds[2].header)
+        //         .set('Content-type',  fixture.valid_seeds[2].header)
+        //         .set('Authorization', fixture.valid_seeds[2].authorization)
+        //         .end((err, res) => {
+        //             if (err) return done(err);
+        //             res.statusCode.should.equal(ok);
+        //             res.body.should.have.length(1);
+        //             done();
+        //         });
+        // });
+
+        // it('get : return 0 json data with another group_id (never been wirte)', (done) => {
+        //     // group_id固定されているため、割愛
+        //     done();
+        // });
+
+        // it('post : create feeds and return feeds json data in body', (done) => {
+        //     const body = {'contents': 'this is test text'};
+        //     const uri  = `${url}?group_id=${fixture.valid_seeds[0].group_id}`;
+
+        //     request
+        //         .post(uri)
+        //         .send(body)
+        //         .set('Accept',        fixture.valid_seeds[0].header)
+        //         .set('Content-type',  fixture.valid_seeds[0].header)
+        //         .set('Authorization', fixture.valid_seeds[0].authorization)
+        //         .end((err, res) => {
+        //             if (err) return done(err);
+        //             res.statusCode.should.equal(ok);
+
+        //             res.body.contents.should.equal(body.contents);
+        //             res.body.posted_by.should.equal(fixture.valid_seeds[0].account_id);
+
+        //             res.body.should.have.property('id');
+        //             res.body.should.have.property('contents');
+        //             res.body.should.have.property('created_at');
+        //             res.body.should.have.property('updated_at');
+        //             res.body.should.have.property('posted_by');
+        //             res.body.should.have.property('likes');
+        //             res.body.should.have.property('attachments');
+        //             res.body.should.have.property('comments');
+
+        //             res.body.contents.should.equal(body.contents);
+        //             res.body.posted_by.should.equal(fixture.valid_seeds[0].account_id);
+
+        //             done();
+        //         });
+        // });
+
+        // it('post : fail create feeds with no contents. return 500 ', (done) => {
+        //     const body = {'contents': ''};
+        //     const uri  = `${url}?group_id=${fixture.valid_seeds[0].group_id}`;
+
+        //     request
+        //         .post(uri)
+        //         .send(body)
+        //         .set('Accept',        fixture.valid_seeds[0].header)
+        //         .set('Content-type',  fixture.valid_seeds[0].header)
+        //         .set('Authorization', fixture.valid_seeds[0].authorization)
+        //         .end((err, res) => {
+        //             res.statusCode.should.equal(bad_request);
+
+        //             res.body.message.code.should.equal(bad_request_code_message);
+        //             res.body.message.errors.contents[0].should.equal(bad_request_error_message );
+        //             done();
+        //         });
+        // });
+    });
+
+
+    // describe('/:id GET', () => {
+    //     it('show', (done) => {
+    //         // undefined
+    //         done();
+    //     });
+    // });
+
+    // describe('/:id PUT', () => {
+    //     it('success update feeds and return 200 ok', (done) => {
+    //         const init_body = {'contents': '1'};
+    //         const edit_body = {'contents': '2'};
+
+    //         let uri  = `${url}?group_id=${fixture.valid_seeds[0].group_id}`;
+
+    //         request
+    //             .post(uri)
+    //             .send(init_body)
+    //             .set('Accept',        fixture.valid_seeds[0].header)
+    //             .set('Content-type',  fixture.valid_seeds[0].header)
+    //             .set('Authorization', fixture.valid_seeds[0].authorization)
+    //             .end((err, res) => {
+    //                 if (err) return done(err);
+
+    //                 res.statusCode.should.equal(ok);
+
+    //                 uri  = `${url}${res.body.id}?group_id=${fixture.valid_seeds[0].group_id}`;
+    //                 request
+    //                     .put(uri)
+    //                     .send(edit_body)
+    //                     .set('Accept',        fixture.valid_seeds[0].header)
+    //                     .set('Content-type',  fixture.valid_seeds[0].header)
+    //                     .set('Authorization', fixture.valid_seeds[0].authorization)
+    //                     .end((err, res) => {
+    //                         if (err) return done(err);
+
+    //                         res.statusCode.should.equal(ok);
+    //                         res.body.contents.should.equal(edit_body.contents);
+
+    //                         res.body.should.have.property('id');
+    //                         res.body.should.have.property('contents');
+    //                         res.body.should.have.property('created_at');
+    //                         res.body.should.have.property('updated_at');
+    //                         res.body.should.have.property('posted_by');
+    //                         res.body.should.have.property('likes');
+    //                         res.body.should.have.property('attachments');
+    //                         res.body.should.have.property('comments');
+
+    //                         done();
+    //                     });
+    //             });
+    //     });
+
+    //     it('fail update feeds and return 500. no contents', (done) => {
+    //         const init_body = {'contents': '1'};
+    //         const edit_body = {'contents': ''};
+
+    //         let uri  = `${url}?group_id=${fixture.valid_seeds[0].group_id}`;
+
+    //         request
+    //             .post(uri)
+    //             .send(init_body)
+    //             .set('Accept',        fixture.valid_seeds[0].header)
+    //             .set('Content-type',  fixture.valid_seeds[0].header)
+    //             .set('Authorization', fixture.valid_seeds[0].authorization)
+    //             .end((err, res) => {
+    //                 if (err) return done(err);
+
+    //                 res.statusCode.should.equal(ok);
+
+    //                 uri  = `${url}${res.body.id}'?group_id='${fixture.valid_seeds[0].group_id}`;
+    //                 request
+    //                     .put(uri)
+    //                     .send(edit_body)
+    //                     .set('Accept',        fixture.valid_seeds[0].header)
+    //                     .set('Content-type',  fixture.valid_seeds[0].header)
+    //                     .set('Authorization', fixture.valid_seeds[0].authorization)
+    //                     .end((err, res) => {
+    //                         if (err) return done(err);
+
+    //                         // TODO: error時のres.body内容不明
+    //                         res.body.should.be.empty;
+    //                         res.statusCode.should.equal(error);
+    //                         done();
+    //                     });
+    //             });
+    //     });
+
+    //     it('fail update feeds and return 500 error. non-existed id', (done) => {
+    //         const init_body = {'contents': '1'};
+    //         const edit_body = {'contents': '2'};
+    //         const dummy_id = '6a86645ee99911e59948080027599000';
+
+    //         let uri  = `${url}?group_id=${fixture.valid_seeds[0].group_id}`;
+
+    //         request
+    //             .post(uri)
+    //             .send(init_body)
+    //             .set('Accept',        fixture.valid_seeds[0].header)
+    //             .set('Content-type',  fixture.valid_seeds[0].header)
+    //             .set('Authorization', fixture.valid_seeds[0].authorization)
+    //             .end((err, res) => {
+    //                 if (err) return done(err);
+
+    //                 res.statusCode.should.equal(ok);
+
+    //                 uri  = `${url}${dummy_id}?group_id=${fixture.valid_seeds[0].group_id}`;
+    //                 request
+    //                     .put(uri)
+    //                     .send(edit_body)
+    //                     .set('Accept',        fixture.valid_seeds[0].header)
+    //                     .set('Content-type',  fixture.valid_seeds[0].header)
+    //                     .set('Authorization', fixture.valid_seeds[0].authorization)
+    //                     .end((err, res) => {
+    //                         if (err) return done(err);
+
+    //                         res.statusCode.should.equal(error);
+    //                         done();
+    //                     });
+    //             });
+    //     });
+
+    //     it('fail update feeds and return 404 error. another accound_id, ', (done) => {
+    //         const init_body = {'contents': '1'};
+    //         const edit_body = {'contents': '2'};
+
+    //         let uri  = `${url}?group_id=${fixture.valid_seeds[0].group_id}`;
+
+    //         request
+    //             .post(uri)
+    //             .send(init_body)
+    //             .set('Accept',        fixture.valid_seeds[0].header)
+    //             .set('Content-type',  fixture.valid_seeds[0].header)
+    //             .set('Authorization', fixture.valid_seeds[0].authorization)
+    //             .end((err, res) => {
+    //                 if (err) return done(err);
+
+    //                 res.statusCode.should.equal(ok);
+
+    //                 uri  = `${url}${res.body.id}?group_id=${fixture.valid_seeds[5].group_id}`;
+    //                 request
+    //                     .put(uri)
+    //                     .send(edit_body)
+    //                     .set('Accept',        fixture.valid_seeds[5].header)
+    //                     .set('Content-type',  fixture.valid_seeds[5].header)
+    //                     .set('Authorization', fixture.valid_seeds[5].authorization)
+    //                     .end((err, res) => {
+    //                         if (err) return done(err);
+
+    //                         // TODO: error時のres.body内容不明
+    //                         res.body.should.be.empty;
+    //                         res.statusCode.should.equal(not_found);
+    //                         done();
+    //                     });
+    //             });
+    //     });
+
+    //     it('fail update feeds and return 404 error. another company_id, ', (done) => {
+    //         const init_body = {'contents': '1'};
+    //         const edit_body = {'contents': '2'};
+
+    //         let uri  = `${url}?group_id=${fixture.valid_seeds[0].group_id}`;
+
+    //         request
+    //             .post(uri)
+    //             .send(init_body)
+    //             .set('Accept',        fixture.valid_seeds[0].header)
+    //             .set('Content-type',  fixture.valid_seeds[0].header)
+    //             .set('Authorization', fixture.valid_seeds[0].authorization)
+    //             .end((err, res) => {
+    //                 if (err) return done(err);
+
+    //                 res.statusCode.should.equal(ok);
+
+    //                 uri  = `${url}${res.body.id}?group_id=${fixture.valid_seeds[4].group_id}`;
+    //                 request
+    //                     .put(uri)
+    //                     .send(edit_body)
+    //                     .set('Accept',        fixture.valid_seeds[4].header)
+    //                     .set('Content-type',  fixture.valid_seeds[4].header)
+    //                     .set('Authorization', fixture.valid_seeds[4].authorization)
+    //                     .end((err, res) => {
+    //                         if (err) return done(err);
+
+    //                         res.statusCode.should.equal(not_found);
+    //                         done();
+    //                     });
+    //             });
+    //     });
+    // });
+
+
+    // describe('/:id DELETE', () => {
+    //     // TODO: attachment 削除確認を追加
+    //     it('success destroy and return 200 ok with valid id', (done) => {
+    //         Feed.find({'posted_by': fixture.valid_seeds[0].account_id}, (err, pre_feeds) => {
+    //             if (err) return done(err);
+
+    //             Comment.find({feed_id: pre_feeds[0].id}, (err, pre_comments) => {
+    //                 if (err) return done(err);
+    //                 pre_comments.length.should.equal(fixture.comment_per_feed);
+
+    //                 const uri = `${url}${pre_feeds[0].id}?group_id=${fixture.valid_seeds[0].group_id}`;
+    //                 request
+    //                     .del(uri)
+    //                     .set('Accept',        fixture.valid_seeds[0].header)
+    //                     .set('Content-type',  fixture.valid_seeds[0].header)
+    //                     .set('Authorization', fixture.valid_seeds[0].authorization)
+    //                     .end((err, res) => {
+    //                         if (err) return done(err);
+    //                         res.statusCode.should.equal(ok);
+    //                         res.body.id.should.equal(pre_feeds[0].id);
+
+    //                         Feed.find({'posted_by': fixture.valid_seeds[0].account_id}, (err, post_feeds) => {
+    //                             if (err) return done(err);
+    //                             post_feeds.length.should.equal(pre_feeds.length - 1);
+
+    //                             Comment.find({feed_id: pre_feeds[0].id}, (err, post_comments) => {
+    //                                 if (err) return done(err);
+
+    //                                 // 削除対象feedに紐づく、commentが全て削除されている事
+    //                                 post_comments.length.should.equal(0);
+    //                                 done();
+    //                             });
+    //                         });
+    //                     });
+    //             });
+    //         });
+    //     });
+
+
+    //     it('fail destroy and return 200. non-existed id', (done) => {
+    //         // FIXME: 存在しないfeed削除時、200okが返る
+    //         const dummy_id = '56fa421c7999999e6dda7eb5';
+
+    //         let uri  = `${url}${dummy_id}?group_id=${fixture.valid_seeds[0].group_id}`;
+
+    //         Feed.find('{}', (err, pre_feeds) => {
+    //             if (err) return done(err);
+
+    //             request
+    //                 .del(uri)
+    //                 .set('Accept',        fixture.valid_seeds[0].header)
+    //                 .set('Content-type',  fixture.valid_seeds[0].header)
+    //                 .set('Authorization', fixture.valid_seeds[0].authorization)
+    //                 .end((err, res) => {
+    //                     if (err) return done(err);
+    //                     res.statusCode.should.equal(ok);
+
+    //                     // TODO: error時のres.body内容不明
+    //                     res.body.id.should.equal(dummy_id);
+
+    //                     Feed.find('{}', (err, post_feeds) => {
+    //                         if (err) return done(err);
+    //                         pre_feeds.length.should.equal(post_feeds.length);
+    //                     });
+
+    //                     done();
+    //                 });
+    //         });
+    //     });
+
+    //     it('fail destroy and return 200 ok. other account id', (done) => {
+    //         Feed.find({'posted_by': fixture.valid_seeds[0].account_id}, (err, pre_feeds) => {
+    //             if (err) return done(err);
+
+    //             const uri = `${url}${pre_feeds[0].id}?group_id=${fixture.valid_seeds[0].group_id}`;
+    //             request
+    //                 .del(uri)
+    //                 .set('Accept',        fixture.valid_seeds[5].header)
+    //                 .set('Content-type',  fixture.valid_seeds[5].header)
+    //                 .set('Authorization', fixture.valid_seeds[5].authorization)
+    //                 .end((err, res) => {
+    //                     if (err) return done(err);
+
+    //                     // FIX: 削除失敗しているが、200 okが返る
+    //                     res.statusCode.should.equal(ok);
+
+    //                     Feed.find({'posted_by': fixture.valid_seeds[0].account_id}, (err, post_feeds) => {
+    //                         if (err) return done(err);
+
+    //                         pre_feeds.length.should.equal(post_feeds.length);
+    //                         done();
+    //                     });
+    //                 });
+    //         });
+    //     });
+
+    //     it('fail destroy and return 200 ok. other company id', (done) => {
+    //         Feed.find({'posted_by': fixture.valid_seeds[0].account_id}, (err, pre_feeds) => {
+    //             if (err) return done(err);
+
+    //             const uri = `${url}${pre_feeds[0].id}?group_id=${fixture.valid_seeds[0].group_id}`;
+    //             request
+    //                 .del(uri)
+    //                 .set('Accept',        fixture.valid_seeds[4].header)
+    //                 .set('Content-type',  fixture.valid_seeds[4].header)
+    //                 .set('Authorization', fixture.valid_seeds[4].authorization)
+    //                 .end((err, res) => {
+    //                     if (err) return done(err);
+
+    //                     // FIX: 削除失敗しているが、200 okが返る
+    //                     res.statusCode.should.equal(ok);
+
+    //                     Feed.find({'posted_by': fixture.valid_seeds[0].account_id}, (err, post_feeds) => {
+    //                         if (err) return done(err);
+
+    //                         pre_feeds.length.should.equal(post_feeds.length);
+    //                         done();
+    //                     });
+    //                 });
+    //         });
+    //     });
+    // });
+});

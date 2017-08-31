@@ -1,0 +1,37 @@
+
+
+
+# --------------------------------------------------------------------------------                                                                                           
+# backend                                                                                                                                                                    
+# --------------------------------------------------------------------------------                                                                                           
+upstream backend {
+    server 127.0.0.1:5001;
+}
+
+
+
+server {
+    listen       80;
+    server_name  lifewear.uniqlo.com;
+
+    server_tokens off;
+
+    access_log /var/log/nginx/lifewear.uniqlo.com/access_log;
+    error_log  /var/log/nginx/lifewear.uniqlo.com/error_log;
+
+    root /var/rails/influencer/current/public;
+
+
+    # --------------------------------------------------------------------------------                                                                                       
+    # switch                                                                                                                                                                 
+    # --------------------------------------------------------------------------------                                                                                       
+
+
+    # ----------------                                                                                                                                                       
+    # assets                                                                                                                                                                 
+    # ----------------                                                                                                                                                       
+    location ~ /form/assets(.*) {
+    #location ~ ^/assets/(.*) {                                                                                                                                              
+    #location ~ /assets/static/ {                                                                                                                                            
+        alias /var/rails/influencer/current/public/assets/$1;
+    }

@@ -1,0 +1,5 @@
+# -*- coding: utf-8 -*-
+module Judge_browser
+  extend ActiveSupport::Concern
+
+end

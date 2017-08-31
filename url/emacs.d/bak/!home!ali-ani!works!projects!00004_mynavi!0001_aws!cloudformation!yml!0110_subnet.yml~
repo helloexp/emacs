@@ -1,0 +1,99 @@
+  # --------------------------------
+  # defun subnet 
+  # --------------------------------
+  &subnet_front_1a SgFront1a:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: 10.0.0.0/24
+      AvailabilityZone: ap-northeast-1a
+      VpcId:
+        Ref: *vpc_name
+      Tags:
+      - Key: Name
+        Value: mynavi-product-front-1a
+      - Key: Scope
+        Value: Public
+  &subnet_front_1c SgFront1c:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: 10.0.1.0/24
+      AvailabilityZone: ap-northeast-1c
+      VpcId:
+        Ref: *vpc_name
+      Tags:
+      - Key: Name
+        Value: mynavi-product-front-1c
+      - Key: Scope
+        Value: Public
+  &subnet_web_1a SgWeb1a:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: 10.0.2.0/24
+      AvailabilityZone: ap-northeast-1a
+      VpcId:
+        Ref: *vpc_name
+      Tags:
+      - Key: Name
+        Value: mynavi-product-web-1a
+      - Key: Scope
+        Value: Private
+  &subnet_web_1c SgWeb1c:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: 10.0.3.0/24
+      AvailabilityZone: ap-northeast-1c
+      VpcId:
+        Ref: *vpc_name
+      Tags:
+      - Key: Name
+        Value: mynavi-product-web-1c
+      - Key: Scope
+        Value: Private
+  &subnet_cms_1a SgCms1a:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: 10.0.4.0/24
+      AvailabilityZone: ap-northeast-1a
+      VpcId:
+        Ref: *vpc_name
+      Tags:
+      - Key: Name
+        Value: mynavi-product-cms-1a
+      - Key: Scope
+        Value: Private
+  &subnet_cms_1c SgCms1c:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: 10.0.5.0/24
+      AvailabilityZone: ap-northeast-1c
+      VpcId:
+        Ref: *vpc_name
+      Tags:
+      - Key: Name
+        Value: mynavi-product-cms-1c
+      - Key: Scope
+        Value: Private
+  &subnet_backend_1a SgBackend1a:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: 10.0.6.0/24
+      AvailabilityZone: ap-northeast-1a
+      VpcId:
+        Ref: *vpc_name
+      Tags:
+      - Key: Name
+        Value: mynavi-product-backend-1a
+      - Key: Scope
+        Value: Private
+  &subnet_backend_1c SgBackend1c:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: 10.0.7.0/24
+      AvailabilityZone: ap-northeast-1c
+      VpcId:
+        Ref: *vpc_name
+      Tags:
+      - Key: Name
+        Value: mynavi-product-backend-1c
+      - Key: Scope
+        Value: Private

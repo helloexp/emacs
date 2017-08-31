@@ -1,0 +1,35 @@
+# coding: utf-8
+# VAGRANTFILE_API_VERSION = "2"
+
+# Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+#   config.vm.box = "CentOS 6.5 x86_64"
+
+#   config.vm.network "private_network", ip: "192.168.33.10"
+
+#   config.vm.provision "ansible" do |ansible|
+#     ansible.playbook = "provisioning/site.yml"
+#     ansible.inventory_path = "provisioning/hosts"
+#     ansible.limit = 'all'
+#   end
+# end
+Vagrant.configure(2) do |config|
+  # vagrant box addで取得したboxの指定
+  config.vm.box = "opscode_centos-6.5_chef-provisionerless"
+  config.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box"
+
+  # ローカルの8080へのアクセスが仮想環境の80へポートフォワードされる
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  # 仮想環境のプライベートIPアドレスを指定
+  config.vm.network "private_network", ip: "192.168.33.10"
+
+  # 仮想環境に同期（マウント）させたいローカル環境のディレクトリ
+  # デフォルトでカレントディレクトリが仮想環境の/vagrantにマウントされる
+  # config.vm.synced_folder "../data", "/vagrant_data"
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "provisioning/site.yml"
+    ansible.inventory_path = "provisioning/hosts"
+    ansible.limit = 'all'
+  end
+end

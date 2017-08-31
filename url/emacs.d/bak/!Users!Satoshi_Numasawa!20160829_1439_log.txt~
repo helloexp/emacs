@@ -1,0 +1,40 @@
+• ☑ prerelease
+  • ☑ ssh to 52.69.125.220
+  • ☑ notification
+    • ☑ $ cd /var/node_notification/current/
+    • ☑ $ vim shared/restart.sh
+      • ☑ write following after [export NOTIFICATION_DISPATCH_URL=[https://sns-staging1.all-in.xyz:5100]]
+        export NOTIFICATION_MAILER_STATUS=true
+
+        export NOTIFICATION_SENDGRID_APIKEY=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
+
+    • ☑ $ bash /var/node_notification/shared/restart.sh
+    • ☑ $ string /proc/[proc_num]/environ環境変数読み込みok
+      ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+      node@ip-10-2-0-234 current]$ strings /proc/30223/environ | grep NOTIFICATION
+      NOTIFICATION_DISPATCH_URL=[https://sns-prerelease1.all-in.xyz:5100]
+      NOTIFICATION_SENDGRID_APIKEY=SG.***********************************************
+      NOTIFICATION_MAILER_STATUS=true
+      ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+    • ☑ $ pm2 status
+    • ☑ log監視ok
+      ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+      [2016-08-29 05:27:57.072] [DEBUG] [default] - send data: {
+      "id": "57c3c7dd00efac0f76b9fbb3", "account_id":
+      "4677cf246da811e6869806239ec0fcff", "type": "Comment",
+      "action": "create", "data": { "id":
+      "57c3c7dc520560ef3ee110dd", "group_id":
+      "b1c903566da811e6b73406239ec0fcff", "account_id":
+      "544b0cba6da811e6b73406239ec0fcff", "first_name": "花子",
+      "last_name": "テスト", "contents": "こんにちは2",
+      "created_at": "2016-08-29T05:27:56.946Z", "email":
+      "takenaka+iwasaki+qa1@bbank.jp" }, "unread": true,
+      "created_at": "2016-08-29T05:27:57.067Z", "updated_at":
+      "2016-08-29T05:27:57.067Z" }
+
+      [2016-08-29 05:27:57.074] [INFO] [default] -
+      ::ffff:10.2.0.103 - allinsns [29/Aug/2016:05:27:57 +0000]
+      "POST /api/v1/notifications HTTP/1.1" 200 501 "-" "-"
+      [2016-08-29 05:27:57.369] [DEBUG] [default] -
+      MailsDelivery:Success
+      ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――

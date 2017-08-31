@@ -1,0 +1,7 @@
+.timeline-embed ng-repeat="embed in feed.embeds"
+  .domain ng-if="!embed.image.url"
+    = render 'embed_no_image'
+  .domain ng-if="embed.image.aspect > 1.2 && embed.image.width >= 200"
+    = render 'embed_horizontally'
+  .domain ng-if="embed.image.aspect < 1.2 || embed.image.width <= 200"
+    = render 'embed_vertically'

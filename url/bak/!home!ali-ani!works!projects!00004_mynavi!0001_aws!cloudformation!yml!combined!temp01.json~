@@ -1,0 +1,1138 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Testing ",
+    "Resources": {
+        "mynavi": {
+            "Type": "AWS::EC2::VPC",
+            "Properties": {
+                "CidrBlock": "10.0.0.0\/16",
+                "InstanceTenancy": "default",
+                "EnableDnsSupport": "true",
+                "EnableDnsHostnames": "true",
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi--------------"
+                    }
+                ]
+            }
+        },
+        "DefaultIgw": {
+            "Type": "AWS::EC2::InternetGateway",
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "gateway"
+                    }
+                ]
+            }
+        },
+        "AttachGateway": {
+            "Type": "AWS::EC2::VPCGatewayAttachment",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "mynavi"
+                },
+                "InternetGatewayId": {
+                    "Ref": "DefaultIgw"
+                }
+            }
+        },
+        "DHCP": {
+            "Type": "AWS::EC2::DHCPOptions",
+            "Properties": {
+                "DomainName": "ap-northeast-1.compute.internal",
+                "DomainNameServers": [
+                    "AmazonProvidedDNS"
+                ]
+            }
+        },
+        "SgFront1a": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "CidrBlock": "10.0.0.0\/24",
+                "AvailabilityZone": "ap-northeast-1a",
+                "VpcId": {
+                    "Ref": "mynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-front-1a"
+                    },
+                    {
+                        "Key": "Scope",
+                        "Value": "Public"
+                    }
+                ]
+            }
+        },
+        "SgFront1c": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "CidrBlock": "10.0.1.0\/24",
+                "AvailabilityZone": "ap-northeast-1c",
+                "VpcId": {
+                    "Ref": "mynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-front-1c"
+                    },
+                    {
+                        "Key": "Scope",
+                        "Value": "Public"
+                    }
+                ]
+            }
+        },
+        "SgWeb1a": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "CidrBlock": "10.0.2.0\/24",
+                "AvailabilityZone": "ap-northeast-1a",
+                "VpcId": {
+                    "Ref": "mynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-web-1a"
+                    },
+                    {
+                        "Key": "Scope",
+                        "Value": "Private"
+                    }
+                ]
+            }
+        },
+        "SgWeb1c": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "CidrBlock": "10.0.3.0\/24",
+                "AvailabilityZone": "ap-northeast-1c",
+                "VpcId": {
+                    "Ref": "mynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-web-1c"
+                    },
+                    {
+                        "Key": "Scope",
+                        "Value": "Private"
+                    }
+                ]
+            }
+        },
+        "SgCms1a": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "CidrBlock": "10.0.4.0\/24",
+                "AvailabilityZone": "ap-northeast-1a",
+                "VpcId": {
+                    "Ref": "mynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-cms-1a"
+                    },
+                    {
+                        "Key": "Scope",
+                        "Value": "Private"
+                    }
+                ]
+            }
+        },
+        "SgCms1c": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "CidrBlock": "10.0.5.0\/24",
+                "AvailabilityZone": "ap-northeast-1c",
+                "VpcId": {
+                    "Ref": "mynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-cms-1c"
+                    },
+                    {
+                        "Key": "Scope",
+                        "Value": "Private"
+                    }
+                ]
+            }
+        },
+        "SgBackend1a": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "CidrBlock": "10.0.6.0\/24",
+                "AvailabilityZone": "ap-northeast-1a",
+                "VpcId": {
+                    "Ref": "mynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-backend-1a"
+                    },
+                    {
+                        "Key": "Scope",
+                        "Value": "Private"
+                    }
+                ]
+            }
+        },
+        "SgBackend1c": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "CidrBlock": "10.0.7.0\/24",
+                "AvailabilityZone": "ap-northeast-1c",
+                "VpcId": {
+                    "Ref": "mynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-backend-1c"
+                    },
+                    {
+                        "Key": "Scope",
+                        "Value": "Private"
+                    }
+                ]
+            }
+        },
+        "RouteTableFront": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "mynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-front"
+                    }
+                ]
+            }
+        },
+        "RouteTableWeb": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "mynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-web"
+                    }
+                ]
+            }
+        },
+        "RouteTableBackend": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "mynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-backend"
+                    }
+                ]
+            }
+        },
+        "RouteFront": {
+            "Type": "AWS::EC2::Route",
+            "Properties": {
+                "DestinationCidrBlock": "0.0.0.0\/0",
+                "RouteTableId": {
+                    "Ref": "RouteTableFront"
+                },
+                "GatewayId": {
+                    "Ref": "DefaultIgw"
+                }
+            },
+            "DependsOn": "DefaultIgw"
+        },
+        "SubnetRouteFront1a": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "RouteTableFront"
+                },
+                "SubnetId": {
+                    "Ref": "SgFront1a"
+                }
+            }
+        },
+        "SubnetRouteFront1c": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "RouteTableFront"
+                },
+                "SubnetId": {
+                    "Ref": "SgFront1c"
+                }
+            }
+        },
+        "SubnetRouteWeb1a": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "RouteTableWeb"
+                },
+                "SubnetId": {
+                    "Ref": "SgWeb1a"
+                }
+            }
+        },
+        "SubnetRouteWeb1c": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "RouteTableWeb"
+                },
+                "SubnetId": {
+                    "Ref": "SgWeb1c"
+                }
+            }
+        },
+        "SubnetRouteCms1a": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "RouteTableWeb"
+                },
+                "SubnetId": {
+                    "Ref": "SgCms1a"
+                }
+            }
+        },
+        "SubnetRouteCms1c": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "RouteTableWeb"
+                },
+                "SubnetId": {
+                    "Ref": "SgCms1c"
+                }
+            }
+        },
+        "SubnetRouteBackend1a": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "RouteTableBackend"
+                },
+                "SubnetId": {
+                    "Ref": "SgBackend1a"
+                }
+            }
+        },
+        "SubnetRouteBackend1c": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "RouteTableBackend"
+                },
+                "SubnetId": {
+                    "Ref": "SgBackend1c"
+                }
+            }
+        },
+        "SgJumpGateway": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "jump_gateway",
+                "VpcId": {
+                    "Ref": "mynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "jump_gateway"
+                    }
+                ]
+            }
+        },
+        "SgNat": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "nat",
+                "VpcId": {
+                    "Ref": "mynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "nat"
+                    }
+                ]
+            }
+        },
+        "SgElb": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "elb",
+                "VpcId": {
+                    "Ref": "mynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "elb"
+                    }
+                ]
+            }
+        },
+        "SgWeb": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "web",
+                "VpcId": {
+                    "Ref": "mynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "web"
+                    }
+                ]
+            }
+        },
+        "SgmCms": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "cms",
+                "VpcId": {
+                    "Ref": "mynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "cms"
+                    }
+                ]
+            }
+        },
+        "SgBackend": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "backend",
+                "VpcId": {
+                    "Ref": "mynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "backend"
+                    }
+                ]
+            }
+        },
+        "IngresssSgJumpGateway": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "SgJumpGateway"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "22",
+                "ToPort": "22",
+                "CidrIp": "0.0.0.0\/0"
+            }
+        },
+        "ingressSgElb0": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "SgElb"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "80",
+                "ToPort": "80",
+                "CidrIp": "0.0.0.0\/0"
+            }
+        },
+        "ingressSgElb1": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "SgElb"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "443",
+                "ToPort": "443",
+                "CidrIp": "0.0.0.0\/0"
+            }
+        },
+        "IngressSgNat": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "SgNat"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "0",
+                "ToPort": "65535",
+                "CidrIp": "10.0.0.0\/16"
+            }
+        },
+        "IngressSgWeb0": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "SgWeb"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "22",
+                "ToPort": "22",
+                "SourceSecurityGroupId": {
+                    "Ref": "SgJumpGateway"
+                }
+            }
+        },
+        "IngressSgWeb1": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "SgWeb"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "80",
+                "ToPort": "80",
+                "CidrIp": "0.0.0.0\/0"
+            }
+        },
+        "IngressSgWeb2": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "SgWeb"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "443",
+                "ToPort": "443",
+                "CidrIp": "0.0.0.0\/0"
+            }
+        },
+        "IngressSgCms0": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "SgmCms"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "22",
+                "ToPort": "22",
+                "SourceSecurityGroupId": {
+                    "Ref": "SgJumpGateway"
+                }
+            }
+        },
+        "IngressSgCms1": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "SgmCms"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "80",
+                "ToPort": "80",
+                "CidrIp": "0.0.0.0\/0"
+            }
+        },
+        "IngressSgCms2": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "SgmCms"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "443",
+                "ToPort": "443",
+                "CidrIp": "0.0.0.0\/0"
+            }
+        },
+        "IngressSgBackend0": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "SgBackend"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "3306",
+                "ToPort": "3306",
+                "SourceSecurityGroupId": {
+                    "Ref": "SgmCms"
+                }
+            }
+        },
+        "IngressSgBackend1": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "SgBackend"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "3306",
+                "ToPort": "3306",
+                "SourceSecurityGroupId": {
+                    "Ref": "SgWeb"
+                }
+            }
+        },
+        "EgressSgJumpGateway": {
+            "Type": "AWS::EC2::SecurityGroupEgress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "SgJumpGateway"
+                },
+                "IpProtocol": "-1",
+                "CidrIp": "0.0.0.0\/0"
+            }
+        },
+        "EgressSgElb": {
+            "Type": "AWS::EC2::SecurityGroupEgress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "SgElb"
+                },
+                "IpProtocol": "-1",
+                "CidrIp": "0.0.0.0\/0"
+            }
+        },
+        "EgressSgNat": {
+            "Type": "AWS::EC2::SecurityGroupEgress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "SgNat"
+                },
+                "IpProtocol": "-1",
+                "CidrIp": "0.0.0.0\/0"
+            }
+        },
+        "EgressSgWeb": {
+            "Type": "AWS::EC2::SecurityGroupEgress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "SgWeb"
+                },
+                "IpProtocol": "-1",
+                "CidrIp": "0.0.0.0\/0"
+            }
+        },
+        "EgressSgCms": {
+            "Type": "AWS::EC2::SecurityGroupEgress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "SgmCms"
+                },
+                "IpProtocol": "-1",
+                "CidrIp": "0.0.0.0\/0"
+            }
+        },
+        "EgressSgBackend": {
+            "Type": "AWS::EC2::SecurityGroupEgress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "SgBackend"
+                },
+                "IpProtocol": "-1",
+                "CidrIp": "0.0.0.0\/0"
+            }
+        },
+        "ElbWeb": {
+            "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
+            "Properties": {
+                "Policies": [
+                    {
+                        "PolicyName": "AWSConsole-SSLNegotiationPolicy-mynavi-product-web-1433753099852",
+                        "PolicyType": "SSLNegotiationPolicyType",
+                        "Attributes": [
+                            {
+                                "Name": "Protocol-SSLv2",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "Protocol-TLSv1",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "Protocol-SSLv3",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "Protocol-TLSv1.1",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "Protocol-TLSv1.2",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "Server-Defined-Cipher-Order",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "ECDHE-ECDSA-AES128-GCM-SHA256",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "ECDHE-RSA-AES128-GCM-SHA256",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "ECDHE-ECDSA-AES128-SHA256",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "ECDHE-RSA-AES128-SHA256",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "ECDHE-ECDSA-AES128-SHA",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "ECDHE-RSA-AES128-SHA",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "DHE-RSA-AES128-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "ECDHE-ECDSA-AES256-GCM-SHA384",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "ECDHE-RSA-AES256-GCM-SHA384",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "ECDHE-ECDSA-AES256-SHA384",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "ECDHE-RSA-AES256-SHA384",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "ECDHE-RSA-AES256-SHA",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "ECDHE-ECDSA-AES256-SHA",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "AES128-GCM-SHA256",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "AES128-SHA256",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "AES128-SHA",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "AES256-GCM-SHA384",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "AES256-SHA256",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "AES256-SHA",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "DHE-DSS-AES128-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "CAMELLIA128-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "EDH-RSA-DES-CBC3-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DES-CBC3-SHA",
+                                "Value": "true"
+                            },
+                            {
+                                "Name": "ECDHE-RSA-RC4-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "RC4-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "ECDHE-ECDSA-RC4-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DHE-DSS-AES256-GCM-SHA384",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DHE-RSA-AES256-GCM-SHA384",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DHE-RSA-AES256-SHA256",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DHE-DSS-AES256-SHA256",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DHE-RSA-AES256-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DHE-DSS-AES256-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DHE-RSA-CAMELLIA256-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DHE-DSS-CAMELLIA256-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "CAMELLIA256-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "EDH-DSS-DES-CBC3-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DHE-DSS-AES128-GCM-SHA256",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DHE-RSA-AES128-GCM-SHA256",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DHE-RSA-AES128-SHA256",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DHE-DSS-AES128-SHA256",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DHE-RSA-CAMELLIA128-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DHE-DSS-CAMELLIA128-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "ADH-AES128-GCM-SHA256",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "ADH-AES128-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "ADH-AES128-SHA256",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "ADH-AES256-GCM-SHA384",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "ADH-AES256-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "ADH-AES256-SHA256",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "ADH-CAMELLIA128-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "ADH-CAMELLIA256-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "ADH-DES-CBC3-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "ADH-DES-CBC-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "ADH-RC4-MD5",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "ADH-SEED-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DES-CBC-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DHE-DSS-SEED-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DHE-RSA-SEED-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "EDH-DSS-DES-CBC-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "EDH-RSA-DES-CBC-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "IDEA-CBC-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "RC4-MD5",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "SEED-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DES-CBC3-MD5",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "DES-CBC-MD5",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "RC2-CBC-MD5",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "PSK-AES256-CBC-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "PSK-3DES-EDE-CBC-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "KRB5-DES-CBC3-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "KRB5-DES-CBC3-MD5",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "PSK-AES128-CBC-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "PSK-RC4-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "KRB5-RC4-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "KRB5-RC4-MD5",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "KRB5-DES-CBC-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "KRB5-DES-CBC-MD5",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "EXP-EDH-RSA-DES-CBC-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "EXP-EDH-DSS-DES-CBC-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "EXP-ADH-DES-CBC-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "EXP-DES-CBC-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "EXP-RC2-CBC-MD5",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "EXP-KRB5-RC2-CBC-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "EXP-KRB5-DES-CBC-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "EXP-KRB5-RC2-CBC-MD5",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "EXP-KRB5-DES-CBC-MD5",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "EXP-ADH-RC4-MD5",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "EXP-RC4-MD5",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "EXP-KRB5-RC4-SHA",
+                                "Value": "false"
+                            },
+                            {
+                                "Name": "EXP-KRB5-RC4-MD5",
+                                "Value": "false"
+                            }
+                        ]
+                    }
+                ],
+                "Subnets": [
+                    {
+                        "Ref": "SgFront1a"
+                    },
+                    {
+                        "Ref": "SgFront1c"
+                    }
+                ],
+                "HealthCheck": {
+                    "HealthyThreshold": "5",
+                    "Interval": "10",
+                    "Target": "HTTP:80\/healthcheck.html",
+                    "Timeout": "5",
+                    "UnhealthyThreshold": "2"
+                },
+                "ConnectionDrainingPolicy": {
+                    "Enabled": "true",
+                    "Timeout": "300"
+                },
+                "ConnectionSettings": {
+                    "IdleTimeout": "60"
+                },
+                "CrossZone": "true",
+                "SecurityGroups": [
+                    {
+                        "Ref": "SgElb"
+                    }
+                ],
+                "Listeners": [
+                    {
+                        "InstancePort": "80",
+                        "LoadBalancerPort": "443",
+                        "Protocol": "HTTPS",
+                        "InstanceProtocol": "HTTP",
+                        "SSLCertificateId": "arn:aws:iam::689978960272:server-certificate\/server",
+                        "PolicyNames": [
+                            "ELBSecurityPolicy-2015-05"
+                        ]
+                    },
+                    {
+                        "InstancePort": "80",
+                        "LoadBalancerPort": "80",
+                        "Protocol": "HTTP",
+                        "InstanceProtocol": "HTTP"
+                    }
+                ],
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "web_gate"
+                    }
+                ]
+            }
+        },
+        "HostedZoneMain": {
+            "Type": "AWS::Route53::HostedZone",
+            "Properties": {
+                "HostedZoneTags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi"
+                    }
+                ],
+                "Name": "mynavi.testing.net"
+            }
+        },
+        "DnsTesting": {
+            "Type": "AWS::Route53::RecordSetGroup",
+            "Properties": {
+                "HostedZoneId": {
+                    "Ref": "HostedZoneMain"
+                },
+                "RecordSets": [
+                    {
+                        "Name": "localdb.mynavi.testing.net.",
+                        "Type": "A",
+                        "AliasTarget": {
+                            "HostedZoneId": {
+                                "Fn::GetAtt": [
+                                    "ElbWeb",
+                                    "CanonicalHostedZoneNameID"
+                                ]
+                            },
+                            "DNSName": {
+                                "Fn::GetAtt": [
+                                    "ElbWeb",
+                                    "CanonicalHostedZoneName"
+                                ]
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

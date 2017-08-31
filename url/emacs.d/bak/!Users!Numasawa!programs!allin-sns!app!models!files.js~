@@ -1,0 +1,47 @@
+'use strict';
+
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+// Define a new 'FeedSchema'
+const FeedSchema = new Schema({
+    contents: {
+        type: String,
+        required: true
+    },
+    created_at: {
+        type: Date,
+        default: Date.now
+    },
+    updated_at: {
+        type: Date,
+        default: Date.now
+    },
+    created_by: {
+        _id: {
+            type: String,
+            required: true
+        },
+        first_name: {
+            type: String
+        },
+        last_name: {
+            type: String
+        }
+    },
+    likes: [String],
+    comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
+    attachment_files: [Schema.Types.ObjectId],
+    group_id: {
+        type: String,
+        required: true,
+        default: '_all'
+    },
+    company_id: {
+        type: String,
+        required: true
+    }
+});
+
+
+module.exprots = mongoose.model('Feed', FeedSchema);

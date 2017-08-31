@@ -1,0 +1,14 @@
+var express = require('express');
+var router = express.Router();
+
++ router.hello = function(msg){return 'Hello '+ msg;};
++//本来はrouterじゃなくて別オブジェクトでやった方がよいが今回は簡単に説明したいのでという言い訳
+
+/* GET home page. */
+- router.get('/', function(req, res) {
++ router.get('/:msg', function(req, res) {
+-  res.render('index', { title: 'Express' });
++  res.render('index', { title: router.hello(req.params.msg) });
+});
+
+module.exports = router;

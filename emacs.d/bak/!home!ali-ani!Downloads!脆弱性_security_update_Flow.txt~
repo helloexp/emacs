@@ -1,0 +1,486 @@
+                               簡易flow
+                               ========
+
+Table of Contents
+=================
+1 懸念点など
+2 脆弱性, update調査
+    2.1 ruby/rails
+        2.1.1 判断基準
+        2.1.2 minor/major version updateについて
+        2.1.3 各種確認方法
+        2.1.4 影響範囲の確認
+    2.2 Gems
+        2.2.1 判断基準
+        2.2.2 確認方法
+        2.2.3 影響範囲の確認
+    2.3 Linux packages
+        2.3.1 判断基準
+        2.3.2 各種確認方法
+        2.3.3 確認package例
+        2.3.4 影響範囲の確認
+3 先方への情報展開、日程調整
+    3.1 update作業の通知、日程調整
+    3.2 ruby/rails minor,major update
+        3.2.1 mail template
+    3.3 NTT作業内容の共有、影響確認
+        3.3.1 mail template
+4 development
+5 production deploy
+    5.1 作業開始メール送付
+    5.2 update作業
+        5.2.1 backup
+        5.2.2 ruby update
+        5.2.3 rails/gem update
+        5.2.4 Linux package
+    5.3 動作チェック
+    5.4 作業終了メール送付
+6 打ち合わせ時の情報
+
+
+1 懸念点など
+================================================================================================================================
+    - Linux基本packageは、どちらがupdateを行うのか?
+    - NTT data側でのsecurity update policyはあるか?
+
+
+
+
+2 脆弱性, update調査
+================================================================================================================================
+    各種relase情報から、脆弱性、重要なupdateの有無を調査。
+
+    2.1 ruby/rails
+    ----------------------------------------------------------------
+        2.1.1 判断基準
+        ------------------------------
+            ruby/railsの [patch version] のupdateを対象とする。
+            minor, majorは対象としない。
+
+            * 補足
+                - patch version       : bug/securtiy updateを指す。
+                - minor/major version : 機能追加/api追加など。(影響が大きい)
+
+                ruby  : https://www.ruby-lang.org/ja/news/2013/12/21/ruby-version-policy-changes-with-2-1-0/
+                rails : http://railsguides.jp/maintenance\_policy.html
+
+        2.1.2 minor/major version updateについて
+        ------------------------------
+            基本、当作業は行わない。
+            ただし、security updateを継続するに辺り、version upが必要とするケースが想定される。
+            // あるversionがsupport対象外になるなど
+            upgradeする場合、互換性要確認。
+
+            この場合、保守契約とは別に工数を頂戴する。
+            先方へ影響を伝達し、実施可否を判断する。
+
+            - support期間
+
+        2.1.3 各種確認方法
+        ------------------------------
+            - ruby
+                https://www.ruby-lang.org/ja/security/  // 脆弱性情報
+                https://www.ruby-lang.org/ja/news/      // release news, セキュリティメンテナンスの期間情報など
+                https://www.ruby-lang.org/ja/news/2013/12/21/ruby-version-policy-changes-with-2-1-0/  // policy
+
+            - rails
+                http://weblog.rubyonrails.org/releases/ // release news
+                https://twitter.com/rails               // twitter
+
+                // policy
+                // 現状のsecurity update対象のversion情報あり
+                // 約1年 versionのsupport期間は、およそ1年との事
+                http://railsguides.jp/maintenance\_policy.html
+
+        2.1.4 影響範囲の確認
+        ------------------------------
+            動作影響、update内容などを確認
+            // minor/major updateの場合は特に互換性を確認
+
+    2.2 Gems
+    ----------------------------------------------------------------
+        2.2.1 判断基準
+        ---------------
+            利用Gemsに、脆弱性への対応/重要なupdateがある場合、update対象とする
+
+        2.2.2 確認方法
+        ---------------
+            Gemnasiumを用いる。
+            https://gemnasium.com/dashboard
+
+            Statusが「赤」の場合、update対象とする。
+            他の色は対象外。
+
+            以下、Gemnasiumとは
+            http://chocoby.jp/blog/2013/03/02/gemnasium/
+
+        2.2.3 影響範囲の確認
+        ---------------------
+            動作影響、update内容などを確認
+
+            - rubyのversion upが必要となるケースも想定される。
+              特に、minor/majorのversion upが必要となる場合、適用可否の判断を行う。
+              # 前項の [ruby/rails] 記述の、[minor/major version updateについて] を参照
+
+            - 各gemの依存関係など注意。
+
+    2.3 Linux packages
+    ----------------------------------------------------------------
+        2.3.1 判断基準
+        ---------------
+            脆弱性対応のみ、update対象とする
+
+        2.3.2 各種確認方法
+        -------------------
+            Uniqloでは、Amazon linxu(red hat系)を利用。
+            以下、amazon linux、redhat security情報を参照。
+
+            // amazon linux
+            https://alas.aws.amazon.com/
+            http://aws.amazon.com/jp/security/security-bulletins/
+            https://aws.amazon.com/jp/amazon-linux-ami/
+
+            // linux
+            https://access.redhat.com/security/cve/
+
+            // 一般情報
+            https://cve.mitre.org/
+            http://jvn.jp/report/index.html
+            https://www.jpcert.or.jp/
+            http://www.ipa.go.jp/security/vuln/index.html
+
+        2.3.3 確認package例
+        --------------------
+            - ruby開発導入
+                git make gcc gcc-c++
+                openssl gdbm
+                sqlite sqlite-devel
+                nodejs npm --enablerepo=epel
+
+                libxml2 libxml2-devel
+                libxslt libxslt-devel
+
+                readline-devel openssl-devel zlib-devel
+                gdbm-devel libffi-devel libyaml-devel libicu-devel
+                ruby-devel rubygems-devel
+
+            - NTT Data導入
+                nginx
+                openssl openssl-devel
+                munin-node
+                dstat
+                telnet
+
+            - updateコマンド例
+                // 依存packageのupdateに注意
+                - yum
+                    # sudo yum list installed | grep [package名]  # 現在のversionを得る
+                    # yum update [package名]
+
+                - apt
+                    # apt-get update
+                    # apt-get install [package名]
+
+
+        2.3.4 影響範囲の確認
+        ---------------------
+            動作影響、update内容などを確認
+            依存パッケージのupdateでの影響を考慮。
+            // uniqlo導入のapplicationへの影響に注意
+
+
+3 先方への情報展開、日程調整
+================================================================================================================================
+    3.1 update作業の通知、日程調整
+    ----------------------------------------------------------------
+        - NTTへのupdate内容の展開
+            影響が大きい場合は、update可否の調整
+
+        - uniqloへの作業内容通知、日程調整など
+            保守内の工数を超過する場合、要調整。
+
+    3.2 ruby/rails minor,major update
+    ----------------------------------------------------------------
+        実施可否、日程、今後のメンテナンスについてなど先方と調整
+
+        3.2.1 mail template
+        --------------------
+            to : kanako.ishimaru@uniqlo.co.jp
+            cc : shoko.toyooka@uniqlo.co.jp
+            cc : konomi.hayashi@uniqlo.co.jp
+
+            セキュリティアップデートに伴うシステム改修のご相談
+            ----------------------------------------------------------------
+            石丸様
+
+            御世話になっております。
+            Ruby開発 [sender]と申します。
+
+
+            セキュリティアップデートに伴うシステム改修のご相談となります。
+            [経緯]につきましては後述内容をご参照願います。
+
+            大変お手数をお掛け致しますが、下記日程にて詳細をご説明させていただくことは
+            可能でしょうか。
+
+            mm/dd（W）　hh:mm以降
+            mm/dd（W）　hh:mm - hh:mm, hh:mm-hh:mm
+
+            つきまして、Uniqlo様のご都合のよろしい日をお知らせ頂けないでしょうか。
+            上記以外の日程調整可能でございます。ご指定日ございましたらお知らせ下さい。
+
+
+            [経緯]
+            --------------------------------
+            現在、弊社で管理しておりますRuby/Railsは、およそ[xヶ月後]に公式サポートより
+            セキュリティアップデート対象外となります。
+            今後セキュリティアップデートを継続するにあたり、サポート対象となる上位Version
+            への移行が必要となります。
+
+            移行時、システム動作へ大きな影響を受けるため、システムの改修・調整が必要となり
+            ます。
+            以上から、保守契約内での工数を超過すると想定しております。
+            --------------------------------
+
+            以上となります。
+            お忙しい中恐縮でございますが、宜しくお願い申し上げます。
+            ----------------------------------------------------------------
+
+
+            Security update作業に伴う日程のご相談
+            ----------------------------------------------------------------
+            石丸様
+
+            御世話になっております。
+            Ruby開発 [sender]と申します。
+
+
+            セキュリティアップデートに伴うメンテナンス日程のご相談となります。
+            [作業内容]につきましては後述内容をご参照願います。
+
+            大変恐縮ですが、下記が私共の希望日程となります。
+            mm/dd（W）　hh:mm以降
+            mm/dd（W）　hh:mm-hh:mm, hh:mm-hh:mm
+
+            つきまして、Uniqlo様のご都合のよろしい日をお知らせ頂けないでしょうか。
+            上記以外の日程調整可能でございます。ご指定日ございましたらお知らせ下さい。
+
+
+            [作業内容]
+            --------------------------------
+            - Update対象
+                - Linux      : [package name] 脆弱性対応
+                - Ruby/Rails : security update
+
+            - 簡易作業内容
+                - Backup
+                - Update作業
+                - 動作確認
+
+            - 注意
+                - メンテナンス時間中、システムが30〜60分程度停止致します。
+            --------------------------------
+
+            以上となります。
+            ご検討の程、宜しくお願い申し上げます。
+            ----------------------------------------------------------------
+
+    3.3 NTT作業内容の共有、影響確認
+    ----------------------------------------------------------------
+        # uniqloでは、NTTが導入したapplicationへの影響の判断などのため。
+
+        3.3.1 mail template
+        --------------------
+            to : nakayamatkb@nttdata.co.jp
+
+            uniqlo serverのLinux package updateに伴うご相談
+            ----------------------------------------------------------------
+            中山様
+
+            御世話になっております。
+            Ruby開発 [sender]と申します。
+
+
+            Linux packageのsecurity updateに伴い、NTT data様にて導入済みの機能への
+            影響を懸念しております。
+            付きましては、対象となる下記packageを参照頂き、影響の有無をご確認頂けますで
+            しょうか?
+
+            --------------------------------
+            example :
+            ssh ssh-server
+            open-ssl
+            --------------------------------
+
+
+            以上となります。
+            何卒宜しくお願い申し上げます。
+            ----------------------------------------------------------------
+
+
+4 development
+================================================================================================================================
+    - 改修作業
+    - 動作確認
+    - deploy手順考察
+    - Backup対象となるソース考察
+
+
+
+
+5 production deploy
+================================================================================================================================
+
+
+    ※ serverへのアクセス方法は、同階層の [ deploy ] dir内の資料を参照の事。
+    ※ [User server ] は、scalingするため、手順が追加されているので注意。
+
+
+    5.1 作業開始メール送付
+    ----------------------------------------------------------------
+        [作業開始連絡] yyyy/mm/dd Productionへのdeploy
+        ----------------------------------------------------------------
+        関係者各位
+
+        お世話になっております。
+        Ruby開発 [Sender]です。
+
+        これより、prodution環境へのdeploy作業を開始致します。
+        よろしくお願い申し上げます。
+
+
+        deploy スケジュール
+        ----------------------------------------------------------------
+        - 作業時間帯
+            mm/dd hh時mm分 〜 hh時mm分
+
+        - 対象server
+            - prd01-a-tky-admin-***-***
+            - prd01-a-tky-***-***
+            - prd01-a-tky-batch-***-***
+
+        - 大まかな作業内容
+            - DB backup
+            - 各種deploy
+            - 各種サーバー連携確認
+            - 全サーバーへ各種設定(rails, nginx, ..etc)
+
+        補足
+        ----------------------------------------------------------------
+        - インフルエンサー登録画面 - アクセス不可時間帯
+            mm/dd hh時mm分 〜 hh時mm分
+
+        以上となります。
+        宜しくお願い申し上げます。
+        ----------------------------------------------------------------
+
+    5.2 update作業
+    ----------------------------------------------------------------
+        簡易手順のみ
+        ※ 詳細は、同階層の [ deploy ] dir内の資料を参照の事。
+
+        5.2.1 backup
+        ------------------
+            - DB backup
+            - etc
+
+        5.2.2 ruby update
+        ------------------
+            - rbenv update
+            - ruby install
+
+            - deploy # bundle installはcapistranoで行われる
+
+        5.2.3 rails/gem update
+        -----------------------
+            - deploy # bundle install はcapistranoで行われる
+
+        5.2.4 Linux package
+        --------------------
+            # 事前調査と日時が開いている場合、packageの状態が異なるため注意
+
+            - connect to server
+            - yum list installed | grep [package名]  # 現在のversionを得る
+            - yum update [package名]
+              # update対象のdaemonは要再起動
+
+    5.3 動作チェック
+    ----------------------------------------------------------------
+        現在、チェック内容を整理中。
+
+    5.4 作業終了メール送付
+    ----------------------------------------------------------------
+        [作業終了連絡] yyyy/mm/dd Productionへのdeploy
+        ----------------------------------------------------------------
+        関係者各位
+
+        お世話になっております。
+        Ruby開発 [Sender]です。
+
+        下記deploy作業は完了致しました。
+        ご協力有難う御座いました。
+
+        以上となります。
+        宜しくお願い致します。
+
+        # 開始メール引用
+
+        ----------------------------------------------------------------
+
+
+
+
+6 打ち合わせ時の情報
+================================================================================================================================
+    - flow
+    ----------------------------------------------------------------
+        - security update確認 / 実施可否確認
+            - 月一(毎週?)確認し、問題があれば
+        - NTT / Uniqloへの確認
+            - NTT dataへ確認
+               - 基本packageであれば、どちらが実施するのか?
+               - ruby社がinstallしたもの
+            - uniqloへ連絡
+        - security update
+        - update後のdeploy
+        - 動作テスト
+            - rspecの現状が不明
+            -
+        - uniqloへの連絡
+
+    資料作り - 以下を元に大体flow作成
+    ----------------------------------------------------------------
+        - security情報収集
+            - 一般的なlinuxのsecurity情報
+            - rails, ruby
+                - patch versionは基本対応。
+                - support切れ(minor versionでもsupport切れ有り)の前にupgrade(互換性要確認)
+                - minor/major version update時は要確認(minorでも仕様変更ある)
+                    料金uniqlo様と別途対応
+            - gem
+                - gemnasium
+                    - 赤のみ対象
+                    - 黄色が未対象
+
+        - patch version updateとは
+            security対策
+
+        - minor version udpate
+            http://railsguides.jp/maintenance\_policy.html
+            https://www.ruby-lang.org/ja/security/
+
+
+            - api追加、機能追加など
+            - 現状、4.2 / 4.1のみ対応している
+                - 恐らく、2 minor versionのみ対応?
+                - 期間は?
+
+
+        - ruby/rails support切れは1年前に通知される。
+            - それみて計画的に考える
+            - EUにアナウンス
+                updateに関してはEU次第。
+            - support切れになるので、versionを上げないとうちではsecurity対応できません
+
+        - mail templateの作成
+

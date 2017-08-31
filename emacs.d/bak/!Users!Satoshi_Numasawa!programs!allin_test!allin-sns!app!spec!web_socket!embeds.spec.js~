@@ -1,0 +1,243 @@
+'use strict';
+
+process.env.NODE_ENV = 'test';
+const config = require('config/config');
+
+const co = require('co');
+
+let kue  = require('kue');
+let queue = kue.createQueue({
+    redis: {
+        port: config.redisConfig.port,
+        host: config.redisConfig.host,
+        auth: config.redisConfig.auth
+    }
+});
+
+let queue_cleaner = require('libs/embed/cleaner');
+
+
+
+describe('embeds', () => {
+    const mock_auth_node = require('../lib/mock_server');
+
+    const factory = require('../lib/fixture');
+    const fixture = factory.fixture();
+
+    const datas  = {
+        'main' : {
+            'token'   : fixture.valid_seeds[0].authorization.split(' ')[1],
+            'group'   : fixture.valid_seeds[0].group_id,
+            'account' : fixture.valid_seeds[0].account_id,
+            'header'  : fixture.valid_seeds[0].header,
+            'auth'    : fixture.valid_seeds[0].authorization,
+            'body'    : {'contents': 'http://slack.com'}
+        },
+        'other_company' : {
+            'token' : fixture.valid_seeds[2].authorization.split(' ')[1],
+            'group' : fixture.valid_seeds[2].group_id
+        },
+        'other_group' : {
+            'token' : fixture.valid_seeds[7].authorization.split(' ')[1],
+            'group' : fixture.valid_seeds[7].group_id
+        }
+    };
+
+    const test_embed_data = fixture.embed;
+
+
+    const db      = require('../lib/db');
+    const mongodb = db.mongo();
+    const feed    = db.feed();
+    const comment = db.comment();
+    const embed   = db.embed();
+
+    const feed_url    = '/api/v1/feeds/';
+    const comment_url = '/api/v1/comments/';
+    const embed_url   = '/api/v1/embeds/';
+
+    const feed_expect    = require('../lib/expect').ws(datas, 'Feed');
+    const comment_expect = require('../lib/expect').ws(datas, 'Comment');
+
+    const wb      = require('../lib/ws');
+    const sockets = wb.clients_handler();
+    const feed_request    = require('../lib/request').ws(feed_url, feed);
+    const comment_request = require('../lib/request').ws(comment_url, comment);
+    const embed_request   = require('../lib/request').ws(embed_url, embed);
+
+    const worker = require('libs/embed/worker.js');
+
+
+
+    before ( (done) => {
+        return new Promise( (resolve, reject) => {
+            co(function *() {
+                yield queue_cleaner.delete_all_jobs();
+                worker.run();
+                yield mongodb.connect();
+                resolve();
+                done();
+            }).catch((err) => {
+                reject(err);
+                done();
+            });
+        });
+    });
+
+    beforeEach( (done) => {
+        return new Promise( (resolve, reject) => {
+            co(function *() {
+                yield mongodb.clean();
+                yield fixture.create_feed_data();
+                mock_auth_node.create();
+                resolve(done());
+            }).catch((err) => {
+                reject(err);
+                done();
+            });
+        });
+    });
+
+    afterEach( (done) => {
+        return new Promise( (resolve, reject) => {
+            co(function *() {
+                yield mock_auth_node.close();
+                resolve(done());
+            }).catch((err) => {
+                reject(err);
+                done();
+            });
+        });
+    });
+
+    after( (done) => {
+        return new Promise( (resolve, reject) => {
+            co(function *() {
+                yield mongodb.clean();
+                yield mongodb.disconnect();
+                resolve(done());
+            }).catch((err) => {
+                reject(err);
+                done();
+            });
+        });
+    });
+
+    function sleep(ms) {
+        return new Promise((resolve) => {
+            setTimeout(resolve, ms);
+        });
+    }
+
+    function exist_complete_jobs() {
+        return new Promise( (resolve) => {
+            queue.completeCount( ( err, total ) => { // others are activeCount, completeCount, failedCount, delayedCount
+                if( total < 1 ) {
+                    resolve(false);
+                } else {
+                    resolve(true);
+                }
+            });
+        });
+    }
+
+
+
+
+
+    describe('create', () => {
+        // const crud_type = 'update'; // feed作成後, embedを追加するためupdate
+
+        // it('embed on feed', co.wrap(function *() {
+        //     // prepare ws
+        //     const client = yield wb.client(datas.main);
+
+        //     // feed post
+        //     feed_request.post(datas.main);
+
+        //     // wait complete scraping
+        //     while (!(yield exist_complete_jobs())) {
+        //         yield sleep(1);
+        //     }
+
+        //     // expect
+        //     let result = yield client.wait_message();
+        //     yield feed_expect.embed(result, crud_type);
+
+        //     yield client.disconnect();
+        // }));
+
+        // it('embed on comment', co.wrap(function *() {
+        //     // prepare ws
+        //     const client = yield wb.client(datas.main);
+
+        //     // comment post
+        //     let res         = yield feed.find({'posted_by': datas.main.account});
+        //     datas.main.body = {'contents':test_embed_data.slack.url, 'feed_id':res[0]._id};
+        //     comment_request.post(datas.main);
+
+        //     // wait complete scraping
+        //     while (!(yield exist_complete_jobs())) {
+        //         yield sleep(1);
+        //     }
+
+        //     // expect
+        //     let result = yield client.wait_message();
+        //     yield comment_expect.embed(result, crud_type);
+
+        //     yield client.disconnect();
+        // }));
+    });
+
+    describe('delete', () => {
+        const crud_type = 'delete'; // feed作成後, embedを追加するためupdate
+
+        it('embed on feed', co.wrap(function *() {
+            // prepare ws
+            const client = yield wb.client(datas.main);
+
+            // feed post
+            feed_request.post(datas.main);
+
+            // wait complete scraping
+            while (!(yield exist_complete_jobs())) {
+                yield sleep(1);
+            }
+
+            // expect
+            let result = yield client.wait_message();
+            yield feed_expect.embed(result, crud_type);
+
+            // delete feed
+            feed_request.del(datas.main);
+            result = yield client.wait_message();
+            console.log(result);
+
+            const embed_collections = yield embed.find({});
+            console.log(embed_collections);
+
+            yield client.disconnect();
+        }));
+
+        it('embed on comment', co.wrap(function *() {
+            // // prepare ws
+            // const client = yield wb.client(datas.main);
+
+            // // comment post
+            // let res         = yield feed.find({'posted_by': datas.main.account});
+            // datas.main.body = {'contents':test_embed_data.slack.url, 'feed_id':res[0]._id};
+            // comment_request.post(datas.main);
+
+            // // wait complete scraping
+            // while (!(yield exist_complete_jobs())) {
+            //     yield sleep(1);
+            // }
+
+            // // expect
+            // let result = yield client.wait_message();
+            // yield comment_expect.embed(result, crud_type);
+
+            // yield client.disconnect();
+        }));
+    });
+});

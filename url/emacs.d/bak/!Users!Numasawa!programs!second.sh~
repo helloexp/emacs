@@ -1,0 +1,4 @@
+sudo yum install -y mongodb-server
+sudo yum install -y mongodb
+sudo echo 'smallfiles = true' >> /etc/mongodb.conf
+sudo /etc/init.d/mongod start

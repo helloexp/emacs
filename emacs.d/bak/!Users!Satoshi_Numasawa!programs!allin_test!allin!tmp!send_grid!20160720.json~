@@ -1,0 +1,16 @@
+[
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa / 沼沢",
+    "reply_to": "s-numasawa+reply@ruby-dev.jp",
+    "subject": "TEST01 / mail01",
+    "text": "test01 header\nテスト01 header\n\nTEST01 / mail01\nTEST01 / mail01\n\ntest01 footer\nテスト01 フッターa\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=NTZiMjY4MDA0ZTU4MTFlNjg3YzkwODAwMjc1ZWFhN2M6Q29ycG9yYXRlTWVt%0AYmVyOjYzYjBhZGU4NDliNTExZTZhOGI5MDgwMDI3NWVhYTdj%0A",
+    "html": "TEST01 / mail01\nTEST01 / mail01\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=NTZiMjY4MDA0ZTU4MTFlNjg3YzkwODAwMjc1ZWFhN2M6Q29ycG9yYXRlTWVt%0AYmVyOjYzYjBhZGU4NDliNTExZTZhOGI5MDgwMDI3NWVhYTdj%0A",
+    "unique_args": {
+      "mail_delivery_job_id": "56b268004e5811e687c90800275eaa7c",
+      "mail_addressable_type": "CorporateMember",
+      "mail_addressable_id": "63b0ade849b511e6a8b90800275eaa7c"
+    }
+  }
+]

@@ -1,0 +1,25 @@
+'use strict';
+
+
+jobs.process('web_scrape', 1, (job, done) => {
+    let links = link_extractor.find_links(job.data.text);
+
+    if (links == null) {
+        // TODO : error
+        done();
+        return;
+    }
+
+    let engine = new metaphor.Engine({providers:true, preview:true})
+    engine.describe(links[0].href, (site_datas) => {
+        if (site_datas.sources === undefined) {
+            done(null, job.data);
+            return
+        }
+
+        Embed.insert(site_datas).then( (res) => {
+            console.log(res)
+            done(null, site_datas);
+        })
+    })
+});

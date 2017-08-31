@@ -1,0 +1,14 @@
+development:
+  send_method: api
+  api_key: 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
+
+production:
+  send_method: api
+  api_key: secret
+
+test:
+  send_method: test
+
+staging:
+  send_method: api
+  api_key: secret

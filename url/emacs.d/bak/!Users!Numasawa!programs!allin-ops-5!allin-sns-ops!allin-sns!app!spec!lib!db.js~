@@ -1,0 +1,23 @@
+'use strict';
+
+let mongo = null;
+
+
+class Mongo {
+    constructor() {
+        this.config   = require('../../config/config').mongoConfig;
+        this.mongoose = require('mongoose');
+        this.debug    = require('debug')('sns');
+    }
+
+    connect() {
+        //  this.mongoose.connect(this.config.url, (err) => {})
+    }
+
+    clean() {
+        this.mongoose.connection.db.dropDatabase();
+    }
+}
+
+mongo = new Mongo();
+module.exports = mongo;

@@ -1,0 +1,32 @@
+console.log('Loading function');
+
+var influx = require('influx')
+
+var client = influx({
+    host : '52.38.23.147',
+    port : 8086, // optional, default 8086
+    protocol : 'http', // optional, default 'http'
+    username : 'ruby_dev',
+    password : 'FiYee8PaqueJan8t',
+    database : 'sensorMeasure'
+})
+
+exports.handler = (event, context, callback) => {
+    //console.log('Received event:', JSON.stringify(event, null, 2));
+    //console.log('value1 =', event.key1);
+    //console.log('value2 =', event.key2);
+    //console.log('value3 =', event.key3);
+    console.log('temparture :', event.temperature)
+    console.log('humidity :', event.humidity)
+    // client.writePoint('DHT11Measure', {value: event.temperature, metric: 'C', tag: 'temperature', database: 'sensorMeasure'}function(dat,err){
+    // 	console.log(dat);
+    // 	console.log(err);
+    // });
+    var point = {temperature: event.temperature, humidity: event.humidity}
+    client.writePoint('DHT11Measure', point, null, function(err,dat){
+    	console.log(dat)
+	console.log(err)
+    })
+    //callback(null, event.key1);  // Echo back the first key value
+    // callback('Something went wrong');
+};

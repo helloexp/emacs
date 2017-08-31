@@ -1,0 +1,78 @@
+describe "mobile_home" do
+  feature "check text" do
+    before { visit mobile_path }
+
+    scenario "title" do
+      expect(page).to have_title('Ruby開発 | アプリケーション設計・開発')
+    end
+
+    scenario "carousel" do
+      expect(page).to have_selector('#mobileHomeCarousel.carousel.slide')
+
+    end
+
+    scenario "contents" do
+      expect(page).to have_content('TOPICS')
+      expect(page).to have_content('新着・お知らせTOPICS')
+    end
+  end
+
+  feature "check links" do
+    before { visit mobile_path }
+
+    scenario "exists links" do
+      within('.panel-body#recruiting_rails') do
+        expect(page).to have_link '採用情報ページはこちらです', href: mobile_recruiting_rails_path
+      end
+
+      within('.panel-body#recruting') do
+        expect(page).to have_link '採用情報ページはこちらです', href: mobile_recruiting_path
+      end
+
+      expect(page).to have_link 'ご応募はこちらから', href: mobile_recruiting_path
+      expect(page).to have_link 'アプリケーション開発のお問合わせ', href: mobile_contact_path(topic: 'application')
+    end
+  end
+
+  feature "tabbar", js:true do
+    before { visit mobile_path }
+
+    scenario 'select Ruby' do
+      find('a#ruby').click
+      expect(page).to have_content ' &#60;Ruby&#62'
+
+
+    scenario 'select oss' do
+      find('li#oss').click
+      expect(page).to have_content '<OSS>'
+    end
+
+    scenario 'select research' do
+      find('li#research').click
+      expect(page).to have_content '<研究開発>'
+    end
+  end
+
+  feature "acordion", js:true do
+    before { visit mobile_path }
+
+    scenario 'open acordion' do
+      find('.acordion#topics').click
+      expect(page).to have_content '関西Raisエンジニア急募 !'
+    end
+
+    scenario 'open acordion and exists links' do
+      find('.acordion#whatsnew').click
+      expect(page).to have_link '仙台Rails開発センタオープン 8/1〜', href: mobile_recruiting_rails_path
+      expect(page).to have_link 'Ruby on Rails開発エンジニア急募(内勤)', href: mobile_recruiting_rails_path
+    end
+  end
+end
+
+
+
+
+
+
+
+

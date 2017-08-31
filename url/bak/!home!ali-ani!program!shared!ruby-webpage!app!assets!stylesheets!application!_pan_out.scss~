@@ -1,0 +1,60 @@
+.pan_out {
+  width               : 955px;
+  margin              : 30px auto 5px auto;
+  padding             : 5px 0px 0px 0px;
+  overflow            : hidden;
+  line-height         : 1.9;
+
+  h1.head_Text_N2 {
+    width               : 900px;
+    margin              : 30px 5px 5px 10px;
+    font-size           : 200%;
+    font-weight         : normal;
+    padding             : 20px 5px 2px 5px;
+    line-height         : 2.1;
+
+    span {
+      color               : #ea6125;
+    }
+  }
+
+  .head_Text_N3 {
+    width               : 200px;
+    margin              : 30px 5px 5px 10px;
+    font-size           : 125%;
+    font-weight         : normal;
+    padding             : 5px;
+    line-height         : 2.1;
+    text-align          : center;
+    border              : 1px #000000 solid;
+    background          : #4682B4;
+
+    a:link    { color : #ffffff ; text-decoration : underline ; }
+    a:hover   { color : #ff0000 ; text-decoration : underline ; }
+    a:visited { color : #ffffff ; text-decoration : none ; }
+    a:active  { color : #ffffff ; text-decoration : none ; }
+  }
+
+  .rails_box01 {
+    width               : 870px;
+    margin              : 25px 5px 30px 25px;
+    padding             : 15px 15px;
+    line-height         : 2.1;
+    font-size           : 120%;
+  }
+  .rails_box01:after {
+    content             : "";
+    display             : block;
+    clear               : both;
+    height              : 1px;
+    overflow            : hidden;
+  }
+}
+
+.pan_out:after {
+  content    : "";
+  display    : block;
+  clear      : both;
+  height     : 1px;
+  overflow   : hidden;
+}

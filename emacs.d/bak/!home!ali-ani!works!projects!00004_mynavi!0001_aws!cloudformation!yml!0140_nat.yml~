@@ -1,0 +1,157 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Testing '
+Resources:
+  # --------------------------------
+  # subnet roote
+  # --------------------------------
+  RouteTableFront:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: VPC
+      Tags:
+      - Key: Name
+        Value: mynavi-product-front
+  RouteTableWeb:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: VPC
+      Tags:
+      - Key: Name
+        Value: mynavi-product-web
+  RouteTableBackend:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: VPC
+      Tags:
+      - Key: Name
+        Value: mynavi-product-backend
+
+
+
+  # --------------------------------
+  # subnet roote
+  # --------------------------------
+  subnetroute1:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: rtb9b9931fe
+      SubnetId:
+        Ref: subnet8262d6f5
+  subnetroute2:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: rtb9b9931fe
+      SubnetId:
+        Ref: subnete262d695
+  subnetroute3:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: rtb9b9931fe
+      SubnetId:
+        Ref: subnetaa08c6f3
+  subnetroute4:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: rtb9b9931fe
+      SubnetId:
+        Ref: subnet0909c750
+  subnetroute5:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: rtbb3c56dd6
+      SubnetId:
+        Ref: subnete162d696
+  subnetroute6:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: rtbb3c56dd6
+      SubnetId:
+        Ref: subnet51c90108
+  subnetroute7:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: rtbb0c56dd5
+      SubnetId:
+        Ref: subnet4509c71c
+  subnetroute9:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: rtbb0c56dd5
+      SubnetId:
+        Ref: subnetc962d6be
+
+
+  # --------------------------------
+  # EIP setting
+  # --------------------------------
+  EIP1:
+    Type: AWS::EC2::EIP
+    DependsOn:
+    - InternetGateway
+    Properties:
+      Domain: vpc
+  EIP2:
+    Type: AWS::EC2::EIP
+    DependsOn:
+    - InternetGateway
+    Properties:
+      Domain: vpc
+
+
+
+
+  assoc1:
+    Type: AWS::EC2::EIPAssociation
+    Properties:
+      AllocationId:
+        Fn::GetAtt:
+        - eip52697269
+        - AllocationId
+      InstanceId:
+        Ref: instanceiec051c1f
+  assoc2:
+    Type: AWS::EC2::EIPAssociation
+    Properties:
+      AllocationId:
+        Fn::GetAtt:
+        - eip5269322
+        - AllocationId
+      InstanceId:
+        Ref: instanceifaa14308
+  route1:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      RouteTableId:
+        Ref: rtb9b9931fe
+      InstanceId:
+        Ref: instanceiec051c1f
+  route2:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      RouteTableId:
+        Ref: rtbb3c56dd6
+      GatewayId:
+        Ref: igwe0619a85
+    DependsOn: gw1
+  route3:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      RouteTableId:
+        Ref: rtbb0c56dd5
+      InstanceId:
+        Ref: instanceiec051c1f

@@ -1,0 +1,13 @@
+class ChangeColumnToStressCheckCounselingReport < ActiveRecord::Migration
+  def change
+    add_change :stress_check_counseling_reports, :working_hour,    :float,   null: true
+    add_column :stress_check_counseling_reports, :stressor,        :string,  null: false
+    add_column :stress_check_counseling_reports, :counseling_date, :date,    null: false
+    add_column :stress_check_counseling_reports, :operator,        :string,  null: false
+    add_column :stress_check_counseling_reports, :places,          :string,  null: false
+
+    change_column :stress_check_counseling_reports, :phisical_stress_and_psychological_stress_note, :string, null: true
+    change_column :stress_check_counseling_reports, :stress_reaction_note, :string, null: true
+    change_column :stress_check_counseling_reports, :category_adjustment_for_health_at_working_enviroment_id, :integer, null: true
+  end
+end

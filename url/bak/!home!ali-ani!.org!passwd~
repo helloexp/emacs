@@ -1,0 +1,372 @@
+-*- mode: org -*-
+
+
+
+- 何を入力するのか
+  既存の登録情報
+  新しく登録する情報
+
+- 公開連絡先が固定されているが、変更可能か。
+
+
+* projects
+** marunouchi
+*** basic auth
+ID : marupix
+Pw : mec_marupix
+
+*** admin
+s-numasawa@dummy.com
+Close0404
+
+** 00001_uniqlo
+*** production
+**** 管理画面 basic認証
+
+**** linux user
+|-----+----------+-------------|
+| www | DROd3Q0n | can be sudo |
+|-----+----------+-------------|
+
+*** develop
+**** jump
++ 共通ユーザー
+    - user   :  alliance
+    - pass   :  Ukzm3383
+
++ aws user
+    - user   :  mruby
+    - pass   :  Kimg4488
+
+**** app server public
++ linux user
+    - name  :  mruby
+    - pass  :  mruby3826
+
+**** RDS
++ master
+    - master user   :  root
+    - master pass   :  9xiRR828
+
+
++ 作業ユーザー
+    - DB name :  influencer
+    - user    :  influencer
+    - pass    :  Dim933Plw
+
++ sns
+    - DB    :  uniqlo-hashtag-crontab_production.* to
+    - user  :  uniqlo-hashtag-crontab
+    - pass  :  DRd003lw
+
+**** user server
+basic auth
+
+|---------------+----------|
+| uniqlomystyle | lifewear |
+|---------------+----------|
+
+*** admin login
+keysnail経由だと、ペースト失敗する
+
+**** development
+https://uniqlo-influencer-adm-lb-1392900919.ap-northeast-1.elb.amazonaws.com/admin/sign_in
+
+|------------------+--------------------------|
+| uniqlo_admin     | kwtcn0Wtvbkzc9xgokbagqBr |
+| test_master      | cncuume7Mkscnnijo8aIiytt |
+|------------------+--------------------------|
+| test_regional_jp | nwq0taejekiIwklb0xajwPsy |
+| test_regional_us | ioc3sfmhelLkjXlrrstox9rl |
+| test_regional_cn | zrwe7fepeEmxkbouYogia5ba |
+|------------------+--------------------------|
+| test_verndor_jp  | Ctvsxugjqgk4qhCeqyip2vrc |
+| test_verndor_us  | jhxsekS1rapox6nhohGgtler |
+| test_verndor_cn  | gkzxXk4lklxxbAyue2achnuv |
+|------------------+--------------------------|
+
+**** staging
+https://stage-admin-lifewear.uniqlo.com/admin/sign_in
+
+|---------------+--------------------------|
+| uniqlo_admin  | ntfxfvtsjU0iQmamhk6xitno |
+| ph_master     | ntfxfvtsjU0iQmamhk6xitno |
+|---------------+--------------------------|
+| regional_jp   | eCtkwst4xddsxbewzxgwG8zf |
+| regional_us   | cfytdsui8vNjjijtKznva0sx |
+| regional_cn   | xnx7bqutppkSyBp1efnjddtk |
+|---------------+--------------------------|
+| vendor_jp     | oy9pffeyFrbreno7iTnpnrxv |
+| vendor_us     | 3ymrgbnzDzwtolgj8bdPjljz |
+| vendor_cn     | mhalCktpz5yvvcrWztdvna8h |
+|---------------+--------------------------|
+| test_acc_lock | bvswfDvsx3iuDxkxzibbg0gh |
+|---------------+--------------------------|
+
+**** production
+----------------------------------------------------------------
+https://admin-lifewear.uniqlo.com/admin/sign_in
+
+|----------+--------------+--------------------------------------------------|
+| master   | uniqlo_admin | enhzrdjgnxbfzklooYjmmoq7Ynytojwq2fjgujulnrpphhtr |
+|          | ph_master    | Fzcftwxv8ciqyswjagkspznncfcfpuxmiuefg7pttkttlFuy |
+|----------+--------------+--------------------------------------------------|
+| regional | regional_jp  | qyvhiSvvoixjbevw1difzihtourlbfefgljpp2ipwjmivPcd |
+|          | regional_us  | rczcctBkmqfdmqlmaiirsph3cytddxtie7qnrhdopxhcuaaZ |
+|          | regional_fr  | carpjehmxnKijxvor3hflfanvArxxlh5sogwgzhxvgqwzlmr |
+|          | regional_cn  | rdm0jOzmqxurvxldezjekedhknffnbrutpejJdvjgqp6tyfx |
+|          | regional_hk  | hryauao6okoqtbhejwrypRkhwhmhydvylo0lnpwvQqoiwyvy |
+|          | regional_kr  | pssdvqkDrzkjsgohcjzku0apesvlpvHfwm4vdhxbvvcjoqil |
+|          | regional_my  | cjilblzm8lyIwbptgzplxxbtpbHlomgh0cjnaxbuotdrpsko |
+|          | regional_ph  | v6jwmyqbkygdqqvbmicXwsjabunLcbjz5srslcjwtniqjvnq |
+|          | regional_sg  | wjwnxeVzim7uigckxhpkizrfzvb5gIcizwzzuwsamfhoofhw |
+|----------+--------------+--------------------------------------------------|
+| vendor   | vendor_jp    | kmdcyr1ewfkvdesztjlEhsez9xtifkkflfutcgedctvetbnL |
+|          | vendor_us    | yynqeiznfmaegtbonfCw7hpqvdcrhdinerhtqcorwpzm1Duc |
+|          | vendor_fr    | w6oddyzqabpleEwtsevlxdpynTpdxmppmkzcdghpchef6iuz |
+|          | vendor_cn    | kdoocvquvsxhftmFkb8kgsey7qyauSnmizhwondxxgejqvby |
+|          | vendor_hk    | v6pymyNxodetevhkvprlfelqqildozispnyOzp9rlkawxgpw |
+|          | vendor_kr    | ohZvyswzpjqfxryz3bjkxnaetxelvnapifgqnNtdawc0acxt |
+|          | vendor_my    | njaMfnehpvycnzxkujaewev0zgnxHtfwzzxpmxlp0aybxnha |
+|          | vendor_ph    | Ewirhfoqktwwipq9ooremjeeqpxpygmelzamhbrap9gbxunX |
+|          | vendor_sg    | iangqoawprpjviii2ufhjGsoeqabltdqfbvkPqqal9jtnpfm |
+|----------+--------------+--------------------------------------------------|
+
+*** instangram
+**** develop
+|---------------------+-----------+-----------|
+| sns@mruby.jp        | mruby0901 | mruby0225 |
+|---------------------+-----------+-----------|
+
+**** staging
+|---------------------+----------+-----------|
+| s-numasawa@mruby.jp | ruby_dev | Close0404 |
+|---------------------+----------+-----------|
+**** production
+|----------------+------------|
+| APPSTYLEUNIQLO | lifewr2015 |
+|----------------+------------|
+
+*** twitter
+**** develop
+|-----------+-----------|
+| mruby0901 | mruby0225 |
+|-----------+-----------|
+
+**** staging
+|-------------------------------+---------------|
+| uniqloinfluencer@uniqlo.co.jp | uniqlomystyle |
+|-------------------------------+---------------|
+
+**** production
+|-------------------------------+---------------|
+| uniqloinfluencer@uniqlo.co.jp | uniqlomystyle |
+|-------------------------------+---------------|
+
+** 00004_mynavi
+*** product
+http://student.mn-struct.net/
+|--------+--------------------------|
+| mynavi | bhkf7qoobubSj2kqhvuKhxks |
+|--------+--------------------------|
+
+|------------+-------------+--------------------------|
+| web server | root        | Lmvd3828                 |
+|------------+-------------+--------------------------|
+| mysql      | myanvi_root | Irwgvk3lsaijworA3uwlimtw |
+|------------+-------------+--------------------------|
+
+* Tools
+** 2段階認証
+| vm  | 805743 |
+| win | 895467 |
+** slack
+s-numasawa@mruby.jp
+Close0404
+
+** heroku
+|------------------------+-----------|
+| id                     | pass      |
+|------------------------+-----------|
+| ruby.spheres@gmail.com | Close0404 |
+|------------------------+-----------|
+
+** github
+|-----------+------------------------+-----------|
+|           | id                     | pass      |
+|-----------+------------------------+-----------|
+| self      | s-numasawa@ruby-dev.jp | Close0404 |
+| ruby-corp |                        | mruby     |
+|-----------+------------------------+-----------|
+
+** cybozu
+|---------------------+-----------|
+| id                  | pass      |
+| s-numasawa@mruby.jp | Close0404 |
+|---------------------+-----------|
+
+** pivotal
+s-numasawa@mruby.jp
+Close0404
+
+** skype
+ruby.spheres@gmail.com
+ruby.spheres
+Close0404
+
+** ms office
+|------------------------+------------------|
+| ruby.spheres@gmail.com | do8Waiwai8thiel0 |
+|------------------------+------------------|
+
+** google analytics
+mruby.dvrp.division@gmail.com
+cee4Uad3uchiecohd6een3ai
+** jenkins
+s-numasawa
+s-numasawa@mruby.jp
+** microsoft
+https://account.live.com/
+s-numasawa@ruby-dev.jp
+Close0404
+
+** newrelic
+Ldlm3392
+* sakura server
+** acc
+|---------------+------------+--------------------------+--------|
+|               | id         | pass                     |        |
+|---------------+------------+--------------------------+--------|
+| ssh           | s-numasawa | Close0404                | no key |
+|---------------+------------+--------------------------+--------|
+| mysql         | root       | mruby                    |        |
+|               | gitlab     | mruby                    |        |
+|---------------+------------+--------------------------+--------|
+| docker-gitlab | root       | odWxruqfp6dmemhqxtlTic9m |        |
+|               | s-numasawa | Close0404                |        |
+|---------------+------------+--------------------------+--------|
+
+** member acc
+|---------------+----------------------+-----------|
+| docker-gitlab | y-shibata            | mruby0000 |
+|               | y-taguchi@mruby.jp   |           |
+|               | n-obata@mruby.jp     |           |
+|               | m-akao@mruby.jp      |           |
+|               | h-ashida@mruby.jp    |           |
+|               | h-hashimoto@mruby.jp |           |
+|               | m-aoyagi@mruby.jp    |           |
+|               | h-inoue@mruby.jp     |           |
+|               | y-shimada@mruby.jp   |           |
+|---------------+----------------------+-----------|
+
+y-shibata
+y-taguchi
+n-obata
+m-akao
+h-ashida
+h-hashimoto
+m-aoyagi
+h-inoue
+y-shimada
+
+** server
+|----+---------------|
+| IP | 160.16.96.217 |
+|----+---------------|
+
+admin user
+|------+------------|
+| root | xp8hzeerkz |
+|------+------------|
+
+* AWS
+** base
+|-----------+------------------------------|
+| E-mail    | dvrp-division-admin@mruby.jp |
+|-----------+------------------------------|
+| PW        | mruby-development1           |
+|-----------+------------------------------|
+| acc id    |                              |
+|-----------+------------------------------|
+| key pairs | s-numasawa-key-pair-tokyo    |
+|-----------+------------------------------|
+
+|-----------+----------------------------------------------------|
+| IAM login | https://689978960272.signin.aws.amazon.com/console |
+|-----------+----------------------------------------------------|
+| user name | s-numasawa                                         |
+|-----------+----------------------------------------------------|
+| password  | Close0404                                          |
+|-----------+----------------------------------------------------|
+
+** cloudformer
+|-------+-----------|
+| mruby | mruby3828 |
+|-------+-----------|
+
+** qwiki lab
+close.world@gmail.com
+Iekahxee8Hath9Aiyiu6aezo
+
+** owncloud
+|-----------------+--------------------------+--------------------------|
+| owncloud        | root                     | shei7amieghue7ooWudeisae |
+|                 | s-numasawa               | Jai7aeche1chaiPae8sau3fi |
+|-----------------+--------------------------+--------------------------|
+| mysql           | root                     | ailahTheu7Vae3ie         |
+|                 | owncloud                 | Fei8Vaay3tee5eiD         |
+|-----------------+--------------------------+--------------------------|
+| AWS user        | owncloud                 | quoh6iePhaigiephooshong8 |
+|-----------------+--------------------------+--------------------------|
+| ssl restore key | oongah3sah5voi2OhBoa6oqu |                          |
+|-----------------+--------------------------+--------------------------|
+
+** ruby-webpage
+*** webpage server- basic auth
+mruby
+Dleim3956
+*** munin basic auth for
+ruby
+D89dde7Mc
+*** zabbix
+| admin  | Uyahvaf8uuv8xaeZ         |
+| ruby   | theiyaeghinaequae2vaiF2N |
+* ruby sphere
+exf63rna2yhG9QJQcLiLsPC3
+
+* domain
+お名前.com
+
+|---------+----------------|
+| 7449622 | HFDiyiuijuZ8z2 |
+|---------+----------------|
+
+** ruby-dev.jp - name server
+ns-1390.awsdns-45.org
+ns-961.awsdns-56.net
+ns-113.awsdns-14.com
+ns-1764.awsdns-28.co.uk
+
+* mruby
+** jenkins
+52.69.172.22
+|------+-------+----------|
+| user | mruby | Dowl3399 |
+|------+-------+----------|
+
+
+
+
+
+
+
+
+* mail
+** sendgrid
+sg6sb1f6@kke.com
+Eeph3Ij2mohve9ie
+
+** mandrill
+ruby.spheres@gmail.com
+gai0View1queiQuu
+

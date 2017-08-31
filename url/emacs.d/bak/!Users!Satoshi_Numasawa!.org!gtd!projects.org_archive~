@@ -1,0 +1,271 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /Users/Numasawa/.org/gtd/projects.org
+
+
+* Todo [#B] ruby-dev214へgitlab URL記述
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-03-28 Mon 17:40
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: SNS/todos
+:ARCHIVE_CATEGORY: projects
+:ARCHIVE_TODO: Todo
+:ARCHIVE_ITAGS: bb BB
+:END:
+- [X] : ruby-dev214へgitlab URL記述
+  https://git.ruby-dev.jp/business_bank_group/allin-sns/issues/20
+
+* road map
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-04-04 Mon 17:17
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: SNS
+:ARCHIVE_CATEGORY: projects
+:ARCHIVE_ITAGS: bb BB
+:END:
+https://docs.google.com/spreadsheets/d/1EBNm4FDyQKAq_wT_STuFh3Lbw7P6srfqdHBFRoUV660/edit#gid=0
+https://docs.google.com/spreadsheets/d/1uEiI2SFBPv-Z_WgswEhY24NnGe3Z3THCCzRZhmCDbRk/edit#gid=1069237278
+
+** mine
+- [2016-03-22 Tue] -[2016-03-27 Sun]
+    - [ ] : test作成
+
+- [ ] : development環境update
+- [ ] : production環境構築の必要事項列挙
+- [ ] : production環境構築
+- [ ] : deploy手法のdocument化
+- [ ] : 負荷試験
+- [ ] : security試験?
+- [ ] : 監視設定
+** sibata san no
+- [ ] 3/17〜3/27：テスト
+    - [ ] feature
+        - [ ] APIテスト
+        - [ ] WS通知テスト
+        - [ ] 認証テスト
+        - [ ] アクセス制御テスト
+    - [ ] モデル
+        - [ ] feed
+        - [ ] comment
+        - [ ] attachment
+        - [ ] allinAccount
+    - [ ] コントローラ
+        - [ ] feed
+        - [ ] comment
+        - [ ] attachment
+    - [ ] ルート
+        - [ ] WebAPI
+- [ ] クライアントとの接続シーケンス（dispatch）の追加
+- [ ] AttachmentsController証明書の期限
+- [ ] ファイルアップロードの制限を5Mまでにする。
+- [ ] 認証＆権限のレビュー
+- [ ] WSの再接続
+    - [ ] クライアント側
+        - [ ] 初回接続時、ELBへ接続
+        - [ ] disconnectを検出したら、接続先をELBへ戻して接続
+    - [ ] サーバサイド
+        - [ ] 必要な処理がないか確認する。
+- [ ] AttachmentsController
+    - [ ] エラー処理でのファイルの削除
+- [ ] 3/27：DBのインデックス設定
+- [ ] 3/27：セキュリティー
+    - [ ] helmetの設定
+    - [ ] crosの設定
+    - [ ] 書籍からその他
+- [ ] commentクラスのリファクタリング
+- [ ] feedクラスのリファクタリング
+- [ ] AttachmentsControllerの非同期処理の改善
+- [-] 運用環境での動作確認
+    - [ ] 3/23：AWSの料金説明
+    - [ ] 3/23〜3/25：プロダクション環境の構築
+    - [ ] 3/28〜3/31：プロダクション環境での動作テスト
+    - [ ] 4/1〜4/3：運用環境での負荷試験とセキュリティー試験
+    - [X] DBのバックアップは差分バックアップが可能か？
+
+* Todo attachment
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-04-14 Thu 09:27
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: SNS/todos/test作成
+:ARCHIVE_CATEGORY: projects
+:ARCHIVE_TODO: Todo
+:ARCHIVE_ITAGS: bb BB
+:END:
+** Todo 以下テスト追記
+*** 社内SNSは、現在フロント側で、画像ファイルのみアップ出来るように制限しています。
+後、一度のアップロード操作で、添付出来るファイルは10ファイルまでです。
+アップロードを複数に分ければ、10ファイル以上アップロード出来ます
+
+*** fileみ指定の場合400が返るようになった
+test修正
+
+** /api/v1/attachments/upload/?feed_id=xxxx
+*** post
+**** req
+***** header
+Content-Type: application/json
+Accept: application/json
+Authorization: "Bearer  K1iJTJ91j4ubcj1VGRkQndUmRRBfMsPKPriYlq2vrmIuaZOj0Uj8Qj5WuHJ4mDk6wA7XPqnuW58xJKVFJBrdxLOWhXM2sP8GFQja5ZRjRYxSnzSBFclPOXlNFraihmu3"
+
+***** body
+なし
+**** res
+***** header
+***** body
+{ id: '56ff6d171eb9c2ba37692312',
+  created_at: '2016-04-02T06:56:23.423Z',
+  updated_at: '2016-04-02T06:56:23.423Z',
+  posted_by: '7b732aa2fdc011e3acbb22000a7c9000',
+  filename: 'test.jpq',
+  size: 0,
+  content_type: 'application/octet-stream',
+  url: 'http://localhost:5000/uploads/6a86645ee27811e59948080027599000/08faa15b-2b27-48f3-9af0-25f062e11fa2.jpq',
+  company_id: '6a86645ee27811e59948080027599000',
+  feed_id: '56ff6d171eb9c2ba376922d1',
+  comment_id: null }
+** /api/v1/attachments/upload/?comment_id=xxxx
+*** post
+**** req
+***** header
+***** body
+**** res
+***** header
+***** body
+** Done /api/v1/attachments/:id/download
+CLOSED: [2016-03-26 Sat 12:36]
+*** Done get : 不要
+CLOSED: [2016-03-26 Sat 12:36]
+**** req
+***** header
+***** body
+**** res
+***** header
+***** body
+** /api/v1/attachments/:id
+*** delete
+**** req
+***** header
+***** body
+**** res
+***** header
+***** body
+
+* mail配信テスト前のデータなどの調整
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-07-07 Thu 20:14
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: allin mail自動配信/todos/Mail配信 QA
+:ARCHIVE_CATEGORY: projects
+:END:
+- data
+    db:seed
+    bin/rake allin:delivery:set_birth_month_day
+
+- mail送信
+    config/sendgrid.yml
+    # json指定に、忘れるな
+
+* 文字数
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-08-01 Mon 18:58
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: allin mail自動配信/todos/Mail 配信 QA/一斉配信
+:ARCHIVE_CATEGORY: projects
+:END:
+- [X] タイトル : 128
+- [X] footer / header : 65535
+- [X] subject   : 128
+- [#NG] txt body  : 65535
+    model validationはかかるが、angular側で validationかかっていない
+- [#NG] html body : 65535
+    model validationはかかるが、angular側で validationかかっていない
+
+* 営業ステータス変更日
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-08-03 Wed 17:19
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: allin mail自動配信/todos/Mail 配信 QA/実送信テスト/on Staging/ステップ配信/受信
+:ARCHIVE_CATEGORY: projects
+:END:
+小針氏、沼沢のみを対象.
+
+- [X] 新規問い合わせ : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [X] 2016/07/30 19:15
+
+- [X] 初回提案 : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [X] 2016/07/30 19:15
+
+- [X] 見積書作成依頼 : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [X] 2016/07/30 19:15
+
+- [X] 見積書提出済み : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [X] 2016/07/30 19:15
+
+- [X] 最終提案 : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [X] 2016/07/30 19:15
+
+- [X] 成約 : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [X] 2016/07/30 19:15
+
+- [X] 長期フォロー : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [X] 2016/07/30 19:15
+
+- [X] OUT : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [X] 2016/07/30 19:15
+
+
+- [-] ベストプラクティス : 新規案件作成 : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [ ] 2016/07/30 19:15
+
+- [X] ベストプラクティス : 失注 : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [X] 2016/07/30 19:15
+
+* base
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-08-04 Thu 04:08
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: allin mail自動配信/todos/Mail 配信 QA/自動配信/誕生日/月日
+:ARCHIVE_CATEGORY: projects
+:END:
+- [X] 99日前
+- [X] 2日前
+- [X] 前日
+- [X] 当日
+- [X] 翌日
+- [X] 2日後
+- [X] 99日後
+
+* [100%] validation
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-08-04 Thu 15:03
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: allin mail自動配信/todos/Mail 配信 QA/テンプレート/差出人
+:ARCHIVE_CATEGORY: projects
+:END:
+- [X] 差出人
+    - [X] !blank
+    - [X] 64文字 validation
+- [X] 差出人アドレス
+    - [X] !blank
+    - [X] 128文字 validation

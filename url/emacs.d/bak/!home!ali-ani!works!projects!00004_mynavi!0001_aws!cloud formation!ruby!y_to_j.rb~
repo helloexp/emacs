@@ -1,0 +1,6 @@
+require 'json'
+require 'yaml'
+
+print JSON.parse(STDIN.read).to_yaml
+
+

@@ -1,0 +1,940 @@
+[
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "当日",
+    "text": "header\n\n名\t智\n姓\t沼沢\n\nfooter\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=Y2JiNjk4MDA0ZjUzMTFlNmFjMGIwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "cbb698004f5311e6ac0b0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "翌日",
+    "text": "header\n\n名\t智\n姓\t沼沢\n\nfooter\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=ZjYyMDU4MDA1MDFjMTFlNmEyOGMwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "f6205800501c11e6a28c0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "1週間後 | 日曜",
+    "text": "header\n\n名\t智\n姓\t沼沢\n\nfooter\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=MjA4YTE4MDA1MGU2MTFlNmI5NTcwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "208a180050e611e6b9570800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "二日後",
+    "text": "header\n\n名\t智\n姓\t沼沢\n\nfooter\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=MjA4YTE4MDA1MGU2MTFlNmI5NTkwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "208a180050e611e6b9590800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "前日",
+    "text": "header\n\n名\t智\n姓\t沼沢\n\nfooter\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=YTE0Y2Q4MDA0ZThhMTFlNmExZmYwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "a14cd8004e8a11e6a1ff0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "二日前",
+    "text": "header\n\n名\t智\n姓\t沼沢\n\nfooter\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=NzZlMzE4MDA0ZGMxMTFlNjkxMGUwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "76e318004dc111e6910e0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "1週間前 | 日曜",
+    "text": "header\n\n名\t智\n姓\t沼沢\n\nfooter\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=ZDRiNzc5MDA0NWU1MTFlNjhiYmUwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "d4b7790045e511e68bbe0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "2週間後 | 日曜",
+    "text": "header\n\n名\t智\n姓\t沼沢\n\nfooter\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=NGY2NDM5MDA1NjY2MTFlNjliMWYwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "4f643900566611e69b1f0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "１ヶ月後",
+    "text": "header\n\n名\t智\n姓\t沼沢\n\nfooter\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=ZjQ3YWI5MDA2N2FmMTFlNmJjOGMwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "f47ab90067af11e6bc8c0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "2ヶ月後",
+    "text": "header\n\n名\t智\n姓\t沼沢\n\nfooter\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=MTc0OGY5MDA4MDBjMTFlNmEyNDQwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "1748f900800c11e6a2440800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "2ヶ月後 | 1日",
+    "text": "header\n\n名\t智\n姓\t沼沢\n\nfooter\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=MTc0OGY5MDA4MDBjMTFlNmEyNDcwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "1748f900800c11e6a2470800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "１ヶ月前",
+    "text": "header\n\n名\t智\n姓\t沼沢\n\nfooter\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=ZDk0N2Y5MDAzN2MwMTFlNjhlMWYwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "d947f90037c011e68e1f0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "2ヶ月前",
+    "text": "header\n\n名\t智\n姓\t沼沢\n\nfooter\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=YjY3OWI5MDAxZjY0MTFlNmJjYTIwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "b679b9001f6411e6bca20800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "1ヶ月後 | 1日",
+    "text": "header\n\n名\t智\n姓\t沼沢\n\nfooter\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=NzljZGY5MDA1NzJmMTFlNjk5YTMwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "79cdf900572f11e699a30800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "1ヶ月前 | 1日",
+    "text": "header\n\n名\t智\n姓\t沼沢\n\nfooter\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=NWU5YjM5MDAyNzQwMTFlNmJlMWUwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "5e9b3900274011e6be1e0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "2ヶ月前 | 1日",
+    "text": "header\n\n名\t智\n姓\t沼沢\n\nfooter\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=M2JjY2Y5MDAwZWU0MTFlNjk3YTkwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "3bccf9000ee411e697a90800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "2ヶ月後 | 1日",
+    "text": "header\n\n名\t智\n姓\t沼沢\n\nfooter\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=OWM5YzM5MDA2ZjhiMTFlNjhkMGQwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "9c9c39006f8b11e68d0d0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "2ヶ月後 | 31日",
+    "text": "header\n\n名\t智\n姓\t沼沢\n\nfooter\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=NzIzMjc5MDA2ZWMyMTFlNjg1NTgwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "723279006ec211e685580800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "2ヶ月前 31日",
+    "text": "2ヶ月前 31日\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=MzQzMTc5MDAyNjc3MTFlNmEzNjgwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "34317900267711e6a3680800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 当日",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=ZDFhYzc5MDA0ZjUzMTFlNjg5ZTYwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "d1ac79004f5311e689e60800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 前日",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=YTc0MmI5MDA0ZThhMTFlNmJkZWYwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "a742b9004e8a11e6bdef0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 翌日",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=ZmMxNjM5MDA1MDFjMTFlNjljNDMwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "fc163900501c11e69c430800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 翌日",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=ZmMxNjM5MDA1MDFjMTFlNjliMjUwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "fc163900501c11e69b250800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 翌日",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=ZmMxNjM5MDA1MDFjMTFlNmJjODUwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "fc163900501c11e6bc850800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 1週間後 日曜",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=MjY3ZmY5MDA1MGU2MTFlNjhjZTEwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "267ff90050e611e68ce10800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 2日後",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=MjY3ZmY5MDA1MGU2MTFlNjhjZTIwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "267ff90050e611e68ce20800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 2日前",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=N2NkOGY5MDA0ZGMxMTFlNmJkYTUwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "7cd8f9004dc111e6bda50800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 1週間前 日曜",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=Y2VjMTk4MDA0NWU1MTFlNjg4OGIwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "cec1980045e511e6888b0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 2ヶ月前 : 1日",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=MzVkNzE4MDAwZWU0MTFlNjg4YzgwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "35d718000ee411e688c80800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 2ヶ月前",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=YjA4M2Q4MDAxZjY0MTFlNjg4YjMwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "b083d8001f6411e688b30800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 2ヶ月前 : 31日",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=MmUzYjk4MDAyNjc3MTFlNjg4ZTkwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "2e3b9800267711e688e90800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 1ヶ月前 : 1日",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=NThhNTU4MDAyNzQwMTFlNjg4Y2YwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "58a55800274011e688cf0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 1ヶ月前",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=ZDM1MjE4MDAzN2MwMTFlNjg4YTkwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "d352180037c011e688a90800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 2週間前 日曜",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=YTVkZDU4MDA0MDY1MTFlNjg4YTEwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "a5dd5800406511e688a10800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 2週間前 日曜",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=NDk2ZTU4MDA1NjY2MTFlNjg4OTUwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "496e5800566611e688950800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 1ヶ月後 : 1日",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=NzNkODE4MDA1NzJmMTFlNjg4ZDYwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "73d81800572f11e688d60800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 1ヶ月後",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=ZWU4NGQ4MDA2N2FmMTFlNjg4YjUwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "ee84d80067af11e688b50800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 2ヶ月後",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=ZWU4NGQ4MDA2N2FmMTFlNjg4YjgwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "ee84d80067af11e688b80800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 1ヶ月後 : 31日",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=NmMzYzk4MDA2ZWMyMTFlNjg4ZjgwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "6c3c98006ec211e688f80800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "売上 : 2ヶ月後 : 1日",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=OTZhNjU4MDA2ZjhiMTFlNjg4ZTEwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "96a658006f8b11e688e10800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "2日前",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=NzZlMzE4MDA0ZGMxMTFlNmI2NmIwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "76e318004dc111e6b66b0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "2日前",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=NzZlMzE4MDA0ZGMxMTFlNjhiMzgwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "76e318004dc111e68b380800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "1日前",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=YTE0Y2Q4MDA0ZThhMTFlNjhiM2UwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "a14cd8004e8a11e68b3e0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "当日",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=Y2JiNjk4MDA0ZjUzMTFlNjhiNDEwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "cbb698004f5311e68b410800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "1日後",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=ZjYyMDU4MDA1MDFjMTFlNjhiNDcwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "f6205800501c11e68b470800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "2日後",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=MjA4YTE4MDA1MGU2MTFlNjhiNGMwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "208a180050e611e68b4c0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "2週間前 : 日曜",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=YTVkZDU4MDA0MDY1MTFlNjhiNGQwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "a5dd5800406511e68b4d0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "1週間前 : 日曜",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=Y2VjMTk4MDA0NWU1MTFlNjhiNWEwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "cec1980045e511e68b5a0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "1週間後 : 日曜",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=Y2VjMTk4MDA0NWU1MTFlNjhiNWIwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "cec1980045e511e68b5b0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "1週間後 : 日曜",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=MjA4YTE4MDA1MGU2MTFlNjhiNjUwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "208a180050e611e68b650800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "2ヶ月前",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=YjA4M2Q4MDAxZjY0MTFlNjhiNzkwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "b083d8001f6411e68b790800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "1ヶ月前",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=ZDM1MjE4MDAzN2MwMTFlNjhiODMwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "d352180037c011e68b830800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "1ヶ月後",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=ZWU4NGQ4MDA2N2FmMTFlNjhiOGMwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "ee84d80067af11e68b8c0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "2ヶ月後",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=MTE1MzE4MDA4MDBjMTFlNjhiOTUwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "11531800800c11e68b950800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "2ヶ月前 1日",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=MzVkNzE4MDAwZWU0MTFlNjhiYTIwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "35d718000ee411e68ba20800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "1ヶ月前 1日",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=NThhNTU4MDAyNzQwMTFlNjhiYjAwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "58a55800274011e68bb00800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "1ヶ月後 1日",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=NzNkODE4MDA1NzJmMTFlNjhiYmQwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "73d81800572f11e68bbd0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "2ヶ月後 1日",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=OTZhNjU4MDA2ZjhiMTFlNjhiY2EwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "96a658006f8b11e68bca0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "2ヶ月前 31日",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=MmUzYjk4MDAyNjc3MTFlNjhiZmQwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "2e3b9800267711e68bfd0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "1ヶ月後 31日",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=NmMzYzk4MDA2ZWMyMTFlNjhjMGIwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "6c3c98006ec211e68c0b0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "2週間後 : 日曜",
+    "text": "a\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=NDk2ZTU4MDA1NjY2MTFlNmE3ZGYwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "496e5800566611e6a7df0800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa+test-emp@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "TEXT",
+    "text": "名\tTest_emp_na\n姓\tTest_emp_sei\nメイ\tテストシャインナ\nセイ\tテストシャインセイ\n国\t日本\n郵便番号\t9830035\n都道府県/州\t本店/宮城県\n市区町村/都市\t本店/仙台市宮城野区\n番地\t本店/日の出町\n建物・番地\t本店ビル\nTEL\t024-000-00001\nFAX\t024-000-00002\n携帯電話\t024-000-00003\nEmail\ts-numasawa+test-emp@ruby-dev.jp\n誕生日\t\n血液型\t\n会社名\tTest法人\nカイシャメイ\tテスト法人\n会社名(表示名)\tTest法人\n代表者肩書き\tテスト代表者\n代表者名\t名\n代表者姓\t性\n会社URL\truby-dev.jp\n事業説明\tテスト事業説明\n業種詳細\t\n業種\t\n本支店名\tTest本店\n本支店名(表示名)\tTest法人 Test本店\n本支店名(印刷用名称)\tTest本店\n本支店名(敬称)\tさん\n本支店外部システムID\thonten_system_ID\n本支店説明\thonten_備考\n本支店タグ\ttest\n所属\tテスト社員所属\n役職\tテスト社員役職\n敬称\tさん\nタグ\ttest\n\n名\tTest_emp_na\n姓\tTest_emp_sei\nメイ\tテストシャインナ\nセイ\tテストシャインセイ\n国\t日本\n郵便番号\t9830035\n都道府県/州\t本店/宮城県\n市区町村/都市\t本店/仙台市宮城野区\n番地\t本店/日の出町\n建物・番地\t本店ビル\nTEL\t024-000-00001\nFAX\t024-000-00002\n携帯電話\t024-000-00003\nEmail\ts-numasawa+test-emp@ruby-dev.jp\n誕生日\t\n血液型\t\n会社名\tTest法人\nカイシャメイ\tテスト法人\n会社名(表示名)\tTest法人\n代表者肩書き\tテスト代表者\n代表者名\t名\n代表者姓\t性\n会社URL\truby-dev.jp\n事業説明\tテスト事業説明\n業種詳細\t\n業種\t\n本支店名\tTest本店\n本支店名(表示名)\tTest法人 Test本店\n本支店名(印刷用名称)\tTest本店\n本支店名(敬称)\tさん\n本支店外部システムID\thonten_system_ID\n本支店説明\thonten_備考\n本支店タグ\ttest\n所属\tテスト社員所属\n役職\tテスト社員役職\n敬称\tさん\nタグ\ttest\n\n名\tTest_emp_na\n姓\tTest_emp_sei\nメイ\tテストシャインナ\nセイ\tテストシャインセイ\n国\t日本\n郵便番号\t9830035\n都道府県/州\t本店/宮城県\n市区町村/都市\t本店/仙台市宮城野区\n番地\t本店/日の出町\n建物・番地\t本店ビル\nTEL\t024-000-00001\nFAX\t024-000-00002\n携帯電話\t024-000-00003\nEmail\ts-numasawa+test-emp@ruby-dev.jp\n誕生日\t\n血液型\t\n会社名\tTest法人\nカイシャメイ\tテスト法人\n会社名(表示名)\tTest法人\n代表者肩書き\tテスト代表者\n代表者名\t名\n代表者姓\t性\n会社URL\truby-dev.jp\n事業説明\tテスト事業説明\n業種詳細\t\n業種\t\n本支店名\tTest本店\n本支店名(表示名)\tTest法人 Test本店\n本支店名(印刷用名称)\tTest本店\n本支店名(敬称)\tさん\n本支店外部システムID\thonten_system_ID\n本支店説明\thonten_備考\n本支店タグ\ttest\n所属\tテスト社員所属\n役職\tテスト社員役職\n敬称\tさん\nタグ\ttest\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=Y2JiNjk4MDA0ZjUzMTFlNmE5NzMwODAwMjc1ZWFhN2M6Q29udGFjdDowODdh%0AMWM3MDUwMDQxMWU2OGI0NjA4MDAyNzVlYWE3Yw%3D%3D%0A",
+    "html": "",
+    "unique_args": {
+      "mail_delivery_job_id": "cbb698004f5311e6a9730800275eaa7c",
+      "mail_addressable_type": "Contact",
+      "mail_addressable_id": "087a1c70500411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "TEXT",
+    "text": "名\t智\n姓\t沼沢\nメイ\tサトシ\nセイ\tヌマサワ\n国\t日本\n郵便番号\t9830035\n都道府県/州\t宮城県\n市区町村/都市\t仙台市宮城野区\n番地\t日の出町\n建物・番地\tテストビル\nTEL\t022-0000-0000\nFAX\t022-0000-00001\n携帯電話\t090-0000-00002\nEmail\ts-numasawa@ruby-dev.jp\n誕生日\t2016/07/22\n血液型\tA型\n会社名\t\nカイシャメイ\t\n会社名(表示名)\t\n代表者肩書き\t\n代表者名\t\n代表者姓\t\n会社URL\t\n事業説明\t\n業種詳細\t\n業種\t\n本支店名\t\n本支店名(表示名)\t\n本支店名(印刷用名称)\t\n本支店名(敬称)\t\n本支店外部システムID\t\n本支店説明\t\n本支店タグ\t\n所属\t\n役職\t\n敬称\t\nタグ\t\n\n名\t智\n姓\t沼沢\nメイ\tサトシ\nセイ\tヌマサワ\n国\t日本\n郵便番号\t9830035\n都道府県/州\t宮城県\n市区町村/都市\t仙台市宮城野区\n番地\t日の出町\n建物・番地\tテストビル\nTEL\t022-0000-0000\nFAX\t022-0000-00001\n携帯電話\t090-0000-00002\nEmail\ts-numasawa@ruby-dev.jp\n誕生日\t2016/07/22\n血液型\tA型\n会社名\t\nカイシャメイ\t\n会社名(表示名)\t\n代表者肩書き\t\n代表者名\t\n代表者姓\t\n会社URL\t\n事業説明\t\n業種詳細\t\n業種\t\n本支店名\t\n本支店名(表示名)\t\n本支店名(印刷用名称)\t\n本支店名(敬称)\t\n本支店外部システムID\t\n本支店説明\t\n本支店タグ\t\n所属\t\n役職\t\n敬称\t\nタグ\t\n\n名\t智\n姓\t沼沢\nメイ\tサトシ\nセイ\tヌマサワ\n国\t日本\n郵便番号\t9830035\n都道府県/州\t宮城県\n市区町村/都市\t仙台市宮城野区\n番地\t日の出町\n建物・番地\tテストビル\nTEL\t022-0000-0000\nFAX\t022-0000-00001\n携帯電話\t090-0000-00002\nEmail\ts-numasawa@ruby-dev.jp\n誕生日\t2016/07/22\n血液型\tA型\n会社名\t\nカイシャメイ\t\n会社名(表示名)\t\n代表者肩書き\t\n代表者名\t\n代表者姓\t\n会社URL\t\n事業説明\t\n業種詳細\t\n業種\t\n本支店名\t\n本支店名(表示名)\t\n本支店名(印刷用名称)\t\n本支店名(敬称)\t\n本支店外部システムID\t\n本支店説明\t\n本支店タグ\t\n所属\t\n役職\t\n敬称\t\nタグ\t\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=Y2JiNjk4MDA0ZjUzMTFlNmE5NzMwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": "",
+    "unique_args": {
+      "mail_delivery_job_id": "cbb698004f5311e6a9730800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "TEXT",
+    "text": "名\t智\n姓\t沼沢\nメイ\tサトシ\nセイ\tヌマサワ\n国\t日本\n郵便番号\t9830035\n都道府県/州\t宮城県\n市区町村/都市\t仙台市宮城野区\n番地\t日の出町\n建物・番地\tテストビル\nTEL\t022-0000-0000\nFAX\t022-0000-00001\n携帯電話\t090-0000-00002\nEmail\ts-numasawa@ruby-dev.jp\n誕生日\t2016/07/22\n血液型\tA型\n会社名\t\nカイシャメイ\t\n会社名(表示名)\t\n代表者肩書き\t\n代表者名\t\n代表者姓\t\n会社URL\t\n事業説明\t\n業種詳細\t\n業種\t\n本支店名\t\n本支店名(表示名)\t\n本支店名(印刷用名称)\t\n本支店名(敬称)\t\n本支店外部システムID\t\n本支店説明\t\n本支店タグ\t\n所属\t\n役職\t\n敬称\t\nタグ\t\n\n名\t智\n姓\t沼沢\nメイ\tサトシ\nセイ\tヌマサワ\n国\t日本\n郵便番号\t9830035\n都道府県/州\t宮城県\n市区町村/都市\t仙台市宮城野区\n番地\t日の出町\n建物・番地\tテストビル\nTEL\t022-0000-0000\nFAX\t022-0000-00001\n携帯電話\t090-0000-00002\nEmail\ts-numasawa@ruby-dev.jp\n誕生日\t2016/07/22\n血液型\tA型\n会社名\t\nカイシャメイ\t\n会社名(表示名)\t\n代表者肩書き\t\n代表者名\t\n代表者姓\t\n会社URL\t\n事業説明\t\n業種詳細\t\n業種\t\n本支店名\t\n本支店名(表示名)\t\n本支店名(印刷用名称)\t\n本支店名(敬称)\t\n本支店外部システムID\t\n本支店説明\t\n本支店タグ\t\n所属\t\n役職\t\n敬称\t\nタグ\t\n\n名\t智\n姓\t沼沢\nメイ\tサトシ\nセイ\tヌマサワ\n国\t日本\n郵便番号\t9830035\n都道府県/州\t宮城県\n市区町村/都市\t仙台市宮城野区\n番地\t日の出町\n建物・番地\tテストビル\nTEL\t022-0000-0000\nFAX\t022-0000-00001\n携帯電話\t090-0000-00002\nEmail\ts-numasawa@ruby-dev.jp\n誕生日\t2016/07/22\n血液型\tA型\n会社名\t\nカイシャメイ\t\n会社名(表示名)\t\n代表者肩書き\t\n代表者名\t\n代表者姓\t\n会社URL\t\n事業説明\t\n業種詳細\t\n業種\t\n本支店名\t\n本支店名(表示名)\t\n本支店名(印刷用名称)\t\n本支店名(敬称)\t\n本支店外部システムID\t\n本支店説明\t\n本支店タグ\t\n所属\t\n役職\t\n敬称\t\nタグ\t\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=Y2JiNjk4MDA0ZjUzMTFlNmE5NzMwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": "",
+    "unique_args": {
+      "mail_delivery_job_id": "cbb698004f5311e6a9730800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa+test-emp@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "HTML",
+    "text": "名\tTest_emp_na\n姓\tTest_emp_sei\nメイ\tテストシャインナ\nセイ\tテストシャインセイ\n国\t日本\n郵便番号\t9830035\n都道府県/州\t本店/宮城県\n市区町村/都市\t本店/仙台市宮城野区\n番地\t本店/日の出町\n建物・番地\t本店ビル\nTEL\t024-000-00001\nFAX\t024-000-00002\n携帯電話\t024-000-00003\nEmail\ts-numasawa+test-emp@ruby-dev.jp\n誕生日\t\n血液型\t\n会社名\tTest法人\nカイシャメイ\tテスト法人\n会社名(表示名)\tTest法人\n代表者肩書き\tテスト代表者\n代表者名\t名\n代表者姓\t性\n会社URL\truby-dev.jp\n事業説明\tテスト事業説明\n業種詳細\t\n業種\t\n本支店名\tTest本店\n本支店名(表示名)\tTest法人 Test本店\n本支店名(印刷用名称)\tTest本店\n本支店名(敬称)\tさん\n本支店外部システムID\thonten_system_ID\n本支店説明\thonten_備考\n本支店タグ\ttest\n所属\tテスト社員所属\n役職\tテスト社員役職\n敬称\tさん\nタグ\ttest\n\n\n\n名\tTest_emp_na\n姓\tTest_emp_sei\nメイ\tテストシャインナ\nセイ\tテストシャインセイ\n国\t日本\n郵便番号\t9830035\n都道府県/州\t本店/宮城県\n市区町村/都市\t本店/仙台市宮城野区\n番地\t本店/日の出町\n建物・番地\t本店ビル\nTEL\t024-000-00001\nFAX\t024-000-00002\n携帯電話\t024-000-00003\nEmail\ts-numasawa+test-emp@ruby-dev.jp\n誕生日\t\n血液型\t\n会社名\tTest法人\nカイシャメイ\tテスト法人\n会社名(表示名)\tTest法人\n代表者肩書き\tテスト代表者\n代表者名\t名\n代表者姓\t性\n会社URL\truby-dev.jp\n事業説明\tテスト事業説明\n業種詳細\t\n業種\t\n本支店名\tTest本店\n本支店名(表示名)\tTest法人 Test本店\n本支店名(印刷用名称)\tTest本店\n本支店名(敬称)\tさん\n本支店外部システムID\thonten_system_ID\n本支店説明\thonten_備考\n本支店タグ\ttest\n所属\tテスト社員所属\n役職\tテスト社員役職\n敬称\tさん\nタグ\ttest\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=Y2JiNjk4MDA0ZjUzMTFlNmE5NzQwODAwMjc1ZWFhN2M6Q29udGFjdDowODdh%0AMWM3MDUwMDQxMWU2OGI0NjA4MDAyNzVlYWE3Yw%3D%3D%0A",
+    "html": "名\tTest_emp_na\n姓\tTest_emp_sei\nメイ\tテストシャインナ\nセイ\tテストシャインセイ\n国\t日本\n郵便番号\t9830035\n都道府県/州\t本店/宮城県\n市区町村/都市\t本店/仙台市宮城野区\n番地\t本店/日の出町\n建物・番地\t本店ビル\nTEL\t024-000-00001\nFAX\t024-000-00002\n携帯電話\t024-000-00003\nEmail\ts-numasawa+test-emp@ruby-dev.jp\n誕生日\t\n血液型\t\n会社名\tTest法人\nカイシャメイ\tテスト法人\n会社名(表示名)\tTest法人\n代表者肩書き\tテスト代表者\n代表者名\t名\n代表者姓\t性\n会社URL\truby-dev.jp\n事業説明\tテスト事業説明\n業種詳細\t\n業種\t\n本支店名\tTest本店\n本支店名(表示名)\tTest法人 Test本店\n本支店名(印刷用名称)\tTest本店\n本支店名(敬称)\tさん\n本支店外部システムID\thonten_system_ID\n本支店説明\thonten_備考\n本支店タグ\ttest\n所属\tテスト社員所属\n役職\tテスト社員役職\n敬称\tさん\nタグ\ttest\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=Y2JiNjk4MDA0ZjUzMTFlNmE5NzQwODAwMjc1ZWFhN2M6Q29udGFjdDowODdh%0AMWM3MDUwMDQxMWU2OGI0NjA4MDAyNzVlYWE3Yw%3D%3D%0A",
+    "unique_args": {
+      "mail_delivery_job_id": "cbb698004f5311e6a9740800275eaa7c",
+      "mail_addressable_type": "Contact",
+      "mail_addressable_id": "087a1c70500411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "HTML",
+    "text": "名\t智\n姓\t沼沢\nメイ\tサトシ\nセイ\tヌマサワ\n国\t日本\n郵便番号\t9830035\n都道府県/州\t宮城県\n市区町村/都市\t仙台市宮城野区\n番地\t日の出町\n建物・番地\tテストビル\nTEL\t022-0000-0000\nFAX\t022-0000-00001\n携帯電話\t090-0000-00002\nEmail\ts-numasawa@ruby-dev.jp\n誕生日\t2016/07/22\n血液型\tA型\n会社名\t\nカイシャメイ\t\n会社名(表示名)\t\n代表者肩書き\t\n代表者名\t\n代表者姓\t\n会社URL\t\n事業説明\t\n業種詳細\t\n業種\t\n本支店名\t\n本支店名(表示名)\t\n本支店名(印刷用名称)\t\n本支店名(敬称)\t\n本支店外部システムID\t\n本支店説明\t\n本支店タグ\t\n所属\t\n役職\t\n敬称\t\nタグ\t\n\n\n\n名\t智\n姓\t沼沢\nメイ\tサトシ\nセイ\tヌマサワ\n国\t日本\n郵便番号\t9830035\n都道府県/州\t宮城県\n市区町村/都市\t仙台市宮城野区\n番地\t日の出町\n建物・番地\tテストビル\nTEL\t022-0000-0000\nFAX\t022-0000-00001\n携帯電話\t090-0000-00002\nEmail\ts-numasawa@ruby-dev.jp\n誕生日\t2016/07/22\n血液型\tA型\n会社名\t\nカイシャメイ\t\n会社名(表示名)\t\n代表者肩書き\t\n代表者名\t\n代表者姓\t\n会社URL\t\n事業説明\t\n業種詳細\t\n業種\t\n本支店名\t\n本支店名(表示名)\t\n本支店名(印刷用名称)\t\n本支店名(敬称)\t\n本支店外部システムID\t\n本支店説明\t\n本支店タグ\t\n所属\t\n役職\t\n敬称\t\nタグ\t\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=Y2JiNjk4MDA0ZjUzMTFlNmE5NzQwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": "名\tTest_emp_na\n姓\tTest_emp_sei\nメイ\tテストシャインナ\nセイ\tテストシャインセイ\n国\t日本\n郵便番号\t9830035\n都道府県/州\t本店/宮城県\n市区町村/都市\t本店/仙台市宮城野区\n番地\t本店/日の出町\n建物・番地\t本店ビル\nTEL\t024-000-00001\nFAX\t024-000-00002\n携帯電話\t024-000-00003\nEmail\ts-numasawa+test-emp@ruby-dev.jp\n誕生日\t\n血液型\t\n会社名\tTest法人\nカイシャメイ\tテスト法人\n会社名(表示名)\tTest法人\n代表者肩書き\tテスト代表者\n代表者名\t名\n代表者姓\t性\n会社URL\truby-dev.jp\n事業説明\tテスト事業説明\n業種詳細\t\n業種\t\n本支店名\tTest本店\n本支店名(表示名)\tTest法人 Test本店\n本支店名(印刷用名称)\tTest本店\n本支店名(敬称)\tさん\n本支店外部システムID\thonten_system_ID\n本支店説明\thonten_備考\n本支店タグ\ttest\n所属\tテスト社員所属\n役職\tテスト社員役職\n敬称\tさん\nタグ\ttest\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=Y2JiNjk4MDA0ZjUzMTFlNmE5NzQwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "unique_args": {
+      "mail_delivery_job_id": "cbb698004f5311e6a9740800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  },
+  {
+    "to": "s-numasawa@ruby-dev.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "HTML",
+    "text": "名\t智\n姓\t沼沢\nメイ\tサトシ\nセイ\tヌマサワ\n国\t日本\n郵便番号\t9830035\n都道府県/州\t宮城県\n市区町村/都市\t仙台市宮城野区\n番地\t日の出町\n建物・番地\tテストビル\nTEL\t022-0000-0000\nFAX\t022-0000-00001\n携帯電話\t090-0000-00002\nEmail\ts-numasawa@ruby-dev.jp\n誕生日\t2016/07/22\n血液型\tA型\n会社名\t\nカイシャメイ\t\n会社名(表示名)\t\n代表者肩書き\t\n代表者名\t\n代表者姓\t\n会社URL\t\n事業説明\t\n業種詳細\t\n業種\t\n本支店名\t\n本支店名(表示名)\t\n本支店名(印刷用名称)\t\n本支店名(敬称)\t\n本支店外部システムID\t\n本支店説明\t\n本支店タグ\t\n所属\t\n役職\t\n敬称\t\nタグ\t\n\n\n\n名\t智\n姓\t沼沢\nメイ\tサトシ\nセイ\tヌマサワ\n国\t日本\n郵便番号\t9830035\n都道府県/州\t宮城県\n市区町村/都市\t仙台市宮城野区\n番地\t日の出町\n建物・番地\tテストビル\nTEL\t022-0000-0000\nFAX\t022-0000-00001\n携帯電話\t090-0000-00002\nEmail\ts-numasawa@ruby-dev.jp\n誕生日\t2016/07/22\n血液型\tA型\n会社名\t\nカイシャメイ\t\n会社名(表示名)\t\n代表者肩書き\t\n代表者名\t\n代表者姓\t\n会社URL\t\n事業説明\t\n業種詳細\t\n業種\t\n本支店名\t\n本支店名(表示名)\t\n本支店名(印刷用名称)\t\n本支店名(敬称)\t\n本支店外部システムID\t\n本支店説明\t\n本支店タグ\t\n所属\t\n役職\t\n敬称\t\nタグ\t\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=Y2JiNjk4MDA0ZjUzMTFlNmE5NzQwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "html": "名\tTest_emp_na\n姓\tTest_emp_sei\nメイ\tテストシャインナ\nセイ\tテストシャインセイ\n国\t日本\n郵便番号\t9830035\n都道府県/州\t本店/宮城県\n市区町村/都市\t本店/仙台市宮城野区\n番地\t本店/日の出町\n建物・番地\t本店ビル\nTEL\t024-000-00001\nFAX\t024-000-00002\n携帯電話\t024-000-00003\nEmail\ts-numasawa+test-emp@ruby-dev.jp\n誕生日\t\n血液型\t\n会社名\tTest法人\nカイシャメイ\tテスト法人\n会社名(表示名)\tTest法人\n代表者肩書き\tテスト代表者\n代表者名\t名\n代表者姓\t性\n会社URL\truby-dev.jp\n事業説明\tテスト事業説明\n業種詳細\t\n業種\t\n本支店名\tTest本店\n本支店名(表示名)\tTest法人 Test本店\n本支店名(印刷用名称)\tTest本店\n本支店名(敬称)\tさん\n本支店外部システムID\thonten_system_ID\n本支店説明\thonten_備考\n本支店タグ\ttest\n所属\tテスト社員所属\n役職\tテスト社員役職\n敬称\tさん\nタグ\ttest\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=Y2JiNjk4MDA0ZjUzMTFlNmE5NzQwODAwMjc1ZWFhN2M6UGVyc29uOjg2ZDRm%0AOTUyNGZlNDExZTY4YjQ2MDgwMDI3NWVhYTdj%0A",
+    "unique_args": {
+      "mail_delivery_job_id": "cbb698004f5311e6a9740800275eaa7c",
+      "mail_addressable_type": "Person",
+      "mail_addressable_id": "86d4f9524fe411e68b460800275eaa7c"
+    }
+  }
+]

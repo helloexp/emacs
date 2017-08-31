@@ -1,0 +1,56 @@
+'use strict';
+
+
+const linkify = require('linkifyjs');
+require('linkifyjs/plugins/hashtag')(linkify); // optional
+
+const normalize_url = require('normalize-url');
+
+
+class Link_extractor {
+    constructor() {
+        this.res  = null;
+        this.urls = null;
+        this.text = null;
+    }
+
+    find_links(text) {
+        this.text = text;
+
+        this.replace_space();
+        this.scrape();
+        this.normalize();
+        this.filter_url();
+
+        return this.urls;
+    }
+
+    replace_space() {
+        this.text = this.text.replace(/\s/g, ' ');
+    }
+
+    scrape() {
+        // TODO: 空判定を確実に
+        if (this.text != null) {
+            this.res = linkify.find(this.text);
+        }
+    }
+
+    normalize() {
+        for(let i=0; i<this.res.length; i++) {
+            this.res[i].href = normalize_url(this.res[i].href);
+        }
+    }
+
+    filter_url() {
+        if (this.res.length != 0) {
+            this.urls = this.res.filter( (v) => {
+                return v.type == 'url';
+            });
+        }
+    }
+}
+
+
+let analyzer = new Link_extractor();
+module.exports = analyzer;

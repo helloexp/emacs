@@ -1,0 +1,10 @@
+.domain ng-if="!#{post}.$edit"
+  .image-url-horizontally
+    img ng-src="{{embed.image.url}}"
+  .description-horizontally
+    .description ng-if="embed.title"
+      | {{embed.title}} <br>
+    .description ng-if="!embed.title"
+      | {{embed.site_name}} <br>
+    .body
+      | {{embed.description[0]}}

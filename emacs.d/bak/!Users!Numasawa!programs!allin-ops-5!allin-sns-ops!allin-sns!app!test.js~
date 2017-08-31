@@ -1,0 +1,101 @@
+'use strict';
+
+
+const co = require('co');
+
+
+
+
+function ab_test(txt) {
+    return new Promise( (resolve, reject) => {
+        if (txt == 0){
+            reject(new Error('not available'));
+        } else {
+            resolve(txt);
+        }
+    });
+}
+
+
+// ab_test('0').then( (res) => {
+//     console.log('res : ' + res);
+// }).catch((err) => {
+//     console.log('err : ' + err)
+// });
+
+
+// console.log('out 1')
+// ab_test('1').then( (res) => {
+//     console.log('res : ' + res);
+// }).catch((err) => {
+//     console.log('err : ' + err)
+// });
+
+
+// console.log('out 2')
+// ab_test('2').then( (res) => {
+//     console.log('res : ' + res);
+// }).catch((err) => {
+//     console.log('err : ' + err)
+// });
+
+// console.log('out 3')
+
+
+function p(str) {
+  return new Promise(function(resolve) {
+    setTimeout(function() {
+      resolve(str);
+    }, 1000);
+  });
+}
+
+
+
+// co(function *() {
+//     // console.log(yield ab_test('0'));
+
+//     console.log('out 0');
+//     ab_test('0').then((res) => {
+//         console.log(res);
+//     }).catch((er) => {
+//         console.log(er);
+//     });
+
+//     console.log('out 1');
+//     ab_test('1').then((res) => {
+//         console.log(res);
+//     });
+
+
+//     console.log('out 2')
+//     ab_test('2').then((res) => {
+//         console.log(res);
+//     });
+
+//     console.log('out 3')
+//     ab_test('3').then((res) => {
+//         console.log(res);
+//     });
+// }).catch((err) => {
+//     console.log(err);
+// });
+
+
+
+// co(function *() {
+//     console.log('out 4');
+//     ab_test('4').then((res) => {
+//         console.log(res);
+//     });
+
+//     console.log('out 5')
+//     ab_test('5').then((res) => {
+//         console.log(res);
+//     });
+
+//     console.log('out 6')
+//     ab_test('6').then((res) => {
+//         console.log(res);
+//     });
+// });

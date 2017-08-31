@@ -1,0 +1,79 @@
+{
+    "name": "app",
+    "description": "ALLIN application server role", 
+    "json_class": "Chef::Role",
+    "chef_type": "role",
+    "default_attributes": {
+        "user": {
+            "name": "svc",
+            "password": "$1$rlxUjnKi$PAvqLg9AD2Ban/2ANW6p2."
+        },
+        "monit": {
+            "polling_frequency": 60,
+            "statefile": "/var/.monit.state"
+        },
+        "redisio": {
+            "servers": [
+                {
+                    "port": 6379,
+                    "timeout": 300
+                }
+            ],
+            "default_settings": {
+                "noappendfsynconrewrite": "yes"
+            }
+        },
+        "rvm": {
+            "user_install_rubies": true,
+            "installs": {
+                "svc": true
+            },
+            "user_installs": [{
+                "user": "svc",
+                "default_ruby": "2.2.0",
+                "rubies": [ "2.2.0" ]
+            }]
+        },
+        "nvm": {
+            "version": "0.29.0"
+        },
+        "node": {
+            "version": "5.5.0"
+        },
+        "ntp": {
+            "servers": ["ntp.nict.jp", "ntp.jst.mfeed.ad.jp"]
+        }
+    },
+    "override_attributes": {
+        "td_agent": {
+            "includes": true
+        }
+    },
+    "run_list": [
+        "recipe[swap]",
+        "recipe[base]",
+        "recipe[yum-epel]",
+        "recipe[iptables]",
+        "recipe[iptables_rules]",
+        "recipe[iptables_rules::nginx]",
+        "recipe[sshd]",
+        "recipe[nginx]",
+        "recipe[nginx_conf]",
+        "recipe[nginx_conf::allin]",
+        "recipe[mysql_client]",
+        "recipe[ntp]",
+        "recipe[postfix]",
+        "recipe[redisio]",
+        "recipe[redisio::enable]",
+        "recipe[td-agent]",
+        "recipe[fluentd_conf]",
+        "recipe[monit]",
+        "recipe[monit_conf]",
+        "recipe[user]",
+        "recipe[nvm]",
+        "recipe[node]",
+        "recipe[node::bower]",
+        "recipe[rvm::user]",
+        "recipe[eye]"
+    ]
+}

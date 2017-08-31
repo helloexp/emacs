@@ -1,0 +1,37 @@
+'use strict';
+
+let fixture = null;
+
+
+class Fixture {
+    constructor() {
+        const mongoose = require('mongoose');
+
+        this.company_id = '6a86645ee27811e59948080027599999';
+        this.account_id = '7b732aa2fdc011e3acbb22000a7c9999';
+        this.other_account_id = '7b732aa2fdc011e3acbb22000a7c8888';
+        this.contents = 'contents text';
+        this.updateContents = 'update contents text';
+        this.group_id = '__all__';
+        this.DocumentObjectId = mongoose.Types.ObjectId;
+
+        this.Feed = require('../../models/feed');
+    }
+
+    create_feed_data(record_num) {
+        for(let i = 0; i < record_num; i++) {
+            let id = new this.DocumentObjectId;
+
+            this.Feed.create({
+                _id:        id,
+                contents:   this.contents,
+                group_id:   this.group_id,
+                posted_by:  this.account_id,
+                company_id: this.company_id
+            });
+        };
+    }
+}
+
+fixture = new Fixture();
+module.exports = fixture;

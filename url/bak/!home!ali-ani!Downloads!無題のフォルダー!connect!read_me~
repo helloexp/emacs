@@ -1,0 +1,71 @@
+
+
+
+desc
+----------------------------------------------------------------
+    - app servers
+        admin : uniqlo-hashtag          | 管理画面、インフルエンサー登録
+        user  : uniqlo-hashtag-main     | 一般ユーザー向けHP
+        sns   : uniqlo-hashtag-crontab  | sns情報取得用
+
+
+    - 各種App serverへの接続
+        踏み台を経由して接続します。
+
+
+    - server構成
+        添付のファイルを参照下さい。
+
+
+ssh key
+----------------------------------------------------------------
+    - 踏み台
+        capistranoと一緒にお渡しした、
+        []
+        を使用下さい
+
+    - 踏み台 to app servers
+        不要。
+        serverに設定済み
+
+
+
+接続方法
+----------------------------------------------------------------
+    - local to 踏み台
+        $ ssh alliance@54.65.232.249 -i uniqlo_influencer_gateway.pem
+
+
+    - 踏み台 to app servers
+        以下コマンドで各種サーバーへ接続可能です。
+
+        $ ssh mruby@app-admin
+        $ ssh mruby@app-user
+        $ ssh mruby@app-sns
+
+
+
+app server
+----------------------------------------------------------------
+    - 作業ユーザー
+        全サーバー共通 [mruby]
+
+        
+    - rails
+        全て共通の構成です。
+        [/var/rail/uniqlo/] 配下にsource codeがあります
+
+        [/var/rail/uniqlo/releases] に対し、直接deploy。
+        [/var/rail/uniqlo/current] へ、最新版のdirへのsymbolic linkを張っています。
+
+
+   - view
+       uniqlo-hashtag-viewは、user serverの [/var/www/html/view] へ展開しています。
+
+       こちらは、version管理は現状していません。
+
+
+
+        
+
+    

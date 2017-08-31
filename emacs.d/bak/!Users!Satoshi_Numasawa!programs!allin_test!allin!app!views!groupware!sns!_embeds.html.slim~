@@ -1,0 +1,6 @@
+span ng-if="!embed.image.url || embed.image.aspect == 0"
+  = render 'embeds_no_image', post: 'post'
+spqn ng-if="embed.image.aspect > 1.2 && embed.image.width >= 200"
+  = render 'embeds_horizontally', post: 'post'
+span ng-if="embed.image.aspect < 1.2 || embed.image.width <= 200"
+  = render 'embeds_vertically', post: 'post'

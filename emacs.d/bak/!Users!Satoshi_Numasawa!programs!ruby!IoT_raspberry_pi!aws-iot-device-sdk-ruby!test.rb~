@@ -1,0 +1,59 @@
+require "dht-sensor-ffi"
+require 'shadow_client'
+require 'optparse'
+require 'json'
+require 'pp'
+
+
+def temperature_peerception
+  val = DhtSensor.read(4, 11) # pin=4, sensor type=DHT-11
+end
+
+def generate_json
+  value = temperature_peerception
+    json_payload = "{\"state\":{\"desired\":{\"temperature\":\"#{value.temperature}\",\"humidity\":\"#{value.humidity}\"},\"reported\":{\"temperature\":\"#{value.temperature}\
+\",\"humidity\":\"#{value.humidity}\"}}}"
+end
+
+def send_record(shadow_client)
+    temp_and_humi = generate_json
+    shadow_client.update_shadow(temp_and_humi, filter_callback, 5)
+end
+
+def run
+  host = "a15ipmbgzhr3uc.iot.ap-northeast-1.amazonaws.com"
+  port = 8883
+  certificate_path = "/home/pi/cert/certificate.pem.crt"
+  private_key_path = "/home/pi/cert/private.pem.key"
+  root_ca_path     = "/home/pi/cert/root-CA.crt"
+  thing = "RasPi_sendai"
+
+  my_shadow_client = ShadowClient.new
+  my_shadow_client.configure_endpoint(host, port)
+  my_shadow_client.configure_credentials(root_ca_path, private_key_path, certificate_path)
+
+  my_shadow_client.connect
+  my_shadow_client.create_shadow_handler_with_name(thing, true)
+
+  filter_callback = Proc.new do |message|
+    puts "Executing the specific callback for topic: #{message.topic}\n##########################################\n"
+  end
+
+  delta_callback = Proc.new do |delta|
+    message = JSON.parse(delta.payload)
+    puts "Catching a new message : #{message["state"]["message"]}\n##########################################\n"
+  end
+
+  my_shadow_client.register_delta_callback(delta_callback)
+
+
+  timers = Timers::Group.new
+
+  timers.every(55) { send_record(my_shadow_client) }
+
+  loop { timers.wait }
+
+  my_shadow_client.disconnect
+end
+
+run

@@ -1,0 +1,103 @@
+.main_img
+  img[src="../img_main/main_staff.png" alt="社内紹介"]
+h2.head_Text
+  span
+    | ▌
+  |  社内行事・社員紹介 
+.commonBox
+  .abutIncBox
+    .abutInctxt
+      |  当社の社風紹介です。アプリケーションの設計と開発をすることが、皆、大好きです。
+      br
+      |  同じ志をお持ちの方、ご応募お待ちしております。
+      br
+.clear
+.commonBox
+  .hLn
+    span.clr
+      | █ 
+    b
+      | 2013年度社員旅行 北海道
+    br
+  .incImg
+    img[src="../img_1/inc01.png" alt="社員旅行"]
+  .fukidasi
+    |  普段は拠点のちがう社員との交流や遊びの中でしか見れない素顔が発見できたり、当社のエンジニアの絆は社内イベントでも強まっています！
+    br
+.clear
+.commonBox
+  .hLn
+    span.clr
+      | █ 
+    b
+      | 定例社内会議
+    br
+  .incImg
+    img[src="../img_1/inc02.png" alt="定例社内会議"]
+  .fukidasi
+    |  定例社内会議は地域毎に担当リーダーが中心になって開催しています。
+    br
+    | 会議内容はリーダーに一任で、主な内容としてはスキルアップへの取組みや、新規事業をテーマに討論したり、時には宅配ピザを食べながら自由懇談会形式で開催したりもしています。月１回の顔合わせの場としても重要な会議の位置づけで取組んでいます。
+    br
+.clear
+.commonBox
+  .hLn
+    span.clr
+      | █ 
+    b
+      | 懇親会
+    br
+  .incImg
+    img[src="../img_1/inc03.png" alt="懇親会"]
+  .fukidasi
+    |  社内会議後の懇親会。
+    br
+    |  ここでは趣味の話しなどでリフレッシュ！
+    br
+    |  先輩も後輩も関係ありません。
+    br
+.clear
+.commonBox
+  .hLn
+    span.clr
+      | █ 
+    b
+      | 社員のホンネ
+    br
+  .incImg
+    img[src="../img_1/inc04.png" alt="懇親会"]
+  .fukidasi
+    |  イニシャル：N.A
+    br
+    |  社長も役職者もみんな「さん」付けで呼び合い、とてもフランクで風通しの良い社風です。
+    br
+    |  そんな当社の社員は仕事・技術への情熱は熱く、社員考案による自社製品開発プロジェクトの実行や
+    br
+    |  Rubyアソシエーションのイベント等にも積極的に参加しています。
+    br
+    |  このように社内にスキルアップを形成する環境が整備されているのが嬉しいです。
+    br
+    |  当社は社員がやってみたいと思ったことを積極的に取り入れてチャレンジできる環境があることも個々のスキルアップにつながっています。
+    br
+.clear
+.commonBox
+  .abutIncBox
+    .abutInctxtLink
+      a[href="http://www.mruby.jp/sp/on_Rails/engineer_recruitment.php"]
+        | Ruby on Rails 採用情報ページへ戻る
+      br
+      a[href="http://www.mruby.jp/sp/employment/employment.php"]
+        | エンジニア採用情報ページへ戻る
+      br
+.clear
+script[src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"]
+script[type="text/javascript" src="../js/jquery.pageslide.min.js"]
+script
+  |  $(".first").pageslide(); $(".second").pageslide({direction: "left", modal: true}); 
+.commonBox_pall
+  .leftBox_lay
+    .btn_backLay
+      a[href="http://www.mruby.jp/sp/"]
+        | HOME
+  .rightBox_lay
+    .btn_backLay

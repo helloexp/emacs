@@ -1,0 +1,53 @@
+Influencerインフラ接続情報
+
+■URL
+Front - ドメインを確認中
+Admin - ドメインを確認中
+
+/*************************/
+       SetUP情報
+/*************************/
+
+■Stepサーバの情報
+54.250.223.60
+hostname：mnt01-a-tky-gateway-common
+
+ログインユーザアカウント：members
+秘密鍵ファイル名：現在利用されているmembersユーザの鍵ファイルをご利用ください。
+パスフレーズなし
+
+
+## EC2/ELB
+## Web
+ELB: prd01-tky-influencer-uniqlo-304455623.ap-northeast-1.elb.amazonaws.com
+     prd02-tky-influencer-uniqlo-275306959.ap-northeast-1.elb.amazonaws.com
+EC2: Instance: i-2744a33f (prd01-a-tky-influencer-uniqlo)Private IP: 10.184.16.238
+
+
+## Admin
+ELB: prd01-tky-admin-inflencr-uniqlo-1751200015.ap-northeast-1.elb.amazonaws.com
+EC2: Instance: i-b04fa8a8 (prd01-a-tky-admin-influencer-uniqlo)Private IP: 10.184.17.202
+
+DNS: Adminに関するドメインを確認
+
+ユーザ/PW：www/DROd3Q0n
+
+注意事項：
+Autoscalingは未設定です。
+EC2のセッティングが完了後に、Autoscalingの設定を追加しますので、
+ご連絡をお願い致します。
+
+## RDS
+DNS名（CNAME）: db.influencer.org.www.uniqlo.com
+
+リードレプリカ
+DNS名（CNAME）: db-rep.influencer.org.www.uniqlo.com.
+
+DBName：influencer
+UserName:influencer
+Passwd:QkIPwa9k
+
+DB Engine(Ver):Mysql 5.6.22
+DBディスクサイズ:30GB※拡張可能ですので、追加した場合はご連絡ください。
+
+

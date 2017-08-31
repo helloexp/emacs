@@ -1,0 +1,234 @@
+                          -*- mode: org -*-
+                          =================
+
+Table of Contents
+=================
+1 marupix settings 
+    1.1 AWSへログイン 
+    1.2 EC2 instance起動 
+    1.3 Elastic IP割り当て 
+    1.4 ssh access 
+2 marupix deploy 
+    2.1 su to cap user 
+    2.2 make release dir 
+    2.3 source DL 
+    2.4 upload source 
+    2.5 bundle install 
+    2.6 make symbolic link 
+        2.6.1 bin, log dir 
+        2.6.2 change current release dir 
+    2.7 rails/unicorn start 
+    2.8 nginx setting & start 
+    2.9 done  
+3 marupix dir structure 
+4 add commands
+
+
+
+
+1 marupix settings 
+----------------------------------------------------------------
+    1.1 AWSへログイン 
+    --------------------------------
+
+
+    1.2 EC2 instance起動 
+    --------------------------------
+        - EC2を開く
+        - AMIを選択
+        - 絞り込みから [private images] を選択
+        - [maru-stg2] を右クリック
+        - [Launch] を選択
+
+        - [t2.midium] を選択
+        - [Next: Configure Instance Details] を選択
+        - networkから [test_vps] を選択  # [marupix] へ変更予定
+        - [Preview and Launch] を選択
+
+        - [Edit Security Group] を選択
+        - [Select an existing security group] を選択
+        - [marpupix] を選択
+        - [Preview and Launch] を選択
+
+        - [Launch] を選択
+
+        - SSH key選択
+          [choose an existing key pair] を選択
+          [s-numasawa-key-pari-tokyo] を選択
+
+
+    1.3 Elastic IP割り当て 
+    --------------------------------
+        - [Elastic IPs] を選択
+        - [54.92.111.233] を右クリック
+        - [Associate Address] を選択
+        - marupix instanceを指定
+          (instance formをfocusすると、running中のinstance名が表示され、選択可能)
+          (instance一覧の、instance IDから確認可能
+
+        - [Associate] を選択
+
+          (以上で、対象IPにグローバルIPが割り当てられる)
+
+
+    1.4 ssh access 
+    --------------------------------
+        - $ ssh ec2-user@54.92.111.233
+
+          # keyは担当者から入手
+
+
+
+
+2 marupix deploy 
+----------------------------------------------------------------
+
+    2.1 su to cap user 
+    --------------------------------
+        $ su - cap
+
+
+    2.2 make release dir 
+    --------------------------------
+        $ cd /var/rails/marunouchi_pix/releases/
+        $ mkdir `date +"%Y%m%d%H%M%S"`
+        $ cd 20150212180122
+
+
+    2.3 source DL 
+    --------------------------------
+        [https://github.com/arsnovare/marunouchi\_pix-develop/tree/fuji-bul]
+
+        上記からbrowser経由で最新版をDL。
+        # githubのaccと、共有が必要。
+
+
+    2.4 upload source 
+    --------------------------------
+        $ scp marunouchi_pix-develop-fuji-bul.zip ec2-user@54.92.111.233:/var/rails/marunouchi_pix/releases/20150212180122/
+
+        $ unzip ./marunouchi_pix-develop-fuji-bul.zip
+        $ rm ./marunouchi_pix-develop-fuji-bul.zip
+        $ mv ./marunouchi_pix-develop-fuji-bul/* ./
+        $ rm -rf ./marunouchi_pix-develop-fuji-bul
+
+
+    2.5 pre-settings
+    --------------------------------
+        $ bundle install
+        $ bundle exec rake db:migrate RAILS_ENV=staging
+
+        # font fileをprecompile対象に含める
+        $ vim ./config/initializers/assets.rb
+        ----------------------------------------------------------------
+        - 4行目へ3行目をコピー
+        - 3行目をコメントアウト
+        - ４行目括弧内の末尾へ [*.ttf *.woff] を追記 
+        ----------------------------------------------------------------
+
+        $ bundle exec rake assets:clobber  # assets file clear
+        $ bundle exec rake assets:precompile RAILS_ENV=staging
+
+
+    2.6 make symbolic link 
+    --------------------------------
+        # 過去のdir/file構成を踏襲
+
+        2.6.1 bin, log dir 
+        --------------------------------
+            $ rm -rf ./log
+            $ ln -s /var/rails/marunouchi_pix/shared/log/ ./log
+
+            $ rm -rf ./bin
+            $ ln -s /var/rails/marunouchi_pix/shared/bin/ ./bin
+
+        2.6.2 change current release dir 
+        --------------------------------
+            $ cd /var/rails/marunouchi_pix/
+            $ rm ./current
+            $ ln -s /var/rails/marunouchi_pix/releases/20150212180122/ ./current
+
+
+    2.7 rails/unicorn start 
+    --------------------------------
+        $ cd ./current
+
+        - rails/unicornが未実行の場合
+            $ bundle exec unicorn_rails -c ./config/unicorn/staging.rb -E staging -D
+
+        - rails/unicorn(及びnginx) が既に実行されている場合
+            $ kill `cat tmp/pids/unicorn.pid`
+            $ sudo /etc/init.d/nginx stop
+            $ bundle exec unicorn_rails -c ./config/unicorn/staging.rb -E staging -D
+
+
+
+    2.8 nginx setting & start 
+    --------------------------------
+        - 初回設定時のみ実施 (nginx setting
+            $ sudo su -
+
+            $ vim /etc/nginx/nginx.conf
+            --------------------------------
+            -  87行目 : コメントアウト
+            - 144行目 : #を削除
+
+            -  74行目 : コメントアウト
+            -  75行目 : 以下追記
+                       server_name  ec2-54-92-111-233.ap-northeast-1.compute.amazonaws.com;
+            --------------------------------
+
+        - nginx start
+            $ sudo /etc/init.d/nginx start
+
+
+    2.9 done  
+    --------------------------------
+        下記へアクセスし、web画面が開くことを確認。
+        [http://ec2-54-92-111-233.ap-northeast-1.compute.amazonaws.com/admin]
+ 
+
+
+
+3 marupix dir structure 
+----------------------------------------------------------------
+/var/rails/
+└── marunouchi_pix
+    ├── current -> /var/rails/marunouchi_pix/releases/20150212180122/
+    ├── releases
+    │   ├── 20140812054104
+    │   ├── 20140812073400
+    │   ├── 20140812075835
+    │   ├── 20140812090416
+    │   ├── 20140812091155
+    │   └── 20150212180122
+    ├── repo
+    │   ├── branches
+    │   ├── hooks
+    │   ├── info
+    │   ├── objects
+    │   └── refs
+    └── shared
+        ├── bin
+        ├── bundle
+        ├── log
+        ├── tmp
+        └── vendor
+
+
+
+
+4 add commands
+----------------------------------------------------------------
+    # rails / unicron start
+    $ marupix_start
+
+    # rails kill
+    $ marupix_kill
+
+    # rails / unicron restart
+    $ marupix_reboot
+
+
+    # deploy後、当コマンドで正常に動作しない場合は
+    # 直にコマンドを投入下さい。

@@ -1,0 +1,79 @@
+
+
+
+
+class Aing
+  def initialize
+    @num = 0
+  end
+
+  def execute
+    bypass_signal do
+      while true
+        p num(1)
+        sleep 0.01
+
+        if @num >= 300 && @status == true
+          exit
+        end
+      end
+    end
+  end
+
+  def bypass_signal
+    trap(:INT) do
+      @status = true
+    end
+
+    yield
+  end
+
+  def num(add)
+    @num += add
+  end
+
+  def status
+    @status ||= false
+  end
+end
+
+
+
+Aing.new.execute
+
+
+
+# {"EXIT"=>0,
+#  "HUP"=>1,
+#  "INT"=>2,
+#  "QUIT"=>3,
+#  "ILL"=>4,
+#  "TRAP"=>5,
+#  "ABRT"=>6,
+#  "IOT"=>6,
+#  "EMT"=>7,
+#  "FPE"=>8,
+#  "KILL"=>9,
+#  "BUS"=>10,
+#  "SEGV"=>11,
+#  "SYS"=>12,
+#  "PIPE"=>13,
+#  "ALRM"=>14,
+#  "TERM"=>15,
+#  "URG"=>16,
+#  "STOP"=>17,
+#  "TSTP"=>18,
+#  "CONT"=>19,
+#  "CHLD"=>20,
+#  "CLD"=>20,
+#  "TTIN"=>21,
+#  "TTOU"=>22,
+#  "IO"=>23,
+#  "XCPU"=>24,
+#  "XFSZ"=>25,
+#  "VTALRM"=>26,
+#  "PROF"=>27,
+#  "WINCH"=>28,
+#  "USR1"=>30,
+#  "USR2"=>31,
+#  "INFO"=>29}

@@ -1,0 +1,33 @@
+aws ec2 elb describe-load-balancers --load-balancer-name stg01-tky-stylingbook-uniqlo-1069361778.ap-northeast-1.elb.amazonaws.com
+
+
+[prd01-a-tky-batch-influencer-uniqlo] 
+--------------------------------------------------------------------------------------------------------------------------------
+    twitter 情報取得プロセスが落ちた場合の復旧方法
+
+    - [www] ユーザーにてログイン
+      
+    - プロセス状態確認
+        通常、[TwitterStreamingDaemon.run] が起動している
+        
+        $ ps aux | grep TwitterStreamingDaemon
+        ----------------------------------------------------------------
+        www      11255  0.2  2.1 387468 81768 pts/0    Sl   01:25   0:01 /usr/local/rbenv/versions/2.2.0/bin/ruby bin/rails runner TwitterStreamingDaemon.run run
+        ----------------------------------------------------------------
+
+    - プロセスが存在しない場合
+        - [/var/rails/influencer/script/sns] へ移動
+        
+        - 以下コマンドにて、プロセスを起動
+            $ ./twitter_stream.sh
+            --------------------------------
+            2015年 3月 27日 金曜日 08:04:05 UTC :{reulst:twitter_daemon_proc: running [pid 14397]}
+            --------------------------------
+
+            ※ 上記の様にプロセスIDが表示され正常
+
+        - プロセス状態を再確認
+            $ ps aux | grep twitter
+            ----------------------------------------------------------------
+            www      11255  0.2  2.1 387468 81768 pts/0    Sl   01:25   0:01 /usr/local/rbenv/versions/2.2.0/bin/ruby bin/rails runner TwitterStreamingDaemon.run run
+            ----------------------------------------------------------------

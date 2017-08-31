@@ -1,0 +1,6 @@
+.personal_detail_and_counseling_report
+  .panel-body
+
+    // 個人情報表示部 : 共通
+    .personal_detail_value
+      word-break: break-all

@@ -1,0 +1,144 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Testing ",
+    "Resources": {
+        "RouteTableFront": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "VPC"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-front"
+                    },
+                    {
+                        "Key": "Payment",
+                        "Value": "mynavi"
+                    }
+                ]
+            }
+        },
+        "RouteTableWeb": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "VPC"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-web"
+                    },
+                    {
+                        "Key": "Payment",
+                        "Value": "mynavi"
+                    }
+                ]
+            }
+        },
+        "RouteTableBackend": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "VPC"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-backend"
+                    },
+                    {
+                        "Key": "Payment",
+                        "Value": "mynavi"
+                    }
+                ]
+            }
+        }
+        "EIP1": {
+            "Type": "AWS::EC2::EIP",
+            "DependsOn": [
+                "InternetGateway"
+            ],
+            "Properties": {
+                "Domain": "vpc"
+            }
+        },
+        "EIP2": {
+            "Type": "AWS::EC2::EIP",
+            "DependsOn": [
+                "InternetGateway"
+            ],
+            "Properties": {
+                "Domain": "vpc"
+            }
+        },
+        "assoc1": {
+            "Type": "AWS::EC2::EIPAssociation",
+            "Properties": {
+                "AllocationId": {
+                    "Fn::GetAtt": [
+                        "eip52697269",
+                        "AllocationId"
+                    ]
+                },
+                "InstanceId": {
+                    "Ref": "instanceiec051c1f"
+                }
+            }
+        },
+        "assoc2": {
+            "Type": "AWS::EC2::EIPAssociation",
+            "Properties": {
+                "AllocationId": {
+                    "Fn::GetAtt": [
+                        "eip5269322",
+                        "AllocationId"
+                    ]
+                },
+                "InstanceId": {
+                    "Ref": "instanceifaa14308"
+                }
+            }
+        },
+        "route1": {
+            "Type": "AWS::EC2::Route",
+            "Properties": {
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "RouteTableId": {
+                    "Ref": "rtb9b9931fe"
+                },
+                "InstanceId": {
+                    "Ref": "instanceiec051c1f"
+                }
+            }
+        },
+        "route2": {
+            "Type": "AWS::EC2::Route",
+            "Properties": {
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "RouteTableId": {
+                    "Ref": "rtbb3c56dd6"
+                },
+                "GatewayId": {
+                    "Ref": "igwe0619a85"
+                }
+            },
+            "DependsOn": "gw1"
+        },
+        "route3": {
+            "Type": "AWS::EC2::Route",
+            "Properties": {
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "RouteTableId": {
+                    "Ref": "rtbb0c56dd5"
+                },
+                "InstanceId": {
+                    "Ref": "instanceiec051c1f"
+                }
+            }
+        },
+        
+    }
+}

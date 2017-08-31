@@ -1,0 +1,46 @@
+  &hosted_zone_public HostedZonePublic:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      HostedZoneTags:
+      - Key: Name
+        Value: mynavi
+      Name: mynavi.public.net
+  &hosted_zone_private HostedZonePrivate:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      HostedZoneTags:
+      - Key: Name
+        Value: mynavi
+      Name: mynavi.private.net
+      VPCs:
+      - VPCId:
+          Ref: *vpc_name
+        VPCRegion: ap-northeast-1
+  DnsElb:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneId:
+        Ref: *hosted_zone_public
+      RecordSets:
+      - Name: elb.mynavi.public.net.
+        Type: A
+        AliasTarget:
+          HostedZoneId:
+            Fn::GetAtt:
+            - *elb_web
+            - CanonicalHostedZoneNameID
+          DNSName:
+            Fn::GetAtt:
+            - *elb_web
+            - CanonicalHostedZoneName
+  DnsRds:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId:
+        Ref: *hosted_zone_private
+      Name: localdb.mynavi.private.net.
+      Type: CNAME
+      ResourceRecords: 
+        Fn::GetAtt:
+          - *rds_master
+          - Endpoint.Address

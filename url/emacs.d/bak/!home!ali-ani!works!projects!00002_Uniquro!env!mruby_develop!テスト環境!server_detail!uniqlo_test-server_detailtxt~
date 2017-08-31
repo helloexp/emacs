@@ -1,0 +1,137 @@
+Table of Contents
+=================
+1 概要 
+    1.1 サーバー構成図 
+    1.2 App serverのアクセス 
+    1.3 DB serverへのアクセス 
+2 各サーバーの情報 
+    2.1 踏み台 
+    2.2 App server : user 
+    2.3 App server : admin 
+    2.4 App server : SNS 
+    2.5 App server : 共通部分 
+    2.6 Database 
+    2.7 load balancer 
+
+
+
+
+1 概要 
+----------------------------------------------------------------
+
+    1.1 サーバー構成図 
+    -------------------
+        添付のxlsx参照願います。
+
+    
+    1.2 App serverのアクセス 
+    -------------------------
+        sshを仕様し、踏み台serverからの各種サーバーへアクセスをお願い致します。
+        (app, db serverは外部から閉じています)
+        
+        
+        - 手順1
+            同梱させて頂いた鍵を用い、踏み台サーバーへssh接続。
+            passは不要です。
+        
+            $ ssh -i [key_file] alliance@54.65.232.249
+        
+        - 手順2 
+            踏み台サーバーログイン、下記コマンドにて各appサーバーへアクセス可能です。
+            $ ssh mruby@app-user    # app server : user
+            $ ssh mruby@app-admin   # app server : admin
+            $ ssh mruby@app-sns     # app server : sns
+        
+            # ip指定でも可能です
+        
+        - 補足
+            App server内での作業は、[mruby] ユーザーにてお願い致します。
+            (rails/rubyの作業用ユーザーになります)
+
+    
+    1.3 DB serverへのアクセス 
+    --------------------------
+        踏み台サーバー、各App serverからのアクセスが可能です。
+        
+        DB name :  influencer
+        user    :  influencer
+        pass    :  Dim933Plw
+    
+        # User:influencer / DB:influencer へ全権付与しております
+
+
+
+    
+2 各サーバーの情報 
+----------------------------------------------------------------
+
+    2.1 踏み台 
+    --------------------------------
+        - private IP :  10.0.1.100
+        - global IP  :  54.65.232.249
+        - host name  :  prx01-uniqlo-influencer-a-tky-gw
+        
+        + linux user
+            - user   :  alliance
+            - pass   :  Ukzm3383
+
+    
+    2.2 App server : user 
+    --------------------------------
+        - private IP  :  10.0.1.10
+        - global IP   :  無し (load balancer経由のhttpアクセスを想定)
+        - host name   :  usr01-tky-a-uniqlo-influencer
+
+    
+    2.3 App server : admin 
+    --------------------------------
+        - private IP   :  10.0.1.50
+        - global IP    :  54.92.123.82
+        - host name    :  adm01-tky-a-uniqlo-influencer
+
+    
+    2.4 App server : SNS 
+    --------------------------------
+        - private IP   :  10.0.1.60
+        - global IP    :  無し
+        - host name    :  sns01-tky-a-uniqlo-influencer
+
+        
+    2.5 App server : 共通部分 
+    --------------------------------
+        + linux user
+            - name  :  mruby
+            - pas   :  mruby3826
+        
+            # rails/ruby用のユーザーになります
+            # 作業する際には、当ユーザーにてお願い致します。
+        
+        + installed app
+            - rails      :  4.2.0 
+            - ruby       :  2.2.0p0
+            - nginx      :  1.6.2
+            - mysql(cli) :  14.14
+
+    
+    2.6 Database 
+    --------------------------------
+        - host          :  db01-uniqlo-influencer.cvs9vjjju50z.ap-northeast-1.rds.amazonaws.com
+        
+        - DB engine     :  mysql
+        - DB version    :  5.6.22
+        
+        - database name :  influencer
+        - user          :  influencer
+        - pass          :  Dim933Plw
+    
+
+    2.7 load balancer 
+    --------------------------------
+        CNAME      :  uniqlo-influencer-adm-lb-1338278061.ap-northeast-1.elb.amazonaws.com
+        forward to :  adm01-tky-a-uniqlo-influencer
+
+        # load balancerへhttpアクセスをすると、[App server : user] へ転送されます
+
+    
+    
+    

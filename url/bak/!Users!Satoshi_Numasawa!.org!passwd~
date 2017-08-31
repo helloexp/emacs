@@ -1,0 +1,346 @@
+-*- mode: org -*-
+
+
+* mail acc
+ruby.spheres
+exf63rna2yhG9QJQcLiLsPC3
+
+morphism.sphere
+
+leffler.sphere
+
+
+* projects
+** marunouchi
+*** basic auth
+ID : marupix
+Pw : mec_marupix
+
+*** admin
+s-numasawa@dummy.com
+Close0404
+
+** 00001_uniqlo
+** 00004_mynavi
+*** product
+http://student.mn-struct.net/
+|--------+--------------------------|
+| mynavi | bhkf7qoobubSj2kqhvuKhxks |
+|--------+--------------------------|
+
+|------------+-------------+--------------------------|
+| web server | root        | Lmvd3828                 |
+|------------+-------------+--------------------------|
+| mysql      | myanvi_root | Irwgvk3lsaijworA3uwlimtw |
+|------------+-------------+--------------------------|
+
+* Tools
+** 2段階認証
+| vm  | 805743 |
+| win | 895467 |
+** slack
+s-numasawa@mruby.jp
+Close0404
+
+** heroku
+|------------------------+-----------|
+| id                     | pass      |
+|------------------------+-----------|
+| ruby.spheres@gmail.com | Close0404 |
+|------------------------+-----------|
+
+** github
+|-----------+------------------------+-----------|
+|           | id                     | pass      |
+|-----------+------------------------+-----------|
+| self      | s-numasawa@ruby-dev.jp | Close0404 |
+| ruby-corp |                        | mruby     |
+|-----------+------------------------+-----------|
+
+** cybozu
+|---------------------+-----------|
+| id                  | pass      |
+| s-numasawa@mruby.jp | Close0404 |
+|---------------------+-----------|
+
+** pivotal
+s-numasawa@mruby.jp
+Close0404
+
+** skype
+ruby.spheres@gmail.com
+ruby.spheres
+Close0404
+
+** ms office
+|------------------------+------------------|
+| ruby.spheres@gmail.com | do8Waiwai8thiel0 |
+|------------------------+------------------|
+
+** google analytics
+mruby.dvrp.division@gmail.com
+cee4Uad3uchiecohd6een3ai
+** jenkins
+s-numasawa
+s-numasawa@mruby.jp
+** microsoft
+https://account.live.com/
+s-numasawa@ruby-dev.jp
+Close0404
+
+** newrelic
+ruby.spheres@gmail.com
+ir6teiw6tae9ahqu3ohl3siJ
+* sakura server
+** acc
+|---------------+------------+--------------------------+--------|
+|               | id         | pass                     |        |
+|---------------+------------+--------------------------+--------|
+| ssh           | s-numasawa | Close0404                | no key |
+|---------------+------------+--------------------------+--------|
+| mysql         | root       | mruby                    |        |
+|               | gitlab     | mruby                    |        |
+|---------------+------------+--------------------------+--------|
+| docker-gitlab | root       | odWxruqfp6dmemhqxtlTic9m |        |
+|               | s-numasawa | Close0404                |        |
+|---------------+------------+--------------------------+--------|
+
+** member acc
+|---------------+----------------------+-----------|
+| docker-gitlab | y-shibata            | mruby0000 |
+|               | y-taguchi@mruby.jp   |           |
+|               | n-obata@mruby.jp     |           |
+|               | m-akao@mruby.jp      |           |
+|               | h-ashida@mruby.jp    |           |
+|               | h-hashimoto@mruby.jp |           |
+|               | m-aoyagi@mruby.jp    |           |
+|               | h-inoue@mruby.jp     |           |
+|               | y-shimada@mruby.jp   |           |
+|---------------+----------------------+-----------|
+
+y-shibata
+y-taguchi
+n-obata
+m-akao
+h-ashida
+h-hashimoto
+m-aoyagi
+h-inoue
+y-shimada
+
+** server
+|----+---------------|
+| IP | 160.16.96.217 |
+|----+---------------|
+
+admin user
+|------+------------|
+| root | xp8hzeerkz |
+|------+------------|
+
+* AWS
+** Account : base
+E-mail
+dvrp-division-admin@mruby.jp
+
+PW
+mruby-development1
+
+|-----------+------------------------------|
+| acc id    |                              |
+|-----------+------------------------------|
+| key pairs | s-numasawa-key-pair-tokyo    |
+|-----------+------------------------------|
+
+IAM login
+https://689978960272.signin.aws.amazon.com/console |
+
+user name
+s-numasawa                                         |
+
+** Account : for ruby-webpage
+aws-admin@ruby-dev.jp
+9jLvZ4aLCjHnrK
+
+** credencial
+AKIAIH5UMP2DMKYZSHGA
+UIWdmTg0lFOG7si0I9HxoUu5E7f/o+yGyOZd9GoX
+
+*** aws configure
+AWS Access Key ID [None]: AKIAIHS4A5UC4SXAZGQQ
+AWS Secret Access Key [None]: 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
+Default region name [None]: ap-northeath-1
+Default output format [None]: json
+
+** cloudformer
+|-------+-----------|
+| mruby | mruby3828 |
+|-------+-----------|
+
+** qwiki lab
+close.world@gmail.com
+Iekahxee8Hath9Aiyiu6aezo
+
+** owncloud
+|-----------------+--------------------------+--------------------------|
+| owncloud        | root                     | shei7amieghue7ooWudeisae |
+|                 | s-numasawa               | Jai7aeche1chaiPae8sau3fi |
+|-----------------+--------------------------+--------------------------|
+| mysql           | root                     | ailahTheu7Vae3ie         |
+|                 | owncloud                 | Fei8Vaay3tee5eiD         |
+|-----------------+--------------------------+--------------------------|
+| AWS user        | owncloud                 | quoh6iePhaigiephooshong8 |
+|-----------------+--------------------------+--------------------------|
+| ssl restore key | oongah3sah5voi2OhBoa6oqu |                          |
+|-----------------+--------------------------+--------------------------|
+
+** ruby-webpage
+*** webpage server- basic auth
+mruby
+Dleim3956
+
+*** munin basic auth for
+ruby
+D89dde7Mc
+
+*** zabbix
+| admin  | Uyahvaf8uuv8xaeZ         |
+| ruby   | theiyaeghinaequae2vaiF2N |
+* domain
+お名前.com
+
+|---------+----------------|
+| 7449622 | HFDiyiuijuZ8z2 |
+|---------+----------------|
+
+** ruby-dev.jp - name server
+ns-1390.awsdns-45.org
+ns-961.awsdns-56.net
+ns-113.awsdns-14.com
+ns-1764.awsdns-28.co.uk
+
+* ruby-dev
+** jenkins
+52.69.172.22
+|------+-------+----------|
+| user | mruby | Dowl3399 |
+|------+-------+----------|
+
+** monitor
+ruby
+Taiv3iot
+* mail
+** sendgrid.com
+[2016-07-14 Thu]
+# sg6sb1f6@kke.com
+# Eeph3Ij2mohve9ie
+# eef1eir9ael6chaj6aeh3Di1
+凍結されたっぽい
+
+[2016-07-14 Thu]
+*** ruby.spheres@gmail.com
+ali-ani
+いつもの
+
+*** for development test
+s-numasawa
+Yee3liejeephae5eeboxoowei6Zeim9poh4f
+s-numasawa+sendgrid@ruby-dev.jp
+
+*** for notification
+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
+
+** sendgrid.jp
+[2016-07-14 Thu]
+凍結
+# sg6sb1f6@kke.com
+# eef1eir9ael6chaj6aeh3Di1
+# ruby.spheres@gmail.com
+
+** mandrill
+ruby.spheres@gmail.com
+gai0View1queiQuu
+
+* mac
+** apple id
+s-numasawa@ruby-dev.jp
+Anr4HkWB
+
+** ウイルスバスター for mac
+mail address     : s-numasawa@ruby-dev.jp
+password         : theix0ienae9Jeli
+有効期限          : 2016-12-31
+名前             : Ruby開発
+識別用ニックネーム : MacBook Air
+* Google backup code
+バックアップ確認コード
+s-numasawa@ruby-dev.jp
+
+1.                     6.
+2. 483 79 612          7.
+3. 528 09 669          8. 151 45 868
+4. 904 35 935          9. 871 84 211
+5. 792 31 279         10.
+
+日付: 2016/03/22 17:30:24
+
+バックアップ コードをすべて使用してしまった場合は、次の URL で新しいコードを生成してください:
+https://www.google.com/accounts/SmsAuthConfig
+最新のセットのバックアップ コードのみが使用できます。
+
+コードはすぐに取り出せる場所に保管してください。
+各コードは 1 回のみ使用できます。
+* Github recovery codes
+cbedc-90738
+34666-a001d
+17729-a2e37
+27a29-5ac7e
+14732-8992a
+0f15f-cb7be
+903f7-21681
+f424d-f9e4c
+7a356-207c6
+d13dd-4b0b2
+e84b0-dc4d2
+10635-6b70e
+9573f-09e70
+1d295-c3901
+bd6fe-f7347
+b8f25-13970
+* qiita
+s-numasawa@ruby-dev.jp
+wie3ooso5Eeb9Nahm5shohZu
+
+ruby.sphere@gmail.com
+が, qiita teamに紐付いている
+
+* router : RS-500KI
+user
+ahthi0jaidee3Sie
+
+* biglobe 法人
+03-6479-5695
+10-12 / 13-17
+
+id : mtf47586
+passwrd : f7nb2y2z
+* web tools
+** rocket chat
+leffler.sphere@gmail.com
+ohth4eeth4Jesoo2Ii7heth8
+** nano opt
+s-numasawa@ruby-dev.jp
+xaP6phiemei4aeSh
+** zeplin
+s-numasawa+zeplin@ruby-dev.jp
+id : numasawa
+pw : ohWaechaebeengoh1phaomah1Doo7su2ieph
+** cacoo
+s-numasawa+cacoo@ruby-dev.jp
+rei7abeijoozuc8Aishuih5Eipaicoomu4ho
+** connpass
+s-numasawa@ruby-dev.jp
+hoovie8Phohs7ooramoochie
+* allin
+s-numasawa@ruby-dev.jp
+Ovu6ieph8piuwa5Eey6haica

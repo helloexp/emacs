@@ -1,0 +1,67 @@
+{
+    apps : [
+        {
+            // prd
+            name      : "allin-sns",
+            script    : "app/app.js",
+            env: {
+                // TODO
+                COMMON_VARIABLE: "true"
+            },
+            env_production : {
+                NODE_ENV: "production"
+            }
+        },
+        {
+            // stg
+            name      : "allin-sns",
+            script    : "app/app.js",
+            env: {
+                // TODO
+                COMMON_VARIABLE: "true"
+            },
+            env_production : {
+                NODE_ENV: "stg"
+            }
+        },
+        {
+            // dev
+            name      : "allin-sns",
+            script    : "app/app.js",
+            env: {
+                // TODO
+                COMMON_VARIABLE: "true"
+            },
+            env_production : {
+                NODE_ENV: "dev"
+            }
+        }
+    ],
+
+    /**
+     * Deployment section
+     * http://pm2.keymetrics.io/docs/usage/deployment/
+     */
+    deploy : {
+        production : {
+            user : "node",
+            host : "212.83.163.1",
+            ref  : "origin/master",
+            repo : "git@github.com:repo.git",
+            path : "/var/www/production",
+            "post-deploy" : "npm install ; pm2 startOrRestart ecosystem.json --env production"
+        },
+        dev : {
+            user : "node",
+            host : "allin-sns-dev_001",
+            ref  : "origin/gridfs",
+            repo : "git@git.ruby-dev.jp:business_bank_group/allin-sns.git",
+            path : "/var/node",
+            "post-deploy" : "npm install; pm2 startOrRestart ecosystem.json --env dev",
+            "pre-deploy-local" : "echo 'This is a local executed command'",
+            env  : {
+                NODE_ENV: "dev"
+            }
+        }
+    }
+}

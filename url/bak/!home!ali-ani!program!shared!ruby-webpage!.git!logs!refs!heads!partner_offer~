@@ -1,0 +1,3 @@
+0000000000000000000000000000000000000000 eb20812859a0a2040069440e78cc9933f0ba11dd ali-ani <ruby.spheres@gmail.com> 1437643200 +0900	clone: from git@github:Ruby-Corporation/ruby-webpage.git
+eb20812859a0a2040069440e78cc9933f0ba11dd 3696e92f7eb412c6e217a557853c8b9a1d985542 ali-ani <ruby.spheres@gmail.com> 1437648673 +0900	commit: [#98610418] edit rspec : instance変数をletへ変更
+3696e92f7eb412c6e217a557853c8b9a1d985542 cfed5335ff4f597e18562c5b951e1af814e42283 ali-ani <ruby.spheres@gmail.com> 1437993292 +0900	commit: title追記。spec追記

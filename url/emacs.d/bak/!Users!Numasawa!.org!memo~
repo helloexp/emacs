@@ -1,0 +1,51 @@
+
+
+
+
+
+
+
+
+I, [2016-03-23T17:16:48.583933 #8058]  INFO -- : Started PATCH "/trainer/materials/703" for 218.221.64.20 at 2016-03-23 17:16:48 +0900
+I, [2016-03-23T17:16:48.585383 #8058]  INFO -- : Processing by Trainer::MaterialsController#update as */*
+I, [2016-03-23T17:16:48.585468 #8058]  INFO -- :   Parameters: {"utf8"=>"✓", "authenticity_token"=>"OFVI4alYWjwGp5m/L+g7h7kzYBmanGjLHWh\
+VkD37/fV/gaLg5e/bso8yNWoJiV6efHs25orpQC1U7xwK9r1zdw==", "material"=>{"media"=>#<ActionDispatch::Http::UploadedFile:0x007f2c4ea7fc20 @te\
+mpfile=#<Tempfile:/tmp/RackMultipart20160323-8058-aqy98g.pdf>, @original_filename="BCGAD3GBSZE6TANZH7BGON44AA.pdf", @content_type="appl\
+ication/pdf", @headers="Content-Disposition: form-data; name=\"material[media]\"; filename=\"BCGAD3GBSZE6TANZH7BGON44AA.pdf\"\r\nConten\
+t-Type: application/pdf\r\n">}, "id"=>"703"}
+D, [2016-03-23T17:16:48.587368 #8058] DEBUG -- :   ^[[1m^[[36mTrainer Load (0.7ms)^[[0m  ^[[1mSELECT  `trainers`.* FROM `trainers` WHER\
+E `trainers`.`id` = 1  ORDER BY `trainers`.`id` ASC LIMIT 1^[[0m
+D, [2016-03-23T17:16:48.588734 #8058] DEBUG -- :   ^[[1m^[[35mTrainerProfile Load (0.5ms)^[[0m  SELECT  `trainer_profiles`.* FROM `trai\
+ner_profiles` WHERE `trainer_profiles`.`trainer_id` = 1 LIMIT 1
+D, [2016-03-23T17:16:48.590441 #8058] DEBUG -- :   ^[[1m^[[36mMaterial Load (0.5ms)^[[0m  ^[[1mSELECT  `materials`.* FROM `materials` W\
+HERE `materials`.`id` = 703 LIMIT 1^[[0m
+I, [2016-03-23T17:16:48.592935 #8058]  INFO -- : Command :: file -b --mime '/tmp/99142d4e33273f19e6a30c1493d0946520160323-8058-hzp6je.p\
+df'
+D, [2016-03-23T17:16:48.596223 #8058] DEBUG -- :   ^[[1m^[[35m (0.4ms)^[[0m  BEGIN
+I, [2016-03-23T17:16:48.596808 #8058]  INFO -- : Command :: file -b --mime '/tmp/99142d4e33273f19e6a30c1493d0946520160323-8058-1xpryrj.\
+pdf'
+D, [2016-03-23T17:16:48.602590 #8058] DEBUG -- :   ^[[1m^[[36mSQL (0.6ms)^[[0m  ^[[1mUPDATE `materials` SET `media_file_name` = 'BCGAD3\
+GBSZE6TANZH7BGON44AA.pdf', `material_type` = 'document', `media_content_type` = 'application/pdf', `media_file_size` = 43226, `media_up\
+dated_at` = '2016-03-23 17:16:48', `updated_at` = '2016-03-23 17:16:48' WHERE `materials`.`id` = 703^[[0m
+I, [2016-03-23T17:16:48.602783 #8058]  INFO -- : [paperclip] saving materials/media/000/000/703/1a6afe86034237db487fbee14a4aefce15945c6\
+1.pdf
+D, [2016-03-23T17:16:48.615647 #8058] DEBUG -- :   ^[[1m^[[35m (10.0ms)^[[0m  ROLLBACK
+I, [2016-03-23T17:16:48.616355 #8058]  INFO -- : Completed 500 Internal Server Error in 31ms
+F, [2016-03-23T17:16:48.617232 #8058] FATAL -- :
+NameError (uninitialized constant Paperclip::Storage::S3::AWS):
+  app/controllers/trainer/materials_controller.rb:31:in `update'
+
+
+I, [2016-03-23T17:16:48.617643 #8058]  INFO -- : Processing by ErrorsController#error500 as */*
+I, [2016-03-23T17:16:48.617749 #8058]  INFO -- :   Parameters: {"utf8"=>"✓", "authenticity_token"=>"OFVI4alYWjwGp5m/L+g7h7kzYBmanGjLHWh\
+VkD37/fV/gaLg5e/bso8yNWoJiV6efHs25orpQC1U7xwK9r1zdw==", "material"=>{"media"=>#<ActionDispatch::Http::UploadedFile:0x007f2c4ea7fc20 @te\
+mpfile=#<Tempfile:/tmp/RackMultipart20160323-8058-aqy98g.pdf>, @original_filename="BCGAD3GBSZE6TANZH7BGON44AA.pdf", @content_type="appl\
+ication/pdf", @headers="Content-Disposition: form-data; name=\"material[media]\"; filename=\"BCGAD3GBSZE6TANZH7BGON44AA.pdf\"\r\nConten\
+t-Type: application/pdf\r\n">}, "id"=>"703"}
+I, [2016-03-23T17:16:48.618461 #8058]  INFO -- :   Rendered errors/error500.html.haml within layouts/application (0.2ms)
+I, [2016-03-23T17:16:48.618745 #8058]  INFO -- :   Rendered shared/_title.html.haml (0.1ms)
+I, [2016-03-23T17:16:48.619246 #8058]  INFO -- :   Rendered shared/_description.html.haml (0.2ms)
+I, [2016-03-23T17:16:48.619449 #8058]  INFO -- :   Rendered shared/_keywords.html.haml (0.1ms)
+I, [2016-03-23T17:16:48.624977 #8058]  INFO -- :   Rendered shared/_breadcrumbs.html.haml (0.0ms)
+I, [2016-03-23T17:16:48.625742 #8058]  INFO -- :   Rendered shared/_footer.html.haml (0.5ms)
+I, [2016-03-23T17:16:48.625914 #8058]  INFO -- : Completed 500 Internal Server Error in 8ms (Views: 8.0ms | ActiveRecord: 0.0ms)

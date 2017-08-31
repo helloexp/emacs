@@ -1,0 +1,25 @@
+  &hosted_zone HostedZoneMain:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      HostedZoneTags:
+      - Key: Name
+        Value: mynavi
+      Name: mynavi-----testing
+      VPCs:
+      - VPCId:
+          Ref: *vpc_name
+        VPCRegion: ap-northeast-1
+  dnsstudentmnstructnet:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneId:
+        Ref: *hosted_zone
+      RecordSets:
+       # - Name: student.mn-struct.net.
+       - Name: student.mn-struct.net.
+        Type: A
+        AliasTarget:
+          HostedZoneId:
+            Ref: *hosted_zone
+          DNSName: 
+            Ref: *hosted_zone

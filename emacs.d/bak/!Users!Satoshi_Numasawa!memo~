@@ -1,0 +1,138 @@
+  1) MailDeliverySettingService#create creates a new mail setting
+     Failure/Error: mail_delivery_setting = model_class.new(create_params(params))
+
+     ActiveModel::MissingAttributeError:
+       can't write unknown attribute `delivery_method`
+     # ./app/services/mail_delivery_setting_service.rb:40:in `create'
+     # ./spec/services/mail_delivery_setting_service_spec.rb:5:in `block (3 levels) in <top (required)>'
+     # ./spec/services/mail_delivery_setting_service_spec.rb:40:in `block (4 levels) in <top (required)>'
+     # ./spec/services/mail_delivery_setting_service_spec.rb:40:in `block (3 levels) in <top (required)>'
+     # -e:1:in `<main>'
+
+  2) MailDeliverySettingService#update when record exists updates a mail job
+     Failure/Error: let!(:mail_delivery_setting) { create(:mail_delivery_setting, company: actor.company, mail_delivery_sender: mail_delivery_sender) }
+
+     NoMethodError:
+       undefined method `fixed_date_on_day' for #<MailDeliverySetting:0x007faa41797050>
+     # ./spec/services/mail_delivery_setting_service_spec.rb:107:in `block (4 levels) in <top (required)>'
+     # -e:1:in `<main>'
+
+  3) MailDeliverySettingService#update_query when record exists dynamic_query is blank
+     Failure/Error: let!(:mail_delivery_setting) { create(:mail_delivery_setting, company: actor.company, is_disabled: false) }
+
+     NoMethodError:
+       undefined method `fixed_date_on_day' for #<MailDeliverySetting:0x00000010056eb8>
+     # ./spec/services/mail_delivery_setting_service_spec.rb:156:in `block (4 levels) in <top (required)>'
+     # -e:1:in `<main>'
+
+  4) MailDeliverySettingService#update_query when record exists dynamic_query is not blank
+     Failure/Error: let!(:mail_delivery_setting) { create(:mail_delivery_setting, company: actor.company, is_disabled: false) }
+
+     NoMethodError:
+       undefined method `fixed_date_on_day' for #<MailDeliverySetting:0x0000000fdb1050>
+     # ./spec/services/mail_delivery_setting_service_spec.rb:156:in `block (4 levels) in <top (required)>'
+     # -e:1:in `<main>'
+
+  5) MailDeliverySettingService#update_query when record exists dynamic_query is not blank
+     Failure/Error: let!(:mail_delivery_setting) { create(:mail_delivery_setting, company: actor.company, is_disabled: false) }
+
+     NoMethodError:
+       undefined method `fixed_date_on_day' for #<MailDeliverySetting:0x0000000fb37f18>
+     # ./spec/services/mail_delivery_setting_service_spec.rb:156:in `block (4 levels) in <top (required)>'
+     # -e:1:in `<main>'
+
+  6) MailDeliverySettingService#update_query when record exists search_condition_id is blank
+     Failure/Error: let!(:mail_delivery_setting) { create(:mail_delivery_setting, company: actor.company, is_disabled: false) }
+
+     NoMethodError:
+       undefined method `fixed_date_on_day' for #<MailDeliverySetting:0x0000000f3cdac0>
+     # ./spec/services/mail_delivery_setting_service_spec.rb:156:in `block (4 levels) in <top (required)>'
+     # -e:1:in `<main>'
+
+  7) MailDeliverySettingService#update_query when record exists search_condition_id is not blank
+     Failure/Error: let!(:mail_delivery_setting) { create(:mail_delivery_setting, company: actor.company, is_disabled: false) }
+
+     NoMethodError:
+       undefined method `fixed_date_on_day' for #<MailDeliverySetting:0x0000000eab52d0>
+     # ./spec/services/mail_delivery_setting_service_spec.rb:156:in `block (4 levels) in <top (required)>'
+     # -e:1:in `<main>'
+
+  8) MailDeliverySettingService#remove when record exists removes a mail setting
+     Failure/Error: let!(:mail_delivery_setting) { create(:mail_delivery_setting, company: actor.company, mail_delivery_sender: mail_delivery_sender) }
+
+     NoMethodError:
+       undefined method `fixed_date_on_day' for #<MailDeliverySetting:0x0000000e1c78d0>
+     # ./spec/services/mail_delivery_setting_service_spec.rb:193:in `block (4 levels) in <top (required)>'
+     # -e:1:in `<main>'
+
+  9) MailDeliverySettingService#enable when record exists
+     Failure/Error: let!(:mail_delivery_setting) { create(:mail_delivery_setting, company: actor.company, is_disabled: true) }
+
+     NoMethodError:
+       undefined method `fixed_date_on_day' for #<MailDeliverySetting:0x0000000c71fc80>
+     # ./spec/services/mail_delivery_setting_service_spec.rb:215:in `block (4 levels) in <top (required)>'
+     # -e:1:in `<main>'
+
+  10) MailDeliverySettingService#disable when record exists
+      Failure/Error: let!(:mail_delivery_setting) { create(:mail_delivery_setting, company: actor.company, is_disabled: false) }
+
+      NoMethodError:
+        undefined method `fixed_date_on_day' for #<MailDeliverySetting:0x0000000bcec560>
+      # ./spec/services/mail_delivery_setting_service_spec.rb:233:in `block (4 levels) in <top (required)>'
+      # -e:1:in `<main>'
+
+  11) MailDeliverySettingService#test when record exists and recipient is present success send test mail
+      Failure/Error: let!(:mail_delivery_setting) { create(:mail_delivery_setting, company: actor.company) }
+
+      NoMethodError:
+        undefined method `fixed_date_on_day' for #<MailDeliverySetting:0x0000000b4b1300>
+      # ./spec/services/mail_delivery_setting_service_spec.rb:252:in `block (4 levels) in <top (required)>'
+      # -e:1:in `<main>'
+
+  12) MailDeliverySettingService#test when record exists and recipient is blank
+      Failure/Error: let!(:mail_delivery_setting) { create(:mail_delivery_setting, company: actor.company) }
+
+      NoMethodError:
+        undefined method `fixed_date_on_day' for #<MailDeliverySetting:0x0000000aea9b88>
+      # ./spec/services/mail_delivery_setting_service_spec.rb:252:in `block (4 levels) in <top (required)>'
+      # -e:1:in `<main>'
+
+  13) MailDeliveryUnsubscriberService#create creates a new mail delivery unsubscriber
+      Failure/Error: let(:mail_delivery_setting) { create(:mail_delivery_setting, company: actor.company) }
+
+      NoMethodError:
+        undefined method `fixed_date_on_day' for #<MailDeliverySetting:0x000000162faf60>
+      # ./spec/services/mail_delivery_unsubscriber_service_spec.rb:16:in `block (3 levels) in <top (required)>'
+      # ./spec/services/mail_delivery_unsubscriber_service_spec.rb:12:in `block (3 levels) in <top (required)>'
+      # ./spec/services/mail_delivery_unsubscriber_service_spec.rb:6:in `block (3 levels) in <top (required)>'
+      # ./spec/services/mail_delivery_unsubscriber_service_spec.rb:5:in `block (3 levels) in <top (required)>'
+      # ./spec/services/mail_delivery_unsubscriber_service_spec.rb:20:in `block (4 levels) in <top (required)>'
+      # ./spec/services/mail_delivery_unsubscriber_service_spec.rb:20:in `block (3 levels) in <top (required)>'
+      # -e:1:in `<main>'
+
+  14) MailDeliveryUnsubscriberService#update when record exists updates a mail delivery unsubscriber
+      Failure/Error: let(:mail_delivery_setting) { create(:mail_delivery_setting, company: actor.company) }
+
+      NoMethodError:
+        undefined method `fixed_date_on_day' for #<MailDeliverySetting:0x00000015439418>
+      # ./spec/services/mail_delivery_unsubscriber_service_spec.rb:41:in `block (3 levels) in <top (required)>'
+      # ./spec/services/mail_delivery_unsubscriber_service_spec.rb:37:in `block (3 levels) in <top (required)>'
+      # ./spec/services/mail_delivery_unsubscriber_service_spec.rb:30:in `block (3 levels) in <top (required)>'
+      # ./spec/services/mail_delivery_unsubscriber_service_spec.rb:29:in `block (3 levels) in <top (required)>'
+      # ./spec/services/mail_delivery_unsubscriber_service_spec.rb:49:in `block (5 levels) in <top (required)>'
+      # ./spec/services/mail_delivery_unsubscriber_service_spec.rb:49:in `block (4 levels) in <top (required)>'
+      # -e:1:in `<main>'
+
+  15) MailDeliveryUnsubscriberService#update when record dose not exist should raise ResourceNotFound
+      Failure/Error: it { expect { subject }.to raise_error ResourceNotFound }
+
+        expected ResourceNotFound, got #<NoMethodError: undefined method `fixed_date_on_day' for #<MailDeliverySetting:0x000000161ff4d0>> with backtrace:
+          # ./spec/services/mail_delivery_unsubscriber_service_spec.rb:41:in `block (3 levels) in <top (required)>'
+          # ./spec/services/mail_delivery_unsubscriber_service_spec.rb:37:in `block (3 levels) in <top (required)>'
+          # ./spec/services/mail_delivery_unsubscriber_service_spec.rb:30:in `block (3 levels) in <top (required)>'
+          # ./spec/services/mail_delivery_unsubscriber_service_spec.rb:29:in `block (3 levels) in <top (required)>'
+          # ./spec/services/mail_delivery_unsubscriber_service_spec.rb:61:in `block (5 levels) in <top (required)>'
+          # ./spec/services/mail_delivery_unsubscriber_service_spec.rb:61:in `block (4 levels) in <top (required)>'
+          # -e:1:in `<main>'
+      # ./spec/services/mail_delivery_unsubscriber_service_spec.rb:61:in `block (4 levels) in <top (required)>'
+      # -e:1:in `<main>'

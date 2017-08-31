@@ -1,0 +1,53 @@
+'use strict';
+
+const Comment = require('../models/comment');
+const Feed = require('../models/feed');
+
+
+exports.index = function(request, response, next) {
+    Feed.findById( request.body.feed_id, (error, feed) => {
+        if (error || !feed)  {
+            return next(error);
+        } else {
+            response.send(feed.comments);
+        }
+    });
+};
+
+exports.create = function(request, response, next) {
+    Comment.create( request.body, (error, result) => {
+        if (error) {
+            return next(error)
+        } else {
+            response.json(result);
+        }
+    });
+};
+
+exports.show = function(request, response) {
+    /* dummy json data */
+    response.json(
+        {
+            'method': 'show'
+        }
+    );
+};
+
+exports.update = function(request, response) {
+    /* dummy json data */
+    response.json(
+        {
+            'method': 'update'
+        }
+    );
+};
+
+exports.destroy = function(request, response, next) {
+    Comment.findByIdAndRemove( request.params.id, (error, result) => {
+        if (error || !result)  {
+            return next(error);
+        } else {
+            response.send();
+        }
+    });
+};

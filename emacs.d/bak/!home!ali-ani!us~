@@ -1,0 +1,51 @@
+en-US:
+  influencer_profiles:
+    new:
+      title: UNIQLO Social Influencer Registration Form
+      required_fields: Fields marked with an asterisk (*) are required.
+      input_title:
+      address_note1: (UNIQLO will need your address if we send samples for certain campaigns in the future)
+      address_note2: If you live in an apartment, condominium, etc., please make sure to write the name of the building and room number.
+      sns_accounts: SNS Accounts
+      sns_accounts_note: SNS Accounts Note
+      sns_account: Social Media Account
+      sns_table_env: SNS
+      sns_table_acc: SNS Account
+      size_title: Size of UNIQLO Clothes
+      size_comment: Please write comments in 100 words if you want to leave any notes about clothes size.
+      agree_html: I will agree to above terms.
+      agree_button: Check the content before submitting.
+      back_button: Go back to the previous page
+      create_button: Submit
+      succeeded: Complete.
+      gratitude: Thank you for the registration! We will contact you soon.
+      please_confirm: Please confirm what you filled out and click on the "SUBMIT" button at the bottom of this page if there is no problem.
+    favorite_urls:
+      favorite_urls: Please write URL of your SNS accounts and your blog that you are proud of!
+    bottoms_size_table:
+      your_size:
+      inch:
+      cm: cm
+    notice:
+      personal_information:
+        title: <Handling of Personal Information>
+        message_html: Personal information entered will be used only for the following purposes and will not be disclosed or provided to a third party without the customer’s consent (except to a shipping company or firm contracted by UNIQLO to administer this promotion).
+        note1: ・To ship free gifts or products. (The customer's address, name, and telephone number will be disclosed to a shipping company.)
+        note2: ・For UNIQLO to contact the customer with information about future promotions, etc.
+      additional_information:
+        title: <Additional Details>
+        note1: ・UNIQLO may use submitted images (still images/videos) on the UNIQLO website, social networking platforms, in-store promotional materials, or other forms of advertisement created by UNIQLO.
+        note2: ・Copyright and likeness rights revert to the customer, however, by submitting this questionnaire and agreeing to the terms, the customer is deemed to have granted UNIQLO worldwide, uncompensated, and non-exclusive usage rights (including reproduction, publishing, transmission, distribution, loaning, translation, and adaptation) to the customer's images.
+        note3: ! "・UNIQLO may decline to publish images and videos that meet the following criteria on the UNIQLO website, on social networking platforms, or in stores:"
+        note3_detail1: ―　Images or videos that clearly do not depict people wearing UNIQLO items
+        note3_detail2: ―　Cases where there is potential infringement of copyright or likeness rights
+        note3_detail3: ―　Images or videos that violate community standards
+        note3_detail4: ―　Images or videos that are deemed inappropriate for any other reason by administrators
+    help:
+      title: What is "Social Media Account?"
+      message: ! '"SNS account name" is below part.'
+      instagram_image: instagram-en.png
+      twitter_image: twitter-en.png
+      facebook_image: facebook-en.png
+      about: About
+      contact_and_basic_info: Contact and Basic Info

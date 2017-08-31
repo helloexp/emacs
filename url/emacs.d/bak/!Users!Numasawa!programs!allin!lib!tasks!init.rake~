@@ -1,0 +1,650 @@
+#
+# init.rake
+#
+# Define rake tasks to load init data
+#
+
+def default_sale_action_states
+  [
+    { state: "新規", is_customizable: false },
+    { state: "初回提案", is_customizable: true },
+    { state: "提案中", is_customizable: true },
+    { state: "最終提案", is_customizable: true },
+    { state: "成約", is_customizable: false },
+    { state: "フォロー", is_customizable: false },
+    { state: "OUT/見送り", is_customizable: false }
+  ]
+end
+
+def default_schedule_types
+  [
+    { name: "社内ミーティング", color: "ea9999" },
+    { name: "プライベート", color: "ff9900" }
+  ]
+end
+
+def find_or_create_contract(id)
+  contract = Contract.find_by_hex_id(id)
+  contract = Contract.create!(hex_id: id) if contract.blank?
+  contract
+end
+
+def find_or_create_company(contract) # rubocop:disable AbcSize, MethodLength
+  company = contract.companies.first
+  return company if company.present?
+
+  zone = ActiveSupport::TimeZone.new("Asia/Tokyo")
+
+  # define default statuses
+  data = [{ name: "集客", description: "集客 説明", code: "attract_customer" },
+          { name: "見込客", description: "見込客 説明", code: "other" },
+          { name: "顧客", description: "顧客 説明", code: "customer" },
+          { name: "リピーター", description: "リピーター 説明", code: "repeater" },
+          { name: "ファン", description: "ファン 説明", code: "other" },
+          { name: "アンバサダー", description: "アンバサダー 説明", code: "other" }]
+
+  company = OwnCompany.create! do |o|
+    o.contract = contract
+    o.display_name = "BBG"
+    o.consumption_tax_entry_method = ConsumptionTaxEntryMethod.first
+    o.rounding_method = RoundingMethod.first
+  end
+
+  company_preference = CompanyPreference.new(
+    company: company,
+    use_estimate_feature: true,
+    use_order_feature: true)
+  company_preference.save!
+
+  # save the default statuses for the company
+  rank = 1
+  data.each do |d|
+    s = Status.new
+    s.name = d[:name]
+    s.description = d[:description]
+    s.rank = rank
+    s.company = company
+    s.customer_status_type = CustomerStatusType.find_by(code: d[:code])
+    s.save!
+    rank += 1
+  end
+
+  # get default statuses
+  default_statuses = Status.where(company: company)
+  # create default customer_statuses
+  default_statuses.each do |s|
+    save_cs(s.id, company.id, "Company")
+  end
+
+  company.revisions.create! do |o|
+    o.available_from = zone.local(2014, 1, 1).to_i
+    o.name = "株式会社ビジネスバンクグループ"
+    o.country = Country.find_by_code("jp")
+    o.postal_code = "107-0062"
+    o.region = "東京都"
+    o.locality = "港区"
+    o.street_address = "南青山2-26-37"
+    o.extended_address = "NXB青山7F"
+    o.phone = "03-6913-0220"
+    o.fax = "03-6913-0221"
+    o.email = "info@bbank.jp"
+  end
+  previous_fiscal_year = company.fiscal_years.create!(
+    active: false,
+    is_closed: true,
+    closed_at: (zone.now - 1.years).end_of_year,
+    period_from: (zone.now - 1.years).beginning_of_year,
+    period_to: (zone.now - 1.years).end_of_year,
+    simplified_taxation_method_class: SimplifiedTaxationMethodClass.all.sample,
+    taxation_method: TaxationMethod.all.sample,
+    term: 1)
+  DocumentNumber::PREFIXES.each do |prefix|
+    DocumentNumber.create!(fiscal_year: previous_fiscal_year, prefix: prefix, value: 0)
+  end
+  current_fiscal_year = company.fiscal_years.create!(
+    active: true,
+    is_closed: false,
+    period_from: zone.now.beginning_of_year,
+    period_to: zone.now.end_of_year,
+    simplified_taxation_method_class: SimplifiedTaxationMethodClass.all.sample,
+    taxation_method: TaxationMethod.all.sample,
+    term: 2)
+  DocumentNumber::PREFIXES.each do |prefix|
+    DocumentNumber.create!(fiscal_year: current_fiscal_year, prefix: prefix, value: 0)
+  end
+  InitialAccountTitle.find_each do |o|
+    company.account_titles.create!(
+      account_classification_id: o.account_classification_id,
+      journal_entry_type_id: o.journal_entry_type_id,
+      code: o.code,
+      name: o.name,
+      taxation_type_id: o.taxation_type_id,
+      account_title_detail_type: o.account_title_detail_type,
+      is_user_defined: false,
+      shortcut1: o.shortcut1,
+      shortcut2: o.shortcut2,
+      order: 1,
+      is_disabled: false)
+  end
+  company
+end
+
+def add_roles_to(company)
+  if company.roles.find_by_name("管理者").blank?
+    role = company.roles.create!(
+      name: "管理者",
+      is_administrator_role: true,
+      is_user_defined: false)
+    role.permissions = Permission.where(subsystem: "*")
+  end
+
+  if company.roles.find_by_name("人事担当者").blank?
+    role = company.roles.create!(
+      name: "人事担当者",
+      is_user_defined: false)
+    role.permissions = Permission.where(subsystem: "personnel")
+  end
+
+  if company.roles.find_by_name("一般ユーザー").blank?
+    role = company.roles.create!(
+      name: "一般ユーザー",
+      is_user_defined: false)
+    role.permissions = Permission.where(subsystem: %w(crm marketing groupware navigator soms ssm team)).where(feature: "*")
+  end
+
+  if company.roles.find_by_name("グループウェア").blank?
+    role = company.roles.create!(
+      name: "グループウェア",
+      is_user_defined: false)
+    role.permissions = Permission.where(subsystem: "groupware", feature: "*", action: "write")
+  end
+end
+
+def create_account(company, attrs) # rubocop:disable AbcSize, MethodLength
+  account = Account.find_by_hex_id(attrs[:id])
+  return account if account.present?
+
+  zone = ActiveSupport::TimeZone.new("Asia/Tokyo")
+
+  person = Person.create! do |o|
+    o.company = company
+    o.last_name = attrs[:last_name]
+    o.first_name = attrs[:first_name]
+    o.birth_date = zone.local(2000, 1, 1).to_i
+    o.blood_type = BloodType.find_by_code("a")
+    o.country = Country.find_by_code("jp")
+    o.postal_code = "107-0062"
+    o.region = "東京都"
+    o.locality = "港区"
+    o.street_address = "南青山2-26-37"
+    o.extended_address = "NXB青山7F"
+    o.phone = "03-6913-0220"
+    o.fax = "03-6913-0221"
+    o.email = attrs[:email]
+  end
+  corporate_member = CorporateMember.create! do |o|
+    o.person = person
+    o.company = company
+    o.phone = "03-6913-0220"
+    o.fax = "03-6913-0221"
+    o.email = attrs[:email]
+    o.hired_at = zone.local(2014, 1, 1).to_i
+    o.divisions = attrs[:divisions]
+    o.no = attrs[:no]
+  end
+  account = Account.create! do |o|
+    o.hex_id = attrs[:id]
+    o.person = person
+    o.corporate_member = corporate_member
+    o.username = attrs[:email]
+    o.password = attrs[:email]
+    o.password_confirmation = attrs[:email]
+    o.is_disabled = false
+  end
+  Salary.create! do |o|
+    o.corporate_member = corporate_member
+    o.salary_type = SalaryType.find_by_code("monthly")
+    o.transportation_type = TransportationType.find_by_code("train")
+    o.transportation_pay_frequency_type = TransportationPayFrequencyType.find_by_code("month")
+    o.salary_type = SalaryType.find_by_code("monthly")
+    o.taxpayer_type = TaxpayerType.find_by_code("a")
+    o.base_salary = rand(100_000..1_000_000)
+    o.bonus = rand(100_000..1_000_000)
+    o.inhabitant_tax_region = Region.find_by_code("JP-13")
+    o.inhabitant_tax_locality = %w(港区 千代田区 中央区 世田谷区).sample
+    o.inhabitant_tax_by_may = rand(100..30_000)
+    o.inhabitant_tax_in_june = rand(100..30_000)
+    o.inhabitant_tax_from_july = rand(100..30_000)
+  end
+  account.roles << Role.find_by_name("管理者")
+end
+
+def find_or_create_division(company, name)
+  zone = ActiveSupport::TimeZone.new("Asia/Tokyo")
+
+  division = Division.where(company_id: company.id, display_name: name).try(:first)
+  if division.blank?
+    division = Division.create! do |o|
+      o.company = company
+      o.display_name = name
+      o.started_at = zone.local(2014, 1, 1).to_i
+    end
+
+    # get default statuses
+    default_statuses = Status.where(company: company)
+
+    # create default customer_statuses
+    default_statuses.each do |s|
+      save_cs(s.id, division.id, "Division")
+    end
+
+    division.revisions.create! do |o|
+      o.available_from = zone.local(2014, 1, 1).to_i
+      o.name = "#{name}事業部"
+      o.country = Country.find_by_code("jp")
+      o.postal_code = "107-0062"
+      o.region = "東京都"
+      o.locality = "港区"
+      o.street_address = "南青山2-26-37"
+      o.extended_address = "NXB青山7F"
+      o.phone = "03-6913-0220"
+      o.fax = "03-6913-0221"
+    end
+  end
+  division
+end
+
+# Save the default customer statuses for new division
+def save_cs(status_id, def_id, def_type)
+  customer_status = CustomerStatus.new
+  customer_status.status_id = status_id
+  customer_status.definable_type = def_type
+  customer_status.definable_id = def_id
+  customer_status.save!
+  customer_status
+end
+
+def create_office_hour(company)
+  office_hour = OfficeHour.new(ownerable: company)
+  office_hour.office_hour_from = 9 * 60 * 60
+  office_hour.office_hour_to = 18 * 60 * 60
+  office_hour.break_time = 1 * 60 * 60
+  office_hour.extra_break_time = 45 * 60
+  office_hour.save!
+end
+
+# TODO: 新規Company生成時に以下と同じ手順で給与規定の作成をお願いします
+def create_pay_regulation(company)
+  zone = ActiveSupport::TimeZone.new("Asia/Tokyo")
+
+  pay_regulation = PayRegulation.where(company_id: company.id).try(:first)
+  return unless pay_regulation.blank?
+  time_now = zone.now.to_i
+  PayRegulation.create! do |o|
+    o.base_health_insurance_rate = Kenpo.where("period_from <= ? and ? < period_to
+     and region_id = ?", time_now, time_now, "13").first.basic_insurance_premium_rate.to_d
+
+    o.specific_health_insurance_rate = Kenpo.where("period_from <= ? and ? < period_to
+     and region_id = ?", time_now, time_now, "13").first.special_insurance_premium_rate.to_d
+
+    o.care_health_insurance_rate = Kenpo.where("period_from <= ? and ? < period_to
+     and region_id = ?", time_now, time_now, "13").first.special_insurance_premium_rate.to_d
+
+    o.region = Region.find_by_code("JP-13")
+    o.use_company_office_hour = true
+    o.insurance_organization_type = InsuranceOrganizationType.find_by_code("kyokai")
+    o.labor_business_type = LaborBusinessType.find_by_code("general")
+    o.payment_method_type = PaymentMethodType.find_by_code("current_month")
+    o.date_type = DateType.find_by_code("sun")
+    o.overtime_calculation_type = OvertimeCalculationType.find_by_code("rate")
+    o.extra_time_unit_type = ExtraTimeUnitType.find_by_code("thirty")
+    o.is_extra_pay_auto_calculation = false
+    o.workday_extra_rate = 125
+    o.workday_midnight_extra_rate = 150
+    o.holiday_extra_rate = 125
+    o.holiday_midnight_extra_rate = 150
+    o.legal_holiday_extra_rate = 135
+    o.legal_holiday_midnight_extra_rate = 160
+    o.legal_overtime_extra_rate = 100
+    o.company = company
+  end
+end
+
+def create_sale_states(division, group_count)
+  return if division.sale_state_groups.present?
+
+  group_count.times do |entry|
+    sale_state_group_link = SaleStateGroupLink.create do |s|
+      s.definable = division
+      s.sale_state_group = SaleStateGroup.create! do |o|
+        o.display_name = "Default.#{entry} for #{division.display_name}"
+        o.sale_state_group_links = [s]
+      end
+    end
+    default_sale_action_states.each_with_index do |state, order|
+      SaleState.create! do |o|
+        o.state = state[:state]
+        o.order = order
+        o.sale_state_group = sale_state_group_link.sale_state_group
+      end
+    end
+  end
+end
+
+def create_schedule_types(company)
+  default_schedule_types.each_with_index do |schedule_type, order|
+    ScheduleType.create! do |o|
+      o.name = schedule_type[:name]
+      o.color = schedule_type[:color]
+      o.order = order
+      o.company = company
+    end
+  end if ScheduleType.count == 0
+end
+
+desc "Load init data."
+task "db:seed:init" => :environment do
+  ActiveRecord::Base.transaction do
+    contract = find_or_create_contract("85a84ac0fbb811e3a3ac0800200c9a66")
+    company = find_or_create_company(contract)
+    add_roles_to(company)
+
+    divisions = []
+    divisions << find_or_create_division(company, "ALLIN")
+    divisions << find_or_create_division(company, "Sales")
+
+    create_pay_regulation(company)
+    create_schedule_types(company)
+    create_office_hour(company)
+
+    create_sale_states(divisions[0], 2)
+    create_sale_states(divisions[1], 2)
+
+    create_account(
+      company,
+      id: "7b4ae5e2fdc011e3acbb22000a7c8883",
+      last_name: "浜口",
+      first_name: "隆則",
+      email: "hamaguchi@bbank.jp",
+      no: "00001",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "7b5f0e50fdc011e3acbb22000a7c8883",
+      last_name: "小針",
+      first_name: "一浩",
+      email: "kobari@bbank.jp",
+      no: "00002",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "7b732aa2fdc011e3acbb22000a7c8883",
+      last_name: "竹中",
+      first_name: "翔",
+      email: "takenaka@bbank.jp",
+      no: "00003",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97a8a963dc711e48dca0800275eaa7c",
+      last_name: "阪東",
+      first_name: "浩二",
+      email: "bando@bbank.jp",
+      no: "00004",
+      divisions: [divisions.first])
+
+    create_account(
+      company,
+      id: "c97a8f283dc711e48dca0800275eaa7c",
+      last_name: "滝沢",
+      first_name: "清隆",
+      email: "takizawa@bbank.jp",
+      no: "00005",
+      divisions: [divisions.last])
+
+    create_account(
+      company,
+      id: "c97a913a3dc711e48dca0800275eaa7c",
+      last_name: "新田",
+      first_name: "慶秋",
+      email: "nitta@bbank.jp",
+      no: "00006",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97a95a43dc711e48dca0800275eaa7c",
+      last_name: "渡邊",
+      first_name: "敦",
+      email: "watanabe@bbank.jp",
+      no: "00007",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97a978e3dc711e48dca0800275eaa7c",
+      last_name: "黄塚",
+      first_name: "森",
+      email: "kozuka@bbank.jp",
+      no: "00007",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97a995a3dc711e48dca0800275eaa7c",
+      last_name: "村山",
+      first_name: "ひとみ",
+      email: "murayama@bbank.jp",
+      no: "00008",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97a9b3a3dc711e48dca0800275eaa7c",
+      last_name: "山中",
+      first_name: "拓也",
+      email: "yamanaka@bbank.jp",
+      no: "00009",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97a9cfc3dc711e48dca0800275eaa7c",
+      last_name: "中村",
+      first_name: "慎之介",
+      email: "nakamura@bbank.jp",
+      no: "00010",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97a9ed23dc711e48dca0800275eaa7c",
+      last_name: "平野",
+      first_name: "公紳",
+      email: "hirano@bbank.jp",
+      no: "00011",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97aa0a83dc711e48dca0800275eaa7c",
+      last_name: "渡邊",
+      first_name: "絵梨",
+      email: "e.watanabe@bb777ank.jp",
+      no: "00012",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97aa5443dc711e48dca0800275eaa7c",
+      last_name: "髙橋",
+      first_name: "玲生奈",
+      email: "takahashi@bbank.jp",
+      no: "00013",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97aa6523dc711e48dca0800275eaa7c",
+      last_name: "出井",
+      first_name: "美沙樹",
+      email: "dei@bbank.jp",
+      no: "00014",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97aa7383dc711e48dca0800275eaa7c",
+      last_name: "小泉",
+      first_name: "直弥",
+      email: "koizumi@bbank.jp",
+      no: "00015",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97aa81e3dc711e48dca0800275eaa7c",
+      last_name: "中島",
+      first_name: "遼",
+      email: "nakashima@bbank.jp",
+      no: "00016",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97aa9043dc711e48dca0800275eaa7c",
+      last_name: "成田",
+      first_name: "羽",
+      email: "narita@bbank.jp",
+      no: "00017",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97aac7e3dc711e48dca0800275eaa7c",
+      last_name: "岩﨑",
+      first_name: "俊貴",
+      email: "iwasaki@bbank.jp",
+      no: "00018",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97aad823dc711e48dca0800275eaa7c",
+      last_name: "野田",
+      first_name: "拓志",
+      email: "noda@bbank.jp",
+      no: "00019",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97aae683dc711e48dca0800275eaa7c",
+      last_name: "浜口",
+      first_name: "尚美",
+      email: "hamanao@bbank.jp",
+      no: "00020",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97aafbc3dc711e48dca0800275eaa7c",
+      last_name: "齋藤",
+      first_name: "監輔",
+      email: "saito@bbank.jp",
+      no: "00021",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97ab1743dc711e48dca0800275eaa7c",
+      last_name: "秋本",
+      first_name: "泰作",
+      email: "akimoto@bbank.jp",
+      no: "00022",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97ace163dc711e48dca0800275eaa7c",
+      last_name: "外山",
+      first_name: "雅大",
+      email: "toyama@bbank.jp",
+      no: "00023",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97acff63dc711e48dca0800275eaa7c",
+      last_name: "槙村",
+      first_name: "美夢",
+      email: "makimura@bbank.jp",
+      no: "00024",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97ad0fa3dc711e48dca0800275eaa7c",
+      last_name: "川原",
+      first_name: "慶明",
+      email: "kawahara@bbank.jp",
+      no: "00025",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "c97ad1ea3dc711e48dca0800275eaa7c",
+      last_name: "早田",
+      first_name: "裕樹",
+      email: "wasada@bbank.jp",
+      no: "00026",
+      divisions: divisions)
+    create_account(
+      company,
+      id: "c97ad2c63dc711e48dca0800275eaa7c",
+      last_name: "星野",
+      first_name: "優子",
+      email: "hoshino@bbank.jp",
+      no: "00027",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "6559c2b04ec611e4916c0800200c9a66",
+      last_name: "栗山",
+      first_name: "宗久",
+      email: "kuriyama@bbank.jp",
+      no: "00028",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "6559c2b04ec611e4916c0800200c9a66",
+      last_name: "Alheit",
+      first_name: "Berthold",
+      email: "alheit@bbank.jp",
+      no: "00029",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "da0a4290ab3911e4b5360800275eaa7c",
+      last_name: "Sadou",
+      first_name: "Jérôme",
+      email: "sadou@bbank.jp",
+      no: "00030",
+      divisions: divisions)
+
+    create_account(
+      company,
+      id: "6559c2b04ec611e4916c0800200c9a68",
+      last_name: "髙橋",
+      first_name: "慶太",
+      email: "k.takahashi@bbank.jp",
+      no: "00031",
+      divisions: divisions)
+  end
+end

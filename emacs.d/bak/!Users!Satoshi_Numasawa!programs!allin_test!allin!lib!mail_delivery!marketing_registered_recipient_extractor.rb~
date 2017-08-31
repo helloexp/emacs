@@ -1,0 +1,163 @@
+# coding: utf-8
+
+# TODO: marketing
+
+module MailDelivery
+  # A class to extract marketing registered recipients
+
+  class MarketingRegisteredRecipientExtractor < RecipientExtractor
+    def initialize(job)
+      super(job)
+    end
+
+    def execute
+      # 基準日「売上日」にマッチするrecipientsを返す
+      @recipients = []
+      @lines      = []
+
+      case schedule_type
+      when "on_that_day"
+        extract_customers_by_before_or_after
+      when "before_day"
+        extract_customers_by_before_or_after
+      when "after_day"
+        extract_customers_by_before_or_after
+      when "before_month"
+        extract_customers_by_before_or_after
+      when "after_month"
+        extract_customers_by_before_or_after
+      when "on_weekday_before_week"
+        execute_by_on_weekday_before_or_after_week
+      when "on_weekday_after_week"
+        execute_by_on_weekday_before_or_after_week
+      when "on_day_before_month"
+        execute_by_on_day_before_or_after_month
+      when "on_day_after_month"
+        execute_by_on_day_before_or_after_month
+      else
+        fail "Invalid base date schedule type"
+      end
+      extract_recipient
+    end
+
+    private
+
+    def extract_customers_by_before_or_after
+      if use_month_day?
+        extract_customers_by_before_or_after_with_use_month_day
+      else
+        extract_customers_by_before_or_after_without_use_month_day
+      end
+    end
+
+    def execute_by_on_weekday_before_or_after_week
+      return nil if Time.zone.at(process_on).wday != on_week_day
+
+      if use_month_day?
+        extract_customers_by_onweek_or_onday_and_before_or_after_with_use_month_day
+      else
+        extract_customers_by_before_or_after_without_use_month_day
+      end
+    end
+
+    def execute_by_on_day_before_or_after_month
+      return nil if Time.zone.at(process_on).day != on_day
+
+      if use_month_day?
+        extract_customers_by_onweek_or_onday_and_before_or_after_with_use_month_day
+      else
+        extract_customers_by_before_or_after_without_use_month_day
+      end
+    end
+
+    def extract_customers_by_before_or_after_with_use_month_day
+      query = "#{base_date} = :date AND sales_lines.product_id = :product_id"
+
+      SalesDocument.joins(:lines).where(query, date: month_day, product_id: base_date_selectable.id).find_each { |document|
+        @lines << document.lines.select { |line|
+          line.sales_document.customer.company_id == setting.company_id
+        }
+      }
+
+      @lines.flatten!
+    end
+
+    def extract_customers_by_before_or_after_without_use_month_day
+      query = "sold_at >= :from AND sold_at < :to AND sales_lines.product_id = :product_id"
+
+      SalesDocument.joins(:lines).where(query, from: from_date, to: to_date, product_id: base_date_selectable.id).find_each { |document|
+        @lines << document.lines.select { |line|
+          line.sales_document.customer.company_id == setting.company_id
+        }
+      }
+
+      @lines.flatten!
+    end
+
+    def extract_customers_by_onweek_or_onday_and_before_or_after_with_use_month_day
+      conditions = month_day_extract_query
+      SalesDocument.joins(:lines).where(conditions[:query], from: conditions[:from], to: conditions[:to], product_id: base_date_selectable.id).find_each { |document|
+        @lines << document.lines.select { |line|
+          line.sales_document.customer.company_id == setting.company_id
+        }
+      }
+
+      @lines.flatten!
+    end
+
+    def extract_recipient
+      @lines.each do |line|
+        customer = line.sales_document.customer
+
+        AllRecipient.search do
+          with(:customer_id, customer.hex_id)
+        end.results.each do |all_recipient|
+          @recipients <<
+            MailDeliveryRecipient.new(
+              mail_delivery_job: job,
+              mail_addressable: all_recipient.mail_addressable,
+              base_dateable: line,
+              all_recipient: all_recipient
+            ) if all_recipient.email.present?
+        end
+      end
+
+      @recipients
+    end
+
+    def month_day_extract_query
+      from = Time.zone.at(from_date).strftime("%m%d")
+      to   = leap(Time.zone.at(to_date).strftime("%m%d"))
+      query = ""
+
+      if from <= to
+        query = "#{base_date} >= :from AND #{base_date} < :to AND sales_lines.product_id = :product_id"
+      else
+        query = <<-"QUERY"
+(#{base_date} >= :from AND #{base_date} <= '1231'
+OR
+#{base_date} >= '0101' AND #{base_date} < :to)
+AND
+`sales_lines`.`product_id` = :product_id
+        QUERY
+      end
+
+      { query: query, from: from, to: to, product_id: base_date_selectable.id }
+    end
+
+    def leap(date)
+      leap_day        = "0229"
+      before_leap_day = "0228"
+
+      if date == before_leap_day && (schedule_type == "on_day_before_month" || schedule_type == "on_day_after_month")
+        date = leap_day
+      end
+
+      date
+    end
+
+    def base_date
+      @base_date = "date_format(convert_tz(FROM_UNIXTIME(sold_at), '+00:00', '#{Time.zone.formatted_offset}'), '%m%d')"
+    end
+  end
+end

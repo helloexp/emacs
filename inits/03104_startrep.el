@@ -1,0 +1,2 @@
+;; keybind
+(require 'smartrep)

@@ -1,0 +1,521 @@
+
+]0;node@ip-10-0-3-56:~[node@ip-10-0-3-56 ~]$ 
+]0;node@ip-10-0-3-56:~[node@ip-10-0-3-56 ~]$ cd /var/node_notification/current/
+]0;node@ip-10-0-3-56:/var/node_notification/current[node@ip-10-0-3-56 current]$ vim ../shared/restart.sh 
+-bash: vim: command not found
+]0;node@ip-10-0-3-56:/var/node_notification/current[node@ip-10-0-3-56 current]$ vim ../shared/restart.sh [C[C[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[?1049h[?1h=[1;53r[?12;25h[?12l[?25h[27m[m[H[2J[?25l[53;1H"../shared/restart.sh" 47L, 1208C[1;1H# PATH
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# AWS credential
+export AWS_ACCESS_KEY_ID=AKIAILUS3RSKPEIIBHQA
+export AWS_SECRET_ACCESS_KEY=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
+
+# ssl証明書
+export SSL_KEY_PATH=/home/node/ssl/server.key
+export SSL_CERT_PATH=/home/node/ssl/cert
+export SSL_CA_PATH=/home/node/ssl/ca
+
+# redis URI
+# pass無し
+export REDIS_URL=allin-redis.ir575c.0001.apne1.cache.amazonaws.com
+export REDIS_PASS=''
+
+# mongodb cluster IPs
+# 現状 user, pass無し
+export MONGO_URL="mongodb://10.0.1.50:27017/sns-production,10.0.1.51:27017/sns-productt[21;1Hion,10.0.1.52:27017/sns-production"
+export MONGO_USER=''
+export MONGO_PASS=''
+
+# allin 認証server. /api/v1/grant
+export AUTH_SERVER_URL=all-in.xyz
+
+# S3 : bucket name
+export S3_BUCKET=sns.all-in.xyz
+export S3_EP=s3-ap-northeast-1.amazonaws.com
+
+# use new gcc
+source /opt/rh/devtoolset-2/enable
+
+# dispatch url
+export NOTIFICATION_DISPATCH_URL=https://sns2.all-in.xyz:5100
+
+# basic auth
+export BASIC_AUTH_USERNAME="allinsns"
+export BASIC_AUTH_PASSWORD="Ke6cUCV5G8Q7P9umVf3bgLkuP4S4YeGg"
+
+export NODE_ENV=production
+
+# module install
+npm install
+
+# restart
+pm2 startOrRestart ./app/config/process/${NODE_ENV}.json --env ${NODE_ENV}
+[94m~                                                                                     [50;1H~                                                                                     [51;1H~                                                                                     [52;1H~                                                                                     [1;1H[?12l[?25h
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[36;1H[?25l[1;52r[m[52;1H
+[1;53r[52;1H[94m~                                                                                     [m[53;1H[K[35;1H[?12l[?25h[?25l[44C3[?12l[?25h[?25l[1;52r[52;1H
+[1;53r[52;1H[94m~                                                                                     [34;45H[?12l[?25h[?25l[m4[?12l[?25h[?25l[53;1H:[?12l[?25hq[?25l[97m[41mE37: No write since last change (add ! to override)[34;45H[?12l[?25h[?25l[m[53;1H[K[53;1H:[?12l[?25hq![?25l[53;1H[K[53;1H[?1l>[?12l[?25h[?1049l]0;node@ip-10-0-3-56:/var/node_notification/current[node@ip-10-0-3-56 current]$ vi ../shared/restart.sh 
+[?1049h[?1h=[1;53r[?12;25h[?12l[?25h[27m[m[H[2J[?25l[53;1H"../shared/restart.sh" 47L, 1208C[1;1H# PATH
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# AWS credential
+export AWS_ACCESS_KEY_ID=AKIAILUS3RSKPEIIBHQA
+export AWS_SECRET_ACCESS_KEY=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
+
+# ssl証明書
+export SSL_KEY_PATH=/home/node/ssl/server.key
+export SSL_CERT_PATH=/home/node/ssl/cert
+export SSL_CA_PATH=/home/node/ssl/ca
+
+# redis URI
+# pass無し
+export REDIS_URL=allin-redis.ir575c.0001.apne1.cache.amazonaws.com
+export REDIS_PASS=''
+
+# mongodb cluster IPs
+# 現状 user, pass無し
+export MONGO_URL="mongodb://10.0.1.50:27017/sns-production,10.0.1.51:27017/sns-productt[21;1Hion,10.0.1.52:27017/sns-production"
+export MONGO_USER=''
+export MONGO_PASS=''
+
+# allin 認証server. /api/v1/grant
+export AUTH_SERVER_URL=all-in.xyz
+
+# S3 : bucket name
+export S3_BUCKET=sns.all-in.xyz
+export S3_EP=s3-ap-northeast-1.amazonaws.com
+
+# use new gcc
+source /opt/rh/devtoolset-2/enable
+
+# dispatch url
+export NOTIFICATION_DISPATCH_URL=https://sns2.all-in.xyz:5100
+
+# basic auth
+export BASIC_AUTH_USERNAME="allinsns"
+export BASIC_AUTH_PASSWORD="Ke6cUCV5G8Q7P9umVf3bgLkuP4S4YeGg"
+
+export NODE_ENV=production
+
+# module install
+npm install
+
+# restart
+pm2 startOrRestart ./app/config/process/${NODE_ENV}.json --env ${NODE_ENV}
+[94m~                                                                                     [50;1H~                                                                                     [51;1H~                                                                                     [52;1H~                                                                                     [1;1H[?12l[?25h
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[?25l[m[53;1H[1m-- INSERT --[m[53;13H[K[37;1H[?12l[?25h[?25l[38;52r[38;1H[L[1;53r[38;1H[?12l[?25h[?25l[39;52r[39;1H[L[1;53r[39;1H[?12l[?25h[?25lp[?12l[?25h[?25l[39;1H[K[39;1H[?12l[?25h[38;1H[?25l[39;52r[39;1H[5L[1;53r[38;1H# notification mail delivery status
+export NOTIFICATION_MAILER_STATUS=true
+
+# notification mail delivery sendgrid apikey
+export NOTIFICATION_SENDGRID_APIKEY=SG.SUFe9-YXQT-v5VeTICLanw.zyaI7c73pZAMEOWkjXrH4goTT[43;1HSoUpxs6fXxYbpbjkD-A[?12l[?25h[?25l:[?12l[?25h[?25lw[?12l[?25h[?25l[43;21H[K[43;21H[?12l[?25h[?25l[43;20H[K[43;20H[?12l[?25h[53;1H[K[43;19H[?25l[?12l[?25h[?25l[53;1H:[?12l[?25hwq[?25l"../shared/restart.sh" 53L, 1436C written
+[?1l>[?12l[?25h[?1049l]0;node@ip-10-0-3-56:/var/node_notification/current[node@ip-10-0-3-56 current]$ bash /var/node_notification/shared/restart.sh
+[?25l[0G▄ ╢░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0G▌ ╢░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0G▀ ╢░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0G▐ ╢░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:aws-sdk           ▌ ╢███████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:express           ▌ ╢██████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:debug             ▌ ╢██████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:lodash._stringtop ▌ ╢██████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:core-util-is      ▌ ╢████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:passport-strategy ▌ ╢███████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:chalk             ▌ ╢███████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:assert-plus       ▌ ╢███████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:json3             ▌ ╢████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:bops              ▌ ╢████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:arr-diff          ▌ ╢█████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:delegates         ▌ ╢█████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:default-browser-i ▌ ╢██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:load-json-file    ▌ ╢██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:fsevents          ▌ ╢███████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:fsevents → reques ▄ ╢███████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:fsevents → networ ▌ ╢███████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:fsevents → 304    ▀ ╢███████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:buffer-shims      ▄ ╢██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:prelude-ls        ▄ ╢██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:ansi              ▄ ╢██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadExtraneous            ▄ ╢██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:batch             ▄ ╢████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:lru-cache         ▄ ╢██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:async             ▄ ╢█████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:inflight          ▄ ╢██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadExtraneous            ▄ ╢██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadDep:async             ▄ ╢██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GloadAllDepsIntoIdealTree  ▀ ╢██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GgenerateActionsToTake     ▐ ╢██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0GvalidateTree              ▐ ╢███████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░╟
+[?25h[1A[?25l[0Gbuild:. → linkBins        ▐ ╢██████████████████████████████████████████████████░░░░░╟
+[?25h[?25h[1A[0G[K[?25l[0GrunTopLevelLifecycles     ▄ ╢█████████████████████████████████████████████████████░░╟
+[?25h[?25h[1A[0G[K[37m[40mnpm[0m [0m[30m[43mWARN[0m [0m[35moptional[0m Skipping failed optional dependency /chokidar/fsevents:
+[0m[?25l[0GrunTopLevelLifecycles     ▌ ╢█████████████████████████████████████████████████████░░╟
+[?25h[?25h[1A[0G[K[37m[40mnpm[0m [0m[30m[43mWARN[0m [0m[35mnotsup[0m Not compatible with your operating system or architecture: fsevents@1.0.14
+[0m[?25l[0GrunTopLevelLifecycles     ▀ ╢█████████████████████████████████████████████████████░░╟
+[?25h[?25h[1A[0G[K[?25h[0G[K[32m[PM2] [39mApplying action restartProcessId on app [allin-notification](ids: 1)
+[32m[PM2] [39m[allin-notification](1) ✓
+[90m┌────────────────────┬────┬──────┬───────┬────────┬─────────┬────────┬─────────────┬──────────┐[39m
+[90m│[39m[1m[36m App name           [39m[22m[90m│[39m[1m[36m id [39m[22m[90m│[39m[1m[36m mode [39m[22m[90m│[39m[1m[36m pid   [39m[22m[90m│[39m[1m[36m status [39m[22m[90m│[39m[1m[36m restart [39m[22m[90m│[39m[1m[36m uptime [39m[22m[90m│[39m[1m[36m memory      [39m[22m[90m│[39m[1m[36m watching [39m[22m[90m│[39m
+[90m├────────────────────┼────┼──────┼───────┼────────┼─────────┼────────┼─────────────┼──────────┤[39m
+[90m│[39m[1m[36m allin-sns          [39m[22m[90m│[39m 0  [90m│[39m [7m[1mfork[22m[27m [90m│[39m 24565 [90m│[39m [32m[1monline[22m[39m [90m│[39m 115     [90m│[39m 35h    [90m│[39m 67.434 MB   [90m│[39m [90mdisabled[39m [90m│[39m
+[90m│[39m[1m[36m allin-notification [39m[22m[90m│[39m 1  [90m│[39m [7m[1mfork[22m[27m [90m│[39m 564   [90m│[39m [32m[1monline[22m[39m [90m│[39m 57      [90m│[39m 0s     [90m│[39m 10.141 MB   [90m│[39m [90mdisabled[39m [90m│[39m
+[90m└────────────────────┴────┴──────┴───────┴────────┴─────────┴────────┴─────────────┴──────────┘[39m
+[37m[3m Use `pm2 show <id|name>` to get more details about an app[23m[39m
+]0;node@ip-10-0-3-56:/var/node_notification/current[node@ip-10-0-3-56 current]$ pm2 status
+[90m┌────────────────────┬────┬──────┬───────┬────────┬─────────┬────────┬─────────────┬──────────┐[39m
+[90m│[39m[1m[36m App name           [39m[22m[90m│[39m[1m[36m id [39m[22m[90m│[39m[1m[36m mode [39m[22m[90m│[39m[1m[36m pid   [39m[22m[90m│[39m[1m[36m status [39m[22m[90m│[39m[1m[36m restart [39m[22m[90m│[39m[1m[36m uptime [39m[22m[90m│[39m[1m[36m memory      [39m[22m[90m│[39m[1m[36m watching [39m[22m[90m│[39m
+[90m├────────────────────┼────┼──────┼───────┼────────┼─────────┼────────┼─────────────┼──────────┤[39m
+[90m│[39m[1m[36m allin-sns          [39m[22m[90m│[39m 0  [90m│[39m [7m[1mfork[22m[27m [90m│[39m 24565 [90m│[39m [32m[1monline[22m[39m [90m│[39m 115     [90m│[39m 35h    [90m│[39m 68.156 MB   [90m│[39m [90mdisabled[39m [90m│[39m
+[90m│[39m[1m[36m allin-notification [39m[22m[90m│[39m 1  [90m│[39m [7m[1mfork[22m[27m [90m│[39m 564   [90m│[39m [32m[1monline[22m[39m [90m│[39m 57      [90m│[39m 102s   [90m│[39m 79.477 MB   [90m│[39m [90mdisabled[39m [90m│[39m
+[90m└────────────────────┴────┴──────┴───────┴────────┴─────────┴────────┴─────────────┴──────────┘[39m
+[37m[3m Use `pm2 show <id|name>` to get more details about an app[23m[39m
+]0;node@ip-10-0-3-56:/var/node_notification/current[node@ip-10-0-3-56 current]$ [H[2J[node@ip-10-0-3-56 current]$ ps aux | grep pm2[K[K[Knode
+node       564  1.2  4.2 1261452 81760 ?       Ssl  22:59   0:01 node /var/node_notification/source/app/app.js                                         
+node       736  0.0  0.0 110228  1168 pts/0    R+   23:01   0:00 ps aux
+node       737  0.0  0.0 103300   888 pts/0    S+   23:01   0:00 grep node
+node      1533  0.1  1.6 962112 31860 ?        Ssl  Apr06 209:55 PM2 v1.1.1: God Daemon                                                                                      
+node     24565  0.1  3.6 1277896 69356 ?       Ssl  Aug28   2:12 node /var/node/source/app/app.js                                                      
+root     32763  0.0  0.2  97900  3892 ?        Ss   22:56   0:00 sshd: node [priv]
+node     32766  0.0  0.0  97900  1792 ?        S    22:56   0:00 sshd: node@pts/0 
+node     32767  0.0  0.1 108300  1924 pts/0    Ss   22:56   0:00 -bash
+]0;node@ip-10-0-3-56:/var/node_notification/current[node@ip-10-0-3-56 current]$ strings /proc/564/environ[H[2J[node@ip-10-0-3-56 current]$ strings /proc/564/environ
+name=allin-notification
+vizion=true
+pmx=true
+automation=true
+autorestart=true
+treekill=true
+env=[object Object]
+exec_mode=fork_mode
+node_args=
+pm_exec_path=/var/node_notification/source/app/app.js
+pm_cwd=/var/node_notification/source
+exec_interpreter=node
+instances=1
+pm_out_log_path=/home/node/.pm2/logs/allin-notification-out.log
+pm_err_log_path=/home/node/.pm2/logs/allin-notification-error.log
+pm_pid_path=/home/node/.pm2/pids/allin-notification.pid
+NODE_APP_INSTANCE=0
+vizion_running=false
+allin-notification={}
+NOTIFICATION_DISPATCH_URL=https://sns2.all-in.xyz:5100
+MONGO_PASS=
+LC_PAPER=ja_JP.UTF-8
+MANPATH=/opt/rh/devtoolset-2/root/usr/share/man:
+S3_EP=s3-ap-northeast-1.amazonaws.com
+LC_ADDRESS=ja_JP.UTF-8
+SSL_CERT_PATH=/home/node/ssl/cert
+LC_MONETARY=ja_JP.UTF-8
+SELINUX_ROLE_REQUESTED=
+SHELL=/bin/bash
+SSH_CLIENT=125.199.211.186 60261 22
+PERL5LIB=/opt/rh/devtoolset-2/root//usr/lib64/perl5/vendor_perl:/opt/rh/devtoolset-2/root/usr/lib/perl5:/opt/rh/devtoolset-2/root//usr/share/perl5/vendor_perl
+SELINUX_USE_CURRENT_RANGE=
+LC_NUMERIC=ja_JP.UTF-8
+BASIC_AUTH_USERNAME=allinsns
+SHARED=/var/node_notification/shared
+SSL_KEY_PATH=/home/node/ssl/server.key
+BASIC_AUTH_PASSWORD=Ke6cUCV5G8Q7P9umVf3bgLkuP4S4YeGg
+PCP_DIR=/opt/rh/devtoolset-2/root
+USER=node
+LD_LIBRARY_PATH=/opt/rh/devtoolset-2/root/usr/lib64:/opt/rh/devtoolset-2/root/usr/lib
+LC_TELEPHONE=ja_JP.UTF-8
+SSH_AUTH_SOCK=/tmp/ssh-DqAsE24372/agent.24372
+REDIS_URL=allin-redis.ir575c.0001.apne1.cache.amazonaws.com
+SSL_CA_PATH=/home/node/ssl/ca
+PATH=/opt/rh/devtoolset-2/root/usr/bin:/home/node/.nodebrew/current/bin:/home/node/.nodebrew/current/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/node/bin
+MAIL=/var/spool/mail/node
+MONGO_USER=
+LC_MESSAGES=en_US.UTF-8
+LC_IDENTIFICATION=ja_JP.UTF-8
+LC_COLLATE=en_US.UTF-8
+PWD=/var/node_notification/current
+AUTH_SERVER_URL=all-in.xyz
+MONGO_URL=mongodb://10.0.1.50:27017/sns-production,10.0.1.51:27017/sns-production,10.0.1.52:27017/sns-production
+AWS_SECRET_ACCESS_KEY=rKxc4GIh2j64DIhNleNb9urPOxo7eiTPQoXkxug1
+LANG=ja_JP.UTF-8
+LC_MEASUREMENT=ja_JP.UTF-8
+NODE_ENV=production
+SELINUX_LEVEL_REQUESTED=
+AWS_ACCESS_KEY_ID=AKIAILUS3RSKPEIIBHQA
+HOME=/home/node
+SHLVL=2
+PYTHONPATH=/opt/rh/devtoolset-2/root/usr/lib64/python2.6/site-packages:/opt/rh/devtoolset-2/root/usr/lib/python2.6/site-packages
+S3_BUCKET=sns.all-in.xyz
+LOGNAME=node
+LC_CTYPE=en_US.UTF-8
+SSH_CONNECTION=125.199.211.186 60261 10.0.3.56 22
+REDIS_PASS=
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+INFOPATH=/opt/rh/devtoolset-2/root/usr/share/info
+LC_TIME=en_US.UTF-8
+G_BROKEN_FILENAMES=1
+LC_NAME=ja_JP.UTF-8
+_=/home/node/.nodebrew/current/bin/pm2
+PM2_JSON_PROCESSING=true
+status=launching
+pm_uptime=1472511597898
+axm_actions=
+axm_monitor=[object Object]
+axm_options=[object Object]
+axm_dynamic=[object Object]
+created_at=1472511597789
+pm_id=1
+restart_time=57
+unstable_restarts=0
+versioning=[object Object]
+node_version=5.6.0
+exit_code=0
+HISTCONTROL=ignoredups
+LS_COLORS=rs=0:di=38;5;27:ln=38;5;51:mh=44;38;5;15:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=05;48;5;232;38;5;15:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;34:*.tar=38;5;9:*.tgz=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.Z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lz=38;5;9:*.xz=38;5;9:*.bz2=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.bz=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.rar=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.axv=38;5;13:*.anx=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=38;5;45:*.au=38;5;45:*.flac=38;5;45:*.mid=38;5;45:*.midi=38;5;45:*.mka=38;5;45:*.mp3=38;5;45:*.mpc=38;5;45:*.ogg=38;5;45:*.ra=38;5;45:*.wav=38;5;45:*.axa=38;5;45:*.oga=38;5;45:*.spx=38;5;45:*.xspf=38;5;45:
+SSH_TTY=/dev/pts/0
+HISTSIZE=1000
+TERM=xterm-256color
+HOSTNAME=ip-10-0-3-56
+script=app/app.js
+NOTIFICATION_MAILER_STATUS=true
+NOTIFICATION_SENDGRID_APIKEY=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
+NODE_CHANNEL_FD=3
+]0;node@ip-10-0-3-56:/var/node_notification/current[node@ip-10-0-3-56 current]$ [H[2J[node@ip-10-0-3-56 current]$ strings /proc/564/environ | grep NOTI
+NOTIFICATION_DISPATCH_URL=https://sns2.all-in.xyz:5100
+NOTIFICATION_MAILER_STATUS=true
+NOTIFICATION_SENDGRID_APIKEY=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
+]0;node@ip-10-0-3-56:/var/node_notification/current[node@ip-10-0-3-56 current]$ tail -f .ap[K[K/app/log/
+.gitkeep                   production.log-2016-06-28  production.log-2016-07-29
+production.log             production.log-2016-06-29  production.log-2016-07-30
+production.log-2016-05-30  production.log-2016-06-30  production.log-2016-07-31
+production.log-2016-05-31  production.log-2016-07-01  production.log-2016-08-01
+production.log-2016-06-01  production.log-2016-07-02  production.log-2016-08-02
+production.log-2016-06-02  production.log-2016-07-03  production.log-2016-08-03
+production.log-2016-06-03  production.log-2016-07-04  production.log-2016-08-04
+production.log-2016-06-04  production.log-2016-07-05  production.log-2016-08-05
+production.log-2016-06-05  production.log-2016-07-06  production.log-2016-08-06
+production.log-2016-06-06  production.log-2016-07-07  production.log-2016-08-07
+production.log-2016-06-07  production.log-2016-07-08  production.log-2016-08-08
+production.log-2016-06-08  production.log-2016-07-09  production.log-2016-08-09
+production.log-2016-06-09  production.log-2016-07-10  production.log-2016-08-10
+production.log-2016-06-10  production.log-2016-07-11  production.log-2016-08-11
+production.log-2016-06-11  production.log-2016-07-12  production.log-2016-08-12
+production.log-2016-06-12  production.log-2016-07-13  production.log-2016-08-13
+production.log-2016-06-13  production.log-2016-07-14  production.log-2016-08-14
+production.log-2016-06-14  production.log-2016-07-15  production.log-2016-08-15
+production.log-2016-06-15  production.log-2016-07-16  production.log-2016-08-16
+production.log-2016-06-16  production.log-2016-07-17  production.log-2016-08-17
+production.log-2016-06-17  production.log-2016-07-18  production.log-2016-08-18
+production.log-2016-06-18  production.log-2016-07-19  production.log-2016-08-19
+production.log-2016-06-19  production.log-2016-07-20  production.log-2016-08-20
+production.log-2016-06-20  production.log-2016-07-21  production.log-2016-08-21
+production.log-2016-06-21  production.log-2016-07-22  production.log-2016-08-22
+production.log-2016-06-22  production.log-2016-07-23  production.log-2016-08-23
+production.log-2016-06-23  production.log-2016-07-24  production.log-2016-08-24
+production.log-2016-06-24  production.log-2016-07-25  production.log-2016-08-25
+production.log-2016-06-25  production.log-2016-07-26  production.log-2016-08-26
+production.log-2016-06-26  production.log-2016-07-27  production.log-2016-08-27
+production.log-2016-06-27  production.log-2016-07-28  production.log-2016-08-28
+[node@ip-10-0-3-56 current]$ tail -f ./app/log/production.log[H[2J[node@ip-10-0-3-56 current]$ tail -f ./app/log/production.log
+[2016-08-29 23:01:03.389] [INFO] [default] - OPTIONS /api/v1/panels/Notification 204 - - 1.252 ms
+
+[2016-08-29 23:01:03.414] [INFO] [default] - OPTIONS /api/v1/notifications?limit=10&offset=0 204 - - 0.689 ms
+
+[2016-08-29 23:01:08.819] [INFO] [default] - GET /api/v1/panels/Notification 304 - - 4864.847 ms
+
+[2016-08-29 23:01:42.983] [INFO] [default] - OPTIONS /api/v1/dispatch/ 204 - - 0.277 ms
+
+[2016-08-29 23:01:43.000] [INFO] [default] - GET /api/v1/dispatch/ 200 38 - 0.750 ms
+
+[2016-08-29 23:03:44.310] [INFO] [default] - OPTIONS /api/v1/dispatch/ 204 - - 1.810 ms
+
+[2016-08-29 23:03:44.329] [INFO] [default] - GET /api/v1/dispatch/ 304 - - 0.414 ms
+
+[2016-08-29 23:05:31.672] [INFO] [default] - OPTIONS /api/v1/panels/Notification 204 - - 0.302 ms
+
+[2016-08-29 23:05:31.722] [INFO] [default] - GET /api/v1/dispatch/ 304 - - 0.536 ms
+
+[2016-08-29 23:06:15.738] [INFO] [default] - OPTIONS /api/v1/panels/Notification 204 - - 1.939 ms
+
+[2016-08-29 23:06:16.843] [INFO] [default] - PUT /api/v1/panels/Notification 200 194 - 1065.339 ms
+
+[2016-08-29 23:07:39.586] [INFO] [default] - OPTIONS /api/v1/panels/Notification 204 - - 0.824 ms
+
+[2016-08-29 23:07:39.599] [INFO] [default] - GET /api/v1/panels/Notification 304 - - 6024.580 ms
+
+[2016-08-29 23:07:45.754] [INFO] [default] - GET /api/v1/notifications?limit=10&offset=0 304 - - 6142.932 ms
+
+[2016-08-29 23:08:02.608] [INFO] [default] - OPTIONS /api/v1/notifications?limit=10&offset=0 204 - - 0.309 ms
+
+[2016-08-29 23:08:07.884] [INFO] [default] - GET /api/v1/panels/Notification 304 - - 5232.400 ms
+
+[2016-08-29 23:08:26.647] [INFO] [default] - OPTIONS /api/v1/notifications?limit=10&offset=0 204 - - 0.309 ms
+
+[2016-08-29 23:08:33.718] [INFO] [default] - GET /api/v1/panels/Notification 304 - - 7029.239 ms
+
+[2016-08-29 23:08:49.085] [INFO] [default] - OPTIONS /api/v1/panels/Notification 204 - - 1.360 ms
+
+[2016-08-29 23:08:52.149] [INFO] [default] - GET /api/v1/notifications?limit=10&offset=0 304 - - 2960.561 ms
+
+[2016-08-29 23:09:12.370] [INFO] [default] - OPTIONS /api/v1/dispatch/ 204 - - 0.266 ms
+
+[2016-08-29 23:09:12.508] [INFO] [default] - GET /api/v1/dispatch/ 304 - - 0.477 ms
+
+[2016-08-29 23:09:21.054] [INFO] [default] - OPTIONS /api/v1/panels/Notification 204 - - 0.266 ms
+
+[2016-08-29 23:09:22.097] [INFO] [default] - OPTIONS /api/v1/dispatch 204 - - 0.268 ms
+
+[2016-08-29 23:09:22.151] [INFO] [default] - GET /api/v1/dispatch 200 38 - 0.498 ms
+
+[2016-08-29 23:09:22.317] [INFO] [default] - OPTIONS /api/v1/panels/Notification 204 - - 0.267 ms
+
+[2016-08-29 23:09:22.327] [INFO] [default] - OPTIONS /api/v1/notifications?limit=10&offset=0 204 - - 0.193 ms
+
+[2016-08-29 23:09:24.993] [INFO] [default] - GET /api/v1/notifications?limit=10&offset=0 200 634 - 3872.296 ms
+
+[2016-08-29 23:09:25.746] [INFO] [default] - GET /api/v1/panels/Notification 304 - - 3236.783 ms
+
+[2016-08-29 23:10:28.564] [INFO] [default] - OPTIONS /api/v1/panels/Notification 204 - - 0.322 ms
+
+[2016-08-29 23:10:28.565] [INFO] [default] - OPTIONS /api/v1/notifications?limit=10&offset=0 204 - - 0.199 ms
+
+[2016-08-29 23:10:28.765] [INFO] [default] - GET /api/v1/dispatch/ 200 38 - 0.533 ms
+
+[2016-08-29 23:10:30.662] [INFO] [default] - GET /api/v1/notifications?limit=10&offset=0 200 2879 - 1895.953 ms
+
+[2016-08-29 23:10:55.145] [INFO] [default] - OPTIONS /api/v1/dispatch/ 204 - - 0.304 ms
+
+[2016-08-29 23:10:55.247] [INFO] [default] - GET /api/v1/dispatch/ 304 - - 0.863 ms
+
+[2016-08-29 23:11:22.781] [INFO] [default] - OPTIONS /api/v1/dispatch/ 204 - - 0.412 ms
+
+[2016-08-29 23:11:30.665] [INFO] [default] - GET /api/v1/panels/Notification 304 - - 7693.979 ms
+
+[2016-08-29 23:11:47.756] [INFO] [default] - OPTIONS /api/v1/notifications?limit=10&offset=0 204 - - 2.607 ms
+
+[2016-08-29 23:11:47.758] [INFO] [default] - OPTIONS /api/v1/dispatch/ 204 - - 0.426 ms
+
+[2016-08-29 23:11:47.813] [INFO] [default] - GET /api/v1/dispatch/ 304 - - 2.897 ms
+
+[2016-08-29 23:11:51.289] [INFO] [default] - GET /api/v1/panels/Notification 200 194 - 3480.618 ms
+
+[2016-08-29 23:11:59.096] [INFO] [default] - OPTIONS /api/v1/panels/Notification 204 - - 0.328 ms
+
+[2016-08-29 23:12:01.167] [INFO] [default] - GET /api/v1/notifications?limit=10&offset=0 304 - - 1132.605 ms
+
+[2016-08-29 23:12:22.658] [INFO] [default] - OPTIONS /api/v1/panels/Notification 204 - - 0.291 ms
+
+[2016-08-29 23:12:40.065] [INFO] [default] - POST /api/v1/notifications 200 528 - 30.100 ms
+
+[2016-08-29 23:12:40.086] [INFO] [default] - POST /api/v1/notifications 200 528 - 27.852 ms
+
+[2016-08-29 23:12:43.328] [INFO] [default] - OPTIONS /api/v1/notifications?limit=10&offset=0 204 - - 0.324 ms
+
+[2016-08-29 23:12:51.589] [INFO] [default] - GET /api/v1/panels/Notification 304 - - 8032.782 ms
+
+[2016-08-29 23:13:13.005] [INFO] [default] - OPTIONS /api/v1/panels/Notification 204 - - 0.296 ms
+
+[2016-08-29 23:13:13.039] [INFO] [default] - OPTIONS /api/v1/notifications?limit=10&offset=0 204 - - 0.210 ms
+
+[2016-08-29 23:13:15.051] [INFO] [default] - GET /api/v1/panels/Notification 200 194 - 1936.957 ms
+
+[2016-08-29 23:13:15.402] [INFO] [default] - GET /api/v1/notifications?limit=10&offset=0 200 530 - 2286.719 ms
+
+[2016-08-29 23:13:38.105] [INFO] [default] - OPTIONS /api/v1/panels/Notification 204 - - 0.285 ms
+
+[2016-08-29 23:13:38.106] [INFO] [default] - OPTIONS /api/v1/notifications?limit=10&offset=0 204 - - 0.268 ms
+
+[2016-08-29 23:13:40.914] [INFO] [default] - GET /api/v1/panels/Notification 200 194 - 2787.000 ms
+
+[2016-08-29 23:13:40.996] [INFO] [default] - GET /api/v1/notifications?limit=10&offset=0 304 - - 2862.112 ms
+
+[2016-08-29 23:14:21.038] [INFO] [default] - GET /api/v1/notifications?limit=10&offset=0 304 - - 3557.046 ms
+
+[2016-08-29 23:14:26.874] [INFO] [default] - OPTIONS /api/v1/notifications?limit=10&offset=0 204 - - 0.306 ms
+
+[2016-08-29 23:14:26.889] [INFO] [default] - OPTIONS /api/v1/dispatch/ 204 - - 0.210 ms
+
+[2016-08-29 23:14:31.336] [INFO] [default] - GET /api/v1/notifications?limit=10&offset=0 304 - - 4178.728 ms
+
+[2016-08-29 23:14:34.134] [INFO] [default] - OPTIONS /api/v1/dispatch/ 204 - - 0.285 ms
+
+[2016-08-29 23:14:37.486] [INFO] [default] - GET /api/v1/panels/Notification 200 194 - 3060.797 ms
+
+[2016-08-29 23:15:08.376] [INFO] [default] - POST /api/v1/notifications 200 513 - 11.798 ms
+
+[2016-08-29 23:15:08.388] [INFO] [default] - POST /api/v1/notifications 200 523 - 14.314 ms
+
+[2016-08-29 23:16:16.455] [INFO] [default] - OPTIONS /api/v1/panels/Notification 204 - - 0.280 ms
+
+[2016-08-29 23:16:16.545] [INFO] [default] - OPTIONS /api/v1/notifications?limit=10&offset=0 204 - - 0.303 ms
+
+[2016-08-29 23:16:20.474] [INFO] [default] - GET /api/v1/panels/Notification 200 194 - 3995.906 ms
+
+[2016-08-29 23:16:20.494] [INFO] [default] - GET /api/v1/notifications?limit=10&offset=0 200 1909 - 3924.741 ms
+
+^C
+]0;node@ip-10-0-3-56:/var/node_notification/current[node@ip-10-0-3-56 current]$ 

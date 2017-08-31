@@ -1,0 +1,828 @@
+[svc@ip-10-1-0-205 current]$
+[svc@ip-10-1-0-205 current]$ RAILS_ENV=staging bin/rails console
+schema_migrations: uninitialized constant SchemaMigration
+Loading staging environment (Rails 4.2.6)
+2.2.0 :001 > ObjectBasedAccessControl.disable
+Disabled object based access control
+ => true
+2.2.0 :002 > AllRecipient.find_each(&:index!)
+D, [2016-10-28T01:11:26.165272 #30913] DEBUG -- :   SOLR Request (3.5ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:26.937918 #30913] DEBUG -- :   SOLR Request (772.3ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:27.001333 #30913] DEBUG -- :   SOLR Request (3.0ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:27.761217 #30913] DEBUG -- :   SOLR Request (759.6ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:27.773533 #30913] DEBUG -- :   SOLR Request (2.4ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:28.541553 #30913] DEBUG -- :   SOLR Request (767.7ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:11:28.783142 #30913] DEBUG -- :   SOLR Request (3.0ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:29.984875 #30913] DEBUG -- :   SOLR Request (1201.5ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:11:30.056964 #30913] DEBUG -- :   SOLR Request (3.0ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:30.878359 #30913] DEBUG -- :   SOLR Request (821.2ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:30.906454 #30913] DEBUG -- :   SOLR Request (2.4ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:31.682427 #30913] DEBUG -- :   SOLR Request (775.6ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:31.692017 #30913] DEBUG -- :   SOLR Request (2.2ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:32.475766 #30913] DEBUG -- :   SOLR Request (783.5ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:11:32.589834 #30913] DEBUG -- :   SOLR Request (3.2ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:33.372080 #30913] DEBUG -- :   SOLR Request (782.0ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:11:33.435673 #30913] DEBUG -- :   SOLR Request (2.9ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:34.194302 #30913] DEBUG -- :   SOLR Request (758.4ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:11:34.272698 #30913] DEBUG -- :   SOLR Request (3.1ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:35.044085 #30913] DEBUG -- :   SOLR Request (771.1ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:11:35.115450 #30913] DEBUG -- :   SOLR Request (3.1ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:35.893792 #30913] DEBUG -- :   SOLR Request (778.0ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:11:35.969887 #30913] DEBUG -- :   SOLR Request (3.1ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:36.740714 #30913] DEBUG -- :   SOLR Request (770.6ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:11:36.840599 #30913] DEBUG -- :   SOLR Request (3.2ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:38.157480 #30913] DEBUG -- :   SOLR Request (1316.6ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:38.187553 #30913] DEBUG -- :   SOLR Request (2.8ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:38.991322 #30913] DEBUG -- :   SOLR Request (803.4ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:39.023151 #30913] DEBUG -- :   SOLR Request (2.8ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:39.777951 #30913] DEBUG -- :   SOLR Request (754.6ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:39.796461 #30913] DEBUG -- :   SOLR Request (2.6ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:40.542406 #30913] DEBUG -- :   SOLR Request (745.7ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:40.577727 #30913] DEBUG -- :   SOLR Request (2.3ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:41.359577 #30913] DEBUG -- :   SOLR Request (781.6ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:11:41.442814 #30913] DEBUG -- :   SOLR Request (3.2ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:42.170539 #30913] DEBUG -- :   SOLR Request (727.5ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:11:42.235401 #30913] DEBUG -- :   SOLR Request (2.8ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:43.007342 #30913] DEBUG -- :   SOLR Request (771.7ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:43.045180 #30913] DEBUG -- :   SOLR Request (2.8ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:43.808512 #30913] DEBUG -- :   SOLR Request (763.1ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:11:43.898805 #30913] DEBUG -- :   SOLR Request (3.3ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:44.673521 #30913] DEBUG -- :   SOLR Request (773.6ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:44.711477 #30913] DEBUG -- :   SOLR Request (2.7ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:45.875031 #30913] DEBUG -- :   SOLR Request (1163.3ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:11:45.935095 #30913] DEBUG -- :   SOLR Request (2.9ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:46.732808 #30913] DEBUG -- :   SOLR Request (797.5ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:46.756303 #30913] DEBUG -- :   SOLR Request (2.8ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:47.593308 #30913] DEBUG -- :   SOLR Request (836.8ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:47.623005 #30913] DEBUG -- :   SOLR Request (2.7ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:48.357756 #30913] DEBUG -- :   SOLR Request (734.5ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:48.374604 #30913] DEBUG -- :   SOLR Request (2.3ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:49.140949 #30913] DEBUG -- :   SOLR Request (766.1ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:49.162837 #30913] DEBUG -- :   SOLR Request (2.8ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:49.928335 #30913] DEBUG -- :   SOLR Request (765.3ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:11:49.997860 #30913] DEBUG -- :   SOLR Request (3.3ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:50.752368 #30913] DEBUG -- :   SOLR Request (754.2ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:50.777568 #30913] DEBUG -- :   SOLR Request (2.8ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:51.551343 #30913] DEBUG -- :   SOLR Request (773.4ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:51.582775 #30913] DEBUG -- :   SOLR Request (3.0ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:52.327281 #30913] DEBUG -- :   SOLR Request (744.2ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:52.362655 #30913] DEBUG -- :   SOLR Request (3.0ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:53.521500 #30913] DEBUG -- :   SOLR Request (1158.6ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:53.544927 #30913] DEBUG -- :   SOLR Request (2.8ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:54.372822 #30913] DEBUG -- :   SOLR Request (827.6ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:54.394825 #30913] DEBUG -- :   SOLR Request (2.5ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:55.140543 #30913] DEBUG -- :   SOLR Request (745.5ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:55.183584 #30913] DEBUG -- :   SOLR Request (2.9ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:55.951136 #30913] DEBUG -- :   SOLR Request (767.2ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:11:56.034759 #30913] DEBUG -- :   SOLR Request (3.0ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:56.791591 #30913] DEBUG -- :   SOLR Request (756.6ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:56.813408 #30913] DEBUG -- :   SOLR Request (2.9ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:57.580097 #30913] DEBUG -- :   SOLR Request (766.4ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:57.600047 #30913] DEBUG -- :   SOLR Request (2.6ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:58.353580 #30913] DEBUG -- :   SOLR Request (753.3ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:58.377558 #30913] DEBUG -- :   SOLR Request (2.6ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:59.170250 #30913] DEBUG -- :   SOLR Request (792.4ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:59.190482 #30913] DEBUG -- :   SOLR Request (2.9ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:11:59.937036 #30913] DEBUG -- :   SOLR Request (746.3ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:12:00.024039 #30913] DEBUG -- :   SOLR Request (2.9ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:01.205579 #30913] DEBUG -- :   SOLR Request (1181.3ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:12:01.269623 #30913] DEBUG -- :   SOLR Request (2.9ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:02.097204 #30913] DEBUG -- :   SOLR Request (827.3ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:02.120699 #30913] DEBUG -- :   SOLR Request (2.6ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:02.874602 #30913] DEBUG -- :   SOLR Request (753.7ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:02.899354 #30913] DEBUG -- :   SOLR Request (2.8ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:03.665814 #30913] DEBUG -- :   SOLR Request (766.2ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:03.696762 #30913] DEBUG -- :   SOLR Request (3.1ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:04.455216 #30913] DEBUG -- :   SOLR Request (758.2ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:12:04.526158 #30913] DEBUG -- :   SOLR Request (2.6ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:05.281297 #30913] DEBUG -- :   SOLR Request (754.9ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:05.306845 #30913] DEBUG -- :   SOLR Request (2.5ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:06.126099 #30913] DEBUG -- :   SOLR Request (819.0ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:06.146187 #30913] DEBUG -- :   SOLR Request (2.8ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:06.933394 #30913] DEBUG -- :   SOLR Request (786.9ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:12:07.018239 #30913] DEBUG -- :   SOLR Request (3.3ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:07.784033 #30913] DEBUG -- :   SOLR Request (765.5ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:12:07.860999 #30913] DEBUG -- :   SOLR Request (2.8ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:08.935927 #30913] DEBUG -- :   SOLR Request (1074.7ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:12:09.007279 #30913] DEBUG -- :   SOLR Request (2.7ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:09.829716 #30913] DEBUG -- :   SOLR Request (822.2ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:09.861776 #30913] DEBUG -- :   SOLR Request (3.1ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:10.621435 #30913] DEBUG -- :   SOLR Request (759.4ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:10.663308 #30913] DEBUG -- :   SOLR Request (2.8ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:11.439063 #30913] DEBUG -- :   SOLR Request (775.5ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:11.458396 #30913] DEBUG -- :   SOLR Request (2.8ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:12.199787 #30913] DEBUG -- :   SOLR Request (741.1ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:12.235988 #30913] DEBUG -- :   SOLR Request (3.1ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:13.015215 #30913] DEBUG -- :   SOLR Request (779.0ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:13.035710 #30913] DEBUG -- :   SOLR Request (2.8ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:13.786033 #30913] DEBUG -- :   SOLR Request (750.0ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:13.821247 #30913] DEBUG -- :   SOLR Request (2.7ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:14.576751 #30913] DEBUG -- :   SOLR Request (755.2ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:14.602985 #30913] DEBUG -- :   SOLR Request (3.0ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:15.384301 #30913] DEBUG -- :   SOLR Request (781.0ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:15.421570 #30913] DEBUG -- :   SOLR Request (3.1ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:16.749973 #30913] DEBUG -- :   SOLR Request (1328.0ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:12:16.837527 #30913] DEBUG -- :   SOLR Request (4.7ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:17.706882 #30913] DEBUG -- :   SOLR Request (869.0ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:17.737638 #30913] DEBUG -- :   SOLR Request (3.0ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:18.491800 #30913] DEBUG -- :   SOLR Request (753.9ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:18.525677 #30913] DEBUG -- :   SOLR Request (16.3ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:19.274221 #30913] DEBUG -- :   SOLR Request (748.2ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:19.298595 #30913] DEBUG -- :   SOLR Request (2.9ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:20.072044 #30913] DEBUG -- :   SOLR Request (773.1ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:20.093453 #30913] DEBUG -- :   SOLR Request (2.5ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:20.836067 #30913] DEBUG -- :   SOLR Request (742.4ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:20.858958 #30913] DEBUG -- :   SOLR Request (2.9ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:21.634387 #30913] DEBUG -- :   SOLR Request (775.2ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:21.658966 #30913] DEBUG -- :   SOLR Request (2.7ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:22.411536 #30913] DEBUG -- :   SOLR Request (752.3ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:12:22.478847 #30913] DEBUG -- :   SOLR Request (2.6ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:23.281820 #30913] DEBUG -- :   SOLR Request (802.7ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:23.293392 #30913] DEBUG -- :   SOLR Request (2.4ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:24.366422 #30913] DEBUG -- :   SOLR Request (1072.7ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:12:24.448837 #30913] DEBUG -- :   SOLR Request (3.3ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:25.273434 #30913] DEBUG -- :   SOLR Request (824.3ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:12:25.391505 #30913] DEBUG -- :   SOLR Request (2.7ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:26.154013 #30913] DEBUG -- :   SOLR Request (762.3ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:26.177146 #30913] DEBUG -- :   SOLR Request (2.8ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:26.927747 #30913] DEBUG -- :   SOLR Request (750.3ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:26.965904 #30913] DEBUG -- :   SOLR Request (2.9ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:27.737138 #30913] DEBUG -- :   SOLR Request (771.0ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:12:27.807195 #30913] DEBUG -- :   SOLR Request (2.8ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:28.560214 #30913] DEBUG -- :   SOLR Request (752.8ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:28.590598 #30913] DEBUG -- :   SOLR Request (2.7ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:29.366753 #30913] DEBUG -- :   SOLR Request (775.9ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:12:29.445212 #30913] DEBUG -- :   SOLR Request (2.6ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:30.200525 #30913] DEBUG -- :   SOLR Request (755.1ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:12:30.284612 #30913] DEBUG -- :   SOLR Request (3.1ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:31.058881 #30913] DEBUG -- :   SOLR Request (774.0ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:31.079933 #30913] DEBUG -- :   SOLR Request (2.6ms)  [ path=update parameters={} ]
+D, [2016-10-28T01:12:32.311953 #30913] DEBUG -- :   SOLR Request (1231.8ms)  [ path=update parameters={} ]
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+Disabled object based access control
+Enabled object based access control
+D, [2016-10-28T01:12:32.412312 #30913] DEBUG -- :   SOLR Request (7.0ms)  [ path=update parameters={} ]
+RSolr::Error::Http: RSolr::Error::Http - 400 Bad Request
+Error: 'Exception writing document id AllRecipient 05ba28ea7a3911e69f07060fa9c2d21f to the index; possible analysis error.','code'=>400}}
+
+URI: http://127.0.0.1:8983/solr/default/update?wt=ruby
+Request Headers: {"Content-Type"=>"text/xml"}
+Request Data: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><add><doc><field name=\"id\">AllRecipient 05ba28ea7a3911e69f07060fa9c2d21f</field><field name=\"type\">AllRecipient</field><field name=\"type\">ActiveRecord::Base</field><field name=\"class_name\">AllRecipient</field><field name=\"recipient_type_s\">company_contact</field><field name=\"company_id_s\">fb56aab2e9ac11e58398060fa9c2d21f</field><field name=\"sourceable_s\">CustomerRevision32bf14400abd11e695e8060fa9c2d21f</field><field name=\"customer_id_s\">32bb17c80abd11e695e8060fa9c2d21f</field><field name=\"division_ids_sm\">c443d56a336511e68e42060fa9c2d21f</field><field name=\"division_ids_sm\">f439885c590b11e6be8e060fa9c2d21f</field><field name=\"division_ids_sm\">c2fdc3a6eff311e599bc060fa9c2d21f</field><field name=\"division_ids_sm\">ef9a7528eff111e599fd060fa9c2d21f</field><field name=\"status_ids_sm\">fb5b5a58e9ac11e58398060fa9c2d21f</field><field name=\"status_ids_sm\">fb5ad9fce9ac11e58398060fa9c2d21f</field><field name=\"status_ids_sm\">fb5b5a58e9ac11e58398060fa9c2d21f</field><field name=\"status_ids_sm\">fb5b5a58e9ac11e58398060fa9c2d21f</field><field name=\"is_client_b\">true</field><field name=\"is_sale_destination_b\">true</field><field name=\"is_vendor_b\">true</field><field name=\"first_name_s\">々苑</field><field name=\"last_name_s\">叙</field><field name=\"full_name_s\">叙々苑</field><field name=\"full_name_kana_s\">ｼﾞｮｼﾞｮｴﾝ</field><field name=\"country_s\">jp</field><field name=\"postal_code_s\">1040061</field><field name=\"region_s\">東京都</field><field name=\"locality_s\">中央区</field><field name=\"street_address_s\">銀座</field><field name=\"company_name_s\">株式会社　肉屋</field><field name=\"company_name_kana_s\">ニクヤ</field><field name=\"company_display_name_s\">みーと</field><field name=\"representative_first_name_s\">鹿馬</field><field name=\"representative_last_name_s\">牛豚</field><field name=\"representative_full_name_s\">牛豚鹿馬</field><field name=\"company_url_s\">meat.meet</field><field name=\"business_description_s\">さばくことはやらない</field><field name=\"business_type_detail_s\">肉を売っている</field><field name=\"business_type_sm\">jp-j9700</field><field name=\"branch_name_s\">銀座</field><field name=\"branch_display_name_s\">肉屋銀座</field><field name=\"branch_printing_name_s\">株式会社　肉屋銀座</field><field name=\"branch_honorific_title_id_s\">6ee0a040f61f11e59bb4060fa9c2d21f</field><field name=\"branch_honorific_title_name_s\">様</field><field name=\"branch_description_s\">ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２０２３ＭＡＸ２２</field><field name=\"branch_tag_name_sm\">肉</field><field name=\"is_retired_b\">false</field></doc></add>"
+
+Backtrace: /var/www/allin/shared/bundle/ruby/2.2.0/gems/rsolr-1.1.1/lib/rsolr/client.rb:288:in `adapt_response'
+/var/www/allin/shared/bundle/ruby/2.2.0/gems/rsolr-1.1.1/lib/rsolr/client.rb:189:in `execute'
+/var/www/allin/shared/bundle/ruby/2.2.0/gems/rsolr-1.1.1/lib/rsolr/client.rb:175:in `send_and_receive'
+/var/www/allin/shared/bundle/ruby/2.2.0/gems/sunspot_rails-2.2.5/lib/sunspot/rails/solr_instrumentation.rb:16:in `block in send_and_receive_with_as_instrumentation'
+/var/www/allin/shared/bundle/ruby/2.2.0/gems/activesupport-4.2.6/lib/active_support/notifications.rb:164:in `block in instrument'
+/var/www/allin/shared/bundle/ruby/2.2.0/gems/activesupport-4.2.6/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/var/www/allin/shared/bundle/ruby/2.2.0/gems/activesupport-4.2.6/lib/active_support/notifications.rb:164:in `instrument'
+/var/www/allin/shared/bundle/ruby/2.2.0/gems/sunspot_rails-2.2.5/lib/sunspot/rails/solr_instrumentation.rb:15:in `send_and_receive_with_as_instrumentation'
+(eval):2:in `post'
+/var/www/allin/shared/bundle/ruby/2.2.0/gems/rsolr-1.1.1/lib/rsolr/client.rb:84:in `update'
+/var/www/allin/shared/bundle/ruby/2.2.0/gems/rsolr-1.1.1/lib/rsolr/client.rb:104:in `add'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/rsolr-1.1.1/lib/rsolr/client.rb:288:in `adapt_response'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/rsolr-1.1.1/lib/rsolr/client.rb:189:in `execute'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/rsolr-1.1.1/lib/rsolr/client.rb:175:in `send_and_receive'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/sunspot_rails-2.2.5/lib/sunspot/rails/solr_instrumentation.rb:16:in `block in send_and_receive_with_as_instrumentation'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/activesupport-4.2.6/lib/active_support/notifications.rb:164:in `block in instrument'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/activesupport-4.2.6/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/activesupport-4.2.6/lib/active_support/notifications.rb:164:in `instrument'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/sunspot_rails-2.2.5/lib/sunspot/rails/solr_instrumentation.rb:15:in `send_and_receive_with_as_instrumentation'
+	from (eval):2:in `post'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/rsolr-1.1.1/lib/rsolr/client.rb:84:in `update'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/rsolr-1.1.1/lib/rsolr/client.rb:104:in `add'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/sunspot-2.2.5/lib/sunspot/indexer.rb:127:in `add_documents'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/sunspot-2.2.5/lib/sunspot/indexer.rb:134:in `add_batch_documents'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/sunspot-2.2.5/lib/sunspot/indexer.rb:26:in `add'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/sunspot-2.2.5/lib/sunspot/session.rb:91:in `index'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/sunspot-2.2.5/lib/sunspot/session.rb:98:in `index!'
+... 1 levels...
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/sunspot-2.2.5/lib/sunspot.rb:196:in `index!'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/sunspot_rails-2.2.5/lib/sunspot/rails/searchable.rb:441:in `solr_index!'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/activerecord-4.2.6/lib/active_record/relation/batches.rb:51:in `block (2 levels) in find_each'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/activerecord-4.2.6/lib/active_record/relation/batches.rb:51:in `each'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/activerecord-4.2.6/lib/active_record/relation/batches.rb:51:in `block in find_each'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/activerecord-4.2.6/lib/active_record/relation/batches.rb:124:in `find_in_batches'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/activerecord-4.2.6/lib/active_record/relation/batches.rb:50:in `find_each'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/activerecord-4.2.6/lib/active_record/querying.rb:9:in `find_each'
+	from (irb):2
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/railties-4.2.6/lib/rails/commands/console.rb:110:in `start'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/railties-4.2.6/lib/rails/commands/console.rb:9:in `start'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/railties-4.2.6/lib/rails/commands/commands_tasks.rb:68:in `console'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/railties-4.2.6/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+	from /var/www/allin/shared/bundle/ruby/2.2.0/gems/railties-4.2.6/lib/rails/commands.rb:17:in `<top (required)>'
+	from bin/rails:4:in `require'
+	from bin/rails:4:in `<main>'2.2.0 :003 >

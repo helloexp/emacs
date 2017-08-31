@@ -1,0 +1,123 @@
+              Amazon Linux - init Enviroment (Ruby, RoR)
+              ==========================================
+
+
+Table of Contents
+=================
+1 user 作成 
+2 sudoer file書き換え 
+3 初期 install 
+4 rbenv install 
+5 ruby setting 
+6 .gemrc 
+7 gem install 
+
+
+
+
+1 user 作成 
+----------------------------------------------------------------
+    $ sudo su - 
+
+    $ adduser mruby
+    $ passwd mruby
+    murby3826
+
+    $ usermod -G ec2-user mruby
+
+
+
+
+2 sudoer file書き換え 
+----------------------------------------------------------------
+    $ chmod 700 /etc/sudoers
+    $ vim /etc/sudoers
+    ----------------------------------------------------------------
+    99行目 : mruby  ALL=(ALL)  ALL
+    ----------------------------------------------------------------
+
+    $ chmod 440 /etc/sudoers
+
+
+
+
+3 初期 install 
+----------------------------------------------------------------
+    su - mruby
+
+    sudo yum install -y emacs
+    sudo yum install -y ruby-devel rubygems-devel
+    sudo yum install -y git make gcc gcc-c++
+    sudo yum install -y libyaml-devel libffi-devel libicu-devel zlib-devel readline-devel
+    sudo yum install -y sqlite-devel
+    sudo yum install -y openssl openssl-devel gdbm gdbm-devel
+    sudo yum install -y libxml2 libxml2-devel
+    sudo yum install -y libxslt libxslt-devel
+    sudo yum install -y mysql mysql-devel
+
+
+
+
+4 rbenv install 
+----------------------------------------------------------------
+    $ vim ./rbenv-install.sh
+    $ chmod 755 ./rbenv-install.sh
+
+    ----------------------------------------------------------------
+    MY_GROUP="ec2-user"
+    if [ "$MY_GROUP" = "" ] ; then
+        echo '!!! undefined variable MY_GROUP.'
+        echo '!!!'
+        echo '!!! ex.) MY_GROUP=staff'
+        echo '!!!'
+        exit 1
+    fi
+ 
+    cd /usr/local
+    git clone git://github.com/sstephenson/rbenv.git rbenv
+    mkdir rbenv/shims rbenv/versions
+    chgrp -R $MY_GROUP rbenv
+    chmod -R g+rwxX rbenv
+ 
+    git clone git://github.com/sstephenson/ruby-build.git ruby-build
+    cd ruby-build
+    ./install.sh
+ 
+    echo 'export RBENV_ROOT="/usr/local/rbenv"'     >> /etc/profile.d/rbenv.sh
+    echo 'export PATH="/usr/local/rbenv/bin:$PATH"' >> /etc/profile.d/rbenv.sh
+    echo 'eval "$(rbenv init -)"'                   >> /etc/profile.d/rbenv.sh
+    ----------------------------------------------------------------
+
+    $ sudo bash ./rbenv_install.sh$
+
+
+
+
+5 ruby setting 
+----------------------------------------------------------------
+    $ rbenv install 2.2.0
+    $ rbenv global 2.2.0
+
+
+
+
+6 .gemrc 
+----------------------------------------------------------------
+    $ vim ~/.gemrc
+    ----------------------------------------------------------------
+    install: --no-rdoc --no-ri
+    update:  --no-rdoc --no-ri
+    ----------------------------------------------------------------
+
+
+
+
+7 gem install 
+----------------------------------------------------------------
+    gem install bundle bundler io-console
+    gem install sqlite3 mysql2
+    gem install therubyracer
+    gem install nokogiri -- --use-system-libraries
+
+    gem install rails --version 4.2.0
+

@@ -1,0 +1,12 @@
+var kue = require('kue'),
+
+var jobs = kue.createQueue();
+
+app.post('/', function(req, res, next) {
+   var jobArgs = req.body,  job;
+
+    job = jobs.create('bessel-filter-image', jobArgs).save();
+
+    job
+      .on('complete', function(result) { //whatever you want to do })
+      .on('failed', function() { console.log(job.id); });

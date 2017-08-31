@@ -1,0 +1,260 @@
+require "rails_helper"
+
+module MailDelivery # rubocop:disable all
+  describe MarketingRegisteredRecipientExtractor do
+    using RSpec::Parameterized::TableSyntax
+
+    before(:all) { AllRecipient.remove_all_from_index! }
+    after(:all) { AllRecipient.remove_all_from_index! }
+
+    let(:instance) { described_class.new(job) }
+
+    let(:parent) do
+      create(
+        :step_mail_delivery_setting_parent,
+        company: company,
+        mail_delivery_base_date_type:     base_date_type,
+        base_date_use_month_day:          use_month_day,
+        base_date_selectable:             marketing_plan
+      )
+    end
+
+    let(:setting) do
+      create(
+        :step_mail_delivery_setting_child,
+        parent: parent,
+        base_date_schedule_type:          schedule_type,
+        base_date_before_or_after_number: before_or_after_number,
+        base_date_on_weekday:             on_weekday,
+        base_date_on_day:                 on_day
+      )
+    end
+
+    let(:company)                { actor.company }
+    let(:base_date_type)         { MailDeliveryBaseDateType.find_by_code("marketing_registered") }
+    let(:use_month_day)          { false }
+    let(:schedule_type)          { "on_that_day" }
+    let(:before_or_after_number) { nil }
+    let(:on_weekday)             { nil }
+    let(:on_day)                 { nil }
+    let(:process_on)             { Time.zone.local(2016, 1, 1).to_i }
+
+    describe "#execute" do
+      subject { instance.execute }
+
+      shared_examples "returns Array[MailDeliveryRecipient]" do
+        it { is_expected.to be_a(Array) }
+        its(:first) { is_expected.to be_a(MailDeliveryRecipient) }
+        its("first.mail_delivery_job.hex_id") { is_expected.to eq(job.hex_id) }
+        its("first.mail_addressable.hex_id") { is_expected.to eq(addressable.hex_id) }
+        its("first.base_dateable.hex_id") { is_expected.to eq(marketing_plan_customer.hex_id) }
+      end
+
+      shared_examples "extracting recipients by on that day" do
+        let(:schedule_type) { "on_that_day" }
+
+        where(:created_at, :process_on, :use_month_day, :before_or_after_number, :on_weekday, :on_day, :expected) do
+          Time.zone.local(1976, 1, 1).to_i | Time.zone.local(1976, 1, 1).to_i | false | nil | nil | nil | 1
+          Time.zone.local(1976, 1, 1).to_i | Time.zone.local(2016, 1, 1).to_i | false | nil | nil | nil | 0
+          Time.zone.local(1976, 1, 1).to_i | Time.zone.local(2016, 1, 1).to_i | true | nil | nil | nil | 1
+          Time.zone.local(1976, 1, 1).to_i | Time.zone.local(2016, 1, 2).to_i | true | nil | nil | nil | 0
+        end
+
+        with_them do
+          its(:count) { is_expected.to match(expected) }
+        end
+      end
+
+      shared_examples "extracting recipients by after day" do
+        let(:schedule_type) { "after_day" }
+
+        where(:created_at, :process_on, :use_month_day, :before_or_after_number, :on_weekday, :on_day, :expected) do
+          Time.zone.local(1976, 1, 1).to_i | Time.zone.local(1976, 1, 2).to_i | false | 1 | nil | nil | 1
+          Time.zone.local(1976, 1, 1).to_i | Time.zone.local(2016, 1, 2).to_i | false | 1 | nil | nil | 0
+          Time.zone.local(1976, 1, 1).to_i | Time.zone.local(2016, 1, 2).to_i | true | 1 | nil | nil | 1
+          Time.zone.local(1976, 1, 1).to_i | Time.zone.local(2016, 1, 1).to_i | true | 1 | nil | nil | 0
+        end
+
+        with_them do
+          its(:count) { is_expected.to match(expected) }
+        end
+      end
+
+      shared_examples "extracting recipients by before day" do
+        let(:schedule_type) { "before_day" }
+
+        where(:created_at, :process_on, :use_month_day, :before_or_after_number, :on_weekday, :on_day, :expected) do
+          Time.zone.local(1976, 1, 1).to_i | Time.zone.local(1975, 12, 31).to_i | false | 1 | nil | nil | 1
+          Time.zone.local(1976, 1, 1).to_i | Time.zone.local(2015, 12, 31).to_i | false | 1 | nil | nil | 0
+          Time.zone.local(1976, 1, 1).to_i | Time.zone.local(2015, 12, 31).to_i | true | 1 | nil | nil | 1
+          Time.zone.local(1976, 1, 1).to_i | Time.zone.local(2015,  1,  1).to_i | true | 1 | nil | nil | 0
+        end
+
+        with_them do
+          its(:count) { is_expected.to match(expected) }
+        end
+      end
+
+      shared_examples "extracting recipients by after month" do
+        let(:schedule_type) { "after_month" }
+
+        where(:created_at, :process_on, :use_month_day, :before_or_after_number, :on_weekday, :on_day, :expected) do
+          Time.zone.local(2000, 1,  1).to_i | Time.zone.local(2000, 2,  1).to_i | false | 1 | nil | nil | 1
+          Time.zone.local(2000, 1,  1).to_i | Time.zone.local(2000, 2,  2).to_i | false | 1 | nil | nil | 0
+          Time.zone.local(2000, 1,  1).to_i | Time.zone.local(2015, 2,  1).to_i | true | 1 | nil | nil | 1
+          Time.zone.local(2000, 1,  1).to_i | Time.zone.local(2015, 2,  2).to_i | true | 1 | nil | nil | 0
+          Time.zone.local(2000, 1, 29).to_i | Time.zone.local(2000, 2, 29).to_i | false | 1 | nil | nil | 1
+          Time.zone.local(2000, 1, 31).to_i | Time.zone.local(2000, 2, 29).to_i | false | 1 | nil | nil | 0
+          Time.zone.local(2000, 1, 29).to_i | Time.zone.local(2004, 2, 29).to_i | true | 1 | nil | nil | 1
+          Time.zone.local(2000, 1, 31).to_i | Time.zone.local(2004, 2, 29).to_i | true | 1 | nil | nil | 0
+        end
+
+        with_them do
+          its(:count) { is_expected.to match(expected) }
+        end
+      end
+
+      shared_examples "extracting recipients by before month" do
+        let(:schedule_type) { "before_month" }
+
+        where(:created_at, :process_on, :use_month_day, :before_or_after_number, :on_weekday, :on_day, :expected) do
+          Time.zone.local(2000, 3,  1).to_i | Time.zone.local(2000, 2,  1).to_i | false | 1 | nil | nil | 1
+          Time.zone.local(2000, 3,  1).to_i | Time.zone.local(2000, 2,  2).to_i | false | 1 | nil | nil | 0
+          Time.zone.local(2000, 3,  1).to_i | Time.zone.local(2015, 2,  1).to_i | true | 1 | nil | nil | 1
+          Time.zone.local(2000, 3,  1).to_i | Time.zone.local(2015, 2,  2).to_i | true | 1 | nil | nil | 0
+          Time.zone.local(2000, 3, 29).to_i | Time.zone.local(2000, 2, 29).to_i | false | 1 | nil | nil | 1
+          Time.zone.local(2000, 3, 31).to_i | Time.zone.local(2000, 2, 29).to_i | false | 1 | nil | nil | 0
+          Time.zone.local(2000, 3, 29).to_i | Time.zone.local(2004, 2, 29).to_i | true | 1 | nil | nil | 1
+          Time.zone.local(2000, 3, 31).to_i | Time.zone.local(2004, 2, 29).to_i | true | 1 | nil | nil | 0
+        end
+
+        with_them do
+          its(:count) { is_expected.to match(expected) }
+        end
+      end
+
+      shared_examples "extracting recipients by on weekday after week" do
+        let(:schedule_type) { "on_weekday_after_week" }
+
+        where(:created_at, :process_on, :use_month_day, :before_or_after_number, :on_weekday, :on_day, :expected) do
+          Time.zone.local(1975, 12, 21).to_i | Time.zone.local(1976, 1, 1).to_i | false | 1 | "thursday" | nil | 1
+          Time.zone.local(1975, 12, 27).to_i | Time.zone.local(1976, 1, 1).to_i | false | 1 | "thursday" | nil | 1
+          Time.zone.local(1975, 12, 20).to_i | Time.zone.local(1976, 1, 1).to_i | false | 1 | "thursday" | nil | 0
+          Time.zone.local(1975, 12, 28).to_i | Time.zone.local(1976, 1, 1).to_i | false | 1 | "thursday" | nil | 0
+          Time.zone.local(1975, 12, 21).to_i | Time.zone.local(1976, 1, 1).to_i | false | 1 | "sunday" | nil | 0
+          Time.zone.local(1975, 12, 21).to_i | Time.zone.local(1976, 1, 2).to_i | false | 1 | "thursday" | nil | 0
+          Time.zone.local(1975, 12, 20).to_i | Time.zone.local(2016, 1, 1).to_i | true | 1 | "friday" | nil | 1
+          Time.zone.local(1975, 12, 26).to_i | Time.zone.local(2016, 1, 1).to_i | true | 1 | "friday" | nil | 1
+          Time.zone.local(1975, 12, 19).to_i | Time.zone.local(2016, 1, 1).to_i | true | 1 | "friday" | nil | 0
+          Time.zone.local(1975, 12, 27).to_i | Time.zone.local(2016, 1, 1).to_i | true | 1 | "friday" | nil | 0
+          Time.zone.local(1975, 12, 20).to_i | Time.zone.local(2016, 1, 1).to_i | true | 1 | "sunday" | nil | 0
+          Time.zone.local(1975, 12, 20).to_i | Time.zone.local(2016, 1, 2).to_i | true | 1 | "friday" | nil | 0
+        end
+
+        with_them do
+          its(:count) { is_expected.to match(expected) }
+        end
+      end
+
+      shared_examples "extracting recipients by on weekday before week" do
+        let(:schedule_type) { "on_weekday_before_week" }
+
+        where(:created_at, :process_on, :use_month_day, :before_or_after_number, :on_weekday, :on_day, :expected) do
+          Time.zone.local(1976, 1,  4).to_i | Time.zone.local(1976, 1, 1).to_i | false | 1 | "thursday" | nil | 1
+          Time.zone.local(1976, 1, 10).to_i | Time.zone.local(1976, 1, 1).to_i | false | 1 | "thursday" | nil | 1
+          Time.zone.local(1976, 1,  3).to_i | Time.zone.local(1976, 1, 1).to_i | false | 1 | "thursday" | nil | 0
+          Time.zone.local(1976, 1, 11).to_i | Time.zone.local(1976, 1, 1).to_i | false | 1 | "thursday" | nil | 0
+          Time.zone.local(1976, 1,  4).to_i | Time.zone.local(1976, 1, 1).to_i | false | 1 | "sunday"   | nil | 0
+          Time.zone.local(1976, 1,  4).to_i | Time.zone.local(1976, 1, 2).to_i | false | 1 | "thursday" | nil | 0
+          Time.zone.local(1976, 1,  3).to_i | Time.zone.local(2016, 1, 1).to_i | true | 1 | "friday"   | nil | 1
+          Time.zone.local(1976, 1,  9).to_i | Time.zone.local(2016, 1, 1).to_i | true | 1 | "friday"   | nil | 1
+          Time.zone.local(1976, 1,  2).to_i | Time.zone.local(2016, 1, 1).to_i | true | 1 | "friday"   | nil | 0
+          Time.zone.local(1976, 1, 10).to_i | Time.zone.local(2016, 1, 1).to_i | true | 1 | "friday"   | nil | 0
+          Time.zone.local(1976, 1,  3).to_i | Time.zone.local(2016, 1, 1).to_i | true | 1 | "sunday"   | nil | 0
+          Time.zone.local(1976, 1,  3).to_i | Time.zone.local(2016, 1, 2).to_i | true | 1 | "friday"   | nil | 0
+        end
+
+        with_them do
+          its(:count) { is_expected.to match(expected) }
+        end
+      end
+
+      shared_examples "extracting recipients by on day after month" do
+        let(:schedule_type) { "on_day_after_month" }
+
+        where(:created_at, :process_on, :use_month_day, :before_or_after_number, :on_weekday, :on_day, :expected) do
+          Time.zone.local(1975, 12,  1).to_i | Time.zone.local(1976, 1, 2).to_i | false | 1 | nil | 2 | 1
+          Time.zone.local(1975, 12, 31).to_i | Time.zone.local(1976, 1, 2).to_i | false | 1 | nil | 2 | 1
+          Time.zone.local(1975, 11, 30).to_i | Time.zone.local(1976, 1, 2).to_i | false | 1 | nil | 2 | 0
+          Time.zone.local(1976,  1,  1).to_i | Time.zone.local(1976, 1, 2).to_i | false | 1 | nil | 2 | 0
+          Time.zone.local(1975, 12,  1).to_i | Time.zone.local(1976, 1, 3).to_i | false | 1 | nil | 2 | 0
+          Time.zone.local(1975, 12,  1).to_i | Time.zone.local(2016, 1, 2).to_i | true  | 1 | nil | 2 | 1
+          Time.zone.local(1975, 12, 31).to_i | Time.zone.local(2016, 1, 2).to_i | true  | 1 | nil | 2 | 1
+          Time.zone.local(1975, 11, 30).to_i | Time.zone.local(2016, 1, 2).to_i | true  | 1 | nil | 2 | 0
+          Time.zone.local(1976,  1,  1).to_i | Time.zone.local(2016, 1, 2).to_i | true  | 1 | nil | 2 | 0
+          Time.zone.local(1975, 12,  1).to_i | Time.zone.local(2016, 1, 3).to_i | true  | 1 | nil | 2 | 0
+        end
+
+        with_them do
+          its(:count) { is_expected.to match(expected) }
+        end
+      end
+
+      shared_examples "extracting recipients by on day before month" do
+        let(:schedule_type) { "on_day_before_month" }
+
+        where(:created_at, :process_on, :use_month_day, :before_or_after_number, :on_weekday, :on_day, :expected) do
+          Time.zone.local(1976, 2,  1).to_i | Time.zone.local(1976, 1, 2).to_i | false | 1 | nil | 2 | 1
+          Time.zone.local(1976, 2, 28).to_i | Time.zone.local(1976, 1, 2).to_i | false | 1 | nil | 2 | 1
+          Time.zone.local(1976, 1, 31).to_i | Time.zone.local(1976, 1, 2).to_i | false | 1 | nil | 2 | 0
+          Time.zone.local(1976, 3,  1).to_i | Time.zone.local(1976, 1, 2).to_i | false | 1 | nil | 2 | 0
+          Time.zone.local(1976, 2,  1).to_i | Time.zone.local(1976, 1, 3).to_i | false | 1 | nil | 2 | 0
+          Time.zone.local(1976, 2,  1).to_i | Time.zone.local(2016, 1, 2).to_i | true  | 1 | nil | 2 | 1
+          Time.zone.local(1976, 2, 28).to_i | Time.zone.local(2016, 1, 2).to_i | true  | 1 | nil | 2 | 1
+          Time.zone.local(1976, 1, 31).to_i | Time.zone.local(2016, 1, 2).to_i | true  | 1 | nil | 2 | 0
+          Time.zone.local(1976, 3,  1).to_i | Time.zone.local(2016, 1, 2).to_i | true  | 1 | nil | 2 | 0
+          Time.zone.local(1976, 2,  1).to_i | Time.zone.local(2016, 1, 3).to_i | true  | 1 | nil | 2 | 0
+        end
+
+        with_them do
+          its(:count) { is_expected.to match(expected) }
+        end
+      end
+
+      context "when a person exists" do
+        let(:person)                  { marketing_plan_customer.customer.customerable }
+        let(:marketing_plan_customer) { marketing_plan.marketing_plan_customers[0]}
+        let!(:job)                    { create(:mail_delivery_job, mail_delivery_setting: setting, process_on: process_on) }
+        let(:marketing_plan)          { create :marketing_plan, company: actor.company, created_at: created_at }
+        let(:recipient) do
+          id = create(:all_recipient, :individual_customer, company: company, origin_person: person, sourceable: person.customer).id
+          AllRecipient.find(id)
+        end
+        let(:addressable) { recipient.mail_addressable }
+
+        before { recipient.index! }
+        after { recipient.remove_from_index }
+
+        context "when execute returns a recipients" do
+          let(:schedule_type) { "on_that_day" }
+          let(:created_at)     { Time.zone.local(1970, 1, 1).to_i }
+          let(:process_on)    { Time.zone.local(1970, 1, 1).to_i }
+
+          it_behaves_like "returns Array[MailDeliveryRecipient]"
+        end
+
+        describe "#count" do
+          it_behaves_like "extracting recipients by on that day"
+          it_behaves_like "extracting recipients by before day"
+          it_behaves_like "extracting recipients by after day"
+          it_behaves_like "extracting recipients by before month"
+          it_behaves_like "extracting recipients by after month"
+          it_behaves_like "extracting recipients by on weekday before week"
+          it_behaves_like "extracting recipients by on weekday after week"
+          it_behaves_like "extracting recipients by on day before month"
+          it_behaves_like "extracting recipients by on day after month"
+        end
+      end
+    end
+  end
+end

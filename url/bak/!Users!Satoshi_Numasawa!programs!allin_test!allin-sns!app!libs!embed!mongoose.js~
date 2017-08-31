@@ -1,0 +1,21 @@
+function insert(site_datas, done) {
+    return new Promise((resolve, reject) => {
+        Embed.create({
+            url:          site_datas.url          ?  site_datas.url          :  null,
+            site_name:    site_datas.name         ?  site_datas.site_name    :  null,
+            description:  site_datas.description  ?  site_datas.description  :  null
+        }, (err, wrote_embed) => {
+            if (err || !wrote_embed)  {
+                console.log('Error : ------------------------------------------------------------')
+                // logger.error(err.message);
+                reject()
+                return;
+            } else {
+                console.log('wrote: ------------------------------------------------------------')
+                // console.log(wrote_embed)
+                resolve(wrote_embed)
+                return
+            }
+        });
+    });
+}

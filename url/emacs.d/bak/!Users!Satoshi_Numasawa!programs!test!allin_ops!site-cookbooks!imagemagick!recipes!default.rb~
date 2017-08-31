@@ -1,0 +1,17 @@
+#
+# Cookbook Name:: gcc
+# Recipe:: default
+#
+
+bash 'add_epel' do
+  user 'root'
+  code <<-EOC
+    sudo wget http://people.centos.org/tru/devtools-2/devtools-2.repo -O /etc/yum.repos.d/devtools-2.repo
+    scl enable devtoolset-2 bash
+  EOC
+end
+
+package "devtoolset-2-gcc"
+package "devtoolset-2-binutils"
+package "devtoolset-2-gcc-c++"
+package "devtoolset-2-gcc-gfortran"

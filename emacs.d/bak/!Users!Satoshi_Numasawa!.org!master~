@@ -1,0 +1,24 @@
+.*....**.......................
+
+Pending: (Failures listed here are expected and do not affect your suite's status)
+
+  1) Comment add some examples to (or delete) /vagrant/uniqlo-hashtag/spec/models/comment_spec.rb
+     # Not yet implemented
+     # ./spec/models/comment_spec.rb:4
+
+  2) Medium add some examples to (or delete) /vagrant/uniqlo-hashtag/spec/models/medium_spec.rb
+     # Not yet implemented
+     # ./spec/models/medium_spec.rb:4
+
+  3) UserAccount self.find_and_save Facebookアカウント Facebookアカウント情報が作成される
+     # Temporarily skipped with xcontext
+     # ./spec/models/user_account_spec.rb:48
+
+  4) UserAccount self.find_and_save Facebookアカウント Facebookアカウント情報がセットされる
+     # Temporarily skipped with xcontext
+     # ./spec/models/user_account_spec.rb:52
+
+Finished in 6.88 seconds (files took 5.81 seconds to load)
+137 examples, 0 failures, 4 pending
+
+Coverage report generated for RSpec to /vagrant/uniqlo-hashtag/coverage. 291 / 374 LOC (77.81%) covered.

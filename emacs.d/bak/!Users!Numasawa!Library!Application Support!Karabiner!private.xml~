@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<root>
+  <list>
+    <item>
+      <name>Command_L to Control_L (EMACS ONLY)</name>
+      <only>EMACS</only>
+      <identifier>remap.app_term_commandL2controlL2</identifier>
+      <autogen>--KeyToKey-- KeyCode::COMMAND_L, KeyCode::CONTROL_L</autogen>
+    </item>
+    <item>
+      <name>Control_L to Command_L (EMACS ONLY)</name>
+      <only>EMACS</only>
+      <identifier>remap.app_term_contolL2commandL2</identifier>
+      <autogen>--KeyToKey-- KeyCode::CONTROL_L, KeyCode::COMMAND_L</autogen>
+    </item>
+    <item>
+      <name>Command_L to Control_L (TERMINAL ONLY)</name>
+      <only>TERMINAL</only>
+      <identifier>remap.app_term_commandL3controlL3</identifier>
+      <autogen>--KeyToKey-- KeyCode::COMMAND_L, KeyCode::CONTROL_L</autogen>
+    </item>
+    <item>
+      <name>Control_L to Command_L (TERMINAL ONLY)</name>
+      <only>TERMINAL</only>
+      <identifier>remap.app_term_contolL3commandL3</identifier>
+      <autogen>--KeyToKey-- KeyCode::CONTROL_L, KeyCode::COMMAND_L</autogen>
+    </item>
+
+
+
+    <item>
+      <name>ctrl+. / change kana/eissuu </name>
+      <appendix>[customize] Shift+Space to KANA/EISUU (toggle)</appendix>
+      <identifier>private.shift_space_toggle</identifier>
+      <!-- <not>PARALLELS</not> -->
+      <not>VIRTUALMACHINE</not>
+
+      <autogen>
+        __KeyToKey__
+        KeyCode::DOT, ModifierFlag::CONTROL_L,
+        KeyCode::VK_JIS_TOGGLE_EISUU_KANA
+      </autogen>
+    </item>
+  </list>
+</root>

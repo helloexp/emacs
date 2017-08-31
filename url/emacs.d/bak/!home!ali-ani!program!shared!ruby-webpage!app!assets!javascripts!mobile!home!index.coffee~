@@ -1,0 +1,18 @@
+$ ->
+  $('#sampleCarouselCycle').click ->
+    $('#sampleCarousel').carousel 'cycle'
+    return
+  $('#sampleCarouselPause').click ->
+    $('#sampleCarousel').carousel 'pause'
+    return
+  $('#sampleCarouselPrev').click ->
+    $('#sampleCarousel').carousel 'prev'
+    return
+  $('#sampleCarouselNext').click ->
+    $('#sampleCarousel').carousel 'next'
+    return
+  $('.sampleCarouselNumber').click ->
+    $val = new Number($(this).val()).valueOf()
+    $('#sampleCarousel').carousel $val
+    return
+  return

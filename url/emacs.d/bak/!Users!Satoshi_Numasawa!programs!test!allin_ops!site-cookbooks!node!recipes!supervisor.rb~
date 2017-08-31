@@ -1,0 +1,5 @@
+bash "install eslinst" do
+  code <<-EOC
+    su #{node['user']['name']} -l -c "npm install eslint -g"
+  EOC
+end

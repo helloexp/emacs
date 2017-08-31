@@ -1,0 +1,29 @@
+echo '----------------------------------------------------------------'
+echo 'install mongodb'
+echo '----------------------------------------------------------------'
+sudo yum install -y mongodb-server
+sudo yum install -y mongodb
+sudo echo 'smallfiles = true' >> /etc/mongodb.conf
+sudo /etc/init.d/mongod start
+
+echo '----------------------------------------------------------------'
+echo 'setting nodejs'
+echo '----------------------------------------------------------------'
+sudo wget http://people.centos.org/tru/devtools-2/devtools-2.repo -O /etc/yum.repos.d/devtools-2.repo
+yum install devtoolset-2-gcc devtoolset-2-binutils devtoolset-2-gcc-c++ devtoolset-2-gcc-gfortran
+
+cd /vagrant/allin-sns
+npm install bower -g
+npm install supervisor -g
+npm install eslint -g
+source /opt/rh/devtoolset-2/enable; npm install
+nohup npm run dev 1>&2 /dev/null &
+
+echo '----------------------------------------------------------------'
+echo 'setting rails'
+echo '----------------------------------------------------------------'
+cd /vagrant/allin_sns_demo
+rvm install 2.3.0
+bundle install
+rake db:seed
+nohup rails s -b 0.0.0.0 1>&2 /dev/null &

@@ -1,0 +1,175 @@
+                        deploy flow : product
+                        =====================
+
+
+
+Table of Contents
+=================
+1  upload
+2  kill unicorn process
+3  mysql backup
+4  decompress / file move 
+5  edit database.yml 
+6  bundle / assets 
+7  secret key base 
+8  change assets default url 
+     8.1 assets読み込みURL変更 
+     8.2 chmod 
+9  change log dir
+10 change current version 
+11 unicron start 
+
+
+
+
+0 etc
+----------------------------------------------------------------
+    - 自動 deploy 調整中
+        home dirのdeploy.shで一括処理可能
+        bash ./deploy.sh [zip file name]
+
+    - db
+        DB構成が変わる際は注意。
+        migrateだけでは構造が適切に変更されないケースがある。
+        そのため、table削除を必要とする可能性がある。
+        その都度注意する事。
+
+
+1 upload 
+----------------------------------------------------------------
+    # 踏み台サーバーへアップ後, adminサーバーへアップする
+
+    $ scp -i [key] [file] members@54.250.223.60:/home/members
+    $ ssh -i [key] members@54.250.223.60
+
+    $ scp [file] www@10.184.17.202:/home/www/
+    $ ssh www@10.184.17.202
+
+
+
+2 kill unicorn process
+----------------------------------------------------------------
+    kill `cat /var/rails/influencer/current/tmp/pids/unicorn.pid`
+
+    
+
+
+3 mysql backup
+----------------------------------------------------------------
+    mysqldump -u influencer -p --lock-table -h db.org.lifewear.uniqlo.com influencer > /var/rails/influencer/backup/db/$date
+
+    # file名は、日付で yyyymmddhhiiss
+
+
+
+4 decompress / file move 
+----------------------------------------------------------------
+    $ cd /var/rails/influencer/release
+
+    $ mkdir `date +"%Y%m%d%H%M%S"`
+    $ cd 20150217015610/
+    $ cp /home/www/uniqlo-hashtag-develop.zip ./
+    $ unzip uniqlo-hashtag-develop.zip
+
+    $ rm uniqlo-hashtag-develop.zip
+    $ mv ./uniqlo-hashtag-develop/* ./
+    $ rm -rf ./uniqlo-hashtag-develop
+
+
+
+
+5 edit database.yml 
+----------------------------------------------------------------
+    $ vim ./config/database.yml
+    
+    ----------------------------------------------------------------
+    Production:
+        <<: *default
+        database: influencer
+        username: influencer
+        #password: <%= ENV['UNIQLO-HASHTAG_DATABASE_PASSWORD'] %>
+        password: QkIPwa9k
+        host: db.org.lifewear.uniqlo.com
+
+    ----------------------------------------------------------------
+  
+
+
+
+6 bundle / assets 
+----------------------------------------------------------------
+    $ bundle install
+    $ bundle exec rake db:migrate RAILS_ENV=production
+    $ bundle exec rake assets:clobber
+    $ bundle exec rake assets:precompile RAILS_ENV=production
+    
+
+
+
+7 secret key base 
+----------------------------------------------------------------
+    # 埋め込まれているので作業不要
+    
+
+    $ bundle exec rake secret
+    
+    vim ./config/secrets.yml
+    ----------------------------------------------------------------
+    production:
+        secret_key_base: [here]
+    ----------------------------------------------------------------
+
+
+
+
+8 change assets default url 
+----------------------------------------------------------------
+    6.1 assets読み込みURL変更 
+    --------------------------------
+        # 読み込みURLを
+        # [https://~~~/assets] を
+        # [https://~~~/form/asset] へ変更
+        # [https://~~~/] と [https://~~~/form/] ではアクセス先サーバーが異なる
+    
+        $ vim ./config/application.rb
+
+        ----------------------------------------------------------------
+        module UniqloHashtag
+          class Application < Rails::Application
+
+            ~~
+            config.assets.enable = true
+            config.assets.prefix = "assets"
+
+          end
+        end  
+        ----------------------------------------------------------------
+
+
+    6.2 chmod 
+    --------------------------------
+        chmod 755 ./public/assets*
+
+
+
+
+9 change log dir
+----------------------------------------------------------------
+    $ rm -rf ./log
+    $ ln -s /var/rails/influencer/log ./log
+
+
+
+
+10 change current version 
+----------------------------------------------------------------
+    $ cd /var/rails/influencer/
+    $ ln -s /var/rails/uniqlo/release/20150217015610/ ./current
+
+
+
+
+11 unicron start 
+----------------------------------------------------------------
+    $ cd /var/rails/uniqlo/current
+    $ bundle exec unicorn_rails -c /var/rails/uniqlo/env/config/unicorn/production.rb -E production -D  

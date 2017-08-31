@@ -1,0 +1,155 @@
+'use strict';
+
+process.env.NODE_ENV = 'test';
+const supertest = require('supertest');
+const app       = require('../../app');
+const request   = supertest(app);
+
+const feed_url    = '/api/v1/feeds/';
+const comment_url = '/api/v1/comment/';
+const embed_url   = '/api/v1/comment/';
+const should = require('chai').should();
+
+const co = require('co');
+
+
+
+
+describe('/api/v1', () => {
+    const ok           = 200;
+
+    const mock_auth_node = require('../lib/mock_server');
+
+    const db      = require('../lib/db');
+    const mongodb = db.mongo();
+
+    const factory = require('../lib/fixture');
+    const fixture = factory.fixture();
+
+    const Feed    = require('../../models/feed');
+    const Comment = require('../../models/comment');
+
+    const test_urls    = {};
+    test_urls.slack    = 'http://slack.com';
+    test_urls.facebook = 'https://facebook.com';
+
+
+    before((done) => {
+        mongodb.connect();
+        done();
+    });
+
+    beforeEach( (done) => {
+        mongodb.clean();
+        fixture.create_feed_data();
+        mock_auth_node.create();
+        done();
+    });
+
+    afterEach((done) => {
+        mock_auth_node.close();
+        mongodb.clean();
+        done();
+    });
+
+    after((done) => {
+        mongodb.clean();;
+        // mongodb.disconnect();
+        done();
+    });
+
+
+
+
+    function post(uri, body, accept, content_type, authorization) {
+        return new Promise( (resolve, reject) => {
+            request
+                .post(uri)
+                .send(body)
+                .set('Accept',        accept)
+                .set('Content-type',  content_type)
+                .set('Authorization', authorization)
+                .end((err, res) => {
+                    if (err) return reject(err);
+                    resolve(res);
+                });
+        });
+    }
+
+
+
+
+    describe('Create embed', () => {
+        it('feed', co.wrap(function *() {
+            // request setting
+            let uri     = `${feed_url}?group_id=${fixture.valid_seeds[0].group_id}`;
+            let body    = {'contents': test_urls.slack};
+            let accept  = fixture.valid_seeds[0].header;
+            let content = fixture.valid_seeds[0].header;
+            let auth    = fixture.valid_seeds[0].authorization;
+
+            // post feed
+            let res = yield post(uri, body, accept, content, auth);
+            res.statusCode.should.equal(ok)
+            res.body.contents.should.equal(body.contents);
+
+            console.log(res.body)
+
+            // request
+
+            // exists embed?
+            // embed data is correct?
+
+            // ref to embed exist on feed?
+            // ref to feed exist on embed?
+        }));
+
+        it('comment', co.wrap(function *() {
+            // request
+
+            // exists embed?
+            // embed data is correct?
+
+            // ref to embed exist on feed?
+            // ref to feed exist on embed?
+        }));
+
+        it('feed and comment', co.wrap(function *() {
+            // request feed
+            // request comment (other URL)
+
+            // exists embed?
+            // embed data is correct?
+
+            // ref to embed exist on feed?
+            // ref to feed exist on embed?
+
+            // ref to embed exist on feed?
+            // ref to feed exist on embed?
+
+            // ref to embed exist on feed?
+            // ref to feed exist on embed?
+        }));
+    })
+
+
+    describe('Update', () => {
+        it('feed', co.wrap(function *() {
+        }));
+
+        it('comment', co.wrap(function *() {
+        }));
+    })
+
+    describe('Delete', () => {
+        it('feed', co.wrap(function *() {
+        }));
+
+        it('comment', co.wrap(function *() {
+        }));
+
+        it('feed and comment', co.wrap(function *() {
+        }));
+    })
+
+})

@@ -1,0 +1,75 @@
+'use strict';
+
+let mock = null;
+const nock    = require('nock');
+const fixture = require('./fixture');
+
+class Mock_server {
+    constructor() {
+        this.nock    = nock;
+        this.fixture = fixture;
+
+        this.url   = 'http://localhost:666/'
+        this.path  = '/api/v1/grant'
+
+        let auths = [];
+        for(let i = 0; i < fixture.valid_seeds.length; i++) {
+            let auth = {
+                'token' : fixture.valid_seeds[i].token,
+                'res' : {
+                    "account":{
+                        'id'         : fixture.valid_seeds[i].account_id,
+                        'group_id'   : fixture.valid_seeds[i].group_id,
+                        'company_id' : fixture.valid_seeds[i].company_id}}
+            }
+            auths.push(auth);
+        }
+
+        this.valid_auth = auths;
+        this.invalid_auth = [{
+            'token' : fixture.invalid_seeds[0].token,
+            'res' : "unauthorize"
+        }];
+    }
+
+    create() {
+        const path       = this.path;
+        const valid_auth = this.valid_auth;
+
+        this.nock(this.url)
+            .get(`${path}?access_token=${this.valid_auth[0].token}`)
+            .times(4)
+            .reply(200, this.valid_auth[0].res)
+
+            .get(`${path}?access_token=${this.valid_auth[1].token}`)
+            .times(4)
+            .reply(200, this.valid_auth[1].res)
+
+            .get(`${path}?access_token=${this.valid_auth[2].token}`)
+            .times(4)
+            .reply(200, this.valid_auth[2].res)
+
+            .get(`${path}?access_token=${this.valid_auth[3].token}`)
+            .times(4)
+            .reply(200, this.valid_auth[3].res)
+
+            .get(`${path}?access_token=${this.valid_auth[4].token}`)
+            .times(4)
+            .reply(200, this.valid_auth[4].res)
+
+            .get(`${path}?access_token=${this.valid_auth[5].token}`)
+            .times(4)
+            .reply(200, this.valid_auth[5].res)
+
+            .get(`${path}?access_token=${this.invalid_auth[0].token}`)
+            .times(4)
+            .reply(500, this.invalid_auth[0].res);
+    }
+
+    close() {
+        this.nock.cleanAll();
+    }
+}
+
+mock = new Mock_server();
+module.exports = mock;

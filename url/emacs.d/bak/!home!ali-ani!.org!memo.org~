@@ -1,0 +1,331 @@
+-*- mode: org -*-
+
+
+
+* 見積り
+** 予算
+この予算では、ここまでとか
+折り合い
+
+** 24時間対応
+うちだと厳しい。
+求められたら、提案段階でそれを伝えてみる.
+// そういうサポートをする会社もある
+
+** 仕様が固まっていないと見積りできない
+ので、ｘという前提で記述したと添える
+** 直前のブラッシュアップ
+ざっと確認し、足りない機能、修正部分などを確認
+
+** credit card
+決算代行会社にデータをもたせるとか
+
+* オーガニックスタイル
+** 動画配信部分が必要
+aws streamingを使う
+** frontの見た目は作成済み
+** メール認証が必要
+** スマートフォン対応
+** クーポン割引
+** securityを所望
+** 会員数
+4000人程度
+
+** 負荷
+- 20人 / 1secに耐えられる (動画? http?)
+- site / 動画配信 serverは別
+
+** 重要
+スマートフォン / メール認証の開発完了すれば公開可能w
+
+* node backup
+{
+  "postgresql": {
+    "client": {
+      "packages": [
+        "postgresql94",
+        "postgresql94-devel"
+      ]
+    },
+    "config": {
+      "data_directory": "/var/lib/pgsql/9.4/data"
+    },
+    "contrib": {
+      "packages": [
+        "postgresql94-contrib"
+      ]
+    },
+    "dir": "/var/lib/pgsql/9.4/data",
+    "enable_pgdg_yum": true,
+    "password": {
+      "postgres": "md5cae31bc247ad84a02394a8b12ff92d76"
+    },
+    "pgdg": {
+      "repo_rpm_url": {
+        "9.4": {
+          "centos": {
+            "7": {
+              "x86_64": "http://yum.postgresql.org/9.4/redhat/rhel-7-x86_64/pgdg-centos94-9.4-1.noarch.rpm"
+            }
+          },
+          "amazon": {
+            "2015": {
+              "x86_64": "http://yum.postgresql.org/9.4/redhat/rhel-6-x86_64/pgdg-ami201503-94-9.4-1.noarch.rpm"
+            }
+          }
+        }
+      }
+    },
+    "server": {
+      "packages": [
+        "postgresql94-server"
+      ],
+      "service_name": "postgresql-9.4"
+    },
+    "version": "9.4"
+  },
+  "create_database": {
+    "connection_info": {
+      "password": "hogehoge"
+    },
+    "databases": [
+      "ruby_webpage_development",
+      "ruby_webpage_test",
+      "ruby_webpage_production"
+    ]
+  },
+  "bundle_config": [
+    "build.pg -- --with-pg-config=/usr/pgsql-9.4/bin/pg_config"
+  ],
+  "deploy": {
+    "ruby_webapp": {
+      "database": {
+        "adapter": "postgresql",
+        "username": "postgres",
+        "password": "hogehoge",
+        "pool": 5,
+        "database": "ruby_webpage_production",
+        "host": "localhost"
+      }
+    }
+  },
+  "nginx": {
+    "basic_auth": true
+  }
+}
+
+
+
+
+
+* memo
+- クーポン用のデータの生成の仕方ですが、
+    - 開発環境であれば、 bin/rake db:seed_fu で生成されます。
+
+- 作るデータは、
+    - coupons テーブル、coupon_pricesテーブル、available_packages テーブルの３テーブルです。
+    - ステージング環境でのテストに向けてデータを用意したので、PRを参照してください。
+
+- ファイルがdevelopment 配下にあるので、ステージング環境では、
+  RAILS_ENV 環境変数の指定
+  それに合わせたディレクトリへのファイルのコピー
+  が必要かもしれません。
+
+  https://git.ruby-dev.jp/organicstyle/mana2ku/merge_requests/54
+
+
+
+* db strut
+/trainers/6
+/packages/49
+
+
+
+mysql> select * from coupons;
++----+------------+-----------+-----------------+---------------------+---------------------+--------+
+| id | trainer_id | code      | available_count | start_at            | end_at              | single |
++----+------------+-----------+-----------------+---------------------+---------------------+--------+
+|  2 |          1 | OYFA826UC |               3 | 2015-11-02 15:00:00 | 2015-11-30 14:59:59 |      0 |
+|  3 |          1 | LNRZOY1TI |               3 | 2015-11-30 15:00:00 | NULL                |      0 |
++----+------------+-----------+-----------------+---------------------+---------------------+--------+
+
+mysql> select * from coupons_price;
++----+---------------------+-----------+-----------------+-------------------+-----------+---------------------+---------------------+
+| id | type                | coupon_id | package_plan_id | first_order_value | value     | created_at          | updated_at          |
++----+---------------------+-----------+-----------------+-------------------+-----------+---------------------+---------------------+
+|  2 | CouponPrice::Amount |         2 |               2 |          5012.000 |  1588.000 | 2015-11-03 12:05:51 | 2015-11-03 12:05:51 |
+|  4 | CouponPrice::Amount |         2 |               4 |              NULL | 21448.000 | 2015-11-03 12:05:51 | 2015-11-03 12:05:51 |
+|  5 | CouponPrice::Amount |         3 |               2 |              NULL |  1588.000 | 2015-11-03 12:05:51 | 2015-11-03 12:05:51 |
+|  6 | CouponPrice::Amount |         3 |               4 |              NULL | 21448.000 | 2015-11-03 12:05:51 | 2015-11-03 12:05:51 |
++----+---------------------+-----------+-----------------+-------------------+-----------+---------------------+---------------------+
+
+mysql> select * from available_packages;
++----+-----------+------------+---------------------+---------------------+
+| id | coupon_id | package_id | created_at          | updated_at          |
++----+-----------+------------+---------------------+---------------------+
+|  2 |         2 |          1 | 2015-11-03 12:05:51 | 2015-11-03 12:05:51 |
+|  3 |         3 |          1 | 2015-11-03 12:05:51 | 2015-11-03 12:05:51 |
++----+-----------+------------+---------------------+---------------------+
+
+* kisyu
+機種：Asus Zenphone2
+OS：Android
+ブラウザ：chrome  44.0.2403.133
+
+
+機種：Asus ASUS_Z00ED
+OS：Android 5.0.2
+ブラウザ：chrome  46.0.2490.76
+network : wi-fi / LTE
+
+
+機種：Xperia SO-02E
+OS：Android 4.4.2
+ブラウザ：chrome  42.0.2311.111
+network : wi-fi
+
+
+
+* finc
+** asdf
+stress check test
+画面は既にある
+特定の権限を持っているオペレーターがはいるようにしたい
+アクセスできるページも制御する
+
+ユーザー、企業(管理者)で入り方が違う
+
+
+ruby社での担当は、オペレーターから入った所
+権限による表示訳はしていない
+ログインは可能
+ログイン後の制御が無い
+
+cancancan
+
+
+産業社、授業員、管理者、..?
+
+
+僕らが使うもの
+https://github.com/FiNCDeveloper/wellness_survey/issues/2857
+counselingテーブルはmasterに入っている
+
+
+
+こちらは実装に集中
+設計はむこうがして下さる
+** flow
+- PR
+- review
+- merge
+
+** coding規約
+厳しい？
+インターン生が開発しているので、突っ込みが多かった
+
+
+** テスト
+model, contollerまで
+viewは今のところ不要
+
+** push機能
+産業医さんへの通知機能
+
+自分の作った予定に、ユーザーが登録
+ユーザーからのキャンセル、
+産業医とユーザーのやり取りの通知
+
+ベルをクリックで、ドロップダウンが出る
+未読のものの色を返る
+facebookの通知機能とほぼ同じ
+
+ユーザーにはアイコンがない
+
+飛ばす先をmodelで制御
+
+** pdf生成ツール
+** デザイン部は先方へ
+よくわからん
+
+** 行わない
+** release
+12/05開発終了
+12/12リリース
+
+見積りで変わる?
+
+* uniqlo
+13:00 - 16:00
+
+
+御世話になっております。
+Ruby開発 沼沢と申します。
+宜しくお願い致します。
+
+以下、明日の大まかな作業スケジュールとなります。
+問題点などございましたら、ご相談をさせて頂ければと存じます。
+
+
+----------------------------------------------------------------
+- 13:00 - 13:55 | Ruby開発作業
+    - 作業開始通知
+    - サービス停止 (admin / sns )
+    - DB backup (dumpの量によって時間前後)
+
+
+- 13:55 〜 15:10 | エヌネットワークス様作業
+    - master backup
+    - master update / reboot
+    - masterでの作業完了後、read replica update / reboot
+
+    // DB updateは15〜30分程度掛かると想定
+
+
+- 15:10 〜 15:40 | Ruby開発作業
+    - service 起動
+    - service 状態確認
+    - 作業終了通知
+----------------------------------------------------------------
+
+簡単ではございますが、以上となります。
+宜しくお願い致します。
+
+
+
+
+
+- 14:50 - 13:45 | Ruby開発作業
+    - 作業開始通知
+    - サービス停止 (admin / sns )
+    - DB backup (dumpの量によって時間前後)
+
+
+- 13:45 〜 15:00 | 先方作業
+    - master backup
+    - master update / reboot
+    - masterでの業完了後、read replica update / reboot
+
+    // DB updateは15〜30分程度掛かると想定
+
+
+- 15:00 〜 15:30 | Ruby開発作業
+    - service 起動
+    - service 状態確認
+    - 作業終了通知
+
+
+
+* 切り分け
+insert into organizers (admin, email, encrypted_password, created_at, updated_at) values(1, 'admin@example.com', '$2a$10$5o.K8WqHjW7PzM8v336nd.sRKBa8p8M3cYYBfKDyvWv43wKh0/4Ji', '2015-11-10', '2015-11-10');
+
+* CNAME
+・info.manatuku.com IN CNAME organicstyleco.mktoweb.com.
+・go.manatuku.com. IN CNAME mkto-ab150060.com.
+
+・manatuku.com. IN TXT "v=spf1 include:mktomail.com ~all"
+・m1._domainkey.manatuku.com. IN TXT v=DKIM1;k=rsa;p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCpE/aIAagGowgoNuv6ul33YnBmmF5a53oCyQuxNrLeRWqLg+qP3pzhxbKVyx11YCbq4WWbD6lQSL9eop4QJ9t2asJrWLzURFK5QG4MNtL4nV5hGBfYCc74Ao79cWf9WNSIk4QDmyVwBln10ZRz6ohFq0e3DfF3oKPDRLNp4Fa2kQIDAQAB
+txt google._domainkey v=DKIM1; k=rsa; p=MIG***AB
+
+・info.otogaku.com IN CNAME organicstyleco.mktoweb.com.
+・go.otogaku.com IN CNAME mkto-ab150060.com.

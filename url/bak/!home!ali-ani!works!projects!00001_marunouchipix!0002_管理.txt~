@@ -1,0 +1,77 @@
+
+
+
+
+env
+----------------------------------------------------------------
+    - 現状のdevelop server IP
+        54.92.111.233
+
+
+
+users
+----------------------------------------------------------------
+    - shibata   : mruby001
+    - kobayashi : mruby4824
+    - numasawa  : mruby001
+    - cap       : sudo su - cap で入る
+
+
+
+
+source dir
+----------------------------------------------------------------
+    - Original
+        /var/rails/marunouchi_pix/current/
+
+
+    - Develop
+        /home/cap/rails/marunouchi_pix-develop/
+
+        # git clone済み
+        # cap userで作業
+
+
+
+
+cap user commands
+----------------------------------------------------------------
+    - $ marupix_start      : original環境 unicron/rails 起動
+    - $ marupix_kill       : original環境 unicron/rails 終了
+    - $ marupix_reboot     : original環境 unicron/rails 再起動
+
+    - $ marupix_env_start  : 開発環境 unicron/rails 起動
+    - $ marupix_env_kill   : 開発環境 unicron/rails 終了
+    - $ marupix_env_reboot : 開発環境 unicron/rails 再起動
+
+    # 全て ENV=staging
+    # ENV=production は、参照先DBが異なる
+
+
+
+
+Github
+----------------------------------------------------------------
+    https://github.com/arsnovare/marunouchi_pix-develop
+    git@github.com:arsnovare/marunouchi_pix-develop.git
+
+
+
+動作確認用サイト
+----------------------------------------------------------------
+    - Marunouchipix
+        http://ec2-54-92-111-233.ap-northeast-1.compute.amazonaws.com/
+
+
+    - 管理サイト
+        http://ec2-54-92-111-233.ap-northeast-1.compute.amazonaws.com/admin/
+
+
+    - Basic認証
+      - ID : marupix
+      - PW : mec_marupix
+
+
+    - 管理用ユーザ
+        - ID : mruby@marupix.dummy
+        - PW : mrubymruby

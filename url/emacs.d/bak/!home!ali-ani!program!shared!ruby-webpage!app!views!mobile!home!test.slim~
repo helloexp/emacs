@@ -1,0 +1,26 @@
+ul.nav.nav-pills
+  li
+    a[href="#sampleContentA" data-toggle="tab"]
+      | メニューＡ
+  li.active
+    a[href="#sampleContentB" data-toggle="tab"]
+      | メニューＢ
+  li
+    a[href="#sampleContentC" data-toggle="tab"]
+      | メニューＣ
+  li
+    a[href="#sampleContentD" data-toggle="tab"]
+      | メニューＤ
+.tab-content
+  #sampleContentA.tab-pane
+    p
+      | メニューＡの内容
+  #sampleContentB.tab-pane.active
+    p
+      | メニューＢの内容
+  #sampleContentC.tab-pane
+    p
+      | メニューＣの内容
+  #sampleContentD.tab-pane
+    p
+      | メニューＤの内容

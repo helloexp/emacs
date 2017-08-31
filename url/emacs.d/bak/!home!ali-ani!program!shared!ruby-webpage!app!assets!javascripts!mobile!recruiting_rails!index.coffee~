@@ -1,0 +1,11 @@
+$(document).ready ->
+  $('.acordion_tree').css 'display', 'none'
+  $('.trigger').click ->
+    if $('+.acordion_tree', this).css('display') == 'none'
+      $(this).addClass 'active'
+      $('+.acordion_tree', this).slideDown 'normal'
+    else
+      $(this).removeClass 'active'
+      $('+.acordion_tree', this).slideUp 'normal'
+    return
+  return

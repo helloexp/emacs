@@ -1,0 +1,302 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Testing ",
+    "Resources": {
+        "vpcmynavi": {
+            "Type": "AWS::EC2::VPC",
+            "Properties": {
+                "CidrBlock": "10.0.0.0\/16",
+                "InstanceTenancy": "default",
+                "EnableDnsSupport": "true",
+                "EnableDnsHostnames": "true",
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi--------------"
+                    }
+                ]
+            }
+        },
+        "SubnetFront1a": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "CidrBlock": "10.0.0.0\/24",
+                "AvailabilityZone": "ap-northeast-1a",
+                "VpcId": {
+                    "Ref": "vpcmynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-front-1a"
+                    },
+                    {
+                        "Key": "Scope",
+                        "Value": "Public"
+                    },
+                    {
+                        "Key": "Payment",
+                        "Value": "mynavi-prd"
+                    }
+                ]
+            }
+        },
+        "SubnetFront1c": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "CidrBlock": "10.0.1.0\/24",
+                "AvailabilityZone": "ap-northeast-1c",
+                "VpcId": {
+                    "Ref": "vpcmynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-front-1c"
+                    },
+                    {
+                        "Key": "Scope",
+                        "Value": "Public"
+                    },
+                    {
+                        "Key": "Payment",
+                        "Value": "mynavi-prd"
+                    }
+                ]
+            }
+        },
+        "SubnetWeb1a": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "CidrBlock": "10.0.2.0\/24",
+                "AvailabilityZone": "ap-northeast-1a",
+                "VpcId": {
+                    "Ref": "vpcmynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-web-1a"
+                    },
+                    {
+                        "Key": "Scope",
+                        "Value": "Private"
+                    },
+                    {
+                        "Key": "Payment",
+                        "Value": "mynavi-prd"
+                    }
+                ]
+            }
+        },
+        "SubnetWeb1c": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "CidrBlock": "10.0.3.0\/24",
+                "AvailabilityZone": "ap-northeast-1c",
+                "VpcId": {
+                    "Ref": "vpcmynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-web-1c"
+                    },
+                    {
+                        "Key": "Scope",
+                        "Value": "Private"
+                    },
+                    {
+                        "Key": "Payment",
+                        "Value": "mynavi-prd"
+                    }
+                ]
+            }
+        },
+        "SubnetCms1a": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "CidrBlock": "10.0.4.0\/24",
+                "AvailabilityZone": "ap-northeast-1a",
+                "VpcId": {
+                    "Ref": "vpcmynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-cms-1a"
+                    },
+                    {
+                        "Key": "Scope",
+                        "Value": "Private"
+                    },
+                    {
+                        "Key": "Payment",
+                        "Value": "mynavi-prd"
+                    }
+                ]
+            }
+        },
+        "SubnetCms1c": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "CidrBlock": "10.0.5.0\/24",
+                "AvailabilityZone": "ap-northeast-1c",
+                "VpcId": {
+                    "Ref": "vpcmynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-cms-1c"
+                    },
+                    {
+                        "Key": "Scope",
+                        "Value": "Private"
+                    },
+                    {
+                        "Key": "Payment",
+                        "Value": "mynavi-prd"
+                    }
+                ]
+            }
+        },
+        "SubnetBackend1a": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "CidrBlock": "10.0.6.0\/24",
+                "AvailabilityZone": "ap-northeast-1a",
+                "VpcId": {
+                    "Ref": "vpcmynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-backend-1a"
+                    },
+                    {
+                        "Key": "Scope",
+                        "Value": "Private"
+                    },
+                    {
+                        "Key": "Payment",
+                        "Value": "mynavi-prd"
+                    }
+                ]
+            }
+        },
+        "SubnetBackend1c": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "CidrBlock": "10.0.7.0\/24",
+                "AvailabilityZone": "ap-northeast-1c",
+                "VpcId": {
+                    "Ref": "vpcmynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-backend-1c"
+                    },
+                    {
+                        "Key": "Scope",
+                        "Value": "Private"
+                    },
+                    {
+                        "Key": "Payment",
+                        "Value": "mynavi-prd"
+                    }
+                ]
+            }
+        },
+        "InternetGateway": {
+            "Type": "AWS::EC2::InternetGateway",
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Payment",
+                        "Value": "mynavi"
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-gateway"
+                    }
+                ]
+            }
+        },
+        "AttachGateway": {
+            "Type": "AWS::EC2::VPCGatewayAttachment",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "vpcmynavi"
+                },
+                "InternetGatewayId": {
+                    "Ref": "InternetGateway"
+                }
+            }
+        },
+        "DHCP": {
+            "Type": "AWS::EC2::DHCPOptions",
+            "Properties": {
+                "DomainName": "ap-northeast-1.compute.internal",
+                "DomainNameServers": [
+                    "AmazonProvidedDNS"
+                ]
+            }
+        },
+        "RouteTableFront": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "vpcmynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-front"
+                    },
+                    {
+                        "Key": "Payment",
+                        "Value": "mynavi"
+                    }
+                ]
+            }
+        },
+        "RouteTableWeb": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "vpcmynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-web"
+                    },
+                    {
+                        "Key": "Payment",
+                        "Value": "mynavi"
+                    }
+                ]
+            }
+        },
+        "RouteTableBackend": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "vpcmynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-backend"
+                    },
+                    {
+                        "Key": "Payment",
+                        "Value": "mynavi"
+                    }
+                ]
+            }
+        }
+    }
+}

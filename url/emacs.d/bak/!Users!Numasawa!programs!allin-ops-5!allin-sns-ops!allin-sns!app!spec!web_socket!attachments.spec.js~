@@ -1,0 +1,204 @@
+'use strict';
+
+process.env.NODE_ENV = 'test';
+
+const co = require('co');
+
+
+describe('like/unlike', () => {
+    const mock_auth_node = require('../lib/mock_server');
+    const db      = require('../lib/db');
+    const mongodb = db.mongo();
+    const feed    = db.feed();
+    const comment = db.comment();
+
+    const factory = require('../lib/fixture');
+    const fixture = factory.fixture();
+    let datas = {
+        'feed' : {
+            'token'   : fixture.valid_seeds[0].authorization.split(' ')[1],
+            'group'   : fixture.valid_seeds[0].group_id,
+            'account' : fixture.valid_seeds[0].account_id,
+            'header'  : fixture.valid_seeds[0].header,
+            'auth'    : fixture.valid_seeds[0].authorization,
+            'file'    : fixture.jpg_file_paths[0]
+        },
+        'comment' : {
+            'token'   : fixture.valid_seeds[5].authorization.split(' ')[1],
+            'group'   : fixture.valid_seeds[5].group_id,
+            'account' : fixture.valid_seeds[5].account_id,
+            'header'  : fixture.valid_seeds[5].header,
+            'auth'    : fixture.valid_seeds[5].authorization,
+            'file'    : fixture.jpg_file_paths[0]
+        },
+        'other_company' : {
+            'token'   : fixture.valid_seeds[2].authorization.split(' ')[1],
+            'group'   : fixture.valid_seeds[2].group_id,
+            'timeout' : 400
+        },
+        'other_group' : {
+            'token' : fixture.valid_seeds[7].authorization.split(' ')[1],
+            'group' : fixture.valid_seeds[7].group_id,
+            'timeout' : 400
+        }
+    };
+
+    const wb      = require('../lib/ws');
+    const sockets = wb.clients_handler();
+    const request = require('../lib/request');
+
+    let feed_url    = null;
+    let comment_url = null;
+    let request_feed    = null;
+    let request_comment = null;
+
+
+
+    function classify (clients, ws_results, req_result, crud_type, expect) {
+        // token種類毎に check項目を選択.
+        // main tokenが主. 左記以外は、timeout(ws通知されない)を想定.
+
+        return new Promise( (resolve, reject) => {
+            let tasks = [];
+            for(let i = 0; i < ws_results.length; i++) {
+                switch (clients[i].token) {
+                case datas.feed.token:
+                    tasks.push(expect.attachment(ws_results[i], clients[i].timeout));
+                    break;
+
+                case datas.other_company.token:
+                    tasks.push(expect.timeout(ws_results[i], clients[i].timeout));
+                    break;
+
+                case datas.other_group.token:
+                    tasks.push(expect.timeout(ws_results[i], clients[i].timeout));
+                    break;
+
+                default:
+                    reject(new Error('couldnt find expect task'));
+                    break;
+                }
+            }
+
+            resolve(tasks);
+        });
+    }
+
+
+
+
+    function feed_attachment_url(id) {
+        const url = '/api/v1/attachments/upload/?feed_id=';
+        return `${url}${id}`;
+    }
+
+    function comment_attachment_url(id) {
+        const url = '/api/v1/attachments/upload/?comment_id=';
+        return `${url}${id}}`;
+    }
+
+    function delete_attachment_url(id) {
+        const url = '/api/v1/attachments/';
+        return `${url}${id}`;
+    }
+
+
+
+
+    beforeEach( (done) => {
+        return new Promise( (resolve, reject) => {
+            co(function *() {
+                // db setup
+                yield mongodb.clean();
+                yield fixture.create_feed_data();
+                mock_auth_node.create();
+
+                // feed request settings
+                yield feed.find('{}');
+                let feeds = yield feed.find('{}'); // 1度ではデータ取得不可.
+                feed_url = feed_attachment_url(feeds[0].id);
+                request_feed = request.ws(feed_url, feed);
+
+                // comment request settings
+                let comments = yield comment.find('{}');
+                comment_url = comment_attachment_url(comments[0].id);
+                request_comment = request.ws(comment_url, comment);
+
+                done();
+            }).catch((err) => {
+                reject(err);
+                done();
+            });
+        });
+    });
+
+    afterEach( (done) => {
+        return new Promise( (resolve, reject) => {
+            co(function *() {
+                yield mock_auth_node.close();
+                done();
+            }).catch((err) => {
+                reject(err);
+                done();
+            });
+        });
+    });
+
+    after( (done) => {
+        return new Promise( (resolve, reject) => {
+            co(function *() {
+                yield mongodb.clean();
+                done();
+            }).catch((err) => {
+                reject(err);
+                done();
+            });
+        });
+    });
+
+
+
+
+    describe('feed', () => {
+        const crud_type = 'update';
+
+        const model_type = 'Feed';
+        const expect     = require('../lib/expect').ws(datas, model_type);
+
+        it('request rusult と web client通知内容が同一である事', co.wrap(function *() {
+            // prepare ws
+            const client = yield wb.client(datas.feed);
+
+            // upload
+            datas.feed.file = fixture.jpg_file_paths[0];
+            let ws_result  = client.wait_message();
+            let req_result = request_feed.post_attachment(datas.feed);
+            yield expect.attachment(yield ws_result, yield req_result, crud_type);
+
+            // delete
+            req_result = yield req_result;
+            const delete_url = delete_attachment_url(req_result.body.id);
+            const del_request = request.ws(delete_url, comment);
+
+            datas.feed.file = null;
+            datas.feed.body = {'id' : req_result.body.id}
+
+            ws_result  = client.wait_message();
+            req_result = del_request.del_attachment(datas.feed);
+
+            yield expect.attachment_delete(yield ws_result, yield req_result, crud_type);
+        }));
+
+
+
+
+        it('同一集合内へ通知される事', co.wrap(function *() {
+        }));
+
+        it('異なる集合には通知しない。other company_id', co.wrap(function *() {
+        }));
+
+        it('異なる集合には通知しない. other group_id', co.wrap(function *() {
+        }));
+    });
+});

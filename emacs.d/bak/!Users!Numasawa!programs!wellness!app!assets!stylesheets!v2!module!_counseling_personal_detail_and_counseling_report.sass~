@@ -1,0 +1,3 @@
+.personal_detail_and_counseling_report
+  .personal_detail_values
+    height: $default_space * 5

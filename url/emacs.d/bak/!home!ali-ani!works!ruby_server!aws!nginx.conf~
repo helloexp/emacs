@@ -1,0 +1,231 @@
+user  nginx;
+worker_processes  1;
+
+error_log  /var/log/nginx/error.log;
+
+pid        /var/run/nginx.pid;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    server_names_hash_bucket_size 128;
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for" "$gzip_ratio"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;                                                                                                                                                      
+
+    #keepalive_timeout  0;                                                                                                                                                   
+    keepalive_timeout  65;
+
+    gzip              on;
+    gzip_http_version 1.0;
+    gzip_types        text/plain
+                      text/xml
+                      text/css
+                      application/xml
+                      application/xhtml+xml
+                      application/rss+xml
+                      application/atom_xml
+                      application/javascript
+                      application/x-javascript
+                      application/x-httpd-php;
+    gzip_disable      "MSIE [1-6]\.";
+    gzip_disable      "Mozilla/4";
+    gzip_comp_level   1;
+    gzip_proxied        any;
+    gzip_vary           on;
+
+    # Load modular configuration files from the /etc/nginx/conf.d directory.                                                                                                 
+    # See http://nginx.org/en/docs/ngx_core_module.html#include                                                                                                              
+    # for more information.                                                                                                                                                  
+    include /etc/nginx/conf.d/*.conf;
+
+    upstream backend {
+        server 127.0.0.1:5001;
+    }
+
+    server {
+       listen       80 default_server;
+       listen       8080 default_server;
+       server_name  _;
+
+       location = /healthcheck.html {
+         return 200;
+         break;
+       }
+
+      location / {
+         return 444;
+       }
+    }
+
+
+    server {
+        listen       80;
+        # server_name  stg-marupix.agsr.org;
+        server_name  ec2-54-92-111-233.ap-northeast-1.compute.amazonaws.com;
+        root /var/rails/marunouchi_pix/current/public;
+
+        real_ip_header     X-Forwarded-For;
+        set_real_ip_from   0.0.0.0/0;
+
+
+        location ~* \.(ico|css|js|gif|jpg|jpeg|png|otf|svg|woff|eot|ttf)(\?[0-9]+)?$ {
+            # only production                                                                                                                                                
+            expires 1y;
+            break;
+        }
+
+        location ~ /admin {
+            # deny all;                                                                                                                                                      
+            satisfy any;
+            auth_basic "Staging pre open";
+            auth_basic_user_file "/var/rails/marunouchi_pix/.htpasswd";
+
+            proxy_pass http://backend;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $http_host;
+        }
+
+        location / {
+            proxy_pass http://backend;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $http_host;
+        }
+
+        # redirect server error pages to the static page /40x.html                                                                                                           
+        #                                                                                                                                                                    
+        error_page  404              /404.html;
+        location = /40x.html {
+            root   /usr/share/nginx/html;
+        }
+
+        # redirect server error pages to the static page /50x.html                                                                                                           
+        #                                                                                                                                                                    
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   /usr/share/nginx/html;
+        }
+        location /healthcheck.html {
+            allow all;
+        }
+        location ~ (sitemap.xml.gz|robots.txt|googleb528ddd32f3cb9c7.html) {
+            allow all;
+            break;
+        }
+
+        # only staging                                                                                                                                                       
+        #satisfy any;                                                                                                                                                        
+        # Members local                                                                                                                                                      
+        allow 210.227.75.222;
+        allow 180.43.42.202;
+        # Facebook 12/12/06                                                                                                                                                  
+        #allow 31.13.24.0/21;                                                                                                                                                
+        #allow 31.13.64.0/18;                                                                                                                                                
+        #allow 66.220.144.0/20;                                                                                                                                              
+        #allow 69.63.176.0/20;                                                                                                                                               
+        #allow 69.171.224.0/19;                                                                                                                                              
+        #allow 74.119.76.0/22;                                                                                                                                               
+        #allow 103.4.96.0/22;                                                                                                                                                
+        #allow 173.252.64.0/18;                                                                                                                                              
+        #allow 204.15.20.0/22;                                                                                                                                               
+        #allow 2401:db00::/32;                                                                                                                                               
+        #allow 2620:0:1c00::/40;                                                                                                                                             
+        #allow 2a03:2880::/32;                                                                                                                                               
+        allow all;
+        auth_basic "Staging pre open";
+
+        auth_basic_user_file "/var/rails/marunouchi_pix/.htpasswd";
+    }
+
+    # リダイレクト設定                                                                                                                                                       
+    server {
+        listen       80;
+        server_name  photo.marunouchi.com MaruPixPrd-1081836491.ap-northeast-1.elb.amazonaws.com 54.92.61.198;
+
+        #旧URLから新URLへリダイレクト                                                                                                                                        
+        rewrite ^/apps/(pc|sp)/index.php(.*) http://stg-marupix.agsr.org/ permanent;
+        rewrite ^/apps/(pc|sp)/pickup.php(.*) http://stg-marupix.agsr.org/pickup permanent;
+        rewrite ^/apps/(pc|sp)/expand.php http://stg-marupix.agsr.org/media/old_id permanent;
+        rewrite ^/apps/(pc|sp)/marunouchipix.html(.*) http://stg-marupix.agsr.org/about permanent;
+        rewrite ^/apps/(pc|sp)/marunouchipix_en.html(.*) http://stg-marupix.agsr.org/en/about permanent;
+        rewrite ^/apps/(pc|sp)/join.html(.*) http://stg-marupix.agsr.org/join permanent;
+        rewrite ^/apps/(pc|sp)/join_en.html(.*) http://stg-marupix.agsr.org/en/join permanent;
+        rewrite ^/apps/(pc|sp)/escape.html(.*) http://stg-marupix.agsr.org/escape permanent;
+        rewrite ^/apps/(pc|sp)/escape_en.html(.*) http://stg-marupix.agsr.org/en/escape permanent;
+        rewrite ^/apps/tagram/admin/login.php(.*) http://stg-marupix.agsr.org/admin permanent;
+        rewrite ^//apps/tagram/admin/login.php(.*) http://stg-marupix.agsr.org/admin permanent;
+        rewrite ^/apps/(pc|sp)$ http://stg-marupix.agsr.org/ permanent;
+
+        root /var/rails/marunouchi_pix/current/public;
+
+        real_ip_header     X-Forwarded-For;
+        set_real_ip_from   0.0.0.0/0;
+
+        location ~* \.(ico|css|js|gif|jpg|jpeg|png|otf|svg|woff|eot|ttf)(\?[0-9]+)?$ {
+            # only production                                                                                                                                                
+            expires 1y;
+            break;
+        }
+
+        location ~ /admin {
+            if ($http_x_forwarded_proto != "https") {
+                rewrite ^/admin(.*) https://photo.marunouchi.com/admin permanent;
+                break;
+            }
+            deny all;
+            satisfy any;
+            auth_basic "Production pre open";
+            auth_basic_user_file "/var/rails/marunouchi_pix/.htpasswd";
+
+            proxy_pass http://backend;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $http_host;
+        }
+
+        location / {
+            proxy_pass http://backend;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $http_host;
+        }
+
+        # redirect server error pages to the static page /40x.html                                                                                                           
+        #                                                                                                                                                                    
+        error_page  404              /404.html;
+        location = /40x.html {
+            root   /usr/share/nginx/html;
+        }
+
+        # redirect server error pages to the static page /50x.html                                                                                                           
+        #                                                                                                                                                                    
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   /usr/share/nginx/html;
+        }
+        location /healthcheck.html {
+            allow all;
+        }
+        location ~ (sitemap.xml.gz|robots.txt|googleb528ddd32f3cb9c7.html) {
+            allow all;
+            break;
+        }
+
+    }
+
+    server {
+       listen 443;
+    }
+}

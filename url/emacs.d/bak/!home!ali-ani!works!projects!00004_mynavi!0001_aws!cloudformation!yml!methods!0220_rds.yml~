@@ -1,0 +1,51 @@
+  rdsmyanaviprdmultitky:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      AllocatedStorage: '100'
+      AllowMajorVersionUpgrade: 'false'
+      AutoMinorVersionUpgrade: 'true'
+      DBInstanceClass: db.m3.medium
+      Port: '3306'
+      StorageType: gp2
+      BackupRetentionPeriod: '30'
+      MasterUsername: mynavi_root
+      MasterUserPassword: MyPassword
+      PreferredBackupWindow: 22:00-22:30
+      PreferredMaintenanceWindow: mon:23:00-mon:23:30
+      DBName: MyDatabase
+      Engine: mysql
+      EngineVersion: 5.6.22
+      LicenseModel: general-public-license
+      MultiAZ: 'true'
+      DBSubnetGroupName:
+        Ref: dbsubnetmynaviproduct
+      VPCSecurityGroups:
+      - Ref: sgmynaviproductbackend
+      Tags:
+      - Key: Payment
+        Value: mynavi
+  rdsreplica00mynaviprdmultitky:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      AllocatedStorage: '100'
+      AllowMajorVersionUpgrade: 'false'
+      AutoMinorVersionUpgrade: 'true'
+      DBInstanceClass: db.m3.medium
+      Port: '3306'
+      StorageType: gp2
+      BackupRetentionPeriod: '0'
+      MasterUsername: mynavi_root
+      MasterUserPassword: MyPassword
+      PreferredBackupWindow: 22:00-22:30
+      PreferredMaintenanceWindow: mon:23:00-mon:23:30
+      SourceDBInstanceIdentifier:
+        Ref: rdsmyanaviprdmultitky
+      VPCSecurityGroups:
+      - Ref: sgmynaviproductbackend
+  dbsubnetmynaviproduct:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: mynavi-product
+      SubnetIds:
+      - Ref: subnet4509c71c
+      - Ref: subnetc962d6be

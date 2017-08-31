@@ -1,0 +1,122 @@
+                                 deploy to dev
+                                ==============
+
+
+Table of Contents
+=================
+1 upload 
+2 decompress / file move 
+3 edit database.yml 
+4 bundle / assets setting 
+5 secret key base 
+6 curtificate setting (SSL認証する場合) 
+7 change current version 
+8 unicron start 
+
+
+1 upload 
+----------------------------------------------------------------
+    # 踏み台サーバーへアップ後, adminサーバーへアップする
+
+    $ scp -i mruby_default_key.pem ./uniqlo-hashtag-develop.zip alliance@54.65.232.249:/home/alliance
+    $ ssh -i mruby_default_key.pem alliance@54.65.232.249
+
+    $ scp ./uniqlo-hashtag-develop.zip mruby@app-admin:/home/mruby
+    $ ssh mruby@app-admin
+
+
+
+
+2 decompress / file move 
+----------------------------------------------------------------
+    $ cd /var/rails/uniqlo/release
+
+    $ mkdir `date +"%Y%m%d%H%M%S"`
+    $ cd 20150217015610/
+    $ cp /home/mruby/uniqlo-hashtag-develop.zip ./
+    $ unzip uniqlo-hashtag-develop.zip
+
+    $ rm uniqlo-hashtag-develop.zip
+    $ mv ./uniqlo-hashtag-develop/* ./
+    $ rm -rf ./uniqlo-hashtag-develop
+
+
+
+
+3 edit database.yml 
+----------------------------------------------------------------
+    $ vim ./config/database.yml
+
+    ----------------------------------------------------------------
+    production:
+        <<: *default
+        database: influencer
+        username: influencer
+        #password: <%= ENV['UNIQLO-HASHTAG_DATABASE_PASSWORD'] %>
+        password: Dim933Plw
+        host: db01-uniqlo-influencer.cvs9vjjju50z.ap-northeast-1.rds.amazonaws.com
+   ----------------------------------------------------------------
+
+
+
+  
+
+4 bundle / assets setting 
+----------------------------------------------------------------
+    $ bundle install
+    $ bundle exec rake db:migrate RAILS_ENV=production
+    $ bundle exec rake assets:clobber
+    $ bundle exec rake assets:precompile RAILS_ENV=production
+
+
+  
+
+5 secret key base 
+----------------------------------------------------------------
+    # 基本、埋め込んであるので作業は不要
+    
+
+    $ bundle exec rake secret
+    
+    vim ./config/secrets.yml
+    ----------------------------------------------------------------
+    development:
+        secret_key_base: [here]
+        
+    production:
+        secret_key_base: [here]
+    ----------------------------------------------------------------
+
+
+
+
+6 curtificate setting (SSL認証する場合) 
+----------------------------------------------------------------
+    # ELBで認証しているので不要
+    
+
+    $ mkdir .config/certification
+    $ cd ./config/certification
+
+    $ openssl genrsa -aes128 1024 > server.key
+    $ openssl req -new -key server.key > server.csr
+    $ openssl x509 -in server.csr -days 365 -req -signkey server.key > server.crt
+    
+    $ mv server.ekey server.key.back
+    $ openssl rsa -in server.key.back > server.key
+
+
+ 
+
+7 change current version 
+----------------------------------------------------------------
+    $ cd /var/rails/uniqlo/
+    $ ln -s /var/rails/uniqlo/release/20150217015610/ ./current
+
+
+
+
+8 unicron start 
+----------------------------------------------------------------
+    $ cd /var/rails/uniqlo/current
+    $ bundle exec unicorn_rails -c /var/rails/uniqlo/env/config/unicorn/production.rb -E production -D  

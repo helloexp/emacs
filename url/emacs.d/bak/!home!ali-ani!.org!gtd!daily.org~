@@ -1,0 +1,113 @@
+-*- mode: org -*-
+
+
+* todos
+** Todo [#G] check
+SCHEDULED: <2015-07-01 Wed +1d>
+- State "Done"       from "Todo"       [2015-06-30 Tue 14:15]
+- State "Done"       from "Todo"       [2015-06-28 Sun 22:45]
+- State "Done"       from "Todo"       [2015-06-25 Thu 10:01]
+- State "Done"       from "Todo"       [2015-06-24 Wed 09:46]
+- State "Done"       from "Todo"       [2015-06-23 Tue 12:08]
+- State "Done"       from "Todo"       [2015-06-22 Mon 09:50]
+- State "Done"       from "Todo"       [2015-06-18 Thu 09:34]
+- State "Done"       from "Todo"       [2015-06-17 Wed 10:13]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2015-06-30 Tue 14:15]
+:END:
+
+*** TODO Server状態確認
+- State "DONE"       from ""           [2015-03-18 水 11:20]
+
+uniqlo server
+
+- unicorn
+- nginx
+- df
+- tw
+
+** Todo [#G] daily report
+SCHEDULED: <2015-06-30 Tue +1d>
+- State "Done"       from "Todo"       [2015-06-30 Tue 14:10]
+- State "Done"       from "Todo"       [2015-06-27 Sat 04:15]
+- State "Done"       from "Todo"       [2015-06-26 Fri 04:14]
+- State "Done"       from "Todo"       [2015-06-24 Wed 19:41]
+- State "Done"       from "Todo"       [2015-06-23 Tue 21:17]
+- State "Done"       from "Todo"       [2015-06-23 Tue 12:41]
+- State "Done"       from "Todo"       [2015-06-18 Thu 22:14]
+- State "Done"       from "Todo"       [2015-06-18 Thu 10:10]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2015-06-30 Tue 14:10]
+:END:
+
+日報提出
+
+** Todo [#G] reminder
+SCHEDULED: <2015-07-01 Wed +1d>
+- State "Done"       from "Todo"       [2015-06-30 Tue 14:13]
+- State "Done"       from "Todo"       [2015-06-29 Mon 09:45]
+- State "Done"       from "Todo"       [2015-06-26 Fri 15:03]
+- State "Done"       from "Todo"       [2015-06-25 Thu 09:57]
+- State "Done"       from "Todo"       [2015-06-24 Wed 09:35]
+- State "Done"       from "Todo"       [2015-06-23 Tue 12:06]
+- State "Done"       from "Todo"       [2015-06-22 Mon 09:49]
+- State "Done"       from "Todo"       [2015-06-18 Thu 09:35]
+- State "Done"       from "Todo"       [2015-06-17 Wed 10:13]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2015-06-30 Tue 14:13]
+:END:
+
+集中力
+考える事は一つに絞る
+
+*** chef 
+・組織の文化
+❶ Respect(お互いの尊重)
+❷ Trust(お互いに対する信頼)
+❸ Healthy attitude about failure (失敗に対する健全な態度)
+❹ Avoiding Blame (相手を非難しない)
+
+・ツール
+❶ Automated Infrastructure (自動化されたインフラ)
+❷ Shared version control(バージョン管理システムの共有)
+❸ One step build and deploy (ワンステップによるビルドとデプロイ)
+❹ Feature flags (フィーチャーフラグ) 3
+❺ Shared metrics (メトリクス注 4 の共有)
+❻ IRC and IM robots (IRC とインスタントメッセンジャーの bot) 5
+
+*** 報告方法を考える
+- 途中経過と、結果の予想
+- 対応策
+- 分かっていない事の報告
+
+*** backup
+- AMI, 色々
+
+- version up時
+  AMI, source
+
+- server止めるとき注意
+
+*** 文章推敲
+注意。推敲しろ
+
+*** deploy時などは、メンテナンス時間を頂戴する。
+連携方法はその都度確認。
+(先方の連絡を待って作業をするなど)
+
+*** 日々気にする
+**** server容量は足りているか
+app log
+web server log
+mysql log
+
+data入力
+
+**** 稼働しているか
+

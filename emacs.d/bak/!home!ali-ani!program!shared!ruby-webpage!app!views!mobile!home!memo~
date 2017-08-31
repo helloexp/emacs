@@ -1,0 +1,66 @@
+
+
+
+
+
+
+
+
+  .carousel-indicators {
+  	position      : relative;
+  	bottom        : 0;
+  	left          : 50%;
+  	z-index       : 15;
+  	width         : 60%;
+  	top           : -25px;
+  	padding-left  : 0;
+  	margin-left   : -10%;
+  	text-align    : right;
+  }
+
+  .carousel-indicators li {
+  	display                : inline-block;
+   	width                  : 18px;
+   	height                 : 18px;
+   	margin                 : 0 5px;
+   	background             : transparent;
+   	-webkit-border-radius  : 50%;
+   	-moz-border-radius     : 50%;
+   	border-radius          : 50%;
+   	border                 : 5px solid transparent;
+   	box-shadow             : rgba(0, 0, 0, 5) 0 0 10px;
+   	cursor                 : pointer;
+  }
+
+  .carousel-indicators .active {
+  	width            : 18px;
+  	height           : 18px;
+  	margin           : 0 5px;
+  	background-color : #000000;
+  }
+
+
+nav-justified
+  small display sizeでstack表示にしない
+------------------------------------------------------------------------------------------------------------------------------------------------
+  .nav-justified {
+    li {
+      display: table-cell;
+      width: 1%;
+    }
+  }
+
+  .nav-justified {
+    li {
+      a {
+        margin-bottom : 0;
+
+        .active {
+          border        : 1px solid black;
+        }
+      }
+    }
+  }
+
+  .tab-content {
+

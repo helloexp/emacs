@@ -1,0 +1,149 @@
+require 'rails_helper'
+
+describe "お問い合わせ確認ページ" do
+
+  feature "ページ表示" do
+    background do
+      visit contact_path
+      params = {
+        contact_c_name: 'Ruby開発',
+        contact_name: 'るびーかいはつ',
+        contact_tel: '03-3525-4301',
+        contact_fax: '03-3525-4302',
+        contact_email: 'test@mruby.jp',
+        contact_email_confirmation: 'test@mruby.jp',
+        contact_url: 'http://www.mruby.jp/',
+        contact_body: 'これはテストです。',
+      }
+      params.each do |key, value|
+        fill_in key, with: value
+      end
+      click_on '内容確認'
+    end
+    subject { page }
+
+    scenario "共通ヘッダーが表示されていること" do
+      is_expected.to have_selector('nav.navbar')
+    end
+
+    scenario "お問い合わせメニューが強調 ('active') されていること" do
+      is_expected.to have_selector '.active', text: 'お問い合わせ'
+    end
+
+    scenario "タイトルが「Ruby開発 | お問い合わせ確認」となっていること" do
+      is_expected.to have_title('Ruby開発 | お問い合わせ確認')
+    end
+
+    scenario "お問い合わせ画面の各入力値が表示されていること" do
+      params.each do |content|
+        expect(page).to have_content content
+      end
+    end
+
+    scenario "「戻る」ボタンが表示されていること" do
+      is_expected.to have_button('戻る')
+    end
+
+    scenario "「送信」ボタンが表示されていること" do
+      is_expected.to have_button('送信')
+    end
+
+    scenario "共通フッターが表示されていること" do
+      is_expected.to have_selector('div#footer')
+    end
+  end
+
+  feature "エラー表示" do
+    background do
+      visit contact_path
+      @params = {
+        contact_c_name: 'Ruby開発',
+        contact_name: 'るびーかいはつ',
+        contact_tel: '03-3525-4301',
+        contact_fax: '03-3525-4302',
+        contact_email: 'test@mruby.jp',
+        contact_email_confirmation: 'test@mruby.jp',
+        contact_url: 'http://www.mruby.jp/',
+        contact_body: 'これはテストです。',
+      }
+    end
+
+    scenario "必須項目が未入力の場合" do
+      @params[:contact_name] = nil
+      @params[:contact_email] = nil
+      @params[:contact_email_confirmation] = nil
+      @params[:contact_body] = nil
+      @params.each do |key, value|
+        fill_in key, with: value
+      end
+      click_on '内容確認'
+      expect(page).to have_content('お名前（担当者名） を入力してください')
+      expect(page).to have_content('メールアドレス を入力してください')
+      expect(page).to have_content('メールアドレス（確認用） を入力してください')
+      expect(page).to have_content('お問い合わせ内容 を入力してください')
+    end
+
+    scenario "email が不正の場合" do
+      @params[:contact_email] = 'testmruby.jp'
+      @params.each do |key, value|
+        fill_in key, with: value
+      end
+      click_on '内容確認'
+      expect(page).to have_content('メールアドレス が不正です')
+    end
+
+    scenario "email と email_confirmation が不一致の場合" do
+      @params[:contact_email_confirmation] = 'test1@mruby.jp'
+      @params.each do |key, value|
+        fill_in key, with: value
+      end
+      click_on '内容確認'
+      expect(page).to have_content('メールアドレス（確認用） が一致しません')
+    end
+
+    scenario 'digit check' do
+      params = {
+        contact_c_name: 'R' * 255,
+        contact_name:   'R' * 255,
+        contact_tel:    'R' * 255,
+        contact_fax:    'R' * 255,
+        contact_email:  'test@' + ('m-ruby.com' * 25),
+        contact_email_confirmation: 'test@' + ('m-ruby.com' * 25),
+        contact_url:    'http:' + ('m-ruby.com' * 25),
+        contact_body:   'R' * 3000
+      }
+
+      # under maxlength
+      visit contact_path
+      params.each do |key, value|
+        fill_in key, with: value
+      end
+      click_on '内容確認'
+      expect(page).not_to have_content('文字以内でご入力下さい')
+
+      # over maxlength, must be error
+      params.each_key do |key|
+        params[key] += "R" # maxlength 超過
+      end
+      visit contact_path
+      params.each do |key, value|
+        fill_in key, with: value
+      end
+      click_on '内容確認'
+      %w[会社名
+        お名前（担当者名）
+        ご連絡先電話番号
+        ご連絡先FAX番号
+        メールアドレス
+        メールアドレス（確認用）
+        ホームページURL
+      ].each do |column|
+        expect(page).to have_content("#{column}は255文字以内でご入力下さい")
+      end
+      expect(page).to have_content("お問い合わせ内容は3000文字以内でご入力下さい")
+    end
+  end
+end
+
+
+

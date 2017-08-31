@@ -1,0 +1,6999 @@
+-*- mode: org -*-
+
+
+
+
+* カンファレンス
+** tohoku developers memo
+*** twitter hashtags
+#tdc8th
+
+https://twitter.com/search?q=%23tdc8th&src=typd&lang=ja&lang=ja
+
+*** IBM
+http://researcher.ibm.com/researcher/view_person_subpage.php?id=5580
+**** jepardy!
+**** open data
+***** keyword
+- linked open data
+
+***** site...
+****** DBpedia
+****** NHTSA - 交通事故の情報
+****** pubMed
+遺伝時相互関係のサマリー生成
+論文そのものは載せられない
+概要など記述
+発表された論文は必ず入れられる。(米政府主導)
+
+MeSH terms
+論文の関連性を人工知能におわせる
+
+****** 災害早期発見
+twitter分析
+
+言葉の相互関連性を元にモジュール化
+相互関連性が高いものをまとめる
+
+**** beatmap.js
+client js to google spraed sheet
+get json
+google maps
+json
+
+**** IT dart
+http://itdart.org/
+
+情報支援
+*** ms
+https://docs.com/dmasubuchi/3090
+
+**** cortana
+**** line リンナ
+**** how-old.net
+顔検出API - project oxford
+
+**** what-dog.net
+犬種を判定する
+
+**** for business
+表情, 持ち物、色、様々な要素から欲しいものを予測して提供する
+
+**** nihongo library
+mecab, sensya?
+
+**** compair
+C# vs ML
+**** revolution R
+microsoft R (買収)
+R
+*** wife2d?
+life2d?
+*** LT
+**** IBM
+watson bluemix API
+**** MS
+**** etc
+あぷりかん
+コード一行でmobileアプリにできる？
+ニューフォリア
+
+GAMATHON
+まんがそん
+
+waifu2d?
+*** miyagi daigaku , kadoda sense
+open source robot?
+
+using rasberypie
+
+open jtalk
+
+まぐぼっと
+
+fablab
+
+replap?
+*** SoftBank
+pepper
+naoki OS
+
+3nengoまでには大学生レベルの知能に
+
+
+* Flowing
+** なぜ正常動作しない
+*** code
+- algorithm
+- 名前 (修正漏れ, 不統一)
+- 繋がりの断絶
+- 計算
+- 関数誤り
+
+*** 接続
+- 接続先/元
+- 未接続
+- 接続はされているが
+    - dataが流れていない.
+    - 内部エラーが出ている.
+
+*** data
+- data形式が誤っている
+    - 外部
+    - 内部
+    - Interface
+    - (配列? int? flowt? string?)
+
+- 容量超過
+- validation error
+
+* emacs
+** gtag
+http://qiita.com/sona-tar/items/672df1259a76f082ce42
+http://emacs-jp.github.io/packages/helm/helm-gtags.html
+http://qiita.com/catatsuy/items/3dda714f4c60c435bb25
+http://qiita.com/5t111111/items/c14ac68f762ce71a7760
+
+https://github.com/syohex/emacs-helm-gtags
+
+
+*** install gtag
+brew install global --with-exuberant-ctags --with-pygments
+
+*** python / gatg setting
+http://qiita.com/t2y/items/b2e41292b7b63e763f8d
+
+# musb be python 2.x.x
+**** python
+$ pyenv install 2.7.9
+$ cd project root
+$ pyenv local 2.7.9
+
+**** python pathの修正
+$ which python
+/usr/local/....
+
+$ emacs /usr/local/share/gtags/script/pygments_parser.py
+# shebanを修正
+
+**** run
+***** tag作成
+gtags -v --gtagslabel=exuberant-ctags --gtagsconf=/usr/local/share/gtags/gtags.conf
+global -x -t ignore_missing
+
+***** 検索結果確認
+global -ax -t [関数名]
+
+***** from emacs
+symbol上で M-g
+
+
+
+*** emacs env
+- package install
+    exec-path-from-shell
+
+- init.el
+    $ emacs init.el
+    (exec-path-from-shell-initialize)
+
+*** helm-gtag
+**** install package
+helm-gtags
+
+**** init.el
+;; ----------------------------------------------------------------
+(define-key global-map (kbd "\C-x M-g") 'goto-line)
+
+;; ----------------------------------------------------------------
+(require 'helm-gtags)
+(add-hook 'go-mode-hook (lambda () (helm-gtags-mode)))
+(add-hook 'python-mode-hook (lambda () (helm-gtags-mode)))
+(add-hook 'ruby-mode-hook (lambda () (helm-gtags-mode)))
+(setq helm-gtags-path-style 'root)
+(setq helm-gtags-auto-update t)
+(add-hook 'helm-gtags-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "M-g") 'helm-gtags-dwim)
+             (local-set-key (kbd "M-s") 'helm-gtags-show-stack)
+             (local-set-key (kbd "M-p") 'helm-gtags-previous-history)
+             (local-set-key (kbd "M-n") 'helm-gtags-next-history)))
+
+*** tag自動更新
+http://syohex.hatenablog.com/entry/20130822/1377182885
+
+* est
+git clone git@github.com:BusinessBank/allin_ops.git
+git clone git@github.com:BusinessBank/allin-sns.git
+git clone git@github.com:BusinessBank/allin-notification.git
+git clone git@github.com:BusinessBank/allin.git
+
+vagrant plugin install vagrant-berkshelf
+vagrant plugin install vagrant-exec
+vagrant plugin install vagrant-omnibus
+
+cd allin
+cp Vagrantfile.sample Vagrantfile
+
+vagrant up
+
+
+vagrant ssh
+cd /vagrant/allin
+cp config/database.yml.sample config/database.yml
+cp config/secrets.yml.sample config/secrets.yml
+cp config/email.yml.sample config/email.yml
+cp config/send_grid.yml.sample config/send_grid.yml
+bundle install --path ~/vendor/bundle
+bin/rake bower:install
+
+bin/rake db:setup
+bin/rake db:seed:init
+
+RAILS_ENV=test bin/rake db:setup
+RAILS_ENV=test bin/rake db:seed db:seed_fu
+
+bin/rails s -b 0.0.0.0
+
+* 確認項目
+** web
+*** 複数ブラウザ, OSで試行する
+動作が異なるが事多々
+
+** 負荷
+** セキュリティ
+
+* emacs
+** helm
+# 必須
+M-x package-install
+
+helm
+helm-ag
+helm-agr
+helm-core
+helm-git
+helm-git-grep
+helm-gitint
+helm-ls-git
+helm-migemo
+helm-swoop
+
+* linux
+** command
+*** htpasswd
+htpasswd -c .htpasswd ruby_dev
+
+// apache-utilとかに入ってる
+
+*** download
+**** wget
+**** curl
+**** axel
+分割してDLできるので、早く落とせるよと
+
+$ axel -a -n 10 -o CentOS.iso http://mirror.fairway.ne.jp/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso
+
+*** vmstat
+全コアの平均利用率
+
+*** mpstat
+コアごとの利用率を見る
+
+$mpstat -P ALL 1
+
+*** iostat
+storageへのアクセス量
+
+$ iostat -dmxt 1
+
+*** vnstat
+ネットワーク流用量
+
+$ vnstat -i eth0 -l
+
+*** ag
+# いい感じ
+grepの高速版
+** jessie install
+graphical installだとNG。
+uefiだと、なんかだめんなる
+** 起動時の実行実行
+$ emacs /etc/rc.local
+
+----------------------------------------------------------------
+su -c "bash /var/rails/influencer/script/unicorn.sh start" - mruby
+----------------------------------------------------------------
+
+** ssh
+*** aws user追加
+$ useradd [username]
+$ sudo passwd [username]
+$ cp  -r  /home/ec2-user/.ssh  /home/[user_name]/
+
+$ sudo emacs /etc/sudoer
+# ALL ALLで設定
+
+** ssl
+*** 自己証明書の生成
+http://www.maruko2.com/mw/Apache/SSL%E8%87%AA%E5%B7%B1%E8%A8%BC%E6%98%8E%E6%9B%B8%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%A8mod_ssl%E3%81%AE%E8%A8%AD%E5%AE%9A
+
+openssl genrsa -aes128 1024 > server.key
+openssl req -new -key server.key > server.csr
+openssl x509 -in server.csr -days 365 -req -signkey server.key > server.crt
+
+
+# $ mkdir .config/certification
+# $ cd ./config/certification
+
+# $ openssl genrsa -aes128 1024 > server.key
+# $ openssl req -new -key server.key > server.csr
+# $ openssl x509 -in server.csr -days 365 -req -signkey server.key > server.crt
+
+# $ mv server.ekey server.key.back
+# $ openssl rsa -in server.key.back > server.key
+
+
+**** 秘密鍵の作成
+openssl genrsa -aes128 1024 > server.key
+
+# genrsa  : RSA形式の秘密鍵
+# -aes128 : 128ビット AES方式で暗号化
+# 1024    : 1024バイトの鍵作成
+
+**** 公開鍵の作成
+openssl req -new -key server.key > server.csr
+
+# req   :  CSRファイルを作成
+# -new  :  新規にCSRを作成
+# -key  :  秘密鍵のファイル名を指定
+
+***** 補足
+WebサーバのCSRファイル（server.csr）を作成する。
+CSR（Certificate Signing Request）とは、SSL 証明書を作成する元になる情報が書かれている。
+内容は、組織名やサーバのアドレスなどの情報を含む公開鍵のファイル。
+
+Country Name (2 letter code) [AU]                          :  国名
+State or Province Name (full name) [Some-State]            :  都道府県名
+Locality Name (eg, city) []                                :  市町村名
+Organization Name (eg, company) [Internet Widgits Pty Ltd] :  組織名
+Organizational Unit Name (eg, section) []                  :  部門名
+Common Name (eg, YOUR name) []                             :  サイトの名前
+Email Address []                                           :  メールアドレス（空欄でもよい）
+A challenge password []                                    :  証明書を破棄する時に必要になるパスワード（空欄でもよい）
+An optional company name []                                :  別の組織名の入力（空欄でもよい）
+
+**** 証明書の作成
+openssl x509 -in server.csr -days 365 -req -signkey server.key > server.crt
+
+x509     :  X.509 形式のデジタル証明書を作成する。
+-in CSR  :  CSR ファイル名を指定する。
+-days    :  証明書の有効期限を指定する。
+-req     :  入力ファイルがCSRファイルであることを指定する。
+-signkey :  秘密鍵ファイル。自己証明書作成時に使用するオプション。秘密鍵ファイルを指定する。
+
+*** 証明書の申請
+AWSから
+http://docs.aws.amazon.com/ja_jp/ElasticLoadBalancing/latest/DeveloperGuide/ssl-server-cert.html
+
+- 暗号化キー作成
+
+- 証明書署名リクエストCSRの作成
+
+- 認証局へCSRを提出
+  追加情報を求められる場合もある
+
+- 認証局から返信
+  パブリック証明書、チェーン証明書などが返信される
+
+-
+
+*** 用語
+**** base
+ルート証明書
+中間CA証明書
+
+**** on aws
+- public key certificate
+  公開鍵証明書公開鍵方式において, 認証局が発行する利用者の身分証明書
+  恐らく、証明書そのもの
+  .crt
+
+- certificate chain
+  中間証明書?
+
+
+- private key
+  暗号化キー
+  .key
+
+** crontab
+*** ユーザー指定して実行
+/etc/crontabへ直接記述
+
+# run instagram rest
+*/10 * * * * root su - www -lc "/var/rails/influencer/script/sns/instagram_rest.sh >> /var/rails/influencer/shared/log/sns/instagram_rest.log 2>> /var/rails/influencer/shared/log/sns/err_instagram_rest.log"
+
+** logrotate
+http://www.mk-mode.com/octopress/2014/02/02/unicorn-logrotation/
+
+*** rotateを試す
+logrotate -df /etc/logrotate.d/sns
+
+** mount
+*** user, group指定
+http://d.hatena.ne.jp/i_k_b/20110203/1296725898
+
+$ sudo mount -t cifs -o uid=$(id -u),gid=$(id -g),username=<YOUR ACCOUNT>  //server/share dir
+
+# id コマンドで、login userのidがわかる
+*** ftp mout
+$ sudo apt-get install curlftpfs
+$ curlftpfs -o user=twinfang:ImmortalBane0404 ftp://10.250.1.1/ /home/ali-ani/nas/
+
+# fstab
+curlftpfs#twinfang:ImmortalBane0404@10.250.1.1 /home/ali-ani/nas fuse defaults,allow_other,rw 0 0
+
+*** sticky bit
+// /tmpへsticky bitつけないとプロセス書き込めなくなる(時がある)
+// pumaからは書き込めなくなっていた
+
+// set
+chmod a+rwxt /tmpll
+
+// ll
+// [rwt] となる
+drwxrwxrwt  4 root root  4096 Jan 25 15:49 tmp
+** cron
+*** crontab管理
+http://d.hatena.ne.jp/LukeSilvia/20080621/p1
+http://dqn.sakusakutto.jp/2012/06/cron_crontab9.html
+
+** keybind
+# 自動起動可能
+#   修正方法はしっかり確認していない
+/usr/share/X11/xkb/keycodes/evdev
+
+** etc
+*** processの環境変数を得る
+$ strings /proc/[PID]/environ
+
+** yum
+*** update
+**** example : security update
+yum clean all
+
+yum list installed | grep glibc
+yum list updates | grep glibc
+
+sudo yum update glibc
+
+yum list installed | grep glibc
+
+**** glibc update
+***** glibc update後、server 再起動
+***** 読み込まれている version確認
+# TODO
+何か手段があったような
+
+** 環境変数
+*** processが取得している環境変数を確認
+# sudo strings /proc/[process_number]/environ
+sudo strings /proc/27573/environ
+
+** nvidia
+*** source
+itumono kanzi
+ただ、jessieだと、起動時に止まる
+*** package
+http://d.hatena.ne.jp/talisker_ZQN/20150518/1431963729
+
+**** vim /etc/apt/sources.list
+deb http://http.debian.net/debian/ jessie main contrib non-free
+
+**** aptitude
+apt-get install linux-headers-$(uname -r|sed 's,[^-]*-[^-]*-,,') nvidia-kernel-dkms
+
+**** mkdir /etc/X11/xorg.conf.d
+**** /etc/X11/xorg.conf
+Section "Device"
+	Identifier "My GPU"
+	Driver "nvidia"
+EndSection
+
+**** # vim /etc/default/grub
+(略)
+GRUB_DEFAULT=0
+GRUB_TIMEOUT=5
+GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
+GRUB_CMDLINE_LINUX_DEFAULT="quiet"
+# 加筆
+GRUB_CMDLINE_LINUX="nouveau.modeset=0 rdblacklist=nouveau"
+(略)
+
+**** update-grub
+# update-grub
+
+** signal処理
+http://equj65.net/tech/linuxprocessgroup/
+http://qiita.com/toshihirock/items/bc6a9a4091afa9bb61f1
+
+*** ruby
+https://gist.github.com/sauloperez/6592971
+http://qiita.com/s-shin/items/0d4c0fd7ea9d63ca2f67
+* AWS
+** command
+*** ssl
+**** upload to cloudfron
+http://qiita.com/n0bisuke/items/a2a7d5efdc1311dc479a
+
+**** 設定済みの証明書を取得
+# 以下だと、chainがでてこない
+aws iam list-server-certificates --output text --query 'ServerCertificateMetadataList[].[ServerCertificateName]' | xargs -L 1 \
+aws iam get-server-certificate --output text --query 'ServerCertificate.[ServerCertificateMetadata.ServerCertificateName,CertificateBody]' --server-certificate-name
+
+# crt nameを得る
+aws iam list-server-certificates
+
+# crt name指定し、crt / chainを取得
+#   恐らく、keyは得られない
+aws iam get-server-certificate --output text --server-certificate-name [crt_name]
+
+**** 移動
+$ aws iam update-server-certificate --server-certificate-name アップロードした証明書名 ¥
+                                    --new-path /cloudfront/path/
+
+**** 名前の変更
+$ aws iam update-server-certificate --server-certificate-name アップロードした証明書名 ¥
+                                    --new-server-certificate-name 変更後の証明書名
+
+**** 証明書の削除
+# 証明書の名前を得る
+aws iam list-server-certificates
+
+# 削除
+#   使用中の場合、エラーが出る
+$ aws iam delete-server-certificate --server-certificate-name アップロードした証明書名
+
+
+** Amazon Linux - init Enviroment (Ruby, RoR)
+*** AWS instance生成
+amazon linux instanceを生成しsshアクセスする。
+# instance生成手順は割愛
+
+*** user 作成
+$ sudo su -
+
+$ adduser mruby
+$ passwd mruby
+murby3826
+
+$ usermod -G ec2-user mruby
+
+*** sudoer file書き換え
+$ chmod 700 /etc/sudoers
+$ vim /etc/sudoers
+# 追記
+----------------------------------------------------------------
+99行目 : mruby  ALL=(ALL)  ALL
+----------------------------------------------------------------
+
+$ chmod 440 /etc/sudoers
+
+*** 初期 install
+su - mruby
+
+sudo yum install -y emacs
+sudo yum install -y ruby-devel rubygems-devel
+sudo yum install -y git make gcc gcc-c++
+sudo yum install -y libyaml-devel libffi-devel libicu-devel zlib-devel readline-devel
+sudo yum install -y sqlite-devel
+sudo yum install -y openssl openssl-devel gdbm gdbm-devel
+sudo yum install -y libxml2 libxml2-devel
+sudo yum install -y libxslt libxslt-devel
+sudo yum install -y mysql mysql-devel
+
+sudo yum install nodejs npm --enablerepo=epel
+
+*** rbenv install
+$ vim ~/rbenv-install.sh
+$ chmod 755 ~/rbenv-install.sh
+
+# 書き込み
+----------------------------------------------------------------
+MY_GROUP="root"
+if [ "$MY_GROUP" = "" ] ; then
+    echo '!!! undefined variable MY_GROUP.'
+    echo '!!!'
+    echo '!!! ex.) MY_GROUP=staff'
+    echo '!!!'
+    exit 1
+fi
+
+cd /usr/local
+git clone git://github.com/sstephenson/rbenv.git rbenv
+mkdir rbenv/shims rbenv/versions
+chgrp -R $MY_GROUP rbenv
+chmod -R g+rwxX rbenv
+
+git clone git://github.com/sstephenson/ruby-build.git ruby-build
+cd ruby-build
+./install.sh
+
+echo 'export RBENV_ROOT="/usr/local/rbenv"'     >> /etc/profile.d/rbenv.sh
+echo 'export PATH="/usr/local/rbenv/bin:$PATH"' >> /etc/profile.d/rbenv.sh
+echo 'eval "$(rbenv init -)"'                   >> /etc/profile.d/rbenv.sh
+----------------------------------------------------------------
+
+$ sudo bash ~/rbenv_install.sh
+
+*** Ruby setting
+$ rbenv install 2.2.0
+$ rbenv global 2.2.0
+
+*** .gemrc
+$ vim ~/.gemrc
+----------------------------------------------------------------
+install: --no-rdoc --no-ri
+update:  --no-rdoc --no-ri
+----------------------------------------------------------------
+
+*** 権限変更
+cd /usr/local/rbenv/
+chown user:user -R ./*
+
+*** gem install
+gem install bundle bundler io-console
+gem install sqlite3 mysql2
+gem install therubyracer
+gem install nokogiri -- --use-system-libraries
+gem install unicorn unicorn-rails
+
+gem install rails --version 4.2.0
+
+*** 参考
+nokogiri install
+http://appakun.hateblo.jp/entry/2014/10/08/%E5%88%83%E7%89%A9%E3%81%AE%E7%A7%8B%E3%81%A0%E3%81%97Nokogiri%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B
+http://www.e-mist.com/articles/libxml2_libxslt_for_nokogiri_install_on_centos
+http://www.nokogiri.org/tutorials/installing_nokogiri.html
+
+** 用語
+*** リージョンとアベイラビリティーゾーン
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/using-regions-availability-zones.html
+
+**** リージョン
+地理的に離れた領域
+
+**** アベイラビリティーゾーン
+http://www.atmarkit.co.jp/ait/articles/1410/27/news013.html
+
+1つのリージョン内のロケーションを指す。
+
+**** 概念
+リージョンは完全独立。
+各アベイラビリティーゾーンは独立しているが、同一リージョン内のアベイラビリティーゾーン同士は低レイテンシーのリンクで接続されている。
+
+**** 適用範囲
+Amazon EC2リソースには、グローバル、リージョン、アベイラビリティーゾーンに結び付けられているものがある。
+
+詳細は以下
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/resources.html
+
+** 初期設定
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#create-an-iam-user
+[Download Credentials] をクリックし、アクセスキーを安全な場所に保存します。アクセスキーは、AWS CLI、AWS SDK、HTTP API のいずれかを使用してプログラムから AWS にアクセスするために必要です。
+
+*** iam user 作成
+**** group作成
+**** user作成
+**** userをgroupへassign
+**** user password設定
+
+*** iam user としてログイン
+https://your_aws_account_id.signin.aws.amazon.com/console/
+
+新規の IAM ユーザーとしてサインインするには、AWS コンソールからサインアウトし、次の URL を使用します。
+このとき、your_aws_account_id はハイフンを除いた AWS アカウント番号です
+（たとえば AWS アカウント番号が 1234-5678-9012 であれば、AWS アカウント ID は 123456789012 となります）。
+
+*** リージョン設定
+画面右上
+Asia Pacific (tokyo) を選択
+
+*** key pairs作成
+**** 画面左メニュー下部から、[Key Pairs] を選択
+# [Create Key Pair] ダイアログボックスの [Key Pair Name] フィールドに新しいキーペアの名前を入力し、[Create] をクリックします。
+# 覚えやすい名前（IAM ユーザー名など）を選び、その後に -key-pair を続け、さらにリージョン名を続けます。たとえば、me-key-pair-uswest2 などです
+
+**** DL private key
+[create] クリック後、自動でDL開始される。
+
+*** VPC
+- defaultのVPCが作成される (support platformがVPCのみ場合)
+
+**** EC2-Classic と EC2-VPC の違い
+***** EC2-Classic
+共有プライベート IP アドレス範囲のプライベート IP アドレスが各インスタンスに割り当てられます。
+また、Amazon は各インスタンスに、Amazon のパブリック IP アドレスのプールからパブリック IP アドレスを割り当てます。
+インスタンスは、AWS ネットワークエッジを通してインターネットに直接アクセスします。
+
+***** EC2-VPC
+お客様の VPC のプライベート IP アドレス範囲のプライベート IP アドレスが各インスタンスに割り当てられます。
+お客様は、お客様の VPC の IP アドレス範囲、サブネット、ルーティング、ネットワークゲートウェイ、ネットワーク ACL、
+セキュリティグループを制御できます。
+インスタンスが起動している間にパブリック IP アドレスを受け取るかどうかを指定できます。
+パブリック IP アドレスまたは Elastic IP アドレスが割り当てられたインスタンスは、AWS ネットワークエッジにアタッチされて
+いる論理インターネットゲートウェイを通してインターネットにアクセスできます。
+EC2-VPC の詳細については、「What is Amazon VPC?」を参照してください（『Amazon VPC ユーザーガイド』）。
+
+**** VPC user guide
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/using-vpc.html
+**** デフォルト以外の VPC を作成するには
+https://console.aws.amazon.com/vpc/
+
+- ナビゲーションバーで、VPC のリージョンを選択します。
+  VPC はリージョンに固有であるため、キーペアを作成したリージョンと同じリージョンを選択してください。
+
+- VPC ダッシュボードで、[Start VPC Wizard] をクリックします。
+
+- [Step 1: Select a VPC Configuration] ページで、[VPC with a Single Public Subnet] が選択されていることを確認し、
+  [Select] をクリックします。
+
+- [Step 2: VPC with a Single Public Subnet] ページで、[VPC name] フィールドに、わかりやすい VPC 名を入力します。
+  他のデフォルトの設定はそのままにしておき、[Create VPC] をクリックします。確認ページで、[OK] をクリックします。
+*** セキュリティグループの作成
+セキュリティグループは、関連付けられたインスタンスのファイアウォールとして動作し、
+インバウンドトラフィックとアウトバウンドトラフィックの両方をインスタンスレベルでコントロールします。
+SSH を使用して IP アドレスからインスタンスに接続できるようにするためのルールをセキュリティグループに追加します。
+さらに、任意の場所からのインバウンドおよびアウトバウンドの HTTP アクセスおよび HTTPS アクセスを可能にするルールを追加できます。
+
+複数のリージョンでインスタンスを起動する予定がある場合は、各リージョンでセキュリティグループを作成する必要があります。
+リージョンの詳細については、「リージョンとアベイラビリティーゾーン」を参照してください。
+
+**** 初期設定
+- Amazon EC2 コンソールを開く。
+
+- ナビゲーションバーで、セキュリティグループのリージョンを選択します。
+  セキュリティグループはリージョンに固有であるため、キーペアを作成したリージョンと同じリージョンを選択してください。
+
+- ナビゲーションペインで [Security Groups] をクリックします。
+
+- [Create Security Group] をクリックします。
+
+- 新しいセキュリティグループの名前と説明を入力します。覚えやすい名前（IAM ユーザー名など）を選び、
+  その後に _SG_ を続け、さらにリージョン名を続けます。たとえば、me_SG_uswest2 などです。
+
+- [VPC] リストで、デフォルトの VPC が選択されていることを確認します。この VPC には、アスタリスク（*）が示されています
+
+- [Inbound] タブで、次のルールを作成し（新しいルールごとに [Add Rule] をクリック）、最後に [Create] をクリックします。
+  [Protocol] リストから [HTTP] を選択し、[Source] を [Anywhere]（0.0.0.0/0）に設定します。
+  [Type] リストから [HTTPS] を選択し、[Source] が [Anywhere]（0.0.0.0/0）に設定されていることを確認します。
+  [Type] リストから [SSH] を選択します。[Source] ボックスで、[Custom IP] が選択されていることを確認し、コンピュータまたは
+  ネットワークのパブリック IP アドレスを CIDR 表記で指定します。CIDR 表記で個々の IP アドレスを指定するには、ルーティングプレ
+  フィックスを追加します。/32例えば、IP アドレスが 216.182.234.123 の場合は、216.182.234.123/32 を指定します。
+  会社が特定の範囲からアドレスを割り当てている場合、範囲全体（203.0.113.0/24など）を指定します。
+
+  Caution
+    セキュリティ上の理由で、すべての IP アドレス（0.0.0.0/0）からインスタンスへの SSH アクセスを許可することはお勧めしません。
+    ただし、それがテスト目的で短期間の場合は例外です。
+
+
+
+**** inboud / outbound設定
+- [inbound tab] を開く
+
+- [Edit] を選択
+
+- ルールを増やす場合は、[add rule] を選択
+
+- アクセス範囲の設定
+  Type   : protocol選択
+  Source : Access元IPアドレス帯の設定
+
+**** users guide
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/using-network-security.html
+
+*** Amazon EC2 インスタンスの起動
+**** Amazon EC コンソール（https://console.aws.amazon.com/ec2/）を開きます。
+**** コンソールダッシュボードで、[Launch Instance] をクリックします。
+**** [Choose an Amazon Machine Image (AMI)] ページに、Amazon マシンイメージ（AMI）と呼ばれる基本設定のリストが表示されます。
+  これは、インスタンスのテンプレートとして機能します。[64-bit Amazon Linux AMI] を選択します。
+  この設定は、[Free tier eligible] として表示されます。
+
+**** [Choose an Instance Type] ページで、インスタンスのハードウェア構成を選択できます。
+デフォルトでは、t2.micro インスタンスタイプが選択されます。
+また、フィルタリストの [All generations] を選択して、[t1.micro] インスタンスタイプを選択することもできます。
+無料利用枠の対象となるのは、これらのインスタンスタイプのみであることに注意してください。
+
+Note
+VPC で T2 インスタンスを起動する必要があります。
+AWS アカウントが EC2-Classic をサポートしており、VPC がない場合、起動ウィザードによって VPC が作成されます。
+それ以外で、VPC がある場合は、[Next: Configure Instance Details] をクリックして VPC とサブネットを選択します。
+
+**** [Review and Launch] をクリックして、ウィザードが他の設定を完了できるようにします。
+**** [Review Instance Launch] ページの [Security Groups] に、ウィザードで作成および選択したセキュリティグループが表示されます。
+代わりに、次のステップを使ってセットアップ時に作成したセキュリティグループを選択します。
+
+- [Edit security groups] をクリックします。
+- [Configure Security Group] ページで、[Select an existing security group] オプションが選択されていることを確認します。
+- 既存のセキュリティグループのリストからセキュリティグループを選択し、[Review and Launch] をクリックします。
+
+**** [Review Instance Launch] ページで、[Launch] をクリックします。
+**** [Select an existing key pair or create a new key pair] ダイアログボックスで、
+[Choose an existing key pair] を選択し、設定時に作成したキーペアを選択します。
+別の方法として、新しいキーペアを作成できます。[Create a new key pair] を選択し、キーペアの名前を入力して、[Download Key Pair]
+をクリックします。
+
+これは、プライベートキーファイルを保存できる唯一のチャンスなので、必ずダウンロードしてください。プライベートキーファイルを安全な場所に保存します。
+インスタンスと対応するプライベートキーの起動時には、毎回インスタンスに接続するたびに、キーペアの名前を入力する必要があります。
+
+キーペアは、SSH 経由で Linux インスタンスに接続できるようにします。
+したがって、[Proceed without a Key Pair] オプションは選択しないでください。
+
+キーペアを使用せずにインスタンスを起動すると、インスタンスに接続できません。
+準備ができたら、確認チェックボックスをオンにして、[Launch Instances] をクリックします。
+
+**** インスタンスを起動することを知らせる確認ページが表示されます。[View Instances] をクリックして確認ページを閉じ、コンソールに戻ります。
+**** [Instances] 画面で、インスタンスの状態を確認できます。インスタンスはすぐに起動します。インスタンスを起動すると、初期状態は pending になります。
+インスタンスを起動した後は、状態が running に変わり、パブリック DNS 名を受け取ります（[Public DNS] 列が非表示の場合は、
+[Show/Hide] アイコンをクリックし、[Public DNS] を選択します）。
+
+*** instanceへの接続
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-connect-to-instance-linux.html#using-ssh-client
+
+$ ssh -i /path/key_pair.pem ec2-user@public_dns_name
+
+Amazon Linux の場合は、デフォルトのユーザー名は ec2-user
+RHEL5 の場合は、ユーザー名は root または ec2-user のどちらかです。
+Ubuntu の場合は、ユーザー名は ubuntu です。
+Fedora の場合は、ユーザー名は fedora または ec2-user のどちらかです。
+SUSE Linux の場合は、ユーザー名は root です。
+それ以外の場合で、ec2-user および root が機能しない場合は、ご利用の AMI プロバイダーに確認してください。
+
+*** インスタンスへのボリューム追加
+ap-northeast-1a
+
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-add-volume-to-instance.html
+
+**** Amazon EC コンソール（https://console.aws.amazon.com/ec2/）を開きます。
+**** ナビゲーションバーで、インスタンスを作成したリージョンを選択し、ナビゲーションペインで [Instances] をクリックします。
+**** 選択したリージョンの現在のインスタンス一覧がコンソールに表示されます。
+Linux インスタンスを選択します。下部のペインの [Description] タブで、インスタンスの [Availability Zone] を書き留めます。
+
+**** ナビゲーションペインの [Elastic Block Store] で、[Volumes] をクリックします。
+**** [Create Volume] をクリックします。
+**** 次のように設定し、[Create] をクリックします。
+[General Purpose (SSD)] ボリュームタイプを選択し、General Purpose (SSD) EBS ボリュームを作成します。
+
+Note
+2012 年より前に作成された一部の AWS アカウントでは、Provisioned IOPS (SSD) や General Purpose (SSD) のような SSD ボリュームを
+サポートしない us-east-1、us-west-1、または ap-northeast-1 のアベイラビリティーゾーンにアクセスできることがあります。
+これらのリージョンの 1 つに SSD ボリュームを作成できない場合（またはブロックデバイスマッピングに SSD ボリュームのあるインスタンスを起動
+できない場合）は、リージョンの別のアベイラビリティーゾーンを試します。
+アベイラビリティーゾーンが General Purpose (SSD) および Provisioned IOPS (SSD) ボリュームをサポートするかどうかは、1 GiB の
+General Purpose (SSD) ボリュームをそのゾーンに作成することで確認できます。
+
+作成するボリュームのサイズを入力します。Amazon EBS の無料利用枠は最大 30 GiB のストレージであるため、このチュートリアルでは料金が発生し
+ないように、この限度を超過しない範囲でボリュームサイズを選択します。
+たとえば、作成したインスタンスの起動ボリュームで 8 GiB の Amazon EBS ボリュームを使用している場合は、作成するボリュームのサイズを
+22 GiB 以下にします。
+インスタンスの作成時に使用した [Availability Zone] を選択します。別のゾーンを選択すると、インスタンスにボリュームをアタッチできません。
+
+**** ナビゲーションペインの [Elastic Block Store] で、[Volumes] をクリックします。
+新しく作成したボリュームがそこに表示され、ボリュームの状態は available なので、インスタンスにアタッチする準備ができています。
+
+**** 新しく作成したボリュームを右クリックし、[Attach Volume] を選択します。
+**** [Attach Volume] ダイアログボックスで、以下のとおり設定を行ってから、[Attach] をクリックします。
+インスタンスの名前または ID を入力して、提案されたオプションのリストからインスタンスを選択します。
+そのインスタンスの未使用のデバイス名を指定します。このチュートリアルでは、/dev/sdf を使用します。
+別のデバイス名を選択した場合、必ずそのデバイス名を書き留めてください。この情報は次の手順で必要になります。
+*** インスタンスへのボリューム追加2
+**** ヴォリュームアタッチ後
+[/dev/] へ新たに追加されるため、formatとmountが必要
+
+**** dev確認コマンド
+lsblk
+sudo fdisk -l | grep Disk
+
+**** format
+[ec2-user ~]$ sudo mkfs -t ext4 /dev/xvdf
+
+# スナップショットを使用しない場合、空のヴォリュームになる
+
+**** mount
+[ec2-user ~]$ sudo mkdir /mnt/my-data
+[ec2-user ~]$ sudo mount /dev/xvdf /mnt/my-data
+
+**** important
+無料利用枠内で使用する限り、料金はかかりません。
+それ以外の場合、インスタンスが起動するとすぐに、インスタンスの実行時間に応じて、インスタンスがアイドル状態の場合でも課金されます。
+通常のインスタンスのステータスが shutting down または terminated になると、インスタンスの使用料は発生しなくなります。
+
+*** インスタンスとボリュームのクリーンアップ
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-clean-up-your-instance.html
+
+** 初期設定 - 最初に設定した方がいいもの
+http://dev.classmethod.jp/cloud/five-confs-of-ec2-linux-sysops/
+
+*** auto update security 停止
+/etc/cloud/cloud.cfg
+
+--------------------------------
+repo_upgrade: none
+--------------------------------
+
+*** time zone固定
+glibc updateすると、time zoneがUTCになる。
+
+http://qiita.com/azusanakano/items/b39bd22504313884a7c3
+
+# 一応、バックアップを取ります
+cp /etc/sysconfig/clock /etc/sysconfig/clock.org
+
+# viなどで編集してもよし
+echo -e 'ZONE="Asia/Tokyo"\nUTC=false' > /etc/sysconfig/clock
+
+# 一応、バックアップを取ります
+cp /etc/localtime /etc/localtime.org
+
+# timezoneファイル差し替え
+ln -sf  /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+
+** 料金
+*** EBS
+**** snapshot
+http://qiita.com/kaojiri/items/1c4a95c271fb1584476a
+
+- 実際に使用した分のみ課金される
+- スナップショットは即時取られるが、s3への転送に時間がかかる
+- データは圧縮される
+- 実際に消費されたデータは参照不可
+
+- backupは差分で取られる
+- 途中のbackupを削除しても、裏側で完全なデータが保持される
+   - この辺りの考え方は少し難しい.
+
+** 機能
+*** CLI
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/concepts.html#access-ec2
+
+**** Init setting
+***** command lineからの設定
+aws configure
+
+***** ~/.aws/config
+----------------------------------------------------------------
+[default]
+output = json
+region = ap-northeast-1
+----------------------------------------------------------------
+
+***** ~/.aws/credentials
+----------------------------------------------------------------
+[default]
+aws_access_key_id = AKIAIH5UMP2DMKYZSHGA
+aws_secret_access_key = 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
+----------------------------------------------------------------
+
+***** ~/.aws/credentials-as
+Auto scale CLI用
+****** 以下ファイルを作成
+
+/home/mruby/.aws/credentials-as
+----------------------------------------------------------------
+AWSAccessKeyId=AKIAIHS4A5UC4SXAZGQQ
+AWSSecretKey=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
+----------------------------------------------------------------
+
+****** export
+export AWS_CREDENTIAL_FILE=/home/mruby/.aws/credentials-as
+
+**** install jq
+yum install jq
+
+フィルタプログラム (grepな感じ)
+# http://dev.classmethod.jp/tool/jq-manual-japanese-translation-roughly/
+
+**** EC2 instance
+***** start
+aws ec2 start-instances --region="ap-northeast-1" --instance-ids="[instance_id]"
+
+***** stop
+aws ec2 stop-instances --region="ap-northeast-1" --instance-ids="[instance_id]"
+
+***** reboot
+aws ec2 reboot-instances --region="ap-northeast-1" --instance-ids="[instance_id]"
+
+***** terminate
+aws ec2 terminate-instances --region="ap-northeast-1" --instance-ids="[instance_id]"
+
+**** AS & ELB
+ASしたinstaceを自動で、ELBへassign
+
+***** 全体像
+- LaunchConfig
+    起動するインスタンスの設定
+
+- AutoScalingGroup
+    インスタンスの増減や対象のELB、VPCなど
+    インスタンスの環境の設定。 LaunchConfigを参照する。
+
+- ScalingPolicy
+    インスタンスを何台増やす、減らすなど インスタンスを操作するのかを設定。 AutoScalingGroupを参照する。
+
+- CloudWatch
+    AlarmにScalingPolicyを設定することで
+    AutoScalingGroupのメトリクス内容を見て
+    ScalingPolicyを発動させる。
+
+***** example createcommand
+as-create-auto-scaling-group test
+--launch-configuration uniqlo-admin
+--availability-zones ap-northeast-1a
+--min-size 1
+--max-size 10
+--load-balancers uniqlo-influencer-adm-lb
+--health-check-type ELB
+--grace-period 60
+--vpc-zone-identifier subnet-92ac7ee5
+
+***** create command detail
+as-create-auto-scaling-group  [auto_scale_ group_name]
+
+--launch-configuration  上記で作成した起動設定
+--load-balancers        ELB配下にぶら下げるので対象のELBを指定
+--health-check-type     ELB以外のチェック方法調べてない
+--grace-period          ヘルスチェックをはじめるまでの時間
+--availability-zones    ASで起動させるインスタンスを置くAZを指定(複数可)
+--min-size              ASの最小インスタンス数
+--max-size              ASの最大インスタンス数
+--desired-capacity
+--vpc-zone-identifier   VPCにアサインされているサブネットの指定(複数可)
+
+***** AS instance状態確認
+as-describe-auto-scaling-instances --region ap-northeast-1
+***** ASの最大インスタンス数と最小インスタンス数の変更
+$ as-update-auto-scaling-group --min-size 2 --max-size 4 --region ap-northeast-1
+*** iam
+**** 初期
+- AWS内での管理権限
+- groupを作成し、アクセス権限を設定。
+- userを作成し、各サービス(AWS CLI、AWS SDK、HTTP API のいずれかを使用してプログラムから AWS にアクセスするために必要です。)
+  へアクセスするためのキーを作成し、DLする
+
+**** ユーザー間でのinstance, EBS, security ruleの共有方法
+
+*** AMI
+**** AMIとは
+端的に言うと、OS環境などのimageファイル
+
+**** 特定ユーザーとAMI共有
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/sharingamis-explicit.html
+
+*** EBS
+http://www.slideshare.net/AmazonWebServicesJapan/aws-16148274
+
+**** 用途
+永続型volume (仮想SSD)
+
+**** 種類と特性
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/EBSVolumeTypes.html#EBSVolumeTypes_gp2
+https://aws.amazon.com/jp/blogs/news/amazon-ebs-update-new-cold-storage-and-throughput-options/
+
+***** 汎用SSD
+****** ユースケース
+system boot volume
+小規模、中規模DB
+開発テスト環境向け
+
+****** IOSP : ベースパフォーマンスとburst
+- ベースパフォーマンス
+  基本1Gにつき、3IOPS (10Gならば、30IOPS。最大3000IOPS/1T)
+
+- burst
+  ベースパフォーマンスを超える場合、最大3000IOPSまでburstする。
+
+  ただし、burst閾値が存在する。
+  初期値として、5,400,000 I/O クレジットが割り当てられる。
+  burstすると、当クレジットが消費される。
+  クレジットが0となると、IOPSはベースパフォーマンスになる。(1Gの場合、3IOPS)
+
+  クレジットの回復量は、ベースパフォーマンスと同一となる。(1Gの場合、3IOPSが加算される。前述のURLに計算式あり)
+
+  # volume sizeを増やせば回復量は増加する。
+
+***** プロビジョンド
+****** ユースケース
+3,000 IOPS を超える持続的な IOPS パフォーマンス
+MongoDB
+Microsoft SQL Server
+MySQL
+PostgreSQL
+Oracle
+
+ランダムアクセス I/O スループットにおけるストレージパフォーマンスと整合性が重要な、
+I/O 集約型ワークロード（特にデータベースワークロード）のニーズを満たすように設計されています
+
+****** 概要
+- ヴォリューム作成時にIOPSレートを指定
+- 最大4000IOPS
+- 3000IOPSを出すならば、最低100G必要
+- サイズ拡張、パフォーマンス向上には、複数ヴォリュームを纏めストレイプ構成に
+
+***** マグネティック
+****** ユースケース
+- データに頻繁にアクセスしないコールドワークロード
+- 低いストレージコストが重視されるシナリオ
+
+****** 概要
+- 平均100IOPS、数百 IOPS までのバースト
+- Gあたりのコストが最も低い
+- サイズの拡張とパフォーマンスの向上する場合は、RAID構成内でまとめてストライプ構成する
+
+***** スループット最適化
+***** cold
+**** Amazon EC2 ルートデバイスボリューム
+***** インスタンスストア
+- インスタンスを起動する時、ルートデバイスボリュームに格納されているイメージを使用してインスタンスがブートされます。
+- インスタンスのルートデバイスは、Amazon S3 に格納されたテンプレートから作成されるインスタンスストアボリューム
+
+***** EBS
+- Amazon EBS スナップショットから作成される Amazon EBS ボリューム
+- は起動が高速であり、永続的ストレージを使用している
+
+***** ルートデバイスストレージの概念
+Instance store-Backed AMI と Amazon EBS-Backed AMI という 2 種類の AMI のいずれかからインスタンスを起動できます。
+大きな違いがあるため、タイプを区別できることは重要
+
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device
+
+***** instance store-backed のインスタンス
+インスタンスストアをルートデバイスに使用するインスタンスでは自動的に、インスタンスストアボリュームを利用できるようになり、
+その 1 つがルートデバイスボリュームとなります。インスタンスを起動すると、インスタンスのブートに使用されるイメージが
+ルートボリューム（通常は sda1）にコピーされます。
+
+インスタンスストアボリュームのデータはインスタンスが実行している間は維持されますが、
+インスタンスが終了すると（Instance store-Backed インスタンスは [Stop] アクションをサポートしていません）、
+またはインスタンスが失敗すると（基盤となるドライブに問題がある場合など）、削除されます。
+
+***** デフォルトのデータストレージと永続性
+ルートデバイスにインスタンスストアボリュームを使用するインスタンスでは、自動的にインスタンスストアが利用できます（ルートボリュームにルートパーティ
+ションが含まれ、追加のデータを保存できます）。
+インスタンスが失敗するか終了すると、インスタンスストアボリューム上のすべてのデータが削除されます（ルートデバイス上のデータを除く）。
+Amazon EBS ボリュームをアタッチすることで、永続的ストレージをインスタンスに追加できます。
+
+Amazon EBS をルートデバイスに使用するインスタンスには自動的に、Amazon EBS ボリュームがアタッチされます。
+ブロックデバイスマッピングを使用して、インスタンスストレージまたは追加の Amazon EBS ボリュームを追加できます。
+詳細については、「ブロックデバイスマッピング」を参照してください。
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html
+
+インスタンスを停止すると、インスタンスストアボリュームに何が発生するかについては、「インスタンスの停止と起動」を参照してください。
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/Stop_Start.html
+
+***** 起動時間
+Amazon EBS-Backed AMI は、Amazon EC2 Instance store-Backed AMI よりも速く起動する。
+
+Amazon EC2 Instance store-Backed AMI を起動するときには、Amazon S3 からすべての部分を取得しないとインスタンスを利用できません。
+
+Amazon EBS-Backed AMI の場合、インスタンスの起動に必要な部分だけをスナップショットから取得するとインスタンスを利用できます。
+ただし、ルートデバイスに Amazon EBS ボリュームを使用するインスタンスのパフォーマンスは、残りの部分がスナップショットから取得され、
+ボリュームにロードされる少しの時間、遅くなります。
+
+インスタンスを停止し、再起動する場合は、状態が Amazon EBS ボリュームに保存されているため早く起動します。
+***** AMI の作成
+Instance Store-Backed の Linux AMI を作成するには、インスタンス自体にインスタンスの AMI を作成する必要があります。
+
+ただし、それを支援する API アクションはありません。
+
+AMI の作成は、EBS Backed の AMI の方がはるかに簡単です。
+CreateImage API アクションは、Amazon EBS-Backed AMI を作成して登録します。
+AWS Management Console にも、実行中のインスタンスから AMI を作成できるボタンがあります。
+詳細については、「Amazon EBS-Backed Linux AMI の作成」を参照してください。
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html
+
+***** 課金方法
+- 対象
+    Instance Store-Backed の AMI の場合、AMI ストレージとインスタンスの使用量に対して課金されます。
+    Amazon EBS-Backed の AMI の場合、AMI とインスタンスの使用料に加えて、ボリュームストレージおよび使用量に対して課金されます。
+
+- ストレージ
+    Amazon EC2 Instance Store-Backed の AMI の場合、AMI をカスタマイズしたり、新しい AMI を作成したりするたびに、
+    各 AMI のすべての部分が Amazon S3 に保存されます。
+    そのため、カスタマイズした各 AMI のストレージフットプリントは、AMI の完全なサイズになります。
+
+    Amazon EBS-Backed の AMI の場合、AMI をカスタマイズしたり、新しい AMI を作成したりするたびに、変更のみが保存されます。
+    最初の AMI の後にカスタマイズする後続の AMI のストレージフットプリントははるかに小さくなり、AMI ストレージ料金が少なくなります。
+
+- インスタンスの起動
+    Amazon EBS-backed instance が停止した場合、インスタンスの使用については課金されませんが、ボリュームストレージについては引き続き課金されます。
+    stopped（停止）状態から running（実行中）状態へのすべての移行に対して、1 時間内に複数回インスタンスを移行した場合でも、
+    完全インスタンス時間が課金されます。
+    例えば、インスタンスの時間当たりのインスタンス料金が 0.10 USD であるとします。
+    そのインスタンスを停止せずに実行した場合、0.10 USD 課金されます。
+    その時間中に、そのインスタンスを 2 回停止し、再起動した場合、その使用時間に対して 0.30 USD 課金されます
+    （最初の 0.10 USD に再起動ごとの 2 x 0.10 USD をたす）。
+
+**** Amazon EBS-Backed Linux AMI の作成
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html
+
+Amazon EBS-Backed Linux AMI を作成するには、既存の Amazon EBS-Backed Linux AMI から起動したインスタンスから始めます。ニーズに合わせてインス
+タンスをカスタマイズしたら、新しい AMI を作成し、登録します。新しい AMI を使用して、カスタマイズした新しいインスタンスを起動できます。
+
+Amazon EBS-Backed Windows AMI を作成する場合、「Amazon Elastic Compute Cloud Microsoft Windows Guide」の「Creating an Amazon EBS-
+Backed Windows AMI」を参照してください。
+
+AMI の作成プロセスは、Instance Store-Backed AMI の場合とは異なります。Amazon EBS-Backed インスタンスと Instance Store-Backed インスタン
+スの違いの詳細と、インスタンスのルートデバイスタイプを判別する方法については、「ルートデバイスのストレージ」を参照してください。Instance Store-Back
+ed Linux AMI を作成する必要がある場合は、Instance Store-Backed Linux AMI の作成 を参照してください。
+
+
+
+**** ELB SSL setting
+***** backend auth
+- setting
+  ELB global    : http
+  ELB local     : https
+  backend auth  : on
+
+- 入力フォーマット(.crt)
+  -----BEGIN CERTIFICATE-----
+  MIICATCCAWoCCQDOUAfKWZjYOjANBgkqhkiG9w0BAQUFADBFMQswCQYDVQQGEwJq
+  YTEOMAwGA1UECAwFbXJ1YnkxDjAMBgNVBAcMBXRva3lvMRYwFAYDVQQKDA1tcnVi
+  eSBkZXZlbG9wMB4XDTE1MDIxNTE0MTUyOVoXDTE2MDIxNTE0MTUyOVowRTELMAkG
+  A1UEBhMCamExDjAMBgNVBAgMBW1ydWJ5MQ4wDAYDVQQHDAV0b2t5bzEWMBQGA1UE
+  CgwNbXJ1YnkgZGV2ZWxvcDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA0N3c
+  9wL18lLQVhyEovP112vQJzZ5K/lDwaqyMJGrNFXjU+VOflWmV6jwjFHiW9TPdui7
+  E9Hg8TVLzDM+ft3V8GG7i0x1HP5D9RzLMd28Rzwi6RPfrapzV2ZHPNH4M/WhXlMk
+  Bhcp6e65H3eTdjX/4byHND+WKKcNDlbSsYlv0DMCAwEAATANBgkqhkiG9w0BAQUF
+  AAOBgQCy0BUZ1lPo1Oq+ZweWKdxe4FvYbcRY5dMgzkmGkA+O9fUAINe4gTuhfzuc
+  pDym8Upu1ukkVN+CAvaUWIrECWTDuRZ8BqJY6CesKiTPI1mZGUqPOi10Yt36SOsY
+  JlofcJos56lewpGA78Os2xSMg3wPFAthg/xMF2PvhE0T4opj6Q==
+  -----END CERTIFICATE-----
+
+***** ELB auth
+- setting
+  ELB global    : http
+  ELB local     : https
+  backend auth  : on
+
+
+- input to private key (.key) (pem encoded)
+  -----BEGIN RSA PRIVATE KEY-----
+  MIICXQIBAAKBgQDQ3dz3AvXyUtBWHISi8/XXa9AnNnkr+UPBqrIwkas0VeNT5U5+
+  VaZXqPCMUeJb1M926LsT0eDxNUvMMz5+3dXwYbuLTHUc/kP1HMsx3bxHPCLpE9+t
+  qnNXZkc80fgz9aFeUyQGFynp7rkfd5N2Nf/hvIc0P5Yopw0OVtKxiW/QMwIDAQAB
+  AoGBAIvtt1V9FEyuEok+PdX13yPdROygX/mH207qDsrfLHW5fLz+COI2e2SK9+zq
+  Bt5C6mLddEfI+gxfClLZmergr6xOaKCjxZTGFdUdCYz5rGIL/w1RErEhxhLHqF/E
+  Dd4iHwndLyt9VmJqQ1Ns1uBRfKcc1711Yh/8l3QetxSbWPzRAkEA/pg3Q1LpH1ga
+  EmoScmly+0bOwbjQ8CssPCUnASoQD8+NkuQ8pU8ZrYZmyIyDw8yw1Yg/yZrYqcde
+  iyX5o8jj/wJBANIFBrIdqcenTbxckCc/rtSCKdRlhF4RtQyQqSo/1inqJBTGllqO
+  Zgo9c5ztVQdFpbddxWCzyS5Jrq/SD8waw80CQHoUAQO+QNxvwWitBhVobOMCS+fm
+  OAHBod9hLTfItJTwQAF8gXv+1uA2/xgREKmVgAGT6IpCPrwCRlpQpkib7n8CQA3I
+  cKkN00+cBjj/ZiJ9Rm8B39bllqtJxDT/5Wo1aEu15wpKAiINSFsRr120Ialpg7el
+  +sce5WwZP9KgGZNOil0CQQDsUuDCBuuZ77mInFfn93PFuPz29X/4+hyGVLMF/0Cj
+  yrt9s2ATgNRc5FbHJSCp31f7+AH7T6DQAncbdKin2kdm
+  -----END RSA PRIVATE KEY-----
+
+
+- input to public key certificate (.crt) (pem encoded)
+  -----BEGIN CERTIFICATE-----
+  MIICATCCAWoCCQDOUAfKWZjYOjANBgkqhkiG9w0BAQUFADBFMQswCQYDVQQGEwJq
+  YTEOMAwGA1UECAwFbXJ1YnkxDjAMBgNVBAcMBXRva3lvMRYwFAYDVQQKDA1tcnVi
+  eSBkZXZlbG9wMB4XDTE1MDIxNTE0MTUyOVoXDTE2MDIxNTE0MTUyOVowRTELMAkG
+  A1UEBhMCamExDjAMBgNVBAgMBW1ydWJ5MQ4wDAYDVQQHDAV0b2t5bzEWMBQGA1UE
+  CgwNbXJ1YnkgZGV2ZWxvcDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA0N3c
+  9wL18lLQVhyEovP112vQJzZ5K/lDwaqyMJGrNFXjU+VOflWmV6jwjFHiW9TPdui7
+  E9Hg8TVLzDM+ft3V8GG7i0x1HP5D9RzLMd28Rzwi6RPfrapzV2ZHPNH4M/WhXlMk
+  Bhcp6e65H3eTdjX/4byHND+WKKcNDlbSsYlv0DMCAwEAATANBgkqhkiG9w0BAQUF
+  AAOBgQCy0BUZ1lPo1Oq+ZweWKdxe4FvYbcRY5dMgzkmGkA+O9fUAINe4gTuhfzuc
+  pDym8Upu1ukkVN+CAvaUWIrECWTDuRZ8BqJY6CesKiTPI1mZGUqPOi10Yt36SOsY
+  JlofcJos56lewpGA78Os2xSMg3wPFAthg/xMF2PvhE0T4opj6Q==
+  -----END CERTIFICATE-----
+
+
+- input to certificate chain (連結証明書) (pem encoded)
+  未実施。
+  自己証明書の場合は不要
+
+**** volue sizeを下げる
+他のserverへ、HDD mountして、まるごとコピー..
+もっといい手はないかな
+
+*** RDS
+**** rds subnet作成
+***** description
+RDS instance起動時、subnetは必須。
+
+subnetを選択し、同subnet内に複数のavailability zoneに属したsubnetが必要。
+故に、VPC subnetを事前に作成しておく
+
+***** 作成法
+----------------------------------------------------------------
+- webからRDS画面を開く
+- 左列メニューから [subnet group] を選択
+- name, descriptionを選択
+- VPC IDから、対象とするVPCを選択
+- [add all subnet] をクリックすると全てのsubnetが登録される
+- [create] を選択
+----------------------------------------------------------------
+
+以上で、RDS instance起動時に、subnetを選択可能となる
+;; 恐らくこれは、複数AZへ冗長構成をとる際に必要となる?
+
+*** Route53
+**** 逆引き設定
+http://qiita.com/na0AaooQ/items/f89788e2e57263209860
+
+以下を例とする
+example.com = 1.2.3.4
+
+- Route53を開く
+- [ Create Hosted Zone ] を選択
+
+- Domain name  :  [ 3.2.1.in-addr.arpa ] を入力
+- Comment      :  任意
+- Type         :  [ Public Hosted Zone ] を選択
+
+- [ Create Record Set ] を押下
+
+- name    :  [ 4 ] .3.2.1.in-addr.arpa とする
+- Type    :  PTR
+- Value   :  example.com
+
+- [ Save ] を押下
+
+
+
+*** ElastiCache
+**** description
+- 失敗したノードを自動的に検出して置き換え、自己管理インフラストラクチャと関連付けられたオーバーヘッドを減らします。
+- データベースの過負荷により、ウェブサイトとアプリケーションのロード時間が低下するリスクを軽減する回復力のあるシステムを提供します
+- ノードに関連付けられた主要パフォーマンスメトリックスの可視性を強化します
+
+**** 対応製品
+- memcached
+- redis
+
+**** 料金
+https://aws.amazon.com/jp/elasticache/pricing/
+
+- 従量課金制
+- 消費したリソースのみについて時間単位
+- reserved instanceは割安
+
+- 無料枠
+  新規ユーザー : 1 か月あたり 750 時間まで t1.micro または t2.micro が対象
+
+- 転送料金
+  同一リージョンの異なる Availability Zone にある Amazon EC2 インスタンスと Amazon ElastiCache ノード間でデータを転送する場合、
+  標準の Amazon EC2 リージョンデータ着信/発信料金が 0.01 USD/GB
+  // ec2側にのみ発生.
+
+***** instance
+rate 113
+
+|------------------+------+-------+----------+------------+----------+-------------+
+|                  | vcpu |   mem | $ / hour | yen / hour | yen /day | yen / month |
+|------------------+------+-------+----------+------------+----------+-------------+
+| cache.t2.micro   |    1 | 0.555 | $0.026   |      2.938 |   70.512 |    2185.872 |
+| cache.t2.small   |    1 |  1.55 | $0.052   |      5.876 |  141.024 |    4371.744 |
+| cache.t2.medium  |    2 |  3.22 | $0.104   |     11.752 |  282.048 |    8743.488 |
+| cache.m3.medium  |    1 |  2.78 | $0.120   |      13.56 |          |             |
+| cache.m3.large   |    2 |  6.05 | $0.240   |      27.12 |          |             |
+| cache.m3.xlarge  |    4 |  13.3 | $0.485   |     54.805 |          |             |
+| cache.m3.2xlarge |    8 |  27.9 | $0.965   |    109.045 |          |             |
+|------------------+------+-------+----------+------------+----------+-------------+
+
+
+**** node種類
+https://aws.amazon.com/jp/elasticache/details/
+
+**** 制約 - agreement
+https://aws.amazon.com/jp/agreement/
+
+
+**** backup
+https://aws.amazon.com/jp/elasticache/pricing/
+
+- 自動スナップショット
+- およびユーザー開始型のスナップショットに関連するストレージです。
+
+アクティブな Redis 用 ElastiCache クラスターごとに、1 つのスナップショットのストレージ領域を無料で提供しています。
+追加のバックアップストレージは、毎月 0.085 USD/GB（すべてのリージョンで同じ価格）です。また、スナップショットを使用したデータ転送は無料です。
+
+***** スナップショットの作成はパフォーマンスにどのような影響がありますか?
+スナップショットの作成中に、短い時間ですが、ノードでレイテンシーが増える場合があります。
+スナップショットは Redis の組み込み BGSAVE を使用し、その強度と制限による影響を受けます。
+具体的には、Redis プロセスは分岐し、親は継続してリクエストに対応しますが、子はデータをディスクに保存すると終了します。
+この分岐により、スナップショット生成中はメモリの使用量が増えます。
+このメモリ使用がキャッシュノードの使用可能なメモリ容量を超えるとスワップがトリガーされ、ノードがさらに低速になる場合があります。
+このため、スナップショットを（マスターではなく）リードレプリカのいずれかで生成することをお勧めします。
+また、予約メモリパラメータを設定してスワップの使用量を最小化することをお勧めします。
+詳細については、こちら をご覧ください。
+
+***** 保存期間
+保持期間は、自動スナップショットが保持される期間です。
+例えば、保持期間が 5 に設定された場合、本日作成されたスナップショットは削除されるまでに 5 日間保持されます。
+1 つ以上の自動スナップショットをコピーし、手動で保存するように選択すると、保持期間が過ぎても削除されません。
+
+**** 用語
+***** Cache Security Group
+キャッシュクラスターの中のキャッシュノードへのアクセスを制限します
+
+***** Cache Cluster
+キャッシュノードの集合体です。各クラスターは特定のアベイラビリティゾーンに配置されます
+
+***** Cache Node
+キャッシュクラスターを形成する、処理/ストレージを行うユニットがキャッシュノードです。
+クラスター内のノードの数は必要に応じて増減できます。
+各ノードは、特定のバージョンのキャッシュエンジンを用います。
+ノードのキャッシュサイズは6GBから67BGまで選択できます。
+DNS名がノード作成時に割り当てられます
+
+***** Cache Engine
+キャッシングプロトコルやアルゴリズムを実装しているものをキャッシュエンジンと呼びます。
+ElastiCacheの最初のリリースでは、Memcached のバージョン1.4.5をサポートしています
+
+***** Cache Parameter Group
+キャッシュエンジンに設定できる一連の設定のためにこのパラメータグループを用いて設定します
+
+**** setup on aws
+***** vpc作成
+***** subnet作成
+****** name
+- allin-sns
+
+****** description
+- allin-sns
+
+****** VPC-ID
+- 前項目で作成した、sns用VPC
+
+****** availability zone
+- cross zoneにする場合は、1a/1cで二つのsubnetを追加?
+
+****** security group
+******* for ec2 instance
+22
+80
+5000
+13000
+
+******* for elasticash
+6379 : security group 指定 [for ec2 instance]
+
+****** 注意
+******* 自動割り当て public IP
+有効化
+
+******* route table
+route talbeへigwを紐付ける
+
+***** select engine
+- select redis
+
+***** speciry cluster details
+- engins version  : 2.8.24
+- port            : 6379
+- parameter group : default redis (must be make parameter group?)
+- replication     : ???????????????
+    - multi AZ  : ?????
+
+- cluster name    : any name
+- node type       : t2.small
+
+- S3 Location of Redis RDB file : bucke name  # for backup?
+
+***** Configure Advanced Settings
+- subnet             : allin-sns
+- availability zone  : 未指定
+- security group     : for_elasticashe_redis group
+- maintenance window : no
+- SNS notification   : disable
+
+**** ??
+***** パスワードはかけられない
+sgで対応しろとの記述あり
+*** cloud formation
+**** clour former
+http://dev.classmethod.jp/cloud/aws-cloudformation-cloudformer/
+http://recipe.kc-cloud.jp/archives/2344
+
+*** cloudwatch
+**** custom metrics setting for ubuntu
+***** install required package
+sudo apt-get update
+sudo apt-get install -y awscli ec2-api-tools ec2-ami-tools iamcli rdscli moncli ascli elasticache openjdk-6-jre
+
+***** set aws command line
+aws configure
+----------------------------------------------------------------
+AWS Access Key ID [None]:      [your credential id]
+AWS Secret Access Key [None]:  [your credential pass]
+Default region name [None]:    us-west-2
+Default output format [None]:  json
+
+***** create script
+mkdir ~/aws/cloudwatch
+cd ~/aws/cloudwatch
+
+create following script file and chmod 755
+
+****** custom_metrics.sh
+#!/bin/bash
+
+export INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
+export REGION=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone | sed -e 's/.$//')
+export MAX_RETRY=3
+export NAME_SPACE='ruby-webpage'
+
+/home/ubuntu/aws/cloudwatch/http.sh &
+
+wait
+exit 0
+
+****** http.sh
+#!/bin/bash
+
+# 監視したいurlを記述
+url='https://www.ruby-dev.jp'
+
+status=`curl -s $url -o /dev/null -w "%{http_code}"`
+
+if [ $status -eq 200 ]; then
+Fail=0
+else
+Fail=1
+fi
+
+opts="--namespace ${NAME_SPACE}"
+opts=${opts}" --metric-name http_status"
+opts=${opts}" --dimensions InstanceId=${INSTANCE_ID}"
+opts=${opts}"  --unit Count"
+opts=${opts}" --region ${REGION}"
+opts=${opts}"  --value ${Fail}"
+
+counter=0
+while :; do
+  aws cloudwatch put-metric-data ${opts}
+  if [ $? -ne 0 ]; then
+    if [ "${counter}" -ge "${MAX_RETRY}" ]; then
+      exit 1
+    fi
+  else
+    break
+  fi
+
+  counter=$((counter + 1))
+  sleep 10
+done
+
+***** crontab
+mkdir ~/crontab
+cd ~/crontab
+
+vi ./crontab_setting
+----------------------------------------------------------------
+*/1 * * * * /home/ubuntu/aws/cloudwatch/custom_metrics.sh
+----------------------------------------------------------------
+
+crontab < ./crontab_setting
+
+***** open cloud watch home and find custom metrics
+左側にあるメニューの中に [カスタムメトリックス ] があります。
+
+**** setting exapmle
+***** crontab
+*/1 * * * * /home/ec2-user/cloudwatch/custom_metrics_thread.sh
+*/1 * * * * perl /home/ec2-user/aws-scripts-mon/mon-put-instance-data.pl --aws-credential-file=/home/ec2-user/aws-scripts-mon/awscreds --mem-util --mem-used --mem-avail --swap-util --swap-used --disk-path=/ --disk-space-util --disk-space-used --disk-space-avail --from-cron
+
+***** scripts
+
+
+*** S3
+**** ポリシー設定
+***** 設定例
+# https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/dev/example-bucket-policies.html
+
+***** arn
+amazon resouse
+iam userや、groupなどの固有番号?
+
+*** opswork
+
+**** custom recipe
+custom recipeのrepositoryを作成して、読み込む。
+実行するrecipe、先recipeの設定(json)を指定する。
+berkshelfを仕様する場合は、有効にする
+
+***** 読み込み
+Stack -> edit -> custom json
+
+- use custom chef cookbooks を yesへ
+- repostiroy type : git , s3など
+- Repsitory path : urlなど #git@github.com:Ruby-Corporation/ruby-webpage-berkshelf.git
+- SSH key : 貼り付け?
+- Manage Berkshelf : yes
+
+
+***** 実行recipe
+path : Layer -> Recipes
+custom chef recipesへ追加する。
+
+以下の様なpathの場合
+/cookbooks/nginx/recipes/basic_auth.rb
+/cookbooks/nginx/recipes/default.rb
+
+以下の様に記述する
+nginx::basic_auth
+nginx # defaultの場合、右辺が不要
+
+***** json
+Stack -> edit -> custom json
+
+# いまいちわかっていない
+**** 各設定ファイルのupload先
+***** cookbooks
+/opt/aws/opsworks/
+
+# deployでは更新されない。
+# どのコマンドでupするかは未確認
+
+# berks / site-cookbooks / cookbooks
+# などバラけて設置される。ルールは未確認
+
+***** source
+/src/www/app_name
+
+**** ssl設定
+- stack -> apps -> edit
+
+- 設定箇所
+  - SSL Certificate (証明書)
+  - SSL Certificate key (暗号化鍵)
+  - SSL certificates of Certification Authorities (中間証明書)
+    # nginxは中間書の欄は空欄にし、証明書欄の末尾にそのまま追加する。
+***** nginx
+
+- 注意
+  keyは復号化する。(恐らくパスも設定できる?)
+
+- server上の鍵の所在
+  opsworks上から、serverの以下dirへ自動転送される
+  /etc/nginx/ssl
+
+**** 環境変数
+***** setting
+Apps -> Edit
+// deploy userへの環境変数となる
+
+
+***** 注意
+bashrcからの設定では、設定反映のタイミングでrails app に対して適用できなかった。
+// これは、タイミングを正確に把握していないからだが
+
+[deploy] の時点ではunicorn再起動をかけると、一瞬だけ反映された。
+しかし、最終的には反映されない。という状態であった。
+
+これは、[deploy]の後に、opsworksから再起動されたと思われる。
+// 一番最後にrecipeを走らせる方法が分からない。
+*** ses
+Added: [2015-10-05 Mon 12:37]
+
+**** 確認
+***** 未登録のメールアドレスで送信できるか?
+不可
+アドレスを登録すると、そのアドレスでのみ送信可能
+ドメインを登録すると、そのドメインの、いずれのアドレスからも送信可能.
+
+----------------------------------------------------------------
+[mruby@prx01-uniqlo-influencer-a-tky-gw ~]$ aws --region us-east-1 ses send-email     --to s-numasawa@ruby-dev.jp --from s-numasawa@mruby.jp     --subject "ses sendmail test"     --text "ses mail body"
+
+A client error (MessageRejected) occurred when calling the SendEmail operation: Email address is not verified.
+
+
+[mruby@prx01-uniqlo-influencer-a-tky-gw ~]$ aws --region us-east-1 ses send-email     --to s-numasawa@ruby-dev.jp --from s-numasawa@mruby.jp     --subject "ses sendmail test"     --text "ses mail body"
+{
+    "MessageId": "000001503b32edc3-be64465a-12a4-4362-bd0f-c74e6d066e46-000000"
+}
+----------------------------------------------------------------
+
+
+***** synergyのカタログスペック確認
+***** 資料作成
+**** 参考サイト
+- 設定方法
+  http://dev.classmethod.jp/cloud/aws/amazon-ses-build-and-practice/
+
+- 全体像と設定方法
+  http://dev.classmethod.jp/cloud/aws/blackbelt2014-ses/
+
+- SESでSPFとDKIMを用いて高信頼なメールを送る]
+  http://dev.classmethod.jp/cloud/amazon-ses-production/
+
+- best practice
+  http://d36cz9buwru1tt.cloudfront.net/jp/wp/AWS_Amazon_SES_Best_Practices.pdf
+
+
+https://support.google.com/a/answer/1071514%3Fhl%3Dja
+
+「SESを使うということは、信頼を築き上げて行くことである。
+  小さなリミットから始めて高品質のメールを送り続けることで、より厚い信頼を形作っていく」
+
+**** 設定方法
+http://dev.classmethod.jp/cloud/aws/blackbelt2014-ses/
+
+***** Done address登録
+CLOSED: [2015-10-05 Mon 17:31]
+
+- 送信元のアドレスを登録
+- 確認メールが届くので、acceptし、完了となる
+
+***** Done domain登録
+CLOSED: [2015-10-05 Mon 17:31]
+
+- 登録実施
+- DKIMも同時に登録
+- 登録アドレス宛に確認メールが届く?
+- 設定 : DKIMへ
+
+***** Waiting sandbox解除申請
+必要なし?
+
+***** Waiting 送信リミット解除申請
+https://console.aws.amazon.com/support/home?region=us-east-1#/case/create?issueType=service-limit-increase&limitType=service-code-ses
+
+***** Done mail 送信
+CLOSED: [2015-10-05 Mon 17:57]
+
+AWS ec2上から送信成功
+
+$ aws --region us-east-1 ses send-email \
+    --to s-numasawa@ruby-dev.jp  \
+    --from s-numasawa@ruby-dev.jp \
+    --subject "ses sendmail test" \
+    --text "ses mail body"
+
+***** Done バウンス処理の実装とテスト
+CLOSED: [2015-10-05 Mon 19:10]
+バージニアのSNS topicを登録。
+上記のtopic宛に送信するように登録済み
+
+****** 以下、テスト用アドレス
+- success@simulator.amazonses.com
+    正常配信
+
+- bounce@simulator.amazonses.com
+    Delivery Status Notification: DNSの550（ユーザ非存在）メッセージ（RFC6533）
+
+- ooto@simulator.amazonses.com
+    不在メッセージ（RFC5436）
+
+- complaint@simulator.amazonses.com
+    送信先がメッセージをSpamと認識して、Abuse Reporting Formatを返す（RFC6650）
+
+- suppressionlist@simulator.amazonses.com
+    SESのSuppression Listに載ったアドレスへの送信をシミュレートする
+
+***** Done SPF設定/調査
+CLOSED: [2015-10-05 Mon 18:09]
+
+不要とあるが
+txt/spf recordを以下のように設定
+// include:amazonses.comを追記
+
+"v=spf1 ip4:52.69.156.6 include:amazonses.com -all"
+
+***** Done DKIM設定
+CLOSED: [2015-10-05 Mon 17:31]
+domain登録時に自動生成
+route53を使用していると自動登録可能
+
+http://dev.classmethod.jp/cloud/aws/amazon-ses-build-and-practice/#ses-build-production
+
+- DKIM generate
+- DKIM をroute53へ登録
+- ses内で、対象domain/mail addressの詳細から、DKIMを [enable] へ変更
+
+**** まとめ1
+http://dev.classmethod.jp/cloud/aws/amazon-ses-build-and-practice/
+http://dev.classmethod.jp/cloud/aws/blackbelt2014-ses/
+http://blog.flect.co.jp/cto/2011/08/amazon-ses-430f.html
+
+***** SES とは
+- 初期費用無し、低価格
+- 配送機能のみ提供
+- 大きなpool IPからの送信
+- Email配送API
+    - Amazon SES クエリ（HTTPS）
+    - cli, sdk利用可能
+
+- 高可用性・高信頼性・スケーラブル
+    - 稼働時間とメール到達性に最適化
+    - Amazonで証明された配送実績
+
+***** 送信元の信頼性
+品質の高いメールを送信することで、送信限界などを向上可能。
+ただし、低品質のものを送信すると、サービス停止もある。
+
+// これにより、SES service全体の品質向上を保っている?
+
+***** 低品質とは
+- 到達不能アドレスへの送信
+- spamなど苦情とされた場合
+- 何らかの理由により拒否されたもの
+
+などが上げられる。
+ses web interfaceから以下の要素で確認可能。
+
+- bounce   : box容量超過、ユーザーが存在しないなどで戻ったもの
+- reject   : 拒否された件数
+- complain : 先方サイトから苦情が帰ってきた件数
+
+***** awsの品質の確保方法
+// 推測。
+// IP address毎の信頼性確保は不明 (除外処理などしているのか?)
+
+- SES(送信側)フィルタリングによりスパムを外部へ配信しない。
+- ユーザに品質向上のための情報を提供し、品質を保持
+- ユーザのメール送信量を段階的に増やすし、高品質メールを配信するユーザのみに大量メール配信できるようにする。
+***** 他ユーザーからの影響
+基本無し。
+// 受信者のアドレスがハードバウンスした場合、左記アドレスはブラックリスト入りとなる。
+
+***** API
+API, SDK(ruby有り)から利用可能
+
+reference有り
+
+***** 送信制限
+****** 送信数
+- 200通 / 24hour (dayではなく、24hour)
+- 1通 / sec
+
+リクエストフォームから解除可能
+http://aws.amazon.com/ses/fullaccessrequest
+
+または、高品質のメールを送信することで緩和される
+****** 送信先
+https://aws.amazon.com/jp/agreement/
+に説明されているように、各ユーザーには該当する法律および規制に準拠する責任があります。
+また各ユーザーには、受信者が受信を希望し、受信することが期待される E メールのみを送信する責任があります。
+スパムやその他の望まれない低品質な E メールを送信していると識別されたアカウントは、AWS がアカウントを停止する場合があります。
+また、AWS が適当と思われるその他の措置を講じる可能性もあります。
+
+****** メールサイズ
+最大10MB (添付含む)
+****** 1メール当たりの受信者数に制限
+最大 50 人
+To:、CC:、 Bcc: の合計受信者数が 50 を超えてはいけません
+50を超える場合は、複数メールへ分割
+
+***** アクセスレベル
+初期状態はsandobox。利用解除申請が必要
+****** sandobox
+登録された（Verify済みの）Emailアドレスにだけ送信できる
+送信クォータは小さい: 200通/24時間, 1通/秒
+
+****** production
+    送信先に制限なし
+    送信クォータは実績によって決定。スタート時点: 10,000通/24時間, 5通/秒
+
+***** Suppression List機能
+Supressino Listは、ハードバウンスしたEmailアドレスが登録されるリスト。
+
+- 登録済みアドレスへ送信を試みた時、SESへのAPI Callは成功するが、SESから外部へは送信されずに、ハードバウンスとして処理される
+- このリストはアカウントを越えて共有できる
+- 登録されると2週間程度残る（手動削除できる）
+
+// Suppression Listは、バウンスを起こし続けることで送信元ドメインやSESのIPアドレスプールの評判が落ちないように、保護する役割を持つ。
+
+***** コンテンツフィルタリング
+Amazon SESもアプリケーションから送信リクエストを受け取ると、メッセージをスキャンする。
+
+- メールメッセージを組み立てる（assemble）
+- ISPがSpamとみなさないか、HeaderとBodyをスキャンする
+- SESがSpamと見なした場合、SES内の評価（Reputation）が低下する
+
+// ウィルスやマルウェアが含まれるメッセージを検出するとブロックし、これらが送信されることを未然に防止する役割がある。
+
+***** 注意点
+****** コンテンツ・送信先リストの正しい運用が必須
+- BounceやComplaintの処理をしないと、送信レートを下げられたり、送信停止措置を取られたりする可能性がある
+- クォリティが低い（＝Spamと判定されるメールを定常的に配信している）と送信停止措置を取られる可能性がある
+
+****** 国内モバイルキャリアの迷惑メールフィルタと相性が悪い?
+- モバイルキャリアの迷惑メールフィルタに引っかかると、Bounceエラーが返る
+- Suppression Listに送信先アドレスが登録される
+- ホワイトリストに載ったドメインからもメールを送れなくなる（ユーザ側の設定にかかわらず送れなくなる）
+**** SESの利点。
+***** 大量のIPアドレスの確保
+serviceとして大量のアドレスが有ると公言している(具体的数値は不明)
+ec2で自前で構築するよりも、手間がかからず、安心できる
+
+// black list入りするIPもあるようす
+
+***** SPF / DKIM
+aws Domainから送信sあれるため、信頼性が高い。
+***** bounce mailなどの情報提供
+sed web interfaceから、到達不能、苦情メール、拒否されたメールなど統計が参照できる
+自前で準備するよりも手間がない。
+
+***** 事前信送停止
+ウイルス混入メールなどは、送信を停止する
+
+**** メール到達率を上げるには?
+https://support.google.com/a/answer/1071514?hl=ja
+http://blog.flect.co.jp/cto/2011/08/amazon-ses-430f.html
+
+***** SPD / DKIP の設定
+https://www.nttdocomo.co.jp/service/communication/imode_mail/notice/sender_id/
+***** 短時間に大量送信しない
+
+docomo曰く
+- 大量の宛先不明を含むメールは送信しない
+
+- 同時に大量のメールを送信される際には、できるだけ少ないセッション数での送信を行う
+
+- 同時送信が可能な宛先数は1SMTPセッションあたり100宛先
+
+- 同報メールを大量に送信する際は、少ない通数ずつ、回数や配送先地域を分けて送信するなど、
+  輻輳を避ける送信方法による送信をお願いいたします。
+
+- 毎正時をなるべく避けてメールを配信されますようお願いいたします。
+  (正時に大量送信されるケースが多い)
+
+-
+***** bounce mailの処理 (存在しないのアドレスには送信しないなど)
+***** 継続して、送信リストの整備が必要
+**** memo
+***** 受信者にとって価値あるメールが必要である。
+例として、これを判定するのは、ISP側のなんらかのロジック(spam判定)や受信者自身。
+質の高いメールを送ることで、送信者は信頼を確立していく。これを評判(レピュテーション)と呼ぶ
+受信者は、これらを用い、E-mailの価値判定する
+
+ネットワーク、ソフトウェア、ポリシーがいったいとなり、レシーバー(受信者ではなく、受信側のサーバーや、到達するまでの構造)を構成する
+そのため、配信到達性を高めるには、送信先のレシーバーの種類を知っている必要がある
+
+受信するか否かを決めるのは、受信者である。
+到達できるのは、受信者の事を尊重する送信者である
+
+***** ISP
+google, yahoo, comcatなど
+これらは送られてきたメールを判定するさい元するのは、受信者のフィードバックである。
+スパム報告や、メールを開いたか?などが評価対象となる(ISP毎に何を元に計算しているかの詳細は無し)
+
+主に万人向け
+***** corplate
+b2bなどのspam判定ルールを利用
+
+***** 個人
+個人設定のルールが設定されている場合。
+随時ルールが変わる可能性ある
+***** 未然送信防止
+マルウェアなどが検出された場合
+**** 料金
+- 送信 : 0.10 USD / 1,000通
+
+- データ転送
+    - 受信 : 無料
+    - 送信 : EC2に準じる
+            $0.14 / GB
+            http://aws.amazon.com/jp/ec2/pricing/#DataTransfer
+    - 添付 : 0.12 USD / GB
+
+// 料金が発生するのは送信されたメッセージ、添付ファイル、データ転送の分だけ
+
+**** QA
+***** Amazon SES を介してどのような種類のメールを送ることができますか?
+お客様が送信する E メールは、受信者が受け取りに同意し、該当する法律や規制、
+および AWS カスタマーアグリーメント（AWS 適正利用規約を含む）に準拠した内容である必要があります。
+Amazon SES により、マーチャンダイジング、サブスクリプション、トランザクション、および通知メールメッセージを確実に送信することができます。
+
+***** Amazon SES では、どのように信頼性の高いメール配信を確保しますか?
+メールの配信性能を高めるため、Amazon SES では、コンテンツのフィルタリングテクノロジーを使用して企業から発信される
+E メールのメッセージをスキャンします。
+これは、コンテンツが ISP の基準を満たしていることを確認するのに役立ちます。
+企業がお客様とのメール通信の品質をさらに向上させることができるよう、
+Amazon SES では、バウンス、苦情、および配信の通知を含む組み込みのフィードバックループを利用できます。
+
+***** Amazon SES のユーザーがスパムを送信するのをどのように防ぐのですか?
+Amazon SES では、社内におけるコンテンツのフィルタリングテクノロジーで E メールコンテンツをスキャンし、スパムやマルウェアを確認します。
+例外的なケースでは、スパムやその他の低品質な E メールを送信していると識別されたアカウントは、そのアカウントを停止する場合があります。
+また、AWS が適当と思われるその他の措置を講じる可能性もあります。
+マルウェアが検出された場合、Amazon SES ではこれらの E メールを送信しません。
+
+***** E メールは到着までにどのくらいの時間がかかりますか?
+Amazon SES では、各リクエストが行われてから数秒内で E メールがインターネットに送信されます
+「メールボックスがいっぱい」という状況のため、ISP が受取人にメールを配信できない場合があります。そのような場合、Amazon は、一定の時間メッセージの再送を試行します
+「メールボックスが存在しない」などの永続的なエラーの場合、Amazon SES は配信を試行せず、ハードバウンス通知を送信します
+
+***** Amazon SES は E メールが受信されることを保証しますか?
+Amazon SES では、世界中の ISP のガイドラインを密接に監視し、正当で良質のEメールを受信者の受信トレイに確実に届けられるようにしています。
+
+***** バウンスやクレームを受けた場合、どうするべきですか?
+バウンスやクレームのメールまたは Amazon SNS JSON オブジェクトを分析して、原因を特定する必要があります
+バウンスは、通常、存在しない受信者に送信することが原因です。苦情は、受信者がメッセージの受信を希望しないことを示す際に生じます。いずれの場合も、そのEメールアドレスには今後Eメールを送信しないことをお勧めしま
+
+***** バウンス、苦情、および配信はいつ通知されますか?
+SP からバウンスまたは苦情が Amazon SES に送信されると、通常はその通知が数秒以内に Amazon SNS またはメール経由で送信者に転送されます。
+ただし、バウンスや苦情の通知が受取人の ISP から送信されるまでに、ある程度の時間がかかることもあります。この時間の長さは、数秒から数週間以上までさまざまですが、ISP がどれだけ早く通知を送信するかによります
+
+***** 他の Amazon SES ユーザーによって引き起こされたバウンスやクレームによって、私は何か影響を受けますか?
+たとえ他の Amazon SES ユーザーがバウンスや苦情の原因となった場合でも、お客様のEメール送信能力には変化はないはずです。
+
+ただし、1つ例外があります。
+Amazon SES ユーザーの受信者アドレスによってハードバウンスが生成された場合は常に、Amazon SES ではそのアドレスが無効になっていると見なし、
+Amazon SES ブラックリストに追加します。
+その後 14 日間は、すべての Amazon SES ユーザーからそのアドレスに送信されたすべての E メールが、ハードバウンスと同様に処理されます。
+ハードバウンスと同じく、ブラックリストのバウンスは送信量上限やバウンス率にカウントされます。
+詳細については、Amazon SES 開発者ガイドをご覧ください。
+
+// 恐らく、SESに登録された受信アドレスブラックリストに送信した場合
+// バウンス率にカウントされる
+
+***** 品質が低下した場合は?
+aws sideで予告なくaccountを停止するか、適当と思われる措置を取る
+(恐らく、送信limitを下げるなど)
+**** SES/SNSの違い
+***** Amazon SES
+E メールで随意のコミュニケーションを送信する必要があるアプリケーション用です。
+Amazon SES は、カスタム E メールヘッダーフィールドと多数の MIME タイプをサポートしています。
+
+***** SNS
+メッセージ指向のアプリケーションで、HTTP や Amazon SQS、または E メールなどの選択したトランスポートプロトコルを介して、
+複数のユーザーが緊急を要するメッセージの「プッシュ」通知をリクエスト/受信するものです。
+Amazon SNS の通知の本文は、UTF-8 文字列の8,192文字に制限されていて、マルチメディアのコンテンツをサポートするためのものではありません。
+**** 逆引き設定
+不要
+**** API
+以下、２種あり
+***** SendEmail
+SendEmail API では、ユーザーは送信元アドレス、宛先アドレス、メッセージの件名、メッセージ本体のみを提供するだけで済みます。
+この API を呼び出す際は、Eメールを受信するクライアントのソフトウェア用に最適化できるよう、Amazon SES が適切にフォーマットされた
+マルチパート MIME のEメールメッセージを自動的に構築し、送信します。
+
+***** SendRawEmail
+高度なユーザー用で、ヘッダーや MIME パーツ、およびコンテンツの種類を指定し、独自の生のEメールメッセージをフォーマットし送信できる柔軟性があります
+**** SESのレスポンステストは可能か?
+はい。Amazon SES Mailbox Simulator を利用すると、送信レートや一般的なメールレスポンス（バウンスやクレームなど）を簡単に、
+実際の受信者に送信しなくてもテストできます。
+Mailbox Simulator にメールを送信しても、バウンスやクレームメトリクスに影響がおよぶことはなく、送信量上限にもカウントされません。
+
+**** 用語
+http://www.cuenote.jp/glossary/
+
+***** バウンスメール
+// 何らかの理由で差し戻された (アドレスが存在しないなど)
+http://bouncehammer.jp/ja/what-is-bounced-email
+
+送った電子メールが、受信サーバーまでは到達するものの何らかの理由によって受信者に届けられなかった場合、受信サーバーからバウンスメールと呼ばれるエラーメールが送信メールサーバーに返される。
+さらにバウンスメールは、配信が失敗した理由によって「ソフトバウンス」と「ハードバウンス」に区別できる。
+
+「ソフトバウンス」は、受信者のメールボックス容量が一杯の場合やサーバーダウンなど、一時的なエラーの場合を言う。
+「ハードバウンス」は、ドメインそのものやメールアドレスが存在しない宛先不明の場合など、恒久的なエラーの場合を言う。
+
+***** 苦情
+spam判定、ISPより苦情とされたもの
+user? ISP?からspam判定された率
+
+***** 拒否されたメッセージ
+なんらかの理由で拒否されたものと想定
+
+// 以下参考
+https://support.google.com/a/answer/1071514?hl=ja
+
+***** DKIP
+http://www.dkim.jp/dkim-jp/faq/
+正当な送信者から送信された改ざんされていないメール」かどうかを調べることができる電子署名方式の送信ドメイン認証技術
+
+メール送信時に秘密鍵によって生成した署名情報を送信メールのヘッダに記述し、メール受信時に署名ドメインのDNSサーバー上に
+公開されている公開鍵によって署名を検証します。これによりメールの送信者とメール本文の正当性の両方を確認できます。
+
+// SPFは送信元の判定。DKIMは、詐称判定であり、本文なども判定に含まれる。
+
+***** SPF
+IPアドレスでの詐称判定
+
+DNS txt recordへ、IPアドレスを登録。
+受信者は、domainを参照し、IPアドレスを合致しているか確認する
+
+不一致であれば詐称とみなす
+
+** design pattern
+*** maintenance page
+以下にcloudfrontを追加している
+http://aws.clouddesignpattern.org/index.php/CDP:Sorry_Page%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3
+
+domain を [xxx.xyz] と仮定する
+DNS failoverを用い、参照先サーバーを切り替える。
+503応答については、CloudFrontを用いる。(S3はerror code 設定不可)
+
+**** S3設定
+***** [xxx.xyz] という名前でbucketを作成する
+***** プロパティから、静的webを公開
+***** アクセス権をつける
+****** アクセス許可から、バケットポリシーを選択
+****** 下記を書き込む
+# domainは適宜修正
+
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "AddPerm",
+			"Effect": "Allow",
+			"Principal": "*",
+			"Action": "s3:GetObject",
+			"Resource": "arn:aws:s3:::test-elb-maintenance.mruby.jp/*"
+		}
+	]
+}
+***** error-pages/sorry.htmlを設置
+
+**** CloudFront設定
+- 上記で作成した、bucketをcache (細かな作成方法は適当)
+
+***** create distribution
+- 前項で作成した S3のbucketを指定 (pull downで指定可能)
+- [origin path]            : [/]
+- [Alternate Domain Names] : [xxx.xyz] # 対象となるURLを記述
+- その他は、default
+
+***** 403エラーが出た場合、503へ変更。かつ、上述の error-pages/sorry.html を返す
+- error pages tabを選択
+- createを選択
+- [http error code] : 403を選択。 (存在しないfileを選択すると403が返る)
+- [Error Caching Minimum TTL] : 60
+- [Customize Error Response ] : yes
+- [Response Page Path] : /sorry.html
+- [HTTP Response Code] : 503
+
+***** 蛇足
+# 勝手に、cloudfrontへのアクセス権限?が設定される
+
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "AddPerm",
+			"Effect": "Allow",
+			"Principal": "*",
+			"Action": "s3:GetObject",
+			"Resource": "arn:aws:s3:::test-elb-maintenance.mruby.jp/*"
+		},
+		{
+			"Sid": "2",
+			"Effect": "Allow",
+			"Principal": {
+				"AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity EROQJJU5YKG6K"
+			},
+			"Action": "s3:GetObject",
+			"Resource": "arn:aws:s3:::test-elb-maintenance.mruby.jp/*"
+		}
+	]
+}
+**** Route53 Fail over setting
+***** [xxx.xyz] priamry settingを作成
+- [create]
+- [Name]  : [xxx.xyz] なので、sub domainは不要
+- [Type]  : Aレコード
+- [alias] : yes
+- [alias target]                : pull downで、対象のS3を選択
+- [Routing Policy]              : Fail over
+- [Failover Record Type]        : Primary
+- [Evaluate Target Health]      : Yes
+- [Associate with Health Check] : No
+
+***** [xxx.xyz] secondary settingを作成
+- [create]
+- [Name]  : [xxx.xyz] なので、sub domainは不要
+- [Type]  : Aレコード
+- [alias] : yes
+- [alias target]                : cloudfrontのURLを直接記述. [d3ck8you47rrig.cloudfront.net]
+- [Routing Policy]              : Fail over
+- [Failover Record Type]        : Secondary
+- [Evaluate Target Health]      : No
+- [Associate with Health Check] : No
+
+**** 動作チェック
+- ELBからEC2切り離し
+- sorry pageかつ、503応答になっているか
+    curl -D - http://~~~~~
+
+
+** 調査中
+得られた情報は少ないですが、纏めます。
+ELBは恐らく必要と思います。
+
+
+- Auto Scaling
+    scaling方法として、サーバー増強 / instance追加生成があるようです。
+    (サーバー増強方法の具体的方法が不明)
+
+    古い情報では、サーバー増強(t2.small -> midium)に
+
+
+ELB
+----------------------------------------------------------------
+    - まとめ
+    ----------------------------------------------------------------
+        以下、からApp server一台構成の場合、意味は薄い。
+        (無料枠を考えなければ) 料金も増加する。
+
+
+
+    - 無料枠
+    ----------------------------------------------------------------
+        Elastic Load Balancing 750 時間に加え 15 GB 分のデータ処理*
+
+
+    - 基本料金
+    ----------------------------------------------------------------
+        $0.027 : Elastic Load Balancing 時間（または 1 時間未満）あたり
+        $0.008 : Elastic Load Balancing によって処理されるデータ 1 GB あたり
+
+
+    - 機能
+    ----------------------------------------------------------------
+        http://www.slideshare.net/AmazonWebServicesJapan/20130612-aws-meisterregenerateelbpublic
+
+        - 負荷分散　　　　:  複数のバックエンドサーバーに分配
+        - スケーラブル　　:  ELB自身が負荷に応じて増減
+        - 安価な従量課金　:  複数のavalable zoneにまたがるトラフィック負荷
+        - ヘルスチェック　:  健全なEC2インスタンスにのみトラフィックを分配
+        - 安価な従量課金　:
+
+
+    - support protocol
+    ----------------------------------------------------------------
+        HTTP, HTTPS, TCP, SSL
+
+
+    - スケールアップ
+    ----------------------------------------------------------------
+        スケールアップ時、IPが変わる。(IP固定不可)
+        ELBへアクセスする際は、必ずDNSで。
+        独自ドメインでアクセスする際は、CNAMEで (Route 53を使用)
+
+
+    - DNS
+    ----------------------------------------------------------------
+        http://kawatama.net/web/1157
+
+        - DNSのAレコードに特定のIPアドレスを指定できない。
+        - Amazon Route53には、AレコードにELBのURLを指定できる独自のエイリアス機能が実装されている
+
+        (本来は、IPアドレスを指定が必須。
+         amazonでは、URLを指定可能。
+         amazon router 53が応答し、現状のアクセス先を返す。)
+
+
+
+
+
+Route 53
+----------------------------------------------------------------
+    http://aws.amazon.com/jp/route53/
+
+    ドメインネームシステム（DNS）ウェブサービス
+    DNS ヘルスチェックを構成し、トラフィックを正常なエンドポイントにルーティングしたり、
+    アプリケーションやそのエンドポイントの正常性を独立してモニタリングすることができます
+
+     - 料金
+     --------------------------------
+         http://aws.amazon.com/jp/route53/pricing/
+
+
+         - ホストゾーンの管理
+           Route 53 で管理した各ホストゾーンに対する月額料金を支払います。
+
+
+         - DNS クエリへの応答
+           DNS クエリに対する Amazon Route 53 サービスからの応答には、料金が発生します。
+           ただし、クエリの対象がエイリアス A レコードであり、Elastic Load Balancing インスタンスまたは
+           Amazon S3 ウェブサイトバケットにマッピングされている場合は、追加料金は不要です。
+
+
+         - ドメイン名の管理 Route 53 経由で登録された各ドメイン名または Route 53 に転送された各ドメイン名に対して年間料金を支払います。
+
+
+
+
+Auto scaling
+----------------------------------------------------------------
+    - 機能
+    --------------------------------
+        http://dev.classmethod.jp/cloud/aws/autoscaling_considerations-for-system-configuration/
+
+        - Amazon EC2 群を自動的に縮小・拡張
+        - 規模を固定して Amazon EC2 群を管理
+        - Elastic Load Balancing での Auto Scaling
+
+        つまりAutoScalingを用いる理由は「負荷分散」と「可用性向上」の2つ、といえます
+
+
+    - scaling
+    --------------------------------
+        - スケールアップ
+            インスタンスを停止し、高スペックのインスタンスを生成
+
+        - スケールアウト (無停止)
+            追加instanceを生成
+
+
+    - health check
+    --------------------------------
+        インスタンスのヘルスチェックをし、判断可能。
+        ELBとも連携することが可能。(ELB/AS双方のヘルスチェックを使用?)
+
+
+
+
+
+** instance / volume / snapshot / AMIの違い
+http://q.hatena.ne.jp/1369319236
+http://aws.typepad.com/sajp/2014/04/trainingfaqbest10.html
+
+** auto scaling
+*** AMI作成
+自動起動するためのAMIを作成
+各種APPの起動設定を忘れずに
+
+*** Launch configurtaion作成
+起動AMI
+instance class
+割りあてHDD
+などの起動時の基本設定
+
+*** Auto scaling group 作成
+**** 設定事項
+AS group名
+使用launch
+available zone
+instance size
+ELBへの自動割り当て
+VPC
+設定など
+
+**** scaling 設定
+scaling policyタブより
+
+policy名
+alarm設定 (ここで閾値を設定)
+alarmが発生した際の、instance追加/削除数
+次のinstance生成/削除までの待機時間?
+
+**** command例
+group_name="uniqlo-admin"
+configuration="uniqlo_admin_version5"
+az="ap-northeast-1a"
+min_size="1"
+max_size="10"
+load_balancer="uniqlo-influencer-adm-lb"
+healthcheck_type="ELB"
+grace_period="60"
+vpc_subnet="subnet-92ac7ee5"
+
+as-create-auto-scaling-group $group_name \
+--launch-configuration $configuration  \
+--availability-zones $az \
+--min-size $min_size \
+--max-size $max_size \
+--load-balancers $load_balancer \
+--health-check-type $healthcheck_type \
+--grace-period $grace_period  \
+--vpc-zone-identifier $vpc_subnet
+
+
+** 各種申請
+*** rDNS / Mail Limit解除 for Elastic IP
+EC2のElastic IPの場合、Route53での逆引き設定不可。
+これは、EC2 IPが特定領域に絞られているからではと。
+(逆引きを行うと、awsのURLが表示される)
+https://forums.aws.amazon.com/thread.jspa?threadID=152776
+
+後述する申請URLは、メール送信の上限解除を同時に申請可能。
+
+// EIP以外の通常のIPならば、Route53でも設定可能
+
+**** 申請先
+https://aws.amazon.com/forms/ec2-email-limit-rdns-request
+
+** IAM
+*** 請求書をIAMで参照
+通常ではIAM userが請求書を参照することは不可
+
+- root accountでlogin
+- 右上 drop donw menuからアカウントを選択
+- [請求情報に対する IAM ユーザーアクセス] を有効化
+
+- IAM userへ、以下二つのpolicyを付与
+  AWS Account Activity Access
+  AWS Account Usage Report Access
+
+  # 料金確認なら、activityだけでいいらしい (未検証)
+
+* network
+** 特定のLAN内で使われているIPアドレスを調べる方法（Linux系マシン）
+# 値は出てくるが、どういう仕組みだ?
+# 応答を見てるのか、払い出しを見てるのか?
+*** OSX yosemiteの場合
+nmap -sn 192.168.33.0/24
+
+*** CentOS7の場合
+nmap -sn 192.168.33.0/24
+* languages / frame
+** ruby
+*** debug
+**** 便利ツール
+http://secondlife.hatenablog.jp/entry/20061010/1160453355
+
+***** profile
+- ruby -rprofile ./xxx.rb
+
+- you must read more information above link
+  部分的にとれるらしい
+
+- gem install ruby-prof
+  ruby-prof xxx.rb
+
+
+*** rbenv
+**** install for amazon linux
+$ sudo su -
+
+yum install gcc readline-devel openssl-devel zlib-devel gdbm-devel libffi-devel git make
+
+cd /usr/local
+git clone git://github.com/sstephenson/rbenv.git rbenv
+mkdir rbenv/{shims,versions}
+
+mkdir /usr/local/rbenv/plugins
+cd /usr/local/rbenv/plugins
+git clone git://github.com/sstephenson/ruby-build.git
+cd ruby-build
+./install.sh
+
+echo 'export RBENV_ROOT=/usr/local/rbenv' >> /etc/bashrc
+echo 'export PATH="$RBENV_ROOT/bin:$PATH"' >> /etc/bashrc
+echo 'eval "$(rbenv init -)"' >> /etc/bashrc
+source ~/.bashrc
+
+rbenv install 2.0.0-p0
+rbenv global 2.0.0-p0
+
+**** install for debian
+# apt-get install -y libssl-dev libreadline-dev zlib1g-dev
+
+$ cd /usr/local
+$ git clone git://github.com/sstephenson/rbenv.git rbenv
+$ mkdir rbenv/shims rbenv/versions rbenv/plugins
+$ git clone git://github.com/sstephenson/ruby-build.git /usr/local/rbenv/plugins/ruby-build
+
+# Setup rbenv for all user
+$ echo 'export RBENV_ROOT="/home/ali-ani/app/rbenv"' >> /etc/profile.d/rbenv.sh
+$ echo 'PATH=/home/ali-ani/app/rbenv/bin:$PATH' >> /etc/profile.d/rbenv.sh
+$ echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh
+$ source /etc/profile.d/rbenv.sh
+**** 更新
+$ cd ~/.rbenv
+$ git pull origin master
+$ cd ~/.rbenv/plugins/ruby-build
+$ git pull origin master
+*** signal処理
+Linuxのsignal処理のこうを参照
+
+**** sample code
+# SIGINT  = ctrl + c の割り込み
+# SGITERM = killコマンド (-9は含まない)
+# を受け取った際、exitし、SystemExitで捕まえる
+
+Signal.trap(:INT)  { exit }
+Signal.trap(:TERM) { exit }
+
+begin
+  loop do
+    MailDelivery.run_job
+    sleep(10)
+  end
+rescue SystemExit => e
+  puts "\ngot SIGINT, SIGTERM"
+  puts e.inspect
+  puts "shuting down gracefully...."
+  sleep 2
+end
+
+*** process monitoring
+process監視し、一定条件でprocessを再起動する
+要は、processの状態監視、及び常に実行状態におくための機能
+
+- gem
+    - god
+    - monit
+    - eye
+    - bluepill
+
+** rails
+*** base
+**** MVC image
+http://railstutorial.jp/chapters/a-demo-app?version=4.0#sec-mvc_in_action
+
+**** ./app/view/layout/application.html
+***** layout 共通のhtmlとして適用される
+
+----------------------------------------------------------------
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ruby on Rails Tutorial Sample App | <%= yield(:title) %></title>
+  <%= stylesheet_link_tag    "application", media: "all",
+                                            "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>
+----------------------------------------------------------------
+
+- <%= yield(:title) %>  : viewの各ファイルにおいて定義されている:titleを読み込む
+- <%= yield %>          : viewの各ファイルにおいて定義されているbody内容が反映される。
+
+***** default 記述内容
+----------------------------------------------------------------
+<%= stylesheet_link_tag ... %>
+<%= javascript_include_tag "application", ... %>
+<%= csrf_meta_tags %>
+----------------------------------------------------------------
+
+スタイルシートとJavaScriptは、Asset Pipeline (5.2.1) の一部です。
+csrf_meta_tagsは、Web攻撃手法のひとつであるクロスサイトリクエストフォージェリー (cross-site request forgery: CSRF)
+を防ぐために使われるRailsのメソッドです
+
+*** how to
+**** rails install
+$ sudo apt-get install libxslt-dev libxml2-dev libsqlite3-dev
+$ gem install rails
+
+**** make rails project
+$ rails new [project_name]
+$ rails new sample_app --skip-test-unit  # testを記述しない。rspec向け?
+
+**** rake
+***** rake一覧出力
+rake -w
+
+**** productionで動作させるとき
+secret keyを書き込む必要がある。
+
+# 以下で出よくされた内容を後述ファイルに書き込む
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+production:
+    secret_key_base: [here]
+----------------------------------------------------------------
+
+*** bundler
+$ bundle exec rails new example --skip-bundle
+（ vendor/bundle に入ったgemを使ってコマンドを実行したい場合は上記のように bundle exec 〜 のようにする）
+
+**** 特定のgemdのみupate
+bundle update [gem_name]
+
+// 依存関係のgemもupateされる
+
+
+**** update に失敗する場合
+bundle update [gem_name]
+で他のgemと競合してupdateできない場合
+
+*** rake
+**** コラム
+Unixでは、ソースコードから実行用プログラムをビルドするために主にmakeというツールが使われてきました。多くのプログラマーが、肉体レベルにまで刻み込まれた以下のようなコマンドを実行して
+  $ ./configure && make && sudo make install
+
+LinuxやMac OS Xなどで日夜コードをコンパイルしています。
+RakeはいわばRuby版のmakeであり、Rubyで記述することのできる、makeのような言語です。Railsでは、Rakeを頻繁に使用しています。特に、データベースを背後に持つWebアプリケーション開発時に必要となる管理タスクで顕著です。rake db:migrateが一番よく使われるコマンドですが、rakeに-T dbオプションを付けて実行すると他にもさまざまなデータベースタスクが用意されているのがわかります。
+  $ bundle exec rake -T db
+
+rakeで実行可能なタスクをすべて表示するには以下を実行します。
+  $ bundle exec rake -T
+
+コマンドの多さに圧倒されがちですが、すべてのコマンドを今覚える必要はまったくありませんので、心配は無用です。Railsチュートリアルを最後まで読み終わる頃には、重要なコマンドは一通り使えるようになっていることでしょう
+
+**** rake option list
+bundle exec rake -T
+bundle exec rake -T db
+
+**** db
+***** db:migrationを戻す
+****** 一つ前に戻す
+$ rake db:migrate
+
+****** 最初に戻す
+$ rake db:migrate VERSION=0
+
+**** seed
+***** 部分実行
+bundle exec rake db:seeds:[File Name]
+
+*** scaffold
+$ rails generate scaffold User name:string email:string
+$ bundle exec rake db:migrate
+$ rails s
+
+*** DB
+**** 基本や型
+http://qiita.com/zaru/items/cde2c46b6126867a1a64
+**** column追加 / 変更
+# rails generate migration Add説明文Toテーブル名 price:integer author:string
+
+***** cmd
+rails generate migration AddDetailsToNew price:integer author:string
+
+***** source
+# 上記コマンドで生成されるファイル
+class AddDetailsToNews < ActiveRecord::Migration
+  def change
+    add_column :news, :price, :integer
+    add_column :news, :author, :string
+  end
+end
+
+**** column削除
+***** cmd
+rails generate migration RemoveAuthorFromTitles author:string
+
+***** file
+class RemoveAuthorFromTitles < ActiveRecord::Migration
+  def up
+    remove_column :titles, :author
+      end
+
+  def down
+    add_column :titles, :author, :string
+  end
+end
+
+**** column name list
+$ rails c
+[model name].column_names
+
+*** erb
+<% provide(:title, 'Home') %>
+<title>Ruby on Rails Tutorial Sample App | <%= yield(:title) %></title>
+
+*** static page
+**** make static page contoroller
+rails generate controller StaticPages home help --no-test-framework
+# --no-test-framework  :  rspecを使用するので、テストを除く
+
+**** 元に戻す方法
+http://railstutorial.jp/chapters/static-pages?version=4.0#sidebar-undoing_things
+
+rails destroyコマンドを実行するだけで元に戻すことができます。
+
+
+***** たとえば次の2つのコマンドは、自動生成と、それに対応する取り消し処理の例です。
+$ rails generate controller FooBars baz quux
+$ rails destroy  controller FooBars baz quux
+
+***** モデルを自動生成 / 削除
+$ rails generate model Foo bar:string baz:integer
+$ rails destroy model Foo
+
+*** 記述法など
+**** rails dir strut
+app/          モデル、ビュー、コントローラ、ヘルパーなどを含む主要なアプリケーションコード
+app/assets    アプリケーションで使用するCSS (Cascading Style Sheet)、JavaScriptファイル、画像などのアセット
+bin/          バイナリ実行可能ファイル
+config/       アプリケーションの設定
+db/           データベース関連のファイル
+doc/          マニュアルなど、アプリケーションのドキュメント
+lib/          ライブラリモジュール
+lib/assets    ライブラリで使用するCSS (Cascading Style Sheet)、JavaScriptファイル、画像などのアセット
+log/          アプリケーションのログファイル
+public/       エラーページなど、一般(Webブラウザなど)に直接公開するデータ
+bin/rails     コード生成、コンソールの起動、ローカルのWebサーバーの立ち上げなどに使用するRailsスクリプト
+test/         アプリケーションのテスト (3.1.2で作成するspec/ディレクトリがあるため、現在は使用されていません)
+tmp/          一時ファイル
+vendor/       サードパーティのプラグインやgemなど
+vendor/assets サードパーティのプラグインやgemで使用するCSS (Cascading Style Sheet)、JavaScriptファイル、画像などのアセット
+README.rdoc   アプリケーションの簡単な説明
+Rakefile      rakeコマンドで使用可能なタスク
+Gemfile       このアプリケーションに必要なGemの定義ファイル
+Gemfile.lock  アプリケーションのすべてのコピーが同じgemのバージョンを使用していることを確認するために使用されるgemのリスト
+config.ru     Rackミドルウェア用の設定ファイル
+.gitignore    Gitに無視させたいファイルを指定するためのパターン
+
+**** gem file
+- gem 'uglifier', '>= 1.3.0'
+    1.3.0以上であれば最新バージョンのgemがインストールされます。
+
+- gem 'coffee-rails', '~> 4.0.0'
+    4.0.0より大きく、4.1より小さい場合にインストールする
+    要はマイナーアップグレード
+
+**** image
+***** scss
+# path指定不要
+# http://qiita.com/wadako111/items/03bc00d914e62243a511
+# 直接指定するのではなく、railsのinterface(函数)を通す
+background-image    : image-url("partner_offer_handshake.png");
+
+***** erb
+# 画像のパスを書くのではなく、
+# Railsの関数を呼ぶことで、productionの際にdigestを付与する
+<img src="<%= asset_path "hoge.png" %>" />
+<div style="background-image:url(<%= asset_path "hoge.png" %>)" />
+***** slim
+未調査
+
+*** error対処
+**** Could not find a JavaScript runtime. See https://github.com/rails/execjs for a list of available runtimes.
+intall gem 'therubyracer'
+
+**** Rails4 でフォントの precompile に関する問題の解決策
+http://qiita.com/onjiro/items/809dbc3c61b1fa576b26
+
+***** フォントを precompile 対象に含める
+----------------------------------------------------------------
+   config/initializer/assets.rb
+   ----------------------------------------------------------------
+   # 以下を追加
+   Rails.application.config.assets.precompile += %w( *.svg *.eot *.woff *.ttf )
+   ----------------------------------------------------------------
+
+***** フォントファイル名に付与される digest をなんとかする
+- 案1  :  CSS側でなんとかする: sass/scss に変更して url(...) を font-url(...) に変更
+  sass にした時点でインデントとかもろもろ修正しないといけない、つらい。。。
+  css.erb にして url(<%= asset_path("...") %>) の方が楽？
+
+- 案2  :  non-stupid-digest-assets を利用する
+  rake assets:precompile で digest 付きファイル作成時に digest なしのファイルも作成してくれる gem
+
+  config/initializers/non_digest_assets.rb
+  ----------------------------------------------------------------
+  NonStupidDigestAssets.whitelist = [/glyphicons-halflings-regular\.(eot|svg|woff|ttf)/]
+  ----------------------------------------------------------------
+
+*** Etc
+**** 複数version rails
+***** make gemfile
+----------------------------------------------------------------
+source "http://rubygems.org"
+gem "rails", "4.1.1"
+----------------------------------------------------------------
+
+***** rails install
+bundle install --path ./vender/bunlde
+
+***** 以上で、dirごとに別versionを利用可能
+
+*** coding
+**** render
+***** template
+= render template: "users/personal_data/stress_check", object: @counseling.user
+
+# objectで、値を受け渡せる?
+
+*** console
+**** column
+[Model].columns
+[Model].columns_hash
+[Model].column_names
+
+**** delete table data
+[Model].delete_all
+
+**** select data
+[Model].all
+[Model].find(int)
+
+*** background queue
+**** Ruby on Railsは遅い」のは確かですが、
+バックグラウンド処理とキャッシュをうまく使うことで
+ユーザ使用感から見てパフォーマンス十分なアプリ/サイトを作り上げることができます。
+今回はバックグラウンド処理の実装の主たるものを比較し、要求に見合ったアーキテクチャ選択をするためのお話です。
+
+**** QueueAdapterの比較
+Rubyプロジェクトで使われているバックグラウンド処理のうち、上位4つともQueueAdapterに利用可能です。
+※BeanstalkdはBackburnerを介してrailsで使います
+
+ストレージ	その他依存	長所	短所
+***** Resque	Redis	無し
+    Redisさえ用意されていればすぐに利用可能
+    コンソール画面がRailsアプリに組み込みやすい
+    ジョブ実行時にプロセスを毎回forkし直し処理するため、
+    メモモリリークやメモリのフラグメンテーションに問題のある
+    ミドルウェアを利用する際も比較的安定した動作を期待できる
+
+    Redisの冗長構成
+    キュー処理速度の限界が低い（Rubyゆえ）
+    forkプロセスが作成されるため、メモリ効率が悪く
+    オーバヘッドも大きい。（今のIndexJobの実装はちょっと酷）
+
+***** Sidekiq
+    Redisさえ用意されていればすぐに利用可能
+    コンソール画面がRailsアプリに組み込みやすい
+    プールされたワーカースレッドで並列に動作するので、リソース効率が良い
+
+    Redisの冗長構成
+    キュー処理速度の限界が低い（Rubyゆえ）
+    forkするわけではないので、メモリリークを引き起こすことがある
+    ミドルウェアを使った時にワーカごと持って行かれる可能性が高い
+
+***** Delayed job	ActiveRecord → RDB	無し
+Railsが動作する環境さえあれば他は何も要らない
+Railsで利用されるRDBは冗長性や耐障害性が十分考慮されていることが多く
+それに乗っかることができるので、ジョブ消失 という事態にになりにくい
+結果として大事なパラメータをジョブと一緒にキュー投入しても安心
+
+キュー処理速度の限界が低い（Rails+DB read/update）
+コンソール画面がない（scaffold？）
+ワーカのキュー監視インターバルが長い（デフォルト1分）
+forkするわけではないので、メモリリークを引き起こすことがある
+
+***** Backburner	Redis	Beanstalkd
+キュー処理をBeanstalkdに任せるので高速。大量のキューをさばける
+Jobプロセスをforkする/しない選択可能
+
+Benastalkを用意して冗長化/監視する必要がある
+
+***** Sucker punch	App memory	無し
+お手軽
+
+appサーバとリソースを共有するため、冗長化に難あり
+
+**** 利用シーンおすすめ
+利用するミドルウェアを含め、メモリ利用に難がなければResqueよりもSidekiq
+大量のJobを捌く必要がある（ログ処理など）場合は、Backburner
+冗長化したRedisインスタンスを別途設けることができず、かつジョブの消失を絶対に避けなければならないのであればDelayed job
+とにかくお手軽に始めたいのであればSucker punch
+各gem固有の機能を使わないのであればActiveJobのAPIで実装しておき、アプリの成長に応じてQueueAdapterを変更するのが理想
+*** jsが多く重い
+config/environments/development.rb
+----------------------------------------------------------------
+config.assets.debug = false
+----------------------------------------------------------------
+
+*** 時刻
+**** 基本
+Railsは、Time.zoneに集約した方がいい
+http://qiita.com/jnchito/items/cae89ee43c30f5d6fa2c
+
+**** UTC / Unixtime / time zone
+基本は、全国で同じunix timeが同時に扱われている.
+ここから、time zone毎に時間を増減させる
+
+現在、unix time [0] ならば
+日本は [ 0 + (3600 * 9) ] となる
+
+**** うるう年 / summer time
+ここらへんを考慮しだすと、かなり面倒そうだな.
+
+# 今回あったような、Rails = JST / MySQL = UTCで
+# Rails側で -9時間すると、日付が前日と当日の2値となり
+# うるう年で処理が面倒
+# また、サマータイムでもなんかでそうな気がする
+
+# system全体 time.zone, spec実行時のtime zoneが適切に変更されているかも
+# 分かりづらかった
+
+# 特に、parametaized使うと、eachで設定したtime.zoneが無視されたり
+
+
+**** 時刻を騙す
+Timecop
+http://qiita.com/tyamagu2/items/5f8dddfe079064b64d5e
+http://ruby-rails.hatenadiary.com/entry/20141218/1418901424
+
+***** example
+now = Time.zone.local(2016, 07, 20, 18, 00, 00)
+Timecop.freeze(now)
+
+MailDelivery.create_job
+
+Timecop.return
+
+***** 10日前の日付に移動する
+Timecop.travel(10.days.ago)
+
+***** 10日前の日付で時間を止める
+Timecop.freeze(10.days.ago)
+
+***** 1秒を60秒(1分)にする
+Timecop.scale(60)
+
+***** 戻す
+Timecop.return
+
+** base
+**** MVC image
+http://railstutorial.jp/chapters/a-demo-app?version=4.0#sec-mvc_in_action
+
+**** ./app/view/layout/application.html
+***** layout 共通のhtmlとして適用される
+
+----------------------------------------------------------------
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ruby on Rails Tutorial Sample App | <%= yield(:title) %></title>
+  <%= stylesheet_link_tag    "application", media: "all",
+                                            "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>
+----------------------------------------------------------------
+
+- <%= yield(:title) %>  : viewの各ファイルにおいて定義されている:titleを読み込む
+- <%= yield %>          : viewの各ファイルにおいて定義されているbody内容が反映される。
+
+***** default 記述内容
+----------------------------------------------------------------
+<%= stylesheet_link_tag ... %>
+<%= javascript_include_tag "application", ... %>
+<%= csrf_meta_tags %>
+----------------------------------------------------------------
+
+スタイルシートとJavaScriptは、Asset Pipeline (5.2.1) の一部です。
+csrf_meta_tagsは、Web攻撃手法のひとつであるクロスサイトリクエストフォージェリー (cross-site request forgery: CSRF)
+を防ぐために使われるRailsのメソッドです
+
+*** how to
+**** rails install
+$ sudo apt-get install libxslt-dev libxml2-dev libsqlite3-dev
+$ gem install rails
+
+**** make rails project
+$ rails new [project_name]
+$ rails new sample_app --skip-test-unit  # testを記述しない。rspec向け?
+
+**** rake
+***** rake一覧出力
+rake -w
+
+**** productionで動作させるとき
+secret keyを書き込む必要がある。
+
+# 以下で出よくされた内容を後述ファイルに書き込む
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+production:
+    secret_key_base: [here]
+----------------------------------------------------------------
+
+*** bundler
+$ bundle exec rails new example --skip-bundle
+（ vendor/bundle に入ったgemを使ってコマンドを実行したい場合は上記のように bundle exec 〜 のようにする）
+
+*** bundle install
+$ bundle install
+
+# production向けGemを除く
+$ bundle install --without production
+
+*** scaffold
+$ rails generate scaffold User name:string email:string
+$ bundle exec rake db:migrate
+$ rails s
+
+*** rake
+**** コラム
+Unixでは、ソースコードから実行用プログラムをビルドするために主にmakeというツールが使われてきました。多くのプログラマーが、肉体レベルにまで刻み込まれた以下のようなコマンドを実行して
+  $ ./configure && make && sudo make install
+
+LinuxやMac OS Xなどで日夜コードをコンパイルしています。
+RakeはいわばRuby版のmakeであり、Rubyで記述することのできる、makeのような言語です。Railsでは、Rakeを頻繁に使用しています。特に、データベースを背後に持つWebアプリケーション開発時に必要となる管理タスクで顕著です。rake db:migrateが一番よく使われるコマンドですが、rakeに-T dbオプションを付けて実行すると他にもさまざまなデータベースタスクが用意されているのがわかります。
+  $ bundle exec rake -T db
+
+rakeで実行可能なタスクをすべて表示するには以下を実行します。
+  $ bundle exec rake -T
+
+コマンドの多さに圧倒されがちですが、すべてのコマンドを今覚える必要はまったくありませんので、心配は無用です。Railsチュートリアルを最後まで読み終わる頃には、重要なコマンドは一通り使えるようになっていることでしょう
+
+**** rake option list
+bundle exec rake -T
+bundle exec rake -T db
+
+**** db
+***** db:migrationを戻す
+****** 一つ前に戻す
+$ rake db:migrate
+
+****** 最初に戻す
+$ rake db:migrate VERSION=0
+
+*** route
+**** 特定のcontroller/methodをrootにする
+  root 'users#index'
+
+*** erb
+<% provide(:title, 'Home') %>
+<title>Ruby on Rails Tutorial Sample App | <%= yield(:title) %></title>
+
+*** static page
+**** make static page contoroller
+rails generate controller StaticPages home help --no-test-framework
+# --no-test-framework  :  rspecを使用するので、テストを除く
+
+**** 元に戻す方法
+http://railstutorial.jp/chapters/static-pages?version=4.0#sidebar-undoing_things
+
+rails destroyコマンドを実行するだけで元に戻すことができます。
+
+
+***** たとえば次の2つのコマンドは、自動生成と、それに対応する取り消し処理の例です。
+$ rails generate controller FooBars baz quux
+$ rails destroy  controller FooBars baz quux
+
+***** モデルを自動生成 / 削除
+$ rails generate model Foo bar:string baz:integer
+$ rails destroy model Foo
+
+*** model
+**** 文字数制限
+# 該当modelのはじめに記述
+
+validates :content, length: { maximum: 140 }
+
+**** blank
+validates :content, length: { maximum: 140 }, presence: true
+
+
+*** 記述法など
+**** rails dir strut
+app/          モデル、ビュー、コントローラ、ヘルパーなどを含む主要なアプリケーションコード
+app/assets    アプリケーションで使用するCSS (Cascading Style Sheet)、JavaScriptファイル、画像などのアセット
+bin/          バイナリ実行可能ファイル
+config/       アプリケーションの設定
+db/           データベース関連のファイル
+doc/          マニュアルなど、アプリケーションのドキュメント
+lib/          ライブラリモジュール
+lib/assets    ライブラリで使用するCSS (Cascading Style Sheet)、JavaScriptファイル、画像などのアセット
+log/          アプリケーションのログファイル
+public/       エラーページなど、一般(Webブラウザなど)に直接公開するデータ
+bin/rails     コード生成、コンソールの起動、ローカルのWebサーバーの立ち上げなどに使用するRailsスクリプト
+test/         アプリケーションのテスト (3.1.2で作成するspec/ディレクトリがあるため、現在は使用されていません)
+tmp/          一時ファイル
+vendor/       サードパーティのプラグインやgemなど
+vendor/assets サードパーティのプラグインやgemで使用するCSS (Cascading Style Sheet)、JavaScriptファイル、画像などのアセット
+README.rdoc   アプリケーションの簡単な説明
+Rakefile      rakeコマンドで使用可能なタスク
+Gemfile       このアプリケーションに必要なGemの定義ファイル
+Gemfile.lock  アプリケーションのすべてのコピーが同じgemのバージョンを使用していることを確認するために使用されるgemのリスト
+config.ru     Rackミドルウェア用の設定ファイル
+.gitignore    Gitに無視させたいファイルを指定するためのパターン
+
+**** gem file
+- gem 'uglifier', '>= 1.3.0'
+    1.3.0以上であれば最新バージョンのgemがインストールされます。
+
+- gem 'coffee-rails', '~> 4.0.0'
+    4.0.0より大きく、4.1より小さい場合にインストールする
+    要はマイナーアップグレード
+
+**** image
+***** scss
+# path指定不要
+# http://qiita.com/wadako111/items/03bc00d914e62243a511
+# 直接指定するのではなく、railsのinterface(函数)を通す
+background-image    : image-url("partner_offer_handshake.png");
+
+***** erb
+# 画像のパスを書くのではなく、
+# Railsの関数を呼ぶことで、productionの際にdigestを付与する
+<img src="<%= asset_path "hoge.png" %>" />
+<div style="background-image:url(<%= asset_path "hoge.png" %>)" />
+***** slim
+未調査
+
+*** error対処
+**** Could not find a JavaScript runtime. See https://github.com/rails/execjs for a list of available runtimes.
+intall gem 'therubyracer'
+
+**** Rails4 でフォントの precompile に関する問題の解決策
+http://qiita.com/onjiro/items/809dbc3c61b1fa576b26
+
+***** フォントを precompile 対象に含める
+----------------------------------------------------------------
+   config/initializer/assets.rb
+   ----------------------------------------------------------------
+   # 以下を追加
+   Rails.application.config.assets.precompile += %w( *.svg *.eot *.woff *.ttf )
+   ----------------------------------------------------------------
+
+***** フォントファイル名に付与される digest をなんとかする
+- 案1  :  CSS側でなんとかする: sass/scss に変更して url(...) を font-url(...) に変更
+  sass にした時点でインデントとかもろもろ修正しないといけない、つらい。。。
+  css.erb にして url(<%= asset_path("...") %>) の方が楽？
+
+- 案2  :  non-stupid-digest-assets を利用する
+  rake assets:precompile で digest 付きファイル作成時に digest なしのファイルも作成してくれる gem
+
+  config/initializers/non_digest_assets.rb
+  ----------------------------------------------------------------
+  NonStupidDigestAssets.whitelist = [/glyphicons-halflings-regular\.(eot|svg|woff|ttf)/]
+  ----------------------------------------------------------------
+
+*** Etc
+**** 複数version rails
+***** make gemfile
+----------------------------------------------------------------
+source "http://rubygems.org"
+gem "rails", "4.1.1"
+----------------------------------------------------------------
+
+***** rails install
+bundle install --path ./vender/bunlde
+
+***** 以上で、dirごとに別versionを利用可能
+
+*** [#A] coding
+
+** rspec
+defautl matcher list
+https://github.com/rspec/rspec-expectations
+
+*** sutb / mockとは
+**** モック(mock)
+は本物のオブジェクトのふりをするオブジェクトで、テストのために使われます。
+モックはテストダブル(test doubles) と呼ばれる場合もあります。
+これは Factory Girl を使ってやろうとしてきたことにちょっと似ています。
+しかし、モックはデータベースにアクセスしない点が異なります。
+よって、テストにかかる時間は短くなります。
+**** スタブ(stub)
+はオブジェクトのメソッドをオーバーライドし、事前に決められた値を返します。
+つまりスタブは、呼び出されるとテスト用に本物の結果を返す、ダミーメソッドです。
+スタブをよく使うのはメソッドのデフォルト機能をオーバーライドするケースです。
+特にデータベースやネットワークをよく使う処理が対象になります。
+
+*** controller系
+|----------------------------+------------------------------------------------------------+---|
+| assigns                    | controllerのインスタンス変数の値を参照する                 |   |
+| eq                         | 値が等しいかどうか。配列の場合は順番も同じでないといけない |   |
+| match_array                | 配列の要素が等しいかどうか。順番は関係ない                 |   |
+| attributes_for             | 設定した属性値の値が返ってくる(factory girl)               |   |
+| change                     | とにかくなにか変化したことを期待する                       |   |
+| change().by(value)         | 評価前と評価後の差がvalueである                            |   |
+| change().from(old).to(new) | 評価前(from)から評価後(to)になっていること                 |   |
+|----------------------------+------------------------------------------------------------+---|
+
+*** be_valid
+
+Rails のモデルの有効性をテスト
+**** example
+contact = Contact.new(
+    firstname: 'Aaron',
+    lastname: 'Sumner',
+    email: 'tester@example.com'
+)
+expect(contact).to be_valid
+
+*** send
+private methodsを呼ぶ
+
+**** example
+***** class
+class BaseJob < ActiveJob::Base
+  rescue_from StandardError, with: :log_to_otherfile
+  private
+  def log_to_otherfile(exception)
+    Delayed::Worker.logger.error exception
+    Delayed::Worker.logger.error exception.backtrace.join("\n")
+    raise exception
+  end
+end
+
+***** spec
+RSpec.describe BaseJob, type: :jobs do
+  describe 'BaseJobs' do
+    it "raise with dummy error" do
+      basejob = BaseJob.new
+      exception = double("exception", :backtrace => ["boom"], :message => "boom!")
+      expect {basejob.send(:log_to_otherfile, exception)}.to raise_error(TypeError)
+    end
+  end
+end
+
+**** example
+***** model
+class BaseJob < ActiveJob::Base
+  rescue_from StandardError, with: :log_to_otherfile
+
+  private
+
+  def log_to_otherfile(exception)
+    Delayed::Worker.logger.error exception
+    Delayed::Worker.logger.error exception.backtrace.join("\n")
+    raise exception
+  end
+end
+
+***** spec
+basejob = BaseJob.new
+exception = double("exception", :backtrace => ["boom"], :message => "boom!")
+expect {basejob.send(:log_to_otherfile, exception)}.to raise_error(TypeError)
+*** double
+dummy objectを作成する
+http://web-k.github.io/blog/2012/10/02/rspec-mock/
+
+**** example
+RSpec.describe BaseJob, type: :jobs do
+
+  describe 'BaseJobs' do
+    it "raise with dummy error" do
+      basejob = BaseJob.new
+      exception = double("exception", :backtrace => ["boom"], :message => "boom!")
+      expect {basejob.send(:log_to_otherfile, exception)}.to raise_error(TypeError)
+    end
+  end
+end
+
+*** subject
+ubject{} を使うとテスト対象(test subject)のオブジェクトを宣言できます。
+こうすれば、それ以降のexample でそのオブジェクトを暗黙的に再利用できます。
+実際の使い方はこのあとでお見せします。
+
+** rake task
+*** 特定のrake taskの前後に、他のtaskを実行する
+    task set_timezone: :environment do
+    end
+
+    task unset_timezone: :environment do
+      Time.zone = 'UTC'
+    end
+
+    # enhance内が前、invokeが後に実行される
+    # []内のtask全てに対し、上記を定義している
+    [:create_job, :run_job, :set_birth_month_day].each do |task|
+      Rake::Task[task].enhance([:set_timezone]) do
+        Rake::Task["allin:mail_delivery:unset_timezone"].invoke
+      end
+    end
+  end
+end
+** rspec / capybara / polterguist
+*** capybara referece
+http://tsuchikazu.net/phantomjs-browser-javascript-engine/
+
+*** install rspec
+$ rails generate rspec:install
+
+*** install / js test
+**** js tester
+http://voidptr.seesaa.net/article/396226246.html
+http://tsuchikazu.net/phantomjs-browser-javascript-engine/
+
+**** install poltergeist
+# ubuntuの場合
+# 前駆となる、capybara installは自己で試していない
+
+# polterguistは、phantomjsでjs testを行うもの?
+# phantomjsは、
+
+
+$ sudo apt-get install phantomjs
+$ emacs -nw ./Gemfile
+----------------------------------------------------------------
+gem 'capybara'
+gem 'poltergeist'
+----------------------------------------------------------------
+
+
+$ emacs -nw spec/rails_helper.rb
+----------------------------------------------------------------
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
+----------------------------------------------------------------
+# 以上で、rspec file内で [:js => true] となっているものが有効となる。
+
+
+$ emacs  some_rspec_file
+----------------------------------------------------------------
+scenario '', :js => true do
+    ...
+end
+----------------------------------------------------------------
+
+*** capybara DSL 使用
+**** 追加しなくても、動いてるような
+Capybara DSLをRSpecヘルパーファイルに追加する。
+
+spec/spec_helper.rb
+------------------------------------------------
+RSpec.configure do |config|
+  .
+  .
+  .
+  config.include Capybara::DSL
+end
+
+*** js errでinstallできない場合
+GitHubのexecjsページにあるインストール可能なランタイムの一覧から入手してください。
+個人的にはNode.jsをお勧めします。
+
+*** rspec code 生成
+$ rails generate integration_test static_pages
+
+# spec/requestsディレクトリにstatic_pages_spec.rbが生成されます
+
+*** rspec 実行
+$ bundle exec rspec spec/requests/static_pages_spec.rb
+
+*** 変数
+let(:base_title) { "Ruby on Rails Tutorial Sample App" }
+expect(page).to have_title("#{base_title} | Home")
+
+@var = "text"
+
+
+** gems
+*** unicorn
+TODO: ちゃんとまとめよう
+他社の設定情報なども参考に
+
+**** start command
+RAILS_ENV=development bundle exec unicorn_rails -c ./config/unicorn.rb -E development -D
+
+**** example setting file under rails
+worker_processes 10
+
+pid File.expand_path('tmp/pids/unicorn.pid', ENV['RAILS_ROOT']).to_s
+listen 8080
+
+stderr_path File.expand_path('log/error.log', ENV['RAILS_ROOT'])
+stdout_path File.expand_path('log/production.log', ENV['RAILS_ROOT'])
+
+preload_app true
+
+before_fork do |server, worker|
+  ENV['BUNDLE_GEMFILE'] = File.expand_path('Gemfile', ENV['RAILS_ROOT'])
+
+  defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
+end
+
+after_fork do |server, worker|
+  defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
+end
+
+**** example setting nginx
+# ほぼ初期設定
+# socketで接続した方が早いらしい
+
+user nginx;
+worker_processes auto;
+error_log /var/log/nginx/error.log;
+pid /var/run/nginx.pid;
+
+events {
+    worker_connections 1024;
+}
+
+
+http {
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile            on;
+    tcp_nopush          on;
+    tcp_nodelay         on;
+    keepalive_timeout   65;
+    types_hash_max_size 2048;
+
+    include             /etc/nginx/mime.types;
+    default_type        application/octet-stream;
+
+    # Load modular configuration files from the /etc/nginx/conf.d directory.
+    # See http://nginx.org/en/docs/ngx_core_module.html#include
+    # for more information.
+    include /etc/nginx/conf.d/*.conf;
+
+    index   index.html index.htm;
+
+    upstream backend {
+        server 127.0.0.1:8080;
+    }
+
+    server {
+        listen       80 default_server;
+        listen       [::]:80 default_server;
+        server_name  localhost;
+        # server_name  allin-development.ruby-dev.jp;
+        root         /usr/share/nginx/html;
+
+        # Load configuration files for the default server block.
+        include /etc/nginx/default.d/*.conf;
+
+        location = /health.html {
+            return 200;
+        }
+
+        location / {
+            proxy_pass http://backend;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For    $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Host   $host;
+            proxy_set_header X-Forwarded-Server $host;
+            # proxy_set_header X-Forwarded-Proto  https;
+            proxy_set_header Host $http_host;
+
+            # auth_basic "development";
+            # auth_basic_user_file "/var/www/.htpasswd";
+            allow all;
+        }
+
+        # redirect server error pages to the static page /40x.html
+        #
+        error_page 404 /404.html;
+            location = /40x.html {
+        }
+
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page 500 502 503 504 /50x.html;
+            location = /50x.html {
+        }
+}}
+
+**** capistranoでアプリをデプロイした際、たまにJavaScriptやStylesheetを参照できなくなることがある
+capistranoのログにはエラーが記録されておらず、デプロイは成功したように見える。
+
+サーバー上のunicornのエラーログには次のようなエラーが記録されていた。
+unicorn error log
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+I, [2015-02-12T15:59:45.958112 #21986]  INFO -- : executing ["/var/www/allin_accounting/shared/bundle/ruby/2.2.0/bin/unicorn", "-c", "/var/www/allin_accounting/current/config/unicorn/staging.rb", "-E", "staging", "-D", {12=>#<Kgio::UNIXServer:fd 12>}] (in /var/www/allin_accounting/releases/20150212150620)
+I, [2015-02-12T15:59:45.958374 #21986]  INFO -- : forked child re-executing...
+/home/svc/.rvm/gems/ruby-2.2.0@global/gems/bundler-1.7.12/lib/bundler/definition.rb:22:in `build': /var/www/allin_accounting/releases/20150204131636/Gemfile not found (Bundler::GemfileNotFound)
+        from /home/svc/.rvm/gems/ruby-2.2.0@global/gems/bundler-1.7.12/lib/bundler.rb:155:in `definition'
+        from /home/svc/.rvm/gems/ruby-2.2.0@global/gems/bundler-1.7.12/lib/bundler.rb:118:in `setup'
+        from /home/svc/.rvm/gems/ruby-2.2.0@global/gems/bundler-1.7.12/lib/bundler/setup.rb:17:in `<top (required)>'
+        from /home/svc/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+        from /home/svc/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+E, [2015-02-12T15:59:46.145444 #16817] ERROR -- : reaped #<Process::Status: pid 21986 exit 1> exec()-ed
+
+
+
+確認したところ /var/www/allin_accounting/releases/20150204131636 がそもそも存在しなかった。
+
+
+
+capistranoはデプロイしたアプリの世代管理をしており、一定数デプロイするとreleasesディレクトリから古いアプリディレクトリは削除される。一方、cap unicorn:restart (kill -s USR2 PID) でunicornをリスタートすると、起動時に参照したGemfileをそのまま参照し続けるらしく、デプロイを繰り返すと古いアプリディレクトリが削除されてGemfileの参照エラーになるらしい。
+
+
+
+unicornの設定ファイルに次の設定を追加すると、current化のGemfileを参照するようになり、問題が解決できる。
+unicorn.rb
+1
+2
+3
+
+before_exec do |server|
+  ENV["BUNDLE_GEMFILE"] = "/var/www/allin/current/Gemfile"
+end
+*** bundler : delete all gem
+/bin/bundle exec gem list --no-version | xargs gem uninstall -aIx
+
+*** usefull gem
+http://labs.timedia.co.jp/2014/02/railsgem.html
+
+**** view
+kaminari : paging
+breadcrumbs_on_rails : breadcrumbs
+awesome_nested_fields : 増減する入力フォームを簡単に生成
+
+**** DB
+octopus : sharding
+
+**** 認証
+devise
+authority
+rolify
+zxcvbn-ruby, require: 'zxcvbn'
+
+**** file
+CarrierWave : upload
+fog : s3へupload
+
+**** 画像処理
+RMagick : 画像アップロード時にサムネイル作成など
+
+**** デコレータ
+Draper : ?
+
+**** 帳票生成
+ThinReports : すごいらしい
+
+**** memcached
+Dalli
+
+**** test
+factory_girl_rails : データ生成
+Rubocop : coding style check
+Spring : rake taskを高速化
+simplecov : カバレッジ
+parallel_tests : test並列実行
+
+**** deploy
+capistrano
+
+**** debug
+better_errors : エラーを見やすく
+
+**** server side
+Whenever
+*** letter_opner_web
+https://github.com/Ruby-Corporation/ruby-webpage/pull/75
+https://github.com/fgrehm/letter_opener_web
+https://github.com/fgrehm/letter_opener_web_demo
+
+*** gem 選定基準
+楽天内でも特に基準はない。#セキュリティ部分を鑑みても
+OSS開発ではさほど気にしないそうな。
+(gem, bower, npmなど色々があるが、全てが当てはまるとの事)
+
+廣田さん、柴田さんの話では、[傾向] で判断
+
+**** ok目安
+- 周りに聞いてみる
+- webに情報がある
+- 評判が良い (NG目安にもあるが、コミット数、注目度など)
+
+**** NG目安
+***** 若いGemはNG
+若いの定義目安
+
+- 作成されてから半年
+- コミット数が極端に少ない
+- 注目度 # starの数
+
+***** webに情報が多いか
+***** コミット数が多いか
+
+*** html to slim
+$ gem install html2slim
+$ html2slim index.html index.html.slim
+
+*** ?
+bundle bundler pry awesome_print aws-sdk
+
+*** intall gem without production
+$ bundle install --without production
+$ bundle update
+$ bundle install
+
+**** remembered option
+--without productionオプションを追加することで、本番環境のgemのみをインストールしないようにすることができます。
+注: このオプションは “” と呼ばれるもので、このオプションを一度実行するとコマンドに保存され、
+今後Bundlerを実行するときにオプションを追加する必要がなくなります。
+このため、今後は単にbundle installを実行するだけで、自動的に本番環境用gemをスキップできるようになります2。
+
+*** gem更新後は
+$ bundle update
+$ bundle install
+
+*** uglifier', '>= 1.3.0'
+uglifierはAsset Pipelineでファイル圧縮を行うためのものです。
+
+*** .env
+rails-dotenv
+
+http://qiita.com/closer/items/f8d8ba00ae86d7051764
+
+*** 検索
+everywhere
+ransack
+
+http://qiita.com/nysalor/items/9a95d91f2b97a08b96b0
+*** ER図
+gem 'rails-erd'
+apt-get install graphviz
+
+rake erd
+** gemnasium
+*** コマンドラインから Gemfileをあげる
+# login
+gemnasium auth login
+
+# repository指定
+# repository URLの末尾のhash値
+# https://gemnasium.com/7b19970edaae4fcd33a17a7d533b36ef
+gemnasium configure 7b19970edaae4fcd33a17a7d533b36ef
+
+# push Gemfile, Gemfile.lok
+gemnasium dependency_files push -f=Gemfile,Gemfile.lock
+
+# あとは、webで結果を見るだけ
+# cliから解析結果を得られるが、上のプランが必要
+
+*** api
+https://github.com/gemnasium/toolbelt
+http://docs.gemnasium.apiary.io/#reference/projects/projects
+
+** bootstrap
+*** カルーセルの位置を調整する
+以下のケースでは、右下に寄せる。
+上下左右の調整、indicator (○)の調整も可能
+
+**** sliim
+    #sampleCarousel.carousel.slide data-ride='carousel'
+      .carousel-inner role='listbox'
+        .item.active
+          = image_tag 'mobile/home/mein_01-2.png', alt: 'apps Ruby開発社2', class: 'img-responsive', style: 'margin: 30px auto'
+        .item
+          = image_tag 'mobile/home/mein_01-1.png', alt: 'apps Ruby開発社1', class: 'img-responsive', style: 'margin: 30px auto'
+        .item
+          = image_tag 'mobile/home/mein_01-3.png', alt: 'apps Ruby開発社3', class: 'img-responsive', style: 'margin: 30px auto'
+        .item
+          = image_tag 'mobile/home/mein_01-4.png', alt: 'apps Ruby開発社4', class: 'img-responsive', style: 'margin: 30px auto'
+        button#sampleCarouselPrev.btn.btn-default.btn-sm type='button'
+          | ←
+        button#sampleCarouselNext.btn.btn-default.btn-sm type='button'
+          | →
+        button#sampleCarouselCycle.btn.btn-default.btn-sm type='button'
+          | Play
+        button#sampleCarouselPause.btn.btn-default.btn-sm type='button'
+          | Stop
+        .carousel-indicators
+          li.active data-target='#sampleCarousel' data-slide-to='0'
+          li data-target='#sampleCarousel' data-slide-to='1'
+          li data-target='#sampleCarousel' data-slide-to='2'
+          li data-target='#sampleCarousel' data-slide-to='3'
+**** scss
+  .carousel-indicators {
+  	position      : relative;
+  	bottom        : 0;
+  	left          : 50%;
+  	z-index       : 15;
+  	width         : 60%;
+  	top           : -25px;
+  	padding-left  : 0;
+  	margin-left   : -10%;
+  	text-align    : right;
+  }
+
+  .carousel-indicators li {
+  	display                : inline-block;
+   	width                  : 18px;
+   	height                 : 18px;
+   	margin                 : 0 5px;
+   	background             : transparent;
+   	-webkit-border-radius  : 50%;
+   	-moz-border-radius     : 50%;
+   	border-radius          : 50%;
+   	border                 : 5px solid transparent;
+   	box-shadow             : rgba(0, 0, 0, 5) 0 0 10px;
+   	cursor                 : pointer;
+  }
+
+  .carousel-indicators .active {
+  	width            : 18px;
+  	height           : 18px;
+  	margin           : 0 5px;
+  	background-color : #000000;
+  }
+
+*** accordion
+**** code
+  #Accordion.panel-group
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title
+          a[data-toggle="collapse" data-parent="#Accordion1" href="#AccordionCollapse1" ]
+            | 個人情報
+      #AccordionCollapse1.panel-collapse.collapse.in
+        .panel-body
+          table.table.table--default
+            tr
+              td.title= t 'operators.counselings.personal_detail.company'
+              td.values= @counseling.user.company.name
+              td.title.right= t 'operators.counselings.personal_detail.address'
+              td.values
+            tr
+              td.title= t 'operators.counselings.personal_detail.user'
+              td.values= @counseling.user.decorate.full_name
+              td.title.right= t 'operators.counselings.personal_detail.phone'
+              td.values #
+            tr
+              td.title= t 'operators.counselings.personal_detail.date'
+              td.values= @counseling.start_at
+              td.title.right= t 'operators.counselings.personal_detail.email'
+              td.values= @counseling.user.email
+            tr
+              td.title= t 'operators.counselings.personal_detail.place'
+              td.values=
+              td.title.right= t 'operators.counselings.personal_detail.argument'
+              td.values
+                .btn.btn-primary 意見書編集
+
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title
+          a[data-toggle="collapse" data-parent="#Accordion2" href="#AccordionCollapse2"]
+            | 面談メモ
+      #AccordionCollapse2.panel-collapse.collapse.in
+        .panel-body
+          textarea= @counseling.note
+          .btn.btn-primary.pull-right 保存する
+
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title
+          a[data-toggle="collapse" data-parent="#Accordion3" href="#AccordionCollapse3"]
+            | 事前ヒアリング結果
+      #AccordionCollapse3.panel-collapse.collapse.in
+        .panel-body
+          | #
+
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title
+          a[data-toggle="collapse" data-parent="#Accordion4" href="#AccordionCollapse4"]
+            | 第一回ストレスチェック結果
+      #AccordionCollapse4.panel-collapse.collapse
+        .panel-
+**** bootstrapが分離されている場合
+以下を読み込む
+@import "bootstrap/component-animations"
+
+**** code 解説
+***** 開閉状態
+#AccordionCollapse1.panel-collapse.collapse.in
+
+[in]をを付けると開いた状態
+つけないと閉じる
+
+*** tab / nav-justified : small display sizeでstack表示にしない
+小さな解像度になると、勝手に立てに並ぶ動作の対処
+# 不要な部分も混入
+
+**** slim
+li.active
+  = link_to 'Web系', '#message-web', :class => "btn-primary", data: {toggle: 'tab'}
+li
+  = link_to 'ゲーム系', '#message-game', :class => "btn-primary", data: {toggle: 'tab'}
+li
+  = link_to '各種装置系', '#message-device', :class => "btn-primary", data: {toggle: 'tab'}
+br
+li
+  = link_to '金融系', '#message-finance', :class => "btn-primary", data: {toggle: 'tab'}
+li
+  = link_to '自社製品', '#message-inhouse', :class => "btn-primary", data: {toggle: 'tab'}
+br
+br
+
+**** scss
+      ul.nav.nav-pills.nav-justified {
+        li {
+          display: table-cell;
+          width: 1%;
+          font-size: 11px;
+          padding: 1px;
+          margin: 1px;
+
+          a {
+            font-color: #FFF;
+            margin-bottom: 0;
+            border: none;
+          }
+        }
+        .active {
+          border: 1px solid black;
+
+          a {
+            background: white;
+            color: black;
+            margin-bottom: 0;
+          }
+        }
+      }
+
+
+
+** nodejs
+*** install
+幾つかのnodejs管理システムがある。
+nvm, nodebrewなど。社ではnodebrewを採用した。
+以下、install方法
+
+**** nodebrew使い方
+http://jxck.hatenablog.com/entry/20120224/1330035058
+
+**** install
+***** $ curl https://raw.github.com/hokaccha/nodebrew/master/nodebrew | perl - setup
+***** write to bashrc
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+***** $ source ~/.bashrc
+***** $ nodebrew install v0.6.x # v0.6
+***** $ nodebrew use v0.6.0
+
+***** Error
+****** direcotry not found
+~/.nodebrew/src/
+を作成
+**** 起動方法
+
+*** pm2
+**** for?
+- deploy
+- daemonize
+- etc
+**** command
+http://nodejs.osser.jp/node/node-pm2/
+http://pm2.keymetrics.io/docs/usage/deployment/#related-commands
+
+** angularjs
+*** double post禁止
+以下の様な感じで、click後、disableにする。
+button tagは、ng-disabledだけでいけるそうだが
+a tagは、ng-disabledだけでは無効化されないため
+以下の様なコードとなっている。
+
+buttonなら、viewの条件前項がいらない.
+ng-click="!isLikeDisable() && likeFeed(feed)"
+
+**** view
+a href="" ng-click="!isLikeDisable() && likeFeed(feed)" ng-class="{'sns-liked': isLike(feed), 'sns-unlike': !isLike(feed)}" ng-disabled="isLikeDisable()"
+
+**** ctrl
+        $scope.isLikeDisable = function() {
+            return $scope.isLikeEditing;
+        };
+
+        $scope.availableLike = function() {
+            $scope.isLikeEditing = false;
+        };
+
+        $scope.disableLike = function() {
+            $scope.isLikeEditing = true;
+        };
+
+        $scope.likeFeed = function(feed) {
+            $scope.disableLike();
+            SnsFeed.like({group_id: $scope.groupId, id: feed.id, like: !$scope.isLike(feed)}).$promise.then(
+                function() {
+                    if ($scope.isCommentEditing(feed)) { $scope.isEditing = false; }
+                    $scope.isLikeEditing = $timeout($scope.availableLike, <%= Settings.sns.like.repost_interval %>);
+                },
+                function() {
+                    toastr.error($translate.instant("unexpected_error"));
+                    $scope.isLikeEditing = $timeout($scope.availableLike, <%= Settings.sns.like.repost_interval %>);
+                }
+            );
+        };
+
+
+
+** python
+*** 環境構築
+**** base
+# pyenv + anacondaが良いらしい
+http://qiita.com/y__sama/items/5b62d31cb7e6ed50f02c
+
+Windows: anaconda(or miniconda)
+linux: git + pyenv + anaconda(or miniconda)
+MacOS: homebrew + pyenv + anaconda(or miniconda) #これだけ自分ではやったことないです
+
+
+**** setup
+http://qiita.com/oct_itmt/items/2d066801a7464a676994
+
+**** anaconda
+pythonのディストリビューションの一つで、主要ライブラリをオールインワンでインストールできます。
+(numpy,scipy,pandas,ipython,jupyter,scikit-learn etc...)
+
+**** conda
+package管理
+condaにない場合は, pipで
+**** pyenv
+version 管理
+
+**** pip
+package管理
+*** matplotlib
+# on mac
+$ emacs ~/.matplotlib/matplotlibrc
+
+----------------------------------------------------------------
+backend : TkAgg
+----------------------------------------------------------------
+
+* DB
+** mysql
+*** mruby for docker
+**** grant all on docker.* to 'docker'@'localhost' identified by 'mruby';
+**** my.conf
+[mysqld]
+character-set-server=utf8
+
+
+*** backup and resotre
+**** 参考サイト
+http://phpspot.net/php/pgmysqldump%E3%81%A7%E3%83%90%E3%83%83%E3%82%AF%E3%82%A2%E3%83%83%E3%83%97%EF%BC%86%E5%BE%A9%E5%85%83.html
+http://qiita.com/crimson_21/items/6171a95f8ddb2861e2e6
+
+**** base
+***** bakcup all db
+$ mysqldump -u root -x --all-databases > dump.sql
+
+***** backup a db
+$ mysqldump -u root データベース名 > dump.sql
+
+***** backup with compress
+# mysqldumpの出力をパイプでgzipコマンドに渡してしまえば、圧縮することが簡単にできます。
+#テンポラリファイル・テンポラリの領域も必要ありません。
+mysqldump -u root -p mydb | gzip > mydb.sql.gz
+mysqldump -u influencer --password=QkIPwa9k -h db.org.lifewear.uniqlo.com influencer | gzip > 2016-05-31
+mysqldump -u influencer --password=QkIPwa9k -h stage-db.org.lifewear.uniqlo.com influencer | gzip > 2016_11_16_bk
+
+# 圧縮したmysqlのデータをmysqlにインポートするには、gunzipで展開した結果をmysqlコマンドに流し込むだけです。
+gunzip mydb.sql.gz | mysql -u root -p mydb
+
+# リモートに直接送りつけるには、sshにパイプします。
+mysqldump -u root -p mydb | gzip | ssh hoge 'cat > mydb.sql.gz'
+
+***** restore all db
+$ mysql -u root -p < dump.sql
+
+***** restore a db
+$ mysql -u root データベース名 < dump.sql
+**** option
+***** db lock
+--lock-table
+
+*** table 照合順
+SHOW FULL COLUMNS FROM hashtags;
+
+** postgres
+http://ossfan.net/setup/postgresql-06.html
+
+** mongodb
+*** base
+- 60秒間隔でdiskへ書き込み. この間はcache.
+*** commands
+**** loop : insert data
+for (var i = 1; i <= 10000; i++) {
+   db.testData.insert( { "contents" : "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "posted_by" : "56ee5039661764580ac685d1", "company_id" : "44388244b2af11e5802c0800275eaa7c", "group_id" : "__all__", "attachments" : [ ], "comments" : [ ], "likes" : [ ], "updated_at" : ISODate("2016-03-20T14:06:02.458Z"), "created_at" : ISODate("2016-03-20T14:06:02.458Z"), "__v" : 0 }
+  )
+}
+
+**** insert data
+db.testData.insert(
+{ "posted_by" : "56ee5039661764580ac685d1",
+  "company_id" : "44388244b2af11e5802c0800275eaa7c",
+  "group_id" : "__all__",
+  "attachments" : [ ],
+  "comments" : [ ],
+  "likes" : [ ],
+  "updated_at" : ISODate("2016-03-20T14:06:02.458Z"),
+  "created_at" : ISODate("2016-03-20T14:06:02.458Z"),
+  "__v" : 0
+}
+
+**** 容量計算
+db.getCollectionNames().forEach(function(n){print(n + "," + db[n].stats().storageSize/1024/1024/1024 + "GB")})
+**** replica set
+https://docs.mongodb.org/manual/reference/replication/
+
+***** init setting shell script
+#!/bin/bash
+
+
+# run replica set
+#   must be runnning all mongo db process on nodes
+mongo <<EOT
+
+cfg = {
+ _id : "allin-mongo",
+ members : [
+  { _id : 0, host : "10.0.1.100:27017", priority : 10},
+  { _id : 1, host : "10.0.1.101:27017", priority : 1, votes:2} ]}
+
+rs.initiate(cfg)
+rs.status()
+EOT
+
+***** 再設定
+cfg = {
+ _id : "allin-mongo",
+ members : [
+  { _id : 0, host : "10.0.1.100:27017", priority : 10},
+  { _id : 1, host : "10.0.1.101:27017", priority : 1, votes:2} ]}
+
+rs.reconfig(cf)
+***** add / remove
+rs.add("node1:27018");
+rs.remove("server-name")
+
+***** 状態確認
+rs.status()
+
+***** 状態確認 - secondary
+プライマリ以外のノードからの読み込みを許可するために，setSlaveOk()コマンドを利用する必要がある
+
+> db.getMongo().setSlaveOk()
+> db.logs.count()
+10000
+
+**** index
+***** create
+$ mongo
+> use [db name]
+> db.feeds.createIndex( { company_id:1, group_id:1, created_at:-1 } )
+
+# data量によっては、数分かかる。
+# write lockされるため、backgroundでの作成も可能。
+> db.feeds.createIndex( { company_id:1, group_id:1, created_at:-1 },  { background: true } )
+
+***** delete
+> db.feeds.dropIndex( { company_id:1, group_id:1, created_at:-1 } )
+*** mongoose
+**** update後のdataを得る
+optionを以下指定
+{new:true}
+
+***** code
+this.findOneAndUpdate({'_id':data.id}, { $pull:{'likes':data.posted_by} }, {upsert:false, new:true}, (error, doc) => {
+    return callback(error, doc);
+});
+
+*** replica set
+**** base
+mysqlのreplicaとは異なる。
+
+- 奇数台である必要がある
+- primaryが落ちると、自動でsecondaryへfailoverする
+- primaryが復帰すると、自動でprimaryが元に戻る
+
+- oplogというfileでreplication状態を管理している
+- driver側で、読み込み方法を選択可能
+  primaryから全て読み書き、secondaryから読み込む、pingが一番低いものから読み込むなど
+
+**** commadline からの設定
+http://gihyo.jp/dev/serial/01/mongodb/0004?page=2
+
+**** 設定 script例
+#!/bin/bash
+
+
+# run replica set
+#   must be runnning all mongo db process on nodes
+mongo <<EOT
+cfg = {
+ _id : "allin-mongo",
+ members : [
+  { _id : 0, host : "10.0.1.100:27017", priority : 10},
+  { _id : 1, host : "10.0.1.101:27017", priority : 1},
+  { _id : 2, host : "10.0.1.103:27017", arbiterOnly : true} ] }
+
+rs.initiate(cfg)
+rs.status()
+EOT
+
+*** master / slave
+ - [ ] : db clear
+ - [ ] : mongod --master --config /etc/mongod.conf
+ - [ ] : mongod --slave --config /etc/mongod.conf --source <host ip>:<host port>
+         ip は privateip
+ - [ ] : mongoで入って状態確認
+         rs.printReplicationInfo()
+ - [ ] :
+ - [ ] :
+*** backup / restore
+**** aws EBSでのbackup / restor
+***** base
+- 任意の点で、server実行状態でbackup可能。
+  snapshotは素早く作成されるが、s3へのuploadに時間を要する
+- 差分back upとなる
+
+***** restore手順
+- [ ] : 全server 停止
+- [ ] : 全serverのdataを削除
+- [ ] : snapshotからvolumeを作成
+- [ ] : mount to primary
+- [ ] : 旧volumeをdetach
+- [ ] : 新volumeを/var/lib/mongoへattach
+- [ ] : devise nameも変わる場合、fstab, scriptなど修正する
+        これが不要とする手法はないかな？変更は危ない
+        単純にはcpだが、時間がかかるな...
+- [ ] : 全serverを起動
+- [ ] : data check
+
+***** backup手順
+- [ ] : ec2 instance windowを開く
+- [ ] : 該当instanceの、該当volumeを選択。volumen interfaceが開く
+- [ ] : snapshotを作成を選択
+- [ ] : volumeに名前をつける
+- [ ] : 後は待つだけ
+
+** influx db
+*** hardware sizing info
+- info
+    https://docs.influxdata.com/influxdb/v0.12/guides/hardware_sizing/
+    https://docs.influxdata.com/influxdb/v0.13/introduction/installation/#hosting-on-aws
+
+- on aws
+  t2.small = low
+
+*** influx
+**** install
+http://qiita.com/Satoshi_Numasawa/items/e11826c8d7b1707d8428
+
+https://docs.influxdata.com/influxdb/v0.13/introduction/installation/
+
+**** create database
+https://docs.influxdata.com/influxdb/v0.12/introduction/getting_started/
+
+**** create user
+$ influx
+CREATE USER 'ruby-dev' WITH PASSWORD 'FiYee8PaqueJan8t' WITH ALL PRIVILEGES
+
+**** password
+CLOSED: [2016-06-10 Fri 12:21]
+configかな?
+/etc/influxdb/influxdb.conf
+
+--------------------------------
+[http]
+  enabled = true
+  bind-address = ":8086"
+  auth-enabled = true
+--------------------------------
+
+**** write data : api
+https://docs.influxdata.com/influxdb/v0.13/guides/writing_data/
+
+# db作成
+curl -POST http://52.38.23.147:8086/query --data-urlencode "q=CREATE DATABASE mydb"
+curl -POST http://52.38.23.147:8086/query -u ruby_dev:FiYee8PaqueJan8t --data-urlencode "q=CREATE DATABASE mydb"
+
+# post data
+curl -i -XPOST http://52.38.23.147:8086/write?db=mydb --data-binary 'cpu_load_short,host=server01,region=us-west value=0.75'
+curl -i -XPOST http://52.38.23.147:8086/write?db=mydb -u ruby_dev:FiYee8PaqueJan8t  --data-binary  'cpu_load_short,host=server01,region=us-west value=0.75'
+
+# show data
+curl 'http://52.38.23.147:8086/query?q=select+*+from+cpu_load_short%3B&db=mydb' | jq .
+curl 'http://52.38.23.147:8086/query?q=select+*+from+cpu_load_short%3B&db=mydb' -u ruby_dev:FiYee8PaqueJan8t  | jq .
+
+**** api
+https://docs.influxdata.com/influxdb/v0.13/concepts/api/
+
+**** how to use
+http://qiita.com/akito1986/items/9c1c14a36654646db456
+
+**** backup
+https://docs.influxdata.com/influxdb/v0.13/administration/backup_and_restore/
+
+----------------------------------------------------------------
+#!/bin/bash
+
+cd ~
+day=`date +'%Y%m%d%H%M%S'`
+influxd backup ~/influx_backup/$day
+influxd backup -database sensorMeasure ~/influx_backup/$day
+bzip2 ~/influx_backup/$day/*
+----------------------------------------------------------------
+
+*** chrono
+**** install
+http://qiita.com/Satoshi_Numasawa/items/a4452cce3010af9570f3
+
+https://docs.influxdata.com/chronograf/v0.13/introduction/installation/
+https://docs.influxdata.com/chronograf/v0.13/introduction/getting_started/
+
+**** setting
+emacs /opt/chronograph/
+
+127.0.0.1:10000
+から
+0.0.0.0:10000
+へ
+
+*** open port
+CLOSED: [2016-06-09 Thu 15:26]
+8083
+8086
+10000
+
+*** 外部から接続できる状態って?
+http api
+
+*** Done basic auth
+CLOSED: [2016-06-10 Fri 13:46]
+nginx かませよう
+
+**** nginx setting
+https://git.ruby-dev.jp/home/share-info/issues/1
+--------------------------------------------------------------------------------
+backend
+--------------------------------------------------------------------------------
+upstream backend {
+    server 127.0.0.1:5001;
+}
+
+server {
+    listen       80;
+    server_name  admin.lifewear.uniqlo.com;
+
+    server_tokens off;
+
+    access_log /var/log/nginx/admin.lifewear.uniqlo.com/access_log;
+    error_log /var/log/nginx/admin.lifewear.uniqlo.com/error_log;
+
+
+    location ~ /  {
+        proxy_pass http://backend;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For    $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host   $host;
+        proxy_set_header X-Forwarded-Server $host;
+        # proxy_set_header X-Forwarded-Proto  https;
+        proxy_set_header Host $http_host;
+	      break;
+    }
+
+    allow all;
+}
+
+**** 照合
+8083   = 18083
+8086   = 18086
+10000  = 20000
+
+*** Done 自動起動on
+*** https
+
+面倒なのでいれなかった
+
+**** 固定IPじゃないから、とりあえず保留?
+独自証明書いれる?
+openssl req -new -x509 -sha256 -newkey rsa:2048 -days 365 -nodes -out /etc/ssl/influxdb.pem -keyout /etc/ssl/influxdb.key
+
+*** ui
+http://52.38.23.147:8083/
+
+webUIから色々できそう
+
+user mydb
+select host, region, value from cpu;
+
+
+curl -X GET 'http://52.197.142.78:8086/query?q=select+*+from+DHT11Measure%3B&db=sensorMeasure_sendai_test' -u admin:admin
+
+
+
+
+* Git
+** iro iro
+*** install latest
+$ cd /tmp
+$ wget https://www.kernel.org/pub/software/scm/git/git-2.4.5.tar.gz
+$ tar zxvf git-2.4.5.tar.gz
+$ cd git-2.4.5
+
+$ sudo apt-get install gettext
+$ ./configure --prefix=/usr/local
+$ make all
+$ sudo make install
+
+*** git first setting
+$git config --global user.name nabnab
+$git config --global user.email hoge@gmail.com
+
+*** init repository
+$ git init
+$ git add -A
+$ git commit -m "Initialize repository"
+
+*** git ignore
+*** コミットメッセージを変更
+**** 直前
+git commit --amend
+
+**** 過去
+$ git rebase -i <commit>
+# 修正したいcommitの後ろのコミットを指定。
+# コミットの一覧が表示される。修正したいコミットの pick の文字を edit に変更して保存/終了。
+
+***** each
+# 内容修正、保存/終了。
+$ git commit --amend
+
+# --continueオプションを指定してrebaseを実行
+$ git rebase --continue
+
+# 修正したいコミット分繰り返し
+
+*** cloneからpush, request pullまで
+http://blog.qnyp.com/2013/05/28/pull-request-for-github-beginners/
+
+**** clone
+$ git clone git@github.com:Satoshi-Numasawa/test.git
+
+**** branch作成
+git branch [branchname]
+
+# 以下だと、切り替えまで同時に行う
+# git checkout -b [branchname]
+
+**** branchの切り替え
+git checkout -b [branchname]
+
+**** commit
+git commit -m "message"
+
+**** push
+git push origin [branchname]
+
+**** pull request
+GUI上で行う
+該当pageの右上あたり
+
+*** regist local repository to github
+git remote add origin https://github.com/mhartl/first_app.git
+
+*** 特定fileのversionを戻す
+git checkout HEAD^ path/to/file
+
+*** merge
+git checkout [to repository_name]
+git merge origin [from repository_name]
+
+*** merge conflict
+conflit 解消後
+$ git add 解消済み[対象ファイル]
+$ git commit
+
+*** rebase
+git checkout [branch]
+git rebase master
+
+*** merge / rebase 違い
+わからん
+それぞれ使いどころがあるようだが
+
+*** リポジトリを移行する
+例えば、githubからgitlabへなど
+
+**** ローカルのリポジトリを現在のリポジトリの最新状態を取得する
+git fetch
+
+**** 現在のリモートリポジトリの接続情報を確認する
+git remote -v
+
+**** リモートリポジトリ(origin)を削除する
+git remote remove origin
+
+**** 新しいリポジトリ(同じくoriginで命名する)を追加する
+git remote add origin https://user@bitbucket.org/user/reponame.git
+
+**** ローカルリポジトリを空のリモートリポジトリに追加する
+git push origin master
+
+
+*** merge後、不要なコミットをPRから消す #未検証
+$ git checkout master
+$ git pull
+$ git checkout mobile_contact_confirm
+$ git rebase master
+$ git push -f
+*** branch復活
+http://kenzo0107.hatenablog.com/entry/2015/05/11/122448
+
+*** cherry-pick
+**** 複数のcommitをまとめてcherry-pickする
+$ git cherry-pick [cherry-pick の始点となるコミット]..[cherry-pick の終点となるコミット]
+
+// 始点となるコミットは 実際に cherry-pick したいコミットの１つ前 を選ぶ
+// masterへのmerge commitのpickダメ (勉強不足)
+
+**** 個別にpick
+git cherry-pick 6ea8b2405aad9b16ca7abd518d47de10a47e6810
+git cherry-pick 05680bed07b42eda9a8410f7b5d0009d6a6b5887
+** github
+*** 初期設定
+**** ssh-key作成
+**** regist public key to github
+**** ~/.ssh/config setting
+Host github.com
+User         Satoshi-Numasawa
+port         22
+Hostname     github.com
+IdentityFile /home/ali-ani/works/doc/00001_marunouchipix/git/mruby_marupix
+TCPKeepAlive yes
+IdentitiesOnly yes
+
+**** 接続テスト
+$ ssh -i [key] git@github.com
+Hi Satoshi-Numasawa! You've successfully authenticated, but GitHub does not provide shell access.
+
+というメッセージが出ればアクセスはok
+
+** gitlab
+*** sakura server
+***** install
+[[file:~/.org/hack.org::*gitlab%20install%20to%20centos][gitlab install to centos]]
+
+***** 起動
+/home/numasawa/script/start_docker_gitlab.sh
+/home/numasawa/script/restart_docker_gitlab.sh
+
+***** データ永続化 : host os上のデータ保存先
+/opt/docker_data/mysql
+/opt/docker_data/redis
+/opt/docker_data/gitlab
+
+* Devops
+** chef
+*** vagrant
+**** commands
+***** box list
+vagrant box list
+
+***** vm stop
+vagrant halt
+
+***** vm 破棄
+vagrant destroy
+
+***** ohai
+chefと同時にinstallされる。
+system内の情報を、jsonで返す
+
+argで、特定の情報のみ取得可能
+$ ohai languages # 利用可能言語一覧
+$ ohai platform
+
+**** vm setup
+***** images
+http://www.vagrantbox.es/
+
+***** add OS image
+vagrant box add [box_name] [url]
+
+$ vagrant box add centos7 https://github.com/holms/vagrant-centos7-box/releases/download/7.1.1503.001/CentOS-7.1.1503-x86_64-netboot.box
+
+***** init
+# current dirにbox_name 読み込むよう設定ファイルが作成される。
+
+$ vagrant init centos7
+
+***** vm start
+$ vagrant up
+
+***** connest to vm
+vagrant ssh
+
+***** sync folder
+****** make link dir | at host
+$ emacs Vagrantfile
+----------------------------------------------------------------
+config.vm.synced_folder "./share", "/vagrant", type: "rsync"                        |
+----------------------------------------------------------------
+
+# config.vm.synced_folder [host_dir] [remote_dire] type: "rsync"                        |
+
+****** auto rsync | at host
+$ rsync-auto
+
+***** ssh host 登録
+$ vagrant ssh-config --host webdb >> ~/.ssh/config
+
+***** add private IP to vm
+# 以下で、eth1が追加される
+
+$ emacs Vagrantfile
+----------------------------------------------------------------
+config.vm.network :private_network, ip: "192.168.33.10"
+----------------------------------------------------------------
+
+$ vagrant halt
+$ vagrant up
+
+**** recipe
+***** group / user
+# OS のグループとユーザを 定義
+# 当該ユーザが作成済みの場合は 、新規作成は行われない
+----------------------------------------------------------------
+group 'td-agent' do
+    group_name 'td-agent'
+    gid         403
+    action      :create
+end
+
+user 'td-agent' do
+    comment  'td-agent'
+    uid      403
+    group    'td-agent'
+    home     '/var/run/td-agent'
+    shell    '/bin/false'
+    password nil
+    supports :manage_home => true
+    action   [:create, :manage]
+end
+----------------------------------------------------------------
+***** make dir
+# すでに存在する場合は、作成されない
+----------------------------------------------------------------
+directory '/etc/td-agent/' do
+    owner 'td-agent'
+    group 'td-agent'
+    mode '0755'
+    action :create
+end
+----------------------------------------------------------------
+
+***** plastform毎のrepository追加
+case node['platform']
+when "ubuntu"
+    dist = node['lsb']['codename']
+    source = (dist == 'precise') ? "http://packages.treasure-data.com/precise/" : "http://packages.treasure-data.com/debian/"
+    apt_repository "treasure-data" do
+        uri source
+        distribution dist
+        components ["contrib"]
+        action :add
+    end
+when "centos", "redhat"
+    yum_repository "treasure-data" do
+        url "http://packages.treasure-data.com/redhat/$basearch"
+        action :add
+    end
+end
+
+**** example
+Vagrant.configure(2) do |config|
+  config.vm.box = "opscode_ubuntu-14.04_chef-provisionerless"
+  config.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box"
+
+  config.vm.network "private_network", ip: "192.168.33.30"
+  config.vm.network :forwarded_port, guest: 3000, host: 3000
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1024"
+  end
+
+  config.vm.synced_folder ".", "/vagrant", type: "nfs"
+
+  config.vm.provision "chef_zero" do |chef|
+    chef.version = '11.18.0'
+    chef.cookbooks_path = "./chef/cookbooks"
+    chef.add_recipe "apt"
+    chef.add_recipe "ruby_build"
+    chef.add_recipe "rails_support"
+    chef.add_recipe "rbenv::user"
+    chef.add_recipe "postgresql::server"
+    chef.add_recipe "postgresql::server_dev"
+    chef.json = {
+      "rbenv" => {
+        "user_installs" => [{
+          "user" => "vagrant",
+          "rubies" => ["2.2.2"],
+          "global" => "2.2.2",
+          "gems" => { "2.2.2" => [{"name" => "bundler"}] }
+        }]
+      },
+      "postgresql" => {
+          "pg_hba" => [
+            { "type" => 'local', "db" => 'all', "user" => 'postgres', "addr" => '', "method" => 'trust' }
+          ],
+          "databases" => [
+            {
+              "name" => "ruby_webpage_development",
+              "owner" => "postgres",
+              "encoding" => "UTF-8"
+            },
+            {
+              "name" => "ruby_webpage_test",
+              "owner" => "postgres",
+              "encoding" => "UTF-8"
+            },
+            {
+              "name" => "ruby_webpage_production",
+              "owner" => "postgres",
+              "encoding" => "UTF-8"
+            }
+          ]
+      }
+    }
+  end
+end
+*** chef
+**** doc / cheat sheet
+http://docs.chef.io/
+
+https://docs.chef.io/knife.html
+https://docs.chef.io/chef_solo.html
+https://docs.chef.io/resources.html
+
+**** chef supermaket
+#  chef社管理のcookbook
+https://supermarket.chef.io/users/chef
+
+**** install chef / knife-solo / berkshelf
+gem install chef knife-solo
+gem install berkshelf
+
+**** 簡易手順
+***** init
+knife solo init .
+
+***** install chef-solo to nodes
+knife solo prepare test
+
+***** cookbook作成
+# knife cookbook create [cookbook name] -o [dir]
+knife cookbook create base_app -o site-cookbooks
+
+***** edit nodes
+# site-cookbooks/base_app/nodes/ode_name.json
+
+{
+  "run_list": [
+      "recipe[base_app]"
+  ],
+  "automatic": {
+    "ipaddress": "node_name"
+  }
+}
+
+***** edit recipe
+# example
+
+----------------------------------------------------------------
+base_packages = ["epel-release", "git", "make", "gcc", "gcc-c++"]
+base_packages.push("sqlite-devel", "libyaml-devel", "libffi-devel", "libicu-devel", "zlib-devel", "readline-devel")
+base_packages.push("openssl", "openssl-devel", "gdbm", "gdbm-devel")
+base_packages.push("libxml2", "libxml2-devel", "libxslt", "libxslt-devel")
+base_packages.push("zip", "unzip")
+
+base_packages.each do |pkg|
+    package pkg do
+        action :install
+    end
+end
+----------------------------------------------------------------
+
+***** run
+knife solo cook test
+
+**** commands
+***** knife
+kitchen操作コマンド
+
+# 各client用の設定ファイルを作成するコマンド。
+# 指定したディレクトリに、client.rb、validation.pemを作成する。この2つのファイルを使って、各nodeの設定を行う。
+knife configure client [tmp directory]
+
+***** knife-solo
+hostで作成したcookbookをremote serverへ転送し、chef-soloコマンドを実行。
+
+****** install
+gem install knife-solo
+
+****** 指定nodeへchef-soloをインストール
+# 以後リモートホスト上でchef-soloが通るように、いい感じに調整してくれる。
+$ knife solo prepare <host>
+$ knife solo prepare <user>@<host>
+
+****** nodeでchef-soloを実行させる
+$ knife solo cook <host>
+
+****** run_listを個別に指定
+$ knife solo cook <host> -o hello::default, nginx::default
+
+****** nodeに転送したレシピ群を削除
+$ knife solo clean <host>
+
+****** 新規Chefリポジトリを作成
+$ knife solo init chef-repo
+
+**** on nodes | chef-solo
+***** init cookbook | put log
+$ sudo knife cookbook create hello -o /var/chef/cookbooks
+
+***** edit recipe
+$ sudo emacs /var/chef/cookbooks/hello/recipes/default.rb
+
+add
+----------------------------------------------------------------
+log "Hello, World!"
+----------------------------------------------------------------
+***** run
+$ sudo chef-solo -o hello
+
+----------------------------------------------------------------
+[2014-03-24T12:21:06+00:00] WARN: *********
+[2014-03-24T12:21:06+00:00] WARN: Did not find config file: /etc/chef/sol
+o.rb, using command line options.
+[2014-03-24T12:21:06+00:00] WARN: *********
+Starting Chef Client, version 11.10.4
+[2014-03-24T12:21:08+00:00] WARN: Run List override has been provided.
+[2014-03-24T12:21:08+00:00] WARN: Original Run List: []
+[2014-03-24T12:21:08+00:00] WARN: Overridden Run List: [recipe[hello]]
+Compiling Cookbooks...
+Converging 1 resources
+Recipe: hello::default
+ log[Hello, World!] action write
+Running handlers:
+Running handlers complete
+Chef Client finished, 1/1 resour
+----------------------------------------------------------------
+
+***** make cookbook template
+$ knife cookbooks create dstat -o ./site-cookbooks/
+
+***** edit recipe
+package "dstat" do
+    action :install
+end
+
+***** run
+$ sudo chef-solo -o hello,dstat
+
+**** host to nodes | knife solo
+***** knife solo init
+----------------------------------------------------------------
+$ knife solo init.
+----------------------------------------------------------------
+
+***** init cookbook
+$ knife cookbook create dstat -o site-cookbooks
+
+***** knife solo
+# chef-solo install & run
+$ knife solo bootstrap webdb
+
+# only chef-solo install
+$ knife solo prepare webdb
+
+***** run install
+$ knife solo cook webdb
+
+**** 複数サーバーへ一度に適用
+$ echo node1 node2 node3 | xargs -n 1 knife solo cook
+
+**** errors
+https://docs.chef.io/errors.html
+
+**** recipe resouce | 記述法
+***** package
+****** install
+package "httpd" do
+    action :install
+end
+
+****** upgrade
+# 最新版に入れ替える
+# installされていない場合、installと同処理
+package "httpd" do
+    action :upgrade
+end
+
+****** remove
+package "perl" do
+    action :remove
+end
+
+****** 指定ファイルからinstall
+package "tar" do
+    action :install
+    source "/tmp/tar-1.16.1-1.rpm"
+end
+
+****** 複数
+%w{gcc make git}.each do |pkg|
+    package pkg do
+        action :install
+    end
+end
+
+****** version指定
+package "perl" do
+    action :install
+    version "5.10.1"
+end
+
+***** service
+----------------------------------------------------------------
+service "httpd" do
+    action [ :enable, :start ]
+end
+----------------------------------------------------------------
+
+
+:enable = /sbin/chkconfig httpd on
+:start  = /sbin/service   httpd start
+
+***** make user
+http://d.hatena.ne.jp/yk5656/20140406/1397003758
+
+****** prepare shadow password
+$ openssl passwd -1 'パスワード'
+
+****** recipe
+user "hoge" do
+  password "シャドーなパスワードの文字列"
+  supports :manage_home => true
+  action :create
+end
+
+group "wheel" do
+  action [:modify]
+  members ["hoge"]
+  append true
+end
+
+****** wheel group
+no password sudo
+
+/etc/sudoers 末尾に
+%wheel ALL=NOPASSWD: ALL
+
+***** 複数
+***** 注意
+package名と、service(daemon)名は異なるケースがある。
+
+**** github
+- postgres
+  https://github.com/phlipper/chef-postgresql
+
+- apt
+  https://github.com/opscode-cookbooks/apt
+
+- rbenv
+  https://github.com/fnichol/chef-rbenv
+
+- ruby-build
+  https://github.com/fnichol/chef-ruby_build
+
+*** berkshelf
+**** package list
+https://supermarket.chef.io/
+
+**** how to | flow
+***** init Berksfile
+berks init
+
+***** write package to Berksfile
+# example
+emacs ./Berksfile
+
+----------------------------------------------------------------
+source 'https://supermarket.chef.io'
+
+cookbook "rbenv"
+cookbook 'nginx', '~> 2.7.6'
+cookbook 'npm', '~> 0.1.2'
+----------------------------------------------------------------
+
+***** install recipe
+berks verndor cookbooks
+
+***** write nodes file
+{
+  "run_list": [
+      "recipe[nginx]",
+      "recipe[nodejs]"
+  ],
+  "automatic": {
+    "ipaddress": "test_server"
+  }
+}
+***** run
+knife solo cook test_server
+
+***** setting details
+公式サイトのreadme参照
+**** rbenv
+***** init
+$ cd ~/work_dir
+$ touch ./metadata.rb
+$ berks init
+
+***** write to Berksfile
+----------------------------------------------------------------
+source 'https://supermarket.chef.io'
+
+cookbook "rbenv"
+----------------------------------------------------------------
+
+***** install
+berks vendor cookbooks
+
+***** make cookbook for ebenv
+knife cookbook create rbenv-ruby -o site-cookbooks
+
+***** edit
+****** site-cookbooks/rbenv-ruby/metadata.rb
+depends 'rbenv'
+
+****** site-cookbooks/rbenv-ruby/recipe/default.rb
+include_recipe "rbenv::default"
+include_recipe "rbenv::ruby_build"
+
+include_recipe "rbenv::rbenv_vars"
+
+rbenv_ruby "2.2.0" do
+  ruby_version "2.2.0"
+  global true
+end
+
+%w[bundler pry awesome_print aws-sdk].each do |gem_name|
+  rbenv_gem gem_name do
+    ruby_version "2.2.0"
+  end
+end
+
+***** change install dir
+site-cookbooks/rbenv-ruby/attributes/default.rb
+
+----------------------------------------------------------------
+default["rbenv-ruby"]["rbenv_root_path"] = "/usr/local"
+----------------------------------------------------------------
+
+***** edit nodes
+# run_listへ追記
+----------------------------------------------------------------
+{
+  "run_list": [
+      "recipe[rbenv-ruby]"
+
+  ],
+  "automatic": {
+    "ipaddress": "test"
+  }
+}
+----------------------------------------------------------------
+
+***** run
+knife solo cook [server_name]
+
+# example
+# knife solo cook -i ~/some/path/key.cer ec2-user@54.123.123.123
+**** 自己作成のcustom recipeを読み込む
+# ./cookbooks/postgres/
+
+cookbook 'postgres', path: './cookbooks/postgres'
+
+** ansible
+*** command 存在確認
+# http://qiita.com/kawaz/items/1b61ee2dd4d1acc7cc94
+
+# drop stdout. get return number.
+# 0ならコマンドあり、1なら無し
+# この値をansibleで用いる
+type nvm > /dev/null 2>&1 ; echo $?
+
+* monitering
+** munin
+http://qiita.com/murachi1208/items/2d27d386a2891ccf4ed1
+http://www.submit.ne.jp/821
+
+*** server
+**** 読みに行くnodeを設定
+/etc/munin/munin.conf
+
+[ruby-dev.jp]
+    address 52.69.156.6
+    use_node_name yes
+
+**** 読みに行く頻度
+- cronで指定
+- conf側で、頻度を設定する必要あり?
+*** node
+**** 許可するIPを, munin-node.confへ記述
+# access元のserver IP
+example
+allow ^52\.3\.3\.3$
+
+**** port 4949解放
+** zabbix
+
+* Virtual Machine
+** docker
+*** docker hub
+userが自前で作成したdocker contairner imageを公開できる。
+githubなどと連携し、自動でコードビルド可能。
+
+*** docker tools
+**** docker machine
+クラウドのインスタンス上に自動的にDocker環境を構築してくれるツール。
+aws, ms azure, vmwareなど対応
+
+**** docker swarm
+Docker を使った分散アプリケーションのためのクラスタ環境を構築するためのツール
+複数のインフラに複数のdockerコンテナを配置してクラスタ環境を構築したい様なケース
+
+**** docker composer
+複数の Docker コンテナ上で動作する分散アプリケーションを構築する際に、その構成のコンフィギュレーションを作成するためのツール
+
+*** docker
+debian jessieでのinstall
+backportを許可し、以下実行
+
+sudo apt-get update
+
+# 公式のreferenceがあった
+
+*** commands
+**** example
+# cpu core数 8個 / mem 4G
+docker run --cpuset-cpus 0-7 -m 4G -p -it debian/manatuku /bin/bash
+
+# port foword local 4000 to container 3000
+docker run -p 4000:3000 -v -it debian/manatuku /bin/bash
+
+# directory sync | local:docker_container
+docker run --cpuset-cpus 0-7 -m 4G -p 4000:3000 -v ~/program/shared/mana2ku:/manatuku -it debian/manatuku /bin/bash
+
+**** docker pull
+docker image DL
+
+$ docker pull ubuntu:latest
+
+**** docker build
+// 独自imageの作成
+書式:docker build -t <Docker イメージ名 >:< タグ名 ><Dockerfile を配置するディレクトリ >
+
+$ docker build -t taki/mynginx:latest .
+
+**** docker run
+// cliから抜けた後、containerは消える
+$ sudo docker run -it debian:stable /bin/bash
+
+// backgroundで常時実行. imageがない場合は自動で落としてくる
+$ docker run -d nginx:latest
+
+// login user指定
+$ docker run -u user_name debian:stable /bin/bash
+
+// IP
+$ HOST1=$(docker run --privileged -t -d debian/test /bin/bash)
+$ docker exec $HOST1 ip addr add 192.168.0.10/24 dev eth0
+
+**** docker ps
+// backgroundで実行しているcontainerの確認
+$ docker ps
+
+// 終了済みcontainerのlist
+$ docker ps -a
+
+**** docker exec
+// バックグラウンドで実行している Docker コンテナの動作確認のために、コンテナ内で任意のコマンド
+書式 :docker exec [ オプション ] < コンテナ ID |コンテナ名 > < 実行するコマンド >
+
+$ docker exec -it b2fe904d6323 /bin/bash
+
+**** docker stop
+// stop docker container
+$ docker stop <container id | container name>
+
+**** docker rm
+// 終了後も残っているcontainer dataの削除
+docker rm <container id | container name>
+
+// 終了後も残っている、全container dataの削除
+docker rm $(docker ps -a -q -f "status=exited")
+
+**** docker rmi
+// docker imageの削除
+$ docker rmi [-f] < image:tag|image ID>
+
+// 不要image削除
+$ docker rmi $(docker images -q -f "dangling=true") 2> /dev/null
+
+*** dockerfile
+dockerfileへtextでimage内容を記述し、新たなimageを作成する。
+// commadsのdocker build参照
+
+**** base
+- #は、行末までコメント
+- 1行に1命令
+- \で、命令文を次行に続けられる
+- 命令文は、<命令 引数>の形式で、予め定義されたものから選択する
+- 先頭から純に評価される
+
+**** 例
+FROM ubuntu:14.04
+MAINTAINER takipone<takipone@gmail.com>
+
+
+# install required packages
+RUN apt-get update -y && apt-get install -y \
+    autoconf \
+    automake \
+    autotools-dev \
+    bison \
+    cython \
+    curl \
+    g++ \
+    git \
+    libcunit1-dev \
+    libcurl4-openssl-dev \
+    libevent-dev \
+    libjansson-dev \
+    libjemalloc-dev \
+    libssl-dev \
+    libtool \
+    libxml2-dev \
+    make \
+    pkg-config \
+    python3.4-dev \
+    rake \
+    zlib1g-dev
+
+# install qrintf from GitHub
+RUN cd /usr/local/src/ && \
+    git clone https://github.com/h2o/qrintf.git && \
+    cd qrintf && \
+    make install PREFIX=/usr/local
+
+# install trusterd from GitHub
+RUN cd /usr/local/src/ && \
+    git clone git://github.com/matsumoto-r/trusterd.git && \
+    cd trusterd && \
+    make && \
+    make install INSTALL_PREFIX=/usr/local
+
+# copy config and documents
+COPY conf/trusterd.conf.rb /trusterd-conf/trusterd.conf.rb
+COPY htdocs /trusterd-htdocs
+
+# add trusterd execution user
+RUN useradd -s /bin/false -d /usr/local trusterd
+
+# add log directory
+RUN mkdir /trusterd-logs
+CMD /usr/local/bin/trusterd /trusterd-conf/trusterd.conf.rb
+
+**** FROM
+必須命令
+コメントを除くDockerfile の一番最初の命令する。
+docker runと同じく、<image_name:tag_name>で指定する
+
+例 : FROM ubuntu:latest
+
+**** MAINTAINER
+公開するなら入れる
+MAINTAINER numasawa<s-numasawa@ruby-dev.jp>
+
+**** RUN
+buildコマンドの実行
+
+***** base
+- root権限で実行される
+- docker image内のコマンドのみ実行可能
+- Docker Imageを作成するためのコマンド実行
+  (docker containerの命令ではない)
+  (containerの実行命令は、CMD or ENTRYPOINTで)
+
+- 1命令ごとにshellが停止する。
+  つまり、cdやenv設定が次の命令に引き継がれない。
+  そのため、&& || ; などで1命令として順次実行する。
+
+- 対話設定は不可能
+  apt-get であれば、-yをつけて流す。
+
+***** 例
+RUN apt-get update -y && apt-get install -y \
+autoconf \
+**** COPY
+file / directoryをcopyする
+cpは、image内部でのコピー
+COPYは、image外部からのコピー
+
+COPY conf/trusterd.conf.rb /trusterd-conf/trusterd.conf.rb
+COPY htdocs /trusterd-htdocs
+
+// docker engine version 0.11以前ではサポートされない
+
+**** ADD
+docker client内のアーカイブファイル展開 (?)
+URLからDLしたファイルをdocker image内に展開
+
+**** CMD
+?
+CMD は、「docker run」コマンドでコンテナの実行コマンドを省略する場合の、既定のコマンドを指定します。
+
+***** 記述例
+CMD /usr/local/bin/trusterd /trusterd-conf/
+trusterd.conf.rb
+
+**** ENTRYPOINT
+?
+
+*** 構築例
+著者のgithub repositoryを利用
+
+$ git clone https://github.com/otaki-ryuta/docker-trusterd.git
+$ docker build -t takipone/trusterd:latest .
+$ sudo docker run -d takipone/trusterd:latest
+
+$ docker ps
+$ cat htdocs/index.html
+
+// IPの確認
+$ docker inspect d269da42f010 | grep IPAddress
+
+//
+$ docker run --rm dajobe/nghttpx nghttp http://172.17.0.7/index.html
+
+*** nameについて
+nameは、containerの一意な名前。
+--name optionで付加可能。ただし、重複付加に注意。
+--name optionを付けない場合は、自動付与される。
+
+*** command?
+sudo docker run -d -p 80:80 --name nginx1 takipone/nginx /usr/sbin/nginx -g 'daemon off;' -c /etc/nginx/nginx.conf
+sudo docker run -d -p 80:80 --name nginx1 centos6/def_env3 /usr/sbin/nginx -g 'daemon off;' -c /etc/nginx/nginx.conf
+
+*** gitlab install to centos
+**** mysql
+sudo docker run --name=mysql -d \
+  -e 'DB_NAME=gitlab' -e 'DB_USER=gitlab' -e 'DB_PASS=mruby'\
+  -v /opt/docker_data/mysql:/var/lib/mysql \
+  sameersbn/mysql:latest
+
+**** redis
+sudo docker run --name=redis -d \
+  -v /opt/docker_data/redis:/var/lib/redis \
+ sameersbn/redis:latest
+
+**** gitlab
+sudo docker run --name=gitlab -d \
+  --link mysql:mysql \
+  --link redis:redisio \
+  -e 'GITLAB_PORT=10080' -e 'GITLAB_SSH_PORT=10022'\
+  -e 'GITLAB_HOST=160.16.96.217'\
+  -p 10022:22 -p 10080:80 \
+  -v /opt/docker_data/gitlab:/home/git/data \
+  sameersbn/gitlab:latest
+
+*** data永続化
+-v --volume optionでコンテナ外部(host os)に保存できる。
+
+書式 : -v <host dir path>:<Docker container dir path>
+*** shell script
+CMDではやりにくい場合、docker image内にscriptをコピーし実行可能。
+
+*** 環境変数
+// docker runコマンドに -e --env optionを付与する
+// docker container内で永続的に使える
+
+$ docker run -d -e TRUSTERD_ENV=production takipone/trusterd:latest
+
+*** old
+**** 基本は公開されている、docker image群をpullして構築しただけです。
+http://qiita.com/yacchin1205/items/fa774011d72ead599eb5
+
+**** Description
+----------------------------------------------------------------
+   - 稼働サーバー
+       sakura server
+
+   - 使用 app
+       Docker  :  仮想化ソフト
+       gitlab
+       redis
+       mysql
+
+   - 構造
+       # excelファイル参照
+
+**** Docker
+----------------------------------------------------------------
+    gitlab, redis, mysqlは、それぞれ個別のDocker内で動作。
+
+   - Gitlab
+   --------------------------------
+       - docker image
+           sameersbn/gitlab
+
+
+       - Port foward
+           sakura server Port:10080へのアクセスを
+           Docker(gitlab)のPort:80へFoward
+
+       - Data保存
+           docker instanceを停止した場合Dataが消失する。
+           (dockerではinstanceを、containerと表現している。)
+           (若干概念も違う異なる模様)
+
+           そのため、Docker内ファイルを、host OS上へLinkさせる。
+           以下構造でlink。
+
+           Docker : /home/git/data
+           Host   : /opt/docker_data/gitlab
+
+
+   - Redis
+   --------------------------------
+       - docker image
+           sameersbn/redis
+
+
+      - Data保存
+          Docker :  /var/lib/redis
+          Host   :  /opt/docker_data/redis
+
+
+   - mysql
+   --------------------------------
+       - docker image
+           sameersbn/mysql
+
+
+      - mysql DB setting
+          DB_NAME = gitlab
+          DB_USER = gitlab
+          DB_PASS = mruby
+
+      - Data保存
+          Docker :  /var/lib/mysql
+          Host   :  /opt/docker_data/mysql
+
+**** Access
+----------------------------------------------------------------
+    - Access URL
+        http://160.16.96.217:10080/
+
+
+    - Docker instance間
+        それぞれ通信可能。
+        (instance起動時に設定)
+
+**** script
+----------------------------------------------------------------
+    - script保存場所
+        - /home/s-numasawa/script
+            start_docker_gitlab.sh    :  初回起動用
+            restart_docker_gitlab.sh  :  reboot用 (instance kill, 不要ファイル削除の上reboot)
+
+
+    - gitlab, mysql, redis 起動
+        [start_docker_gitlab.sh] を実行。
+
+        # 起動に多少時間がかかる。
+        # 起動完了後、前述のURLで外部からアクセス可能となる。
+
+**** Commands
+----------------------------------------------------------------
+***** start script 例
+    --------------------------------
+        sudo docker run --name=mysql -d \                                # docker instance 名を指定. daemon
+          -e 'DB_NAME=gitlab' -e 'DB_USER=gitlab' -e 'DB_PASS=mruby'\    # DB setting
+          -v /opt/docker_data/mysql:/var/lib/mysql \                     # host os / virtual osのfile link
+          sameersbn/mysql:latest                                         # 起動するdocker imageを指定
+
+
+        sudo docker run --name=redis -d \                                # docker instance 名を指定. daemon
+          -v /opt/docker_data/redis:/var/lib/redis \                     # host os / virtual osのfile link
+          sameersbn/redis:latest                                         # 起動するdocker imageを指定
+
+
+        sudo docker run --name=gitlab -d \                               # docker instance 名を指定. daemon
+          --link mysql:mysql \                                           # docker instance : mysql との通信を許可
+          --link redis:redisio \                                         # docker instance : redis との通信を許可
+          -e 'GITLAB_PORT=10080' -e 'GITLAB_SSH_PORT=10022'\             # gitlab port setting
+          -e 'GITLAB_HOST=160.16.96.217'\                                # gitlab host IP setting
+          -p 10022:22 -p 10080:80 \                                      # Foward setting | host:10080 <--> docker:80 (iptablesへ自動設定される)
+          -v /opt/docker_data/gitlab:/home/git/data \                    # host os / virtual osのfile link
+          sameersbn/gitlab:latest                                        # 起動するdocker imageを指定
+
+***** docker
+        - docker images
+            保存されているdocker imageを一覧表示
+
+        - docker run [image名]
+            imageからdokcer instanceを起動
+
+        - docker kill [instance ID]
+            実行中のinstanceをkill
+
+        - docker rmi [image名]
+            imageを削除
+
+        - docker pull [image名]
+            repositoryからimageをpull
+
+        - docker ps -a
+            全instanceの情報を表示
+
+        - docker ps -a -q
+            起動中のinstanceのIDを表示
+
+        - docker kill `docker ps -a -q`
+            起動中の全instanceを停止
+
+** docker_example
+docker hubから比較的評価の高いものを選択
+*** nginx
+$ docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
+
+// http://qiita.com/sigelinde/items/95c154dc807a4bbc9cf0
+// 当nginx containerを起動後、
+// 他のcontainer起動時に、[ -e VIRUTAL_HOST=host_name ] とする事で
+// 自動でproxyされる。(-p 80:80など不要)
+// 構造が不明だが、とりあえずそういう風に動いてくれる
+
+*** munin
+[[*munin][munin-setting]]
+
+$ docker pull appsdeck/munin-server
+
+$ sudo docker run -d -p 4949:4949 \
+    -e VIRTUAL_HOST=moniter.ruby-dev.jp \  // nginx-proxy containerへの連携設定
+    -e NODES="ruby-dev.jp:52.69.156.6" \   // munin.confへ書き込んでくれる
+    -v /etc/localtime:/etc/localtime:ro \  // data共有
+    -v /usr/local/share/applications/munin/data:/var/lib/munin \  // data共有
+    appsdeck/munin-server
+
+// VIRTUAL_HOSTで、nginx_proxyを経由させているので
+// port80のforwardは不要
+
+*** zabbix
+docker run -d \
+           -p 10051:10051 \
+           -p 10052:10052 \
+           -p 2812:2812   \
+           -e VIRTUAL_HOST=alive-monitor.ruby-dev.jp \
+           --name zabbix  \
+           berngp/docker-zabbix
+** docker on amazon linux
+$ sudo yum install -y docker
+$ sudo /etc/init.d/docker start
+$ sudo chkconfig docker on
+
+** docker mac
+*** 起動
+docker-machine start default
+
+*** 起動できない場合
+$ docker-machine regenerate-certs default
+$ docker-machine env default
+
+# paste env
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.100:2376"
+export DOCKER_CERT_PATH="/Users/Numasawa/.docker/machine/machines/default"
+export DOCKER_MACHINE_NAME="default"
+
+** vmware vspher
+vpshereは、通常host osを必要としない。
+hardware直上にvsphereをinstallする。
+VM操作は、他nodeからvsphere clientを通して行う。
+
+以下、記述する内容は、仮想環境上にvsphereをinstallする内容となる。
+vm上にinstallしたvsphereへ、host OS windows上(もしくは、vm上のwindows)のvpshere clientから
+vsphereをアクセスする事を目的とする。
+
+# なお、Windows/Linux OSいずれでも構築可能。
+
+# AWS上での構築は保留。
+# AWSのOS自体がGuest OSのため。
+
+
+*** required and dl file url
+- vmware vsphere system required (hardwareに直接installする場合)
+  https://pubs.vmware.com/vsphere-50/index.jsp?topic=%2Fcom.vmware.vsphere.install.doc_50%2FGUID-67C4D2A0-10F7-4158-A249-D1B7D7B3BC99.html
+
+- host os (擬似環境構築にあたり)
+  windows7,8 64bit required # (window8などの評価版をnative installという手も)
+  linux OS 64bit require
+
+- vmware player7
+  https://my.vmware.com/jp/web/vmware/free#desktop_end_user_computing/vmware_player/7_0
+  # vmwareへvsphereをinstallするにあたり、version7必須
+
+- vsphere 最新版DL
+  https://my.vmware.com/web/vmware/evalcenter?p=free-esxi6
+  # must be regist user account
+
+- vsphere client
+  http://vsphereclient.vmware.com/vsphereclient/VMware-viclient-all-6.0.0.exe
+  # windows版のみ
+  # wineで実行可能
+
+- windows vm image
+  http://dev.modern.ie/tools/vms/linux/
+
+*** installにあたり
+- vsphereを、vm上にinstallするにあたり、vmware player7 64bit必須。
+
+- vsphereへアクセスするvsphere clientは、windows exeのみ存在。
+  linuxであれば、wineなどで実行。
+  もしくは、windows vmを用意し仮想環境からアクセス可能。(確認済み)
+  # clientは32bit OSで実行可能。
+
+- dhcp server
+  vmが自動でIPを取得できる状態にしておく必要あり。
+
+*** vmware player7 install
+- DL install file
+  https://my.vmware.com/jp/web/vmware/free#desktop_end_user_computing/vmware_player/7_0
+
+- windowsならば適宜 wizardに従う
+
+- linuxの場合躓くケースも想定される
+  筆者の場合、install及び、install後の実行にroot権が必要であった。
+
+  $ sudo bash [downloaded file]
+  $ sudo /usr/bin/vmplayer
+
+*** vsphere install to vmware
+# windows7の場合、installにあたりエラーがでる場合がある
+# プログラムとファイルの検索へ、[%TEMP%] を入力
+# 開いたフォルダ内をクリア (不要かも)
+# installer fileを、上記TEMP dirへ移動して実行すると、エラー回避可能。
+# (実行dirによっても結果が変わるという情報もある)
+
+- 手順
+  http://d.hatena.ne.jp/jiskay/20101106/p1
+
+- vmware player起動
+
+- make vm
+  - [create a new virutal machine] を選択
+  - [User ISO image:] を選択
+    # DL済みのimage fileを指定
+    # [VMware ESXi6 detected] と表示されれば正常
+
+  - 後は初期設定でも良い。
+
+- run vm
+
+- install vsphere (vm consoleから)
+  - Welcome to the VMware ESXi 6.0.0 Installation
+    [enter]
+
+  - End User License Agreement (EULA)
+    [F11]
+
+  - Select a Disk to Install or upgrade
+    [enter]
+
+  - Please select a keyboard layout
+    [enter]
+
+  - Enter a root password
+    set password
+
+  - Confirm Install
+    [F11]
+
+  - Installation Complete
+    [Reboot (enter)]
+
+- reboot後
+  vmaware version, hardware infoが表示され、起動状態となる
+  後は、vpshere clientから接続する。
+  接続先ipなどは、console上に表示される。
+
+  # 当vmは起動したままとする
+
+  # 停止する場合は、F12
+  # 変更する場合は、F2
+
+*** vsphere client install
+http://vsphereclient.vmware.com/vsphereclient/VMware-viclient-all-6.0.0.exe
+
+- windowsの場合
+  上記からexeをDLし、wizardに従う
+
+- 他OS
+  linuxならばwineなどで実行。
+  macは知見なし。
+
+- vmにwindowsを入れて実行する場合
+  無料でしようできるwindows imageは以下より。
+  http://dev.modern.ie/tools/vms/linux/
+
+  # 32bit版のみ。(vsphere64bitのみ対応)
+
+*** vsphere client 操作
+- vsphere client 起動
+
+- login 情報入力
+  - IP : console表示のIP
+  - user : root
+  - pass : install時に決定したpass
+
+- login後、main画面が開く
+- インベントリを選択
+- IPを右クリック
+- 新規仮想マシンを選択
+- 内容に沿って設定 (初期でも化0
+- IP配下に作成したserver listが表示される
+
+- installするOS image mediaを設定する
+  server名を右クリックし、[設定の編集] を選択。
+  cd/dvd deviceへimageを割り当て。
+  # OS imageは同梱されていないので、別途用意する
+  # host OS上にある、os image mediaを使う場合は、guest os起動後に指定する。
+
+- vm起動
+  vm名を右クリックし、[power on]を選択
+
+- コンソール(GUI)を開くには、server名を右クリックし、[コンソールを開く] を選択。
+
+- 後は、通常os installと同じ。
+  vmの操作はvmwareと大体同じ
+
+**
+
+** vagrant
+*** 紐付けが切れた
+**** vm id確認
+VBoxManage list vms
+
+**** write id to config
+$ emacs /path/to/.vagrant/machines/default/virtualbox/id
+
+```:bash
+{f9b21425-fd29-464e-b165-f31b17782c40}
+```
+
+
+* http
+** how to choice status code
+http://postd.cc/choosing-an-http-status-code/
+
+
+* Stress test
+** jmeter
+*** 基本設定
+http://d.hatena.ne.jp/shibainu55/20090418/1240105201
+
+/usr/share/jmeter/bin/jmeter.properties
+
+*** thread group
+スレッド数       : 一回のテストケースで生成されるスレッドの数
+Ramp-Up期間(秒) :  何秒間でそれら全スレッドを生成するか
+
+「スレッド数」を100、「Ramp-Up期間(秒)」を10に設定すると、1秒間に10回のテストケースが実行されることになります。
+なお、「Ramp-Up期間(秒)」を0に設定すると、JMeterは全てのテストケースを同時に生成します。
+「ループ回数」は、以上のようなテストケースの生成を何回行うかを決定します。
+デフォルトでは「無限ループ」の項にチェックが入っていますが、有限回で終了したい場合はこのチェックを外してループ回数を設定します。
+
+*** http request | sampler
+*** basic認証
+*** remote server設定
+ELB用設定
+jmeter-serverに追記
+${DIRNAME}/jmeter ${RMI_HOST_DEF} -Dsun.net.inetaddr.ttl=0 -Dserver_port=${SERVER_PORT:-1099} -s -j jmeter-server.log "$@"
+http://qiita.com/takudo/items/1e4dac976cfbd3c775d2
+
+*** master server設定
+jmeter.properties を開き
+remote serverのIP addressを記述
+
+jmeterを起動すると、remote serverへ自動でアクセスする
+
+* Penetoration
+* Web server
+** nginx
+*** 参考サイト
+- 基本
+  http://heartbeats.jp/hbblog/2012/02/nginx03.html
+
+*** conf
+**** 基本
+***** worker process
+nginxのworkerプロセス数。
+通常はCPUコア数以下に設定
+# event駆動のため、CPUコア数以上設定しても意味がない
+
+***** sendfile, tcp_nopush
+sendfileは、コンテンツのファイルの読み込みと、クライアントへのレスポンスの送信にsendfile() APIを使うかを設定します。
+sendfile()を使うとカーネル空間内でファイルの読み込みと送信が完了するため、効率良くファイルの内容をクライアントに送信できます。
+
+tcp_nopushディレクティブはsendfileが有効なときに、FreeBSDの場合はTCP_NOPUSHソケットオプション、
+Linuxの場合はTCP_CORKソケットオプションを使うかを設定します。
+このオプションを使うと、レスポンスヘッダとファイルの内容をまとめて送るようになり、少ないパケット数で効率良く送ることができます
+
+**** セッション
+***** worker_connections
+1つのwork processが同時に処理できる最大コネクション数
+
+****** syntax
+worker_connections 1024;
+***** keepalive_timeout
+server側のクライアントコネクションのタイムアウト時間。
+
+****** syntax
+- 通常
+  keepalive_timeout 120;
+
+- upstream directive
+  keepalive 120;
+
+****** 通常設定
+5-10秒程度
+数万クライントのセッションを保持する事はサーバーのメモリが消費される。
+故に、セッションは早々に切断する。
+(恐らく、portも消費する?)
+
+****** AWS ELB配下で仕様する場合
+ELBは基本、クライアントとは早々に切断される。(値未調査)
+ELB配下のserver(EC2 instance)へは、60secセッションを維持する。
+故に、server側はセッションを維持した方が効率が上がる。
+(serverから見た際、ELBとのセッションになるため)
+
+故に、60-120sec程度のkeep alive時間とするのがベター。
+
+http://qiita.com/inokappa/items/8fc76d7390d595e60712
+
+***** keepalive_requests
+持続的な接続上で許可されるリクエストの数を設定します。（デフォルト : 100）
+
+defaultでは、KeepAlive中の同じ接続で、100件までの要求を処理する
+100件を超えたら、セッションを切る?
+
+http://server-setting.info/centos/nginx-keepalive-setting.html
+
+****** syntax
+keepalive_requests 100;
+ *
+**** dns
+***** resolver
+reverse proxy先を、定期的に名前解決
+http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass
+
+****** syntax
+location / {
+    reslover   127.0.0.1 valid=2s
+    proxy_pass http://xxx.xxx:80;
+}
+
+**** 記録IPの書き換え
+ELBなどのIPを記録するのではなく、
+clieantのIPを記録する。
+http://blog.hello-world.jp.net/nginx/1014/
+
+***** syntax
+# http directive
+
+set_real_ip_from 10.0.0.0/24;  # ELBのアドレス帯
+set_real_ip_from 10.0.1.0/24;
+
+real_ip_header     X-Forwarded-For;  # client IPが記述されているhttp header (?)
+
+**** file discripter
+***** worker_rlimit_nofile
+次はプロセス毎のファイルディスクリプタ上限数を増やす
+
+****** syntax
+ worker_rlimit_nofile  4096;
+
+****** 確認方法
+cat /proc/pid/limits
+
+# max file opens行を参照
+# 設定値になっているはず
+
+*** 設定例
+**** redirect, 複数vertual server
+# 変数が存在するのは、chefで入れているため
+
+upstream unicorn_<%= @application[:domains].first %> {
+ server unix:<%= @application[:deploy_to]%>/shared/sockets/unicorn.sock fail_timeout=0;
+}
+
+server {
+  listen 80;
+  server_name www.ruby-dev.jp
+  return 301 https://$host$request_uri;
+
+
+  <% if @application[:log_format] %>
+    <% @application[:log_format].each do |log_format_name| %>
+  access_log <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>.access.<%= log_format_name %>.log <%= log_format_name %>;
+    <% end %>
+  <% else %>
+  access_log <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>.access.log;
+  <%end %>
+
+  keepalive_timeout 5;
+
+  root <%= @application[:absolute_document_root] %>;
+
+  <% if @application[:nginx] && @application[:nginx][:client_max_body_size] %>
+    client_max_body_size <%= @application[:nginx][:client_max_body_size] %>;
+  <% end %>
+
+  # location / {
+  #   try_files $uri/index.html $uri/index.htm @unicorn;
+  #   <% if node[:nginx][:basic_auth] %>
+  #     auth_basic "Restricted";
+  #     auth_basic_user_file /etc/nginx/.htpasswd;
+  #   <% end %>
+  # }
+
+  # location @unicorn {
+  #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  #   proxy_set_header Host $http_host;
+  #   proxy_redirect off;
+
+  # <% if node[:nginx] && node[:nginx][:proxy_read_timeout] -%>
+  #   proxy_read_timeout <%= node[:nginx][:proxy_read_timeout] %>;
+  # <% end -%>
+  # <% if node[:nginx] && node[:nginx][:proxy_send_timeout] -%>
+  #   proxy_send_timeout <%= node[:nginx][:proxy_send_timeout] %>;
+  # <% end -%>
+
+  #   # If you don't find the filename in the static files
+  #   # Then request it from the unicorn server
+  #   if (!-f $request_filename) {
+  #     proxy_pass http://unicorn_<%= @application[:domains].first %>;
+  #     break;
+  #   }
+  # }
+
+  # location /nginx_status {
+  #   stub_status on;
+  #   access_log off;
+  #   allow 127.0.0.1;
+  #   deny all;
+  # }
+
+  # error_page 500 502 503 504 /500.html;
+  # location = /500.html {
+  #   root <%= @application[:absolute_document_root] %>;
+  # }
+}
+
+<% if @application[:ssl_support] %>
+server {
+  listen   443;
+  server_name www.ruby-dev.jp
+  access_log <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>-ssl.access.log;
+
+  ssl on;
+  ssl_certificate /etc/nginx/ssl/<%= @application[:domains].first %>.crt;
+  ssl_certificate_key /etc/nginx/ssl/<%= @application[:domains].first %>.key;
+  <% if @application[:ssl_certificate_ca] -%>
+  ssl_client_certificate /etc/nginx/ssl/<%= @application[:domains].first %>.ca;
+  <% end -%>
+
+  keepalive_timeout 5;
+
+  root <%= @application[:absolute_document_root] %>;
+
+  <% if @application[:nginx] && @application[:nginx][:client_max_body_size] %>
+    client_max_body_size <%= @application[:nginx][:client_max_body_size] %>;
+  <% end %>
+
+  location / {
+    try_files $uri/index.html $uri/index.htm @unicorn;
+    <% if node[:nginx][:basic_auth] %>
+      auth_basic "Restricted";
+      auth_basic_user_file /etc/nginx/.htpasswd;
+    <% end %>
+  }
+
+  location @unicorn {
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+
+  <% if node[:nginx] && node[:nginx][:proxy_read_timeout] -%>
+    proxy_read_timeout <%= node[:nginx][:proxy_read_timeout] %>;
+  <% end -%>
+  <% if node[:nginx] && node[:nginx][:proxy_send_timeout] -%>
+    proxy_send_timeout <%= node[:nginx][:proxy_send_timeout] %>;
+  <% end -%>
+
+    # If you don't find the filename in the static files
+    # Then request it from the unicorn server
+    if (!-f $request_filename) {
+      proxy_pass http://unicorn_<%= @application[:domains].first %>;
+      break;
+    }
+  }
+
+  error_page 500 502 503 504 /500.html;
+  location = /500.html {
+    root <%= @application[:absolute_document_root] %>;
+  }
+}
+<% end %>
+
+
+
+
+# ----------------------------------------------------------------
+#  redirect https
+#    [ruby-dev.jp] to [https://www.ruby-dev.jp]
+# ----------------------------------------------------------------
+server {
+  listen   443;
+  server_name ruby-dev.jp;
+  return 301 https://www.ruby-dev.jp$request_uri;
+
+  ssl on;
+  ssl_certificate /etc/nginx/ssl/ruby_webapp.crt;
+  ssl_certificate_key /etc/nginx/ssl/ruby_webapp.key;
+
+  keepalive_timeout 5;
+  access_log /var/log/nginx/redirect_ruby-jp_ssl.access.log;
+}
+
+
+
+
+# ----------------------------------------------------------------
+#  redirect http
+#    [www.ruby-dev.jp / ruby-dev.jp] to [https://www.ruby-dev.jp]
+# ----------------------------------------------------------------
+server {
+  listen 80;
+  server_name www.ruby-dev.jp ruby-dev.jp;
+  return 301 https://www.ruby-dev.jp$request_uri;
+
+  keepalive_timeout 5;
+  access_log /var/log/nginx/redirect_ruby-jp.access.log;
+}
+
+
+
+
+# ----------------------------------------------------------------
+#  redirect http
+#      [mruby.jp] to [ruby-dev.jp]
+# ----------------------------------------------------------------
+server {
+  listen 80;
+  listen 443;
+  server_name stg.www.mruby.jp stg.mruby.jp;
+
+  ssl on;
+  ssl_certificate /etc/nginx/ssl/ruby_webapp.crt;
+  ssl_certificate_key /etc/nginx/ssl/ruby_webapp.key;
+
+  access_log /var/log/nginx/redirect_ruby-jp.access.log;
+  keepalive_timeout 5;
+
+  location = / {
+    return 301 https://www.ruby-dev.jp/;
+  }
+
+  location = /work/work.php {
+    return 301 https://www.ruby-dev.jp/business;
+  }
+
+  location = /corporate_profile/company.php {
+    return 301 https://www.ruby-dev.jp/company;
+  }
+
+  location = /employment/employment.php {
+    return 301 https://www.ruby-dev.jp/recruiting;
+  }
+
+  location = /on_Rails/engineer_recruitment.php {
+    return 301 https://www.ruby-dev.jp/recruiting_rails;
+  }
+
+  location = /engineer_recruitment/engineer.php {
+    return 301 https://www.ruby-dev.jp/partner_offer;
+  }
+
+  location = /qualification_support/qualifications.php {
+    return 301 https://www.ruby-dev.jp/qualification_support;
+  }
+
+  location = /ask/ask.php {
+    return 301 https://www.ruby-dev.jp/contact;
+  }
+
+  location = /sitemap/sitemap.php {
+    return 301 https://www.ruby-dev.jp/sitemap;
+  }
+
+  location = /policy/policy.php {
+    return 301 https://www.ruby-dev.jp/policy;
+  }
+
+  location = /staff/staff.php {
+    return 301 https://www.ruby-dev.jp/staff;
+  }
+
+  location = /links/ruby_info.php {
+    return 301 https://www.ruby-dev.jp/ruby_info;
+  }
+
+  location / {
+    return 301 https://www.ruby-dev.jp/;
+  }
+
+  # --------------------------------
+  # Redirect - Mobile
+  # --------------------------------
+  location = /sp/ {
+    return 301 https://www.ruby-dev.jp/m/;
+  }
+
+  location = /sp/work/work.php {
+    return 301 https://www.ruby-dev.jp/m/business;
+  }
+
+  location = /sp/corporate_profile/company.php {
+    return 301 https://www.ruby-dev.jp/m/company;
+  }
+
+  location = /sp/employment/employment.php {
+    return 301 https://www.ruby-dev.jp/m/recruiting;
+  }
+
+  location = /sp/on_Rails/engineer_recruitment.php {
+    return 301 https://www.ruby-dev.jp/m/recruiting_rails;
+  }
+
+  location = /sp/engineer_recruitment/engineer.php {
+    return 301 https://www.ruby-dev.jp/m/partner_offer;
+  }
+
+  location = /sp/qualification_support/qualifications.php {
+    return 301 https://www.ruby-dev.jp/m/qualification_support;
+  }
+
+  location = /sp/ask/ask.php {
+    return 301 https://www.ruby-dev.jp/m/contact;
+  }
+
+  location = /sp/sitemap/sitemap.php {
+    return 301 https://www.ruby-dev.jp/m/sitemap;
+  }
+
+  location = /sp/policy/policy.php {
+    return 301 https://www.ruby-dev.jp/m/policy;
+  }
+
+  location = /sp/staff/staff.php {
+    return 301 https://www.ruby-dev.jp/m/staff;
+  }
+
+  location = /sp/links/ruby_info.php {
+    return 301 https://www.ruby-dev.jp/m/ruby_info;
+  }
+}
+**** https設定例
+# ----------------------------------------------------------------
+#
+# http redirect to http
+#
+# ----------------------------------------------------------------
+server {
+    listen       80 default_server;
+    listen       8080 default_server;
+    server_name  _;
+
+    server_name  uniqlo-influencer-adm-lb-1338278061.ap-northeast-1.elb.amazonaws.com;
+    rewrite      ^(.*) https://certification-on-ELB-1649502361.ap-northeast-1.elb.amazonaws.com$1 permanent;
+}
+
+
+# ----------------------------------------------------------------
+#
+# ssl setting
+#
+# ----------------------------------------------------------------
+ssl on;
+ssl_prefer_server_ciphers on;
+ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ssl_ciphers HIGH:!aNULL:!MD5;
+ssl_ciphers ECDHE+RSAGCM:ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:!aNULL!eNull:!EXPORT:!DES:!3DES:!MD5:!DSS;
+
+ssl_certificate     /var/rails/uniqlo/current/config/certification/server.crt;
+ssl_certificate_key /var/rails/uniqlo/current/config/certification/server.key;
+
+ssl_session_cache   shared:SSL:128m;
+ssl_session_timeout 300m;
+
+OCSP stapling
+ssl_stapling             on;
+ssl_stapling_verify      on;
+ssl_trusted_certificate  /var/rails/uniqlo_influencer/release/uniqlo-hashtag-develop/config/certification/server.crt;
+
+add_header Strict-Transport-Security max-age=31536000;
+
+**** backend
+https://git.ruby-dev.jp/home/share-info/issues/1
+--------------------------------------------------------------------------------
+backend
+--------------------------------------------------------------------------------
+upstream backend {
+    server 127.0.0.1:5001;
+}
+
+server {
+    listen       80;
+    server_name  admin.lifewear.uniqlo.com;
+
+    server_tokens off;
+
+    access_log /var/log/nginx/admin.lifewear.uniqlo.com/access_log;
+    error_log /var/log/nginx/admin.lifewear.uniqlo.com/error_log;
+
+
+    location ~ /  {
+        proxy_pass http://backend;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For    $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host   $host;
+        proxy_set_header X-Forwarded-Server $host;
+        # proxy_set_header X-Forwarded-Proto  https;
+        proxy_set_header Host $http_host;
+	      break;
+    }
+
+    allow all;
+}
+
+**** redirect
+**** example1
+# ----------------------------------------------------------------
+# http://~~~/へアクセスしたものを
+# http://~~~/form/jaへredirect
+#
+#    permanentを付けない場合、ブラウザ上のURLは表面上変化しない。(http://~~~/のままとなる)
+# ----------------------------------------------------------------
+location /$ {
+    rewrite ^(.*) $1/form/ja permanent;
+}
+
+***** 2
+server {
+  listen 80;
+  server_name hoge.example.com;
+  rewrite ^(.*) https://hoge.example.com$1 permanent;
+}
+
+***** 3
+server {
+    listen 80;
+    server_name example.com;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443;
+    ssl on;
+    # ...
+}
+**** error page redirect
+# --------------------------------
+#  error codes
+# --------------------------------
+error_page  404  /usr/share/nginx/html;  # 404 の場合、第2引数を読み込む
+location = /40x.html {
+    root   /usr/share/nginx/html;
+}
+
+
+error_page  500 502 503 504  /usr/share/nginx/html;
+location = /50x.html {
+    root   /usr/share/nginx/html;
+}
+
+*** 設定 check command
+/etc/init.d/nginx configtest
+
+# 以下に、エラー内容が書き込まれる。
+/var/log/nginx/error.log
+
+** apache
+*** ssl設定
+http://www.maruko2.com/mw/Apache/SSL%E8%87%AA%E5%B7%B1%E8%A8%BC%E6%98%8E%E6%9B%B8%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%A8mod_ssl%E3%81%AE%E8%A8%AD%E5%AE%9A
+https://www.einspki.jp/support/manual_s/apache_inst/
+
+default-ssl.conf
+----------------------------------------------------------------
+SSLCertificateFile      /etc/ssl/certs/ruby_dev.crt          # 証明書
+SSLCertificateKeyFile   /etc/ssl/private/rub_dev.pem         # 暗号鍵
+SSLCACertificateFile    /etc/ssl/certs/ruby_dev_chain.crt   # 中間証明書
+----------------------------------------------------------------
+
+reboot後、暗号鍵のパスを聞かれる。
+
+* Mail
+** postfix?
+https://about.gitlab.com/downloads/
+
+yum -y install openssh-server
+yum -y install postfix
+yum -y install cronie
+service postfix start
+chkconfig postfix on
+lokkit -s http -s ssh
+
+curl -O https://downloads-packages.s3.amazonaws.com/centos-6.6/gitlab-7.8.0_omnibus-1.el6.x86_64.rpm
+rpm -i gitlab-7.8.0_omnibus-1.el6.x86_64.rpm
+
+sudo gitlab-ctl reconfigure
+
+* sns
+** get SNS access token
+tokens
+----------------------------------------------------------------
+    - Twiiter
+    --------------------------------
+        login acc : mruby0901 (edited)
+        pass      : mruby0225
+
+        Consumer Key (API Key)       : hGXnBypOsG40sTVTr9vtGLmjT
+        Consumer Secret (API Secret) : 2NYSk2dcKaFkGc9gFXo5OxOETSee0n9HKdLLdsbChkQriiSmPM
+        Access Token                 : 3040525110-m1WDikMktLXYFGwMkRpaPqzINa2JZBMrX09qPFw
+        Access Token Secret          : EfrkZQLG8E6JlQMCoww7nV4Y1HwCgwAVJcC6RGm2IhOl1
+
+        permission : read & write
+
+
+    - Instagram
+    --------------------------------
+        login acc : mruby0901 (edited)
+        pass      : mruby0225
+
+        Client ID      : 65bfae25a972496985e349a3d5467dba
+        Client Secret  : 64eb28aca5bd47f3bafda2fea7138477
+        Website URL    : http://dummy.com
+        Redirect URI   : http://localhost
+        token          : 1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f
+
+        permission : basic, comment, likes
+
+
+    - Facebook
+    --------------------------------
+        login acc : sns@mruby.jp (edited)
+        pass      : mruby0224
+
+
+        ※ Acc発行後に取得
+        ※ 必要なpermission(権限)の確認が必要
+
+
+
+
+
+Twitter
+----------------------------------------------------------------
+    - 参考サイト
+    ----------------------------------------------------------------
+        token get flow :  http://pocketstudio.jp/log3/2012/02/12/how_to_get_twitter_apikey_and_token/
+        token get flow :  http://geektrainee.hatenablog.jp/entry/2014/03/06/231633
+        gem            :  http://qiita.com/gosshys/items/d31b4ef37f7614363029
+        methods        :  http://route477.net/w/RubyTwitterJa.html
+        permission     :  http://so-zou.jp/web-app/tech/web-api/twitter/authorization/
+
+
+
+    - 事前認証
+    ----------------------------------------------------------------
+        メールアドレス認証
+        電話番号登録が必須
+
+
+    - 作成手順
+    ----------------------------------------------------------------
+        - [https://apps.twitter.com/] へアクセス
+        - [Create New App] を選択
+
+            - 以下入力
+                - Name        : application name
+                - Description : app 概要
+                - Website     : web site URL (テスト時は、http://localhost.com/ で通った)
+                - Callback URL: 任意
+
+            - [Yes, I agree] へチェック
+            - [Create your Twitter application] を押下
+
+        - 成功すればapp画面へ遷移
+            - [key and Access Tokens] を選択
+            - [Create my access token] を選択
+
+            当該page上に、API key, API secret, Access token, Access token secret
+            が表示される。
+
+
+        - permission
+            - Permissionタブを選択
+            - permission 3種から選択する
+                read
+                read & write
+                read, write and Access direct message
+
+
+    - sumple code
+    ----------------------------------------------------------------
+        # -*- coding: utf-8 -*-
+        require 'twitter'
+        require 'pp'
+
+        require "twitter"
+
+        client = Twitter::REST::Client.new do |config|
+            config.consumer_key        = "QlgoLGYSidrM9UTYFEmYAzthw"
+            config.consumer_secret     = "i3Wzlf2GHFFgAGcv3jDE8G2t6dJ28nx68HDSc7qIboCisKPUgo"
+            config.access_token        = "3040525110-aHCCceqnKV8tqUHTCumut51YLyzXfxE0Jg8jADS"
+            config.access_token_secret = "XahsPYPRjALjG8CKtPhJofXwrN0LQpyKrUnGgzK0ll6Gj"
+        end
+
+
+        #自分のタイムラインの取得
+        #pp client.home_timeline
+        #自分宛てのReplyの取得
+        #pp client.mentions
+        #自分宛てのDMの取得
+        #pp client.direct_messages
+        #発言する
+        #client.update("テストです。")
+
+
+        limit   = 10     # 取得するツイートの上限数
+        keyword = "cat"   # ハッシュタグによる検索を行う際のキーワード
+
+        # limitで指定された数だけツイートを取得
+        client.search("#{keyword} -rt", :locale => "ja", :result_type => "recent", :include_entity => true).take(limit).map do |tweet|
+            # entities内にメディア(画像等)を含む場合の処理
+            if tweet.media? then
+                tweet.media.each do |value|
+                    puts value.media_uri
+                end
+            end
+        end
+
+
+
+
+Instagram
+----------------------------------------------------------------
+    - 参考
+    ----------------------------------------------------------------
+        token get flow  :  http://qiita.com/zurg/items/4c423b93b6a7f1ac737d
+        gem             :  https://gist.github.com/masato-nakamura/5943770
+        API             :  http://www.dcrew.jp/ja-instagram-api-doc-v1/index.php/auth
+        API             :  http://www.rubydoc.info/github/Instagram/instagram-ruby-gem/Instagram/Client
+        scope           :  http://syncer.jp/instagram-api-matome
+
+
+    - 登録手順
+    ----------------------------------------------------------------
+        - https://instagram.com/developer/clients/manage/
+        - 画面右上の、[Manage Clients] を選択
+        - 画面右上の、緑色の [Register a New Client] を選択
+
+        - 入力項目
+            - Applictaiton Name      : アプリケーションの名前
+            - Dscription             : 説明などを入力
+            - Website                : サイトのURLを入力（適当でOK）
+            - OAuth redirect_uri     : アクセストークンを取得する際にリダイレクトされるURL（適当でもOK）
+            - Disable implicit OAuth : チェック入れたまま
+            - Enforce signed header  : チェックしないまま
+
+        - access codeを取得 (one time code)
+            - 通常
+                https://api.instagram.com/oauth/authorize/?client_id=CLIENT-ID&redirect_uri=REDIRECT-URI&response_type=code
+                上記へ値入力しアクセスすると、codeが返り値として得られる
+
+
+            - scope設定付与する場合
+                前項のURLへ追加権限パラメータを追記。
+                [ &scope=basic+comment+likes+relationship ]
+
+                ※ 許可を求める画面の後、tokenが表示される
+
+
+        - access token取得
+            curl \-F 'client_id=CLIENT-ID' \
+                -F 'client_secret=CLIENT-SECRET' \
+                -F 'grant_type=authorization_code' \
+                -F 'redirect_uri=YOUR-REDIRECT-URI' \
+                -F 'code=CODE' \https://api.instagram.com/oauth/access_token
+
+            上記へ値を入力し、コマンドラインから実行すると、access tokenなどが返り値として得られる。
+
+
+        - data取得例
+            https://api.instagram.com/v1/users/self/media/recent/?access_token=ACCESS-TOKEN
+
+            access tokenを入力し、アクセスすると返り値として自己投稿データが得られる。
+            関数は未調査
+
+
+    - account
+    ----------------------------------------------------------------
+        - webから参照
+            - instagramへアクセスしログイン
+            - 画面最下部のAPIを選択
+            - 右上のmanage clientを選択
+            - 登録済みの情報が表示される
+
+            ※ tokenは表示されない
+
+
+        - accs
+            Client ID       65bfae25a972496985e349a3d5467dba
+            Client Secret   64eb28aca5bd47f3bafda2fea7138477
+            Website URL     http://dummy.com
+            Redirect URI    http://localhost
+            code            [都度変わる]
+            token           1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f
+
+
+    - scope
+    ----------------------------------------------------------------
+        - permission list
+            basic         - to read any and all data related to a user (e.g. following/followed-by lists, photos, etc.) (granted by default)
+            comments      - to create or delete comments on a user’s behalf (this permission is restricted to approved apps only. See the documentation for more details)
+            relationships - to follow and unfollow users on a user’s behalf
+            likes         - to like and unlike items on a user’s behalf
+
+
+    - test code
+    ----------------------------------------------------------------
+        require "instagram"
+        Instagram.configure do |config|
+            config.client_id = "65bfae25a972496985e349a3d5467dba"
+            config.access_token = "1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f"
+        end
+
+        photos = Instagram.user_recent_media("1723080740",{count:5})
+        photos.each do |photo|
+            print photo["link"]
+        end
+
+        pp Instagram.tag_recent_media("uniqlo")
+
+
+
+    - test code
+    ----------------------------------------------------------------
+        https://api.instagram.com/v1/tags/#uniqlo/media/recent?access_token=&client_id=65bfae25a972496985e349a3d5467dba&count=10
+
+
+
+
+Facebook
+----------------------------------------------------------------
+    - 参考HP
+    ----------------------------------------------------------------
+        etc                 :  http://komasaru.github.io/blog/2013/08/29/facebook-api-access-token/
+        get token official  :  https://developers.facebook.com/docs/facebook-login/access-tokens
+        mk APP              :  https://smashballoon.com/custom-facebook-feed/access-token/
+        mk APP              :  https://smashballoon.com/custom-facebook-feed/docs/get-extended-facebook-user-access-token/
+        page token          :  http://qiita.com/dogyear/items/e4de999971fbf7231496
+        graph API ref       :  http://facebook-docs.oklahome.net/archives/51906043.html
+
+
+
+    - develop site
+    ----------------------------------------------------------------
+        https://developers.facebook.com/
+
+
+    - user token取得
+    ----------------------------------------------------------------
+        - webから
+            - develop siteを開く
+            - [My APP] を選択 (appがなければ、Appを作成)
+
+            - [Tool&Support] を選択
+            - [Graph API Exploere] を選択
+            - [Application] プルダウンから、対象appを選択
+            - [Get APP Token] を選択
+            - [Permission] を選択
+            - 左側フォームにTokenが表示される
+
+        - 期限2ヶ月のuser tokenへupdate
+            https://graph.facebook.com/oauth/access_token?
+                grant_type=fb_exchange_token&
+                client_id={app-id}&
+                client_secret={app-secret}&
+                fb_exchange_token={short-lived-token}
+
+            // app id            = web app画面から
+            // app secret        = 同上
+            // short-lived-token = 前項で発行した、user token id
+
+
+    - app token 取得
+    ----------------------------------------------------------------
+        - httpから取得
+            https://graph.facebook.com/oauth/access_token?
+                client_id={app-id}&
+                client_secret={app-secret}&
+                grant_type=client_credentials
+
+        - webから
+            - develop siteを開く
+            - [My APP] を選択 (appがなければ、Appを作成)
+
+            - [Tool&Support] を選択
+            - [Graph API Exploere] を選択
+            - [Application] プルダウンから、対象appを選択
+            - [Get APP Token] を選択
+            - 左側フォームにTokenが表示される
+
+
+
+    - page token
+    ----------------------------------------------------------------
+        - http
+            https://graph.facebook.com/me/accounts?access_token={user_token}
+
+            {user_token} へ、user_tokenを入力。
+            返り値として、user page listと対応する、tokenが得られる。
+            ※ manage_pageのpermissionが必要
+
+
+        - webから
+            - develop siteを開く
+            - [My APP] を選択 (appがなければ、Appを作成)
+
+            - [Tool&Support] を選択
+            - [Graph API Exploere] を選択
+            - [Application] プルダウンから、対象appを選択
+            - [Get APP Token] を選択
+            - コマンドへ [me/accounts] を入力して実行
+            - 返り値として、自己管理しているpageの一覧が得られる
+
+
+    - token一覧
+    ----------------------------------------------------------------
+        - https://developers.facebook.com/tools/access_token/
+            // develop画面の、[Tool&Support]
+            // [Access Token Tool]
+
+
+
+
+
+
+476342872512690|9FOu4HQV5yGw6QSCM6FQbLKtY20
+
+
+* testの考え方
+** 時間が無いなら
+- 機能単位でテストし, 細部は後回しに
+    - 境界値など
+-
+
+* OSS etc
+** ownclud
+drop likeな、oss online storage
+
+http://owncloud.jp/
+https://software.opensuse.org/download/package?project=isv:ownCloud:community&package=owncloud
+https://wiki.bitnami.com/Amazon_cloud/Where_can_I_find_my_AWS_Marketplace_credentials%3f#How_do_I_find_my_username_and_password.3f
+https://doc.owncloud.org/server/8.1/admin_manual/configuration_server/config_sample_php_parameters.html
+
+
+// awsではbitnamiがAMI公開していた
+
+*** base setting
+// centos, debianの場合、書き込み不能エラーで止まった
+// ubuntuだとさっくり
+
+**** install to ubuntu
+$ sudo sh -c "echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/community/xUbuntu_14.04/ /' >> /etc/apt/sources.list.d/owncloud.list"
+$ sudo apt-get update
+$ sudo apt-get install owncloud
+
+**** mysql root setting
+$ mysql_secure_installation
+----------------------------------------------------------------
+root user pass :  ailahTheu7Vae3ie
+----------------------------------------------------------------
+
+**** mysql : make owncloud user
+mysql -u root -p
+create database owncloud default character set utf8;
+grant all on owncloud.* to owncloud@localhost identified by 'Fei8Vaay3tee5eiD';
+
+**** owncloud setting
+access to server https://IP/owncloud
+
+管理者
+database種(mysql, postgres, sqlite3)
+db user, pass
+など設定
+
+**** change apache document root
+emacs /etc/apache2/sites-available/000-default.conf
+----------------------------------------------------------------
+#DocumentRoot /var/www/html
+DocumentRoot /var/www/owncloud
+----------------------------------------------------------------
+
+**** trusted domain setting
+emacs /var/www/owncloud/config/config.php
+----------------------------------------------------------------
+array (
+0 => '52.69.16.4',
+1 => 'owncloud.ruby-dev.jp',
+),
+----------------------------------------------------------------
+登録されていない場合は、信頼するか否か確認画面が表示される。
+
+*** document root change
+/etc/apache2/sites-available/default-ssl.conf
+/etc/apache2/sites-available/000-default.conf
+
+*** ssl on
+http://viva-ubuntu.com/2015/01/ssl_webserver/
+
+sudo a2enmod ssl
+sudo a2ensite default-ssl
+sudo service apache2 restart
+*** https 強制
+# apacheで強制
+
+**** /etc/apache2/sites-available/000-default.conf
+DocumentRoot /var/www/owncloud
+
+Redirect permanent / https://owncloud.ruby-dev.jp/
+
+**** /etc/apache2/sites-available/default-ssl.conf
+<IfModule mod_ssl.c>
+        <VirtualHost _default_:443>
+                ServerAdmin webmaster@localhost
+
+                DocumentRoot /var/www/owncloud
+
+*** / へアクセスした際、/var/www/owncloudへ
+****  /etc/apache2/conf-available/owncloud.conf
+Alias / "/var/www/owncloud/"
+<Directory "/var/www/owncloud">
+    Options +FollowSymLinks
+    AllowOverride All
+
+    <IfModule mod_dav.c>
+      Dav off
+    </IfModule>
+
+    SetEnv HOME /var/www/owncloud
+    SetEnv HTTP_HOME /var/www/owncloud
+</Directory>
+
+<Directory "/var/www/owncloud/data/">
+  Require all denied
+</Directory>
+
+*** S3連携
+**** S3
+***** make user for S3
+- open https://console.aws.amazon.com/iam/home?region=ap-northeast-1#users
+- [新規ユーザーの作成] を選択
+- 任意のユーザー作成。 //ここでは [owncloud]
+- 認証情報をDLし完了
+
+- ユーザーリストから、user [owncloud] を選択
+- [ユーザーのARN] を控える
+
+- policy attachを選択
+- listから [AmazonS3FullAccess] を選択
+- ポリシーをアタッチし完了
+
+***** make S3 bucket
+****** open https://console.aws.amazon.com/s3/home
+****** [バケットを作成] を選択
+****** buncket nameは任意. ここでは [ruby-dev-owncloud]
+****** regionを [Tokyo]
+
+***** edit S3 bucket policy
+****** 作成したbucketの名前の左側の、虫眼鏡を選択
+****** アクセス許可を開く
+****** [バケットポリシーの追加] を選択
+****** formが開く。以下の内容を記述し、保存。
+# IAM部は、make userの手順で控えたARN
+# 以下を用いるで生成してくれる
+# http://awspolicygen.s3.amazonaws.com/policygen.html
+
+# ポリシー設定例についてはこちら
+# https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/dev/example-bucket-policies.html
+
+----------------------------------------------------------------
+{
+	"Version": "2012-10-17",
+	"Id": "Policy1436943709589",
+	"Statement": [
+		{
+			"Sid": "Stmt1436943703834",
+			"Effect": "Allow",
+			"Principal": {
+				"AWS": "arn:aws:iam::689978960272:user/owncloud"
+			},
+			"Action": "s3:*",
+			"Resource": "arn:aws:s3:::ruby-dev-owncloud"
+		}
+	]
+}
+----------------------------------------------------------------
+
+
+**** ownCloud
+# 基本は下記URLより
+# http://qiita.com/ukitiyan/items/896c99b6ff0d24c82e45
+
+***** install S3 app
+- owncloudのfile一覧画面を開く
+- 左上の [ファイル] を選択
+- [アプリ] を選択
+- [External storage support] を有効化する
+
+***** set S3 authentication
+****** 画面右上のユーザー名を選択
+****** [管理] を選択
+****** [外部ストレージ] を選択
+****** S3認証設定
+以下を埋める
+
+- [フォルダ名] 入力
+- 外部ストレージから [Amazon S3や互換ストレージ] を選択
+- [アクセスキー]     // IAM user作成時にDLした認証情報
+- [シークレットキー] // IAM user作成時にDLした認証情報
+- [バケット名]      // 前手順で作成したバケット名
+- [SSLを有効] にチェック
+****** S3有効化
+入力フォーム下部の
+[ユーザーの外部ストレージを有効にする] をチェック
+[Amazon S3や互換ストレージ] をチェック
+
+*** memcache
+# ubuntuの場合
+
+**** memchache install
+sudo apt-get  install memcached
+
+**** ownCloud config.php
+# 追記
+----------------------------------------------------------------
+'memcache.local' => '\OC\Memcache\Memcached',
+----------------------------------------------------------------
+
+**** edit : /etc/memcached.conf
+----------------------------------------------------------------
+-m 1024  // メモリ最大値 1024MB
+-c 2048  // 同時接続数
+----------------------------------------------------------------
+
+設定後、再起動
+/etc/init.d/memcached restart
+
+*** header設定
+**** install
+sudo a2enmod headers
+sudo /etc/init.d/apache2 restart
+
+**** edit - /etc/apache2/sites-available/default-ssl.conf
+----------------------------------------------------------------
+Header always add Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"
+----------------------------------------------------------------
+* CI
+** circle CI
+*** Description
+CircleCIは、web base app。
+Github Accountと連携し、動作する。
+
+CircelCI公式webにて登録を行う際、Github Acc側の作業が必要。
+CircleCIを、3rd party appとしてアクセス許可を付与する。
+
+CircleCIのアクセス範囲は、Githubのアクセス範囲を踏襲する模様。(深く確認しておらず)
+Github AccがOrganizationに含まれる場合、CircleCI上に所属するOrganization、memberなど
+が自動で表示される。
+
+*** Acc登録
+- open circleCI web
+  https://circleci.com/
+
+- click [ Sign Up Free ]
+  github画面へ遷移する
+
+- 画面下部の [ Authorize application ] を押下
+  自動でCircleCIのhome画面へ遷移
+
+*** CircleCI上でProjectを構築
+# 下記は、Repositoryのadminが実施する必要がある。
+
+- CircleCI へLogin
+
+- 画面最左列、中ほどのプラスマーク(Add Project)を選択
+  Repository、Account一覧が表示される
+
+- 対象Repostitoryが含まれるAccountを選択。
+  Acc List 下部へRepostiroy一覧が表示される。
+
+- 対象となるRepositoryの右側の、[ Build Project ] ボタンを押下
+  自動でCircleCI projectが作成される.
+  Project一覧は、画面左上の [ home ] ボタンから
+
+# 補足
+#   admin権が無い者は、CircleCI Projectを作成、削除できない。
+#   adminがProjectを作成後は、当該Projectにアクセス可能となる。
+
+*** 料金について
+https://circleci.com/pricing
+http://qiita.com/minodisk/items/5151e780c56ecbc4d7ee
+
+コンテナ1個は無料。
+２個目以降から有料。
+
+CircleCIのBuild処理は、コンテナ内で走る。
+空きコンテナが無い場合、他処理の終了まで待つ。
+
+* thunderbird
+** profile移行
+*** ~/.thunbird内
+の、profile direcotry (random name)を、移行先dirにコピー
+
+*** [profile.ini] へ読み込みdirecotry名を記述
+[General]
+StartWithLastProfile=1
+
+[Profile0]
+Name=default
+IsRelative=1
+Path=lhu5cp95.default  # 対象行
+
+* google
+** analytics
+*** 強制的に前回のsessionを切る
+ga('send', 'pageview', { sessionControl: 'start' });
+
+- 単純に同一IPからアクセスし続けた場合、500hitがlimit
+
+
+- 下記サイトにて「500 hits per session not including ecommerce (item and transaction hit types)」
+  https://developers.google.com/analytics/devguides/collection/analyticsjs/limits-quotas
+
+* TEST / spec
+** 確認点
+*** TODO deploy.shが適切に動作するか
+暗号化が動いてなかった
+
+*** DONE 言語で開くか
+CLOSED: [2015-03-12 木 16:14]
+- 日本語    : jp
+- English  : US, UK, SG, MY, AU
+- Korean   : KR
+- French   : FR
+- Cantonese: HK
+- Chinese  : CN
+*** DONE 必須確認メッセージが出るか
+CLOSED: [2015-03-12 木 16:14]
+*** DONE その他コメント
+CLOSED: [2015-03-12 木 18:08]
+100文字と表示されるが
+255文字まで入る
+*** DONE メールアドレス不一致メッセージ
+CLOSED: [2015-03-12 木 16:14]
+*** DONE 不正メールアドレス形式のメッセージ
+CLOSED: [2015-03-12 木 16:14]
+*** DONE au, hk | privary policy
+CLOSED: [2015-03-12 木 16:14]
+policy linkが適切に動作するか
+
+*** DONE admin 適切にsort可能か
+CLOSED: [2015-03-12 木 16:14]
+*** DONE 国で絞り込めるか
+CLOSED: [2015-03-12 木 16:14]
+*** DONE edit画面が開くか
+CLOSED: [2015-03-12 木 16:14]
+*** DONE 氏名、acconuでsearchできるか
+CLOSED: [2015-03-12 木 16:14]
+
+* browser
+** IE9
+*** CSS読み込み
+css読み込み限界数がある
+http://qiita.com/osakanafish/items/9c3f41734942f790dea6
+http://blogs.msdn.com/b/ieinternals/archive/2011/05/14/internet-explorer-stylesheet-rule-selector-import-sheet-limit-maximum.aspx
+
+
+* etc
+** chat 技術候補
+
+【前提】リアルタイム通信を実現するために websocket を使用する
+node.js + Mongo DB
+メリット
+ハイパフォーマンス
+スケールが容易
+デメリット
+node.js + Mongo DBでの開発経験者が不在
+スケジュール遅延のリスクが高い
+不具合発生のリスクが高い
+テストの書き方、環境などの調査が必要
+デバッグ方法などの調査が必要(ノンブロッキングIOのデバッグは難しい？)
+複雑なデータの扱いは苦手(リレーション、複雑なデータ構造)
+
+Rails 5 (Action Cable) + My SQL
+メリット
+railsの知識を活かせる
+サーバーサイドとクライアントサイドをシームレスに記述できる
+今回の要件ではクライアントサイドは不要？
+デメリット
+nodeと比べてサーバー一台で処理できるコネクション数が少ない
+具体的な数字までは未調査
+beta版のため、正式版で変更が入る可能性がある
+nodeと較べて情報が少ない
+Rails 5 + My SQL + Mongo DB
+メリット
+デメリット
+
+参考情報
+http://www.sitepoint.com/websockets-in-the-ruby-ecosystem/
+
+Mongoに比べてMy SQLの構文解析に時間がかかる？
+
+WebSocketのスケールアウト方法
+Pub/Subを用いたプロセス間通信
+共有メモリの実装
+
+中継サーバーとしてRedisのpub/subを利用したプロセス間通信が一般的？
+https://blog.dakatsuka.jp/2011/06/19/nodejs-redis-pubsub.html
+
+node + websocketのアーキテクチャ考察
+http://jxck.hatenablog.com/entry/20110618/1308378963
+
+node が向いている処理の考察
+http://jxck.hatenablog.com/entry/20110606/1307333415
+
+websocket + ELBでの負荷分散
+http://www.slideshare.net/AmazonWebServicesJapan/socket-15753751
+
+ノンブロッキングIO
+http://blog.takanabe.tokyo/2015/03/26/240/
+
+node jsで気をつけたいこと
+http://qiita.com/renoji5126/items/382ef5ee74d25a22f20e
+
+600k concurrent websocket connections on aws using node js
+http://www.jayway.com/2015/04/13/600k-concurrent-websocket-connections-on-aws-using-node-js/
+
+server side websocketの話
+http://blog.ideeinc.co.jp/2015/04/websocket_24.html
+
+性能比較 Go vs Node vs Vert.x
+http://qiita.com/LightSpeedC/items/c3537a265fb9f3152f4c
+
+Socket.io + Redis pub/sub でリアルタイムチャットシステム
+http://uorat.hatenablog.com/entry/2015/08/30/190613
+
+AWS SNSでのpub/sub
+http://dev.classmethod.jp/cloud/amazon-simple-notification-servicesns-http/
+
+Why non blocking IO
+http://dev.classmethod.jp/cloud/amazon-simple-notification-servicesns-http/

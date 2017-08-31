@@ -1,0 +1,7 @@
+bash "install node #{node['node']['version']}" do
+  code <<-EOC
+    su #{node['user']['name']} -l -c "nvm install #{node['node']['version']}"
+    su #{node['user']['name']} -l -c "nvm alias default #{node['node']['version']}"
+  EOC
+  creates "/home/#{node['user']['name']}/.nvm/v#{node['node']['version']}/bin/node"
+end

@@ -1,0 +1,14 @@
+development:
+  send_method: json
+  api_key: secret
+
+production:
+  send_method: api
+  api_key: secret
+
+test:
+  send_method: test
+
+staging:
+  send_method: api
+  api_key: secret

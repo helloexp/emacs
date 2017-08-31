@@ -1,0 +1,16 @@
+[
+  {
+    "to": "test_person_01_in_corporate@example.com",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "TEST",
+    "text": "名\tTest_Person_001_mei_kanji\n姓\tTest_Person_001_sei_kanji\nメイ\tTest_Person_001_mei_kana\nセイ\tTest_Person_001_sei_kana\n国\tjp\n郵便番号\t001\n都道府県/州\tTest_Person_001_todouhuken\n市区町村/都市\tTest_Person_001_shi\n番地\tTest_Person_001_banchi\n建物・番地\tTest_Person_001_bill\nTEL\t090-1111-0001\nFAX\t090-1111-0002\n携帯電話\t090-1111-0000\nEmail\ttest_person_01_in_corporate@example.com\n誕生日\t1467298800\n血液型\tab\n会社名\t\nカイシャメイ\t\n会社名(表示名)\t\n代表者肩書き\t\n代表者名\t\n代表者姓\t\n会社URL\t\n事業説明\t\n業種詳細\t\n業種\t[]\n本支店名\t\n本支店名(表示名)\t\n本支店名(印刷用名称)\t\n本支店名(敬称)\t\n本支店外部システムID\t\n本支店説明\t\n本支店タグ\t[]\n所属\t\n役職\tTest_Person_001_yakusyoku\n敬称\t\n退職\tfalse\nタグ\t[]",
+    "html": null,
+    "unique_args": {
+      "mail_delivery_job_id": "1e3d1278427711e6b14a0800275eaa7c",
+      "mail_addressable_type": "CorporateMember",
+      "mail_addressable_id": "59d8cbae426011e692ab0800275eaa7c"
+    }
+  }
+]

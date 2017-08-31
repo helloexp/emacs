@@ -1,0 +1,185 @@
+Host github_self
+    User           twinfang
+    port           22
+    Hostname       github.com
+    IdentityFile   ~/.ssh/github/github
+    TCPKeepAlive   yes
+    IdentitiesOnly yes
+
+
+Host github.com
+    User           Satoshi-Numasawa
+    port           22
+    Hostname       github.com
+    IdentityFile   ~/.ssh/github/github
+    TCPKeepAlive   yes
+    IdentitiesOnly yes
+    # pass mruby
+
+
+Host git.ruby-dev.jp
+    User           Satoshi-Numasawa
+    port           22
+    Hostname       git.ruby-dev.jp
+    IdentityFile   ~/.ssh/gitlab/gitlab
+    TCPKeepAlive   yes
+    IdentitiesOnly yes
+    # pass mruby
+
+
+Host sakura
+    User           s-numasawa
+    port           22222
+    Hostname       160.16.96.217
+    TCPKeepAlive   yes
+    IdentitiesOnly yes
+
+    # pass mruby
+
+
+
+# marunouchi pix develop
+# user pass in server : mruby
+Host marupix
+    User           numasawa
+    port           22
+    Hostname       54.92.111.233
+    IdentityFile   ~/.ssh/00001_marupix/ruby_dev/s-numasawa-key-pair-tokyo.pem
+    TCPKeepAlive   yes
+    IdentitiesOnly yes
+
+
+# uniqlo product
+Host uniqlo
+    user          members
+    port          22
+    Hostname      54.250.223.60
+    IdentityFile  ~/.ssh/00002_uniqlo/production/members.pem
+
+
+# uniqlo develop gateway
+Host uniqlo_dev_gateway
+    user          alliance
+    port          22
+    Hostname      54.65.232.249
+    IdentityFile  ~/.ssh/00002_uniqlo/ruby_dev/uniqlo_influencer_gateway.pem
+
+
+Host mruby
+    user          s-numasawa
+    port          22222
+    Hostname      160.16.96.217
+
+
+Host monitor
+    user          ec2-user
+    port          22
+    Hostname      54.64.99.154
+    IdentityFile  ~/.ssh/mruby/moniter.pem
+
+
+Host webpage
+    user          ec2-user
+    port          22
+    Hostname      52.69.156.6
+    IdentityFile  ~/.ssh/mruby/ruby-webpage-prd.pem
+
+
+
+
+
+# uniqlo test gateway
+Host uniqlo_test_gateway
+    user          alliance
+    port          22
+    Hostname      54.65.18.230
+    IdentityFile  ~/.ssh/00002_uniqlo/ruby_dev/uniqlo_influencer_gateway.pem
+
+
+Host manatuku_dev
+    user          ec2-user
+    port          22
+    Hostname      52.68.91.92
+    IdentityFile  ~/.ssh/00007_manatuku/staging.pem
+
+
+
+Host manatuku_stg
+    user          ec2-user
+    port          22
+    Hostname      52.68.118.96
+    IdentityFile  ~/.ssh/00007_manatuku/staging.pem
+
+
+Host manatuku
+    user          ec2-user
+    port          22
+    Hostname      52.69.235.109
+    IdentityFile  ~/.ssh/00007_manatuku/production.pem
+
+
+
+Host devel.manatuku.com
+     Hostname 52.68.91.92
+     User manatsuku
+     Port 22
+     UserKnownHostsFile /dev/null
+     StrictHostKeyChecking no
+     PasswordAuthentication no
+     IdentityFile  ~/.ssh/00007_manatuku/staging.pem
+     IdentitiesOnly yes
+     LogLevel FATAL
+
+
+Host stg.manatuku.com
+     Hostname 52.68.118.96
+     User ec2-user
+     Port 22
+     UserKnownHostsFile /dev/null
+     StrictHostKeyChecking no
+     PasswordAuthentication no
+     IdentityFile  ~/.ssh/00007_manatuku/staging.pem
+     IdentitiesOnly yes
+     LogLevel FATAL
+
+
+Host manatuku.com
+     Hostname 52.69.235.109
+     User manatsuku
+     Port 22
+     UserKnownHostsFile /dev/null
+     StrictHostKeyChecking no
+     PasswordAuthentication no
+     IdentityFile  ~/.ssh/00007_manatuku/production.pem
+     IdentitiesOnly yes
+     LogLevel FATAL
+
+
+
+Host skipfish
+    user          ec2-user
+    port          22
+    Hostname      52.193.33.87
+    IdentityFile  ~/.ssh/mruby_default_key.pem
+
+
+Host sns
+    user          ec2-user
+    port          22
+    Hostname      52.192.203.157
+    IdentityFile  ~/.ssh/allin-sns-demo.pem
+
+
+Host allin-sns-dev_001
+    user          ec2-user
+    port          22
+    # Hostname      52.193.29.52
+    Hostname      52.68.172.75
+    IdentityFile  ~/.ssh/allin-sns-demo.pem
+
+
+Host allin-sns-dev_002
+    user          ec2-user
+    port          22
+    Hostname      54.64.199.254
+    IdentityFile  ~/.ssh/allin-sns-demo.pem

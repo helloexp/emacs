@@ -1,0 +1,20 @@
+$(function(){
+	$("input#change").each(function(){
+		var chk = $(this).attr('checked');
+		if(chk == true){
+			$("table#change_list input,table#change_list textarea").attr('disabled','');
+		}else{
+			$("table#change_list input,table#change_list textarea").attr('disabled','disabled');
+		}
+		return true;
+	});
+	$("input#change").click(function(){
+		var chk = $(this).attr('checked');
+		if(chk == true){
+			$("table#change_list input,table#change_list textarea").attr('disabled','');
+		}else{
+			$("table#change_list input,table#change_list textarea").attr('disabled','disabled');
+		}
+		return true;
+	});
+});

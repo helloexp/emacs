@@ -1,0 +1,4451 @@
+-*- mode: org -*-
+
+
+一つ一つ確実にやろう
+焦ってもしょうがない
+
+
+* [2015-04-01 水]
+** 負荷試験
+- うちの環境でどこかで
+- instance数緩和
+
+** AMI整理
+** instance定時停止設定
+** capistrano設定
+view
+rails側に埋め込まれたlinkも修正
+
+** server設定
+*** deploy
+**** staging
+**** DONE develop
+CLOSED: [2015-03-31 火 18:27]
+*** DONE logrotate
+CLOSED: [2015-03-31 火 18:31]
+crontab設定後に、再確認
+**** DONE staging
+CLOSED: [2015-03-31 火 16:10]
+**** DONE develop
+CLOSED: [2015-03-31 火 16:10]
+*** DONE crontab
+CLOSED: [2015-03-31 火 18:25]
+動作しているか確認ログ
+**** DONE staging
+CLOSED: [2015-03-31 火 16:17]
+**** DONE develop
+CLOSED: [2015-03-31 火 16:34]
+
+*** DONE sns script設置
+CLOSED: [2015-03-31 火 18:25]
+設置し、ログは確認
+
+deploy後scriptが動作しているか確認。
+**** DONE staging
+CLOSED: [2015-03-31 火 16:19]
+**** DONE develop
+CLOSED: [2015-03-31 火 16:34]
+*** DONE rc local check
+CLOSED: [2015-03-31 火 18:20]
+**** DONE staging
+CLOSED: [2015-03-31 火 16:52]
+**** DONE develop
+CLOSED: [2015-03-31 火 16:52]
+
+*** token再確認
+**** production
+**** staging
+**** develop
+*** aws command line権限確認
+production
+** DONE skifish AMI再作成、instance停止
+CLOSED: [2015-03-31 火 15:41]
+
+** DONE prodcution logrotate状態確認
+CLOSED: [2015-03-31 火 14:42]
+
+
+* jenkinsでNTT dataはやるらしい
+* daily memo
+** [2015-03-26 木]
+*** DONE 綾部さんへ回答メール
+CLOSED: [2015-03-26 木 10:28]
+
+*** crontab log確認
+*** DONE hashtag - get_by_rest再度
+CLOSED: [2015-03-26 木 15:49]
++----+----------------+------------------+-----------------------------------------+---------------------+---------------------+
+| id | parent_hashtag | hashtag          | comment                                 | created_at          | updated_at          |
++----+----------------+------------------+-----------------------------------------+---------------------+---------------------+
+|  1 | uniqlo         | jeans            | NULL                                    | 2015-03-12 04:30:50 | 2015-03-14 01:19:45 |
+|  3 | uniqlo         | uvcutknit        | LifeWear website UV Cut Cardigan        | 2015-03-13 00:02:40 | 2015-03-14 01:19:39 |
+|  4 | uniqlo         | oxfordshirt      | LifeWear website Oxfordshirt            | 2015-03-14 01:19:04 | 2015-03-14 01:19:13 |
+|  5 | uniqlo         | socks            | LifeWear website socks                  | 2015-03-14 01:19:30 | 2015-03-14 01:19:30 |
+|  6 | uniqlo         | linen            | LifeWear website linen                  | 2015-03-14 01:20:00 | 2015-03-14 01:20:00 |
+|  7 | uniqlo         | dress            | LifeWear website Dress                  | 2015-03-14 01:20:20 | 2015-03-14 01:20:20 |
+|  8 | uniqlo         | jeans            | LifeWear web jeans                      | 2015-03-16 02:46:26 | 2015-03-16 02:46:53 |
+|  9 | uniqlo         | borderT          | LifeWear website border T-shirts        | 2015-03-16 02:48:26 | 2015-03-16 02:48:26 |
+
+| 14 | uniqlo         | NULL             | NULL                                    | 2015-03-25 15:45:59 | 2015-03-25 15:45:59 |
+| 15 | uniqlo         | sweatparka       | LifeWear Website Sweatparka             | 2015-03-25 15:56:52 | 2015-03-25 15:56:52 |
+| 16 | uniqlo         | leggingspants    | LifeWear website Leggings Pants         | 2015-03-25 15:57:18 | 2015-03-25 15:57:18 |
+| 17 | uniqlo         | anklepants       | LifeWear Website Ankle Pants            | 2015-03-25 15:57:32 | 2015-03-25 15:57:32 |
+| 18 | uniqlo         | pocketableparka  | LifeWear website Pocketable Parka       | 2015-03-26 00:01:55 | 2015-03-26 00:01:55 |
+| 19 | uniqlo         | supima           | LifeWear website Supima Cotton T        | 2015-03-26 00:02:10 | 2015-03-26 00:02:10 |
+| 20 | uniqlo         | pontedress       | LifeWear site Dress                     | 2015-03-26 01:00:04 | 2015-03-26 01:00:04 |
+
+| 21 | uniqlo         | chinoshorts      | LifeWear Site ChinoShorts               | 2015-03-26 01:53:16 | 2015-03-26 01:53:16 |
+| 22 | uniqlo         | rayonblouse      | LifeWear Site Rayon Blouse              | 2015-03-26 01:53:54 | 2015-03-26 01:53:54 |
+| 23 | uniqlo         | chino            | LifeWear Site Chino Pants               | 2015-03-26 01:54:37 | 2015-03-26 01:54:37 |
+| 24 | uniqlo         | airism           | LifeWear Site AIRism                    | 2015-03-26 01:55:09 | 2015-03-26 01:55:09 |
+| 25 | uniqlo         | meshparka        | LifeWear Site AIRism UV Cut Mesh Parka  | 2015-03-26 01:55:35 | 2015-03-26 01:55:43 |
+| 26 | uniqlo         | bratop           | LifeWear Site Bratop                    | 2015-03-26 01:56:06 | 2015-03-26 01:56:06 |
+| 27 | uniqlo         | drypants         | LifeWear Site Dry Pants                 | 2015-03-26 01:56:34 | 2015-03-26 01:56:34 |
+| 28 | uniqlo         | ultralightjacket | LifeWear Site Ultra Light Weight Jacket | 2015-03-26 01:58:27 | 2015-03-26 01:58:27 |
+| 29 | uniqlo         | dryex            | LifeWear Site DRY-EX polo, T-shirts     | 2015-03-26 01:58:56 | 2015-03-26 01:58:56 |
+| 30 | uniqlo         | roomwear         | LifeWear Site Roomwear                  | 2015-03-26 01:59:28 | 2015-03-26 01:59:28 |
+
+| 31 | uniqlo         | easycareshirt    | LifeWear Easy Care Shirts               | 2015-03-26 01:59:58 | 2015-03-26 01:59:58 |
+
+
+| 32 | uniqlo         | dryshorts        | LifeWear Site Dry Active Shorts         | 2015-03-26 02:00:32 | 2015-03-26 02:00:32 |
+| 33 | uniqlo         | iamfree          | Active Campaign                         | 2015-03-26 02:00:54 | 2015-03-26 02:00:54 |
+| 34 | uniqlo         | active           | Active Campaign                         | 2015-03-26 02:01:06 | 2015-03-26 02:01:06 |
+| 35 | uniqlo         | uld              | LifeWear Site Ultra Light Down          | 2015-03-26 02:01:20 | 2015-03-26 02:01:20 |
+| 36 | uniqlo         | feelthewarmth    | HEATTECH Feel the Warmth                | 2015-03-26 02:01:42 | 2015-03-26 02:01:42 |
+| 37 | uniqlo         | heattech         | HEATTECH                                | 2015-03-26 02:03:30 | 2015-03-26 02:03:40 |
+| 38 | uniqlo         | efcshirt         | LifeWear Site Extra Fine Cotton Shirts  | 2015-03-26 02:04:30 | 2015-03-26 02:04:30 |
+| 39 | uniqlo         | supimashirt      | Supima Shirts                           | 2015-03-26 02:04:58 | 2015-03-26 02:04:58 |
+| 40 | uniqlo         | polo             | LifeWear Site Polo Shirts               | 2015-03-26 02:05:24 | 2015-03-26 02:05:24 |
+
+| 41 | uniqlo         | colorT           | LifeWear Site packT                     | 2015-03-26 02:05:49 | 2015-03-26 02:05:49 |
+| 42 | uniqlo         | sunglasses       | LifeWear site Sunglasses                | 2015-03-26 02:06:09 | 2015-03-26 02:06:09 |
+| 43 | uniqlo         | stetecorelaco    | LifeWear Site STETECO & RELACO          | 2015-03-26 02:06:30 | 2015-03-26 02:06:30 |
+| 44 | uniqlo         | flannel          | LifeWear Site Flannel Shirts            | 2015-03-26 02:06:44 | 2015-03-26 02:06:44 |
+| 45 | uniqlo         | cashmere         | LifeWear Site Cashmere                  | 2015-03-26 02:07:27 | 2015-03-26 02:07:27 |
+| 46 | uniqlo         | coolbiz          | Uniqlo Cool Biz Campaign                | 2015-03-26 02:07:44 | 2015-03-26 02:07:44 |
+| 47 | uniqlo         | mother           | LifeWear mother's day                   | 2015-03-26 02:08:16 | 2015-03-26 02:08:16 |
+| 48 | uniqlo         | father           | LifeWear Father's day                   | 2015-03-26 02:08:30 | 2015-03-26 02:08:30 |
+| 49 | uniqlo         | kids             | KIDS                                    | 2015-03-26 02:09:15 | 2015-03-26 02:09:15 |
+| 50 | uniqlo         | ut               | UT campaign                             | 2015-03-26 02:09:24 | 2015-03-26 02:09:24 |
+
+| 51 | uniqlo         | fleece           | LifeWear Fleece                         | 2015-03-26 02:11:12 | 2015-03-26 02:11:12 |
+| 52 | uniqlo         | holiday          | HOLIDAY                                 | 2015-03-26 02:11:23 | 2015-03-26 02:11:23 |
+| 53 | uniqlo         | roomshoes        | LifeWear RoomShoes                      | 2015-03-26 02:11:49 | 2015-03-26 02:11:49 |
+| 54 | uniqlo         | efm              | LifeWear Extra Fine Merino              | 2015-03-26 02:12:33 | 2015-03-26 02:12:33 |
+| 55 | uniqlo         | danpan           | LifeWear Warm Easy Pants                | 2015-03-26 02:13:03 | 2015-03-26 02:13:03 |
+| 56 | uniqlo         | kabukixuniqlo    | KABUKI                                  | 2015-03-26 02:13:29 | 2015-03-26 02:13:29 |
+| 57 | uniqlo         | kabuki           | KABUKI                                  | 2015-03-26 02:13:37 | 2015-03-26 02:13:37 |
+| 58 | uniqlo         | girls            | Kids Girls                              | 2015-03-26 02:13:53 | 2015-03-26 02:13:53 |
+| 59 | uniqlo         | boys             | Kids Boys                               | 2015-03-26 02:14:03 | 2015-03-26 02:14:03 |
+| 60 | uniqlo         | baby             | Baby                                    | 2015-03-26 02:14:11 | 2015-03-26 02:14:11 |
+
+| 61 | uniqlo         | ines             | Ines Collection                         | 2015-03-26 02:14:47 | 2015-03-26 02:14:47 |
+| 62 | uniqlo         | uu               | Undercover x Uniqlo                     | 2015-03-26 02:15:05 | 2015-03-26 02:15:05 |
+| 63 | uniqlo         | shoes            | UNIQLO Shoes                            | 2015-03-26 02:16:21 | 2015-03-26 02:16:21 |
+| 64 | uniqlo         | uniqloshoes      | UNIQLO Shoes                            | 2015-03-26 02:16:28 | 2015-03-26 02:16:28 |
+| 65 | uniqlo         | outer            | Winter Outers                           | 2015-03-26 02:16:37 | 2015-03-26 02:16:37 |
+| 66 | uniqlo         | lemaire          | CPJ                                     | 2015-03-26 02:20:58 | 2015-03-26 02:20:58 |
+| 67 | uniqlo         | sweat            | Sweat Collection                        | 2015-03-26 02:23:07 | 2015-03-26 02:23:07 |
++----+----------------+------------------+-----------------------------------------+---------------------+---------------------+
+
+*** Entity Too Large
+[www@prd01-a-tky-batch-influencer-uniqlo current]$ RAILS_ENV=production  bundle exec rake instagram:get_by_rest
+/usr/local/rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/instagram-1.1.3/lib/instagram/request.rb:8: warning: circular argument reference - no_response_wrapper
+/usr/local/rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/instagram-1.1.3/lib/instagram/request.rb:13: warning: circular argument reference - no_response_wrapper
+/usr/local/rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/instagram-1.1.3/lib/instagram/request.rb:18: warning: circular argument reference - no_response_wrapper
+/usr/local/rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/instagram-1.1.3/lib/instagram/request.rb:23: warning: circular argument reference - no_response_wrapper
+rake aborted!
+RestClient::RequestEntityTooLarge: 413 Request Entity Too Large
+/var/rails/influencer/releases/20150325134247/app/services/api_client.rb:38:in `create_instagram_media'
+/var/rails/influencer/releases/20150325134247/app/services/instagram_media_aggregator.rb:16:in `get_by_rest'
+/var/rails/influencer/releases/20150325134247/lib/tasks/instagram.rake:5:in `block (2 levels) in <top (required)>'
+Tasks: TOP => instagram:get_by_rest
+(See full trace by running task with --trace)
+
+*** 作業内容
+- 1: deploy 3dir
+     前のdeploy分は削除
+- 2: production
+- 3:
+- 4: deploy
+  18〜20時
+
+*** [#A] 本番環境 deploy
+- hashtag-masterは、read replicaを読み込む
+- private IPからのみ、admin apiは読み込む
+
+*** deploy
+**** TODO [#A] staging server設定
+***** admin
+****** DONE 自動起動
+rails / nginx
+scrip編集ok
+****** DONE bashrc
+CLOSED: [2015-03-25 水 18:22]
+****** DONE nginxn setting見直し
+CLOSED: [2015-03-22 日 14:59]
+各routeの再確認
+アクセス範囲の確認 (allow, deny, 認証など)
+worker数確認 (connection数)
+
+****** DONE nginx conf修正
+CLOSED: [2015-03-26 木 01:45]
+sns serverからの通信のみapiへの通信を許可
+
+****** DONE rails / nginx 動作確認
+CLOSED: [2015-03-26 木 01:45]
+web閲覧ok
+
+****** DONE cron
+CLOSED: [2015-03-26 木 01:44]
+
+****** deploy 手順
+修正点確認
+
+****** log取得, rotate
+***** user
+****** DONE acess
+ok
+
+****** DONE mysql/sqlite install
+CLOSED: [2015-03-20 金 12:14]
+****** DONE ruby / rails / gem
+CLOSED: [2015-03-26 木 01:45]
+
+****** DONE bashrc
+CLOSED: [2015-03-26 木 01:45]
+export SECRET_KEY_BASE=""
+export UNIQLO_HASHTAG_MAIN_DATABASE_PASSWORD="QkIPwa9k"
+
+sns
+   inta
+   twitter
+   facebook
+
+****** DONE 自動起動
+CLOSED: [2015-03-26 木 01:45]
+rails / nginx
+
+****** DONE healthcheck urlの確認
+CLOSED: [2015-03-26 木 01:47]
+
+****** TODO deploy
+******* DONE view
+CLOSED: [2015-03-22 日 22:20]
+******* DONE main
+CLOSED: [2015-03-22 日 22:20]
+******* 正常性確認
+
+****** TODO nginxn setting見直し
+各routeの再確認
+アクセス範囲の確認 (allow, deny, 認証など)
+worker数確認 (connection数)
+
+****** TODO log取得, rotate
+****** TODO route
+******* /api
+localだけから許可
+
+jsにURL埋め込みで指定されているが
+localhost指定にすれば、要件を満たせるか?  
+****** deploy考察
+******* db.yml setting
+
+***** sns
+****** DONE acess
+ok
+****** DONE mysql/sqlite install
+CLOSED: [2015-03-20 金 12:14]
+****** DONE ruby / rails / gem
+CLOSED: [2015-03-20 金 12:14]
+
+****** DONE bashrc / .env
+CLOSED: [2015-03-22 日 15:07]
+export SECRET_KEY_BASE=""
+export UNIQLO_HASHTAG_MAIN_DATABASE_PASSWORD="QkIPwa9k"
+
+sns
+   inta
+   twitter
+   facebook
+   
+****** DONE deploy
+CLOSED: [2015-03-26 木 01:49]
+****** DONE nginxn setting見直し
+CLOSED: [2015-03-22 日 15:03]
+各routeの再確認
+アクセス範囲の確認 (allow, deny, 認証など)
+worker数確認 (connection数)
+
+****** DONE 自動起動
+CLOSED: [2015-03-26 木 01:48]
+******* DONE rails / nginx
+CLOSED: [2015-03-22 日 15:03]
+******* DONE twttier daemon
+CLOSED: [2015-03-25 水 20:02]
+curl -s --user uniqlomystyle:lifewear localhost/api/v1/daemons/status
+curl -s --user uniqlomystyle:lifewear localhost/api/v1/daemons/start
+curl -s --user uniqlomystyle:lifewear localhost/api/v1/daemons/stop
+
+****** log取得, rotate
+/var/rails/influencer/shared/log/sns/twitter_stream.log
+
+****** deploy考察
+******* db.yml setting
+******* .env
+DB_USERNAME=
+DB_PASSWORD=
+
+TWITTER_CONSUMER_KEY=hGXnBypOsG40sTVTr9vtGLmjT
+TWITTER_CONSUMER_SECRET=2NYSk2dcKaFkGc9gFXo5OxOETSee0n9HKdLLdsbChkQriiSmPM
+TWITTER_ACCESS_TOKEN=3040525110-m1WDikMktLXYFGwMkRpaPqzINa2JZBMrX09qPFw
+TWITTER_TOKEN_SECRET=EfrkZQLG8E6JlQMCoww7nV4Y1HwCgwAVJcC6RGm2IhOl1
+
+INSTAGRAM_CLIENT_ID=65bfae25a972496985e349a3d5467dba
+INSTAGRAM_CLIENT_SECRET=64eb28aca5bd47f3bafda2fea7138477
+INSTAGRAM_ACCESS_TOKEN=1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f
+
+FACEBOOK_APP_ID=
+FACEBOOK_APP_SECRET=
+
+API_ENDPOINT=
+
+# Instagramからタグ検索する際のリクエスト上限
+MAX_API_COUNT_FOR_INSTAGRAM=500
+
+# Instagramからタグ検索する際のマスターとなるタグ
+MASTER_TAG=uniqlolifewear
+
+****** DONE healthcheck urlの確認
+CLOSED: [2015-03-26 木 01:48]
+
+**** TODO production server設定
+***** 注意
+- rails 起動 script
+  config/unicorn.rb 読み込み先注意
+***** admin
+***** user
+****** access
+****** DONE mysql/sqlite install
+CLOSED: [2015-03-20 金 12:15]
+****** DONE ruby / rails / gem
+CLOSED: [2015-03-20 金 12:15]
+
+****** DONE bashrc
+CLOSED: [2015-03-27 金 00:35]
+export SECRET_KEY_BASE=""
+export UNIQLO_HASHTAG_MAIN_DATABASE_PASSWORD="QkIPwa9k"
+
+.envで設定しているので...
+
+****** deploy
+****** DONE 自動起動
+CLOSED: [2015-03-27 金 00:37]
+rails / nginx
+
+****** log取得, rotate
+
+***** sns
+****** access
+****** mysql/sqlite install
+****** ruby / rails / gem
+****** bashrc
+export SECRET_KEY_BASE=""
+export UNIQLO_HASHTAG_MAIN_DATABASE_PASSWORD="QkIPwa9k"
+
+sns
+   inta
+   twitter
+   facebook
+
+   
+****** 自動起動
+rails / nginx
+
+****** log取得, rotate
+
+**** TODO nginx設定 | basic認証回避
+localhostのみbasic認証を回避
+user js -> rails API
+
+*** logrotate
+railsは、log fileつかみ直す必要があるか?
+
+**** dev
+- adm
+  /etc/logrotate.d/rails_influencer
+  /etc/logrotate.d/rails_sns
+
+- usr
+  /etc/logrotate.d/rails_influencer
+
+- sns
+  /etc/logrotate.d/rails_influencer
+  /etc/logrotate.d/rails_sns
+  
+**** stg
+- adm
+  /etc/logrotate.d/rails_influencer
+  /etc/logrotate.d/rails_sns
+
+- usr
+  /etc/logrotate.d/rails_influencer
+
+- sns
+  /etc/logrotate.d/rails_influencer
+  /etc/logrotate.d/rails_sns
+
+**** prd
+- adm
+  /etc/logrotate.d/rails_influencer
+  /etc/logrotate.d/rails_sns
+
+- usr
+  /etc/logrotate.d/rails_influencer
+
+- sns
+  /etc/logrotate.d/rails_influencer
+  /etc/logrotate.d/rails_sns
+
+*** main / viewの状態変化
+**** 変化内容
+stylesheets
+javascripts
+images
+をdomain直下へ
+
+people/[tag] 名を
+railsへ流す
+
+**** 設定
+DONE dev
+DONE prd
+TODO stg (skipfishが動いていたので、やらない)
+*** Capistrano setting
+
+** [2015-03-25 水]
+*** やること
+- 他serverを止めて全部10台起動
+- 線形に伸びるか確認
+- 何台必要か?
+- 負荷さげるか? (jsx4をjsx1へ)
+- server設定かえる? (tcpから、socketへ)
+
+*** DONE 負荷試験
+CLOSED: [2015-03-25 水 16:45]
+*** DONE schejule送信
+CLOSED: [2015-03-25 水 09:55]
+*** DONE mail to
+CLOSED: [2015-03-25 水 13:38]
+綾部さん、諏訪さん、船山さん
+以下、大筋の作業スケジュールとなります。
+
+*** DONE sns token取得
+CLOSED: [2015-03-25 水 16:45]
+
+メール送信ok
+
+*** 日程
+deploy スケジュール
+----------------------------------------------------------------
+    - 作業時間帯
+        03/25 17:00〜23:00
+
+        - admin  : 17:00〜19:00
+        - batch  : 19:00〜21:00
+        - user   : 21:00〜23:00
+
+    - 大まかな作業内容
+        - DB migrate (utf8mb4対応)
+        - 各種deploy
+        - 各種サーバー連携確認
+        - 全サーバーへ各種設定(nginx, rails, cron, 自動起動設定...etc)
+
+
+
+
+補足
+----------------------------------------------------------------
+    - インフルエンサー登録画面 - アクセス不可時間帯
+        03/25 17:00 〜 03/25 23:00
+        ※ 当画面は優先して設定。
+
+    - NTT data様との連携
+        - RDS設定
+          17時より、InnoDB拡張の設定をお願い申し上げます。
+          
+        - 各種AMI作成
+          26日作成と伺っておりますので、当日中の作成は不要と考えております
+        
+        ※ 状況によって、AWS側の状態確認などを想定。
+
+*** deploy
+**** TODO [#A] staging server設定
+***** admin
+****** DONE 自動起動
+rails / nginx
+
+****** DONE mysql/sqlite install
+CLOSED: [2015-03-20 金 12:14]
+****** DONE ruby / rails / gem
+CLOSED: [2015-03-20 金 12:14]
+
+****** rails / nginx 動作確認
+web閲覧ok
+
+****** deploy 手順
+修正点確認
+
+****** DONE nginxn setting見直し
+CLOSED: [2015-03-22 日 14:59]
+各routeの再確認
+アクセス範囲の確認 (allow, deny, 認証など)
+worker数確認 (connection数)
+
+****** log取得, rotate
+****** healthcheck urlの確認
+***** user
+****** DONE acess
+ok
+
+****** DONE mysql/sqlite install
+CLOSED: [2015-03-20 金 12:14]
+****** DONE ruby / rails / gem
+CLOSED: [2015-03-20 金 12:15]
+
+****** DONE bashrc
+CLOSED: [2015-03-20 金 12:54]
+export SECRET_KEY_BASE=""
+export UNIQLO_HASHTAG_MAIN_DATABASE_PASSWORD="QkIPwa9k"
+
+sns
+   inta
+   twitter
+   facebook
+
+****** DONE deploy
+CLOSED: [2015-03-22 日 22:20]
+******* DONE view
+CLOSED: [2015-03-22 日 22:20]
+******* DONE main
+CLOSED: [2015-03-22 日 22:20]
+******* 正常性確認
+****** DONE 自動起動
+CLOSED: [2015-03-22 日 14:12]
+rails / nginx
+
+****** DONE nginxn setting見直し
+CLOSED: [2015-03-22 日 14:13]
+各routeの再確認
+アクセス範囲の確認 (allow, deny, 認証など)
+worker数確認 (connection数)
+
+****** log取得, rotate
+****** deploy考察
+******* db.yml setting
+
+****** DONE healthcheck urlの確認
+CLOSED: [2015-03-22 日 14:13]
+****** TODO route
+******* /api
+localだけから許可
+
+jsにURL埋め込みで指定されているが
+localhost指定にすれば、要件を満たせるか?  
+***** sns
+****** DONE acess
+ok
+****** DONE mysql/sqlite install
+CLOSED: [2015-03-20 金 12:14]
+****** DONE ruby / rails / gem
+CLOSED: [2015-03-20 金 12:14]
+
+****** DONE bashrc / .env
+CLOSED: [2015-03-22 日 15:07]
+export SECRET_KEY_BASE=""
+export UNIQLO_HASHTAG_MAIN_DATABASE_PASSWORD="QkIPwa9k"
+
+sns
+   inta
+   twitter
+   facebook
+   
+****** deploy
+****** DONE nginxn setting見直し
+CLOSED: [2015-03-22 日 15:03]
+各routeの再確認
+アクセス範囲の確認 (allow, deny, 認証など)
+worker数確認 (connection数)
+
+****** 自動起動
+******* DONE rails / nginx
+CLOSED: [2015-03-22 日 15:03]
+******* twttier daemon
+起動時に、twitter daemon起動
+restも一回走らせるか?
+
+URLでも起動できるが
+そこらへんどういう設計なんだろうか
+****** log取得, rotate
+****** deploy考察
+******* db.yml setting
+******* .env
+DB_USERNAME=
+DB_PASSWORD=
+
+TWITTER_CONSUMER_KEY=hGXnBypOsG40sTVTr9vtGLmjT
+TWITTER_CONSUMER_SECRET=2NYSk2dcKaFkGc9gFXo5OxOETSee0n9HKdLLdsbChkQriiSmPM
+TWITTER_ACCESS_TOKEN=3040525110-m1WDikMktLXYFGwMkRpaPqzINa2JZBMrX09qPFw
+TWITTER_TOKEN_SECRET=EfrkZQLG8E6JlQMCoww7nV4Y1HwCgwAVJcC6RGm2IhOl1
+
+INSTAGRAM_CLIENT_ID=65bfae25a972496985e349a3d5467dba
+INSTAGRAM_CLIENT_SECRET=64eb28aca5bd47f3bafda2fea7138477
+INSTAGRAM_ACCESS_TOKEN=1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f
+
+FACEBOOK_APP_ID=
+FACEBOOK_APP_SECRET=
+
+API_ENDPOINT=
+
+# Instagramからタグ検索する際のリクエスト上限
+MAX_API_COUNT_FOR_INSTAGRAM=500
+
+# Instagramからタグ検索する際のマスターとなるタグ
+MASTER_TAG=uniqlolifewear
+
+****** healthcheck urlの確認
+
+**** TODO production server設定
+***** 注意
+- rails 起動 script
+  config/unicorn.rb 読み込み先注意
+***** admin
+***** user
+****** access
+****** DONE mysql/sqlite install
+CLOSED: [2015-03-20 金 12:15]
+****** DONE ruby / rails / gem
+CLOSED: [2015-03-20 金 12:15]
+
+****** bashrc
+export SECRET_KEY_BASE=""
+export UNIQLO_HASHTAG_MAIN_DATABASE_PASSWORD="QkIPwa9k"
+
+sns
+   inta
+   twitter
+   facebook
+
+****** deploy
+****** 自動起動
+rails / nginx
+
+****** log取得, rotate
+
+***** sns
+****** access
+****** mysql/sqlite install
+****** ruby / rails / gem
+****** bashrc
+export SECRET_KEY_BASE=""
+export UNIQLO_HASHTAG_MAIN_DATABASE_PASSWORD="QkIPwa9k"
+
+sns
+   inta
+   twitter
+   facebook
+   
+****** 自動起動
+rails / nginx
+
+****** log取得, rotate
+**** TODO nginx設定 | basic認証回避
+localhostのみbasic認証を回避
+user js -> rails API
+** [2015-03-24 火]
+*** TODO stress test
+- ひとまず、開発環境で想定のリクエスト数がでるか確認.
+- stagingへしっかりアクセスできるか
+- 15分単位としたので、request調整が必要
+- database再作成
+
+**** TODO メール送信済み
+綾部様
+
+お世話になっております。
+Ruby開発 沼沢です。
+
+
+負荷試験スケジュールは、下記を想定しております。
+(時間帯に付きましては、調整が必要であればご教示頂ければと)
+
+宜しくお願い申し上げます。
+
+
+
+- 対象server
+----------------------------------------------------------------
+    http://stage-web.org.lifewear.uniqlo.com
+    
+    
+- スケジュールなど
+----------------------------------------------------------------
+    - 実施日時
+        2015/03/25 13時〜15時30分
+
+        // 問題がなければ2時間程度で終了。
+        // 多少の余裕を持って、2時間30分と致しました。
+
+      
+    - 試験
+        下記の様、時間帯により負荷を上げ、
+        各時点でのサーバー状態をモニター。
+        
+      
+        - 13:00 〜 13:15  |  100request/sec  (6000access/min)
+        - 13:15 〜 13:30  |  200request/sec  (12000access/min)
+        - 13:30 〜 13:45  |  300request/sec  (18000access/min)
+        - 13:45 〜 14:00  |  400request/sec  (24000access/min)
+        - 14:00 〜 14:15  |  500request/sec  (30000access/min)
+        - 14:15 〜 14:30  |  600request/sec  (36000access/min)
+        - 14:30 〜 14:45  |  700request/sec  (42000access/min)
+
+
+- 監視項目
+----------------------------------------------------------------
+    // 以下、cloud watch上での項目名を踏襲。
+    
+    + ELB
+        - RequestCount
+        - Latency
+        - HealthyHostCount
+        - UnHealthyHostCount
+        - HTTPCode_Backend_2XX
+        - HTTPCode_Backend_5XX  
+        - BackendConnectionErrors
+
+
+    - RDS
+        - CPUUtilization
+        - ReadLatency
+        - ReadThroughput
+        - FreeableMemory
+        - DatabaseConnections
+        - NetworkTransmitThroughput
+
+
+
+以上となります。
+宜しくお願い申し上げます。
+
+**** TODO stagingへのシナリオ作成
+19時以降
+
+*** DONE hashtag deploy
+CLOSED: [2015-03-24 火 10:52]
+to 開発環境
+
+*** TODO pivotal
+朝倉さんへの返答
+*** WAITING 小林さん、朝倉さんとかに確認
+静的ファイルについて
+
+*** WAITING cron設定見直し
+設定はしたので、状態確認
+
+時間をずらして
+clean 5, 15, 25...
+rest  10, 20, 30, 40..
+
+productionはメール停止
+
+*** TODO 綾部山のメール確認
+10:48 【ご相談】確認事項
+
+3種類
+一部は返信済み
+
+*** cron fileのbackupと運用
+とりあえず、feneverを調査
+上記が難しいなら、cron内容をバックアップしておこう
+
+*** TODO streaming test
+- stagingで動くのか
+- 動いたとして長時間起動した場合はどうか?
+- 開発環境と同時に動かし、差分を見てみる必要あり
+
+*** TODO [#A] staging server設定
+**** admin
+***** DONE 自動起動
+rails / nginx
+
+***** DONE mysql/sqlite install
+CLOSED: [2015-03-20 金 12:14]
+***** DONE ruby / rails / gem
+CLOSED: [2015-03-20 金 12:14]
+
+***** rails / nginx 動作確認
+web閲覧ok
+
+***** deploy 手順
+修正点確認
+
+***** DONE nginxn setting見直し
+CLOSED: [2015-03-22 日 14:59]
+各routeの再確認
+アクセス範囲の確認 (allow, deny, 認証など)
+worker数確認 (connection数)
+
+***** log取得, rotate
+***** healthcheck urlの確認
+**** user
+***** DONE acess
+ok
+
+***** DONE mysql/sqlite install
+CLOSED: [2015-03-20 金 12:14]
+***** DONE ruby / rails / gem
+CLOSED: [2015-03-20 金 12:15]
+
+***** DONE bashrc
+CLOSED: [2015-03-20 金 12:54]
+export SECRET_KEY_BASE=""
+export UNIQLO_HASHTAG_MAIN_DATABASE_PASSWORD="QkIPwa9k"
+
+sns
+   inta
+   twitter
+   facebook
+
+***** DONE deploy
+CLOSED: [2015-03-22 日 22:20]
+****** DONE view
+CLOSED: [2015-03-22 日 22:20]
+****** DONE main
+CLOSED: [2015-03-22 日 22:20]
+****** 正常性確認
+***** DONE 自動起動
+CLOSED: [2015-03-22 日 14:12]
+rails / nginx
+
+***** DONE nginxn setting見直し
+CLOSED: [2015-03-22 日 14:13]
+各routeの再確認
+アクセス範囲の確認 (allow, deny, 認証など)
+worker数確認 (connection数)
+
+***** log取得, rotate
+***** deploy考察
+****** db.yml setting
+
+***** DONE healthcheck urlの確認
+CLOSED: [2015-03-22 日 14:13]
+***** TODO route
+****** /api
+localだけから許可
+
+jsにURL埋め込みで指定されているが
+localhost指定にすれば、要件を満たせるか?  
+**** sns
+***** DONE acess
+ok
+***** DONE mysql/sqlite install
+CLOSED: [2015-03-20 金 12:14]
+***** DONE ruby / rails / gem
+CLOSED: [2015-03-20 金 12:14]
+
+***** DONE bashrc / .env
+CLOSED: [2015-03-22 日 15:07]
+export SECRET_KEY_BASE=""
+export UNIQLO_HASHTAG_MAIN_DATABASE_PASSWORD="QkIPwa9k"
+
+sns
+   inta
+   twitter
+   facebook
+   
+***** deploy
+***** DONE nginxn setting見直し
+CLOSED: [2015-03-22 日 15:03]
+各routeの再確認
+アクセス範囲の確認 (allow, deny, 認証など)
+worker数確認 (connection数)
+
+***** 自動起動
+****** DONE rails / nginx
+CLOSED: [2015-03-22 日 15:03]
+****** twttier daemon
+起動時に、twitter daemon起動
+restも一回走らせるか?
+
+URLでも起動できるが
+そこらへんどういう設計なんだろうか
+***** log取得, rotate
+***** deploy考察
+****** db.yml setting
+****** .env
+DB_USERNAME=
+DB_PASSWORD=
+
+TWITTER_CONSUMER_KEY=hGXnBypOsG40sTVTr9vtGLmjT
+TWITTER_CONSUMER_SECRET=2NYSk2dcKaFkGc9gFXo5OxOETSee0n9HKdLLdsbChkQriiSmPM
+TWITTER_ACCESS_TOKEN=3040525110-m1WDikMktLXYFGwMkRpaPqzINa2JZBMrX09qPFw
+TWITTER_TOKEN_SECRET=EfrkZQLG8E6JlQMCoww7nV4Y1HwCgwAVJcC6RGm2IhOl1
+
+INSTAGRAM_CLIENT_ID=65bfae25a972496985e349a3d5467dba
+INSTAGRAM_CLIENT_SECRET=64eb28aca5bd47f3bafda2fea7138477
+INSTAGRAM_ACCESS_TOKEN=1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f
+
+FACEBOOK_APP_ID=
+FACEBOOK_APP_SECRET=
+
+API_ENDPOINT=
+
+# Instagramからタグ検索する際のリクエスト上限
+MAX_API_COUNT_FOR_INSTAGRAM=500
+
+# Instagramからタグ検索する際のマスターとなるタグ
+MASTER_TAG=uniqlolifewear
+
+***** healthcheck urlの確認
+
+*** TODO production server設定
+**** 注意
+- rails 起動 script
+  config/unicorn.rb 読み込み先注意
+**** admin
+**** user
+***** access
+***** DONE mysql/sqlite install
+CLOSED: [2015-03-20 金 12:15]
+***** DONE ruby / rails / gem
+CLOSED: [2015-03-20 金 12:15]
+
+***** bashrc
+export SECRET_KEY_BASE=""
+export UNIQLO_HASHTAG_MAIN_DATABASE_PASSWORD="QkIPwa9k"
+
+sns
+   inta
+   twitter
+   facebook
+
+***** deploy
+***** 自動起動
+rails / nginx
+
+***** log取得, rotate
+
+**** sns
+***** access
+***** mysql/sqlite install
+***** ruby / rails / gem
+***** bashrc
+export SECRET_KEY_BASE=""
+export UNIQLO_HASHTAG_MAIN_DATABASE_PASSWORD="QkIPwa9k"
+
+sns
+   inta
+   twitter
+   facebook
+
+***** 自動起動
+rails / nginx
+
+***** log取得, rotate
+
+*** TODO nginx設定 | basic認証回避
+localhostのみbasic認証を回避
+user js -> rails API
+
+*** WAITING acces token
+2種類作成
+まずは、staging用
+本番用はタイミングを見計らって。
+
+- staging用
+  uniqlo-hashtag-staging
+
+- 本番用
+
+**** DONE instagram 
+CLOSED: [2015-03-19 木 17:44]
+
+**** WAITING twitter
+mobile phone登録がないため、作成不可。
+
+*** access token
+**** DONE Instagram 本番用のaccess token取得
+CLOSED: [2015-03-23 月 13:45]
+
+**** twitter
+先方まち
+prd, stg双方のtokenを取得
+
+*** daploy 確認点
+確認点を思い出そう
+
+*** crontab設定
+- insta
+  定期実行設定
+  
+- twitter streaming
+  url touchにしよう
+  reboot時に起動
+  
+- twitter rest  
+  reboot時に起動
+
+*** 起動時設定
+twitter rest / streaming
+
+*** NTT dataに負荷試験のログの取り方をメール
+*** deploy注意点
+**** stagin
+assetsをapp fileに設定する必要あり
+とりあえず手動でやろう
+
+**** uniqlo-hashtag-view
+例
+***** javascrript/postphotos.js
+//DATA_PATH = 'http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/api/v1/media.js?';
+//IMAGE_PATH = 'http://test223.members-dev.com/uniqlo_lifewear/images/'
+
+DATA_PATH = 'http://stage-web.org.lifewear.uniqlo.com/api/v1/media.js?';
+IMAGE_PATH = 'http://stage-web.org.lifewear.uniqlo.com/people/images/'
+
+***** javascrript/postphotos_sp.js
+//DATA_PATH = 'http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/api/v1/media.js?';
+//IMAGE_PATH = 'http://test223.members-dev.com/uniqlo_lifewear/images/'
+
+DATA_PATH = 'http://stage-web.org.lifewear.uniqlo.com/api/v1/media.js?';
+IMAGE_PATH = 'http://stage-web.org.lifewear.uniqlo.com/people/images/'
+
+***** production.html (will change name?)
+
+***** production_sp.html (will change name?)
+
+**** uniqlo-hashtag 設定追加
+innodb設定を追加
+staging.rbへ、utf8mb4設定記述
+ 
+*** caps
+hashtagへ
+application.rbをupするように変更
+asset
+
+*** .env
+本番環境に .env作成
+本番用 sns token
+本番用 IP指定など
+
+*** mysqlのencoding確認
+どういう構造なのか
+http://www.dbonline.jp/mysql/myini/index3.html
+
+*** utf8mb4 設定追加 | 用commit
+http://qiita.com/kamipo/items/101aaf8159cf1470d823
+
+これで、全部okなのかなぁ?
+ローカルで試してみるか
+いけそう
+
+誰がcommitするのか
+
+*** 監視プロセス
+streaming
+nginx
+unicorn
+
+*** deploy to develop
+CLOSED: [2015-03-23 月 15:37]
+
+4branchとも上げた
+
+** [2015-03-23 月]
+*** DONE deploy to staging
+CLOSED: [2015-03-23 月 15:37]
+
+4branchとも上げた
+
+*** DONE crontab設定
+CLOSED: [2015-03-24 火 02:11]
+10分起きに
+
+- stagin / development
+- twitter stream, clean, get_by_rest  
+
+*** DONE 綾部さんにRDS変更点をお伝えする
+CLOSED: [2015-03-23 月 10:18]
+**** DONE メールok
+CLOSED: [2015-03-23 月 09:36]
+メンバーズ 諏訪様
+
+お世話になっております。
+Ruby開発 沼沢です。
+
+
+utf8mb4対応に伴い、RDSでの設定変更が必要となります。
+お手数をお掛け致しますが、下記変更をお願い申し上げます。
+
+
+
+変更点は、以下3点となります。
+    ----------------------------------------------------------------
+    innodb_file_format = Barracuda
+    innodb_file_per_table = 1
+    innodb_large_prefix = 1
+    ----------------------------------------------------------------
+    ※ RDS GUI上から
+    ※ parameter groupより
+    ※ 当該箇所の値を変更し再起動
+
+
+変更対象server
+   staging, production双方の変更が必要となります。
+   (productionに付きましては、メンテナンスなどの際に変更)
+
+
+以上となります。
+宜しくお願い申し上げます。
+
+*** DONE skipfish server
+CLOSED: [2015-03-23 月 09:07]
+server spec
+HDD増量
+
+*** DONE twitter sns, streaming mail
+CLOSED: [2015-03-23 月 21:44]
+綾部、諏訪、船山さん
+
+** [2015-03-22 日]
+*** registered 
+**** hashtag 
+id 15から追加分
+
+**** influencer
+158からが追加分
+
+**** exsample
+- fashion_putipu #uniqlo  |  Hit
+- KentaroHirase #uniqlo   |  -
+- RogueQueen71 #uniqlo    |  -
+- bombbomb_m #uniqlo      |  Hit
+- aki_m0816 #uniqlo       |  - 
+- yujipampam78 #uniqlo    |  -
+- khevhin21 #uniqlo       |  - 
+- yojuegotenis #uniqlo    |  - 
+
+*** capistrano
+**** set :deploy_to, '/var/rails/influencer'
+へ変更
+
+**** change deploy branch
+config/deploy.rb
+
+----------------------------------------------------------------
+# branch                                                                                                                                                                     
+set :branch, 'insta_hashtag_save'
+----------------------------------------------------------------
+
+**** upload some files
+
+以下コメント
+----------------------------------------------------------------
+#after  :starting,   'deploy:upload'                                                                                                                                     
+----------------------------------------------------------------
+
+*** 負荷試験
+**** DONE 資料作成
+CLOSED: [2015-03-18 水 16:37]
+チェック項目の選定
+イメージ図の作成
+
+**** 
+akamaiを辞める
+4万リクエストは必要
+Instanceは必要台数を用意する
+知りたいのは、MySQLのボトルネック
+
+**** Jmeter instance準備
+- 開発環境URL確認
+- staging環境URL確認
+
+- slave化の方法確認
+- 負荷をかける方法
+  粒度をどうするか
+
+  アクセス先2つのシナリオ作成
+
+**** App server準備
+User serverだけかな
+instacen classと台数を決めよう
+
+**** 準備
+Jmeter slave instance準備
+負荷の掛け方の考察
+どういう手順で行うかなど考察
+
+** [2015-03-21 土]
+*** 切り分け
+印象としては、instagramなどのURLが混入しているものを取得していない。
+(ただし、2,3件、URLが混入しているものも保存されている。)
+特定の文字列なのか、URLなのかは未確認。
+
+また、3月12日〜13日以前のデータが取得されていない
+なんらかの閾値にかかっているか?
+先日取得できたtweetが、この日付付近をさかいに取得できなくなっている。
+
+*** add tag and influencer
+Wala kaming ginawa kung d maglaro sa #Forever21 #H&M #CottonOn #UNIQLO 
+**** hashtag
+knit
+jacket
+sweatparka
+supima
+oxfordshirt!
+WhereUNIQLO
+parka
+mountainparka
+sweater
+fashion
+SPIRALGIRL
+firstdayofspring
+militaryjacket
+nike
+mamafasion
+coordinate
+dholic
+Tabio
+merryjenny 
+snoopy
+swatch
+code
+WEGO
+uniqlousa
+loo
+ATP
+Herno
+style
+KeithHaring
+
+thankyou
+
+**** influencer
+JenniferBachdim : twitter acc無し。追加
+ryanbyryanchua  : twitter acc無し。追加
+Jordanwclark    : twitter acc無し。追加
+the_styleintern
+deri1115
+hospdesign
+DoomaMymy
+o097q
+koyuri322
+RougeCloset
+mikimiki1225m3
+eileenliuphoto
+sacketted
+kishinorikadayo
+OutFit_JP
+highly_official
+utamaro_09
+ginocarlos
+toomokko
+Catherineaero
+mak_nko
+IXI94IXI
+CaseyMDavid
+yojuegotenis
+yujipampam78
+u2qlo
+aki_m0816
+bombbomb_m
+RogueQueen71
+KentaroHirase
+fashion_putipu
+akky_1202
+xhayatomanx
+milkcandy__d
+AL_gmilh
+KiaSuban
+Recessionista
+UniqloUSA
+
+*** 明日memberに見せたい
+*** ローカル
+innodb_file_format = Barracuda
+innodb_file_per_table = 1
+innodb_large_prefix
+
+*** staginに映るまで 開発環境へ
+*** 
+親hashへ [uniqlo] だけ入れる
+
+*** 負荷
+** [2015-03-21 土]
+*** ut8mb4 settings
+**** AWS RDS setting
+----------------------------------------------------------------
+innodb_file_format = Barracuda
+innodb_file_per_table = 1
+innodb_large_prefix
+----------------------------------------------------------------
+
+設定後、instance reboot。
+(当設定は、my.confの修正に相当)
+(AWSでは、AWS GUIで設定する)
+
+**** edit database.yml
+下記production内の内容をを追記
+
+----------------------------------------------------------------
+production:
+    encoding:  utf8mb4
+    charset:   utf8mb4
+    collation: utf8mb4_general_ci
+    reconnect: false
+----------------------------------------------------------------
+
+***** yml
+encoding:  utf8               | default encoding
+charset:   utf8               | default charset
+collation: utf8_general_ci    | 照合順序
+
+**** make db | utf8bm4
+create database `influencer` default character set utf8mb4;
+
+**** make table | utf8bm4
+***** description
+- table の default charasetを [UTF8mbr4] 指定
+- table 作成オプションとして、[ROW_FORMAT=DYNAMIC] を指定 (
+- 各カラムの charasetを [utb8bm4] 指定
+
+***** example : command 
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sns_post_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_account_id` int(11) DEFAULT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci,
+  `posted_at` datetime DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_comments_on_sns_post_id` (`sns_post_id`),
+  KEY `index_comments_on_user_account_id` (`user_account_id`),
+  CONSTRAINT `fk_comments_user_account_id` FOREIGN KEY (`user_account_id`) REFERENCES `user_accounts` (`id`)
+) ENGINE=InnoDB ROW_FORMAT=DYNAMIC AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+***** example : alter
+ALTER TABLE comments convert to character set utf8mb4;
+ALTER TABLE comments_media convert to character set utf8mb4;
+ALTER TABLE hashtags convert to character set utf8mb4;
+ALTER TABLE hashtags_media convert to character set utf8mb4;
+ALTER TABLE influencer_profiles convert to character set utf8mb4;
+ALTER TABLE media convert to character set utf8mb4;
+ALTER TABLE medium_approvals convert to character set utf8mb4;
+ALTER TABLE schema_migrations convert to character set utf8mb4;
+ALTER TABLE user_accounts convert to character set utf8mb4;
+***** railsへの組み込み
+前項のcharasetを railsへ組み込む必要あり
+
+*** 検索仕様
+**** insta 
+instaは、MASTER_HASH_TAGをみる
+uniqlolifewear
+
+MASTER_HASH_TAG, parent, child
+の3項目でand条件で検索
+
+**** twitter
+master hash tagは仕様しない
+(parent_hashtag and child_hashtag) or (parent_hashtag and child_hashtag) and...
+
+画像がないものは除外される (media)
+
+**** mysql
+create database `influencer` default character set utf8mb4;
+SET character_set_server = 'utf8mb4';
+show variables like 'character_set%';
+insert into hashtags (parent_hashtag, created_at, updated_at) values('uniqlo', '2015-03-02 20:00:00', '2015-03-02 20:00:00');
+
+**** 検索
+***** javascript
+***** rest
+***** streaming
+*** KEYWORD
+innodb barrcuda
+調べろ
+
+** [2015-03-20 金]
+*** phase2もやるよ
+*** 03/23 内部 仮リリース
+*** 03/25 残機能を入れる
+**** insta
+削除投稿、コメントを検知できない
+
+**** twitter
+コメント削除を検知できない
+replyも検知できない?
+*** 03/27 がリリース日
+** [2015-03-19 木]
+*** DONE crontab
+CLOSED: [2015-03-19 木 16:48]
+deploy, deploy.rb
+
+*** DONE 負荷試験について相談
+CLOSED: [2015-03-19 木 17:44]
+意味がわからないよ
+
+** [2015-03-18 水]
+*** WAITING 諏訪さん
+負荷試験方針の確認
+mail 送信ok
+返答待ち
+
+*** staging環境設定
+いつ頃、
+状態確認と構築
+確認点の考察
+
+*** 24日に実施予定
+*** 再確認 : 本番サーバーの構成
+どれが、user / batch server?
+判明したら自動起動設定などを施す
+
+*** TODO DB容量計算
+**** DONE 簡易資料作成
+CLOSED: [2015-03-18 水 16:39]
+**** 不明DBの再確認
+***** comments
+用途は?
+  
+***** comments_media
+用途は?
+  
+***** hashtags
+用途は?
+  
+***** hashtags_media
+用途は?
+  
+***** influencer_profiles
+influencer's
+手動保存
+想定数は?
+向こうさん次第
+  
+***** media
+snsからの取得情報保存
+  
+***** medium_approvals
+media tableの情報の補助情報
+可視、不可視などの設定
+web saveからsaveを押下した時点で保存される
+  
+***** user_accounts
+用途は?
+
+  
+  
+*** DONE server設定 : user server
+CLOSED: [2015-03-18 水 16:38]
+アクセス規制
+VPC内からのアクセスのみ許可
+　
+*** TODO 構成図更新してcybouzuへ
+*** TODO 本番deploy / 開発環境deploy
+編集作業が必要
+両方とも、productionでdeployするため
+DB設定などが固定されている
+
+capistrano使わなければいいか
+script組んでるし
+
+何かあるか
+本番で変更しなければいけないこと
+
+*** TODO 本番設定
+.bashrcへ
+
+**** sns
+export SECRET_KEY_BASE="04ac9f1b0931e1e080c404aa406f720f3392a29807a00c2b99082dfe1d43146ce1268eec299a19a06aa408fcef188ee5895fa704f9a3849355596fcff9ed425f"
+export UNIQLO_HASHTAG_MAIN_DATABASE_PASSWORD="QkIPwa9k"
+
+export  TWITTER_CONSUMER_KEY="hGXnBypOsG40sTVTr9vtGLmjT"
+export  TWITTER_CONSUMER_SECRET="2NYSk2dcKaFkGc9gFXo5OxOETSee0n9HKdLLdsbChkQriiSmPM"
+export  TWITTER_ACCESS_TOKEN="3040525110-m1WDikMktLXYFGwMkRpaPqzINa2JZBMrX09qPFw"
+export  TWITTER_TOKEN_SECRET="EfrkZQLG8E6JlQMCoww7nV4Y1HwCgwAVJcC6RGm2IhOl1"
+export  INSTAGRAM_CLIENT_ID="65bfae25a972496985e349a3d5467dba"
+export  INSTAGRAM_CLIENT_SECRET="64eb28aca5bd47f3bafda2fea7138477"
+export  INSTAGRAM_ACCESS_TOKEN="1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f"
+
+// facebook?
+
+**** user
+export SECRET_KEY_BASE=37b33d33ada3502b50ab2522790e3d3c4ec695a03fbcab94a111cdf5fe0b40301d7c6a7c925b60e9d3dfef3f9cac0631ff05c26cfe10d87cbbac9ef522f8e81d
+export UNIQLO_HASHTAG_MAIN_DATABASE_PASSWORD="QkIPwa9k"
+
+*** TODO 自動起動
+**** DONE 擬似環境
+CLOSED: [2015-03-18 水 11:22]
+user / sns serverの自動起動設定
+ 
+**** 本番環境
+user / sns serverの自動起動設定
+
+*** TODO Rails log lotate
+圧縮設定いれとかないとな
+
+*** DONE admin server
+CLOSED: [2015-03-18 水 11:23]
+databaseのpasswordを環境変数へ
+
+*** DONE security setting : user / admin server
+global IPでの直接のhttp/https通信を遮断。
+ELBからの通信のみを許可。
+
+
+* todos
+** DONE 東京出張
+SCHEDULED: <2015-04-01 水> CLOSED: [2015-06-16 火 10:55]
+管理部の方から
+社会保険料が上がってしまう
+明日、東京へ。
+10時台
+
+さぶろ協定の説明
+
+** DONE 負荷試験
+SCHEDULED: <2015-04-02 木> CLOSED: [2015-06-16 火 10:55]
+
+development環境で
+
+** TODO [#A] check
+SCHEDULED: <2015-03-19 木 +1d>
+- State "DONE"       from "TODO"       [2015-03-18 水 11:20]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2015-03-18 水 11:20]
+:END:
+
+*** TODO Server状態確認
+- State "DONE"       from ""           [2015-03-18 水 11:20]
+**** 容量
+script組むか
+でmail出す
+
+**** 起動状態 web/db
+これもscript組むか?
+
+** TODO [#C] 日報
+SCHEDULED: <2015-03-19 木 +1d>
+- State "DONE"       from "TODO"       [2015-03-31 火 18:53]
+- State "DONE"       from "TODO"       [2015-03-17 火 11:19]
+- State "DONE"       from "TODO"       [2015-03-16 月 11:19]
+- State "DONE"       from "TODO"       [2015-03-10 火 22:24]
+- State "DONE"       from "TODO"       [2015-03-09 月 09:19]
+- State "DONE"       from "TODO"       [2015-03-03 火 09:13]
+- State "DONE"       from "TODO"       [2015-03-03 火 09:13]
+- State "DONE"       from "TODO"       [2015-02-28 土 00:25]
+- State "DONE"       from "TODO"       [2015-02-27 金 01:38]
+- State "DONE"       from "TODO"       [2015-02-26 木 09:20]
+- State "DONE"       from "TODO"       [2015-02-26 木 09:19]
+- State "DONE"       from "TODO"       [2015-02-26 木 09:19]
+- State "DONE"       from "TODO"       [2015-02-26 木 09:19]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2015-03-31 火 18:53]
+:END:
+
+日報提出
+
+** TODO [#C] reminder
+SCHEDULED: <2015-03-15 日 +1d>
+- State "DONE"       from "TODO"       [2015-03-10 火 22:24]
+- State "DONE"       from "TODO"       [2015-03-10 火 01:13]
+- State "DONE"       from "TODO"       [2015-03-09 月 09:17]
+- State "DONE"       from "TODO"       [2015-03-01 日 00:02]
+- State "DONE"       from "TODO"       [2015-02-27 金 01:38]
+- State "DONE"       from "TODO"       [2015-02-26 木 09:19]
+- State "DONE"       from "TODO"       [2015-02-26 木 09:19]
+- State "DONE"       from "TODO"       [2015-02-26 木 09:19]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2015-03-10 火 22:24]
+:END:
+
+*** bakcup
+- AMI, 色々
+
+- version up時
+  AMI, source
+
+- server止めるとき注意
+
+*** 文章推敲
+注意。推敲しろ
+
+*** deploy時などは、メンテナンス時間を頂戴する。
+CLOSED: [2015-03-12 木 23:06]
+連携方法はその都度確認。
+(先方の連絡を待って作業をするなど)
+
+*** 日々気にする
+**** server容量は足りているか
+app log
+web server log
+mysql log
+
+data入力
+
+**** 稼働しているか
+
+** TODO [#A] 負荷試験調査
+Jmeter使用方法確認と、試行方法の確立
+Auto scale, cloud watchの設定と確認方法
+
+資料作成
+
+
+** TODO [#A] schema_validation
+app/model/influencer_profiles.rb
+
+validateが統一化されていない。
+が、共通化できるところはあるので、統一させる。
+
+** 多言語ファイルの整理
+en.ymlがperentとなる
+en-USは、enと同等
+
+en-MY, en-UKなどは差分だけ記述。
+不要ファイルは削除。
+
+----------------------------------------------------------------
+以下の言語ファイルをfallbackをしようして、ファイル数を少なくする。
+
+locales/models/influencer_profile/*yml
+locales/views/influencer_profile/*.yml
+locales/application/influencer_profile/*.yml
+
+
+----------------------------------------------------------------
+以下、柴田のイメージです。
+以下の内容は確認しながら、対応してください。
+
+    locales/models/influencer_profile/
+        en.ymlとen-US.ymlは内容が同じで良いので、en-US分をenにマージして、en-USを削除する。
+        en-AUは差分のみ残す。
+        en-GBは差分のみ残す。
+        en-MYは削除。en-USをマージしたen.ymlと同様。
+        en-SGは削除。en-USをマージしたen.ymlと同様。
+    locales/views/influencer_profile/
+        en.ymlとen-US.ymlは内容が同じで良いので、en-US分をenにマージして、en-USを削除する。
+        en-AUは差分のみ。
+        en-GBは差分のみ。
+        en-MYは削除。en-USをマージしたen.ymlと同様。
+        en-SGは削除。en-USをマージしたen.ymlと同様。
+    locales/application/influencer_profile/
+        en-US削除
+        en-AU削除
+        en-GB削除
+        en-MYは削除。
+        en-SGは削除。
+
+
+
+** TODO 本番環境でのdeploy script作成
+sns / user server未作成
+
+** TODO backup 暗号化手法
+*** TODO keyの置き場所
+暗号化、復号化鍵が同じ場所においてあるから
+置き場所を考えないといけない。
+
+*** DONE 暗号化方法
+- make key
+    openssl req -x509 -nodes -newkey rsa:2048  -keyout privatekey.pem  -out publickey.pem  -subj '/'
+
+- encrypt
+    openssl smime -encrypt -aes256 -in test.txt -binary -outform DEM -out test.txt.enc publickey.pem
+
+- decrypt
+    openssl smime -decrypt -in test.txt.enc -binary -inform DEM -inkey privatekey.pem -out test.txt
+
+** TODO [#B] nginx security 調査
+調べて行こう
+
+** TODO uniqlo開発環境の自動構築script作成
+保守期間は常時起動はしない。
+故に、snapshotから起動するようaws commandで作成。
+
+snapshotが変わる際には、scriptも修正が必要か
+
+** TODO 保守
+*** 作業項目 / 何か思いつく事があれば共有
+プログラムソースおよび開発資料の保管および更新
+開発ツールの保持
+保守体制の構築、維持
+保守対象アプリケーションに関するお問い合わせ対応
+障害時の問題の切り分け
+作業が発生する場合は、別途お見積りとなります。
+本番サーバおよびステージングサーバのセキュリティアップデート対応（Ruby, Ruby on Rails, unicorn）
+対象ソフトウェアに関しては、別途協議する。
+
+対応可能時間、手段
+祝祭日、休業日を除く月～金曜日、9時00分～18時00分
+電話、もしくはメールでの受付
+
+保守対応範囲
+アプリケーションレイヤー
+※インフラ保守に関しては、NTTデータ様にて実施いただける想定です。
+
+*** DONE 料金調査 / メール送信
+CLOSED: [2015-03-12 木 22:51]
+5日間稼働
+
+
+** WAITING プロセス監視
+- admin server
+  basic認証はrails側で入れているので再起動が必要
+  また、沼沢が修正を入れていいのか…相談
+  セキュリティホールになるのはNG
+
+- batch
+  basic認証いれていないが…
+  streamingにbasic認証は必要か?
+
+** linux mail, 解凍ファイル文字
+** DONE rails app自動起動設定
+CLOSED: [2015-03-18 水 10:55]
+user / sns 各種サーバー
+
+** DONE DB抽出
+CLOSED: [2015-03-18 水 10:50]
+*** admin
+ActiveRecord::Schema.define(version: 20150314053723) do
+
+  create_table "user_accounts", force: :cascade do |t|
+    t.string   "sns",               limit: 255
+    t.string   "sns_user_id",       limit: 255
+    t.string   "username",          limit: 255
+    t.string   "full_name",         limit: 255
+    t.text     "description",       limit: 65535
+    t.integer  "follows_count",     limit: 4
+    t.integer  "followed_by_count", limit: 4
+    t.string   "user_page_url",     limit: 255
+    t.string   "user_website_url",  limit: 255
+    t.string   "profile_image_url", limit: 255
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["sns_user_id", "sns"], :name => "index_user_accounts_on_sns_user_id_and_sns", :unique => true
+    t.index ["sns_user_id"], :name => "index_user_accounts_on_sns_user_id"
+  end
+
+ create_table "comments", force: :cascade do |t|
+    t.string   "type",            limit: 255
+    t.string   "sns_post_id",     limit: 255
+    t.integer  "user_account_id", limit: 4
+    t.text     "content",         limit: 65535
+    t.datetime "posted_at"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["sns_post_id"], :name => "index_comments_on_sns_post_id"
+    t.index ["user_account_id"], :name => "index_comments_on_user_account_id"
+    t.foreign_key ["user_account_id"], "user_accounts", ["id"], :on_update => :restrict, :on_delete => :restrict, :name => "fk_comments_user_account_id"
+ end
+
+  create_table "media", force: :cascade do |t|
+    t.string   "type",            limit: 255
+    t.string   "sns_post_id",     limit: 255
+    t.integer  "user_account_id", limit: 4
+    t.text     "content",         limit: 65535
+    t.datetime "posted_at"
+    t.string   "post_url",        limit: 255
+    t.string   "photo_id",        limit: 255
+    t.string   "photo_url",       limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["sns_post_id"], :name => "index_media_on_sns_post_id"
+    t.index ["user_account_id"], :name => "index_media_on_user_account_id"
+    t.foreign_key ["user_account_id"], "user_accounts", ["id"], :on_update => :restrict, :on_delete => :restrict, :name => "fk_media_user_account_id"
+  end
+
+  create_table "comments_media", id: false, force: :cascade do |t|
+    t.integer "comment_id", limit: 4
+    t.integer "medium_id",  limit: 4
+    t.index ["comment_id"], :name => "index_comments_media_on_comment_id"
+    t.index ["medium_id"], :name => "index_comments_media_on_medium_id"
+    t.foreign_key ["comment_id"], "comments", ["id"], :on_update => :restrict, :on_delete => :restrict, :name => "fk_comments_media_comment_id"
+    t.foreign_key ["medium_id"], "media", ["id"], :on_update => :restrict, :on_delete => :restrict, :name => "fk_comments_media_medium_id"
+  end
+
+  create_table "hashtags", force: :cascade do |t|
+    t.string   "parent_hashtag", limit: 50,   null: false
+    t.string   "hashtag",        limit: 50
+    t.string   "comment",        limit: 1000
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+
+  create_table "hashtags_media", id: false, force: :cascade do |t|
+    t.integer "hashtag_id", limit: 4
+    t.integer "medium_id",  limit: 4
+    t.index ["hashtag_id"], :name => "index_hashtags_media_on_hashtag_id"
+    t.index ["medium_id"], :name => "index_hashtags_media_on_medium_id"
+    t.foreign_key ["hashtag_id"], "hashtags", ["id"], :on_update => :restrict, :on_delete => :restrict, :name => "fk_hashtags_media_hashtag_id"
+    t.foreign_key ["medium_id"], "media", ["id"], :on_update => :restrict, :on_delete => :restrict, :name => "fk_hashtags_media_medium_id"
+  end
+
+
+  create_table "influencer_profiles", force: :cascade do |t|
+    t.string   "name",               limit: 100,                  null: false
+    t.string   "gender",             limit: 255,                  null: false
+    t.string   "country",            limit: 255,                  null: false
+    t.string   "postal_code",        limit: 100,                  null: false
+    t.string   "address",            limit: 100,                  null: false
+    t.string   "phone_number",       limit: 100,                  null: false
+    t.string   "email_address",      limit: 100,                  null: false
+    t.string   "account_facebook",   limit: 100
+    t.string   "account_twitter",    limit: 100
+    t.string   "account_instagram",  limit: 100
+    t.string   "favorite_url1",      limit: 100
+    t.string   "favorite_url2",      limit: 100
+    t.string   "favorite_url3",      limit: 100
+    t.string   "tops_size",          limit: 255,                  null: false
+    t.string   "bottoms_size",       limit: 255,                  null: false
+    t.string   "bottoms_inner_size", limit: 255,                  null: false
+    t.string   "size_comment",       limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "uniqlo_comment",     limit: 1000
+    t.boolean  "topics_fashion",     limit: 1,    default: false
+    t.boolean  "topics_art",         limit: 1,    default: false
+    t.boolean  "topics_culture",     limit: 1,    default: false
+    t.boolean  "topics_travel",      limit: 1,    default: false
+    t.boolean  "topics_pets",        limit: 1,    default: false
+    t.boolean  "topics_sports",      limit: 1,    default: false
+    t.boolean  "topics_food",        limit: 1,    default: false
+    t.boolean  "topics_kids",        limit: 1,    default: false
+    t.boolean  "topics_friends",     limit: 1,    default: false
+    t.boolean  "topics_music",       limit: 1,    default: false
+    t.boolean  "topics_other",       limit: 1,    default: false
+    t.string   "topics_comment",     limit: 30
+  end
+
+  create_table "medium_approvals", force: :cascade do |t|
+    t.integer  "medium_id",  limit: 4
+    t.boolean  "display",    limit: 1
+    t.boolean  "featured",   limit: 1, default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.index ["medium_id"], :name => "fk__medium_approvals_medium_id"
+    t.foreign_key ["medium_id"], "media", ["id"], :on_update => :restrict, :on_delete => :restrict, :name => "fk_medium_approvals_medium_id"
+  end
+
+*** sns
+  create_table "comments", force: :cascade do |t|
+    t.string   "type",            limit: 255
+    t.string   "sns_post_id",     limit: 255
+    t.integer  "user_account_id", limit: 4
+    t.text     "content",         limit: 65535
+    t.datetime "posted_at"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "comments", ["user_account_id"], name: "index_comments_on_user_account_id", using: :btree
+
+  create_table "comments_media", id: false, force: :cascade do |t|
+    t.integer "comment_id", limit: 4
+    t.integer "medium_id",  limit: 4
+  end
+
+  add_index "comments_media", ["comment_id"], name: "index_comments_media_on_comment_id", using: :btree
+  add_index "comments_media", ["medium_id"], name: "index_comments_media_on_medium_id", using: :btree
+
+  create_table "media", force: :cascade do |t|
+    t.string   "type",            limit: 255
+    t.string   "sns_post_id",     limit: 255
+    t.integer  "user_account_id", limit: 4
+    t.text     "content",         limit: 65535
+    t.datetime "posted_at"
+    t.string   "post_url",        limit: 255
+    t.string   "photo_id",        limit: 255
+    t.string   "photo_url",       limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "hashtags",        limit: 255
+  end
+
+  add_index "media", ["sns_post_id"], name: "index_media_on_sns_post_id", using: :btree
+  add_index "media", ["user_account_id"], name: "index_media_on_user_account_id", using: :btree
+
+  create_table "user_accounts", force: :cascade do |t|
+    t.string   "sns",               limit: 255
+    t.string   "sns_user_id",       limit: 255
+    t.string   "username",          limit: 255
+    t.string   "full_name",         limit: 255
+    t.text     "description",       limit: 65535
+    t.integer  "follows_count",     limit: 4
+    t.integer  "followed_by_count", limit: 4
+    t.string   "user_page_url",     limit: 255
+    t.string   "user_website_url",  limit: 255
+    t.string   "profile_image_url", limit: 255
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "user_accounts", ["sns_user_id", "sns"], name: "index_user_accounts_on_sns_user_id_and_sns", unique: true, using: :btree
+  add_index "user_accounts", ["sns_user_id"], name: "index_user_accounts_on_sns_user_id", using: :btree
+
+  add_foreign_key "comments", "user_accounts"
+  add_foreign_key "media", "user_accounts"
+
+*** user | none
+*** all
+**** comments;
+|-----------------+--------------+------+-----+---------+----------------+-------|
+| Field           | Type         | Null | Key | Default | Extra          | bytes |
+|-----------------+--------------+------+-----+---------+----------------+-------|
+| id              | int(11)      | NO   | PRI | NULL    | auto_increment |     4 |
+| type            | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| sns_post_id     | varchar(255) | YES  | MUL | NULL    |                | 255x3 |
+| user_account_id | int(11)      | YES  | MUL | NULL    |                |     4 |
+| content         | text         | YES  |     | NULL    |                |  1000 |
+| posted_at       | datetime     | YES  |     | NULL    |                |     8 |
+| created_at      | datetime     | NO   |     | NULL    |                |     8 |
+| updated_at      | datetime     | NO   |     | NULL    |                |     8 |
+|-----------------+--------------+------+-----+---------+----------------+-------|
+|                 |              |      |     |         |                |  2562 |
+|-----------------+--------------+------+-----+---------+----------------+-------|
+
+**** comments_media;
+|------------+---------+------+-----+---------+-------+-------|
+| Field      | Type    | Null | Key | Default | Extra | bytes |
+|------------+---------+------+-----+---------+-------+-------|
+| comment_id | int(11) | YES  | MUL | NULL    |       |     4 |
+| medium_id  | int(11) | YES  | MUL | NULL    |       |     4 |
+|------------+---------+------+-----+---------+-------+-------|
+|            |         |      |     |         |       |     8 |
+|------------+---------+------+-----+---------+-------+-------|
+
+**** hashtags;
+|----------------+---------------+------+-----+---------+----------------+--------|
+| Field          | Type          | Null | Key | Default | Extra          |  bytes |
+|----------------+---------------+------+-----+---------+----------------+--------|
+| id             | int(11)       | NO   | PRI | NULL    | auto_increment |      4 |
+| parent_hashtag | varchar(50)   | NO   |     | NULL    |                |   50x3 |
+| hashtag        | varchar(50)   | YES  |     | NULL    |                |   50x3 |
+| comment        | varchar(1000) | YES  |     | NULL    |                | 1000x3 |
+| created_at     | datetime      | NO   |     | NULL    |                |      8 |
+| updated_at     | datetime      | NO   |     | NULL    |                |      8 |
+|----------------+---------------+------+-----+---------+----------------+--------|
+|                |               |      |     |         |                |   3320 |
+|----------------+---------------+------+-----+---------+----------------+--------|
+
+**** influencer_profiles;
+|--------------------+---------------+------+-----+---------+----------------+--------|
+| Field              | Type          | Null | Key | Default | Extra          |  bytes |
+|--------------------+---------------+------+-----+---------+----------------+--------|
+| id                 | int(11)       | NO   | PRI | NULL    | auto_increment |      4 |
+| name               | varchar(100)  | NO   |     | NULL    |                |  100x3 |
+| gender             | varchar(255)  | NO   |     | NULL    |                |  255x3 |
+| country            | varchar(255)  | NO   |     | NULL    |                |  255x3 |
+| postal_code        | varchar(100)  | NO   |     | NULL    |                |  100x3 |
+| address            | varchar(100)  | NO   |     | NULL    |                |  100x3 |
+| phone_number       | varchar(100)  | NO   |     | NULL    |                |  100x3 |
+| email_address      | varchar(100)  | NO   |     | NULL    |                |  100x3 |
+| account_facebook   | varchar(100)  | YES  |     | NULL    |                |  100x3 |
+| account_twitter    | varchar(100)  | YES  |     | NULL    |                |  100x3 |
+| account_instagram  | varchar(100)  | YES  |     | NULL    |                |  100x3 |
+| favorite_url1      | varchar(100)  | YES  |     | NULL    |                |  100x3 |
+| favorite_url2      | varchar(100)  | YES  |     | NULL    |                |  100x3 |
+| favorite_url3      | varchar(100)  | YES  |     | NULL    |                |  100x3 |
+| tops_size          | varchar(255)  | NO   |     | NULL    |                |  255x3 |
+| bottoms_size       | varchar(255)  | NO   |     | NULL    |                |  255x3 |
+| bottoms_inner_size | varchar(255)  | NO   |     | NULL    |                |  255x3 |
+| size_comment       | varchar(255)  | YES  |     | NULL    |                |  255x3 |
+| created_at         | datetime      | NO   |     | NULL    |                |      8 |
+| updated_at         | datetime      | NO   |     | NULL    |                |      8 |
+| uniqlo_comment     | varchar(1000) | YES  |     | NULL    |                | 1000x3 |
+| topics_fashion     | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_art         | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_culture     | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_travel      | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_pets        | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_sports      | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_food        | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_kids        | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_friends     | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_music       | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_other       | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_comment     | varchar(30)   | YES  |     | NULL    |                |   30x3 |
+|--------------------+---------------+------+-----+---------+----------------+--------|
+|                    |               |      |     |         |                |   8011 |
+|--------------------+---------------+------+-----+---------+----------------+--------|
+
+**** media;
+|-----------------+--------------+------+-----+---------+----------------+-------|
+| Field           | Type         | Null | Key | Default | Extra          | bytes |
+|-----------------+--------------+------+-----+---------+----------------+-------|
+| id              | int(11)      | NO   | PRI | NULL    | auto_increment |     4 |
+| type            | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| sns_post_id     | varchar(255) | YES  | MUL | NULL    |                | 255x3 |
+| user_account_id | int(11)      | YES  | MUL | NULL    |                |     4 |
+| content         | text         | YES  |     | NULL    |                |  1000 |
+| posted_at       | datetime     | YES  |     | NULL    |                |     8 |
+| post_url        | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| photo_id        | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| photo_url       | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| created_at      | datetime     | NO   |     | NULL    |                |     8 |
+| updated_at      | datetime     | NO   |     | NULL    |                |     8 |
+|-----------------+--------------+------+-----+---------+----------------+-------|
+
+**** medium_approvals;
+|------------+------------+------+-----+---------+----------------+-------|
+| Field      | Type       | Null | Key | Default | Extra          | bytes |
+|------------+------------+------+-----+---------+----------------+-------|
+| id         | int(11)    | NO   | PRI | NULL    | auto_increment |     4 |
+| medium_id  | int(11)    | YES  | MUL | NULL    |                |     4 |
+| display    | tinyint(1) | YES  |     | NULL    |                |     1 |
+| featured   | tinyint(1) | YES  |     | 0       |                |     1 |
+| created_at | datetime   | NO   |     | NULL    |                |     8 |
+| updated_at | datetime   | NO   |     | NULL    |                |     8 |
+|------------+------------+------+-----+---------+----------------+-------|
+
+**** user_accounts;
+|-------------------+--------------+------+-----+---------+----------------+-------|
+| Field             | Type         | Null | Key | Default | Extra          | bytes |
+|-------------------+--------------+------+-----+---------+----------------+-------|
+| id                | int(11)      | NO   | PRI | NULL    | auto_increment |     4 |
+| sns               | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| sns_user_id       | varchar(255) | YES  | MUL | NULL    |                | 255x3 |
+| username          | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| full_name         | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| description       | text         | YES  |     | NULL    |                |  1000 |
+| follows_count     | int(11)      | YES  |     | NULL    |                |     4 |
+| followed_by_count | int(11)      | YES  |     | NULL    |                |     4 |
+| user_page_url     | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| user_website_url  | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| profile_image_url | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| created_at        | datetime     | NO   |     | NULL    |                |     8 |
+| updated_at        | datetime     | NO   |     | NULL    |                |     8 |
+|-------------------+--------------+------+-----+---------+----------------+-------|
+
+*** 想定レコード数
+*** ダミーデータ投入
+**** influencer
+2000人 * 11,011byte
+22,022,000byte
+
+**** media
+- media
+  2000人 * 10post/day = 20,000
+  20000 * 30 = 600000 posts / month
+  
+- 最大値
+  600,000 * 4,857byte = 2,914,200,000
+
+- test dataの想定
+  600,000 * 638byte = 382,800,000
+
+  論理 397MByte
+  物理 403MByte
+
+**** media_approvals
+1data 26byte
+26 * 900 = 23,400
+
+
+*** 論理データ量確認
+select table_name, round(data_length/1024/1024, 2) as 'data_size(MB)', round(index_length/1024/1024, 2) as 'index_size(MB)' from information_schema.tables where table_name='influencer_profiles';
+
+
+select  
+table_name, engine, table_rows as tbl_rows, avg_row_length as rlen,  
+floor((data_length+index_length)/1024/1024) as allMB,  #総容量
+floor((data_length)/1024/1024) as dMB,  #データ容量
+floor((index_length)/1024/1024) as iMB   #インデックス容量
+from information_schema.tables  
+where table_schema=database()  
+order by (data_length+index_length) desc; 
+
+select
+    table_name, 
+    engine, 
+    table_rows, 
+    avg_row_length,  
+    floor((data_length+index_length)) as all_Byte,  #総容量
+    floor((data_length)) as data_Byte,  #データ容量
+    floor((index_length)) as index_Byte   #インデックス容量
+from
+    information_schema.tables  
+where
+    table_schema=database()  
+order by
+    (data_length+index_length) desc;
+
+*** 物理データ量確認
+
+* Projects
+** 00000_template
+*** todos
+# todos, schejule
+
+*** Env
+# 開発, server環境情報
+
+*** Flow : project
+# projectの仕様変更、打ち合わせによる状態変異など
+
+**** description
+***** 担当者
+
+*** Flow : deploy, server setting
+# 固定化済み作業, など
+
+*** Keywords
+# 当projectに関わる単語群
+
+tagboard
+
+** 00001_marunouchi pics
+*** todos
+**** DONE [富士]ブックマーク解除の色変更
+CLOSED: [2015-02-18 水 17:50]
+小林さんが対応
+
+**** DONE [富士]ブックマーク解除の文言変更
+CLOSED: [2015-02-18 水 17:51]
+
+「済み」へ変更
+de
+
+
+**** DONE [#B] marupix response待ち
+CLOSED: [2015-02-27 金 01:37]
+修正対応方針待ち
+
+***** [2015-02-17 火]
+小林氏の修正をdeploy
+沼沢の修正分をpushしdeploy
+***** [2015-02-16 月]
+返信あり
+**** TODO [#A] soruce理解
+***** 頭出し
+来週、以降の細かい修正をお願いしたい。
+全体構造の理解をすすめる。
+次回の依頼
+
+沼沢にもチケットをふる。
+02/17に間に合わないようなら、即チケットは返却し相談。
+
+***** CANCEL [#A] admin画面の編集
+CLOSED: [2015-02-15 日 16:55]
+<2015-02-14 土>-<2015-02-16 月>
+
+囲み線を他の右側の線を変更
+太めにして淡い色に変更
+**** DONE 本番環境へのdeployは誰が行うか
+CLOSED: [2015-02-27 金 01:42]
+柴田さん預かり
+恐らくdeployしない
+
+メールには、repository一式を納品時に頂戴できれば
+とあり。
+
+***** 疑問
+- deploy誰がやるのか?
+
+- メールでは、repositoryを渡せばokとあったが
+    repository譲渡で、imageを渡すのではない?
+
+- マニュアルが必要?
+- 開発方法を理解していないので、イメージがわかない
+
+*** schejuled
+*** 担当者
+三菱地所
+
+*** 環境
+- source管理
+  githubでweb上で共有設定を頂戴済み
+  沼沢の鍵でアクセスできる?
+
+*** strcutures
+**** image共有/初期設定/起動方法など
+***** original image name
+maru-stg2
+
+***** nginx setting
+$ vim /etc/nginx/nginx.conf
+
+****** basic認証
+ID   : marupix
+pass : mec_marupix
+
+;; 初期設定をそのまま使用
+;; http://~~/, http://~~/admin/ 双方で認証が入る
+
+****** server_name設定
+74行目  :  server_name  stg-marupix.agsr.org  # コメントアウト
+75行目  :  server_name  ec2-54-92-102-138.ap-northeast-1.compute.amazonaws.com;  # 追記
+
+// ruby環境のURLへ変更
+// IP固定予定
+  
+****** location ~ /admin  # access 設定
+deny all;  # コメントアウト
+allow all; # 追記
+
+// http://~~/admin へのアクセス権限
+
+****** 全体アクセスaccess設定
+128行目付近
+allow all; # コメントを外す
+
+// http://~~~/ へのアクセス権限
+
+****** redirect設定
+156行目以下全てコメントアウト
+marunouchipixの本HPへredirectしているため
+// 開発環境では不要
+
+***** nginx 起動
+$ sudo service nginx start
+
+// 設定後起動
+// 前述の設定変更後に起動
+
+***** mysql 起動
+image起動直後、自動起動されている
+
+***** rails 起動
+$ sudo su - cap
+$ cd /var/rails/marunouchi_pix/current
+$ bundle exec unicorn_rails -c config/unicorn/staging.rb -E staging -D
+
+// ec2-userでは起動できず
+// cap userで行う
+
+**** applications
+***** OS
+Linux marunouchi-stg 3.10.48-55.140.amzn1.x86_64 #1 SMP Wed Jul 9 23:32:19 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+
+***** web
+nginx   : 1.4.7
+unicorn : 4.8.2
+mysql   : mysql  Ver 14.14 Distrib 5.5.40, for Linux (x86_64) using readline 5.1
+
+***** language / framework
+ruby      : 2.1.2p95 (2014-05-08 revision 45877) [x86_64-linux]
+rails     : 4.1.4
+Bootstrap : 3.1.1
+
+**** database
+***** login to mysql CUI
+$ sudo mysql -u marupix -p
+HyW9554ijBCAeWov1Sx5
+
+***** rails database.yml
+staging:
+    adapter: mysql2
+    encoding: utf8
+    database: marunouchi_pix_staging
+    pool: 5
+    username: marupix
+    password: HyW9554ijBCAeWov1Sx5
+
+production:
+    adapter: mysql2
+    encoding: utf8
+    reconnect: false
+    host: marupix.ccuxzdz4ubgj.ap-northeast-1.rds.amazonaws.com
+    database: marunouchi_pix_production
+    pool: 5
+    username: marupix
+    password: 9kefnoMXvTs6vplNsWyn
+
+***** DB / table
+****** DB
+marunouchi_pix_staging
+
+****** tables
+******* admin_users
+|------------------------+--------------+------+-----+---------+----------------|
+| Field                  | Type         | Null | Key | Default | Extra          |
+|------------------------+--------------+------+-----+---------+----------------|
+| id                     | int(11)      | NO   | PRI | NULL    | auto_increment |
+| email                  | varchar(255) | NO   | UNI |         |                |
+| encrypted_password     | varchar(255) | NO   |     |         |                |
+| role                   | varchar(255) | NO   |     | editor  |                |
+| reset_password_token   | varchar(255) | YES  | UNI | NULL    |                |
+| reset_password_sent_at | datetime     | YES  |     | NULL    |                |
+| remember_created_at    | datetime     | YES  |     | NULL    |                |
+| sign_in_count          | int(11)      | NO   |     | 0       |                |
+| current_sign_in_at     | datetime     | YES  |     | NULL    |                |
+| last_sign_in_at        | datetime     | YES  |     | NULL    |                |
+| current_sign_in_ip     | varchar(255) | YES  |     | NULL    |                |
+| last_sign_in_ip        | varchar(255) | YES  |     | NULL    |                |
+| created_at             | datetime     | YES  |     | NULL    |                |
+| updated_at             | datetime     | YES  |     | NULL    |                |
+|------------------------+--------------+------+-----+---------+----------------|
+
+******* comments
+|---------------+----------+------+-----+---------+----------------|
+| Field         | Type     | Null | Key | Default | Extra          |
+|---------------+----------+------+-----+---------+----------------|
+| id            | int(11)  | NO   | PRI | NULL    | auto_increment |
+| admin_user_id | int(11)  | NO   |     | NULL    |                |
+| medium_id     | int(11)  | NO   |     | NULL    |                |
+| text          | text     | YES  |     | NULL    |                |
+| created_at    | datetime | YES  |     | NULL    |                |
+| updated_at    | datetime | YES  |     | NULL    |                |
+|---------------+----------+------+-----+---------+----------------|
+
+******* media
+|-------------------+--------------+------+-----+---------+----------------|
+| Field             | Type         | Null | Key | Default | Extra          |
+|-------------------+--------------+------+-----+---------+----------------|
+| id                | int(11)      | NO   | PRI | NULL    | auto_increment |
+| instagram_comment | int(11)      | NO   |     | 0       |                |
+| image_thumb       | text         | NO   |     | NULL    |                |
+| image_low         | text         | NO   |     | NULL    |                |
+| image_standard    | text         | NO   |     | NULL    |                |
+| instagram_like    | int(11)      | NO   |     | 0       |                |
+| original_url      | text         | NO   | UNI | NULL    |                |
+| posted_at         | datetime     | YES  |     | NULL    |                |
+| status            | varchar(255) | NO   | MUL | active  |                |
+| text              | text         | YES  |     | NULL    |                |
+| user_image        | text         | NO   |     | NULL    |                |
+| user_name         | varchar(255) | NO   |     | NULL    |                |
+| created_at        | datetime     | YES  |     | NULL    |                |
+| updated_at        | datetime     | YES  |     | NULL    |                |
+| pickup_order      | int(11)      | YES  | MUL | NULL    |                |
+| instagram_id      | varchar(255) | YES  |     | NULL    |                |
+| media_type        | varchar(255) | NO   |     | image   |                |
+| pickuped_at       | datetime     | YES  |     | NULL    |                |
+|-------------------+--------------+------+-----+---------+----------------|
+
+******* medium_ngs
+|------------+--------------+------+-----+---------+----------------|
+| Field      | Type         | Null | Key | Default | Extra          |
+|------------+--------------+------+-----+---------+----------------|
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| word       | varchar(255) | NO   |     | NULL    |                |
+| created_at | datetime     | YES  |     | NULL    |                |
+| updated_at | datetime     | YES  |     | NULL    |                |
+|------------+--------------+------+-----+---------+----------------|
+
+******* schema_migrations
+|---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
+|---------+--------------+------+-----+---------+-------+
+| version | varchar(255) | NO   | PRI | NULL    |       |
+|---------+--------------+------+-----+---------+-------+
+
+**** cron
+***** setting on cap user
+$ crontab -e
+
+# Begin Whenever generated tasks for: marunouchi_pix_staging
+05,15,25,35,45,55 1-23 * * * /bin/bash -l -c 'cd /var/rails/marunouchi_pix/releases/20140812091155 && RAILS_ENV=staging bundle exec rake instagram:get_tag_media --silent >> log/cron.log 2>&1'
+05 0 * * * /bin/bash -l -c 'cd /var/rails/marunouchi_pix/releases/20140812091155 && RAILS_ENV=staging bundle exec rake instagram:update_info --silent >> log/cron.log 2>&1'
+05 1 * * * /bin/bash -l -c 'cd /var/rails/marunouchi_pix/releases/20140812091155 && RAILS_ENV=staging bundle exec rake instagram:check_image --silent >> log/cron.log 2>&1'
+# End Whenever generated tasks for: marunouchi_pix_staging
+
+**** basic認証
+- 以下、双方でbasic認証が入る
+    http://~~~~/
+    http://~~~~/admin
+
+- 認証情報    
+    ID   : marupix
+    PASS : mec_marupix    
+
+**** rails directory
+***** root
+/var/rails/marunouchi_pix
+
+***** nginx.conf内での読み込み先 (root dir指定)
+/var/rails/marunouchi_pix/current/public
+
+// current dirは symbolic link
+// 参照先は、/var/rails/marunouchi_pix/releases/20140812091155
+// crontabの内容と合致
+
+**** http / ssh access
+***** http
+http://ec2-54-92-102-138.ap-northeast-1.compute.amazonaws.com/
+
+***** ssh
+ssh -i s-numasawa-key-pair-tokyo.pem root@54.92.102.138
+
+**** rake
+以下、実行せずとも動いたので不要とも思える。
+instagramデターの取得は、cronで自動実行されている。
+根拠を特定できず。
+
+
+以下、森氏よりの情報
+----------------------------------------------------------------
+ですが、最初だけlib/taskの下のrakeを実行してください。
+(ハッシュタグに紐づくinstaデータを取ってくるとかの処理)
+cron自体は気にしなくてもよいです。スコープに関係ないのと取りすぎると
+API制限に引っかかる恐れがあるためです。
+
+機能
+    - 投稿の検索10分1回 : 新規追加
+    - ユーザー側のコメント、ライクを1日おきで更新
+    - ユーザー投稿を非公開/削除した場合
+    - NoImageを出す処理
+----------------------------------------------------------------
+
+
+上記と、crontabの情報、rakeファイル内を参照し、実行可能な処理は以下。
+----------------------------------------------------------------
+$ bundle exec rake db_load:medium_ng_by_csv RAILS_ENV=staging
+
+$ bundle exec rake instagram:get_tag_media      RAILS_ENV=staging  # instagramの特定のタグの付いた写真を取得
+$ bundle exec rake instagram:update_info        RAILS_ENV=staging  # DB内のinstagram(media)の情報を最新に更新(最新1,500件)'
+$ bundle exec rake instagram:check_image        RAILS_ENV=staging  # instagram(media)の画像の存在確認
+$ bundle exec rake instagram:update_pickup_date RAILS_ENV=staging  # ステータスがpickupの場合はピックアップ日時を更新
+----------------------------------------------------------------
+
+
+実行対象
+// cronで自動実行されているので、基本実行しなくて良い様にみえる
+----------------------------------------------------------------
+$ sudo su - cap 
+$ cd /var/rails/marunouchi_pix/releases/20140812091155
+
+# cronで、10分毎に実行されている
+$ bundle exec rake instagram:get_tag_media      RAILS_ENV=staging  # instagramの特定のタグの付いた写真を取得
+
+# cronで、00:05に実行されている。重い
+# cronの情報を見るに下記コマンドは、cronを止め、instagram:get_tag_mediaが未動作の時に実行する必要がある
+$ bundle exec rake instagram:update_info        RAILS_ENV=staging  # DB内のinstagram(media)の情報を最新に更新(最新1,500件)'
+
+# cronで、01:05に実行されている。軽い
+$ bundle exec rake instagram:check_image        RAILS_ENV=staging  # instagram(media)の画像の存在確認
+----------------------------------------------------------------
+
+*** 初期設定 / deploy
+**** marupix settings
+***** AWSへログイン
+***** EC2 instance起動
+- EC2を開く
+- AMIを選択
+- 絞り込みから [private images] を選択
+- [maru-stg2] を右クリック
+- [Launch] を選択
+
+- [t2.midium] を選択
+- [Next: Configure Instance Details] を選択
+- networkから [test_vps] を選択  # [marupix] へ変更予定
+- [Preview and Launch] を選択
+
+- [Edit Security Group] を選択
+- [Select an existing security group] を選択
+- [marpupix] を選択
+- [Preview and Launch] を選択
+
+- [Launch] を選択
+
+- SSH key選択
+  [choose an existing key pair] を選択
+  [s-numasawa-key-pari-tokyo] を選択
+  [check boxをchekc]
+  [Launchi Instance] を選択
+
+# maru-stg2は、AWS内で共有されたimage
+
+***** Elastic IP割り当て
+- [Elastic IPs] を選択
+- [54.92.111.233] を右クリック
+- [Associate Address] を選択
+- marupix instanceを指定
+  (instance formをfocusすると、running中のinstance名が表示され、選択可能)
+  (instance一覧の、instance IDから確認可能
+
+- [Associate] を選択
+
+  (以上で、対象IPにグローバルIPが割り当てられる)
+
+***** ssh access
+- $ ssh ec2-user@54.92.111.233
+
+# keyは、担当者から入手
+
+**** marupix deploy
+***** su to cap user
+$ su - cap
+
+***** make release dir
+$ cd /var/rails/marunouchi_pix/releases/
+$ mkdir `date +"%Y%m%d%H%M%S"`
+$ cd 20150212180122
+
+# dir名は、日付時刻で変動します
+
+***** source DL
+# 現状では、github上のprivate領域からDL
+https://github.com/arsnovare/marunouchi_pix-develop/tree/fuji-bul
+
+# branch間違えないように。
+# 最新版を落とす
+
+***** upload source 
+# upload
+$ scp marunouchi_pix-develop-fuji-bul.zip ec2-user@54.92.111.233:/var/rails/marunouchi_pix/releases/20150212180122/
+
+$ unzip ./marunouchi_pix-develop-fuji-bul.zip
+$ rm ./marunouchi_pix-develop-fuji-bul.zip
+$ mv ./marunouchi_pix-develop-fuji-bul/* ./
+$ rm -rf ./marunouchi_pix-develop-fuji-bul
+
+***** bundle install
+# 数分待機
+$ bundle install
+
+# make db
+$ bundle exec rake db:migrate RAILS_ENV=staging
+
+# css, jsの圧縮? (及び、恐らく読み込みファイル名の変更)
+$ rake assets:clobber
+$ rake assets:precompile
+
+***** make symbolic link
+# 元々存在する、release dir群を踏襲
+****** bin, log dir
+$ rm -rf ./log
+$ ln -s /var/rails/marunouchi_pix/shared/log/ ./log
+
+$ rm -rf ./bin
+$ ln -s /var/rails/marunouchi_pix/shared/bin/ ./bin
+
+****** change current release dir
+# 最新版のdirを指定
+$ cd /var/rails/marunouchi_pix/current/
+$ rm ./current
+$ ln -s /var/rails/marunouchi_pix/releases/20150212180122/ ./current
+
+***** nginx setting & start
+$ sudo su -
+$ chkconfig nginx on
+$ vim /etc/nginx/nginx.conf
+--------------------------------
+-  87行目 : コメントアウト
+- 144行目 : #を削除
+
+-  74行目 : コメントアウト
+-  75行目 : 以下追記
+           server_name  ec2-54-92-111-233.ap-northeast-1.compute.amazonaws.com;
+--------------------------------
+# 一度のみ実施
+# deploy二回目からは不要
+
+
+$ /etc/init.d/nginx restart
+
+***** rails/unicorn start
+$ cd /var/rails/marunouchi_pix/current/
+$ bundle exec unicorn_rails -c ./config/unicorn/staging.rb -E staging -D
+
+***** done
+下記へアクセスし、web画面が開くことを確認。
+http://ec2-54-92-111-233.ap-northeast-1.compute.amazonaws.com/admin
+ 
+**** marupix dir structure
+/var/rails/
+└── marunouchi_pix
+    ├── current -> /var/rails/marunouchi_pix/releases/20150212180122/
+    ├── releases
+    │   ├── 20140812054104
+    │   ├── 20140812073400
+    │   ├── 20140812075835
+    │   ├── 20140812090416
+    │   ├── 20140812091155
+    │   └── 20150212180122
+    ├── repo
+    │   ├── branches
+    │   ├── hooks
+    │   ├── info
+    │   ├── objects
+    │   └── refs
+    └── shared
+        ├── bin
+        ├── bundle
+        ├── log
+        ├── tmp
+        └── vendor
+
+**** add commands
+# rails / unicron start
+$ marupix_start
+
+# rails kill
+$ marupix_kill
+
+# rails / unicron restart
+$ marupix_reboot
+
+** 00002_ユニクロ
+*** todos
+**** WAITING uniqlo influencer 登録画面BUG?
+pivotal up済み
+そもそも、nginx側の設定の問題かもしれない
+
+----------------------------------------------------------------
+[ https://*/form/ja ]へアクセスした際、
+assetsの読み込みは本来 [https://*/form/assets] となる。
+が、稀に [https://*/form/ja/assets/] となる。
+現状、10言語中、kr / frにおいて事象が発生するこ
+----------------------------------------------------------------
+
+**** WAITING CSV import確認
+imporot OK
+
+# --local-infile optionで、local読み込みを許可
+mysql -u root -p --local-inflie=1
+load data local infile "/home/ali-ani/test2.csv" into table influencer_profiles fields terminated by ',' enclosed by '"';
+
+
+# 既存テーブルから、create分を生成
+SHOW CREATE TABLE テーブル名
+
+
+**** TODO product server設定
+***** DONE admin
+CLOSED: [2015-03-10 火 22:25]
+****** 自動実行
+maintenance日時の返答待ち
+
+***** user
+****** 自動実行
+
+***** SNS
+****** 自動実行
+
+**** DONE uniqlo 負荷試験
+SCHEDULED: <2015-03-20 金>-<2015-03-23 月> CLOSED: [2015-03-31 火 18:52]
+
+***** 予定
+擬似環境の構築も念頭に先方から
+
+- 13,14,15日
+  あたりにappそろうので、当該週にテスト
+
+- 20日
+  擬似環境で試験
+  
+- 21,22日
+  擬似環境での試験とチューニング
+
+- 23日移行
+  本番環境で試験
+
+***** 負荷試験 - 設定
+- request数
+  瞬間最大、4万リクエスト程度／分
+
+- User app server、DB serverの instance Type
+  Web    :  c3.large 汎用SSD30GB
+  Admin  :  c3.large 汎用SSD30GB
+  Batch  :  c3.large 汎用SSD30GB
+  
+  RDS(Mysql) Multi-AZ    :  m3.medium SSD30GB
+  RDS(Mysql) Readreplica :  m3.medium SSD30GB
+
+
+- Auto scaleの閾値など (想定、暫定値)
+  Desired  :  2
+  Min      :  2
+  Max      :  10
+  HealthCheckType         :  ELB
+  HealthCheckGracePeriod  :  400
+  DefaultCooldown         :  720
+
+**** TODO SNS token発行
+facebookのacc発行待ち
+必要権限の確認
+
+*** Env
+**** Accounts
+***** prodcut
+***** dev
+[[file:~/.org/todo.org::*develop%20server][develop server設定]]
+
+**** Prodcution env
+***** URL
+----------------------------------------------------------------
+エンドユーザ参照ページ   :  http(s)://lifewear.uniqlo.com/people/
+インフルエンサー登録画面 :  https://lifewear.uniqlo.com/form/
+管理者権限画面         :  https://admin.lifewear.uniqlo.com/
+
+***** Stepサーバの情報
+IP    : 54.250.223.60
+host  : mnt01-a-tky-gateway-common
+
+login account  : members
+ssh key        : members.pem
+pass           : none
+
+***** ## EC2/ELB## Web
+****** user page
+- ELB
+--------------------------------
+   prd01-tky-influencer-uniqlo-304455623.ap-northeast-1.elb.amazonaws.com
+   prd02-tky-influencer-uniqlo-275306959.ap-northeast-1.elb.amazonaws.com
+
+- EC2
+--------------------------------
+    Instance: i-2744a33f
+    prd01-a-tky-influencer-uniqlo)
+    Private IP: 10.184.16.238
+
+    - Nginxドキュメントルート
+        エンドユーザ参照ページ : /usr/share/nginx/html/lifewear.uniqlo.com/
+
+    - DNS
+        lifewear.uniqlo.com
+
+****** Admin
+- ELB
+    prd01-tky-admin-inflencr-uniqlo-1751200015.ap-northeast-1.elb.amazonaws.com
+
+- EC2
+    Instance   :  i-b04fa8a8  /  prd01-a-tky-admin-influencer-uniqlo
+    Private IP :  10.184.17.202
+
+- DNS
+    - インフルエンサー登録
+        lifewear.uniqlo.com  /  (lifewear.uniqlo.com/form)
+
+    - 管理者
+        admin.lifewear.uniqlo.com
+
+- Nginxドキュメントルート：
+    インフルエンサー登録  :  /usr/share/nginx/html/lifewear.uniqlo.com/
+    管理者（Admin）     :  /usr/share/nginx/html/admin.lifewear.uniqlo.com/
+
+- account
+    linux user  :  www
+    pass        :  DROd3Q0n
+
+- 注意事項
+    Autoscalingは未設定です。
+    EC2のセッティングが完了後に、Autoscalingの設定を追加しますので、
+    ご連絡をお願い致します。
+
+****** BATCH
+- EC2
+    Instance    :  i-4f41a257  (prd01-a-tky-batch-influencer-uniqlo)
+    Private IP  :  10.184.17.46
+  
+***** RDS
+****** マスター
+- DNS名 (CNAME)
+    db.org.lifewear.uniqlo.com
+    # アプリから接続する際に、DNS名（CNAME）を利用してください
+
+- DBName    :  influencer
+- UserName  :  influencer
+- Passwd    :  QkIPwa9k
+
+****** リードレプリカ
+- DNS名（CNAME）
+    db-rep.org.lifewear.uniqlo.com
+    # アプリから接続する際に、DNS名（CNAME）を利用してください
+
+- DB Engine(Ver)  :  Mysql 5.6.22
+- DBディスクサイズ  :  30GB※拡張可能ですので、追加した場合はご連絡ください。
+      
+
+**** Production env old
+Influencerインフラ接続情報
+
+***** URL
+Front : ドメイン確認中
+Admin : ドメイン確認中
+
+***** Stepサーバの情報 (踏み台)
+IP         : 54.250.223.60
+hostname   : mnt01-a-tky-gateway-common
+login user : members
+pass       : 無し
+key        : ppkからpemへ変換可能
+
+***** EC2/ELB/Web
+- ELB
+  prd01-tky-influencer-uniqlo-304455623.ap-northeast-1.elb.amazonaws.com
+  prd02-tky-influencer-uniqlo-275306959.ap-northeast-1.elb.amazonaws.com
+
+- E2C
+  Instance   : i-2744a33f
+  host       : prd01-a-tky-influencer-uniqlo
+  Private IP : 10.184.16.238
+
+***** Admin
+- ELB
+  prd01-tky-admin-inflencr-uniqlo-1751200015.ap-northeast-1.elb.amazonaws.com
+
+- EC2
+  Instance   : i-b04fa8a8
+  host       : prd01-a-tky-admin-influencer-uniqlo
+  private IP : 10.184.17.202
+
+- DNS
+  adminに関するドメインを確認
+
+- pass
+  - user : www
+  - pass : DROd3Q0n
+
+***** Autoscaling
+未設定。
+EC2のセッティングが完了後に、Autoscalingの設定を追加しますので、
+ご連絡をお願い致します。
+
+auto scalingで、常時1台立ち上げるようにする
+SNSからリアルタイムにデータを取ってこれるらしい。
+将来的に使いたい
+
+***** RDS
+- source 
+  DNS名（CNAME）: db.influencer.org.www.uniqlo.com
+
+- read replica
+  DNS名（CNAME）: db-rep.influencer.org.www.uniqlo.com.
+
+- DB info
+  DB name : influencer
+  user    : influencer
+  pass    : QkIPwa9k
+  ver     : Mysql 5.6.22
+
+  DBディスクサイズ:30GB※拡張可能ですので、追加した場合はご連絡ください。
+
+**** Production server setting
+ruby 2.2.0p0 (2.2.0系)
+rails 4.2.0  (4.2系使用)
+mysql 5.5.41 (最新版でok)
+
+***** EC2
+[[file:~/.org/aws.org::*Amazon%20Linux%20init%20Enviroment%20Ruby%20RoR][Amazon Linux - init Enviroment (Ruby, RoR)]]
+
+****** make user 
+# useradd mruby
+# passwd mruby
+    
+mruby
+mruby4836
+
+****** ruby / rails install 準備
+yum install gcc
+yum install openssl-devel.x86_64
+
+****** ruby install
+$ cd /usr/local/src
+$ wget http://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.zip
+
+$ unzip ruby-2.2.0.zip 
+$ cd ruby-2.0.0
+$ ./configure
+$ make
+$ make install   
+ 
+$ echo 'export PATH="/usr/local/bin:$PATH"' >> /etc/.bashrc
+
+# rails 実行userで実行
+$ rvm system
+
+****** ruby rbenv
+# sourceからのcompileでは、gemが起動できなかったため
+# rbenvを仕様
+
+$ sudo su - 
+
+yum install -y gcc readline-devel openssl-devel zlib-devel gdbm-devel libffi-devel git make
+
+cd /usr/local
+git clone git://github.com/sstephenson/rbenv.git rbenv
+mkdir rbenv/{shims,versions}
+
+mkdir /usr/local/rbenv/plugins
+cd /usr/local/rbenv/plugins
+git clone git://github.com/sstephenson/ruby-build.git
+cd ruby-build
+./install.sh
+
+echo 'export RBENV_ROOT=/usr/local/rbenv' >> /etc/bashrc
+echo 'export PATH="$RBENV_ROOT/bin:$PATH"' >> /etc/bashrc
+echo 'eval "$(rbenv init -)"' >> /etc/bashrc
+source ~/.bashrc
+
+rbenv install 2.2.0
+rbenv global 2.2.0
+
+
+作業ユーザで、bashrc設定
+----------------------------------------------------------------
+echo 'export RBENV_ROOT=/usr/local/rbenv' >> /etc/bashrc
+echo 'export PATH="$RBENV_ROOT/bin:$PATH"' >> /etc/bashrc
+echo 'eval "$(rbenv init -)"' >> /etc/bashrc
+source ~/.bashrc
+
+
+rbenv version dirの権限変更
+----------------------------------------------------------------
+sudo su -
+cd /usr/local/rbenv/versions/
+$ chown -R user:user ./*
+
+****** rails install
+gem install rails --version 4.2.0
+
+****** make basic auth file
+$ yum install httpd
+$ chkconfig httpd off
+$ cd /var/rails/uniqlo_influencer/release/uniqlo-hashtag-develop
+$ htpasswd -c .htpasswd uniqlo
+
+# passは要確認
+
+****** secret key base
+$ touch ./config/secrets.yml
+
+# 以下で出力よくされた内容を
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+development:
+    secret_key_base: [here]
+
+----------------------------------------------------------------
+
+****** rails settings
+- $ bundle install
+- $ bundle exec rake db:migrate
+- $ bundle exec assets:precompile
+
+- listen portを合わせる
+
+****** access
+http://~~~/form/ja
+
+***** RDS
+****** mysql database, user seeting
+# make database
+create database uniqlo_hashtag_development CHARACTER SET=utf8;
+
+# uniqlo_hashtag_development db, user uniqlo / host 全てへアクセス権限を付与。 user pass uniqlo
+grant all on uniqlo_hashtag_development.* to 'uniqlo'@'%' identified by 'uniqlo';
+
+FLUSH PRIVILEGES;
+
+***** SNS集約サーバー
+
+
+**** develop server structure
+
+***** VPC / subnet / IGW
+****** VPC 
+name  :  uniqlo
+CIDR  :  10.0.0.0/22
+
+****** subnet - 1a
+name        :  uniqlo_public_1a
+CIDR        :  10.0.1.0/25
+route table :  0.0.0.0/0  |  igw-3eb5405b
+
+****** subnet - 1c
+name        :  uniqlo_public_1c
+CIDR        :  10.0.1.128/25
+route table :  0.0.0.0/0  |  igw-3eb5405b
+
+****** internet gateway
+name        :  uniqlo
+attach VPC  :  vpc-2ac80641 (10.0.0.0/22 | uniqlo)
+
+***** 踏み台
+- instance   :  t2.micro
+- AL         :  ap-northeast-1a
+- host name  :  prx01-uniqlo-influencer-a-tky-gw
+
+- security group
+    name  :  uniqlo_influencer_gateway
+    port  :  22
+
+- linux user
+    - user  :  alliance
+    - pass  :  Ukzm3383
+
+    # sudo権付与
+    - user   :  mruby
+    - pass   :  Kimg4488
+
+- cron
+    instance start/stop scheduled all server (usr, adm, sns)
+
+    - start at 08:30
+    - stop  at 21:00
+
+    - script locateion
+        /home/mruby/scripts/aws/
+
+    - cron setting
+        $ crontab -e  # mruby user
+
+  
+      
+***** App server : user
+- instance    :  t2.midium
+- AL          :  ap-northeast-1a
+
+- private IP  :  10.0.1.10
+- global IP   :  ELB
+- host name   :  usr01-tky-a-uniqlo-influencer
+  
+- security group
+  name   : uniqlo_influencer_user
+  local  : 22 (10.0.0.0/22)
+  global : 80, 443
+
+***** App server : admin
+- instance     :  t2.midium
+- AL           :  ap-northeast-1a
+
+- private IP   :  10.0.1.50
+- global IP    :  54.92.123.82
+- host name    :  adm01-tky-a-uniqlo-influencer
+
+- security group
+  name   : uniqlo_influencer_admin
+  local  : 22 (10.0.0.0/22)
+  global : 80, 443
+
+***** App server : sns
+- instance     :  t2.midium
+- AL           :  sns01-tky-a-uniqlo-influencer
+
+- private IP   :  10.0.1.60
+- global IP    :  現状では不要。
+- host name    :  sns01-tky-a-uniqlo-influencer
+  
+- security
+  name   :  uniqlo_influencer_sns
+  local  :  22 (10.0.0.0/22)
+  local  :  80, 443
+  
+***** App server : 共通
+- user
+    - name  :  mruby
+    - pas   :  mruby3826
+
+- installed app
+    rails, ruby, nginx, mysql(cli)
+
+***** RDS
+- AL         :  ap-northeast-1a
+- private IP :  10.0.1.70
+- host       : db01-uniqlo-influencer.cvs9vjjju50z.ap-northeast-1.rds.amazonaws.com
+
+- DB engine  : mysql
+- DB version : 5.6.22
+
+- DB Instance Identifier : db01-uniqlo-influencer
+
+- VPC             :  uniqlo
+- subnet          :  uniqlo_public_default
+- public access   :  yes
+- AZ              :  1a
+
+- security
+    - name   :  uniqlo_influencer_db
+    - local  :  mysql (10.0.0.0/22)
+    - global :  全て閉塞
+
+- enable ecryption
+    - enable :  yes
+    - key    :  default
+    
++ master
+    - master user   :  root
+    - master pass   :  9xiRR828
+
++ 作業ユーザー
+    - DB name :  influencer
+    - user    :  influencer
+    - pass    :  Dim933Plw
+
+- bakcup       :  7day / start 01:00 / duration 0.5h
+- auto upgrate :  sunday  / start 02:00 / duration 0.5h
+
+- msyql portのみopen
+- 各種サーバーからのアクセスを許可する
+  user, admin, sns, 踏み台
+
+***** ELB
+CNAME      :  uniqlo-influencer-adm-lb-1338278061.ap-northeast-1.elb.amazonaws.com
+forward to :  adm01-tky-a-uniqlo-influencer
+
+**** language list
+- 日本語    : jp
+- English  : US, UK, SG, MY, AU
+- Korean   : KR
+- French   : FR
+- Cantonese: HK
+- Chinese  : CN
+
+**** deploy時のDB backup
+/var/rails_backup/db/
+暗号化も
+script組み込み済み
+
+**** Instance
+- request数
+  瞬間最大、4万リクエスト程度／分
+
+- User app server、DB serverの instance Type
+  Web    :  c3.large 汎用SSD30GB
+  Admin  :  c3.large 汎用SSD30GB
+  Batch  :  c3.large 汎用SSD30GB
+  
+  RDS(Mysql) Multi-AZ    :  m3.medium SSD30GB
+  RDS(Mysql) Readreplica :  m3.medium SSD30GB
+
+
+- Auto scaleの閾値など (想定、暫定値)
+  Desired  :  2
+  Min      :  2
+  Max      :  10
+  HealthCheckType         :  ELB
+  HealthCheckGracePeriod  :  400
+  DefaultCooldown         :  720
+
+
+- scale
+  スケールアウトポリシー：60秒に5回連続CPU使用率が60%を超えたら2インスタンス追加
+  スケールインポリシー：60秒に60回連続CPU使用率が10%を下回ったら2インスタンス減少
+
+
+*** Flow : project
+# projectの仕様変更、打ち合わせによる状態変異など
+
+
+**** schedule
+***** DONE 15 : 負荷試験。取れる情報の整理
+SCHEDULED: <2015-03-15 日> CLOSED: [2015-03-31 火 18:52]
+***** DONE 18 : DBに必要な容量計算。(土日でおおよその構造が決まる)
+SCHEDULED: <2015-03-18 水> CLOSED: [2015-03-31 火 18:52]
+負荷試験の方針提出
+***** DONE 20 : 負荷テスト
+SCHEDULED: <2015-03-20 金> CLOSED: [2015-03-31 火 18:52]
+
+***** DONE 21 : セキュリティテスト
+SCHEDULED: <2015-03-21 土> CLOSED: [2015-03-31 火 18:52]
+***** DONE 23 : リリース
+SCHEDULED: <2015-03-23 月> CLOSED: [2015-03-31 火 18:52]
+
+***** DONE 24 : セキュリティテスト
+SCHEDULED: <2015-03-24 火> CLOSED: [2015-03-31 火 18:52]
+
+***** DONE 25 : 本番負荷テスト
+SCHEDULED: <2015-03-25 水> CLOSED: [2015-03-31 火 18:52]
+
+staging
+
+***** DONE 27 : リリース日
+SCHEDULED: <2015-03-27 金> CLOSED: [2015-03-31 火 18:52]
+
+**** DONE user公開日
+SCHEDULED: <2015-03-27 金> CLOSED: [2015-03-31 火 18:52]
+
+03/23にはRuby者としては開発を終わらせる。
+
+ここから負荷試験、security試験
+そして、微調整
+
+英語版リリース
+一週間おきに各言語をリリース
+
+**** avasysさんとはおわり
+**** [2015-02-23 月] 対応予定ブラウザ
+***** IE7, 8
+元々対応していないので、対応しない
+
+***** IE9
+こちらは対応
+
+***** chrome, safari
+
+
+
+
+ja - ja.yml
+us - 
+kr - ko.yml
+hk - zh-HK.yml
+
+**** description
+***** 担当者
+****** 先方
+マネージ : 船山さん
+開発さん : 綾部さん
+
+****** Ruby本社
+青柳さんがhelp
+
+****** 協力会社
+コミュニティクリエーション
+アヴァシス
+
+女性２名
+管理者1名
+
+skypeが必要
+
+***** 頭出し
+tabboard HP
+ユニクロ用のtagboardを作りたい
+tagboardをまねしていく
+
+- 使い方
+  
+- 気に入らない点
+  taboardのロゴが気に入らない
+  もっと柔軟な表示をしたい
+  国ごと、pickupしたものを必ず表示。
+
+- クリックした時の動きも変えたい
+  オーバーレイ表示のカスタマイズ
+
+- 環境構築はruby社まかせ
+
+- RoR, nginx, MySQL or Postgres, AWS
+
+***** etc
+[2015-02-05 木]
+- tagboardでlifewareに関するものをpickup
+- 国ごとに絞り込みをしたい
+  tagboadに国情報は無い。が、登録者情報に国の情報がある。(登録者しか投稿できないとかなんとか)
+    
+**** [2015-02-18 水]
+***** real time更新処理とりやめ
+自動で状態を見に行って更新があれば、
+自動で画面も更新する。
+というのが当初の企画。
+
+これを取りやめ、ユーザーからのトリガーがあるときだけ
+更新処理を行う。
+(どこの話かは分からないが、恐らくSNSデータを表示するところ)
+
+***** 予算の関係上で機能を絞る。
+今日?打ち合わせして、機能を決定する
+
+*** Flow : deploy, release, server setting
+# 固定化済み作業, など
+
+**** deploy flow : develop
+***** deploy to admin
+****** upload
+# 踏み台サーバーへアップ後, # adminサーバーへアップする
+$ scp -i mruby_default_key.pem ./uniqlo-hashtag-develop.zip alliance@54.65.232.249:/home/alliance
+$ ssh -i mruby_default_key.pem alliance@54.65.232.249
+
+$ scp ./uniqlo-hashtag-develop.zip mruby@app-admin:/home/mruby
+$ ssh mruby@app-admin
+
+****** kill unicorn
+kill `cat /var/rails/unicorn/current/tmp/pids/unicorn.pid`
+
+****** mysql buckup
+mysqldump -u influencer --password=Dim933Plw --lock-table -h db01-uniqlo-influencer.cvs9vjjju50z.ap-northeast-1.rds.amazonaws.com influencer > /var/rails/uniqlo/backup/db/$date
+mysqldump -u influencer --password=QkIPwa9k --lock-table -h stage-db.org.lifewear.uniqlo.com influencer > /var/rails/influencer/backup/db/2015_03_20
+
+****** decompress / file move
+$ cd /var/rails/uniqlo/release
+
+$ mkdir `date +"%Y%m%d%H%M%S"`
+$ cd 20150217015610/
+$ cp /home/mruby/uniqlo-hashtag-develop.zip ./
+$ unzip uniqlo-hashtag-develop.zip
+
+$ rm uniqlo-hashtag-develop.zip
+$ mv ./uniqlo-hashtag-develop/* ./
+$ rm -rf ./uniqlo-hashtag-develop
+
+****** edit database.yml
+$ vim ./config/database.yml
+
+----------------------------------------------------------------
+production:
+    <<: *default
+    database: influencer
+    username: influencer
+    #password: <%= ENV['UNIQLO-HASHTAG_DATABASE_PASSWORD'] %>
+    password: Dim933Plw
+    host: db01-uniqlo-influencer.cvs9vjjju50z.ap-northeast-1.rds.amazonaws.com
+----------------------------------------------------------------
+  
+****** bundle / assets setting
+$ bundle install
+$ bundle exec rake db:migrate RAILS_ENV=production
+$ bundle exec rake assets:clobber
+$ bundle exec rake assets:precompile RAILS_ENV=production
+  
+****** secret key base
+# 基本、埋め込んであるので作業は不要
+
+
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+development:
+    secret_key_base: [here]
+
+production:
+    secret_key_base: [here]
+----------------------------------------------------------------
+
+****** curtificate setting (SSL認証する場合)
+# ELBで認証しているので不要
+
+$ mkdir .config/certification
+$ cd ./config/certification
+
+$ openssl genrsa -aes128 1024 > server.key
+$ openssl req -new -key server.key > server.csr
+$ openssl x509 -in server.csr -days 365 -req -signkey server.key > server.crt
+
+# delete pass phrase 
+# nginx起動の度にパスを求められるため
+$ mv server.ekey server.key.back
+$ openssl rsa -in server.key.back > server.key
+ 
+****** change log dir
+$ rm -rf ./log
+$ rm -rf ./tmp
+
+$ ln -s /var/rails/uniqlo/shared/log ./log
+$ ln -s /var/rails/uniqlo/shared/tmp ./tmp
+
+
+
+****** change current version
+$ cd /var/rails/uniqlo/
+$ ln -s /var/rails/uniqlo/release/20150217015610/ ./current
+
+****** unicron start
+$ cd /var/rails/uniqlo/current
+$ bundle exec unicorn_rails -c /var/rails/uniqlo/env/config/unicorn/production.rb -E production -D  
+
+***** deploy view to user
+****** ./javascript/postphots.js
+内の読み込みURLを変更する
+
+IMAGE_PATH = 'http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/images/';
+IMAGE_PATH = 'http://test066.members-dev.com/uniqlo_lifewear/images/';
+
+****** ./config/settings/production.yml
+urlが本番環境を向いているため、試験環境へ向ける。
+
+js_pc_url: "http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/javascripts/postphotos.js"
+js_sp_url: "http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/javascripts/postphotos_sp.js"
+css_pc_url: "http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/stylesheets/tag_photo_list.css"
+css_sp_url: "http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/stylesheets/tag_photo_list_sp.css"
+logo_url: "http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/images/tag_photo_list_logo.png"
+
+
+
+***** deploy auto
+~/ dirの、deploy.shを使用する
+$ bash deploy.sh [zip file]
+
+# ./は付けない
+
+***** init setting | unicorn config file
+$ mkdir /var/rails/uniqlo/env/config/unicorn/
+
+
+$ vim /var/rails/uniqlo/env/config/unicorn/development.rb
+----------------------------------------------------------------
+worker_processes 3
+
+pid File.expand_path('tmp/pids/unicorn.pid', ENV['RAILS_ROOT']).to_s
+listen 5001
+
+stderr_path File.expand_path('log/error.log', ENV['RAILS_ROOT'])
+stdout_path File.expand_path('log/development.log', ENV['RAILS_ROOT'])
+
+preload_app true
+
+before_fork do |server, worker|
+  ENV['BUNDLE_GEMFILE'] = File.expand_path('Gemfile', ENV['RAILS_ROOT'])
+
+  defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
+end
+
+after_fork do |server, worker|
+  defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
+end
+----------------------------------------------------------------
+
+
+$ vim /var/rails/uniqlo/env/config/unicorn/production.rb
+----------------------------------------------------------------
+File Edit Options Buffers Tools Help                                                                                                                                         
+worker_processes 10
+
+pid File.expand_path('tmp/pids/unicorn.pid', ENV['RAILS_ROOT']).to_s
+listen 5001
+
+stderr_path File.expand_path('log/error.log', ENV['RAILS_ROOT'])
+stdout_path File.expand_path('log/production.log', ENV['RAILS_ROOT'])
+
+preload_app true
+
+before_fork do |server, worker|
+  ENV['BUNDLE_GEMFILE'] = File.expand_path('Gemfile', ENV['RAILS_ROOT'])
+
+  defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
+end
+
+after_fork do |server, worker|
+  defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
+end
+----------------------------------------------------------------
+
+***** nginx setting file loc
+/etc/nginx/conf.d/lifewear.uniqlo.com.conf
+/etc/nginx/conf.d/admin.lifewear.uniqlo.com.conf
+
+
+**** deploy flow : staging-hastag
+***** mk release dir
+cd /var/rails/influencer/releases/
+mkdir `date +"%Y%m%d%H%M%S"`
+
+***** kill unicorn
+kill `cat /var/rails/influencer/current/tmp/pids/unicorn.pid`
+
+# 停止時間を短くするならば、後で止める
+
+***** mysql buckup
+mysqldump -u influencer -p --lock-table -h stage-db.org.lifewear.uniqlo.com influencer > /var/rails/influencer/backup/db/$date
+
+***** copy / edit database.yml
+cp ./config/deploy/db/production.yml ./config/database.yml 
+
+
+$ vim ./config/database.yml
+----------------------------------------------------------------
+default: &default
+    adapter: mysql2
+    encoding: utf8
+    pool: 5
+
+production:
+    <<: *default
+    database: influencer
+    username: influencer
+    #password: <%= ENV['UNIQLO_HASHTAG_DATABASE_PASSWORD'] %>
+    QkIPwa9k
+    host: db.org.lifewear.uniqlo.com
+
+----------------------------------------------------------------
+  
+***** copy / unicron.rb
+cp ./config/deploy/unicorn/production.rb ./config/unicorn.rb
+
+***** bundle / assets
+bundle install
+bundle exec rake db:migrate RAILS_ENV=production
+bundle exec rake assets:clobber
+bundle exec rake assets:precompile RAILS_ENV=production
+
+***** secret key base
+# 埋め込まれているので作業不要
+
+# 以下で出よくされた内容を後述ファイルに書き込む
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+production:
+    secret_key_base: [here]
+----------------------------------------------------------------
+
+***** change assets default url
+****** assets読み込みURL変更
+# 読み込みURLを
+# [https://~~~/assets] を
+# [https://~~~/form/asset] へ変更
+# [https://~~~/] と [https://~~~/form/] ではアクセス先サーバーが異なる
+
+$ vim ./config/application.rb
+
+----------------------------------------------------------------
+module UniqloHashtag
+  class Application < Rails::Application
+
+  ~~
+  config.assets.enable = true
+  config.assets.prefix = "assets"
+
+  end
+end  
+----------------------------------------------------------------
+
+****** chmod
+chmod 755 ./public/assets*
+
+***** change log dir, tmp dir, .env
+rm -rf ./log
+ln -s /var/rails/influencer/shared/log ./log
+
+rm -rf ./tmp
+ln -s /var/rails/influencer/shared/tmp ./tmp
+
+ln -s /var/rails/influencer/shared/.env ./.env
+
+***** change current version
+$ cd /var/rails/influencer/
+$ ln -s /var/rails/influencer/release/20150217015610/ ./current
+
+***** unicron start
+$ cd /var/rails/uniqlo/current
+$ bundle exec unicorn_rails -c /var/rails/uniqlo/env/config/unicorn/production.rb -E production -D  
+
+**** deploy flow : staging-hatag-view
+image
+https://lifewear.uniqlo.com/images/
+https://lifewear.uniqlo.com/stylesheets/
+https://lifewear.uniqlo.com/javascripts/
+
+**** deploy flow : staging-hatag-main
+***** mk release dir
+cd /var/rails/influencer/releases/
+mkdir `date +"%Y%m%d%H%M%S"`
+
+***** kill unicorn
+kill `cat /var/rails/influencer/current/tmp/pids/unicorn.pid`
+
+# 停止時間を短くするならば、後で止める
+
+***** mysql buckup
+mysqldump -u influencer -p --lock-table -h stage-db.org.lifewear.uniqlo.com influencer > /var/rails/influencer/backup/db/$date
+
+***** copy / edit database.yml
+cp ./config/deploy/db/production.yml ./config/database.yml 
+
+
+$ vim ./config/database.yml
+----------------------------------------------------------------
+default: &default
+    adapter: mysql2
+    encoding: utf8
+    pool: 5
+
+production:
+    <<: *default
+    database: influencer
+    username: influencer
+    #password: <%= ENV['UNIQLO_HASHTAG_DATABASE_PASSWORD'] %>
+    QkIPwa9k
+    host: db-rep.org.lifewear.uniqlo.com
+
+----------------------------------------------------------------
+  
+***** copy / unicron.rb
+cp ./config/deploy/unicorn/production.rb ./config/unicorn.rb
+
+***** bundle
+$ bundle install
+
+***** 読み込みファイル
+./config/settings/production.yml
+urlが本番環境を向いているため、stating環境へ向ける。
+
+
+***** secret key base
+# 埋め込まれているので作業不要
+
+# 以下で出よくされた内容を後述ファイルに書き込む
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+production:
+    secret_key_base: [here]
+----------------------------------------------------------------
+
+***** change log/tmp dir
+rm -rf ./log
+ln -s /var/rails/influencer/shared/log ./log
+
+rm -rf ./tmp
+ln -s /var/rails/influencer/shared/tmp ./tmp
+
+***** change current version
+$ cd /var/rails/influencer/
+$ ln -s /var/rails/uniqlo/release/20150217015610/ ./current
+
+***** unicron start
+$ cd /var/rails/uniqlo/current
+$ bundle exec unicorn_rails -c /var/rails/uniqlo/env/config/unicorn/production.rb -E production -D  
+
+
+**** deploy flow : staging-hatag-cron
+***** mk release dir
+cd /var/rails/influencer/releases/
+mkdir `date +"%Y%m%d%H%M%S"`
+
+***** kill unicorn
+kill `cat /var/rails/influencer/current/tmp/pids/unicorn.pid`
+
+# 停止時間を短くするならば、後で止める
+
+***** mysql buckup
+mysqldump -u influencer -p --lock-table -h stage-db.org.lifewear.uniqlo.com influencer > /var/rails/influencer/backup/db/$date
+
+***** copy / edit database.yml
+cp ./config/deploy/db/production.yml ./config/database.yml 
+
+
+$ vim ./config/database.yml
+----------------------------------------------------------------
+default: &default
+    adapter: mysql2
+    encoding: utf8
+    pool: 5
+
+production:
+    <<: *default
+    database: influencer
+    username: influencer
+    #password: <%= ENV['UNIQLO_HASHTAG_DATABASE_PASSWORD'] %>
+    host: db.org.lifewear.uniqlo.com
+
+----------------------------------------------------------------
+  
+***** copy / unicron.rb
+cp ./config/deploy/unicorn/production.rb ./config/unicorn.rb
+
+***** .env
+vim /var/rails/influencer/shared/.env
+
+
+
+以下、記述例
+sns tokenは適宜、変更すること
+以下は最新ではなく、staging/developが混在
+
+----------------------------------------------------------------
+DB_USERNAME=
+DB_PASSWORD=
+
+TWITTER_CONSUMER_KEY=
+TWITTER_CONSUMER_SECRET=
+TWITTER_ACCESS_TOKEN=
+TWITTER_TOKEN_SECRET=
+
+INSTAGRAM_CLIENT_ID=
+INSTAGRAM_CLIENT_SECRET=
+INSTAGRAM_ACCESS_TOKEN=
+
+FACEBOOK_APP_ID=
+FACEBOOK_APP_SECRET=
+
+API_ENDPOINT=10.0.1.50/
+
+
+# Instagramからタグ検索する際のリクエスト上限
+MAX_API_COUNT_FOR_INSTAGRAM=500
+
+# Instagramからタグ検索する際のマスターとなるタグ
+MASTER_TAG=uniqlolifewear
+----------------------------------------------------------------
+
+***** bundle
+$ bundle install
+
+***** secret key base
+# 埋め込まれているので作業不要
+
+# 以下で出よくされた内容を後述ファイルに書き込む
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+production:
+    secret_key_base: [here]
+----------------------------------------------------------------
+
+***** change log dir
+rm -rf ./log
+rm -rf ./tmp
+
+ln -s /var/rails/influencer/shared/log ./log
+ln -s /var/rails/influencer/shared/tmp ./tmp
+
+ln -s /var/rails/influencer/shared/.env ./.env
+
+***** change current version
+$ cd /var/rails/influencer/
+$ ln -s /var/rails/influencer/release/20150217015610/ ./current
+
+***** unicron start
+$ cd /var/rails/uniqlo/current
+$ bundle exec unicorn_rails -c /var/rails/influencer/current/config/unicorn.rb -E production -D 
+
+***** 管理サーバー basic 認証設定
+vim config/settings/production.yml 
+
+----------------------------------------------------------------
+api_server:
+  api_schema: 'http://'
+  api_endpoint: <%= ENV['API_ENDPOINT'] %>
+  api_basic_auth_user: uniql0inf7uencer
+  api_basic_auth_password: uniql0mysty7e
+----------------------------------------------------------------
+
+***** command test
+RAILS_ENV=production bundle exec rake twitter:get_by_rest
+RAILS_ENV=production bundle exec rake instagram:get_by_rest
+RAILS_ENV=production bundle exec rails runner TwitterStreamingDaemon.run run
+
+
+
+
+**** deploy flow : production-hastag
+***** mk release dir
+cd /var/rails/influencer/releases/
+mkdir `date +"%Y%m%d%H%M%S"`
+
+***** kill unicorn
+kill `cat /var/rails/influencer/current/tmp/pids/unicorn.pid`
+
+# 停止時間を短くするならば、後で止める
+
+***** mysql buckup
+mysqldump -u influencer -p --lock-table -h stage-db.org.lifewear.uniqlo.com influencer > /var/rails/influencer/backup/db/$date
+
+***** copy / edit database.yml
+cp ./config/deploy/db/production.yml ./config/database.yml 
+
+
+$ vim ./config/database.yml
+----------------------------------------------------------------
+default: &default
+    adapter: mysql2
+    encoding: utf8
+    pool: 5
+
+production:
+    <<: *default
+    database: influencer
+    username: influencer
+    #password: <%= ENV['UNIQLO_HASHTAG_DATABASE_PASSWORD'] %>
+    QkIPwa9k
+    host: db.org.lifewear.uniqlo.com
+
+----------------------------------------------------------------
+  
+***** copy / unicron.rb
+cp ./config/deploy/unicorn/production.rb ./config/unicorn.rb
+
+***** bundle / assets
+bundle install
+bundle exec rake db:migrate RAILS_ENV=production
+bundle exec rake assets:clobber
+bundle exec rake assets:precompile RAILS_ENV=production
+
+***** secret key base
+# 埋め込まれているので作業不要
+
+# 以下で出よくされた内容を後述ファイルに書き込む
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+production:
+    secret_key_base: [here]
+----------------------------------------------------------------
+
+***** change assets default url
+****** assets読み込みURL変更
+# 読み込みURLを
+# [https://~~~/assets] を
+# [https://~~~/form/asset] へ変更
+# [https://~~~/] と [https://~~~/form/] ではアクセス先サーバーが異なる
+
+$ vim ./config/application.rb
+
+----------------------------------------------------------------
+module UniqloHashtag
+  class Application < Rails::Application
+
+  ~~
+  config.assets.enable = true
+  config.assets.prefix = "assets"
+
+  end
+end  
+----------------------------------------------------------------
+
+****** chmod
+chmod 755 ./public/assets*
+
+***** change log dir, tmp dir, .env
+rm -rf ./log
+ln -s /var/rails/influencer/shared/log ./log
+
+rm -rf ./tmp
+ln -s /var/rails/influencer/shared/tmp ./tmp
+
+ln -s /var/rails/influencer/shared/.env ./.env
+
+***** change current version
+$ cd /var/rails/influencer/
+$ ln -s /var/rails/influencer/release/20150217015610/ ./current
+
+***** unicron start
+$ cd /var/rails/uniqlo/current
+$ bundle exec unicorn_rails -c /var/rails/uniqlo/env/config/unicorn/production.rb -E production -D  
+
+**** deploy flow : production-hatag-view
+image
+https://lifewear.uniqlo.com/images/
+https://lifewear.uniqlo.com/stylesheets/
+https://lifewear.uniqlo.com/javascripts/
+
+**** deploy flow : production-hatag-main
+***** mk release dir
+cd /var/rails/influencer/releases/
+mkdir `date +"%Y%m%d%H%M%S"`
+
+***** kill unicorn
+kill `cat /var/rails/influencer/current/tmp/pids/unicorn.pid`
+
+# 停止時間を短くするならば、後で止める
+
+***** mysql buckup
+mysqldump -u influencer -p --lock-table -h stage-db.org.lifewear.uniqlo.com influencer > /var/rails/influencer/backup/db/$date
+
+***** copy / edit database.yml
+cp ./config/deploy/db/production.yml ./config/database.yml 
+
+
+$ vim ./config/database.yml
+----------------------------------------------------------------
+default: &default
+    adapter: mysql2
+    encoding: utf8
+    pool: 5
+
+production:
+    <<: *default
+    database: influencer
+    username: influencer
+    #password: <%= ENV['UNIQLO_HASHTAG_DATABASE_PASSWORD'] %>
+    QkIPwa9k
+    host: db-rep.org.lifewear.uniqlo.com
+
+----------------------------------------------------------------
+  
+***** copy / unicron.rb
+cp ./config/deploy/unicorn/production.rb ./config/unicorn.rb
+
+***** bundle
+$ bundle install
+
+***** secret key base
+# 埋め込まれているので作業不要
+
+# 以下で出よくされた内容を後述ファイルに書き込む
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+production:
+    secret_key_base: [here]
+----------------------------------------------------------------
+
+***** change log/tmp dir
+rm -rf ./log
+ln -s /var/rails/influencer/shared/log ./log
+
+rm -rf ./tmp
+ln -s /var/rails/influencer/shared/tmp ./tmp
+
+***** change current version
+$ cd /var/rails/influencer/
+$ ln -s /var/rails/uniqlo/release/20150217015610/ ./current
+
+***** unicron start
+$ cd /var/rails/uniqlo/current
+$ bundle exec unicorn_rails -c /var/rails/uniqlo/env/config/unicorn/production.rb -E production -D  
+
+**** deploy flow : production-hatag-cron
+***** mk release dir
+cd /var/rails/influencer/releases/
+mkdir `date +"%Y%m%d%H%M%S"`
+
+***** kill unicorn
+kill `cat /var/rails/influencer/current/tmp/pids/unicorn.pid`
+
+# 停止時間を短くするならば、後で止める
+
+***** mysql buckup
+mysqldump -u influencer -p --lock-table -h stage-db.org.lifewear.uniqlo.com influencer > /var/rails/influencer/backup/db/$date
+
+***** copy / edit database.yml
+cp ./config/deploy/db/production.yml ./config/database.yml 
+
+
+$ vim ./config/database.yml
+----------------------------------------------------------------
+default: &default
+    adapter: mysql2
+    encoding: utf8
+    pool: 5
+
+production:
+    <<: *default
+    database: influencer
+    username: influencer
+    #password: <%= ENV['UNIQLO_HASHTAG_DATABASE_PASSWORD'] %>
+    QkIPwa9k
+    host: db.org.lifewear.uniqlo.com
+
+----------------------------------------------------------------
+  
+***** copy / unicron.rb
+cp ./config/deploy/unicorn/production.rb ./config/unicorn.rb
+
+***** .env
+vim /var/rails/influencer/shared/.env
+
+
+
+以下、記述例
+sns tokenは適宜、変更すること
+以下は最新ではなく、staging/developが混在
+
+----------------------------------------------------------------
+DB_USERNAME=
+DB_PASSWORD=
+
+TWITTER_CONSUMER_KEY=
+TWITTER_CONSUMER_SECRET=
+TWITTER_ACCESS_TOKEN=
+TWITTER_TOKEN_SECRET=
+
+INSTAGRAM_CLIENT_ID=
+INSTAGRAM_CLIENT_SECRET=
+INSTAGRAM_ACCESS_TOKEN=
+
+FACEBOOK_APP_ID=
+FACEBOOK_APP_SECRET=
+
+API_ENDPOINT=10.0.1.50/
+
+
+# Instagramからタグ検索する際のリクエスト上限
+MAX_API_COUNT_FOR_INSTAGRAM=500
+
+# Instagramからタグ検索する際のマスターとなるタグ
+MASTER_TAG=uniqlolifewear
+----------------------------------------------------------------
+
+***** bundle
+$ bundle install
+
+***** secret key base
+# 埋め込まれているので作業不要
+
+# 以下で出よくされた内容を後述ファイルに書き込む
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+production:
+    secret_key_base: [here]
+----------------------------------------------------------------
+
+***** change log dir
+rm -rf ./log
+rm -rf ./tmp
+
+ln -s /var/rails/influencer/shared/log ./log
+ln -s /var/rails/influencer/shared/tmp ./tmp
+
+ln -s /var/rails/influencer/shared/.env ./.env
+
+***** change current version
+$ cd /var/rails/influencer/
+$ ln -s /var/rails/influencer/release/20150217015610/ ./current
+
+***** unicron start
+$ cd /var/rails/uniqlo/current
+$ bundle exec unicorn_rails -c /var/rails/influencer/current/config/unicorn.rb -E production -D 
+
+***** 管理サーバー basic 認証設定
+vim config/settings/production.yml 
+
+----------------------------------------------------------------
+api_server:
+  api_schema: 'http://'
+  api_endpoint: <%= ENV['API_ENDPOINT'] %>
+  api_basic_auth_user: uniql0inf7uencer
+  api_basic_auth_password: uniql0mysty7e
+----------------------------------------------------------------
+
+***** command test
+RAILS_ENV=production bundle exec rake twitter:get_by_rest
+RAILS_ENV=production bundle exec rake instagram:get_by_rest
+RAILS_ENV=production bundle exec rails runner TwitterStreamingDaemon.run run
+
+
+
+**** deploy flow : product
+***** mk release dir
+cd /var/rails/influencer/releases/
+mkdir `date +"%Y%m%d%H%M%S"`
+
+***** kill unicorn
+kill `cat /var/rails/unicorn/current/tmp/pids/unicorn.pid`
+
+# 停止時間を短くするならば、後で止める
+
+***** mysql buckup
+mysqldump -u influencer -p --lock-table -h db.org.lifewear.uniqlo.com influencer > /var/rails/influencer/backup/db/$date
+
+***** edit database.yml
+$ vim ./config/database.yml
+----------------------------------------------------------------
+default: &default
+    adapter: mysql2
+    encoding: utf8
+    pool: 5
+
+production:
+    <<: *default
+    database: influencer
+    username: influencer
+    password: QkIPwa9k
+    #password: <%= ENV['UNIQLO-HASHTAG_DATABASE_PASSWORD'] %>
+    host: db.org.lifewear.uniqlo.com
+
+----------------------------------------------------------------
+  
+***** bundle / assets
+$ bundle install
+$ bundle exec rake db:migrate RAILS_ENV=production
+$ bundle exec rake assets:clobber
+$ bundle exec rake assets:precompile RAILS_ENV=production
+
+***** secret key base
+# 埋め込まれているので作業不要
+
+# 以下で出よくされた内容を後述ファイルに書き込む
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+production:
+    secret_key_base: [here]
+----------------------------------------------------------------
+
+***** change assets default url
+****** assets読み込みURL変更
+# 読み込みURLを
+# [https://~~~/assets] を
+# [https://~~~/form/asset] へ変更
+# [https://~~~/] と [https://~~~/form/] ではアクセス先サーバーが異なる
+
+$ vim ./config/application.rb
+
+----------------------------------------------------------------
+module UniqloHashtag
+  class Application < Rails::Application
+
+  ~~
+  config.assets.enable = true
+  config.assets.prefix = "assets"
+
+  end
+end  
+----------------------------------------------------------------
+
+****** chmod
+chmod 755 ./public/assets*
+
+***** change log dir
+$ rm -rf ./log
+$ ln -s /var/rails/influencer/log ./log
+
+***** change current version
+$ cd /var/rails/influencer/
+$ ln -s /var/rails/uniqlo/release/20150217015610/ ./current
+
+***** unicron start
+$ cd /var/rails/uniqlo/current
+$ bundle exec unicorn_rails -c /var/rails/uniqlo/env/config/unicorn/production.rb -E production -D  
+
+
+**** init product env
+***** bash 環境変数
+ADMIN_USER
+ADMIN_PASS
+***** nginx setting
+
+**** init develop env
+***** admin
+****** mysql
+admin user : root
+pass       : mruby4836
+
+mysql -u root -p
+mysql> grant all on influencer.* to 'influencer'@'10.184.17.202'; 
+
+***** nginx setting
+****** settingにあたって
+- admin server access path
+--------------------------------
+    admin.lifewear.uniqlo.comf
+    lifewer.uniqlo.conf/form
+
+
+- normal server access path
+--------------------------------
+    lifewer.uniqlo.conf
+
+****** install
+$ yum install nginx
+
+****** setting conf file 
+$ vim /etc/nginx/conf.d/lifewear.uniqlo.com.conf
+
+
+----------------------------------------------------------------
+
+# --------------------------------------------------------------------------------
+# backend
+# --------------------------------------------------------------------------------
+upstream backend {
+    server 127.0.0.1:5001;
+}
+
+
+
+server {
+    listen       80;
+    server_name  lifewear.uniqlo.com;
+
+    server_tokens off;
+
+    access_log /var/log/nginx/lifewear.uniqlo.com/access_log;
+    error_log  /var/log/nginx/lifewear.uniqlo.com/error_log;
+
+    root /var/rails/influencer/current/public;
+
+
+    # --------------------------------------------------------------------------------
+    # switch
+    # --------------------------------------------------------------------------------
+
+    # ----------------
+    # assets
+    # ----------------
+    location ~ /form/assets(.*) {
+        alias /var/rails/influencer/current/public/assets/$1;
+    }
+
+
+    # ----------------
+    # form - rails
+    # ----------------
+    location ~ / {
+        root /var/rails/influencer/current/public;
+
+        proxy_pass http://backend;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+    }
+
+
+    # ----------------
+    # root
+    # ----------------
+    #location / {
+    #    # root   /usr/share/nginx/html/lifewear.uniqlo.com/;
+    #    # index  index.html index.htm;
+
+    #    proxy_pass http://backend;
+    #    break;
+    #}
+
+
+    # ----------------
+    # status check
+    # ----------------
+    location = /status.html {
+        return 200;
+        break;
+    }
+    allow all;
+    auth_basic "Influencer Admin Authentication";
+    auth_basic_user_file "/usr/share/nginx/.htpasswd";
+
+}
+
+***** rails unicorn 自動起動
+****** 起動 script生成
+# uniqlo admin app server developでの例
+
+
+$ vim /var/rails/uniqlo/script/unicorn.sh
+
+----------------------------------------------------------------
+#!/bin/bash
+set -e
+
+TIMEOUT=${TIMEOUT-60}
+APP_ROOT="/var/rails/uniqlo/current"
+CONFIG="/var/rails/uniqlo/env"
+PID="$APP_ROOT/tmp/pids/unicorn.pid"
+#RAILS_ENV=production                                                                                                                                                        
+RAILS_ENV=development
+CMD="bundle exec unicorn_rails -D -c $CONFIG/config/unicorn/$RAILS_ENV.rb -E $RAILS_ENV"
+action="$1"
+set -u
+
+old_pid="$PID.oldbin"
+
+cd $APP_ROOT || exit 1
+
+sig () {
+    test -s "$PID" && kill -$1 `cat $PID`
+}
+
+oldsig () {
+    test -s $old_pid && kill -$1 `cat $old_pid`
+}
+
+case $action in
+start)
+    sig 0 && echo >&2 "Already running" && exit 0
+    $CMD
+    ;;
+stop)
+    sig QUIT && rm -f ${PID} && exit 0
+    echo >&2 "Not running"
+    ;;
+force-stop)
+    sig TERM && exit 0
+    echo >&2 "Not running"
+    ;;
+restart|reload)
+    sig HUP && echo reloaded OK && exit 0
+    echo >&2 "Couldn't reload, starting '$CMD' instead"
+    $CMD
+    ;;
+upgrade)
+    if sig USR2 && sleep 2 && sig 0 && oldsig QUIT
+    then
+        n=$TIMEOUT
+        while test -s $old_pid && test $n -ge 0
+        do
+            printf '.' && sleep 1 && n=$(( $n - 1 ))
+        done
+        echo
+
+        if test $n -lt 0 && test -s $old_pid
+        then
+            echo >&2 "$old_pid still exists after $TIMEOUT seconds"
+            exit 1
+        fi
+        exit 0
+    fi
+    echo >&2 "Couldn't upgrade, starting '$CMD' instead"
+    $CMD
+    ;;
+reopen-logs)
+    sig USR1
+    ;;
+*)  
+    echo >&2 "Usage: $0 <start|stop|restart|upgrade|force-stop|reopen-logs>"
+    exit 1
+    ;;
+esac
+----------------------------------------------------------------
+
+****** $ vim /etc/rc.d/rc.local
+# 追記
+----------------------------------------------------------------
+su -c "bash /var/rails/uniqlo/script/unicorn.sh start" - mruby
+----------------------------------------------------------------
+
+# ----------------------------------------------------------------
+# su -c "[script path]"- [実行ユーザ]
+# ----------------------------------------------------------------
+
+
+**** 言語, 文言変更
+./config/locate
+
+文言変更依頼は、沼沢で対応。
+(実施不可の時は要相談だな)
+
+**** basic認証
+# nginx側でのbasic認証では、複数回認証を求められるケースがあるため
+# rails側のbasic認証を用いる
+
+- setting file
+  ./config/setting.yml
+
+- 無効化する場合
+  ./app/controller/influencer_profiles_controller.rb
+  
+*** Keywords
+# 当projectに関わる単語群
+
+tagboard
+
+twitter
+instagram
+facebook
+token
+
+**** SNS token
+Twitter
+----------------------------------------------------------------
+    メールアドレスの認証が必要
+    綾部 さま
+
+    いつもお世話になっております。
+    Ruby開発の柴田です。
+
+    SNSのアクセストークン作成時の必要情報を調べました。
+    すいません。情報をExcelなどにまとめる時間がございませんでした。
+    
+    以下の情報で、
+    Twitterの「Callback URL」以外は、
+    全て必要となります。
+    
+    よろしくお願いいたします。
+-----------------------------------------
+【Twitter】
+  ※アカウントが必要です。
+     どのアカウント（ユニクロ／メンバーズ／弊社）を
+     使用するか相談させてください。
+
+  ・Name(必須)
+     アプリケーションの名称です。
+     他のアプリケーション名と重複しない名前が必要です。
+  ・Description(必須)
+     アプリケーションの概要です。
+  ・Website（必須)
+     ウェブサイトのトップページのURLアドレス。
+  ・Callback URL(任意）
+     ユーザーが認証(アプリ連携)作業をした後の、戻り先となるURLアドレス。
+     今回は不要です。
+
+-----------------------------------------
+【Instagram】
+  ※アカウントが必要です。
+     どのアカウント（ユニクロ／メンバーズ／弊社）を
+     使用するか相談させてください。
+
+  ・Application Name(必須)
+     アプリケーションの名称です。
+     他のアプリケーション名と重複しない名前が必要です。
+  ・Description(必須)
+     アプリケーションの概要です。
+  ・Website(必須)
+     ウェブサイトのトップページのURLアドレス。
+  ・OAuth redirect_uri(必須)
+     ユーザーが認証(アプリ連携)作業をした後の、戻り先となるURLアドレス。
+     今回は不要ですが、必須のため、ダミーのURLで結構です。
+
+-----------------------------------------
+【Facebook】
+  ※アカウントが必要です。
+     どのアカウント（ユニクロ／メンバーズ／弊社）を
+     使用するか相談させてください。
+
+  ・Display Name(必須)
+     アプリケーションの名称です。
+     他のアプリケーション名と重複しない名前が必要です。
+  ・カテゴリ(必須)
+     以下から、選択してください。
+      エンターテインメント/ゲーム/コミュニケーション/ショッピング/スポーツ
+      ナビゲーション/ニュース/ビジネス/ファイナンス/ファッション/フード・ドリンク
+      プロダクティビティ/プロモーション・コンテスト/ページ用アプリ/ユーティリティ
+      ライフスタイル/健康・フィットネス/写真/動画/地域/天気/教育/旅行/本
+      辞書・参考資料/音楽
+  ・サイトURL(必須)
+     ウェブサイトのトップページのURLアドレス。
+  ・モバイルサイトURL(必須)
+     モバイルサイトのトップページのURLアドレス。
+  ・App Domains(任意)
+    アプリケーションが動作するドメイン名を登録します。
+    Facebookページと連携する場合に必要なため、必要です。
+    通常は、上記のサイトURLのドメイン部分を記載します。
+-----------------------------------------
+以上です。
+ 
+* Inner Projects Mruby
+** HW
+STM3240G
+Wi-SUN
+
+** SW
+mruby
+Wi-Sun driver  (900M Hlz)
+シリアル driver
+
+** etc
+Raspberry Pi
+
+** game作成
+*** Wi-SUNの強みは?
+物理レイヤーで、ある程度の距離で通信できるメリットは?
+何に応用できるか
+*** 何をつくる?
+*** 商用?
+*** ドラゴンレーダー / スカウター
+** sakura server
+*** eth
+- eth3つ存在する?
+    今後の帯域を考えた時に、分離して利用するべき。
+
+- 契約上、3interface存在する
+  未接続状態。
+  how to use.
+
+*** mruby
+mrubyもsakuraでgitlabで管理
+
+* Mondo

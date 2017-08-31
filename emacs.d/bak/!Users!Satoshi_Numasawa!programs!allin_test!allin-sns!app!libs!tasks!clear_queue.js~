@@ -1,0 +1,4 @@
+'use strict';
+
+const cleaner = require('../embed/cleaner.js');
+cleaner.delete_all_jobs

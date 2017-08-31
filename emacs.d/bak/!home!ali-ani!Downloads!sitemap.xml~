@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<!--  created with free sitemap generation system www.sitemapxml.jp  --> 
+<url>
+  <loc>http://www.ruby-dev.jp/</loc>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>http://www.ruby-dev.jp/business</loc>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>http://www.ruby-dev.jp/company</loc>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>http://www.ruby-dev.jp/recruiting_rails</loc>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>http://www.ruby-dev.jp/partner_offer</loc>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>http://www.ruby-dev.jp/qualification_support</loc>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>http://www.ruby-dev.jp/contact</loc>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>http://www.ruby-dev.jp/recruiting</loc>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>http://www.ruby-dev.jp/contact/application</loc>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>http://www.ruby-dev.jp/policy</loc>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>http://www.ruby-dev.jp/sitemap</loc>
+  <priority>0.8</priority>
+</url>
+
+</urlset>

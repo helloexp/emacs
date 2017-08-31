@@ -1,0 +1,39 @@
+-*- mode: org -*-
+
+
+
+
+* Project rules
+
+* Inner Projects Mruby
+** HW
+STM3240G
+Wi-SUN
+
+** SW
+mruby
+Wi-Sun driver  (900M Hlz)
+シリアル driver
+
+** etc
+Raspberry Pi
+
+** game作成
+*** Wi-SUNの強みは?
+物理レイヤーで、ある程度の距離で通信できるメリットは?
+何に応用できるか
+*** 何をつくる?
+*** 商用?
+*** ドラゴンレーダー / スカウター
+** sakura server
+*** eth
+- eth3つ存在する?
+    今後の帯域を考えた時に、分離して利用するべき。
+
+- 契約上、3interface存在する
+  未接続状態。
+  how to use.
+
+*** mruby
+mrubyもsakuraでgitlabで管理
+

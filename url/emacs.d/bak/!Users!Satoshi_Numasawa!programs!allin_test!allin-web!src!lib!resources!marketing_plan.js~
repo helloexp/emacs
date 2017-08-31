@@ -1,0 +1,24 @@
+"use strict";
+
+import { BaseResourceService } from "./base_resource_service";
+
+const COLLECTION_NAME = "marketings";
+
+class Service extends BaseResourceService {
+    constructor($resource, serviceDependency, settings) {
+        let url = `${settings.url.apiv1}/marketing_plans/:id`;
+        let client = $resource(url, {}, {
+            update: {
+                method: "PUT",
+                params: { id: "@id" }
+            }
+        });
+        super(client, serviceDependency);
+    }
+
+    getCollectionName() {
+        return COLLECTION_NAME;
+    }
+}
+
+angular.module("allin").service("marketingService", Service);

@@ -1,0 +1,19 @@
+$(document).ready(function(){
+
+	$(".acordion_tree").css("display","none");
+
+	$(".trigger").click(function(){
+
+	if($("+.acordion_tree",this).css("display")=="none"){
+
+		$(this).addClass("active");
+
+		$("+.acordion_tree",this).slideDown("normal");
+	}else{
+
+	$(this).removeClass("active");
+
+	$("+.acordion_tree",this).slideUp("normal");
+	}
+	});
+});

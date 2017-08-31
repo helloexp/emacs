@@ -1,0 +1,196 @@
+- 認定プログラムとは
+----------------------------------------------------------------
+    http://aws.amazon.com/jp/certification/
+
+
+
+
+- 試験の位置づけ (アソシエイト)
+----------------------------------------------------------------
+    AWS 認定デベロッパー : AWSインフラ上でのアプリ開発に関する認定
+    AWS 認定ソリューションアーキテクト :  AWSのインフラデザインに関する認定
+    AWS 認定システムオペレーション（SysOps）： AWSの管理、運用に関する認定
+
+    # まずはインフラとなる、アーキテクトから
+
+
+
+
+試験ガイド及び、サンプル問題
+----------------------------------------------------------------
+    http://aws.amazon.com/jp/certification/certified-solutions-architect-associate/
+
+    # 試験ガイド、サンプル問題は必読
+    # 模擬試験が20ドルで受けられる?
+
+
+
+必要知識
+----------------------------------------------------------------
+    - 対象
+        認定ソリューションアーキテクト – アソシエイト
+        ;; 他試験は未調査
+
+
+    - 概要
+        http://aws.amazon.com/jp/certification/certified-solutions-architect-associate/
+
+        
+    - 参考サイト
+        http://dev.classmethod.jp/etc/how-to-get-a-certification-aws-architect-associate-level/
+        http://aws.amazon.com/jp/certification/certified-solutions-architect-associate/
+
+
+    - 試験概要
+        試験時間 : 80 分間
+        出題数 : 55問
+        合格スコア : 65% (との情報があるが、予告なく変動するもよう)
+
+        
+    - 必要知識
+        AWS におけるスケーラビリティ、高可用性および高耐障害性の設計とデプロイ
+        既存のオンプレミスアプリケーションの AWS への引き上げおよびシフト
+        AWS とのデータの送受信
+        データ、コンピューティング、データベースまたはセキュリティ要件に基づく適切な AWS サービスの選択
+        AWS アーキテクチャのベストプラクティスの適切な使用の識別
+        AWS のコストの予測とコストコントロールメカニズムの識別
+
+
+    - この試験の受験対象者には以下が求められます。
+        AWS における分散システムの可用性、コスト効率、高耐障害性およびスケーラビリティの設計に関する 1 年以上の実際の経験
+        最低でも 1 つのハイレベルプログラム言語についての深い知識
+        AWS ベースのアプリケーションに関する要件の識別と定義についての能力
+        オンプレミスと AWS の構成要素を組み合わせた複合システムのデプロイの経験
+        AWS プラットフォームで安全性と信頼性の高いアプリケーションを構築するためのベストプラクティスを提供する能力
+
+
+    - IT 全般の知識
+        関連するIT全般の知識として、以下の知識や経験が求められる
+
+        ウェブサーバー(Apache、nginx、IIS)、キャッシング、アプリケーションサーバー、ロードバランサーなど、一般的な多層アーキテクチャーに関する高度な理解
+        RDBMS(MySQL、Oracle、SQL Server)、NoSQL
+        メッセージキューおよびエンタープライズサービスバス(ESB)に関する知識
+        疎結合およびステートレスシステムに関する知識
+        配信システムにおける各種整合性モデルについての理解
+        Contents Delivery Network に関する経験、およびパフォーマンスコンセプトの理解
+        ルートテーブル、アクセスコントロールリスト、ファイアウォール、NAT、HTTP、DNS、IP、OSI 参照モデルに関するネットワーク知識および経験
+        RESTful ウェブサービス、XML、JSON に関する知識
+        ソフトウェア開発ライフサイクルに関する理解
+        公開キー暗号化、SSH、アクセス認証情報、X.509 証明書など、情報およびアプリケーションセキュリティに関する経験
+
+
+
+
+    - 詳細レベルで押さえるプロダクト (必須)
+        Amazon EC2：コンピューティング
+        Amazon VPC：仮想ネットワーク
+        Amazon S3：ストレージ
+        IAM：アカウント認証
+        Auto Scaling：スケーリング
+        Elastic Load Balancing：ロードバランサー
+        Amazon EBS：ディスク
+        Amazon Route 53：DNS
+        Amazon CloudFront：コンテンツ配信
+        Amazon RDS：データベースサービス
+        Amazon SQS：キューイング
+        Amazon SNS：メッセージング
+
+    - 機能レベルで押さえるプロダクト (詳細レベルではないが、理解必須)
+        Amazon DynamoDB：KVSサービス
+        Amazon CloudWatch：各種モニタリング
+        Amazon ElastiCache：キャッシュクラスタ
+        AWS Elastic Beanstalk：PaaS
+        AWS CloudFormation：環境テンプレート
+        Amazon Glacier：取り出しに時間掛かるけど非常に安いストレージ
+
+    - 概要レベルで押さえるプロダクト
+        AWS Management Console：WEBから操作できるよ程度
+        Amazon CloudSearch：検索エンジン使えるよ程度
+        Amazon EMR：Hadoopクラスタ使えるよ程度
+        Amazon SWF：ワークフロー管理ができるよ程度
+        Amazon SES：メール配信できるよ程度
+        Amazon Redshift：データウェアハウスあるよ程度
+        Amazon Elastic Transcoder：動画変換できるよ程度
+        AWS DirectConnect：専用線がある程度
+        AWS Storage Gateway：オンプレストレージをクラウドに出せるよ程度
+        AWS Data Pipeline：処理をオーケストレーションできるよ程度
+        AWS OpsWorks：レシピ書けるよ程度
+        AWS Marketplaceおよび公開されているソフトウェア：第３者公開のソフトウェア使える程度
+        AWS Import/Export：既存のOSをインポートできる程度
+        Amazon FPS：APIで支払いできるよ程度
+        AWS CloudHSM：セキュリティ向上できるよ程度
+
+
+
+
+- 受験料
+----------------------------------------------------------------
+    - アソシエイトレベル　     16,200円（税込）
+        - 模擬試験受験料: 20 USD
+        
+    - プロフェッショナルレベル　32,400円（税込）
+
+
+
+
+- AWS document
+----------------------------------------------------------------
+    - AWS クラウドサービス活用資料集 
+        http://aws.amazon.com/jp/aws-jp-introduction/
+        http://aws.amazon.com/jp/training/
+
+        # トレーニング資料
+        # 事例紹介
+        
+    
+    - 各サービスのdocument
+        https://aws.amazon.com/jp/documentation/
+        http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/InstanceStorage.html
+
+
+
+
+- FAQ
+----------------------------------------------------------------
+    http://aws.amazon.com/jp/certification/faqs/
+
+    - 試験当日に必要なもの
+        身分を証明するもの（ID）を 2 種類ご持参ください。
+        ID は両方とも本人の署名が入っている必要があり、どちらか 1 つには本人の写真が添付されている必要があります
+        有効な ID の例としては、運転免許証、パスポート、またはこれに類する公的機関が発行したIDが必要となります
+
+
+    - 試験結果
+        試験終了後ただちに画面に表示されます。
+
+
+    + 再受験
+        試験に不合格になった場合、再受験は可能ですが、以下の条件があります。
+
+        - 不合格になった日から 30 日以上経過していること。
+        - 最初に不合格になった日から 1 年以内に再受験する回数が 3 回以内であること。
+        - 受験手数料は再受験のたびに全額支払うこと。
+  
+    - 認定有効期間
+        2年
+
+
+
+
+参考サイト
+----------------------------------------------------------------
+    http://codezine.jp/article/detail/8048
+    http://www.lancork.net/2014/07/how-to-pass-aws-solutions-architect-associate/
+    http://entropiajp.hatenablog.com/entry/2014/06/08/060000
+    http://qiita.com/mechamogera/items/ab686c26888dc4bfd437
+    http://humangas.hatenablog.jp/entry/2014/03/31/174247
+    http://drawing-hisa.seesaa.net/article/384974315.html
+    http://codezine.jp/article/corner/538
+
+    http://dev.classmethod.jp/etc/how-to-get-a-certification-aws-architect-associate-level/
+    # 様々情報あり
+
+    AWS 解説記事500本
+    http://dev.classmethod.jp/referencecat/aws-special/
+
+    # 合格には、全体像を抑えれば合格可能という情報や、情報二種程度、実運用経験が必要など様々な情報あり

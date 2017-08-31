@@ -1,0 +1,38 @@
+1 [100%] production
+═══════════════════
+
+  • ☑ ssh to 52.196.4.97
+  • ☑ notification server 01
+    • ☑ $ cd /var/node_notification/current/
+    • ☑ $ vim shared/restart.sh
+      • ☑ write following after [export
+        NOTIFICATION_DISPATCH_URL=……..]
+        export NOTIFICATION_MAILER_STATUS=true
+
+        export
+        NOTIFICATION_SENDGRID_APIKEY=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
+
+    • ☑ $ bash /var/node_notification/shared/restart.sh // restartは、
+      2台同時に実施
+
+    • ☑ $ string /proc/[proc_num]/environ
+    • ☑ $ pm2 status
+    • ☑ log監視
+
+  • ☑ ssh to 52.196.9.116
+  • ☑ notification server 02
+    • ☑ $ cd /var/node_notification/current/
+    • ☑ $ vim shared/restart.sh
+      • ☑ write following after [export
+        NOTIFICATION_DISPATCH_URL=……..]
+        export NOTIFICATION_MAILER_STATUS=true
+
+        export
+        NOTIFICATION_SENDGRID_APIKEY=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
+
+    • ☑ $ bash /var/node_notification/shared/restart.sh // restartは、
+      2台同時に実施
+
+    • ☑ $ string /proc/[proc_num]/environ
+    • ☑ $ pm2 status
+    • ☑ log監視

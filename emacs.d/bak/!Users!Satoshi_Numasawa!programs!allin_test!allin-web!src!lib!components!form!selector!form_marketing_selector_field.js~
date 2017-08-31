@@ -1,0 +1,36 @@
+"use strict";
+
+import { BaseSelectorDirectiveController } from "./base_selector_directive_controller";
+import { SelectorDirectiveBuilder } from "./selector_directive_builder";
+
+angular.module("allin").directive("formAccountTitleSelectorField", () => {
+    return {
+        bindToController: Controller.getBindToController({
+            allowToBeBlank: "=?",
+            codes: "=?",
+            source: "=?"
+        }),
+        controller: Controller,
+        controllerAs: "self",
+        link: SelectorDirectiveBuilder.getLinkGenerator(),
+        require: ["form-account-title-selector-field", "^?bootstrap-form"],
+        restrict: "E",
+        scope: {},
+        template: SelectorDirectiveBuilder.getTemplateGenerator({
+            displayProperty: "name"
+        })
+    };
+});
+
+class Controller extends BaseSelectorDirectiveController {
+    constructor($scope, selectorDependency, accountTitleService) {
+        super($scope, selectorDependency, accountTitleService, { allowToCache: true });
+        this.registerSearchConditionProperty("codes", "code[]");
+        this.allowToSearch();
+        this.search();
+    }
+
+    getDisplayProperty() {
+        return "name";
+    }
+}

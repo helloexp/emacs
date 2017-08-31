@@ -1,0 +1,41 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Testing '
+Resources:
+  # --------------------------------
+  # EIP setting
+  # --------------------------------
+  EIPNat:
+    Type: AWS::EC2::EIP
+    DependsOn:
+    - InternetGateway
+    Properties:
+      Domain: vpc
+  EIPGateway:
+    Type: AWS::EC2::EIP
+    DependsOn:
+    - InternetGateway
+    Properties:
+      Domain: vpc
+  assoc1:
+    Type: AWS::EC2::EIPAssociation
+    Properties:
+      AllocationId:
+        Fn::GetAtt:
+        - eip52697269
+        - AllocationId
+      InstanceId:
+        Ref: instanceiec051c1f
+  assoc2:
+    Type: AWS::EC2::EIPAssociation
+    Properties:
+      AllocationId:
+        Fn::GetAtt:
+        - eip5269322
+        - AllocationId
+      InstanceId:
+        Ref: instanceifaa14308
+
+
+
+

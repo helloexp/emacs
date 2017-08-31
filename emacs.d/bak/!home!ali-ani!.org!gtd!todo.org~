@@ -1,0 +1,3661 @@
+-*- mode: org -*-
+
+
+
+一つ一つ確実にやろう
+焦ってもしょうがない
+
+集中力
+多くの事を考えるな
+スタックを積みすぎるな (積むなら、戻れるように記憶しろ)
+
+
+
+
+* projects
+** next
+*** Todo [#E] uniqlo admin                                           :uniqlo:
+Added: [2015-06-23 Tue 12:09]
+Account情報を失った。
+要salvage
+
+*** Todo [#E] 資料確認
+Added: [2015-09-14 Mon 10:03]
+
+一読
+https://git.ruby-dev.jp/home/code-guide
+*** Done [#A] 動画配信サーバーの状態確認                      :organic_style:
+SCHEDULED: <2015-10-22 Thu> CLOSED: [2015-10-22 Thu 10:40]
+Added:      [2015-10-22 Thu 12:35]
+落ちてる
+*** Done [#A] todoを入れておく
+SCHEDULED: <2015-10-27 Tue> CLOSED: [2015-10-27 Tue 15:48]
+Added: [2015-10-26 Mon 13:21]
+
+**** sorce codeにtodoを入れる
+
+*** Done [#A] deploy方法の調査                                :organic_style:
+   SCHEDULED: <2015-11-03 Tue> CLOSED: [2015-11-04 Wed 09:18]
+
+- [X] 各環境へのdeploy方法の調査
+
+- [X] repositoryをgitlabへ
+- [X] merge request
+- [X] merge done
+
+- [X] development
+      - [X] upload key, and rename
+      - [X] repo/config backup
+      - [X] update rbenv
+      - [X] install ruby 2.2.3
+      - [X] gem install bundler
+      - [X] edit repo/config
+      - [X] make sym link database.yml
+      - [X] deploy test # t2.smallではmem errで落ちる
+      - [X] check whenever
+
+- [X] staging
+      - [X] upload key, and rename
+      - [X] repo/config backup
+      - [X] update rbenv
+      - [X] install ruby 2.2.3
+      - [X] gem install bundler
+      - [X] make sym link database.yml
+      - [X]  deploy test
+      - [X] check whenever
+
+- [-] production
+      - [X] upload key, and rename
+      - [X] repo/config backup
+      - [X] update rbenv
+      - [X] install ruby 2.2.3
+      - [X] gem install bundler
+      - [X] make sym link database.yml
+      - [ ] deploy test
+      - [ ] check whenever
+
+- [X] deployに必要な要素を纏める
+- [X] 纏めを展開
+
+**** job
+## CRON job
+CRON job は、以下のコマンドで確認できます。
+
+$ bundle exec whenever
+
+cron に反映するには
+$ bundle exec whenever --update-cron
+
+cron から除外するには
+$ bundle exec whenever --clear-cron
+
+その他の詳細は、以下を参照してください。
+
+公式サイト：
+
+https://github.com/javan/whenever
+
+参考：
+
+http://qiita.com/yumiyon/items/388fbb84450f49a6ab0d
+
+*** Done image再作成                                          :organic_style:
+SCHEDULED: <2015-11-05 Thu> CLOSED: [2015-11-04 Wed 09:17]
+
+- [X] develop
+- [X] staging
+- [X] production
+
+*** Done [#A] QA試験作成                                      :organic_style:
+SCHEDULED: <2015-11-03 Tue> CLOSED: [2015-11-03 Tue 18:56]
+
+- [ ] 以下の変更が関係ありそうなもの
+      - クーポン対応
+      - 個人情報マスク
+- [ ] 上記に該当するか分からないもの
+
+*** Done QA試験                                               :organic_style:
+SCHEDULED: <2015-11-03 Tue> CLOSED: [2015-11-04 Wed 09:16]
+
+**** 問題点
+- 商品登録 : 画像アップロード後、サンプル画像が表示されない
+
+*** Done Productionへのdeploy                                 :organic_style:
+DEADLINE: <2015-11-05 Thu> CLOSED: [2015-11-05 Thu 16:31]
+- [X] deploy
+- [X] whenever check
+*** Done mysqldump                                            :organic_style:
+CLOSED: [2015-11-04 Wed 09:29]
+productionのdbをdumpして、佐藤氏へ展開
+*** Done [#B] 代休申請
+SCHEDULED: <2015-11-09 Mon> CLOSED: [2015-11-12 Thu 21:35]
+
+- [X] 出し方確認
+- [X] 休日出勤日、代休日の付きあわせ
+- [X] 柴田さんへ
+- [ ] 大吉さんへmail
+- [ ] 他の代休日はどうする?
+
+** Done [#B] manatuku | 機能調査                              :organic_style:
+CLOSED: [2015-11-03 Tue 17:21]
+*** 作業指針
+**** ユースケースを全て抽出
+**** シナリオを元に機能に差分がないか確認
+**** testも行う (基本的なエラー程度、細かいものは不要) // クリティカルという意味だろう
+// 向こうが欲しいのは箇条書き程度
+
+**** 機能一覧の方が粒度が細かい。できれば、この辺りまで落とし込んで欲しい。
+テスト観点?
+
+**** ソース
+ソース確認はおかしな動きがあった時に確認
+
+**** Q&A
+疑問があれば随時書き込み。
+既存ヴェンダーへの質問とする。
+
+*** stg環境
+url
+id / pass
+*** astar install
+*** ユースケース / シナリオ
+**** スプレッドシートへ書き出し
+**** ユースケース抽出 / 差分確認
+- 要求定義書のユースケースを元とする
+- 差分があれば更新 ()
+
+*** 画面遷移図
+SSか
+
+** Done 動作確認                                              :organic_style:
+CLOSED: [2015-11-03 Tue 17:20]
+Added: [2015-10-15 Thu 14:46]
+
+*** やること
+**** 機能一覧の動作確認、実装状態の確認、バグ出し
+**** user case?
+**** scenario?
+**** 画面遷移図?
+*** use case
+**** 商品を購入する (クレジット)
+- [ ] ユーザーは、商品詳細から購入ボタンをクリックする
+- [ ] ユーザーは、購入画面に注文者情報を入力する(ログイン状態であれば、アカウント情報表示)
+- [ ] ユーザーは、支払方法を選択する
+- [ ] ユーザーは、クレジットカード払いを選択した場合、クレジットカード情報を入力する
+- [ ] ユーザーは、購入ボタンをクリックする
+- [ ] ユーザーは、購入完了画面からマイページに移動する(動画購入以外)
+- [ ] ユーザーは、購入完了画面から動画閲覧ページに移動する(動画購入の場合)
+
+**** 商品を購入する (銀行振り込み)
+- [ ] ユーザーは、商品詳細から購入ボタンをクリックする
+- [ ] ユーザーは、購入画面に注文者情報を入力する(ログイン状態であれば、アカウント情報表示)
+- [ ] ユーザーは、支払方法を選択する
+- [ ] ユーザーは、銀行振り込みを選択する
+- [ ] ユーザーは、購入ボタンをクリックする
+- [ ] ユーザーは、購入完了画面からマイページに移動する
+- [ ] ユーザーは、振込案内メールを確認し、指定口座に代金を支払う
+
+**** 購入動画を見る
+- [ ] ユーザーは、マイページにログインする
+- [ ] ユーザーは、閲覧したい動画を選択する
+- [ ] ユーザーは、動画閲覧ページから動画を閲覧する
+- [ ] ユーザーは、動画閲覧ページから関連動画を選択し、閲覧することができる
+
+**** スクール動画を見る
+- [ ] ユーザーは、マイページにログインする
+- [ ] ユーザーは、受講するスクールを選択する
+- [ ] ユーザーは、スクールページからス閲覧したい動画を選択する
+- [ ] ユーザーは、動画閲覧ページから動画を閲覧する
+- [ ] ユーザーは、動画閲覧ページからスクールの関連動画を選択し、閲覧することができる
+
+**** スクール欠席連絡をする
+- [ ] ユーザーは、マイページにログインする
+- [ ] ユーザーは、欠席するスクールを選択する
+- [ ] ユーザーは、スクールページから欠席するスクールを選択し、欠席対応を選択する
+
+**** 購入履歴を見る
+- [ ] ユーザーは、マイページにログインする
+- [ ] ユーザーは、購入履歴をクリックする
+- [ ] ユーザーは、注文の履歴を検索する
+- [ ] ユーザーは、注文履歴から領収書(銀振3万円以上除く)出力と、商品評価ができる
+
+**** 問い合わせをする
+- [ ] ユーザーは、マイページにログインする
+- [ ] ユーザーは、問合せ内容を選択して、問合せ内容を記載し、送信ボタンをクリックする
+- [ ] ユーザーは、まなつく事務局からの問い合わせ回答をメールで確認する
+
+*** 各機能の詳細の確認資料
+https://drive.google.com/drive/folders/0B32RFNW_xx8eRExkMkZ3MUNQcFk
+
+実際どの画面をみればいいのやら?
+
+- まなつく要件定義書 : 79page以降から
+- まなつく残機能    : user各種
+** Project [#A] 動画変更サンプル                              :organic_style:
+Added: [2015-10-16 Fri 15:43]
+
+# business bank / organic styleで使用
+
+*** 要件
+**** mana2kuの指定する動画を上げる。
+- S3へupload
+**** 動画を各デバイス向けに変換する
+- transdcoderで各デバイス向けに変換する
+- S3へ保存
+- Cloudfrontへキャッシュ
+**** 動画配信URLへアクセスする
+- 各デバイス向けへのファイルを転送する
+
+*** 使用言語, toolなど
+**** player
+video.js
+
+*** Todo [#A] [50%] transcoder 基本部分
+- [X] :  AWS UI上での動作確認
+- [ ] :  ruby APIの使い方
+- [X] :  変換Fileの命名即の確認
+      original File / encoded file共に指定可能
+      sampleでは、hash化していたが…うーん
+
+- [ ] :  s3のdir構造どうする? とりあえず適当に考えよう
+
+*** Todo [#A]  S3 / cloudfront / transcoder
+**** [100%] Done 同期
+**** Done 権限設定
+CLOSED: [2015-10-19 Mon 16:04]
+
+よくわからんが、
+S3ではアクセスNG
+cloudfrontではアクセスok
+
+**** Done video.js
+CLOSED: [2015-10-19 Mon 23:31]
+**** Done Railsで構築
+CLOSED: [2015-10-21 Wed 12:38]
+***** Done deviseの判定方法
+CLOSED: [2015-10-21 Wed 12:38]
+***** Done mobile / PCでのhtml分岐
+CLOSED: [2015-10-21 Wed 12:38]
+slim fileへ切り出し
+2ファイルに分ける必要はあるか?
+
+で、どうやって一部読み込みする方法は?
+**** 各設定の見直し
+transcoder動かす所まで来たが、各設定の意味を理解していない
+
+- SNS
+- SQS
+- transcoder
+- S3 / cloudfront
+**** s3 :  API確認
+S3向けのAPIは色々ある
+どれを使っているか、manatukuソースから確認
+
+**** transcoder : jobのステータス確認方法
+sns / sqs?
+**** transcoder : 変換後のファイルのプレビュー
+
+*** Done [#B] 料金調査
+DEADLINE: <2015-11-06 Fr>i CLOSED: [2015-11-10 Tue 19:00]
+
+# 着手できていなければ、11/06に相談
+# 場合によっては来週へ回す
+
+- [X] SNS : 無料
+      SQSへの配信は無料。
+- [X] SQS : 無料
+      100万件まで無料。1変換で多くとも数通のため、ここまで達しない。
+      超えた場合は、0.4$ / 100万件
+
+- [X] upload周り
+- [ ] その他料金があれば
+
+- [ ] knowhow pageへ料金追記
+      https://sites.google.com/a/ruby-dev.jp/knowhow/aws/elastic-transcoder
+
+- [ ] 容量ベースでの試算 : excelへ纏める
+      時間課金と、容量課金の混在となっているため、
+      容量単位で試算する
+
+*** Todo [#B] HLS調査
+DEADLINE: <2015-11-06 Fri>
+
+時間があれば調査
+
+** Done 個人情報のマスク対応                                  :organic_style:
+CLOSED: [2015-10-26 Mon 00:06]
+Added: [2015-10-21 Wed 12:45]
+*** Done 1. 講師機能：「顧客一覧」へのリンクを削除
+CLOSED: [2015-10-21 Wed 14:17]
+- 講師TOPの左サイドメニュー「顧客一覧」リンクを削除する。
+
+*** Done 2. 講師機能：「注文・売上一覧」の検索条件から以下の項目を削除（Model Controllerの対応も必要かも）
+SCHEDULED: <2015-10-23 Fri> CLOSED: [2015-10-25 Sun 23:36]
+- 顧客名
+- 顧客名(カナ)
+- 電話番号(先頭一致)
+- メールアドレス(先頭一致)
+
+*** Done 3. 講師機能：「注文・売上一覧」の一覧から以下の項目を削除
+CLOSED: [2015-10-21 Wed 14:17]
+- 顧客名
+
+*** Done 4. 講師機能：「入金一覧」の注文・売上一覧から以下の項目を削除
+CLOSED: [2015-10-21 Wed 14:16]
+- 顧客名
+
+*** Done 5. 講師機能：「注文・売上一覧」のExcelダウンロードの項目から削除
+CLOSED: [2015-10-21 Wed 14:16]
+- 顧客名
+
+*** Done 6. ユーザー購入時（注文時）に講師にメールが送信されることにより、購入したユーザーのメールアドレス、氏名が講師に伝わる。
+SCHEDULED: <2015-10-23 Fri> CLOSED: [2015-10-25 Sun 23:36]
+
+ 講師にメールを送信しない様にする。（購入時以外のメール送信の修正も必要。修正対象はソースから調査する）
+
+- [ ] : まずは動作確認
+- [ ] : 送信タイミング調査
+- [ ] : 修正
+
+** Done [#A] [83%] 静的サイト | S3 + AWSコンソール + サブドメイン :organic_style:
+CLOSED: [2015-11-10 Tue 18:49]
+Added: [2015-10-22 Thu 10:38]
+DEADLINE: <2015-11-10 Tue>
+
+*** 要件
+- 昔ながらの手法みたいに、FTPで上げて静的ページを管理したい
+- up, deleteなどできればよい
+- sub domainで管理したい (元は、sub dirという要件だった)
+
+*** 期限
+phase1 releaseの、[2015-11-05 Thu]
+遅くとも、[2015-11-09 Mon]の週中
+
+*** Done [100%] S3 bucket 作成
+CLOSED: [2015-11-09 Mon 19:59]
+- [X] bukect作成
+
+*** Done [100%] S3 / Route3
+CLOSED: [2015-11-09 Mon 19:59]
+- [X] domain紐付け
+
+*** Done [100%] upload test
+CLOSED: [2015-11-09 Mon 19:59]
+- [X] ok
+*** Done [100%] 動作テスト
+CLOSED: [2015-11-09 Mon 19:59]
+- [X] 単純html
+- [X] link
+- [X] css/image読み込み
+
+*** Done account作成
+CLOSED: [2015-11-09 Mon 19:21]
+専用アカウント
+
+manatuku-s3
+zaesaiKaemieL3oo
+
+*** Done 資料作成
+https://drive.google.com/drive/folders/0ByHzvhUxlVRLSGF1bldWdHFyMzg
+
+*** Waiting 提出
+柴田さんへ報告済み
+返答待ち
+
+終わったら、どこかのタイミングでnginxの設定を変更。
+先方へ展開?
+
+** Project [#B] research media encode                         :organic_style:
+Added: [2015-09-14 Mon 09:21]
+
+- [ ] その他、encode系のサービス調査
+- [ ] mobile / PC端末の、一般的なサポートcodecの確認
+- [ ] アプロードテスト
+      > 動画の場合 MP4形式(H264、AAC-LC)、最大解像度640x480px でアップロードしてください。
+      実際に上げて試してみよう
+
+** Done [#A] AWS : 設定変更                                   :organic_style:
+CLOSED: [2015-11-10 Tue 19:01]
+Added:      [2015-10-22 Thu 12:01]
+
+*** Done [#A] [100%] AWSサーバの秘密鍵の変更
+SCHEDULED: <2015-10-23 Fri> CLOSED: [2015-10-23 Fri 12:21]
+
+- [X] setting : development
+- [X] setting : staging
+- [X] setting : production
+
+*** Done [#D] [81%] AWSのengraphiaアカウントの削除
+SCHEDULED: <2015-10-23 Fri> CLOSED: [2015-11-05 Thu 16:33]
+
+- [X] confirm : AWSログインし、IAMアカウントを確認
+      問題なし
+      engraphiaのアカウント、10/15にログイン履歴あり
+      credencialの利用履歴無し
+
+- [X] question
+    - [X] IAMユーザー?
+          返答無し
+
+- [X] IAM削除
+      10/15にログイン形跡有り
+      crediantial keyの利用履歴無し
+      以上から問題ないと判断
+
+- [X] IAM作成
+       https://organicstyle.signin.aws.amazon.com/console
+      ruby-dev
+      oon1Eetaezohch8i
+
+- [X] setting : development
+      - [X] delete : mail address
+            アカウント削除できなかったので、mail address 上書き
+
+      - [X] change : aws ssh key
+            - [X] 既存authorized_key backup to ~/backup
+            - [X] create new key
+            - [X] server stop, AMI, set new key
+            - [X] login確認 root
+            - [X] login確認 ec2-user
+      - [X] change : linux user : ssh key
+            - [X] root     : 不要
+            - [X] ec2-user : 不要
+            - [X] ssh copy to user manatsuku
+            - [X] login確認 manatusuku
+      - [X] change : linux user
+            変更不要
+
+      - [X] change : elastic IP
+      - [X] serverへのhttpアクセス確認
+
+      172.31.0.10
+      52.68.91.92
+      devel.manatuku.com
+      keypair
+      VPC vpc-8e70a0eb
+
+- [X] setting : staging
+      - [X] delete : mail address
+            アカウント削除できなかったので、mail address 上書き
+      - [X] change : aws ssh key
+            - [X] 既存authorized_key backup to ~/backup
+            - [X] create new key
+            - [X] server stop, AMI, set new key
+            - [X] login確認 root
+            - [X] login確認 ec2-user
+      - [X] change : linux user : ssh key
+            - [X] root     : 不要
+            - [X] ec2-user : 不要
+            - [X] ssh copy to user manatsuku
+            - [X] login確認 manatusuku
+      - [X] change : linux user
+            変更不要
+      - [X] change : elastic IP
+      - [X] serverへのhttpアクセス確認
+      - 元設定
+        172.31.16.90
+        52.68.118.96
+
+- [X] setting : production
+      - [X] delete : mail address
+            アカウント削除できなかったので、mail address 上書き
+
+      - [X] change : aws ssh key
+            - [X] 既存authorized_key backup to ~/backup
+            - [X] create new key
+            - [X] server stop, AMI, set new key
+            - [X] login確認 root
+            - [X] login確認 ec2-user
+      - [X] change : linux user : ssh key
+            - [X] root     : 不要
+            - [X] ec2-user : 不要
+            - [X] ssh copy to user manatsuku
+            - [X] login確認 manatusuku
+      - [X] change : linux user
+            変更不要
+
+      - [X] change : elastic IP
+      - [X] serverへのhttpアクセス確認
+
+- [X] IAM / ssh key
+    - [X] upload : to goole
+    - [X] slackで報告
+
+- [X] Basic 認証
+    - [X] prd
+    - [X] stg
+    - [X] dev
+
+- [ ] source修正 : engraphis mail adress
+- [ ] AWS : root account
+      柴田さんへ相談済み。待ち
+**** 要件
+本番環境、STG環境から、
+既存ベンダーのメールアドレスや、アカウントを削除する。
+また、サーバーパスワード等を変更し、既存ベンダーがログイン出来ないようにする
+
+*** Done [#A] [%] 報告
+CLOSED: [2015-11-10 Tue 19:01]
+全todo消化後、柴田さんに報告
+
+** Done 文言変更                                                     :uniqlo:
+SCHEDULED: <2015-10-27 Tue> CLOSED: [2015-10-27 Tue 14:25]
+
+*** Done 要件確認
+SCHEDULED: <2015-10-26 Mon> CLOSED: [2015-10-26 Mon 15:07]
+
+**** メール
+柴田様
+
+お世話になっております。
+ソーシャルインフルエンサー登録フォーム(https://lifewear.uniqlo.com/form/jp/)の、
+注意事項の文言を変更して頂きたくご連絡差し上げました。
+＜ご確認下さい＞部分の文言を下記に変更をお願い致します。
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+＜ご確認下さい＞
+
+・ユニクロは、お客様が各ソーシャルメディアサイトに投稿されたユニクロ商品 の着用画像（静止画・動画を含みます。）を、ユニクロのWEBサイト、SNS、店頭販促物、その他ユニクロの制作する広告に使用することができます。
+・お客様の肖像権及び著作権はお客様ご本人に帰属しますが、本フォームの送信 によるインフルエンサ―登録をもって、お客様からユニクロに対し、お客様のユニクロ商品の着用画像を、全世界において非独占的に 使用（複製・公開・送信・頒布・貸与・翻訳・翻案を含みます。）する権利を無期限かつ無償で許諾されたものとします。
+・下記に該当するユニクロ商品の着用画像の投稿はお控えください。
+-　他人に迷惑、不利益、損害または不快感を与えるもの
+-　他人を誹謗中傷し、またはその名誉若しくは信用を毀損するもの
+-　他人の著作権その他の知的財産権を侵害するもの
+-　他人の財産、プライバシー若しくは肖像権を侵害するもの
+-　公共良俗に反するもの
+
+・インフルエンサ―登録後、お客様の貴重な声をユニクロ商品の開発やサービスの向上に活かすため、また、ユニクロ商品をより多くの皆様に知っていただくために、ユニクロからお客様に対して、特別なご依頼をすることや未
+公表のユニクロ商品の企画・開発・製造・販売等に関する情報、その他技術上または営業上の情報をお知らせすることがあります。
+つきましては、インフルエンサー登録された事実、インフルエンサー登録を通じて知られた上記の情報につき、ユニクロの許可なくいかなる方法でも開示・漏洩・使用されないようお願いいたします。
+
+
+
+上記に同意します。登録内容を確認する
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**** 変更点
+以下、全て
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+＜ご確認下さい＞
+
+・ユニクロは、お客様が各ソーシャルメディアサイトに投稿されたユニクロ商品の着用画像（静止画・動画を含みます。）を、ユニクロのWEBサイト、SNS、店頭販促物、その他ユニクロの制作する広告に使用することができます。
+・お客様の肖像権及び著作権はお客様ご本人に帰属しますが、本フォームの送信によるインフルエンサ―登録をもって、お客様からユニクロに対し、お客様のユニクロ商品の着用画像を、全世界において非独占的に使用（複製・公開・送信・頒布・貸与・翻訳・翻案を含みます。）する権利を無期限かつ無償で許諾されたものとします。
+・下記に該当するユニクロ商品の着用画像の投稿はお控えください。
+-　他人に迷惑、不利益、損害または不快感を与えるもの
+-　他人を誹謗中傷し、またはその名誉若しくは信用を毀損するもの
+-　他人の著作権その他の知的財産権を侵害するもの
+-　他人の財産、プライバシー若しくは肖像権を侵害するもの
+-　公共良俗に反するもの
+
+・インフルエンサ―登録後、お客様の貴重な声をユニクロ商品の開発やサービスの向上に活かすため、また、ユニクロ商品をより多くの皆様に知っていただくために、ユニクロからお客様に対して、特別なご依頼をすることや未公表のユニクロ商品の企画・開発・製造・販売等に関する情報、その他技術上または営業上の情報をお知らせすることがあります。
+　つきましては、インフルエンサー登録された事実、インフルエンサー登録を通じて知られた上記の情報につき、ユニクロの許可なくいかなる方法でも開示・漏洩・使用されないようお願いいたします。
+
+上記に同意します。登録内容を確認する
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+*** Done 文言変更
+SCHEDULED: <2015-10-26 Mon> CLOSED: [2015-10-26 Mon 15:07]
+*** Done 多言語のファイル修正
+CLOSED: [2015-10-26 Mon 15:07]
+*** Done Rspec
+SCHEDULED: <2015-10-26 Mon> CLOSED: [2015-10-26 Mon 21:04]
+*** Done gitlabへ対応 | ssh key
+SCHEDULED: <2015-10-26 Mon> CLOSED: [2015-10-27 Tue 14:25]
+- [X] edit       : source
+
+- [100%] upload & edit config: dev
+      - [X] hashtag
+      - [X] hashtag-main
+      - [X] hashtag-crontab
+- [100%] upload & edit config: stg
+      - [X] hashtag
+      - [X] hashtag-main
+      - [X] hashtag-crontab
+- [66%] upload & edit config: stg
+      - [X] hashtag
+      - [ ] hashtag-main
+      - [X] hashtag-crontab
+
+**** ssh config
+Host git.ruby-dev.jp
+    Hostname       git.ruby-dev.jp
+    IdentityFile   /home/mruby/.ssh/gitlab
+    TCPKeepAlive   yes
+    IdentitiesOnly yes
+
+**** key name
+gitlab
+*** Done merge to release and master
+SCHEDULED: <2015-10-26 Mon> CLOSED: [2015-10-26 Mon 21:04]
+
+- [X] merge request to release
+- [X] merge request to master
+
+*** Done backup repo dir
+CLOSED: [2015-10-27 Tue 14:25]
+- [X] edit : source
+
+- [100%] upload & edit config: dev
+      - [X] hashtag
+      - [X] hashtag-main
+      - [X] hashtag-crontab
+- [100%] upload & edit config: stg
+      - [X] hashtag
+      - [X] hashtag-main
+      - [X] hashtag-crontab
+- [66%] upload & edit config: prd
+      - [X] hashtag
+      - [ ] hashtag-main
+      - [X] hashtag-crontab
+
+*** Done deploy to dev
+CLOSED: [2015-10-26 Mon 21:04]
+*** Done AMI remake
+SCHEDULED: <2015-10-26 Mon> CLOSED: [2015-10-26 Mon 21:09]
+
+- [X] : admin
+- [X] : user
+- [X] : sns
+
+*** Done deploy to staging
+SCHEDULED: <2015-10-26 Mon> CLOSED: [2015-10-26 Mon 21:04]
+*** Done deploy to production
+SCHEDULED: <2015-10-27 Tue> CLOSED: [2015-10-27 Tue 14:25]
+
+** Done クーポン割引対応 - customer                           :organic_style:
+CLOSED: [2015-11-03 Tue 17:21]
+*** Done [#A] coding 購入画面 クーポン
+SCHEDULED: <2015-11-01 Sun> CLOSED: [2015-11-02 Mon 09:20]
+
+*** Done [#A] coding : メールクーポン
+SCHEDULED: <2015-11-01 Sun> CLOSED: [2015-11-01 Sun 15:38]
+ユーザーに送信されるメールの「ご購入金額」をクーポン割引適用後の金額に変更する。
+
+対象のメール:
+
+- 銀行振込で購入した場合の注文完了通知メール
+- 銀行振込確認後の視聴可能案内メール
+- クレジットカードで購入した場合の注文完了通知メール
+
+** Project [#B] GMO version対応調査                           :organic_style:
+Added:      [2015-10-28 Wed 13:05]
+
+4page目
+https://drive.google.com/a/ruby-dev.jp/file/d/0B32RFNW_xx8eeFg0S2hIODQycVk/view
+
+*** Done open sslのversionが対応しているかどうか
+SCHEDULED: <2015-11-05 Thu> CLOSED: [2015-11-10 Tue 20:20]
+
+- [X] SHA-2   : OK SHA-256対応の証明書であった
+      http://valuessl.net/ssl-certificate/rapidssl/rapidssl.php
+      https://ja.wikipedia.org/wiki/SHA-2
+
+- [X] OpenSSl : OK OpenSSL 1.0.1k-fips
+
+- [X] http://aws.amazon.com/jp/security/security-bulletins/aws-to-switch-to-sha256-hash-algorithm-for-ssl-certificates/?nc1=h_ls
+      ruby test scriptを実行し、200 ok
+
+- [X] openssl s_client -connect manatuku.com:443 -tls1_2 | more
+
+*** Done SSL 報告
+SCHEDULED: <2015-11-11 Wed> CLOSED: [2015-11-13 Fri 14:20]
+
+** Project [#A] code climate security                         :organic_style:
+Added:      [2015-10-28 Wed 13:25]
+
+以下の4項目（7箇所）指摘対応を行う
+
+*** Done [#A] [100%] Denial of Service（2箇所）
+CLOSED: [2015-10-28 Wed 16:05]
+https://codeclimate.com/repos/55fb81066956804c82001c48/security?warning_type=Denial+of+Service
+
+
+userからのアクセス(:param)をto_symすることで、overflowする。
+問題は、symbolがGCされない事。
+2.2以上では、GCされるが、場合によってはGCされないケースもある
+http://fiveteesixone.lackland.io/2015/01/21/symbol-gc-ruby-2-2/
+https://codeclimate.com/repos/55fb81066956804c82001c48/security?warning_type=Denial+of+Service
+http://brakemanscanner.org/docs/warning_types/denial_of_service/
+
+- [X] mail_preview
+      columnに入る値が固定のため、whitelistを通した
+      // codeclimateのread upのコードを流用
+
+- [X] mail template
+      そもそも、mail_templates_pathはどこからも呼ばれていない。
+      idは、mail_templateのtable上のidを示すと思われるため、integer以外は無効とした
+      // codeclimateのread upのコードを流用
+
+*** Done [#A] [100%] Format Vailidation (1箇所）
+CLOSED: [2015-10-28 Wed 16:52]
+https://codeclimate.com/repos/55fb81066956804c82001c48/security?warning_type=Format+Validation
+
+- [X] app/models/payment/credit_card.rb
+      37行目
+      接頭、末尾指定が必要。
+      \A 接頭
+      \z 末尾
+
+      ^ $ ではNG
+      http://qiita.com/kentana20/items/3f37bbc8eb04d9ce927d
+
+*** Todo [#B] [%] File Access（2箇所）
+SCHEDULED: <2015-11-03 Tue>
+https://codeclimate.com/repos/55fb81066956804c82001c48/security?warning_type=File+Access
+
+- [ ] 1
+- [ ] 2
+
+*** Done [#A] [100%] Dynamic Render Path （2箇所）
+CLOSED: [2015-11-03 Tue 16:09]
+https://codeclimate.com/repos/55fb81066956804c82001c48/security?warning_type=Dynamic+Render+Path
+
+- [X]  app/views/portal/bills/thanks.html.haml
+- [X] app/views/portal/purchases/index.html.haml
+
+https://www.owasp.org/index.php/Ruby_on_Rails_Cheatsheet
+双方とも、同じ
+= render @purchases@
+ではなく、eachで描画する必要あり。
+
+理由がいまいち分からない。user inputで特定のtemplate呼び出しが可能らしい?
+が、他のhaml fileを参照すると、eachを使用しているため、これに習う。
+
+** Done [#A] テストコード追加                                 :organic_style:
+SCHEDULED: <2015-11-02 Mon> CLOSED: [2015-11-03 Tue 16:08]
+Added:      [2015-10-28 Wed 13:26]
+
+CodeClimateで、カバレッジが80%以下の対応。80%を上回るようにテストを記載する。
+特にクレジット決算のところがかけてない。
+https://codeclimate.com/repos/55fb81066956804c82001c48/coverage
+
+*** Done [#A] app/models/payment/transaction/gmo_immediate_continue.rb        23.33%
+CLOSED: [2015-11-01 Sun 16:42]
+https://codeclimate.com/repos/55fb81066956804c82001c48/coverage/5620b588d55a35365b00ba96
+
+*** Done [#A] app/models/payment/transaction/bank_transfer_continue.rb        30.43%
+CLOSED: [2015-11-01 Sun 17:31]
+https://codeclimate.com/repos/55fb81066956804c82001c48/coverage/5620b588d55a35365b00ba93
+
+model bank_transferとほぼ同等のため、左記対象のspec流用。
+呼び出しmodel部のみを修正 (BankTransfer から BankTransferContinue へ)
+
+元の、bank_transfer へfailケースを追記
+
+*** Done [#A] app/mailers/trainer_mailer.rb        30.77%
+CLOSED: [2015-10-28 Wed 22:36]
+https://codeclimate.com/repos/55fb81066956804c82001c48/coverage/5620b588d55a35365b00ba87
+
+100%
+
+*** Done [#A] app/controllers/portal/payments_controller.rb        54.55%
+CLOSED: [2015-10-31 Sat 17:01]
+https://codeclimate.com/repos/55fb81066956804c82001c48/coverage/5620b588d55a35365b00ba78
+
+
+**** 洗い替え見処理で進めず
+ if have_invalid_card
+        CustomerMailer.notify_for_invalid_creditcard_solved(current_customer).deliver_later
+      end
+    end
+
+**** APIErrorへ行く方法が思いつかず
+  rescue ActiveRecord::RecordInvalid => e
+    @error_messages = e.record.errors.full_messages
+    @current_payment = current_customer.payment
+    @payment = e.record
+    render :new
+  rescue SphyGmo::APIError => e
+    @error_messages = e.messages
+    @current_payment = current_customer.payment
+    @payment = Payment.new(payment_params)
+    render :new
+  end
+**** hash :payment_bank_transferを設定するも、:payment_credit_cardに落ちる
+  def payment_params
+    attrs = case
+    when -> { params.has_key? :payment_credit_card }
+      :payment_credit_card
+    when -> { params.has_key? :payment_bank_transfer }
+      :payment_bank_transfer
+    else
+      :payment
+    end
+*** Done [#A] app/jobs/base_job.rb        57.14%
+CLOSED: [2015-10-31 Sat 12:10]
+https://codeclimate.com/repos/55fb81066956804c82001c48/coverage/5620b588d55a35365b00ba82
+
+*** Done [#A] app/controllers/trainer/customers_controller.rb  71.43%
+CLOSED: [2015-10-31 Sat 10:27]
+https://codeclimate.com/repos/55fb81066956804c82001c48/coverage/5620b588d55a35365b00ba7d
+
+*** Done [#A] app/values/year_month.rb 75%
+CLOSED: [2015-10-30 Fri 12:42]
+https://codeclimate.com/repos/55fb81066956804c82001c48/coverage/5620b588d55a35365b00ba99
+
+*** Done [#A] app/models/payment/transaction/gmo_monthly.rb 76.0%
+CLOSED: [2015-10-30 Fri 14:50]
+https://codeclimate.com/repos/55fb81066956804c82001c48/coverage/5620b588d55a35365b00ba97
+
+微妙
+csvのステータスコードやら、全体像から詳細まで
+さっぱり見えていない
+
+*** Done [#A] app/models/subscription_form.rb 78.13%
+CLOSED: [2015-11-03 Tue 16:08]
+https://codeclimate.com/repos/55fb81066956804c82001c48/coverage/5620b588d55a35365b00ba98
+
+79%
+
+*** Done [#A] app/decorators/trainer_profile_decorator.rb 80.0%
+CLOSED: [2015-11-03 Tue 16:08]
+https://codeclimate.com/repos/55fb81066956804c82001c48/coverage/5620b588d55a35365b00ba81
+
+** Project [#A] テストコード再追加                            :organic_style:
+Added:      [2015-10-28 Wed 13:26]
+
+*** Todo [#A] app/controllers/trainer/customers_controller.rb  71.43%
+https://codeclimate.com/repos/55fb81066956804c82001c48/coverage/5620b588d55a35365b00ba7d
+
+master merge後、全部落ちる様になった
+
+*** Todo [#A] app/decorators/trainer_profile_decorator.rb 80.0%
+https://codeclimate.com/repos/55fb81066956804c82001c48/coverage/5620b588d55a35365b00ba81
+
+分からなかった
+** Project AWS セキュリティ調査                               :organic_style:
+Added:      [2015-11-01 Sun 15:29]
+
+*** Todo [#B] S3へのアクセス権限調査
+起点は、柴田さんの「誰でも勝手にuploadできるようにならん?」という言葉
+
+
+** Project [#C] aws account初期設定/sercurityの考察
+Added: [2015-06-16 火 13:22]
+初期設定時、必要な設定
+
+- cloud tail (操作記録)
+- 佐藤氏曰く、共通ssh keyはNG
+- 個人accountを作成し、誰がloginしたか分かるように
+  active domainなど
+** Project [#B] experiments
+Added: [2015-06-17 Wed 10:41]
+
+ELBの実験
+単一az subnetのみに属する場合、
+上記とは異なるsubnetのEC2 instanceを使用できるか? (自動で追加されるか?)
+** Project [#D] RDS and read replica 調査
+Added: [2015-06-17 Wed 14:42]
+
+- Master / slaveのフェイルオーバー時間の実験
+- read replicaが停止した際は?
+  masterを読み行く? 自動であれ?
+
+** Project [#E] aws 稼働率 参照
+Added: [2015-06-18 Thu 10:37]
+
+メールでもらったURL参照
+** Project [#E] bower                                                :uniqlo:
+Added: [2015-06-18 Thu 12:25]
+
+以下を参考に、uniqloのbowerを再考
+http://qiita.com/joker1007/items/8d2fa9960f3d53b8cb57
+
+** Project [#B] route 53 フェイルオーバー
+Added: [2015-06-25 Thu 17:32]
+調べよう
+http://docs.aws.amazon.com/ja_jp/ElasticLoadBalancing/latest/DeveloperGuide/configure-dns-failover.html
+** Project [#B] uniqlo repository 整理 / capistrano
+Added: [2015-06-29 Mon 15:45]
+
+どれが何をやっているのか把握
+capistrano整理
+** Project uniqlo auto start/stop
+Added: [2015-07-10 Fri 16:51]
+
+条件を追加
+現在、private IPのみでfilterしている。
+tag名でのfilterを追加しよう。
+
+** Project uniqlo : cloud formation化
+Added: [2015-07-24 Fri 13:51]
+** Paused google analytics wiki化
+SCHEDULED: <2015-07-28 Tue> CLOSED: [2015-09-14 Mon 09:20]
+Added: [2015-07-27 Mon 16:35]
+** Project [#A] letter_opener_web
+Added: [2015-08-07 Fri 19:40]
+
+- mynavi seminar serverへ設定
+- かといって、実際に送信されてしまうと怖いので
+  セットアップの練習を別環境で行う必要がある。
+
+** Paused [#A] uniqlo 保守                                           :uniqlo:
+DEADLINE: <2015-08-31 Mon> CLOSED: [2015-09-14 Mon 09:43]
+Added: [2015-08-19 Wed 20:43]
+
+*** Todo [#D] [66%] uniqlo 資料訂正/作成                             :uniqlo:
+DEADLINE: <2015-11-07 Sat>
+CLOCK: [2015-10-09 Fri 15:15]--[2015-10-13 Tue 16:32] => 97:17
+Added: [2015-09-14 Mon 15:00]
+
+- [X] 添削 : mail template
+      shoko.toyookaさんは不要
+
+- [X] 追記 : mail template
+      NTT data中山さんを全templateへ
+
+- [ ] : 資料をGoogle Document化
+    - [ ] : まずは全内容を整理
+    - [ ] : txt化
+    - [ ] : document化
+
+*** Todo [#D] flow作成
+
+**** 懸念点など
+- Linux基本packageは、どちらがupdateを行うのか?
+- NTT data側でのsecurity update policyはあるか?
+
+**** 脆弱性, update調査
+各種relase情報から、脆弱性、重要なupdateの有無を調査。
+
+***** ruby/rails
+****** 判断基準
+ruby/railsの [patch version] のupdateを対象とする。
+minor, majorは対象としない。
+
+******* 補足
+- patch version       : bug/securtiy updateを指す。
+- minor/major version : 機能追加/api追加など。(影響が大きい)
+
+ruby  : https://www.ruby-lang.org/ja/news/2013/12/21/ruby-version-policy-changes-with-2-1-0/
+rails : http://railsguides.jp/maintenance_policy.html
+
+****** minor/major version updateについて
+基本、当作業は行わない。、
+ただし、security updateを継続するに辺り、version upが必要とするケースが想定される。
+# あるversionがsupport対象外になるなど
+upgradeする場合、互換性要確認。
+
+この場合、保守契約とは別に工数を頂戴する。
+先方へ影響を伝達し、実施可否を判断する。
+
+****** 各種確認方法
+******* ruby
+# 脆弱性情報
+https://www.ruby-lang.org/ja/security/
+
+# release news
+# セキュリティメンテナンスの終了/延長などの情報あり
+https://www.ruby-lang.org/ja/news/
+
+# policy
+https://www.ruby-lang.org/ja/news/2013/12/21/ruby-version-policy-changes-with-2-1-0/
+
+******* rails
+# release情報 - 英語
+http://weblog.rubyonrails.org/releases/
+
+# twitter
+https://twitter.com/rails
+
+# policy
+# 現状のsecurity update対象のversion情報あり
+# 約1年 versionのsupport期間は、およそ1年との事
+http://railsguides.jp/maintenance_policy.html
+
+****** 影響範囲の確認
+動作影響、update内容などを確認
+# minor/major updateの場合は特に互換性を確認
+
+***** Gems
+****** 判断基準
+利用Gemsに、脆弱性への対応/重要なupdateがある場合、update対象とする
+
+****** 確認方法
+Gemnasiumを用いる。
+https://gemnasium.com/dashboard
+
+Statusが「赤」の場合、update対象とする。
+他の色は対象外。
+
+# Gemnasiumとは
+# 各色の意味も記述あり
+http://chocoby.jp/blog/2013/03/02/gemnasium/
+
+****** 影響範囲の確認
+動作影響、update内容などを確認
+
+- rubyのversion upが必要となるケースも想定される。
+  特に、minor/majorのversion upが必要となる場合、適用可否の判断を行う。
+  # 前項の [ruby/rails] 記述の、[minor/major version updateについて] を参照
+
+- 各gemの依存関係など注意。
+
+***** Linux packages
+****** 判断基準
+脆弱性対応のみ、update対象とする
+
+****** 各種確認方法
+Uniqloでは、Amazon linxu(red hat系)を利用。
+以下、amazon linux、redhat security情報を参照。
+
+# amazon linux
+https://alas.aws.amazon.com/
+http://aws.amazon.com/jp/security/security-bulletins/
+https://aws.amazon.com/jp/amazon-linux-ami/
+
+# redhat
+https://access.redhat.com/security/cve/
+
+# 一般情報
+https://cve.mitre.org/
+http://jvn.jp/report/index.html
+https://www.jpcert.or.jp/
+http://www.ipa.go.jp/security/vuln/index.html
+
+****** 確認package例
+******* ruby開発導入
+git make gcc gcc-c++
+openssl gdbm
+sqlite sqlite-devel
+nodejs npm --enablerepo=epel
+
+libxml2 libxml2-devel
+libxslt libxslt-devel
+
+readline-devel openssl-devel zlib-devel
+gdbm-devel libffi-devel libyaml-devel libicu-devel
+ruby-devel rubygems-devel
+
+# open-sslは、NTT dataが先にinstall
+
+******* NTT Data導入
+nginx
+openssl openssl-devel
+munin-node
+dstat
+telnet
+******* updateコマンド例
+# 依存パッケージのupdateに注意
+
+- yum
+   # sudo yum list installed | grep [package名]  # 現在のversionを得る
+   # yum update [package名]
+
+- apt
+   # apt-get update
+   # apt-get install [package名]
+
+****** 影響範囲の確認
+動作影響、update内容などを確認
+依存パッケージのupdateでの影響を考慮。
+
+# uniqloの場合、NTTが導入しているapplicationへの影響も想定される
+
+***** Linux OS
+amazon linux support
+
+****** release
+https://aws.amazon.com/jp/amazon-linux-ami/
+
+****** Todo [#C] ちょっと考えよう
+http://dev.classmethod.jp/cloud/specify-amazon-linux-version/
+http://dev.classmethod.jp/cloud/five-confs-of-ec2-linux-sysops/
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/AmazonLinuxAMIBasics.html
+**** 先方への情報展開、日程調整
+***** update作業の通知、日程調整
+***** ruby/rails minor,major update
+実施可否、日程、今後のメンテナンスについてなど先方と調整
+
+****** mail template
+to : kanako.ishimaru@uniqlo.co.jp
+cc : shoko.toyooka@uniqlo.co.jp
+cc : konomi.hayashi@uniqlo.co.jp
+
+セキュリティアップデートに伴うシステム改修のご相談
+----------------------------------------------------------------
+石丸様
+
+御世話になっております。
+Ruby開発 [sender]と申します。
+
+
+本日は、セキュリティアップデートに伴うシステム改修のご相談となります。
+[経緯]につきましては後述内容をご参照願います。
+
+大変お手数をお掛け致しますが、下記日程にて詳細をご説明させていただくことは
+可能でしょうか。
+
+mm/dd（W）　hh:mm以降
+mm/dd（W）　hh:mm - hh:mm, hh:mm-hh:mm
+
+[経緯]
+--------------------------------
+現在、弊社で管理しておりますRuby/Railsは、およそ[xヶ月後]に公式サポートより
+セキュリティアップデート対象外となります。
+今後セキュリティアップデートを継続するにあたり、サポート対象となる上位Version
+への移行が必要となります。
+
+移行時、システム動作へ大きな影響を受けるため、システムの改修・調整が必要となり
+ます。
+以上から、保守契約内での工数を超過すると想定しております。
+--------------------------------
+
+
+以上となります。
+お忙しい中恐縮でございますが、宜しくお願い申し上げます。
+----------------------------------------------------------------
+
+***** NTT作業内容の共有、影響確認
+# uniqloでは、NTTが導入したapplicationへの影響の判断などのため。
+
+****** mail template
+to : nakayamatkb@nttdata.co.jp
+
+
+uniqlo serverのLinux package updateに伴うご相談
+----------------------------------------------------------------
+中山様
+
+御世話になっております。
+Ruby開発 [sender]と申します。
+
+
+Linux packageのsecurity updateに伴い、NTT data様にて導入済みの機能への
+影響を懸念しております。
+付きましては、対象となる下記packageを参照頂き、ご確認頂くことは可能でしょうか?
+# なお、下記packageは、全て弊社が導入したものとなります。
+
+--------------------------------
+example :
+ssh ssh-server
+open-ssl
+--------------------------------
+
+
+以上となります。
+何卒宜しくお願い申し上げます。
+----------------------------------------------------------------
+
+**** development
+- 改修作業
+- 動作確認
+- deploy手順考察
+- Backup対象となるソース考察
+
+**** production deploy
+***** 作業開始メール送付
+mail temp
+
+[作業開始連絡] yyyy/mm/dd Productionへのdeploy
+----------------------------------------------------------------
+関係者各位
+
+お世話になっております。
+Ruby開発 [Sender]です。
+
+これより、prodution環境へのdeploy作業を開始致します。
+よろしくお願い申し上げます。
+
+
+deploy スケジュール
+----------------------------------------------------------------
+    - 作業時間帯
+        mm/dd hh時mm分 〜 hh時mm分
+
+    - 対象server
+        - prd01-a-tky-admin-***-***
+        - prd01-a-tky-***-***
+        - prd01-a-tky-batch-***-***
+
+    - 大まかな作業内容
+        - DB backup
+        - 各種deploy
+        - 各種サーバー連携確認
+        - 全サーバーへ各種設定(rails, nginx, ..etc)
+
+補足
+----------------------------------------------------------------
+    - インフルエンサー登録画面 - アクセス不可時間帯
+        mm/dd hh時mm分 〜 hh時mm分
+
+
+以上となります。
+宜しくお願い申し上げます。
+----------------------------------------------------------------
+
+***** Backup
+- DB backup
+
+***** update作業
+簡易手順のみ
+
+****** ruby update
+- rbenv update
+- ruby install
+
+- deploy # bundle installはcapistranoで行われる
+
+****** rails/gem update
+- deploy # bundle install はcapistranoで行われる
+
+****** Linux package
+# 事前調査と日時が開いている場合、packageの状態が異なるため注意
+
+- connect to server
+- do yum list installed | grep [package名]  # 現在のversionを得る
+- yum update [package名]
+  # update対象のdaemonは要再起動
+
+***** 動作チェック
+現在、チェック内容を整理中。
+# rspecでの網羅が可能か
+
+***** 作業終了メール送付
+mail temp
+
+[作業終了連絡] yyyy/mm/dd Productionへのdeploy
+----------------------------------------------------------------
+関係者各位
+
+お世話になっております。
+Ruby開発 [Sender]です。
+
+下記deploy作業は完了致しました。
+ご協力有難う御座いました。
+
+以上となります。
+宜しくお願い致します。
+
+# 開始連絡引用
+----------------------------------------------------------------
+**** 元ネタ
+----------------------------------------------------------------------------
+- flow
+    - security update確認 / 実施可否確認
+        - 月一(毎週?)確認し、問題があれば
+    - NTT / Uniqloへの確認
+        - NTT dataへ確認
+           - 基本packageであれば、どちらが実施するのか?
+           - ruby社がinstallしたもの
+        - uniqloへ連絡
+    - security update
+    - update後のdeploy
+    - 動作テスト
+        - rspecの現状が不明
+        -
+    - uniqloへの連絡
+
+
+
+
+
+
+資料作り - 以下を元に大体flow作成
+----------------------------------------------------------------------------
+- security情報収集
+    - 一般的なlinuxのsecurity情報
+    - rails, ruby
+        - patch versionは基本対応。
+        - support切れ(minor versionでもsupport切れ有り)の前にupgrade(互換性要確認)
+        - minor/major version update時は要確認(minorでも仕様変更ある)
+            料金uniqlo様と別途対応
+    - gem
+        - gemnasium
+            - 赤のみ対象
+            - 黄色が未対象
+
+
+
+- patch version updateとは
+    security対策
+
+- minor version udpate
+    http://railsguides.jp/maintenance_policy.html
+    https://www.ruby-lang.org/ja/security/
+
+
+    - api追加、機能追加など
+    - 現状、4.2 / 4.1のみ対応している
+        - 恐らく、2 minor versionのみ対応?
+        - 期間は?
+
+
+- ruby/rails support切れは1年前に通知される。
+    - それみて計画的に考える
+    - EUにアナウンス
+        updateに関してはEU次第。
+    - support切れになるので、versionを上げないとうちではsecurity対応できません
+    ------ mail templateの作成。 ------
+
+*** Todo [#D] 残作業
+- [ ] : update手順の基本的な部分の確認(何するんだよ)
+- [ ] : sub domainをソースコードに記述
+        # ELB廃止に辺り、global IPが流動化。
+        # これの対処として、都度domainへIP紐付けで対応する。
+- [ ] : sub domainとpublic IPの紐付けのtext化
+- [ ] : cloud formationで全体をコード化し、全体
+- [ ] : ssh keyの整理
+        全員共通keyは微妙だろうとの事で
+
+*** Todo [#D] 機能確認
+**** for
+NTT dataに確認を行うか判断するための確認。
+状況によって、当情報を質問に追加する。
+
+僕は、いずれにせよ、確認が必要だと思うが、不要との声も。
+そもそも、質問する気なのかな?
+さっぱりわからん。
+
+**** 自動update
+- [ ] : 自動updateで、package全てupdateされるのか
+- [ ] : NTT data serverでは、自動update設定がなされているのか?
+
+*** done
+**** 要件
+- [X] uniqloの料金算定
+  可能な限り0にしたい
+
+- [X] 資料作成
+  保守用の資料作成
+
+- [X] 具体的な作業の内容
+  実作業の具体的な内容
+
+**** installed
+***** 手動build
+ruby, rbenv, Ruby on Rails, Gem
+
+***** 手動install from yum
+git make gcc gcc-c++
+openssl gdbm
+sqlite sqlite-devel
+ruby-devel
+nodejs npm --enablerepo=epel
+
+libxml2 libxml2-devel
+libxslt libxslt-devel
+
+readline-devel openssl-devel zlib-devel gdbm-devel libffi-devel libyaml-devel libicu-devel rubygems-devel
+
+***** NTTがinstallした(と思われるもの含む)
+nginx
+openssl openssl-devel
+munin-node
+dstat
+telnet
+
+***** RDS
+RDSの特性上、MySQLの管理はAWS側となる。(設定変更にはAWSアクセス権限が必要)
+マイナーアップデートは自動で可能。(NTT側で設定されていれば)
+
+**** update作業
+- 基本は、試験環境で事前確認。
+- update基準は? セキュリティホールとなる場合、updateを要する。
+
+***** ruby, rbenv
+- .ruby-version修正
+
+- rbenv update (githubからpull)
+- ruby build
+
+- deploy
+- bundle install
+
+***** Ruby on Rails, Gem
+- Gemfile update
+- deploy
+- bundle install
+
+***** linux packages
+NTT dataのinstalled packageと競合する可能性があるため、
+package個別にupdateするのが良いと思われる。
+(事前確認は必須。)
+
+競合する場合は、NTTへ要相談。
+
+***** RDS
+マイナーアップデートは自動で可能。(NTT側で設定されていれば)
+メジャーアップデートは、余程の事が無い限りは不要と思われる (NTT側の作業)
+
+※ 権限渡されて、そっちでやれと言われるかもしれないが
+※ メジャーの場合、定期作業ではない。マイナーは自動化可能なので、当方で行う必然性は少ない
+
+**** ELB / EIP
+subdomainを決めて、DNS側を
+***** adm elb - 修正不要
+***** usr elb - 要修正
+./uniqlo-hashtag-main/config/deploy/settings/development.yml:js_pc_url:  "http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/javascripts/postphotos.js"
+./uniqlo-hashtag-main/config/deploy/settings/development.yml:js_sp_url:  "http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/javascripts/postphotos_sp.js"
+./uniqlo-hashtag-main/config/deploy/settings/development.yml:css_pc_url: "http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/stylesheets/tag_photo_list.css"
+./uniqlo-hashtag-main/config/deploy/settings/development.yml:css_sp_url: "http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/stylesheets/tag_photo_list_sp.css"
+./uniqlo-hashtag-main/config/deploy/settings/development.yml:logo_url:   "http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/images/tag_photo_list_logo.png"
+./uniqlo-hashtag-view/config/deploy/development/tag_photo_list_sp.html:    <script src='http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/javascripts/postphotos_sp.js'></script>
+./uniqlo-hashtag-view/config/deploy/development/tag_photo_list_sp.html:    <link rel='stylesheet' type='text/css' href='http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/stylesheets/tag_photo_list_sp.css' media='all'>
+./uniqlo-hashtag-view/config/deploy/development/tag_photo_list_sp.html:      <div class='hash_tag_photo_list_logo'><a href='http://www.uniqlo.com'><img src='http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/images/tag_photo_list_logo.png'></a></div><div class='hash_tag_photo_list_go_back'><a href='http://www.uniqlo.com' class='hash_tag_photo_list_go_back'>> Go back to uniqlo.com</a></div>
+./uniqlo-hashtag-view/config/deploy/development/production.html:    <script src='http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/javascripts/postphotos.js'></script>
+./uniqlo-hashtag-view/config/deploy/development/tag_photo_list.html:    <script src='http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/javascripts/postphotos.js'></script>
+./uniqlo-hashtag-view/config/deploy/development/tag_photo_list.html:    <link rel='stylesheet' type='text/css' href='http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/stylesheets/tag_photo_list.css' media='all'>
+./uniqlo-hashtag-view/config/deploy/development/tag_photo_list.html:      <div class='hash_tag_photo_list_logo'><a href='http://www.uniqlo.com'><img src='http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/images/tag_photo_list_logo.png'></a></div><div class='hash_tag_photo_list_go_back'><a href='http://www.uniqlo.com' class='hash_tag_photo_list_go_back'>> Go back to uniqlo.com</a></div>
+./uniqlo-hashtag-view/config/deploy/development/javascripts/postphotos_sp_v1.js:DATA_PATH = 'http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/api/v1/media.js?';
+./uniqlo-hashtag-view/config/deploy/development/javascripts/postphotos_sp_v1.js:IMAGE_PATH = 'http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/images/';
+./uniqlo-hashtag-view/config/deploy/development/javascripts/postphotos.js:DATA_PATH = 'http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/api/v2/media.js?';
+./uniqlo-hashtag-view/config/deploy/development/javascripts/postphotos.js:IMAGE_PATH = 'http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/images/';
+./uniqlo-hashtag-view/config/deploy/development/javascripts/postphotos_v1.js:DATA_PATH = 'http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/api/v1/media.js?';
+./uniqlo-hashtag-view/config/deploy/development/javascripts/postphotos_v1.js:IMAGE_PATH = 'http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/images/';
+./uniqlo-hashtag-view/config/deploy/development/javascripts/postphotos_sp.js:DATA_PATH = 'http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/api/v2/media.js?';
+./uniqlo-hashtag-view/config/deploy/development/javascripts/postphotos_sp.js:IMAGE_PATH = 'http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/images/';
+./uniqlo-hashtag-view/config/deploy/development/production_sp.html:    <script src='http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/javascripts/postphotos_sp.js'></script>
+
+***** 固定IP - 修正不要
+sns serverのEIPは、恐らくsns sideからのpushを想定
+
+** Paused AWSへvSphere導入し
+SCHEDULED: <2015-08-23 Sun> CLOSED: [2015-08-25 Tue 00:51]
+
+- [ ] : AWS環境へ導入し、仮想OSのinstall
+- [ ] : 可能であればchefで上記全てを行う。
+** Project [#B] server監視設定
+CLOCK: [2015-10-02 Fri 17:54]
+Added: [2015-08-25 Tue 00:59]
+
+
+- [ ] jenkins
+  - [ ] cloud watch, notify mail
+  - [ ] app 監視, soft要選定
+  - [ ] log rotate
+
+- [ ] redmine (未稼働)
+  - [ ] cloud watch, notify mail
+  - [ ] app 監視, soft要選定
+  - [ ] log rotate
+
+- [ ] gitlab + (gitlab aws)
+  - [ ] cloud watch, notify mail
+  - [ ] app 監視, soft要選定
+  - [ ] log rotate
+
+- [ ]ruby-webpage
+  - [ ] : zabbix
+  - [ ] : munin
+  - [ ] : Auto Scale。使用不可。opswork独自の監視機能を用いる。
+          App,Instance監視をする。
+          癖を見る必要がある。
+          練習がてらやろう
+  - [ ] : 監視(障害メール)と自動復旧
+
+  - [ ] cloud watch, notify mail
+  - [ ] app 監視, soft要選定
+  - [ ] log rotate
+
+
+*** [57%]todos
+- [X] : create prd stack
+- [X] : jenkins : change stack/app id
+- [X] : opsworks: setup/deploy.
+- [X] : opsworks: move EIP
+- [ ] : opsworks: munin-node start setting
+      - regist chkconfig
+      - upload
+      - restart munin-node
+- [ ] : jenkins : change cron setting
+- [ ] : sg      : 特定sgのみアクセス許可
+- [ ] : munin   : base setting. 正常動作確認
+- [ ] : docker  : basic auth setting and make image
+** Project uniqlo develop                                            :uniqlo:
+Added: [2015-09-09 Wed 16:26]
+*** uniqlo rspec
+*** uniqlo-hashtag
+- model, conrtoller, stab, mock当たりでテストはかける
+
+*** main
+*** crontab
+*** view
+*** 基本方針
+**** 更新方法 : 個々人でbranch作成してpush
+**** brakeman/rubocopのエラーをとる
+- Taskを抽出し、展開予定?? # pivotal?
+- repository/個人で担当予定?
+
+**** その後、test作成?
+
+*** rubocop
+- coding規約を決める予定 (佐藤さん?)
+
+*** brakeman
+- 個人で調べて対応?
+- まずは整理して、teamへ展開 (助田さん)
+
+** Iam [#F] vagrant                                                  :uniqlo:
+SCHEDULED: <2015-09-10 Thu> CLOSED: [2015-10-22 Thu 12:07]
+Added: [2015-09-10 Thu 10:21]
+
+uniqlo vagrantにて環境構築
+** Project [#D] mail setting
+Added: [2015-09-11 Fri 22:16]
+
+https://docs.google.com/spreadsheets/d/1ySmCYlzCdIWQRB1cxWZvX4NmTrGMklBg6Ctc8Q0FzWU/edit#gid=1753443164
+
+https://support.google.com/a/answer/182079?vid=1-635792833593180344-2323610833
+https://support.google.com/a/answer/53295
+https://support.google.com/a/answer/140034
+https://support.google.com/a/answer/96855
+
+*** ドメインエイリアスの設定
+10/09に実施するかは不明。
+近日中
+
+*** 設定
+- (以下では設定不可)
+  http://qiita.com/na0AaooQ/items/f89788e2e57263209860
+
+- AWSでmail送信
+  http://dev.classmethod.jp/cloud/aws/ec2-send-email-best-practice/
+  http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#Using_Elastic_Addressing_Reverse_DNS
+  http://www.slideshare.net/AmazonWebServicesJapan/aws-30934799?related=1
+  http://recipe.kc-cloud.jp/archives/37
+  http://sssslide.com/www.slideshare.net/AmazonWebServicesJapan/aws-42885668
+
+*** [100%] DNS逆引き
+- [X] ruby-webpage
+      IP     : 52.69.156.6
+      zone   : 156.69.52.in-addr.arpa
+      record : PTR www.ruby-dev.jp
+
+- [X] 反映状況確認
+      結果NG
+      後述する申請が必要と思われる
+
+- [X] rDNS設定申請, send mail limit解除申請
+      http://www.slideshare.net/AmazonWebServicesJapan/aws-30934799?related=1
+      http://recipe.kc-cloud.jp/archives/37
+      http://jaws-users.687672.n3.nabble.com/-td1163930.html
+
+- [X] awsからの返答待ち
+      // account全体で解除される?
+      // IP単位で、spam解除試行する?　ので、IP毎に申請する?
+      // ここらへん未確認だな。公式文章を読もう
+
+- [X] 反映状況の確認
+      逆引きok
+
+- [X] メール送信テスト
+      spam判定無し (ただし宛先は、s-numasawa@ruby-dev.jp)
+      送信漏れなし
+
+*** [66%] SPF設定
+- [X] 設定, txt, spf recordへ設定
+      "v=spf1 ip4:52.69.156.6 -all"
+
+- [X] 反映状況の確認
+
+- [ ] google SPFへの変更
+      https://support.google.com/a/answer/2716802?hl=ja
+
+      to spf record, text record
+      "v=spf1 include:_spf.google.com ~all"
+*** [%] DKIM
+よくわからない。sendmailで設定できるのか?
+
+*** [%] wiki
+どっかに手順書いとこう
+
+*** なんでこんな設定方法なのかな?
+nslookupで引くと、
+
+156.69.52.in-addr.arpa
+というtextが出てくるので、これを見ている模様。
+うーむ勉強が必要だな.
+
+
+**** 設定基本
+- 52.69.156.6の場合、以下のzoneを作成する
+  156.69.52.in-addr.arpa
+
+- ptr record作成
+  6.156.69.52.in-addr.arpa
+  ptr 52.69.156.6
+
+
+** Project uniqlo思い出した
+Added: [2015-09-18 Fri 11:44]
+
+scaled instanceのlog保管を実装していなかった。
+本来ならば、fluentなどで集約するのが望ましいと思うのだが…
+** Project google drive同期設定
+Added: [2015-10-08 Thu 09:24]
+
+localへの同期設定
+** Project spf設定を考察
+Added: [2015-10-13 Tue 10:53]
+
+// そもそも、この設定を考えるのは僕の仕事だったな
+
+*** 経緯
+   佐藤さん設定により [google spf] 設定のみになっている。
+   以前の設定では、amazon ses / ec2 serverのIPを登録していた。
+
+*** 考察点
+   - amazon sesは不要だろう。
+   - ec2 server IPの登録は必要か?
+       - どの IPを登録すれば良いのか?
+       - SMTP serverとあるが、google STMP serverを経由すれば良いのか?
+       - ec2 sendmailから送信する場合は、どうなる?
+         testが必要ではないか?
+** Project メール送信機能 - 再調査                            :bussiness_bnk:
+
+Added: [2015-10-13 Tue 14:05]
+*** 要件
+**** 送信元を変えたい
+**** クリックトラック
+**** 柔軟性
+
+**** Synergy! の機能を参考とする
+https://drive.google.com/open?id=0By_vdgUt8tGjeVRLS3JvSENYZVU
+
+**** AWS SESは、「送信元アドレス指定機能」に対応できないのでNG
+**** 優先して実装する機能は以下の通り
+マーケティングメール（単発の一斉配信機能）
+プランニングメール（定期的なメルマガ配信機能）
+コンテンツ差込み配信（とりあえず顧客名のみ対応）
+配信停止フラグ対応（顧客 × メルマガ 単位のフラグ管理）
+送信元アドレス指定機能（任意のメアドを指定可能とする）
+
+**** 今後実装を検討する機能は以下の通り
+オートメール（自動配信機能）
+ステップメール（ストーリーに沿った自動配信メール）
+クリックカウント機能（HTMLメール開封率レポート、クリックフィードバックレポート機能）
+コンテンツ差込み配信（顧客の属性に合わせた動的文面）
+承認配信機能（承認フロー付きの配信機能）
+現状、ビジネスバンク社自身は、月20万通のメルマガを配信して、ジェイシティ社に3、4万支払っているとのこと
+
+*** 確認点
+**** sendgrid - 上限数確認
+***** 疑問点 [%]
+****** Done 月の上限は、マーケティングにも適用されるのか?
+適用される。
+
+以下、料金の考え方
+https://sendgridjp.zendesk.com/hc/ja/articles/202688479-%E5%88%A9%E7%94%A8%E6%96%99%E9%87%91%E3%81%AE%E8%A8%88%E7%AE%97%E6%96%B9%E6%B3%95%E3%82%84-%E8%AB%8B%E6%B1%82%E3%81%AE%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84-
+
+silverで、marketing mailが超過した場合
+100 + 30 / 1,000
+発生する。
+
+****** Done マーケティングメールと通常の送信方法の違い
+- マーケティングメールは 30円 / 1000通
+- クリックトラック、一括送信などが使用できる
+
+****** Done 時間あたりに送信できるメール数の制限
+無し
+ただし、相手先に届くとは限らないので、対策が必要。
+
+対応については以下
+https://sendgrid.kke.co.jp/blog/?p=1300
+
+****** Done ruby APIはあるか?
+有り
+https://sendgrid.kke.co.jp/blog/?p=1140
+
+対応言語一覧
+https://sendgrid.kke.co.jp/blog/?p=1295
+
+****** 一斉配信時、どの程度で送信が完了するか?
+別の言い方をすると、本当にまとめて一斉に配信するのか?
+
+***** 問い合わせ先
+03-5318-3093
+
+受付時間帯：弊社営業日9:00-17:00
+
+**** 価格比較
+**** ses - 別の承認interfaceがないか
+***** Done 調査
+- document : 無し。既存の二種のみ
+- web      : 無し
+
+***** Waiting AWS SES : 問い合わせ中
+
+*** 再販するさい
+https://sendgridjp.zendesk.com/hc/ja/articles/205590193-%E5%86%8D%E8%B2%A9%E3%82%84-SendGrid%E3%82%92%E8%87%AA%E7%A4%BE%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AB%E7%B5%84%E3%81%BF%E8%BE%BC%E3%82%80%E9%9A%9B%E3%81%AE%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84
+
+sendgridへ確認が必要
+
+*** 他サービス都の比較
+developers向けのサービスを抽出
+mailサービスの抽出
+
+developer 向けサービスか?
+
+- 料金表 - 1へ一般的な
+- 料金表 - 2の方へ従量課金グラフ
+- 機能  -
+
+
+http://tech.cunited.jp/post/96318734265/ses-sendgrid-mandrill-mailgun
+
+**** SES
+**** mail chimp
+http://mailchimp.com/
+http://www.loftwork.jp/column/2013/20131010_mailchimp.aspx
+
+マーケティングメールでは、人気な様子
+
+***** 料金
+送信先アドレス数で料金が変わる
+10,000人で $75
+100,000人で $475
+
+***** 注意点
+・インターフェースやサポートが全て英語
+メールの文面では日本語が使えますが、操作画面は全て英語です。
+非常に分かりやすく作られているので、Webサービスをよく利用する方であれば問題ないと思いますが、
+サポートも英語なので、英語にアレルギーがあると結構苦労するかもしれません。
+
+・文字化けが起こる
+⇒元々英語（1バイト）圏向けに開発されているツールだと思うので、日本語では結構文字化けが発生します。
+Outlook/Hotmail宛に送ったメールのタイトルが文字化けを起こしたり、iPhoneに送ったメールが暗号みたいになってしまったりと、
+1年間使っただけですが、結構な頻度で文字化けに遭遇しています。
+現時点では完全な回避策に辿り着けてはおらず、件名の文字化けには、件名を短くして対応するなど個別に対策をとり、回避しています。
+（いつも化けているよ！という方いましたら、こちらからこっそり教えて下さい…。）
+
+完全に回避できている訳ではないですが、現状の回避策は…
+
+・件名の文字化け
+MailChimpのサポートに、メールしてみたところ、件名が長すぎるよ。
+と丁寧にお返事を頂けたので、30文字以内に抑えるようにしてからは安定しています。
+
+・iPhoneでの文字化け
+文字コードの改行位置で、「続きを読み込む」となった時に、日本語を正常に解釈できなくて文字化けを起こしているのだと思っているので、
+「続きを読み込む」と表示される前のテキストを何文字か削ったり増やしたりして調整しています。
+
+**** [X] Mailgun
+domain登録が必要
+
+- develop向け
+- ruby api sdkあり
+
+http://www.mailgun.com/pricing
+
+***** price
+| free | 10,0000  |
+| $45  | 100,0000 |
+| $95  | 200,0000 |
+| $135 | 300,0000 |
+
+$0.5〜0.1 千通当たり
+送るほどに安くなる
+
+**** [O] sendgrid 各種
+https://sendgrid.kke.co.jp/?p=about.plan
+
+***** 送信実験
+numasawa@ruby-dev.jp
+ruby@ruby.jp
+
+など適当なアドレスで送信可能であった。
+ただし、スパムスコアが上がる
+spam扱いされたケースもあり。
+
+送信元の確認は在った方が無難
+
+**** [X] Mandril
+domain登録が必要
+bounceを個別に取得不可
+
+***** price
+https://www.mandrill.com/pricing/
+
+first 25,000 $9.95
+移行、$0.2〜0.1
+
+***** API
+ruby API有り
+**** etc
+- [ ] Postmark
+- [ ] Mailjet
+- [ ] Elastci Email
+- [ ] Socket Labs
+- [ ] Leader Send
+- [ ] turboSMTP
+- [ ] PostageApp
+- [ ] Critesend
+- [ ] ニフティクラウド ESS
+
+*** SESが安いわけ
+こんな感じで、SESとSendGrid Liteプランが安いのには理由があり、いろいろ提供していません。
+
+- SESとSendGrid Liteは固定IPを提供していません。
+- SESとSendGrid Liteは開封やクリックのトラッキング機能も提供していません。
+- SES、Mailgun、SocketLabsなどのいくつかのサービスはニュースレター送信用のWYSIWYGを提供していません。
+- SES、LeaderSend、SocketLabsなどのいくつかのサービスはメール受信APIを提供していません。
+** Done ruby-webpage                                                :insider:
+CLOSED: [2015-11-11 Wed 14:01]
+CLOCK: [2015-10-07 Wed 10:30]--[2015-10-07 Wed 11:50] =>  1:20
+Added: [2015-07-24 Fri 21:47]
+
+多重管理はやめよう。
+
+Added: [2015-09-30 Wed 16:08]
+HP、formに必要ではないか?
+
+https://www.ntt.com/ask/pub/inq/jp5351_06
+http://www.taiyoseiki.co.jp/contact/
+http://www.taiyoseiki.co.jp/privacy/
+https://www.hoppy-happy.com/info/toiawase/inquity_site/main.php
+
+*** memo
+**** opsworks
+- [ ] htpasswd : 自動生成されない. そもそも、passwordを含むfileををgithubにあげていいのか?
+- [ ] postgres : 設定file用作成
+
+**** 個人情報保護
+
+*** Releaseについて
+**** PC版単独で公開する理由
+- 問い合わせページの公開したい（Railsアプリとして）
+- 仙台の事務所の情報を変更したい
+
+**** 懸念点
+- SEO対策で、モバイルも一緒に提供しないと下がる可能性があり
+- ホームページを２つのドメインで、別々にリリースするとSEO rankが低下する可能性がある。
+
+**** 理想
+- 8/31にモバイルとPC版を一緒にリリースする。
+- mruby.jpドメイン管理を行う。(mail設定、Redirect設定などを行うため)
+- Googleのサイト移行の手順を踏む
+- https接続対応 (証明書取得に、admin@ruby-dev.jpなどで受信できる必要がある?)
+
+*** todos
+**** Done [62%]メール設定
+DEADLINE: <2015-10-05 Mon> CLOSED: [2015-10-09 Fri 15:06]
+# 最終形態としては、ruby-dev.jpで運用
+# mruby.jpも残す
+# mruby.jp宛は、ruby-dev.jpで受信出来るよう設定する
+
+- [X] : 初期設定 (柴田氏、佐藤氏、沼沢)
+- [X] : domain紐付け(mruby-dev.jp)
+- [X] : アカウント設定 (ruby-dev.jp / gmailアカウント発行)
+- [X] : mxレコード設定 (rub-dev.jp / gmailへ向ける)
+
+- [ ] : アカウント設定 (mruby.jp / 柴田さん)
+- [ ] : mxレコード設定 (mruby.jp / )
+        移行タイミング? 移行期間があるので、1,2日は余裕をもって
+
+mxレコード設定の手順、意味など確認していない
+
+**** Todo [#C] server log, resouce, 死活監視など方針を考える
+
+***** log
+- log保存期間
+- log保存場所 (自己server? fluentdで他serverへ?)
+
+***** HDD
+- HDD容量試算
+- logでの消費量
+- 他の消費項目は
+- 現状、DBは未使用?
+
+***** 死活監視
+- 運用フェイズでの確認手順
+- zabbix適用
+- cloudwatchで対応できそう
+
+***** mail
+監視通知用のメーリングリスト作成
+
+***** open port調査
+22, 80, 442のみ
+ssh port閉じるか?
+jump gate経由という事で
+
+**** Done [#A] 外部リンク修正
+DEADLINE: <2015-10-06 Tue> CLOSED: [2015-10-22 Thu 12:07]
+
+まずは共有
+
+----------------------------------------------------------------
+以下、全て一部ページの抜粋。
+複数ヶ所の修正が必要かもしれない。
+
+また、営業系のなんらかのサイトに登録している場合、
+不明な場合もある。こちらは、営業の方々に確認が必要。
+
+
+- github
+    https://github.com/Ruby-Corporation
+    // 登録がmrubyのまま
+
+- 福岡Ruby・コンテンツビジネス振興会議
+    http://www.digitalfukuoka.jp/members?locale=ja
+    // member企業として登録有り
+
+- 産業雇用安定センター
+    http://www.sangyokoyo.or.jp/cgi-bin/sanjo/sanjo_02.cgi?p=13&c=all
+    // 賛助会員事業所一覧に乗っている
+
+- 宮城県ICT企業データベース
+    http://misadb.jp/detail/index/id/170/
+    // URLは見えないが、URL登録済みであれば要修正
+
+- wantedly
+    https://www.wantedly.com/companies/mruby/info
+    // 大須賀さんの名前で登録あり
+
+- Qlear求人
+    http://qlear.jp/job_M000026756.html
+
+- imitsu
+    http://imitsu.jp/matome/4013211264867804
+
+**** Done [0%] SEO対策
+CLOSED: [2015-10-22 Thu 12:07]
+佐藤氏検討中
+[[*domain%20schedule][domain schedule]]
+
+- [ ] : 他に有るか?
+
+- [ ] : description meta tag
+- [25%] : redirect設定
+    - [ ] : www.ruby-dev.jpと同一serverへredirect設定を導入
+    - [ ] : 手作業面倒なので、scriptを書こう
+    - [ ] : SSL設定
+    - [X] : Basic認証
+    - [ ] : 旧pageから新pageへredirect。
+            移動しましたHPは噛まない。即redirect。
+            佐藤氏がmapping作成済み。
+    - [ ] : 旧name server設定はしばらく残す
+            2ヶ月くらいで削除するか?
+**** Todo [#B] [66%] https
+https://docs.aws.amazon.com/ja_jp/opsworks/latest/userguide/workingsecurity-ssl.html
+
+- [X] : https証明書取得 (ruby-dev.jpで取得)
+- [X] : serverへ設定
+        http://docs.aws.amazon.com/ja_jp/opsworks/latest/userguide/workingsecurity-ssl.html#d0e20796
+
+        - [X] : SSL Certificate box
+          CRT / サーバー証明書
+
+        - [X] : SSL Certificate Key box
+          pem / private key
+
+        - SSL certificates of Certification Authorities
+          nginxの場合は空にする。
+          証明書チェーンファイルがある場合は、その内容をパブリックキー証明書ファイルに追加する必要がある。
+
+- [X] owncloud
+- [X] jenkins
+- [ ] gitlab
+
+**** Todo [#A] opsworks | 個人的にやろう
+***** 構築
+- [ ] : 全体像の把握、図示するか?
+- [-] : postgress
+    - [X] : password設定 (jenkins上に設定)
+    - [X] : 不具合改善 (reposoitory消えていたので、yumでinstall)
+
+- [ ] : basic認証 (productionでは不要)
+- [ ] : server監視設定
+        [[*%20A%20server][server監視設定]]
+
+**** Done [#A] おおまかなsite移行手順
+SCHEDULED: <2015-09-15 Tue> CLOSED: [2015-09-18 Fri 19:38]
+Added: [2015-09-14 Mon 09:32]
+
+まずは必要な事を考えよう
+
+- 開発終了 ([2015-09-18 Fri]午後予定)
+- consoleで移行設定
+- redirect
+- robots.text
+- sitemap送信 (旧と新で)
+
+**** Done [#A] google search console site登録
+SCHEDULED: <2015-09-18 Fri> CLOSED: [2015-09-18 Fri 19:38]
+ruby-dev.jpの登録状態確認
+既に登録してあるとの認識だが
+
+**** Done [#A] 移行申請考察
+SCHEDULED: <2015-09-18 Fri> CLOSED: [2015-09-18 Fri 19:39]
+
+***** 佐藤氏の手順
+- googleの手順に従い、site移行設定をする
+
+- robots.txt
+  恐らく、新旧の設定が必要だろう
+
+- search consoleの設定
+
+- 元のサイトと移転先のサイトの両方の所有者であることを確認する
+
+- URL mapping準備
+    - 元のサイトと移転先のサイトのURLマップを作成する
+    - 全URLの詳細情報を更新する
+    - モバイル用ページのアノテーションを更新する
+      https://developers.google.com/webmasters/mobile-sites/mobile-seo/configurations/separate-urls?hl=ja
+    - 301リダイレクトを準備する
+
+- サイト移転を開始する
+    - 元のサイトの’robot.txt’の全てのディレクティブを削除する
+
+    - 移転先のサイトの’robot.txt’で全てのファイルのクロールが許可されていることを確認する。
+      画像やCSSやJavaScriptなどのアセットのクロールも許可する。
+
+    - Search Consoleで、元のサイトのアドレス変更の通知を送信する
+
+    - URLマッピングに基いて、元のサイトから移転先のサイトにユーザーとGoogle Botをリダイレクトするように設定する
+      (DNSのAレコードを更新する。TTLは事前に短く設定しておく)
+
+    - 移転先のサイトについて、この前の手順で用意した元のURLと新しいURLを含む２つのサイトマップを送信する
+
+    - リダイレクト期間はなるべく長く設定する
+
+- traffic監視
+
+***** 手順考察
+以下、アドレス移転手順を参考
+https://support.google.com/webmasters/answer/83106?hl=ja
+
+以下、移行前の手順
+https://support.google.com/webmasters/answer/6033085?hl=ja&ref_topic=6033084&vid=1-635781345444248696-4225115238
+
+****** アドレス変更ツールの使用
+https://support.google.com/webmasters/answer/83106?hl=ja
+
+まずは、実際のコンテンツの移転を完了する
+https://support.google.com/webmasters/answer/6033049
+
+上記、ガイドラインを全て完了後、アドレス変更変更リクエストを行う。
+// 最初に 301 リダイレクト ディレクティブを設定しないと、アドレス変更リクエストは正しく機能しません。
+
+****** Done Search Console を使用して新しいサイトを追加し、確認
+CLOSED: [2015-09-18 Fri 13:08]
+アドレス変更リクエストを送信するための最初の手順として、リストから新しいサイトを選択します。
+これで、Search Console でサイトが認識されるようになります。
+
+******* [100%] 確認手順
+https://support.google.com/webmasters/answer/34592
+
+- [X] : Google アカウントで Google Search Console にログインします。
+- [X] : [サイトを追加] ボタンをクリックし、追加するサイトの URL を入力します。「http://www.example.com/」のように、完全な URL を入力してください。
+- [X] : [続行] をクリックします。[サイトを確認] ページが表示されます。
+- [X] : （省略可）[名前] ボックスにサイトの名前（「個人ブログ」など）を入力します。
+- [X] : 確認方法を選択し、表示される手順を行います。
+
+******* Done 既に登録済み
+CLOSED: [2015-09-18 Fri 13:09]
+mruby.jp / ruby-dev.jp共にsiteに登録されていた
+****** Done サイト移行手順
+CLOSED: [2015-09-18 Fri 19:10]
+https://support.google.com/webmasters/answer/6033049?vid=1-635757446071787350-2323610833
+
+******* 大筋の手順
+- 新しいサイトを準備して、全体をテストします。
+- 現在の URL から対応する新しい形式への URL マッピングを準備します。
+- 元の URL から新しい URL にリダイレクトするようサーバーを設定して、サイト移転を開始します。
+- 元の URL と新しい URL 両方のトラフィックを監視します。
+
+******* 新しいサイト : 準備して、全体をテスト
+******** Done 新しいサイトの robots.txt を設定する
+CLOSED: [2015-09-18 Fri 13:15]
+全てにアクセスできるように。
+クロールされたくない部分は、設定
+sitemapのurlを記述
+
+- Search Console の設定が適切か確認する
+
+******** Done 削除または結合されたコンテンツについてエラーを表示する
+CLOSED: [2015-09-18 Fri 13:16]
+対象無し
+******** Paused Search Console の設定が適切か確認する
+CLOSED: [2015-09-18 Fri 13:23]
+全て https://www.ruby-dev.jp へ集約されるので、okと思うが
+
+******** Done Search Console の設定を確認する
+CLOSED: [2015-09-18 Fri 13:31]
+- URL パラメータ
+- Done 地域ターゲットの設定
+- Done クロール速度
+- Done 否認済みのバックリンク
+  恐らくしてないだろう
+******** Done 最近購入したドメインに問題がないかを確認する
+******** Done ウェブ解析を使用する
+******** Done ウェブ解析を使用する
+CLOSED: [2015-09-18 Fri 13:39]
+よくわからん
+mruby.jp    : 無し
+ruby-dev.jp : google analyticsを入れている
+******* Done URL mappingの準備
+CLOSED: [2015-09-18 Fri 17:34]
+マッピングと新しいサイトの準備ができたら、次はマッピングで指定した元の URL から新しい URL への
+HTTP 301 リダイレクトをサーバーにセットアップします。
+
+******** Done 現行の URL を特定する
+CLOSED: [2015-09-18 Fri 13:40]
+現状のURLを網羅的に確認する
+
+******** Done 元の URL から新しい URL へのマッピングを作成する
+CLOSED: [2015-09-18 Fri 13:46]
+元の URL のリストを用意したら、各 URL をどの URL にリダイレクトするかを決めます。
+マッピングの保存方法は、お使いのサーバーやサイト移転の内容によって異なります。
+データベースを使用する方法や、共通のリダイレクト パターンについてシステムに何らかの URL 書き換えルールを設定する方法もあります。
+
+******** Done 全 URL の詳細情報を更新する
+CLOSED: [2015-09-18 Fri 13:49]
+
+******** Done 301 リダイレクトの準備を行う
+CLOSED: [2015-09-18 Fri 17:32]
+
+******* Done サイト移転を開始する
+CLOSED: [2015-09-18 Fri 19:10]
+******** Done サイトの移動を開始する
+CLOSED: [2015-09-18 Fri 17:39]
+- robots.txt ok
+- Search Console で、元のサイトのアドレス変更の通知を送信します。
+- 移転先のサイトについて、この前の手順で用意した元の URL と新しい URL を含む 2 つのサイトマップを送信します。
+  恐らく、2URLでsitemap送信を改めて行えば良いと思われる。
+
+******** 外部からのリンクを更新する
+******* Search Console を使用してトラフィックを監視する
+
+****** Done アドレス変更をリクエスト
+CLOSED: [2015-09-18 Fri 19:39]
+サイトの移転によってドメインまたはサブドメインに変更が生じた場合
+（たとえば http://fish.example-petstore.com から http://example.com または http://example-petstore.com に変更した場合）は、アドレス変更ツールを使用します。
+注: アドレス変更ツールは、現在、サブドメイン名の変更、プロトコルの変更（HTTP から HTTPS への変更）、パスのみの変更によるサイト移転には対応していません。
+
+******* [75%] : 手順
+- [X] : Search Console のホームページで、移転するサイトをクリックします。
+- [X] : 歯車のアイコンをクリックし、[アドレスの変更] をクリックします。
+- [X] : サイトアドレス変更ツールに表示された手順を行います。
+- [ ] : URL の変更を伴うサイト移転の説明に沿ってトラフィックを監視します。
+      https://support.google.com/webmasters/answer/6033088
+
+
+***** 参考資料
+- アドレス変更ツールの使用方法
+  https://support.google.com/webmasters/answer/83106?hl=ja
+
+- 作業手順書
+  https://docs.google.com/document/d/1ej7ZLwfAd7eM0vxL4xznhX2auBf7cTmwRav72XI_hU4/edit
+
+***** search console site
+https://www.google.com/webmasters/tools/home?hl=ja&authuser=0
+
+**** Done [#A] redirect                                        :ruby-webage:
+SCHEDULED: <2015-09-14 Mon> CLOSED: [2015-09-18 Fri 17:45]
+Added: [2015-09-11 Fri 23:01]
+
+***** todos
+****** Done 末尾に/が余分に入る
+CLOSED: [2015-10-06 Tue 13:43]
+デグレ対応
+本番移行前に
+
+入らなかった。
+再確認
+
+****** Done sitemap.xml / robots.txt
+SCHEDULED: <2015-09-18 Fri> CLOSED: [2015-09-18 Fri 17:33]
+へアクセスした際に、redirectしないように設定
+
+****** Done redirect test
+SCHEDULED: <2015-09-18 Fri> CLOSED: [2015-09-18 Fri 17:34]
+
+- 再確認
+- 忘れずに。
+- 全パータン手動確認
+-
+***** git release手順
+masterからbranch
+masterへmerge
+release branchへ取り込み
+
+***** base
+|---+----------------------------------------------+--------------------------|
+|   | /                                            | /                        |
+|   | /work/work.php                               | /business                |
+|   | /corporate_profile/company.php               | /company                 |
+|   | /employment/employment.php                   | /recruiting              |
+|   | /on_Rails/engineer_recruitment.php           | /recruiting_rails        |
+|   | /engineer_recruitment/engineer.php           | /partner_offer           |
+|   | /qualification_support/qualifications.php    | /qualification_support   |
+|   | /ask/ask.php                                 | /contact                 |
+|   | /sitemap/sitemap.php                         | /sitemap                 |
+|   | /policy/policy.php                           | /policy                  |
+|   | /staff/staff.php                             | /staff                   |
+|   | /links/ruby_info.php                         | /ruby_info               |
+|   | /sp/                                         | /m/                      |
+|   | /sp/work/work.php                            | /m/business              |
+|   | /sp/corporate_profile/company.php            | /m/company               |
+|   | /sp/employment/employment.php                | /m/recruiting            |
+|   | /sp/on_Rails/engineer_recruitment.php        | /m/racruiting_rails      |
+|   | /sp/engineer_recruitment/engineer.php        | /m/partner_offer         |
+|   | /sp/qualification_support/qualifications.php | /m/qualification_support |
+|   | /sp/ask/ask.php                              | /m/contact               |
+|   | /sp/sitemap/sitemap.php                      | /m/sitemap               |
+|   | /sp/policy/policy.php                        | /m/policy                |
+|   | /sp/staff/staff.php                          | /m/staff                 |
+|   | /sp/links/ruby_info.php                      | /m/ruby_info             |
+|---+----------------------------------------------+--------------------------|
+
+
+|-----------------------------------------------------------------|
+| http://stg.mruby.jp/                                            |
+| http://stg.mruby.jp/work/work.php                               |
+| http://stg.mruby.jp/corporate_profile/company.php               |
+| http://stg.mruby.jp/employment/employment.php                   |
+| http://stg.mruby.jp/on_Rails/engineer_recruitment.php           |
+| http://stg.mruby.jp/engineer_recruitment/engineer.php           |
+| http://stg.mruby.jp/qualification_support/qualifications.php    |
+| http://stg.mruby.jp/ask/ask.php                                 |
+| http://stg.mruby.jp/sitemap/sitemap.php                         |
+| http://stg.mruby.jp/policy/policy.php                           |
+| http://stg.mruby.jp/staff/staff.php                             |
+| http://stg.mruby.jp/sp/                                         |
+| http://stg.mruby.jp/sp/work/work.php                            |
+| http://stg.mruby.jp/sp/corporate_profile/company.php            |
+| http://stg.mruby.jp/sp/employment/employment.php                |
+| http://stg.mruby.jp/sp/on_Rails/engineer_recruitment.php        |
+| http://stg.mruby.jp/sp/engineer_recruitment/engineer.php        |
+| http://stg.mruby.jp/sp/qualification_support/qualifications.php |
+| http://stg.mruby.jp/sp/ask/ask.php                              |
+| http://stg.mruby.jp/sp/sitemap/sitemap.php                      |
+| http://stg.mruby.jp/sp/policy/policy.php                        |
+| http://stg.mruby.jp/sp/staff/staff.php                          |
+|-----------------------------------------------------------------|
+
+***** 複数domain
+|---+----------------------+-------------------------+
+| x | http://mruby.jp      | https://www.ruby-dev.jp |
+| x | http://www.mruby.jp  | https://www.ruby-dev.jp |
+|---+----------------------+-------------------------+
+| x | https://mruby.jp     | https://www.ruby-dev.jp |
+| x | https://www.mruby.jp | https://www.ruby-dev.jp |
+|---+----------------------+-------------------------+
+
+|---+------------------------+-------------------------|
+| x | http://ruby-dev.jp     | https://www.ruby-dev.jp |
+| x | http://www.ruby-dev.jp | https://www.ruby-dev.jp |
+|---+------------------------+-------------------------|
+| x | https://ruby-dev.jp    | https://www.ruby-dev.jp |
+|---+------------------------+-------------------------|
+
+**** Done [#A] sitemap.xml / robots.txt
+SCHEDULED: <2015-09-18 Fri> CLOSED: [2015-09-18 Fri 19:39]
+- stgのdocument rootへ旧sitemapを設置
+- 日付を今日に変更
+
+- robots.txtを旧サイトへ設置
+    - 全部クロールできるように設定。
+    - sitemap urlを中に記述
+    - 他はいらないだろう
+
+- chefにどう組み込むか。
+  nginx設定変更を、別の方法で解決できればそれで良いか.
+
+**** Done [#A] google search console権限設定
+SCHEDULED: <2015-09-18 Fri> CLOSED: [2015-09-18 Fri 19:39]
+
+- 本社開発室全員で、状態確認できるように設定
+さっぱりだな
+
+y-shibata@ruby-dev.jp
+h-sato@ruby-dev.jp
+m-suketa@ruby-dev.jp
+m-kubo@ruby-dev.jp
+
+登録済み
+確実な返答はまだ無し
+
+**** Done [#A] 残作業
+DEADLINE: <2015-09-20 Sun> CLOSED: [2015-09-29 Tue 18:16]
+
+- nginx.conf
+  - [X] : stg廃止
+  - [X] : ruby.jpへroot追記
+  - [X] : sitemap.xml / robots.txtは、redirect対象外
+
+**** Done analytics setting
+CLOSED: [2015-09-18 Fri 08:57]
+
+本社開発室全員へ
+**** Done [#D] 動作Test
+SCHEDULED: <2015-09-14 Mon> CLOSED: [2015-09-29 Tue 18:17]
+
+まずは観点から考えよう
+
+***** Test 結果
+****** PC
+- 画面遷移後、カルーセルが自動スライドしない (IE11, Firefoxで確認)
+- ヘッダー画面崩れ : 1290 x 1080にてwindowを最大化した場合、左上ロゴが敷居線にかぶる。また、右上の電話番号画像が回りこんでずれる。
+- ruby_infoのメイン画像と、ヘッダー間の隙間が他ページと異なる
+
+****** Mobile
+- 画面遷移後、カルーセルが自動スライドしない (標準ブラウザ, chromeで確認)
+- 横幅全てを使っては表示されない。左右に若干の隙間がある。
+  軽いindent程度なので問題ないと言えば、問題ない
+
+***** browsers
+- [ ] IE9
+- [X] IE11
+- [ ] safari
+
+- [X] android : 標準
+- [ ] android : chrome
+
+***** mruby.jpをIE9で見るとどうなるか?
+***** VMとproductionの比較
+同browserで、兩サイトへアクセし差異が無いか確認
+
+***** 助田さんの指摘
+www.ruby-dev.jpにはfaviconも表示されないし、カルーセルの黒丸も表示されないです。が、Vagrant にIE9からアクセスしたときは表示されています。
+まず、本番環境とvagrantで何か違いがありそうです。ただ、Jenkinsの自動デプロイは正常にできています。
+@s-numasawa: 本番環境のwebページに正常にdeployされているか確認してもらってもいいでしょうか？Jenkinsで確認した限りでは、今日の11:51に正常にデプロイされています。
+
+**** Done [100%] domain schedule
+CLOSED: [2015-08-28 Fri 19:33]
+- [X] : mruby.jp移管。先方へ問い合わせ中
+- [X] : 返信有り。予定待ち
+
+- [X] : 旧DNS上のrecord setを頂戴する
+- [X] : mruby.jpをDomain移管 (お名前.com)
+- [X] : 旧DNS serverのrecord setを、route53へ設定
+
+
+***** 更新 : 遷移表
+https://docs.google.com/spreadsheets/d/1ySmCYlzCdIWQRB1cxWZvX4NmTrGMklBg6Ctc8Q0FzWU/edit#gid=0
+
+***** record setなど
+https://drive.google.com/drive/u/0/folders/0B2XVswXGgDX7fk1GbzViWVdaVGl1QXdwbnRDWGUtQkwwSHdGLVh2MnRObTAtTUhmcC1lRXM
+https://docs.google.com/document/d/1zZjlpI2w4j0oIXa9a_AHuAWKVyeYY_lVhFHCvSZRtBk/edit
+
+**** Done [100%] server setting for production
+CLOSED: [2015-09-29 Tue 18:34]
+- [X] productionのhttp/httpsアクセス
+      httpsに寄せる?
+      では懸念点は?
+
+- [X] 旧mail/webserverの扱い
+      当分残す。重複期間あり。期間は未確認
+      不要となるタイミングは、それぞれ異なる。
+      mail -> google appsと運用方法が整い次第?
+      web  -> 公開日移行?
+
+- [X] : ruby-dev.jpで新webpage運用
+
+- [X] opsworks 復旧 : postgre
+- [X] chef作成 : postgres install
+
+- [X] nginx設定 : chefへ
+- [X] SSL
+- [X] mail設定 : 送り先は? ruby-dev.jp?
+- [X] 公開日にBasic認証を外す (9月末までに公開予定)
+
+- [X] : googleへHP移動申請 (公開後で良い模様。タイミングは?)
+
+*** Done analytics
+CLOSED: [2015-09-30 Wed 17:47]
+- [ ] : ruby-dev.jp(gmail)で改めて、google analyticsを設定
+        コード再作成と埋め込み
+*** coding
+**** Done 会社概要 mobile
+CLOSED: [2015-10-07 Wed 11:12]
+-  取引銀行追加（千葉銀行　天王台支店）
+-  取引銀行の下に枠追加
+    枠名　"その他"、内容　”社内行事・社員紹介ページ” へのリンクを表示
+**** Done 会社概要 PC
+CLOSED: [2015-10-07 Wed 11:12]
+-  取引銀行追加（千葉銀行　天王台支店）
+-  取引銀行の下に枠追加
+    枠名　"その他"、内容　”社内行事・社員紹介ページ” へのリンクを表示
+**** Done パートナー募集mobile
+CLOSED: [2015-10-07 Wed 11:50]
+”各種事業連携事案”を削除
+**** Done パートナー募集PC
+CLOSED: [2015-10-07 Wed 11:50]
+”各種事業連携事案”を削除
+**** Done [#A] 採用ページ
+SCHEDULED: <2015-10-02 Fri> CLOSED: [2015-10-02 Fri 15:20]
+CLOCK: [2015-10-02 Fri 13:12]--[2015-10-02 Fri 13:21] =>  0:09
+CLOCK: [2015-10-01 Thu 15:30]--[2015-10-01 Thu 18:58] =>  3:28
+
+#104592136
+
+***** Done 冒頭の是非を削除
+***** Done 上段の画像の、周りの赤い枠を消す。
+CLOSED: [2015-10-01 Thu 19:00]
+***** Done ページの先頭にある代表からのメッセージリンクを削除する。
+***** Done 採用情報を表へ
+CLOSED: [2015-10-01 Thu 19:00]
+　募集職種　　プロジェクトマネージャー　システムエンジニア　プログラマー
+
+　応募資格　　 ""・""が不要
+　　　　　　　専門・短大卒以上
+　　　　　　　30 代まで（※但し、必要十分以上のスキルのお持ちの場合は40代も可）
+
+　勤務地　　　本社（秋葉原）、仙台、大阪、福岡及び取引先
+
+　勤務時間　　9:00～18:00（プロジェクトによりフレックスタイム制あり）
+　　　　　　　在宅勤務制度あり
+　　　　　　　職種、階級により裁量労働制選択可能（出社・退社時間自由）
+
+　給与　　　　月給制または、年俸制
+　　　　　　　中途採用の場合　月給24万～52万（月給制）、420万～720万（年俸制）
+　　　　　　　新卒の場合　　　月給20万5千円（大卒）
+
+　待遇　　　　昇級年１回、賞与年２回
+　　　　　　　交通費全額支給（但し上限４万まで）、各種社会保険
+　　　　　　　資格取得時の受験代負担、合格時一時金支給
+　　　　　　　社員旅行有（2013年札幌・小樽旅行、2014年トップシーズン秋の京都旅行）
+
+　休日休暇　　完全週休２日制（土日祝）、
+　　　　　　　有給休暇、慶弔休暇、育児/介護休暇、産前産後休暇
+　　　　　　　夏季休暇、年末年始休暇など
+
+福利厚生の項目も表に含める。
+
+***** Done 福利厚生について
+CLOSED: [2015-10-01 Thu 19:00]
+字下げが大きすぎる。
+１行目と２行目の「・」を無くして左に詰める。全体に一文字左にずらす。
+
+**** Done [#A] 採用ページ SP
+SCHEDULED: <2015-10-02 Fri> CLOSED: [2015-10-02 Fri 12:18]
+
+***** 上段画像の、「是非弊社に」→「弊社に」にする
+***** 採用情報文言
+　募集職種　　プロジェクトマネージャー　システムエンジニア　プログラマー
+
+　応募資格　　 ""・""が不要
+　　　　　　　専門・短大卒以上
+　　　　　　　30 代まで（※但し、必要十分以上のスキルのお持ちの場合は40代も可）
+
+　勤務地　　　本社（秋葉原）、仙台、大阪、福岡及び取引先
+
+　勤務時間　　9:00～18:00（プロジェクトによりフレックスタイム制あり）
+　　　　　　　在宅勤務制度あり
+　　　　　　　職種、階級により裁量労働制選択可能（出社・退社時間自由）
+
+　給与　　　　月給制または、年俸制
+　　　　　　　中途採用の場合　月給24万～52万（月給制）、420万～720万（年俸制）
+　　　　　　　新卒の場合　　　月給20万5千円（大卒）
+
+　待遇　　　　昇級年１回、賞与年２回
+　　　　　　　交通費全額支給（但し上限４万まで）、各種社会保険
+　　　　　　　資格取得時の受験代負担、合格時一時金支給
+　　　　　　　社員旅行有（2013年札幌・小樽旅行、2014年トップシーズン秋の京都旅行）
+
+　休日休暇　　完全週休２日制（土日祝）、
+　　　　　　　有給休暇、慶弔休暇、育児/介護休暇、産前産後休暇
+　　　　　　　夏季休暇、年末年始休暇など
+
+福利厚生の項目も表に含める。
+
+***** Done 福利厚生について
+CLOSED: [2015-10-01 Thu 15:45]
+字下げが大きすぎる。
+１行目と２行目の「・」を無くして左に詰める。全体に一文字左にずらす。
+
+**** Done [#A] rails採用ページ
+SCHEDULED: <2015-10-02 Fri> CLOSED: [2015-10-02 Fri 17:52]
+CLOCK: [2015-10-02 Fri 15:10]--[2015-10-02 Fri 15:21] =>  0:11
+CLOCK: [2015-10-02 Fri 12:19]--[2015-10-02 Fri 13:10] =>  0:51
+
+採用ページと同様の修正
+***** 採用情報を表へ
+募集職種はそのまま
+福利厚生の項目も表に含める。
+
+----------------------------------------------------------------
+　募集職種　　プロジェクトマネージャー　システムエンジニア　プログラマー
+
+　応募資格　　 ""・""が不要
+　　　　　　　専門・短大卒以上
+　　　　　　　30 代まで（※但し、必要十分以上のスキルのお持ちの場合は40代も可）
+
+　勤務地　　　本社（秋葉原）、仙台、大阪、福岡及び取引先
+
+　勤務時間　　9:00～18:00（プロジェクトによりフレックスタイム制あり）
+　　　　　　　在宅勤務制度あり
+　　　　　　　職種、階級により裁量労働制選択可能（出社・退社時間自由）
+
+　給与　　　　月給制または、年俸制
+　　　　　　　中途採用の場合　月給24万～52万（月給制）、420万～720万（年俸制）
+　　　　　　　新卒の場合　　　月給20万5千円（大卒）
+
+　待遇　　　　昇級年１回、賞与年２回
+　　　　　　　交通費全額支給（但し上限４万まで）、各種社会保険
+　　　　　　　資格取得時の受験代負担、合格時一時金支給
+　　　　　　　社員旅行有（2013年札幌・小樽旅行、2014年トップシーズン秋の京都旅行）
+
+　休日休暇　　完全週休２日制（土日祝）、
+　　　　　　　有給休暇、慶弔休暇、育児/介護休暇、産前産後休暇
+　　　　　　　夏季休暇、年末年始休暇など
+----------------------------------------------------------------
+
+***** Done 福利厚生について
+CLOSED: [2015-10-01 Thu 15:45]
+字下げが大きすぎる。
+１行目と２行目の「・」を無くして左に詰める。全体に一文字左にずらす。
+
+**** Done [#A] rails採用ページ SP
+SCHEDULED: <2015-10-02 Fri> CLOSED: [2015-10-02 Fri 13:10]
+CLOCK: [2015-10-02 Fri 12:01]--[2015-10-02 Fri 12:19] =>  0:18
+***** 採用情報文言
+募集職種はそのまま
+福利厚生の項目も表に含める。
+
+----------------------------------------------------------------
+　募集職種　　プロジェクトマネージャー　システムエンジニア　プログラマー
+
+　応募資格　　 ""・""が不要
+　　　　　　　専門・短大卒以上
+　　　　　　　30 代まで（※但し、必要十分以上のスキルのお持ちの場合は40代も可）
+
+　勤務地　　　本社（秋葉原）、仙台、大阪、福岡及び取引先
+
+　勤務時間　　9:00～18:00（プロジェクトによりフレックスタイム制あり）
+　　　　　　　在宅勤務制度あり
+　　　　　　　職種、階級により裁量労働制選択可能（出社・退社時間自由）
+
+　給与　　　　月給制または、年俸制
+　　　　　　　中途採用の場合　月給24万～52万（月給制）、420万～720万（年俸制）
+　　　　　　　新卒の場合　　　月給20万5千円（大卒）
+
+　待遇　　　　昇級年１回、賞与年２回
+　　　　　　　交通費全額支給（但し上限４万まで）、各種社会保険
+　　　　　　　資格取得時の受験代負担、合格時一時金支給
+　　　　　　　社員旅行有（2013年札幌・小樽旅行、2014年トップシーズン秋の京都旅行）
+
+　休日休暇　　完全週休２日制（土日祝）、
+　　　　　　　有給休暇、慶弔休暇、育児/介護休暇、産前産後休暇
+　　　　　　　夏季休暇、年末年始休暇など
+----------------------------------------------------------------
+
+***** Done 福利厚生について
+CLOSED: [2015-10-01 Thu 12:54]
+字下げが大きすぎる。
+１行目と２行目の「・」を無くして左に詰める。全体に一文字左にずらす。
+
+**** Done パートナー募集ページの「お問い合わせフォーム」
+CLOSED: [2015-10-01 Thu 09:26]
+#104495232
+
+「メールの場合 ⇒お問い合わせフォーム」
+を
+「お問い合わせフォーム」
+のみに修正する。
+
+**** Done お問い合わせで存在しないメールアドレスを入力した場合の対策
+CLOSED: [2015-10-01 Thu 10:14]
+#104492304
+
+メール送信後の送信完了ページの文言に
+「お問い合わせいただいた内容と同じ内容のメールをお客様にも送信しています。
+　メールが届かない場合には、再度、お問い合わせください。」
+を追加する。
+
+※存在しないメールアドレスに送信しているというエラーメールが返ってくることについての対策はしない。
+
+**** [100%] validate
+- [X] : model validate : 配列化できないか?
+- [X] : model validate : エラーメッセージ追加
+- [X] : cssでmaxlenght規定(不可)。htmlに直接記述
+- [X] : rspec : 指定文字数を自動生成できないか?
+        できそうだけど、やめ。
+
+**** [66%] ポリシー
+- [ ] : responsibe
+- [X] : title追加
+- [X] : 画像
+**** [66%] パートナー募集
+- [ ] : responsibe
+- [X] : title追加
+- [X] : 画像
+
+**** [75%] rails採用情報
+https://torchpad.com/workspace/wikis/ruby-webpage/pages/%E4%BB%95%E6%A7%98/%E6%8E%A1%E7%94%A8%E6%83%85%E5%A0%B1
+
+- [X] : story取得
+
+- [X] : slim
+    - [X] : html to slim
+    - [X] : title
+
+    - [X] : アプリケーション開発のお問い合わせ（お問い合わせポップアップ画面）
+    - [X] : 代表からのメッセージ（ページ内リンク）
+    - [X] : 福利厚生の外部サイトページへのリンク
+    - [X] : 社内行事・社員紹介ページ（社内行事・社員紹介ページ）
+    - [X] : Ruby/Ruby on Railsエンジニア職の詳細ページ（Ruby on Rail採用情報ページ）
+
+- [-] : scss
+    - [X] : 既存scss構造化
+    - [ ] : responsibe? (保留と聞いていた気が)
+
+- [X] : rspec
+**** [80%] 採用情報
+https://torchpad.com/workspace/wikis/ruby-webpage/pages/%E4%BB%95%E6%A7%98/%E6%8E%A1%E7%94%A8%E6%83%85%E5%A0%B1
+
+- [X] : story取得
+
+- [X] : slim
+    - [X] : html to slim
+    - [X] : title
+
+    - [X] : アプリケーション開発のお問い合わせ（お問い合わせポップアップ画面）
+    - [X] : 代表からのメッセージ（ページ内リンク）
+    - [X] : 福利厚生の外部サイトページへのリンク
+    - [X] : 社内行事・社員紹介ページ（社内行事・社員紹介ページ）
+    - [X] : Ruby/Ruby on Railsエンジニア職の詳細ページ（Ruby on Rail採用情報ページ）
+
+- [-] : scss
+    - [X] : 既存scss構造化
+    - [ ] : responsibe? (保留と聞いていた気が)
+
+- [X] : rspec
+    - [X] : 各種linkがあるか
+    - [X] : 文言抜粋
+    - [X] : 各種linkが開くか
+
+- [X] : mail link修正
+    - [X] : メールリンクを廃止→問い合わせフォームへ統一
+    - [X] : spec修正
+
+**** [100%] header / footer / sitemap
+- [X] : slim : Link修正 rails採用情報 -> エンジニア採用情報
+- [X] : spec : 修正　rails採用情報 -> エンジニア採用情報
+
+- [X] :「採用情報」Linkを、「Railsエンジニア採用情報」へ変更。画面遷移先も、Rails採用情報へ
+- [X] :「Ruby on Rails 採用募集」Linkを、「各種エンジニア採用情報」へ変更。画面遷移先を、エンジニア採用情報へ
+- [X] : rspec
+- [X] : top pageのlink確認
+- [X] : wiki更新
+
+**** [100%] mobile top
+**** [100%] mobile recruiting_rails
+**** [100%] mobile partner
+
+**** [100%]スマホ top page
+**** [100%]スマホ 事業案内
+**** [100%]contactに文字数制限
+**** Done mobile home/linkボタン削除
+CLOSED: [2015-09-10 Thu 10:22]
+**** Done [#F] PC imageフォルダを一階層に
+SCHEDULED: <2015-09-10 Thu> CLOSED: [2015-09-10 Thu 12:39]
+**** Done [#F] sitemap.xml
+SCHEDULED: <2015-09-10 Thu> CLOSED: [2015-09-10 Thu 12:39]
+**** Iam [#D] sitemap.xml - gem化
+CLOSED: [2015-10-22 Thu 12:07]
+要調査
+https://github.com/kjvarga/sitemap_generator
+http://qiita.com/tsumekoara/items/0864a082a0cee7bfaf93
+
+** Iam [#D] penetration test                                        :insider:
+Added: [2015-06-17 Wed 01:18]
+ツール見繕って
+進入テスト
+継続してテストできるように
+** Done [#A] PR出し直し                                       :organic_style:
+SCHEDULED: <2015-10-27 Tue> CLOSED: [2015-10-27 Tue 15:34]
+Added:      [2015-10-27 Tue 14:29]
+
+rebase して上げ直す
+との事だが、rebaseってどうやるんだ
+
+*** gitlab msg
+    1 : 講師機能：「顧客一覧」へのリンクを削除
+        講師top pageから顧客一覧リンク削除
+        顧客一覧へのroute削除
+    2 : 講師機能：「注文・売上一覧」の検索条件を削除
+        削除項目
+            顧客名
+            顧客名(カナ)
+            電話番号(先頭一致)
+            メールアドレス(先頭一致)
+        URLへの直接入力すると検索可能。以下、例
+            &q[customer_name_cont]=&q[customer_kana_cont]=
+    3 : 講師機能：「注文・売上一覧」の一覧から項目を削除
+        顧客名
+    4 : 講師機能：「入金一覧」の注文・売上一覧から項目を削除
+        顧客名
+    5 : 講師機能：「入金一覧」の注文・売上一覧から項目を削除
+        顧客名
+    6 : 顧客情報が記述されたメールのbccから講師アドレスを削除
+        講師bccが含まれる、以下3点から削除
+            クレジットカード振込完了
+            銀行振込承り
+            銀行振込完了
+
+*** command
+
+ git cherry-pick 85fc9d1
+ git cherry-pick  eae3af4
+ git cherry-pick  ebb42f2
+ git cherry-pick  cab46d8
+ git cherry-pick  f900ccd
+ git cherry-pick  88f5c7e
+ git cherry-pick  a2da57e
+** Done reviw                                                 :organic_style:
+CLOSED: [2015-11-03 Tue 16:11]
+Added:      [2015-11-02 Mon 10:43]
+
+*** Done [#A] Coupon for trainer
+SCHEDULED: <2015-11-02 Mon> CLOSED: [2015-11-02 Mon 18:01]
+- [x] : review and merge
+
+*** Done [#A] Coupon for organizer
+SCHEDULED: <2015-11-02 Mon> CLOSED: [2015-11-03 Tue 16:11]
+- [X] : review and merge
+
+*** Done [#A] CRON job (whenever gem) の説明を追加
+SCHEDULED: <2015-11-02 Mon> CLOSED: [2015-11-03 Tue 16:11]
+https://git.ruby-dev.jp/organicstyle/mana2ku/merge_requests/19#note_364
+
+- [X] review and merge
+- [X] deploy時にcronが適用されているか
+      list作って反映状況を見るか
+** Done AWS RDS update                                               :uniqlo:
+SCHEDULED: <2015-11-10 Tue> CLOSED: [2015-11-10 Tue 18:49]
+Added:      [2015-11-04 Wed 09:34]
+
+*** memo
+**** 期限
+11/10
+
+**** mail
+以下で検索
+Re: Influencer RDS メンテナンスについて
+
+*** Done rdsの更新とは? 止まるの? 調査
+CLOSED: [2015-11-09 Mon 16:04]
+止まるっぽい
+
+*** Done 実作業準備
+CLOSED: [2015-11-09 Mon 16:04]
+*** Done メンテナンス時間の調整
+CLOSED: [2015-11-09 Mon 16:04]
+必要か否かも確認
+*** Done 本番適用
+SCHEDULED: <2015-11-10 Tue : 13:00-16:00> CLOSED: [2015-11-10 Tue 18:49]
+
+- 14:50 - 13:45 | Ruby開発作業
+    - 作業開始通知
+    - サービス停止 (admin / sns )
+    - DB backup (dumpの量によって時間前後)
+
+
+- 13:45 〜 15:00 | 先方作業
+    - master backup
+    - master update / reboot
+    - masterでの業完了後、read replica update / reboot
+
+    // DB updateは15〜30分程度掛かると想定
+
+
+- 15:00 〜 15:30 | Ruby開発作業
+    - service 起動
+    - service 状態確認
+    - 作業終了通知
+
+*** mail
+To : ユニクロ 石丸様、林様
+Cc : エヌネットワーク 成田様
+
+御世話になっております。
+Ruby開発 沼沢です。
+
+これより予定しておりましたメンテナンス作業を、下記タイムテーブルにて開始させて頂きます。
+
+----------------------------------------------------------------
+- 13:00 - 13:55 | Ruby開発作業
+    - 作業開始通知
+    - サービス停止 (admin / sns )
+    - DB backup
+
+- 13:55 〜 15:10 | エヌネットワークス様作業
+    - master backup
+    - master update / reboot
+    - masterでの作業完了後、read replica update / reboot
+
+- 15:10 〜 15:40 | Ruby開発作業
+    - service 起動
+    - service 状態確認
+    - 作業終了通知
+----------------------------------------------------------------
+
+※ メンテナンス中は、管理画面へのアクセスが不可能となります
+※ メンテナンス時間中の数十分間、サービス全体が停止致します。
+
+以上となります。
+よろしくお願い申し上げます。
+
+*** 手順 [100%]
+
+- [X] admin stop
+- [X] admin batch stop
+- [X] sns stop
+- [X] sns batch stop
+
+- [X] N社
+
+- [X] admin start
+- [X] admin batch start
+- [X] sns start
+- [X] sns batch start
+
+bundle exec unicorn_rails -c /var/rails/influencer/current/config/unicorn.rb -E production -D
+** Done [#A] basic認証                                        :organic_style:
+CLOSED: [2015-11-04 Wed 18:11]
+Added:      [2015-11-04 Wed 09:46]
+
+*** memo
+**** url
+http://localhost:3040/kokoroya_1mon1to/index.html
+
+**** 要件
+上記の一部URLを公開
+
+*** Done stgでの適用
+SCHEDULED: <2015-11-04 Wed> CLOSED: [2015-11-04 Wed 14:40]
+*** Done prdへの適用
+SCHEDULED: <2015-11-04 Wed> CLOSED: [2015-11-04 Wed 18:11]
+
+NP.Sk+(*#x9W
+
+- [X] backup AMI / RDS
+- [X] mysqldump
+- [X] deploy (with migrate)
+- [X] migrate
+- [X] nginx setting
+    - [X] basic auth
+
+- [X] クーポン設定
+
+- [X] 動作確認
+    - [X] static page
+    - [X] クーポン
+
+本番環境へのdeployしました。
+ご確認お願い致します。
+
+クーポン
+https://manatuku.com/trainers/1/packages/1
+
+static page
+https://manatuku.com/kokoroya_1mon1to/
+
+*** Done PR | review待ち
+SCHEDULED: <2015-11-04 Wed> CLOSED: [2015-11-04 Wed 17:55]
+- [X] どの点をhttpsにするのか確認
+- [X] 修正し、PR
+- [X] とりあえず、助田さんにassign。説明してないけど
+
+merge確認済み
+
+** Done 死活監視導入                                          :organic_style:
+SCHEDULED: <2015-11-04 Wed> CLOSED: [2015-11-05 Thu 16:32]
+Added:      [2015-11-04 Wed 10:01]
+
+
+mana2ku : 52.69.235.109
+monitor : 54.64.99.154
+
+*** Done munin導入
+SCHEDULED: <2015-11-04 Wed> CLOSED: [2015-11-05 Thu 09:32]
+
+- [X] server
+      - [X] node IP 52.69.235.109
+
+- [X] node
+      - [X] server 54.64.99.154
+      - [X] port 4949 / 54.64.99.154/32
+
+- [x] munin-node 自動起動設定
+
+- [X] 情報取得可能か
+
+- [ ] 周りへ展開
+
+*** Done cloudwatch導入
+SCHEDULED: <2015-11-04 Wed> CLOSED: [2015-11-05 Thu 09:32]
+
+**** memo
+prd instan ide  :  i-85f25e20
+
+**** cloud watch設定方法
+**** 料金
+- ダッシュボード
+    - $3 / month
+
+- 詳細モニタリング
+    - $3.5 / instance / month
+
+- カスタムメトリックス
+    - $0.5 / metrix / month
+
+- アラーム
+    - $0.1 / alarm / month
+
+- cloudwatch API
+    - $0.01 GetMetricStatistics、ListMetrics、または PutMetricData のリクエスト 1,000 件あたり
+
+- CloudWatch ログ
+    - $0.76 : 取り込み GB あたり**
+    - $0.033 : GB あたりのアーカイブ/月***
+    - CloudWatch ログのデータ転送送信（アウト） はEC2 料金表ページに掲載されている
+      "Amazon EC2 からのデータ転送送信（アウト）" および "Amazon EC2 からインターネットへのデータ転送送信（アウト）" と同じ料金です。
+**** Done 監視項目設定
+SCHEDULED: <2015-11-04 Wed> CLOSED: [2015-11-05 Thu 09:33]
+
+1分間書く
+
+- [X] AWS
+    http://dev.classmethod.jp/cloud/aws/ec2-auto-recovery-feature/
+
+    - [X] instance failed : failed 5min
+    - [X] system failed   : failed 5min
+
+- [X] server
+    - [X] http  : !(200 ok) 10min
+    - [X] cpu   : 90%       10min
+    - [X] LA    : 4(1min)   15min
+    - [X] mem   : 80%       10min / total mem 1.5Gで、80%(300MB)以下
+    - [X] hdd   : 80%       10min
+    - [x] puma  : down      5min
+    - [x] nginx : down      5min
+
+
+- [X] RDS | manatsuku-production
+    - [X] status : fail : 5min
+    - [X] cpu    : 80%  : 10min
+    - [X] mem    : 20%  : 10min
+    - [X] hdd    : 25%  : 10min  (max 100GB)
+
+- [X] ELB
+    - [X] health host  5min
+
+- [X] SNS 登録
+    - [X] 沼沢
+    - [X] 柴田さん
+    - [X] head-office-dev@ruby-dev.jp
+
+
+**** Done 監視項目設定 正常系
+SCHEDULED: <2015-11-04 Wed> CLOSED: [2015-11-05 Thu 16:31]
+
+1分間書く
+
+- [X] AWS
+    http://dev.classmethod.jp/cloud/aws/ec2-auto-recovery-feature/
+
+    - [X] instance failed : failed 5min
+    - [X] system failed   : failed 5min
+
+- [X] server
+    - [X] http  : !(200 ok) 10min
+    - [X] cpu   : 90%       10min
+    - [X] LA    : 4(1min)   15min
+    - [X] mem   : 80%       10min / total mem 1.5Gで、80%(300MB)以下
+    - [X] hdd   : 80%       10min
+    - [X] puma  : down      5min
+    - [X] nginx : down      5min
+
+
+- [X] RDS | manatsuku-production
+    - [X] status : fail : 5min
+    - [X] cpu    : 80%  : 10min
+    - [X] mem    : 20%  : 10min
+    - [X] hdd    : 25%  : 10min  (max 100GB)
+
+- [X] ELB
+    - [X] health host  5min
+
+- [ ] SNS 登録
+    - [ ] 沼沢
+    - [ ] 柴田さん
+    - [ ] head-office-dev@ruby-dev.jp
+
+**** Done 監視項目設定 データ不足
+SCHEDULED: <2015-11-04 Wed> CLOSED: [2015-11-05 Thu 16:31]
+
+
+- [X] AWS
+    http://dev.classmethod.jp/cloud/aws/ec2-auto-recovery-feature/
+
+    - [X] instance failed : failed 5min
+    - [X] system failed   : failed 5min
+
+- [X] server
+    - [X] http  : !(200 ok) 10min
+    - [X] cpu   : 90%       10min
+    - [X] LA    : 4(1min)   15min
+    - [X] mem   : 80%       10min / total mem 1.5Gで、80%(300MB)以下
+    - [X] hdd   : 80%       10min
+    - [X] puma  : down      5min
+    - [X] nginx : down      5min
+
+
+- [-] RDS | manatsuku-production
+    - [X] status : fail : 5min
+    - [ ] cpu    : 80%  : 10min
+    - [ ] mem    : 20%  : 10min
+    - [ ] hdd    : 25%  : 10min  (max 100GB)
+
+- [X] ELB
+    - [X] health host  5min
+
+
+
+** Done Landing page  deploy                                  :organic_style:
+SCHEDULED: <2015-11-05 Thu> CLOSED: [2015-11-05 Thu 15:20]
+Added:      [2015-11-05 Thu 10:06]
+
+*** Done merge
+CLOSED: [2015-11-05 Thu 10:22]
+*** Done stg up
+CLOSED: [2015-11-05 Thu 10:22]
+** Project [#A] 死活監視 : scriptまとめ
+Added:      [2015-11-05 Thu 16:32]
+**** cloudwatch custom metrics | official
+***** 公式 custom metrics追加script
+- file
+  http://aws.amazon.com/code/8720044071969977
+
+- 使い方
+  http://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/DeveloperGuide/mon-scripts.html
+
+perl baseっぽい
+***** 適当に展開
+~/script/aws/
+
+***** CPAN setting
+- CPAN install
+  http://ll.just4fun.biz/Perl/CPAN/CPAN%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89%E3%81%99%E3%82%8B.html
+
+- install LWP::Protocol::https
+
+***** 実行
+perl ./mon-get-instance-stats.pl --aws-credentail-file ./awscreds
+
+**** custom metrics user
+perl /home/ec2-user/aws-scripts-mon/mon-put-instance-data.pl --aws-credential-file=/home/ec2-user/aws-scripts-mon/awscreds --mem-util --mem-used --mem-avail --swap-util --swap-used --disk-path=/dev/xvda1 --disk-space-util --disk-space-used --disk-space-avail
+** Done [#B] finc : slack
+  SCHEDULED: <2015-11-05 Thu> CLOSED: [2015-11-09 Mon 20:00]
+Added:      [2015-11-05 Thu 16:34]
+
+*** slack確認
+*** github登録
+*** アクセス確認
+** Done finc 打ち合わせ
+SCHEDULED: <2015-11-09 Mon 10:00> CLOSED: [2015-11-09 Mon 11:24]
+Added:      [2015-11-09 Mon 09:57]
+
+よくわからんが何するんだべ
+** Done AWS notify
+  SCHEDULED: <2015-11-09 Mon> CLOSED: [2015-11-09 Mon 12:15]
+Added:      [2015-11-09 Mon 09:58]
+メール来ていたのでチェック
+** Done revie / merge / deploy
+  SCHEDULED: <2015-11-09 Mon> CLOSED: [2015-11-09 Mon 11:24]
+Added:      [2015-11-09 Mon 10:30]
+ruby-webpage
+** Done 仙台meating
+  SCHEDULED: <2015-11-09 Mon> CLOSED: [2015-11-12 Thu 21:35]
+Added:      [2015-11-09 Mon 12:24]
+大須賀さんに返信
+** Project Ruby Webpage release                                     :insider:
+  DEADLINE: <2015-12-07 Mon>
+Added:      [2015-11-10 Tue 10:03]
+
+柴田君
+
+HPですが、
+
+12/6になったら
+仙台オフィスの最寄駅を以下にしてください。
+（１つ追加する形。地下鉄が12/6から開通するため）
+
+・地下鉄東西線「青葉通一番町駅」から徒歩6分
+・JR「仙台駅」から徒歩16分
+** Done Ruby Webpage release                                        :insider:
+SCHEDULED: <2015-11-10 Tue> CLOSED: [2015-11-10 Tue 18:49]
+Added:      [2015-11-10 Tue 10:06]
+
+
+おはよう。芦田です。
+
+HP TOPページの新着・お知らせが間違ってます。
+
+11/02　仙台オフィスオープン
+
+ではなく
+
+11/02　仙台オフィスフロア増床のため移転しました
+** Done 休日出勤、代休入力
+  SCHEDULED: <2015-11-10 Tue> CLOSED: [2015-11-10 Tue 18:49]
+Added:      [2015-11-10 Tue 10:41]
+
+10月分から
+
+代休 : 沼沢
+代出 : 沼沢
+休み : 沼沢
+** Done 代休申請
+  SCHEDULED: <2015-11-11 Wed> CLOSED: [2015-11-11 Wed 14:01]
+Added:      [2015-11-11 Wed 10:16]
+** Done [#A] domain設定
+SCHEDULED: <2015-11-11 Wed> CLOSED: [2015-11-13 Fri 14:23]
+Added:      [2015-11-11 Wed 14:01]
+
+- [X] info.manatuku.com IN CNAME organicstyleco.mktoweb.com.
+- [X] go.manatuku.com. IN CNAME mkto-ab150060.com.
+
+- [X] manatuku.com. IN TXT "v=spf1 include:mktomail.com ~all"
+- [X] m1._domainkey.manatuku.com. IN TXT v=DKIM1;k=rsa;p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCpE/aIAagGowgoNuv6ul33YnBmmF5a53oCyQuxNrLeRWqLg+qP3pzhxbKVyx11YCbq4WWbD6lQSL9eop4QJ9t2asJrWLzURFK5QG4MNtL4nV5hGBfYCc74Ao79cWf9WNSIk4QDmyVwBln10ZRz6ohFq0e3DfF3oKPDRLNp4Fa2kQIDAQAB
+txt google._domainkey v=DKIM1; k=rsa; p=MIG***AB
+
+- [ ] info.otogaku.com IN CNAME organicstyleco.mktoweb.com.
+- [ ] go.otogaku.com IN CNAME mkto-ab150060.com.
+** Done 休暇申請 の注意点
+SCHEDULED: <2015-11-11 Wed> CLOSED: [2015-11-12 Thu 21:35]
+Added:      [2015-11-11 Wed 15:37]
+
+社員番号を今後つけて
+新フォーマットで
+** Done Domain設定
+  SCHEDULED: <2015-11-13 Fri> CLOSED: [2015-11-13 Fri 14:20]
+Added:      [2015-11-13 Fri 09:21]
+
+- [ ] : info.manatuku.com 削除
+- [ ] : 証明書発行後、復旧
+
+info.manatuku.com.
+CNAME
+organicstyleco.mktoweb.com
+** Done 住所変更
+SCHEDULED: <2015-11-17 Tue> CLOSED: [2015-11-17 Tue 19:54]
+:PROPERTIES:
+:ATTACH_DIR_INHERIT: t
+:END:
+Added:      [2015-11-17 Tue 19:05]
+
+
+https://www.pivotaltracker.com/n/projects/1446854/stories/108307854
+
+
+
+- [X] プライバシーポリシー（２箇所記載があります）
+      https://manatuku.com/privacy
+
+- [X] 会社概要
+       https://manatuku.com/aboutus
+
+- [X] メールのフッタすべて
+
+- [X] signer
+
+
+
+*** info
+**** ＜修正箇所＞
+・プライバシーポリシー（２箇所記載があります）
+　https://manatuku.com/privacy
+
+・会社概要
+　https://manatuku.com/aboutus
+
+・メールのフッタすべて
+
+**** ＜新住所＞
+住所：〒167-0033　東京都杉並区清水1丁目16-5　IWAIビル6階
+電話番号：03-6913-7639
+FAX番号：03-6913-7166
+
+**** old?
+〒167-0053　東京都杉並区西荻南2-24-7
+03-5344-3277
+03-5344-3278
+** Done aws 構造追記
+SCHEDULED: <2015-11-18 Wed> CLOSED: [2015-11-18 Wed 18:41]
+:PROPERTIES:
+:ID: 483722fb-942e-4101-a26b-d0ee0a8fb08c
+:END:
+Added:      [2015-11-18 Wed 18:40]
+
+static page
+** Done load average調整
+  SCHEDULED: <2015-11-18 Wed> CLOSED: [2015-11-18 Wed 20:58]
+Added:      [2015-11-18 Wed 18:41]
+
+とりあえず、ファイル分割してthreadにした
+** Done deploy                                                :organic_style:
+  SCHEDULED: <2015-11-18 Wed> CLOSED: [2015-11-18 Wed 20:59]
+Added:      [2015-11-18 Wed 20:58]
+done 2times
+
+* memo
+** API調査結果.md
+Added: [2015-06-17 Wed 15:10]
+# fluentdとzabbixを導入
+ログ収集のfluentdとサーバ監視zabbixを導入している。
+aws導入時は必要に応じて導入しないといけないかも。
+参考資料：サービス詳細設計書-ver1.0.1.docx
+
+# DBをmasterとslaveにわけてる
+ar-octopusというmasterとslaveのDBの参照先を選択できるgemを使っている。
+
+*** 使用している箇所
+  * points_controller：master
+  * editable_articles_controller_base.rb：master
+  * external_article_distributors_controller.rb：master
+  * media_contents_controller.rb：master
+  * sessions_controller.rb：master
+  * students_controller.rb：master
+  * remember_token.rb：master
+
+遅延が許されないデータは全てmasterに向けられている。よって、冗長化のmaster、slaveと思われる。
+
+参考資料：MySQL運用マニュアル-ver1.0.docx
+
+
+## apiを提供している部分
+
+以下のAPIを提供している。メルマガ（管理）が本APIを使用している。メルマガ（管理）は会員のpoint数の増加の登録やメルマガの購読情報をAPI経由で取得していると思われる。
+
+*** users(各APIのリクエストとレスポンスはdoc/api/users.mdを参照)
+  * 会員登録
+  * 会員情報更新
+  * 会員情報参照
+  * 会員削除
+*** sessions(各APIのリクエストとレスポンスはdoc/api/sessions.mdを参照)
+  * ログイン
+  * ログアウト
+  * ログイン情報の取得
+*** points(各APIのリクエストとレスポンスはdoc/api/points.mdを参照)
+  * 仮決済
+  * 決済確定
+  * 決済完了
+
+参考資料：mynavi_全体概要図_20150514.xlsxの「会員DB_API」
+
+** [2015-06-16 Tue] mynavi様との打ち合わせ内容                  :memo:mynavi:
+Added: [2015-06-16 Tue 17:37]
+[@channel: 以下、マイナビ様との打合せ結果の抜粋です。
+
+========================================================
+日時：2015.06.15 20:00～21:40
+場所：マイナビ社
+参加者：マイナビ社 大和様、崔様　/　Ruby開発　柴田、久保
+
+以下、マイナビ社：（M　／　Ruby開発：（R
+
+■今後の対応について
+　・次の予定となっていた、機能追加カスタマイズによるRuby開発の技術力確認は行わない（M・R
+　・上記の代わりに、マイナビ社社内向けの提案資料を作成し、部長の林へプレゼンを行っていただく（M・R
+　・提案資料に盛り込んでほしいこと
+　　　・本番データを使用した、移行テストの計画
+　　　・目標とするPVを処理可能か、負荷試験データによって示す
+　　　・不具合、障害等に対し、迅速に対応できるサポート体制を敷くこと
+　　　・システム移行前後に問題が発生した場合の、旧システムへの切り戻しなどのリカバリ策
+　　　・現行システムに対する、今後の拡張性などのメリットの一覧や比較表など
+　　→システムに不理解な人員を対象とした資料として欲しい
+　　　例えば、「負荷試験」がどのような役割を果たすものか、理解できるような資料の構成が必要（M
+　・コストダウンが目的というより、今後のシステム改修を含め、より信頼できる開発パートナーに切り替えたいのが趣旨（M
+
+■保守について
+　・EC用の画像データは容量が大きいが、エビスマートを使用しているため、AWSのS3への転送量には影響しないと思われる（M
+　・障害監視について、現行はIMJが24時間監視しているが、移行後はどうなるか？（M
+　   →監視用サーバーを立てて対応する。（R
+　・障害対応は、平日なら1日以内にリカバリして欲しい。現行は2日かかっている（M
+  　→保守体制、障害対策フローを再検討、再提案いたします
+　　ただし、詳細なセキュリティ対策については、引き継ぎ決定後、現行ベンダーからの情報提供を踏まえて決定します（R
+
+■提供機能について
+①データ移行
+　・既存会員データ（約100万件）を、学窓の既存テーブルにマージするか、新規テーブルを作成するかは引き続き検討（R
+　・学窓のシステムからは、学窓のフラグが立っている会員データのみを制御対象とするよう対応は可能か？（M
+   　→「①データ移行」内で対応する想定（R
+　・既存のネットワークのシステム相関の概要図が欲しい（R
+　   →資料提供を検討します（M
+②ポイント機能対応・ポイント管理機能対応
+　・WebCASは、「SaaS型」を契約している（M
+　・AWSとWebCASのシステム連携について、資料が欲しい（R
+　　AWSとの連携実績について、エイジア社へ問い合わせを検討する。また、資料があれば提供する（M
+③マイページ対応
+　・ページデザインについて、学窓のマイページを、各サービスのサイトカラーに変更したものを基本とする（M・R
+　・ポイント交換機能については、対応保留とする（M
+
+■その他
+　・デザインと要件のみを決めて着手し、設計書については事前に作成しない（M・R
+　・マイナビ社へ納品が必要となる設計書についてのみ、開発後に作成する（M・R
+　・SkypeとRedmineを使用する。Redmineは、マイナビ社が用意するものを使用する（M
+========================================================
+
+y-shibata [5:18 PM]
+みなさん、ご確認よろしくお願いいたします。
+** [2015-06-16 Tue]                                                    :memo:
+- 証明書はmynaviからもらう
+- Route53は使うか不明
+- 既存ネットワーク構成は手に入れる
+- cache(cloud front)のデータ転送量は不明
+** Paused vpn connect                                                  :memo:
+SCHEDULED: <2015-06-29 Mon> CLOSED: [2015-06-29 Mon 15:43]
+CLOCK: [2015-06-29 Mon 15:11]--[2015-06-29 Mon 15:40] =>  0:29
+Added: [2015-06-18 Thu 13:55]
+
+pptにたいする、補足資料が必要。
+わかりにくい部分が多々。
+
+実装する際に、調査しよう。
+
+*** 柴田さん曰く
+- 講座受けてきた
+- VPN connect
+- エクイニクス japan
+  AWSのコネクト接続
+  AWSのラック接続されている。
+
+*** sample cloudformation
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Parameters": {
+        "KeyPair": {
+            "Type": "String",
+            "Description": "Your own Key Pair name"
+        }
+    },
+    "Resources": {
+        "vpc7c688319": {
+            "Type": "AWS::EC2::VPC",
+            "Properties": {
+                "CidrBlock": "10.7.0.0\/16",
+                "InstanceTenancy": "default",
+                "EnableDnsSupport": "true",
+                "EnableDnsHostnames": "true"
+            }
+        },
+        "subnetfa03ed8d": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "CidrBlock": "10.7.0.0\/24",
+                "AvailabilityZone": "ap-northeast-1c",
+                "VpcId": {
+                    "Ref": "vpc7c688319"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "dx-bastion"
+                    }
+                ]
+            }
+        },
+        "igw6800190a": {
+            "Type": "AWS::EC2::InternetGateway",
+            "Properties": null
+        },
+        "vgw83b00782": {
+            "Type": "AWS::EC2::VPNGateway",
+            "Properties": {
+                "Type": "ipsec.1",
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "vgw-dx-bastion"
+                    }
+                ]
+            }
+        },
+        "doptd66176b4": {
+            "Type": "AWS::EC2::DHCPOptions",
+            "Properties": {
+                "DomainName": "ap-northeast-1.compute.internal",
+                "DomainNameServers": [
+                    "AmazonProvidedDNS"
+                ]
+            }
+        },
+        "acl839267e6": {
+            "Type": "AWS::EC2::NetworkAcl",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "vpc7c688319"
+                }
+            }
+        },
+        "rtb3e54a15b": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "vpc7c688319"
+                }
+            }
+        },
+        "instancei5eec8047": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "DisableApiTermination": "FALSE",
+                "ImageId": "ami-29dc9228",
+                "InstanceType": "t2.micro",
+                "KeyName": {
+                    "Ref": "KeyPair"
+                },
+                "Monitoring": "false",
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "bastion server"
+                    }
+                ],
+                "NetworkInterfaces": [
+                    {
+                        "DeleteOnTermination": "true",
+                        "Description": "Primary network interface",
+                        "DeviceIndex": 0,
+                        "SubnetId": {
+                            "Ref": "subnetfa03ed8d"
+                        },
+                        "PrivateIpAddresses": [
+                            {
+                                "PrivateIpAddress": "10.7.0.55",
+                                "Primary": "true"
+                            }
+                        ],
+                        "GroupSet": [
+                            {
+                                "Ref": "sgsggeneral"
+                            }
+                        ],
+                        "AssociatePublicIpAddress": "true"
+                    }
+                ]
+            }
+        },
+        "s3dxlabresources": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": null
+        },
+        "sgsggeneral": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Security Group for general purpose",
+                "VpcId": {
+                    "Ref": "vpc7c688319"
+                },
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": "22",
+                        "ToPort": "22",
+                        "CidrIp": "0.0.0.0\/0"
+                    }
+                ],
+                "SecurityGroupEgress": [
+                    {
+                        "IpProtocol": "-1",
+                        "CidrIp": "0.0.0.0\/0"
+                    }
+                ]
+            }
+        },
+        "acl1": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+                "CidrBlock": "0.0.0.0\/0",
+                "Egress": true,
+                "Protocol": "-1",
+                "RuleAction": "allow",
+                "RuleNumber": "100",
+                "NetworkAclId": {
+                    "Ref": "acl839267e6"
+                }
+            }
+        },
+        "acl2": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+                "CidrBlock": "0.0.0.0\/0",
+                "Protocol": "-1",
+                "RuleAction": "allow",
+                "RuleNumber": "100",
+                "NetworkAclId": {
+                    "Ref": "acl839267e6"
+                }
+            }
+        },
+        "subnetacl1": {
+            "Type": "AWS::EC2::SubnetNetworkAclAssociation",
+            "Properties": {
+                "NetworkAclId": {
+                    "Ref": "acl839267e6"
+                },
+                "SubnetId": {
+                    "Ref": "subnetfa03ed8d"
+                }
+            }
+        },
+        "gw1": {
+            "Type": "AWS::EC2::VPCGatewayAttachment",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "vpc7c688319"
+                },
+                "InternetGatewayId": {
+                    "Ref": "igw6800190a"
+                }
+            }
+        },
+        "gw2": {
+            "Type": "AWS::EC2::VPCGatewayAttachment",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "vpc7c688319"
+                },
+                "VpnGatewayId": {
+                    "Ref": "vgw83b00782"
+                }
+            }
+        },
+        "subnetroute1": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "rtb3e54a15b"
+                },
+                "SubnetId": {
+                    "Ref": "subnetfa03ed8d"
+                }
+            }
+        },
+        "route1": {
+            "Type": "AWS::EC2::Route",
+            "Properties": {
+                "DestinationCidrBlock": "192.168.10.0\/24",
+                "RouteTableId": {
+                    "Ref": "rtb3e54a15b"
+                },
+                "GatewayId": {
+                    "Ref": "vgw83b00782"
+                }
+            },
+            "DependsOn": "gw2"
+        },
+        "route2": {
+            "Type": "AWS::EC2::Route",
+            "Properties": {
+                "DestinationCidrBlock": "0.0.0.0\/0",
+                "RouteTableId": {
+                    "Ref": "rtb3e54a15b"
+                },
+                "GatewayId": {
+                    "Ref": "igw6800190a"
+                }
+            },
+            "DependsOn": "gw1"
+        },
+        "dchpassoc1": {
+            "Type": "AWS::EC2::VPCDHCPOptionsAssociation",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "vpc7c688319"
+                },
+                "DhcpOptionsId": {
+                    "Ref": "doptd66176b4"
+                }
+            }
+        }
+    },
+    "Description": "Template for DXlab bastion "
+    }
+
+
+
+
+
+
+
+
+
+* gather
+** Gathere クーポン
+Added: [2015-10-23 Fri 11:47]
+
+*** 表示追加
+元値 / クーポン割引額 / 請求金額
+
+*** 講師
+**** 注文・売上一覧
+２列追加 (クーポン割引額 / 元値)
+注文金額は、クーポン割引適用済みとする
+*** ユーザー
+**** 購入履歴
+- クーポン適用されたものは、元値 / クーポン割引額 / 請求金額を表示
+- クーポン適用されていないもののは、そのままで
+
+*** 事務
+**** 利用者 - 注文詳細
+- 二行追加
+
+**** 利用者 - 請求詳細
+- 二行追加
+
+**** 売上一覧詳細
+- 二列追加 (元値、クーポン割引額)
+
+**** 占め処理 - csv2種
+modelの動作を揉む前提であれば、対応無し
+動作確認は必要 (クーポン適用後の値となっているか)
+
+
+
+
+
+
+
+
+
+
+
+
+

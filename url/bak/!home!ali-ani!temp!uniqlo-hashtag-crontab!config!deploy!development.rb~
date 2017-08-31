@@ -1,0 +1,46 @@
+
+
+require 'net/ssh/proxy/command'
+
+set :stage, :production
+set :rails_env, 'production'
+
+
+
+
+namespace :deploy do
+    desc 'Upload database.yml'
+    task :upload do
+        on roles(:app) do |host|
+            if test "[ ! -d #{shared_path}/config ]"
+                execute "mkdir -p #{shared_path}/config"
+            end
+            upload!('config/deploy/db/development.yml', "#{shared_path}/config/database.yml")
+        end
+        on roles(:app) do |host|
+            if test "[ ! -d #{shared_path}/config ]"
+                execute "mkdir -p #{shared_path}/config"
+            end
+            upload!('config/deploy/unicorn/production.rb', "#{shared_path}/config/unicorn.rb")
+        end
+    end
+    
+    
+    before  :starting,  'deploy:upload'
+end
+
+
+
+
+# ----------------------------------------------------------------
+#  deploy to development
+#
+# ----------------------------------------------------------------
+server '10.0.1.60', user: 'mruby', roles: %w[app web db],
+  ssh_options: {
+    keys: [File.expand_path('~/.ssh/uniq/uniqlo_influencer.pem')],
+    forward_agent: true,
+    auth_methods: %w(publickey),
+    proxy: Net::SSH::Proxy::Command::new('ssh alliance@54.65.232.249 -i ~/.ssh/uniq/uniqlo_influencer_gateway.pem -W %h:%p')
+  }
+

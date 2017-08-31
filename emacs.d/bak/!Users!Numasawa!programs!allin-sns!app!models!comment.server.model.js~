@@ -1,0 +1,28 @@
+// Invoke 'strict' JavaScript mode
+'use strict';
+
+// Load the module dependencies
+var mongoose = require('mongoose'),
+	crypto = require('crypto'),
+	Schema = mongoose.Schema;
+
+// Define a new 'CommentSchema'
+var CommentSchema = new Schema({
+    comment: string,
+    created_at: date,
+    updated_at: date,
+    feed_id: number,
+    comment_user: {
+      id: number,
+      name: string
+    },
+    attachment_file: [{
+      id: number,
+      extention: string,
+      thumbnail: Schema.Types.Mixed
+    }]
+});
+
+
+// Create the 'User' model out of the 'UserSchema'
+mongoose.model('Comment', CommentSchema);

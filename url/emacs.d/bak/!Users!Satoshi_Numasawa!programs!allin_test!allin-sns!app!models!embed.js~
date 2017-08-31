@@ -1,0 +1,63 @@
+'use strict';
+
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+// Define a new 'EmbedSchema'
+const EmbedSchema = new Schema({
+    created_at: {
+        type: Date,
+        default: Date.now
+        // required: 'created_at is required'
+    },
+    updated_at: {
+        type: Date,
+        default: Date.now
+    },
+    site_name: {
+        type: String,
+    },
+    url: {
+        type: String,
+    },
+    title: {
+        type: String,
+    },
+    description: {
+        type: String,
+    },
+    favicon_url: {
+        type: String,
+    },
+    image_url: {
+        type: String,
+    }
+});
+
+
+EmbedSchema.pre('Update', function(next){
+    if (!this._update.$set) {
+        this._update.$set = {};
+    }
+    this._update.$set.updated_at  = new Date();
+    next();
+});
+
+EmbedSchema.pre('findOneAndUpdate', function(next){
+    if (!this._update.$set) {
+        this._update.$set = {};
+    }
+    this._update.$set.updated_at  = new Date();
+    next();
+});
+
+EmbedSchema.pre('findByIdAndUpdate', function(next){
+    if (!this._update.$set) {
+        this._update.$set = {};
+    }
+    this._update.$set.updated_at  = new Date();
+    next();
+});
+
+
+module.exports = mongoose.model('Embed', EmbedSchema);

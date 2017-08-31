@@ -1,0 +1,428 @@
+                 ━━━━━━━━━━━━━━━━━━━
+                                SETUP
+
+
+                           Satoshi|_Numasawa
+                 ━━━━━━━━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1 前提条件
+2 security group
+3 ELB
+4 mongo cluster
+.. 4.1 hardware
+.. 4.2 software
+.. 4.3 setting
+..... 4.3.1 ec2
+..... 4.3.2 install, setup
+..... 4.3.3 passwrod
+..... 4.3.4 backup
+.. 4.4 データ抽出
+5 redis
+.. 5.1 hardware
+.. 5.2 setting
+.. 5.3 data抽出
+6 Storage
+.. 6.1 hardware
+.. 6.2 setting
+.. 6.3 data抽出
+7 app server
+.. 7.1 hardware
+.. 7.2 software
+.. 7.3 setting
+..... 7.3.1 SE linux
+..... 7.3.2 install package
+..... 7.3.3 user追加
+..... 7.3.4 make nodejs dir
+..... 7.3.5 ssh
+..... 7.3.6 setup nodejs
+..... 7.3.7 ssl証明書
+..... 7.3.8 環境変数 -
+..... 7.3.9 deploy from local
+
+
+1 前提条件
+══════════
+
+  • 全serverは、同一AZ内に設置する
+
+
+2 security group
+════════════════
+
+
+  既存環境に合わせ適宜変更が必要.
+
+  • ELB
+    • ☐ http : 送信元 [0.0.0.0/0]
+    • ☐ https : 送信元 [0.0.0.0/0]
+
+  • app server
+    • ☐ ssh : 送信元 [0.0.0.0/0]
+    • ☐ port 5000 : 送信元 [0.0.0.0/0]
+    • ☐ http : [ELB sgを指定]
+
+  • mongo
+    • ☐ ssh : 送信元 [0.0.0.0/0]
+    • ☐ port 27017 : [app server sgを指定]
+    • ☐ port 27017 : [当mongo sgを指定]
+
+  • redis
+    • ☐ port 6379 : [app server sgを指定]
+
+
+3 ELB
+═════
+
+  • ☐ : VPC : [app server, mongo, redisなどと同一のVPCへ]
+  • ☐ : AZ : [app server, mongo, redisなどと同一のAZへ]
+  • ☐ : subnet : [任意]
+
+  • ☐ : listner :
+    • ☐ : http : [port 3000へforward]
+    • ☐ : https : [port 3000へforward]
+
+  • ☐ : 前工程で作成した、ELB用security groupを適用http : 0.0.0.0/0
+    https : 0.0.0.0/0
+
+  • ☐ : SSL
+    • ☐ : 証明書 : [*.all-in.xyzの証明書を指定]
+    • ☐ : security policy : [ELBSecurityPolicy-2015-05]
+
+  • ☐ : [HTTP:80/health.html]監視間隔 : 任意
+
+  • ☐ : クロスゾーン負荷分散 : [無効]
+
+  • ☐ : 維持設定 (ELB作成後。説明タブ内)
+    • [アプリケーションによって生成された Cookie の維持を有効化]を
+      選択
+    • session名を入力 : [※ 確認中]
+
+
+4 mongo cluster
+═══════════════
+
+4.1 hardware
+──────
+
+  EC2 instance 3台
+
+  • t2.small : 2台 [primary, secondary]
+  • t2.nano : 1台 [arbiter]
+
+
+4.2 software
+──────
+
+  • centos 6.7 (or 6.50
+  • mongodb 3.2.4
+
+
+4.3 setting
+─────
+
+4.3.1 ec2
+╌╌╌╌╌╌╌╌╌
+
+  • IP
+    • ☐ : private IP固定
+
+  • EBS
+    • system disk
+      • [20G]
+      • [汎用SSD]
+    • mongo専用 disk
+      • [40G]
+      • [汎用SSD]
+
+  • security group
+    • 前工程で作成した、mongo sgを指定
+
+  • key pair
+    • 任意
+
+
+4.3.2 install, setup
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  以下、official site の how to install
+
+  [https://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat/]
+  • install mongo
+    • ☐ : sudo rpm –import
+      [https://www.mongodb.org/static/pgp/server-3.2.asc]
+    • ☐ : sudo emacs /etc/yum.repos.d/mongodb-org-3.2.repo
+    • ☐ : sudo yum install -y mongodb-org
+    • ☐ : sudo chkconfig mongod on
+
+  • setup replica set
+    • ☐ : vi /etc/mongod.conf
+    • ☐ : bind ip : [0.0.0.0]へ修正
+    • ☐ : 以下、追記
+      ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+      replication: replSetName: allin-mongo
+
+      security authorization: enabled
+      ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+
+  • disk mount : mongo DB専用disk
+    • ☐ : sudo rm -rf /var/lig/mongo/*
+    • ☐ : sudo mkfs.ext4 /dev/xvdb
+    • ☐ : sudo mount /dev/xvdb /var/lib/mongo/
+    • ☐ : sudo chown mongod:mongod /var/lib/mongo/
+    • ☐ : sudo rm -rf /var/lig/mongo/*
+
+  • start mongo
+    • ☐ : 3台全て構築
+    • ☐ : sudo /etc/init.d/mongo start
+
+  • replica set
+    • ☐ : 以下scriptを実行
+
+
+  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+  #!/bin/bash
+
+  mongo <<EOT cfg = { _id : "allin-mongo", members : [ { _id : 0, host :
+  "10.0.1.100:27017", priority : 10}, { _id : 1, host :
+  "10.0.1.101:27017", priority : 1}, { _id : 2, host :
+  "10.0.1.103:27017", arbiterOnly : true} ] }
+
+  rs.initiate(cfg) rs.status() EOT
+  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+
+
+4.3.3 passwrod
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  保留中
+
+
+4.3.4 backup
+╌╌╌╌╌╌╌╌╌╌╌╌
+
+  • script設置
+    • ☐ : 任意の場所へ以下をscript設置
+
+      ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+      #!/bin/bash
+
+      date=`date +"%Y-%m-%d_%H:%M"` echo "create mongodb snaphost
+      $date" aws ec2 create-snapshot –volume-id [mongo diskのvolume
+      id] –description "mongodb-primary-backup_$date"
+      ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+
+  • cron設定以下、script pathは任意
+    ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+    ‣ 2 * * * /home/centos/script/backup_mongo.sh 2>&1
+      /home/ec2-user/script/log
+    ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+
+  • 注意古いbackup dataの削除が必要。(上述のscriptには未実装) backupは差
+    分backupのため、容量が甚大になることはないと思われる。が、web
+    interfaceでbackupを確認するさい、膨大に表示されるめ、削除は必要。
+
+
+4.4 データ抽出
+───────
+
+  • 各nodeのprivate IPs (app serverの環境変数へ設定)
+
+
+5 redis
+═══════
+
+5.1 hardware
+──────
+
+  AWS ElastiCache
+
+  • cache.t2.small : 1台 (冗長構成無し)
+
+
+5.2 setting
+─────
+
+  • Select Engine
+    • ☐ : redis選択
+
+  • Specify Cluster Details
+    • ☐ : Engine Version Compatibility : [2.8.24]
+    • ☐ : port : [1]
+    • ☐ : parameter group : [????????????????]
+    • ☐ : Enable Replication : [無効化]
+
+    • ☐ : cluster name : [任意]
+    • ☐ : Node Tyep : cach.t2.small
+
+  • Configure Advanced Settings
+    • ☐ : Cache Subnet Group : [※ ec2 intanceと同一のvpcへ]
+    • ☐ : Availability Zone : [※ ec2 intanceと同一のAZへ]
+    • ☐ : VPC Security Group : [※ 前工程で作成した、ElastiCache用SGを
+      指定]
+    • ☐ : Maintenance Window :
+      • ☐ : Start Day : [Saturday]
+      • ☐ : Start Time : [02:00]
+      • ☐ : Duration : [1 Hour]
+    • ☐ : Topic for SNS Notification* : [任意]
+
+
+5.3 data抽出
+──────
+
+  • nodeのendpoint name (app serverの環境変数へ設定)
+
+
+6 Storage
+═════════
+
+6.1 hardware
+──────
+
+  S3 bucket添付ファイル保存に用いる
+
+  • ☐ : bucket
+    • ☐ production
+    • ☐ pre-release
+    • ☐ staging
+
+
+6.2 setting
+─────
+
+  • ☐ S3用IAMの作成
+
+
+6.3 data抽出
+──────
+
+  • IAMのクレデンシャル (app serverの環境変数へ設定)
+  • bucket names (app serverの環境変数へ設定)
+
+
+7 app server
+════════════
+
+7.1 hardware
+──────
+
+  ec2 instance
+
+  • t2.small : 1台
+
+
+7.2 software
+──────
+
+  • ☐ : os :centos 6.7 (or 6.5)
+  • ☐ : nodebrew
+  • ☐ : nodejs v5.6.0
+  • ☐ : npm packages (local)
+  • ☐ : npm packages (global)
+    • ☐ : bower
+    • ☐ : pm2
+  • ☐ : compiler
+
+
+7.3 setting
+─────
+
+7.3.1 SE linux
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  disable se linux
+
+
+7.3.2 install package
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  $ sudo yum install perl git
+
+
+7.3.3 user追加
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  $ useradd node $ sudo su - node
+
+
+7.3.4 make nodejs dir
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  $ sudo mkdir /var/node/ $ sudo chown node:node /var/node/
+
+
+7.3.5 ssh
+╌╌╌╌╌╌╌╌╌
+
+  • github鍵を設置
+  • user centosのauthorized_keyを、user nodeへcopy
+
+
+7.3.6 setup nodejs
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  • nodejs
+    • ☐ : install nodebrew $ curl -L git.io/nodebrew | perl - setup $
+      export PATH=$HOME/.nodebrew/current/bin:$PATH $ echo 'export
+      PATH=$HOME/.nodebrew/current/bin:$PATH' >> ~/.bashrc
+
+    • ☐ : install nodejs $ nodebrew install-binary v5.6.0; $ nodebrew
+      use v5.6.0
+
+  • npm install global $ npm install pm2 -g
+
+
+7.3.7 ssl証明書
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  $ cd /home/node/ssl/
+
+  ./server.key # 鍵./cert # 証明書./ca # 中間証明書
+
+
+7.3.8 環境変数 -
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  export AWS_ACCESS_KEY_ID=[id] export AWS_SECRET_ACCESS_KEY=[key]
+
+  export SSL_KEY_PATH=/home/node/ssl/server.key export
+  SSL_CERT_PATH=/home/node/ssl/cert export SSL_CA_PATH=/home/node/ssl/ca
+
+  export REDIS_URL=allin-sns.hc7k9f.0001.apne1.cache.amazonaws.com
+  export REDIS_PASS=''
+
+  export
+  MONGO_URL="mongodb://10.0.1.100:27017/sns-development,10.0.1.101:27017/sns-development,10.0.1.103:27017/sns-development"
+  export MONGO_USER='' export MONGO_PASS=''
+
+  export AUTH_SERVER_URL=[http://all-in.xyz/]
+
+  export S3_BUCKET=production-all-in-sns
+
+
+7.3.9 deploy from local
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  • install pm2 $ npm install pm2 -g
+
+  • write host to ssh config
+    $ vi ~/.ssh.config
+    ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+    Host allin-sns-[ENV]_001 user centos port 22 Hostname [IP]
+        IdentityFile ~/.ssh/allin-sns-demo.pem
+    ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+
+  • run init deploy $ cd [allin-sns dir]
+
+    $ pm2 deploy ./app/config/deploy/deploy.json [ENV] setup $ pm2
+    deploy ./app/config/deploy/deploy.json [ENV] update –force
+
+
+
+Footnotes
+─────────
+
+[1] DEFINITION NOT FOUND.

@@ -1,0 +1,937 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>projects</title>
+<!-- 2016-03-26 Sat 18:29 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Satoshi|_NumasawaNumasawa" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">projects</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 前提条件</a></li>
+<li><a href="#sec-2">2. security group</a></li>
+<li><a href="#sec-3">3. ELB</a></li>
+<li><a href="#sec-4">4. mongo cluster</a>
+<ul>
+<li><a href="#sec-4-1">4.1. hardware</a></li>
+<li><a href="#sec-4-2">4.2. software</a></li>
+<li><a href="#sec-4-3">4.3. setting</a>
+<ul>
+<li><a href="#sec-4-3-1">4.3.1. ec2</a></li>
+<li><a href="#sec-4-3-2">4.3.2. install, setup</a></li>
+<li><a href="#sec-4-3-3">4.3.3. passwrod</a></li>
+<li><a href="#sec-4-3-4">4.3.4. backup</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-4">4.4. データ抽出</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. redis</a>
+<ul>
+<li><a href="#sec-5-1">5.1. hardware</a></li>
+<li><a href="#sec-5-2">5.2. setting</a></li>
+<li><a href="#sec-5-3">5.3. data抽出</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6. Storage</a>
+<ul>
+<li><a href="#sec-6-1">6.1. hardware</a></li>
+<li><a href="#sec-6-2">6.2. setting</a></li>
+<li><a href="#sec-6-3">6.3. data抽出</a></li>
+</ul>
+</li>
+<li><a href="#sec-7">7. app server</a>
+<ul>
+<li><a href="#sec-7-1">7.1. hardware</a></li>
+<li><a href="#sec-7-2">7.2. software</a></li>
+<li><a href="#sec-7-3">7.3. setting</a>
+<ul>
+<li><a href="#sec-7-3-1">7.3.1. SE linux</a></li>
+<li><a href="#sec-7-3-2">7.3.2. install package</a></li>
+<li><a href="#sec-7-3-3">7.3.3. user追加</a></li>
+<li><a href="#sec-7-3-4">7.3.4. make nodejs dir</a></li>
+<li><a href="#sec-7-3-5">7.3.5. ssh</a></li>
+<li><a href="#sec-7-3-6">7.3.6. setup nodejs</a></li>
+<li><a href="#sec-7-3-7">7.3.7. ssl証明書</a></li>
+<li><a href="#sec-7-3-8">7.3.8. 環境変数 -</a></li>
+<li><a href="#sec-7-3-9">7.3.9. deploy from local</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 前提条件</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>全serverは、同一AZ内に設置する
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> security group</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+既存環境に合わせ適宜変更が必要.
+</p>
+
+<ul class="org-ul">
+<li>ELB
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> http  : 送信元 [0.0.0.0/0]
+</li>
+<li><code>[&#xa0;]</code> https : 送信元 [0.0.0.0/0]
+</li>
+</ul>
+</li>
+
+<li>app server
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> ssh       : 送信元 [0.0.0.0/0]
+</li>
+<li><code>[&#xa0;]</code> port 5000 : 送信元 [0.0.0.0/0]
+</li>
+<li><code>[&#xa0;]</code> http      : [ELB sgを指定]
+</li>
+</ul>
+</li>
+
+<li>mongo
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> ssh        : 送信元 [0.0.0.0/0]
+</li>
+<li><code>[&#xa0;]</code> port 27017 : [app server sgを指定]
+</li>
+<li><code>[&#xa0;]</code> port 27017 : [当mongo sgを指定]
+</li>
+</ul>
+</li>
+
+<li>redis
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> port 6379 : [app server sgを指定]
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> ELB</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> : VPC    : [app server, mongo, redisなどと同一のVPCへ]
+</li>
+<li><code>[&#xa0;]</code> : AZ     : [app server, mongo, redisなどと同一のAZへ]
+</li>
+<li><code>[&#xa0;]</code> : subnet : [任意]
+</li>
+
+<li><code>[&#xa0;]</code> : listner :
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> : http  : [port 3000へforward]
+</li>
+<li><code>[&#xa0;]</code> : https : [port 3000へforward]
+</li>
+</ul>
+</li>
+
+<li><code>[&#xa0;]</code> : 前工程で作成した、ELB用security groupを適用
+http  : 0.0.0.0/0
+https : 0.0.0.0/0
+</li>
+
+<li><code>[&#xa0;]</code> : SSL
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> : 証明書           : [*.all-in.xyzの証明書を指定]
+</li>
+<li><code>[&#xa0;]</code> : security policy : [ELBSecurityPolicy-2015-05]
+</li>
+</ul>
+</li>
+
+<li><code>[&#xa0;]</code> : <a href="80/health.html">80/health.html</a>
+        監視間隔 : 任意
+</li>
+
+<li><code>[&#xa0;]</code> : クロスゾーン負荷分散 : [無効]
+</li>
+
+<li><code>[&#xa0;]</code> : 維持設定 (ELB作成後。説明タブ内)
+<ul class="org-ul">
+<li>[アプリケーションによって生成された Cookie の維持を有効化]を選択
+</li>
+<li>session名を入力 : [※ 確認中]
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> mongo cluster</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> hardware</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+EC2 instance 3台
+</p>
+
+<ul class="org-ul">
+<li>t2.small : 2台 [primary, secondary]
+</li>
+<li>t2.nano  : 1台 [arbiter]
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> software</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>centos 6.7 (or 6.50
+</li>
+<li>mongodb 3.2.4
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> setting</h3>
+<div class="outline-text-3" id="text-4-3">
+</div><div id="outline-container-sec-4-3-1" class="outline-4">
+<h4 id="sec-4-3-1"><span class="section-number-4">4.3.1</span> ec2</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<ul class="org-ul">
+<li>IP
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> : private IP固定
+</li>
+</ul>
+</li>
+
+<li>EBS
+<ul class="org-ul">
+<li>system disk
+<ul class="org-ul">
+<li>[20G]
+</li>
+<li>[汎用SSD]
+</li>
+</ul>
+</li>
+<li>mongo専用 disk
+<ul class="org-ul">
+<li>[40G]
+</li>
+<li>[汎用SSD]
+</li>
+</ul>
+</li>
+</ul>
+</li>
+
+<li>security group
+<ul class="org-ul">
+<li>前工程で作成した、mongo sgを指定
+</li>
+</ul>
+</li>
+
+<li>key pair
+<ul class="org-ul">
+<li>任意
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3-2" class="outline-4">
+<h4 id="sec-4-3-2"><span class="section-number-4">4.3.2</span> install, setup</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<p>
+以下、official site の how to install
+</p>
+
+<p>
+<a href="https://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat/">https://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat/</a>
+</p>
+<ul class="org-ul">
+<li>install mongo
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> : sudo rpm &#x2013;import <a href="https://www.mongodb.org/static/pgp/server-3.2.asc">https://www.mongodb.org/static/pgp/server-3.2.asc</a>
+</li>
+<li><code>[&#xa0;]</code> : sudo emacs /etc/yum.repos.d/mongodb-org-3.2.repo
+</li>
+<li><code>[&#xa0;]</code> : sudo yum install -y mongodb-org
+</li>
+<li><code>[&#xa0;]</code> : sudo chkconfig mongod on
+</li>
+</ul>
+</li>
+
+<li>setup replica set
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> : vi /etc/mongod.conf
+</li>
+<li><code>[&#xa0;]</code> : bind ip : [0.0.0.0]へ修正
+</li>
+<li><code>[&#xa0;]</code> : 以下、追記
+<hr  />
+<p>
+replication:
+   replSetName: allin-mongo
+</p>
+
+<p>
+security
+    authorization: enabled
+</p>
+<hr  />
+</li>
+</ul>
+</li>
+
+<li>disk mount : mongo DB専用disk
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> : sudo rm -rf /var/lig/mongo/*
+</li>
+<li><code>[&#xa0;]</code> : sudo mkfs.ext4 /dev/xvdb
+</li>
+<li><code>[&#xa0;]</code> : sudo mount <i>dev/xvdb /var/lib/mongo</i>
+</li>
+<li><code>[&#xa0;]</code> : sudo chown mongod:mongod <i>var/lib/mongo</i>
+</li>
+<li><code>[&#xa0;]</code> : sudo rm -rf /var/lig/mongo/*
+</li>
+</ul>
+</li>
+
+<li>start mongo
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> : 3台全て構築
+</li>
+<li><code>[&#xa0;]</code> : sudo /etc/init.d/mongo start
+</li>
+</ul>
+</li>
+
+<li>replica set
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> : 以下scriptを実行
+</li>
+</ul>
+</li>
+</ul>
+
+
+<hr  />
+<p>
+#!/bin/bash
+</p>
+
+<p>
+mongo &lt;&lt;EOT
+cfg = {
+ _id : "allin-mongo",
+ members : [
+  { _id : 0, host : "10.0.1.100:27017", priority : 10},
+  { _id : 1, host : "10.0.1.101:27017", priority : 1},
+  { _id : 2, host : "10.0.1.103:27017", arbiterOnly : true} ] }
+</p>
+
+<p>
+rs.initiate(cfg)
+rs.status()
+EOT
+</p>
+<hr  />
+</div>
+</div>
+
+<div id="outline-container-sec-4-3-3" class="outline-4">
+<h4 id="sec-4-3-3"><span class="section-number-4">4.3.3</span> passwrod</h4>
+<div class="outline-text-4" id="text-4-3-3">
+<p>
+保留中
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3-4" class="outline-4">
+<h4 id="sec-4-3-4"><span class="section-number-4">4.3.4</span> backup</h4>
+<div class="outline-text-4" id="text-4-3-4">
+<ul class="org-ul">
+<li>script設置
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> : 任意の場所へ以下をscript設置
+<hr  />
+<p>
+#!/bin/bash
+</p>
+
+<p>
+date=`date +"%Y-%m-%d_%H:%M"`
+echo "create mongodb snaphost $date"
+aws ec2 create-snapshot &#x2013;volume-id [mongo diskのvolume id] &#x2013;description "mongodb-primary-backup_$date"
+</p>
+<hr  />
+</li>
+</ul>
+</li>
+
+<li>cron設定
+以下、script pathは任意
+<hr  />
+<ul class="org-ul">
+<li>2 * * *  /home/centos/script/backup<sub>mongo</sub>.sh 2&gt;&amp;1 /home/ec2-user/script/log
+</li>
+</ul>
+<hr  />
+</li>
+
+<li>注意
+古いbackup dataの削除が必要。(上述のscriptには未実装)
+backupは差分backupのため、容量が甚大になることはないと思われる。
+が、web interfaceでbackupを確認するさい、膨大に表示されるめ、削除は必要。
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> データ抽出</h3>
+<div class="outline-text-3" id="text-4-4">
+<ul class="org-ul">
+<li>各nodeのprivate IPs (app serverの環境変数へ設定)
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> redis</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> hardware</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+AWS ElastiCache
+</p>
+
+<ul class="org-ul">
+<li>cache.t2.small : 1台 (冗長構成無し)
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> setting</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li>Select Engine
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> : redis選択
+</li>
+</ul>
+</li>
+
+<li>Specify Cluster Details
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> : Engine Version Compatibility : [2.8.24]
+</li>
+<li><code>[&#xa0;]</code> : port : <sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>
+</li>
+<li><code>[&#xa0;]</code> : parameter group    : [????????????????]
+</li>
+<li><code>[&#xa0;]</code> : Enable Replication : [無効化]
+</li>
+
+<li><code>[&#xa0;]</code> : cluster name : [任意]
+</li>
+<li><code>[&#xa0;]</code> : Node Tyep    : cach.t2.small
+</li>
+</ul>
+</li>
+
+<li>Configure Advanced Settings
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> : Cache Subnet Group : [※ ec2 intanceと同一のvpcへ]
+</li>
+<li><code>[&#xa0;]</code> : Availability Zone  : [※ ec2 intanceと同一のAZへ]
+</li>
+<li><code>[&#xa0;]</code> : VPC Security Group : [※ 前工程で作成した、ElastiCache用SGを指定]
+</li>
+<li><code>[&#xa0;]</code> : Maintenance Window :
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> : Start Day  : [Saturday]
+</li>
+<li><code>[&#xa0;]</code> : Start Time : [02:00]
+</li>
+<li><code>[&#xa0;]</code> : Duration   : [1 Hour]
+</li>
+</ul>
+</li>
+<li><code>[&#xa0;]</code> : Topic for SNS Notification* : [任意]
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> data抽出</h3>
+<div class="outline-text-3" id="text-5-3">
+<ul class="org-ul">
+<li>nodeのendpoint name (app serverの環境変数へ設定)
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Storage</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> hardware</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+S3 bucket
+添付ファイル保存に用いる
+</p>
+
+<p>
+各種環境様のbucketを要する
+</p>
+<ul class="org-ul">
+<li>production
+</li>
+<li>pre-release
+</li>
+<li>staging
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> setting</h3>
+<div class="outline-text-3" id="text-6-2">
+<ul class="org-ul">
+<li>S3専用IAMの作成
+IAM policyへS3のアクセス権を付与する。
+</li>
+</ul>
+
+<p>
+以下、IAMへのpolicy設定例
+</p>
+<hr  />
+<p>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::development-ruby-dev-allin-sns",
+                "arn:aws:s3:::development-ruby-dev-allin-sns/*",
+                "arn:aws:s3:::staging-ruby-dev-allin-sns",
+                "arn:aws:s3:::staging-ruby-dev-allin-sns/*",
+                "arn:aws:s3:::ruby-dev-allin-sns",
+                "arn:aws:s3:::ruby-dev-allin-sns/*",
+                "*"
+            ]
+        }
+    ]
+}
+</p>
+<hr  />
+</div>
+</div>
+
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> data抽出</h3>
+<div class="outline-text-3" id="text-6-3">
+<ul class="org-ul">
+<li>IAMのクレデンシャル (app serverの環境変数へ設定)
+</li>
+<li>bucket names (app serverの環境変数へ設定)
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> app server</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> hardware</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+ec2 instance
+</p>
+
+<ul class="org-ul">
+<li>t2.small : 1台
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> software</h3>
+<div class="outline-text-3" id="text-7-2">
+<ul class="org-ul">
+<li>centos 6.7 (or 6.5)
+</li>
+<li>nodebrew
+</li>
+<li>nodejs v5.6.0
+</li>
+<li>npm packages (local)
+deploy時、自動install
+</li>
+
+<li>npm packages (global)
+pm2
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-7-3" class="outline-3">
+<h3 id="sec-7-3"><span class="section-number-3">7.3</span> setting</h3>
+<div class="outline-text-3" id="text-7-3">
+</div><div id="outline-container-sec-7-3-1" class="outline-4">
+<h4 id="sec-7-3-1"><span class="section-number-4">7.3.1</span> SE linux</h4>
+<div class="outline-text-4" id="text-7-3-1">
+<p>
+disable se linux
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7-3-2" class="outline-4">
+<h4 id="sec-7-3-2"><span class="section-number-4">7.3.2</span> install package</h4>
+<div class="outline-text-4" id="text-7-3-2">
+<p>
+$ sudo yum install perl git
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7-3-3" class="outline-4">
+<h4 id="sec-7-3-3"><span class="section-number-4">7.3.3</span> user追加</h4>
+<div class="outline-text-4" id="text-7-3-3">
+<p>
+$ useradd node
+$ sudo su - node
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7-3-4" class="outline-4">
+<h4 id="sec-7-3-4"><span class="section-number-4">7.3.4</span> make nodejs dir</h4>
+<div class="outline-text-4" id="text-7-3-4">
+<p>
+$ sudo mkdir  <i>var/node</i>
+$ sudo chown node:node <i>var/node</i>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7-3-5" class="outline-4">
+<h4 id="sec-7-3-5"><span class="section-number-4">7.3.5</span> ssh</h4>
+<div class="outline-text-4" id="text-7-3-5">
+<ul class="org-ul">
+<li>github鍵を設置
+</li>
+<li>user centosのauthorized<sub>keyを、user</sub> nodeへcopy
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-7-3-6" class="outline-4">
+<h4 id="sec-7-3-6"><span class="section-number-4">7.3.6</span> setup nodejs</h4>
+<div class="outline-text-4" id="text-7-3-6">
+<ul class="org-ul">
+<li>nodejs
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> : install nodebrew
+$ curl -L git.io/nodebrew | perl - setup
+$ export PATH=$HOME/.nodebrew/current/bin:$PATH
+$ echo 'export PATH=$HOME/.nodebrew/current/bin:$PATH' &gt;&gt; ~/.bashrc
+</li>
+
+<li><code>[&#xa0;]</code> : install nodejs
+$ nodebrew install-binary v5.6.0;
+$ nodebrew use v5.6.0
+</li>
+</ul>
+</li>
+
+<li>npm install global
+$ npm install pm2 -g
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-7-3-7" class="outline-4">
+<h4 id="sec-7-3-7"><span class="section-number-4">7.3.7</span> ssl証明書</h4>
+<div class="outline-text-4" id="text-7-3-7">
+<p>
+$ cd <i>home/node/ssl</i>
+</p>
+
+<p>
+./server.key # 鍵
+./cert       # 証明書
+./ca         # 中間証明書
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7-3-8" class="outline-4">
+<h4 id="sec-7-3-8"><span class="section-number-4">7.3.8</span> 環境変数 -</h4>
+<div class="outline-text-4" id="text-7-3-8">
+<p>
+export AWS<sub>ACCESS</sub><sub>KEY</sub><sub>ID</sub>=[id]
+export AWS<sub>SECRET</sub><sub>ACCESS</sub><sub>KEY</sub>=[key]
+</p>
+
+<p>
+export SSL<sub>KEY</sub><sub>PATH</sub>=/home/node/ssl/server.key
+export SSL<sub>CERT</sub><sub>PATH</sub>=/home/node/ssl/cert
+export SSL<sub>CA</sub><sub>PATH</sub>=/home/node/ssl/ca
+</p>
+
+<p>
+export REDIS<sub>URL</sub>=allin-sns.hc7k9f.0001.apne1.cache.amazonaws.com
+export REDIS<sub>PASS</sub>=''
+</p>
+
+<p>
+export MONGO<sub>URL</sub>="mongodb://10.0.1.100:27017/sns-development,10.0.1.101:27017/sns-development,10.0.1.103:27017/sns-development"
+export MONGO<sub>USER</sub>=''
+export MONGO<sub>PASS</sub>=''
+</p>
+
+<p>
+export AUTH<sub>SERVER</sub><sub>URL</sub>=<a href="http://all-in.xyz/">http://all-in.xyz/</a>
+</p>
+
+<p>
+export S3<sub>BUCKET</sub>=production-all-in-sns
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7-3-9" class="outline-4">
+<h4 id="sec-7-3-9"><span class="section-number-4">7.3.9</span> deploy from local</h4>
+<div class="outline-text-4" id="text-7-3-9">
+<ul class="org-ul">
+<li>install pm2
+$ npm install pm2 -g
+</li>
+
+<li>write host to ssh config
+<p>
+$ vi ~/.ssh.config
+</p>
+<hr  />
+<p>
+Host allin-sns-[ENV]<sub>001</sub>
+    user          centos
+    port          22
+    Hostname      [IP]
+    IdentityFile  ~/.ssh/allin-sns-demo.pem
+</p>
+<hr  />
+</li>
+
+<li>run init deploy
+$ cd [allin-sns dir]
+
+<p>
+$ pm2 deploy ./app/config/deploy/deploy.json [ENV] setup
+$ pm2 deploy ./app/config/deploy/deploy.json [ENV] update &#x2013;force
+</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p>DEFINITION NOT FOUND.</p></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: Satoshi|<sub>Numasawa</sub></p>
+<p class="date">Created: 2016-03-26 Sat 18:29</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

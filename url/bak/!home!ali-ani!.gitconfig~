@@ -1,0 +1,7 @@
+[user]
+	email = ruby.spheres@gmail.com
+	user = Satoshi-Numasawa
+[cola]
+	fontdiff = Droid Sans Mono,11,-1,5,50,0,0,0,0,0
+[core]
+	editor = emacs

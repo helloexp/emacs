@@ -1,0 +1,113 @@
+  # ----------------------------------------------------------------
+  # boot nat and jump gateway
+  # ----------------------------------------------------------------
+  &ec2_nat ec2Nat:
+    Type: AWS::EC2::Instance
+    Properties:
+      DisableApiTermination: 'false'
+      InstanceInitiatedShutdownBehavior: stop
+      ImageId: ami-11d6e610
+      InstanceType: m1.small
+      KernelId: aki-176bf516
+      KeyName: mynavi-product-public
+      Monitoring: 'false'
+      Tags:
+      - Key: Name
+        Value: nat
+      NetworkInterfaces:
+      - DeleteOnTermination: 'true'
+        DeviceIndex: 0
+        SubnetId:
+          Ref: *subnet_front_1c
+        PrivateIpAddresses:
+        - PrivateIpAddress: 10.0.1.102
+          Primary: 'true'
+        GroupSet:
+        - Ref: *sg_nat
+  &ec2_jump_gate ec2JumpGate:
+    Type: AWS::EC2::Instance
+    Properties:
+      DisableApiTermination: 'false'
+      InstanceInitiatedShutdownBehavior: stop
+      ImageId: ami-6274af62
+      InstanceType: t2.micro
+      KeyName: mynavi-product-gateway
+      Monitoring: 'false'
+      Tags:
+      - Key: Name
+        Value: jump_gate
+      NetworkInterfaces:
+      - DeleteOnTermination: 'true'
+        Description: Primary network interface
+        DeviceIndex: 0
+        SubnetId:
+          Ref: *subnet_front_1c
+        PrivateIpAddresses:
+        - PrivateIpAddress: 10.0.1.103
+          Primary: 'true'
+        GroupSet:
+        - Ref: *sg_jump_gate
+
+
+  # ----------------------------------------------------------------
+  # EIP setting
+  # ----------------------------------------------------------------
+  EIPNat:
+    Type: AWS::EC2::EIP
+    DependsOn:
+    - *default_gateway
+    Properties:
+      Domain: vpc
+  EIPJumpGate:
+    Type: AWS::EC2::EIP
+    DependsOn:
+    - *default_gateway
+    Properties:
+      Domain: vpc
+  assocNat:
+    Type: AWS::EC2::EIPAssociation
+    Properties:
+      #AllocationId:
+      #  Fn::GetAtt:
+      #  - eip52697269
+      #  - AllocationId
+      EIP:
+        Ref: EIPNat
+      InstanceId:
+        Ref: *ec2_nat
+  assocJumpGate:
+    Type: AWS::EC2::EIPAssociation
+    Properties:
+      #AllocationId:
+      #  Fn::GetAtt:
+      #  - eip5269322
+      #  - AllocationId
+      EIP:
+        Ref: EIPJumpGate
+      InstanceId:
+        Ref: *ec2_jump_gate
+
+
+
+
+  # --------------------------------
+  # add route to table
+  # --------------------------------
+  RouteWeb:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      RouteTableId:
+        Ref: *route_table_front
+      InstanceId:
+        Ref: *ec2_nat
+
+
+  RouteBackend:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      RouteTableId:
+        Ref: *route_table_front
+      InstanceId:
+        Ref: *ec2_nat

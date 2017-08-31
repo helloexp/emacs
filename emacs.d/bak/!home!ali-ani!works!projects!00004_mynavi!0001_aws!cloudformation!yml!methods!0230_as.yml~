@@ -1,0 +1,104 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Testing '
+Resources:
+  asgmynaviweb:
+    Type: AWS::AutoScaling::AutoScalingGroup
+    Properties:
+      AvailabilityZones:
+      - ap-northeast-1c
+      - ap-northeast-1a
+      Cooldown: '300'
+      DesiredCapacity: '2'
+      HealthCheckGracePeriod: '300'
+      HealthCheckType: ELB
+      MaxSize: '6'
+      MinSize: '2'
+      VPCZoneIdentifier:
+      - Ref: subnete262d695
+      - Ref: subnetaa08c6f3
+      NotificationConfigurations:
+      - TopicARN: arn:aws:sns:ap-northeast-1:689978960272:s-numasawa
+        NotificationTypes: autoscaling:EC2_INSTANCE_LAUNCH
+      - TopicARN: arn:aws:sns:ap-northeast-1:689978960272:s-numasawa
+        NotificationTypes: autoscaling:EC2_INSTANCE_LAUNCH_ERROR
+      - TopicARN: arn:aws:sns:ap-northeast-1:689978960272:s-numasawa
+        NotificationTypes: autoscaling:EC2_INSTANCE_TERMINATE
+      - TopicARN: arn:aws:sns:ap-northeast-1:689978960272:s-numasawa
+        NotificationTypes: autoscaling:EC2_INSTANCE_TERMINATE_ERROR
+      LaunchConfigurationName:
+        Ref: lcmynaviweborigin20150618Copy
+      LoadBalancerNames:
+      - Ref: elbmynaviproductweb
+      Tags:
+      - Key: Name
+        Value: mynavi-product-web
+        PropagateAtLaunch: true
+      - Key: Payment
+        Value: mynavi
+        PropagateAtLaunch: true
+      TerminationPolicies:
+      - Default
+  lcmynaviweborigin20150618Copy:
+    Type: AWS::AutoScaling::LaunchConfiguration
+    Properties:
+      ImageId: ami-fcb81dfc
+      InstanceType: c4.large
+      KeyName: mynavi-product-public
+      InstanceMonitoring: 'true'
+      SecurityGroups:
+      - Ref: sgmynaviproductweb
+      BlockDeviceMappings:
+      - DeviceName: "/dev/sda1"
+        Ebs:
+          VolumeSize: 30
+  scalingDecreaseGroupSize2:
+    Type: AWS::AutoScaling::ScalingPolicy
+    Properties:
+      AdjustmentType: ChangeInCapacity
+      Cooldown: '300'
+      ScalingAdjustment: "-2"
+      AutoScalingGroupName:
+        Ref: asgmynaviweb
+  scalingIncreaseGroupSize2:
+    Type: AWS::AutoScaling::ScalingPolicy
+    Properties:
+      AdjustmentType: ChangeInCapacity
+      Cooldown: '300'
+      ScalingAdjustment: '2'
+      AutoScalingGroupName:
+        Ref: asgmynaviweb
+  alarmawsec2mynaviwebCPUavgover70:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      ActionsEnabled: 'true'
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      EvaluationPeriods: '1'
+      MetricName: CPUUtilization
+      Namespace: AWS/EC2
+      Period: '300'
+      Statistic: Average
+      Threshold: '70.0'
+      AlarmActions:
+      - arn:aws:sns:ap-northeast-1:689978960272:s-numasawa
+      - Ref: scalingIncreaseGroupSize2
+      Dimensions:
+      - Name: AutoScalingGroupName
+        Value: mynavi-web
+  alarmawsec2mynaviwebHighCPUavgunder30:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      ActionsEnabled: 'true'
+      ComparisonOperator: LessThanOrEqualToThreshold
+      EvaluationPeriods: '1'
+      MetricName: CPUUtilization
+      Namespace: AWS/EC2
+      Period: '900'
+      Statistic: Average
+      Threshold: '30.0'
+      AlarmActions:
+      - Ref: scalingDecreaseGroupSize2
+      - arn:aws:sns:ap-northeast-1:689978960272:s-numasawa
+      Dimensions:
+      - Name: AutoScalingGroupName
+        Value: mynavi-web

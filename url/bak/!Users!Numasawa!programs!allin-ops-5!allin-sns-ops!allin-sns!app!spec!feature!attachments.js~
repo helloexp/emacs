@@ -1,0 +1,639 @@
+'use strict';
+
+process.env.NODE_ENV = 'test';
+
+const supertest = require('supertest');
+const app       = require('../../app');
+const request   = supertest(app);
+
+const should = require('chai').should();
+
+
+describe('/api/v1', () => {
+    const ok           = 200;
+    // const unauthorized = 401;
+    // const not_found    = 404;
+    // const error        = 500;
+
+    const mock_auth_node = require('../lib/mock_server');
+    const mongodb        = require('../lib/db');
+    const fixture        = require('../lib/fixture');
+
+    const Feed    = require('../../models/feed');
+    const Comment = require('../../models/comment');
+
+    before( (done) => {
+        Feed.collection.drop();
+        Comment.collection.drop();
+        fixture.create_feed_data();
+        done();
+    });
+
+    beforeEach( (done) => {
+        mock_auth_node.create();
+        done();
+    });
+
+    afterEach( (done) => {
+        mock_auth_node.close();
+        done();
+    });
+
+    after( (done) => {
+        mongodb.clean();
+        done();
+    });
+
+    function feed_like_url(id, group_id) {
+        const url    = '/api/v1/feeds/';
+        return `${url}${id}/like?group_id=${group_id}`;
+    }
+
+    function comment_like_url(id, group_id) {
+        const url    = '/api/v1/comments/';
+        return `${url}${id}/like?group_id=${group_id}`;
+    }
+
+
+
+
+    describe('api/v1/:id/feed', () => {
+        it('succes like', (done) => {
+            Feed.find({'posted_by': fixture.valid_seeds[0].account_id}, (err, pre_feeds) => {
+                if (err) return done(err);
+
+                const body = {
+                    'id':   pre_feeds[0].id,
+                    'like': true
+                };
+
+
+                const uri = feed_like_url(pre_feeds[0].id, fixture.valid_seeds[0].group_id);
+                request
+                    .post(uri)
+                    .send(body)
+                    .set('Accept',        fixture.valid_seeds[6].header)
+                    .set('Content-type',  fixture.valid_seeds[6].header)
+                    .set('Authorization', fixture.valid_seeds[6].authorization)
+                    .end((err, res) => {
+                        if (err) return done(err);
+                        should.exist(res.statusCode);
+                        res.statusCode.should.equal(ok);
+                        res.body.should.not.empty;
+                        res.body.likes.should.include(fixture.valid_seeds[6].account_id);
+
+                        Feed.find({'_id': pre_feeds[0]._id}, (err, post_feeds) => {
+                            if (err) return done(err);
+                            post_feeds[0].likes.length.should.equal(1);
+                            post_feeds[0].likes.should.include(fixture.valid_seeds[6].account_id);
+
+                            request
+                                .post(uri)
+                                .send(body)
+                                .set('Accept',        fixture.valid_seeds[5].header)
+                                .set('Content-type',  fixture.valid_seeds[5].header)
+                                .set('Authorization', fixture.valid_seeds[5].authorization)
+                                .end((err, res) => {
+                                    if (err) return done(err);
+                                    res.statusCode.should.equal(ok);
+                                    res.body.likes.length.should.equal(2);
+                                    res.body.likes.should.include(fixture.valid_seeds[5].account_id);
+                                    res.body.likes.should.include(fixture.valid_seeds[6].account_id);
+
+                                    Feed.find({'_id': pre_feeds[0]._id}, (err, last_feeds) => {
+                                        last_feeds[0].likes.length.should.equal(2);
+                                        last_feeds[0].likes.should.include(fixture.valid_seeds[5].account_id);
+                                        last_feeds[0].likes.should.include(fixture.valid_seeds[6].account_id);
+                                        done();
+                                    });
+                                });
+                        });
+                    });
+            });
+        });
+
+        it('fail like. 同一accountで複数回likeできない事', (done) => {
+            Feed.find({'posted_by': fixture.valid_seeds[0].account_id}, (err, pre_feeds) => {
+                if (err) return done(err);
+
+                const body = {
+                    'id':   pre_feeds[0].id,
+                    'like': true
+                };
+
+                const uri = feed_like_url(pre_feeds[0].id, fixture.valid_seeds[0].group_id);
+
+                request
+                    .post(uri)
+                    .send(body)
+                    .set('Accept',        fixture.valid_seeds[6].header)
+                    .set('Content-type',  fixture.valid_seeds[6].header)
+                    .set('Authorization', fixture.valid_seeds[6].authorization)
+                    .end((err, res) => {
+                        if (err) return done(err);
+                        should.exist(res.statusCode);
+                        res.statusCode.should.equal(ok);
+                        res.body.should.not.empty;
+                        res.body.likes.length.should.equal(1);
+                        res.body.likes.should.include(fixture.valid_seeds[6].account_id);
+
+                        Feed.find({'_id': pre_feeds[0]._id}, (err, post_feeds) => {
+                            if (err) return done(err);
+                            post_feeds[0].likes.length.should.equal(1);
+                            post_feeds[0].likes.should.include(fixture.valid_seeds[6].account_id);
+
+                            request
+                                .post(uri)
+                                .send(body)
+                                .set('Accept',        fixture.valid_seeds[6].header)
+                                .set('Content-type',  fixture.valid_seeds[6].header)
+                                .set('Authorization', fixture.valid_seeds[6].authorization)
+                                .end((err, res) => {
+                                    if (err) return done(err);
+                                    res.statusCode.should.equal(ok);
+                                    should.not.exist(res.body);
+
+                                    Feed.find({'_id': pre_feeds[0]._id}, (err, last_feeds) => {
+                                        last_feeds[0].likes.length.should.equal(1);
+                                        last_feeds[0].likes.should.include(fixture.valid_seeds[6].account_id);
+                                        done();
+                                    });
+                                });
+                        });
+                    });
+            });
+        });
+
+        it('fail like. 異なるcompany_idでは書き込み不可', (done) => {
+            Feed.find({'posted_by': fixture.valid_seeds[0].account_id}, (err, pre_feeds) => {
+                if (err) return done(err);
+
+                const body = {
+                    'id':   pre_feeds[0].id,
+                    'like': true
+                };
+
+                const uri = feed_like_url(pre_feeds[0].id, fixture.valid_seeds[0].group_id);
+                request
+                    .post(uri)
+                    .send(body)
+                    .set('Accept',        fixture.valid_seeds[2].header)
+                    .set('Content-type',  fixture.valid_seeds[2].header)
+                    .set('Authorization', fixture.valid_seeds[2].authorization)
+                    .end((err, res) => {
+                        if (err) return done(err);
+
+                        // TODO: 書き込み失敗しているが、200 okが返る
+                        res.statusCode.should.equal(ok);
+                        should.not.exist(res.body);
+
+                        Feed.find({'_id': pre_feeds[0]._id}, (err, post_feeds) => {
+                            if (err) return done(err);
+                            post_feeds[0].likes.length.should.equal(0);
+                            post_feeds[0].likes.should.not.include(fixture.valid_seeds[2].account_id);
+                            done();
+                        });
+                    });
+            });
+        });
+
+
+        it('succes unlike', (done) => {
+            Feed.find({'posted_by': fixture.valid_seeds[0].account_id}, (err, pre_feeds) => {
+                if (err) return done(err);
+
+                const like_body = {
+                    'id':   pre_feeds[0].id,
+                    'like': true
+                };
+
+                const unlike_body = {
+                    'id':   pre_feeds[0].id,
+                    'like': false
+                };
+
+                const uri = feed_like_url(pre_feeds[0].id, fixture.valid_seeds[0].group_id);
+                request
+                    .post(uri)
+                    .send(like_body)
+                    .set('Accept',        fixture.valid_seeds[6].header)
+                    .set('Content-type',  fixture.valid_seeds[6].header)
+                    .set('Authorization', fixture.valid_seeds[6].authorization)
+                    .end((err, res) => {
+                        if (err) return done(err);
+                        res.statusCode.should.equal(ok);
+                        res.body.likes.length.should.equal(1);
+                        res.body.likes.should.include(fixture.valid_seeds[6].account_id);
+
+                        request
+                            .post(uri)
+                            .send(unlike_body)
+                            .set('Accept',        fixture.valid_seeds[6].header)
+                            .set('Content-type',  fixture.valid_seeds[6].header)
+                            .set('Authorization', fixture.valid_seeds[6].authorization)
+                            .end((err, res) => {
+                                if (err) return done(err);
+                                res.statusCode.should.equal(ok);
+                                res.body.likes.length.should.equal(0);
+                                res.body.likes.should.not.include(fixture.valid_seeds[6].account_id);
+
+                                Feed.find({'_id': pre_feeds[0]._id}, (err, last_feeds) => {
+                                    last_feeds[0].likes.should.not.include(fixture.valid_seeds[6].account_id);
+                                    last_feeds[0].likes.length.should.equal(0);
+                                });
+
+                                done();
+                            });
+                    });
+            });
+        });
+
+        it('succes unlike. 自身のaccount_idのみunlikeされる事', (done) => {
+            Feed.find({'posted_by': fixture.valid_seeds[0].account_id}, (err, pre_feeds) => {
+                if (err) return done(err);
+
+                const like_body = {
+                    'id':   pre_feeds[0].id,
+                    'like': true
+                };
+
+                const unlike_body = {
+                    'id':   pre_feeds[0].id,
+                    'like': false
+                };
+
+
+                const uri = feed_like_url(pre_feeds[0].id, fixture.valid_seeds[0].group_id);
+                request
+                    .post(uri)
+                    .send(like_body)
+                    .set('Accept',        fixture.valid_seeds[6].header)
+                    .set('Content-type',  fixture.valid_seeds[6].header)
+                    .set('Authorization', fixture.valid_seeds[6].authorization)
+                    .end((err, res) => {
+                        if (err) return done(err);
+                        res.body.likes.length.should.equal(1);
+                        res.body.likes.should.include(fixture.valid_seeds[6].account_id);
+
+                        request
+                            .post(uri)
+                            .send(like_body)
+                            .set('Accept',        fixture.valid_seeds[5].header)
+                            .set('Content-type',  fixture.valid_seeds[5].header)
+                            .set('Authorization', fixture.valid_seeds[5].authorization)
+                            .end((err, res) => {
+                                if (err) return done(err);
+                                res.statusCode.should.equal(ok);
+                                res.body.likes.length.should.equal(2);
+                                res.body.likes.should.include(fixture.valid_seeds[5].account_id);
+                                res.body.likes.should.include(fixture.valid_seeds[6].account_id);
+
+                                request
+                                    .post(uri)
+                                    .send(unlike_body)
+                                    .set('Accept',        fixture.valid_seeds[5].header)
+                                    .set('Content-type',  fixture.valid_seeds[5].header)
+                                    .set('Authorization', fixture.valid_seeds[5].authorization)
+                                    .end((err, res) => {
+                                        if (err) return done(err);
+                                        res.statusCode.should.equal(ok);
+                                        res.body.likes.length.should.equal(1);
+                                        res.body.likes.should.not.include(fixture.valid_seeds[5].account_id);
+                                        res.body.likes.should.include(fixture.valid_seeds[6].account_id);
+
+                                        Feed.find({'_id': pre_feeds[0]._id}, (err, last_feeds) => {
+                                            last_feeds[0].likes.length.should.equal(1);
+                                            last_feeds[0].likes.should.not.include(fixture.valid_seeds[5].account_id);
+                                            last_feeds[0].likes.should.include(fixture.valid_seeds[6].account_id);
+                                            done();
+                                        });
+                                    });
+                            });
+                    });
+            });
+        });
+
+        it('fail unlike. likeしていない場合unlike失敗', (done) => {
+            Feed.find({'posted_by': fixture.valid_seeds[0].account_id}, (err, pre_feeds) => {
+                if (err) return done(err);
+
+                const unlike_body = {
+                    'id':   pre_feeds[0].id,
+                    'like': false
+                };
+
+                const uri = feed_like_url(pre_feeds[0].id, fixture.valid_seeds[0].group_id);
+                request
+                    .post(uri)
+                    .send(unlike_body)
+                    .set('Accept',        fixture.valid_seeds[0].header)
+                    .set('Content-type',  fixture.valid_seeds[0].header)
+                    .set('Authorization', fixture.valid_seeds[0].authorization)
+                    .end((err, res) => {
+                        if (err) return done(err);
+
+                        // FIX: likeにaccount idがないため失敗しているが、200ok返る
+                        res.statusCode.should.equal(ok);
+                        should.not.exist(res.body);
+
+                        Feed.find({'_id': pre_feeds[0]._id}, (err, last_feeds) => {
+                            last_feeds[0].likes.should.not.include(fixture.valid_seeds[0].account_id);
+                            last_feeds[0].likes.length.should.equal(0);
+                            done();
+                        });
+                    });
+            });
+        });
+    });
+
+
+
+    describe('api/v1/:id/comments', () => {
+        it('succes like', (done) => {
+            Comment.find({'posted_by': fixture.valid_seeds[0].account_id}, (err, pre_comments) => {
+                if (err) return done(err);
+
+                const body = {
+                    'id':   pre_comments[0].id,
+                    'like': true
+                };
+
+
+                const uri = comment_like_url(pre_comments[0].id, fixture.valid_seeds[0].group_id);
+                request
+                    .post(uri)
+                    .send(body)
+                    .set('Accept',        fixture.valid_seeds[6].header)
+                    .set('Content-type',  fixture.valid_seeds[6].header)
+                    .set('Authorization', fixture.valid_seeds[6].authorization)
+                    .end((err, res) => {
+                        if (err) return done(err);
+                        should.exist(res.statusCode);
+                        res.statusCode.should.equal(ok);
+                        res.body.should.not.empty;
+                        res.body.likes.should.include(fixture.valid_seeds[6].account_id);
+
+                        Comment.find({'_id': pre_comments[0]._id}, (err, post_comments) => {
+                            if (err) return done(err);
+                            post_comments[0].likes.length.should.equal(1);
+                            post_comments[0].likes.should.include(fixture.valid_seeds[6].account_id);
+
+                            request
+                                .post(uri)
+                                .send(body)
+                                .set('Accept',        fixture.valid_seeds[5].header)
+                                .set('Content-type',  fixture.valid_seeds[5].header)
+                                .set('Authorization', fixture.valid_seeds[5].authorization)
+                                .end((err, res) => {
+                                    if (err) return done(err);
+                                    res.statusCode.should.equal(ok);
+                                    res.body.likes.length.should.equal(2);
+                                    res.body.likes.should.include(fixture.valid_seeds[5].account_id);
+                                    res.body.likes.should.include(fixture.valid_seeds[6].account_id);
+
+                                    Comment.find({'_id': pre_comments[0]._id}, (err, last_comments) => {
+                                        last_comments[0].likes.length.should.equal(2);
+                                        last_comments[0].likes.should.include(fixture.valid_seeds[5].account_id);
+                                        last_comments[0].likes.should.include(fixture.valid_seeds[6].account_id);
+                                        done();
+                                    });
+                                });
+                        });
+                    });
+            });
+        });
+
+        it('fail like. 同一accountで複数回likeできない事', (done) => {
+            Comment.find({'posted_by': fixture.valid_seeds[0].account_id}, (err, pre_comments) => {
+                if (err) return done(err);
+
+                const body = {
+                    'id':   pre_comments[0].id,
+                    'like': true
+                };
+
+                const uri = comment_like_url(pre_comments[0].id, fixture.valid_seeds[0].group_id);
+
+                request
+                    .post(uri)
+                    .send(body)
+                    .set('Accept',        fixture.valid_seeds[6].header)
+                    .set('Content-type',  fixture.valid_seeds[6].header)
+                    .set('Authorization', fixture.valid_seeds[6].authorization)
+                    .end((err, res) => {
+                        if (err) return done(err);
+                        should.exist(res.statusCode);
+                        res.statusCode.should.equal(ok);
+                        res.body.should.not.empty;
+                        res.body.likes.length.should.equal(1);
+                        res.body.likes.should.include(fixture.valid_seeds[6].account_id);
+
+                        Comment.find({'_id': pre_comments[0]._id}, (err, post_comments) => {
+                            if (err) return done(err);
+                            post_comments[0].likes.length.should.equal(1);
+                            post_comments[0].likes.should.include(fixture.valid_seeds[6].account_id);
+
+                            request
+                                .post(uri)
+                                .send(body)
+                                .set('Accept',        fixture.valid_seeds[6].header)
+                                .set('Content-type',  fixture.valid_seeds[6].header)
+                                .set('Authorization', fixture.valid_seeds[6].authorization)
+                                .end((err, res) => {
+                                    if (err) return done(err);
+                                    res.statusCode.should.equal(ok);
+                                    should.not.exist(res.body);
+
+                                    Comment.find({'_id': pre_comments[0]._id}, (err, last_comments) => {
+                                        last_comments[0].likes.length.should.equal(1);
+                                        last_comments[0].likes.should.include(fixture.valid_seeds[6].account_id);
+                                        done();
+                                    });
+                                });
+                        });
+                    });
+            });
+        });
+
+        it('fail like. 異なるcompany_idでは書き込み不可', (done) => {
+            Comment.find({'posted_by': fixture.valid_seeds[0].account_id}, (err, pre_comments) => {
+                if (err) return done(err);
+
+                const body = {
+                    'id':   pre_comments[0].id,
+                    'like': true
+                };
+
+                const uri = comment_like_url(pre_comments[0].id, fixture.valid_seeds[0].group_id);
+                request
+                    .post(uri)
+                    .send(body)
+                    .set('Accept',        fixture.valid_seeds[2].header)
+                    .set('Content-type',  fixture.valid_seeds[2].header)
+                    .set('Authorization', fixture.valid_seeds[2].authorization)
+                    .end((err, res) => {
+                        if (err) return done(err);
+
+                        // TODO: 書き込み失敗しているが、200 okが返る
+                        res.statusCode.should.equal(ok);
+                        should.not.exist(res.body);
+
+                        Comment.find({'_id': pre_comments[0]._id}, (err, post_comments) => {
+                            if (err) return done(err);
+                            post_comments[0].likes.length.should.equal(0);
+                            post_comments[0].likes.should.not.include(fixture.valid_seeds[2].account_id);
+                            done();
+                        });
+                    });
+            });
+        });
+
+
+        it('succes unlike', (done) => {
+            Comment.find({'posted_by': fixture.valid_seeds[0].account_id}, (err, pre_comments) => {
+                if (err) return done(err);
+
+                const like_body = {
+                    'id':   pre_comments[0].id,
+                    'like': true
+                };
+
+                const unlike_body = {
+                    'id':   pre_comments[0].id,
+                    'like': false
+                };
+
+                const uri = comment_like_url(pre_comments[0].id, fixture.valid_seeds[0].group_id);
+                request
+                    .post(uri)
+                    .send(like_body)
+                    .set('Accept',        fixture.valid_seeds[6].header)
+                    .set('Content-type',  fixture.valid_seeds[6].header)
+                    .set('Authorization', fixture.valid_seeds[6].authorization)
+                    .end((err, res) => {
+                        if (err) return done(err);
+                        res.statusCode.should.equal(ok);
+                        res.body.likes.length.should.equal(1);
+                        res.body.likes.should.include(fixture.valid_seeds[6].account_id);
+
+                        request
+                            .post(uri)
+                            .send(unlike_body)
+                            .set('Accept',        fixture.valid_seeds[6].header)
+                            .set('Content-type',  fixture.valid_seeds[6].header)
+                            .set('Authorization', fixture.valid_seeds[6].authorization)
+                            .end((err, res) => {
+                                if (err) return done(err);
+                                res.statusCode.should.equal(ok);
+                                res.body.likes.length.should.equal(0);
+                                res.body.likes.should.not.include(fixture.valid_seeds[6].account_id);
+
+                                Comment.find({'_id': pre_comments[0]._id}, (err, last_comments) => {
+                                    last_comments[0].likes.should.not.include(fixture.valid_seeds[6].account_id);
+                                    last_comments[0].likes.length.should.equal(0);
+                                });
+
+                                done();
+                            });
+                    });
+            });
+        });
+
+        it('succes unlike. 自身のaccount_idのみunlikeされる事', (done) => {
+            Comment.find({'posted_by': fixture.valid_seeds[0].account_id}, (err, pre_comments) => {
+                if (err) return done(err);
+
+                const like_body = {
+                    'id':   pre_comments[0].id,
+                    'like': true
+                };
+
+                const unlike_body = {
+                    'id':   pre_comments[0].id,
+                    'like': false
+                };
+
+
+                const uri = comment_like_url(pre_comments[0].id, fixture.valid_seeds[0].group_id);
+                request
+                    .post(uri)
+                    .send(like_body)
+                    .set('Accept',        fixture.valid_seeds[6].header)
+                    .set('Content-type',  fixture.valid_seeds[6].header)
+                    .set('Authorization', fixture.valid_seeds[6].authorization)
+                    .end((err, res) => {
+                        if (err) return done(err);
+                        res.body.likes.length.should.equal(1);
+                        res.body.likes.should.include(fixture.valid_seeds[6].account_id);
+
+                        request
+                            .post(uri)
+                            .send(like_body)
+                            .set('Accept',        fixture.valid_seeds[5].header)
+                            .set('Content-type',  fixture.valid_seeds[5].header)
+                            .set('Authorization', fixture.valid_seeds[5].authorization)
+                            .end((err, res) => {
+                                if (err) return done(err);
+                                res.statusCode.should.equal(ok);
+                                res.body.likes.length.should.equal(2);
+                                res.body.likes.should.include(fixture.valid_seeds[5].account_id);
+                                res.body.likes.should.include(fixture.valid_seeds[6].account_id);
+
+                                request
+                                    .post(uri)
+                                    .send(unlike_body)
+                                    .set('Accept',        fixture.valid_seeds[5].header)
+                                    .set('Content-type',  fixture.valid_seeds[5].header)
+                                    .set('Authorization', fixture.valid_seeds[5].authorization)
+                                    .end((err, res) => {
+                                        if (err) return done(err);
+                                        res.statusCode.should.equal(ok);
+                                        res.body.likes.length.should.equal(1);
+                                        res.body.likes.should.not.include(fixture.valid_seeds[5].account_id);
+                                        res.body.likes.should.include(fixture.valid_seeds[6].account_id);
+
+                                        Comment.find({'_id': pre_comments[0]._id}, (err, last_comments) => {
+                                            last_comments[0].likes.length.should.equal(1);
+                                            last_comments[0].likes.should.not.include(fixture.valid_seeds[5].account_id);
+                                            last_comments[0].likes.should.include(fixture.valid_seeds[6].account_id);
+                                            done();
+                                        });
+                                    });
+                            });
+                    });
+            });
+        });
+
+        it('fail unlike. likeしていない場合unlike失敗', (done) => {
+            Comment.find({'posted_by': fixture.valid_seeds[0].account_id}, (err, pre_comments) => {
+                if (err) return done(err);
+
+                const unlike_body = {
+                    'id':   pre_comments[0].id,
+                    'like': false
+                };
+
+                const uri = comment_like_url(pre_comments[0].id, fixture.valid_seeds[0].group_id);
+                request
+                    .post(uri)
+                    .send(unlike_body)
+                    .set('Accept',        fixture.valid_seeds[0].header)
+                    .set('Content-type',  fixture.valid_seeds[0].header)
+                    .set('Authorization', fixture.valid_seeds[0].authorization)
+                    .end((err, res) => {
+                        if (err) return done(err);
+
+                        // FIX: likeにaccount idがないため失敗しているが、200ok返る
+                        res.statusCode.should.equal(ok);
+                        should.not.exist(res.body);
+
+                        Comment.find({'_id': pre_comments[0]._id}, (err, last_comments) => {
+                            last_comments[0].likes.should.not.include(fixture.valid_seeds[0].account_id);
+                            last_comments[0].likes.length.should.equal(0);
+                            done();
+                        });
+                    });
+            });
+        });
+    });
+});

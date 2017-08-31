@@ -1,0 +1,62 @@
+       <h1></h1>
+
+
+        <div id="img-head-top">
+          <div class="main_imgBG_btn">
+            <div class="text_box_copL_B">
+              <div class="head_Text_sm2_btn2">
+                ―― ビジネスパートナー募集！！ ――
+              </div>
+              ビジネスはコラボレーションとスピードの時代です。真の意味でパートナーシップを結べる企業様を、規模問わず常時募集中でございます。<br />
+            </div>
+          </div>
+        </div>
+
+
+        <div class="pan_out">
+          <ul>
+            <li>
+              <a href="http://www.mruby.jp/">Ruby開発 トップ</a>
+            </li>
+            <li>
+              <span class="cor_N">»</span>
+            </li>
+            <li>
+              Ruby開発社 パートナー募集
+            </li>
+          </ul>
+          <div class="clear"></div>
+          <h1 class="head_Text_N2">
+            <span>▌</span>ビジネスパートナー募集
+          </h1>
+        </div>
+        <div id="container">
+          <div id="contents">
+            <div class="text_boxPLC">
+              <p class="ind">
+                各社強み・弱み等あると思います。単なる補いではなく、強みを持ち寄ることで、全く新しいものがみえてくるはずです。<br />中小企業だからこそ取組める市場規模も沢山存在します。<br /> 真の意味でパートナーシップを締結出来る同業企業様を常時募集いたしております。<br />
+              </p>
+            </div>
+            <div class="text_box01">
+              <div class="text_box05">
+                <div class="text_boxInin">
+                  <p>
+                    ―― 事業連携 ――<br /><br /><b>各種事業連携事案</b><br /> ・各種ビジネス連携事案お待ちしております。 <br /><br />
+                  </p>
+                </div>
+                <div class="text_boxInin">
+                  <p>
+                    ―― エンジニアご協力のお願い ――<br /><br /> 各種言語経験エンジニアを常時募集しております。 <br /><br />
+                  </p>
+                </div>
+                <div class="text_boxInin2">
+                  <p>
+                    ―― お問い合わせ ――<br /> 以下何れかの方法にてお問い合わせください。<br /> お電話の場合 ⇒ 03−3525−4301<br /> メールの場合 ⇒ <a href="javascript:void(window.open(&#39;http://www.mruby.jp/ask/ask.php?ask_cateNum=1&#39;, &#39;ask&#39;, &#39;width=450, height=550, status=yes, resizable=yes, scrollbars=yes&#39;));">ビジネスパートナーのお問い合わせ</a><br />
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,13 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<form action="http://localhost:3001/api/v1/files/upload" method="post" enctype="multipart/form-data">
+  ファイル：<br />
+  <input type="file" name="attachment" size="30" /><br />
+  <br />
+  <input type="submit" value="アップロード" />
+</form>
+</body>
+</html>

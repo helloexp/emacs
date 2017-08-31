@@ -1,0 +1,5 @@
+jobs.process('bessel-filter-image', function(job, done) {
+   console.log(job.data.whatever); // stored in jobArgs
+   var result = bessel(); // let's imagine applying the filter
+   done(null, result); // forward the result of your job
+});

@@ -1,0 +1,54 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Testing '
+Resources:
+  instanceiec051c1f:
+    Type: AWS::EC2::Instance
+    Properties:
+      DisableApiTermination: 'false'
+      InstanceInitiatedShutdownBehavior: stop
+      ImageId: ami-11d6e610
+      InstanceType: m1.small
+      KernelId: aki-176bf516
+      KeyName: mynavi-product-nat
+      Monitoring: 'false'
+      Tags:
+      - Key: Payment
+        Value: mynavi
+      - Key: Name
+        Value: mynavi-product-nat
+      NetworkInterfaces:
+      - DeleteOnTermination: 'true'
+        DeviceIndex: 0
+        SubnetId:
+          Ref: subnete162d696
+        PrivateIpAddresses:
+        - PrivateIpAddress: 10.0.0.100
+          Primary: 'true'
+        GroupSet:
+        - Ref: sgmynaviproductnat
+  instanceifaa14308:
+    Type: AWS::EC2::Instance
+    Properties:
+      DisableApiTermination: 'false'
+      InstanceInitiatedShutdownBehavior: stop
+      ImageId: ami-6274af62
+      InstanceType: t2.micro
+      KeyName: mynavi-product-gateway
+      Monitoring: 'false'
+      Tags:
+      - Key: Name
+        Value: mynavi-production-gateway
+      - Key: payment
+        Value: mynavi-product
+      NetworkInterfaces:
+      - DeleteOnTermination: 'true'
+        Description: Primary network interface
+        DeviceIndex: 0
+        SubnetId:
+          Ref: subnete162d696
+        PrivateIpAddresses:
+        - PrivateIpAddress: 10.0.0.198
+          Primary: 'true'
+        GroupSet:
+        - Ref: sgmynaviproductgateway

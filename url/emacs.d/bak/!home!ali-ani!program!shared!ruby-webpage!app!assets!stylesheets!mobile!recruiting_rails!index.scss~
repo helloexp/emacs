@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+.container {
+  .col-sm.mobile_policy {
+    .panel {
+      border      : none;
+      box-shadow  : none;
+
+      .panel-heading {
+        padding     : 0;
+        margin      : 10px;
+
+        span {
+          color     : red;
+        }
+
+        strong {
+          font-size : 20px
+        }
+      }
+
+      .panel-body {
+        padding   : 0;
+        margin    : 10px;
+      }
+
+      .btn_backLay {
+        text-align     : center;
+        background     : #EEE;
+        border         : 1px solid #DDD;
+        border-radius  : 4px;
+        color          : #111;
+        width          : 134px;
+        padding        : 10px 0;
+        font-size      : 14px;
+      }
+    }
+  }
+}
+
+
+

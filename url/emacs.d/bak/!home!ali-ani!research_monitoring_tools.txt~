@@ -1,0 +1,432 @@
+Table of Contents
+=================
+1 要件
+2 zabbix
+    2.1 参考
+    2.2 demo
+    2.3 料金
+    2.4 構成
+    2.5 機能など
+    2.6 install
+3 nagiox
+    3.1 参考
+    3.2 料金
+    3.3 demo
+    3.4 機能/document
+    3.5 install
+4 pandora fms
+    4.1 参考
+    4.2 demo
+    4.3 料金
+    4.4 構成
+    4.5 機能
+    4.6 document
+    4.7 install
+5 sensu
+    5.1 参考
+    5.2 demo
+    5.3 料金
+    5.4 構成
+    5.5 document
+    5.6 install
+    5.7 plugin
+6 new relic
+    6.1 概要
+    6.2 demo
+    6.3 設定
+    6.4 料金
+    6.5 データの扱い
+7 munin
+    7.1 参考
+    7.2 demo
+    7.3 構成
+    7.4 機能
+    7.5 install
+
+
+1 要件
+================================================================
+    - 候補
+      Zabbix／Nagios／Sensu/／New Relic／munin
+
+    - 要件
+      できたら無料（サーバ代は別）
+      オンプレ、AWS両方のサーバに使用
+      DockerやWMなどの仮想サーバに対しても使用
+      設定が簡単（なるべく人的ミスをなくしたい）
+
+
+
+
+2 zabbix
+================================================================
+    - まとめ
+        - 他と比較し、評価は高い
+        - リソースモニタはmuninで代用した方が見やすい
+        - GUIは見難い
+
+    - 機能
+        - リソース監視、可視化、死活監視、通知機能など標準搭載。
+        - GUIは見難い (nagiosも見難い)
+        - 統合監視ツール
+
+    - 設定
+        - 設定templateもあるため、ミスは低減可能。(host, template, trigger設定)
+        - GUIで設定を行うため取っ付き易い。
+        - installは、yumなどで可能
+
+    - data保存
+        - DBへ保存
+
+    - document
+        - 比較的多く、forumでの情報交換もされている。
+
+    - etc
+        - enterprise向けをうたってる。企業主体で開発されている。
+        - 有償サポート有り
+
+    2.1 参考
+    ----------------------------------------------------------------
+        http://knowledge.sakura.ad.jp/tech/585/
+        http://www.zabbix.com/jp/product.php
+        https://osdn.jp/magazine/13/11/30/183000
+        https://ja.wikipedia.org/wiki/Zabbix
+        http://www.zabbix.jp/documents/features
+
+    2.2 demo
+    ----------------------------------------------------------------
+        http://www.zabbix.jp/documents/demo
+
+    2.3 料金
+    ----------------------------------------------------------------
+        - 基本無料
+        - 商用サポート有り
+          http://www.zabbix.com/jp/support.php
+          http://www.zabbix.com/jp/consulting.php
+
+    2.4 構成
+    ----------------------------------------------------------------
+        http://knowledge.sakura.ad.jp/tech/585/
+
+        Zabbixは「Zabbix Server（サーバー）」および「Zabbix Agent（エージェント）」、
+        そしてWebフロントエンドというコンポーネントから構成されている。
+
+        // server / agent間で疎通が可能であれば、VM上でも問題ないと推測
+
+    2.5 機能など
+    ----------------------------------------------------------------
+        - 全機能
+          http://www.zabbix.com/jp/functionality.php
+          http://www.zabbix.jp/documents/features
+
+        - template参考
+          https://blog.apar.jp/zabbix/1046/
+
+    2.6 install
+    ----------------------------------------------------------------
+        http://easyramble.com/install-and-setup-zabbix.html
+        https://osdn.jp/magazine/13/11/30/183000/2
+
+
+
+
+3 nagiox
+================================================================
+    - まとめ
+        - 設定,GUIは、zabbixの方が有用に見える
+        - text base, 設定反映にrebootが必要となると、相対的に評価は下がる
+
+    - 機能
+        - 基本は、ネットワーク監視と通知が基本
+        - zabbix同様、統合監視ツール
+        - 他はplugin (pluginで大体の事は可能らしい)
+        - GUI見難い
+
+    - 設定
+        - textで設定
+        - 設定反映にprocess rebootが必要
+        - sourceからinstallか、repository追加してのyum install。
+
+    - document
+        - 比較的多い
+
+    - 有償サポート
+        - nagios XIというenterprise向けがある。
+        - 料金 : 20万〜
+
+
+    3.1 参考
+    ----------------------------------------------------------------
+        https://ja.wikipedia.org/wiki/Nagios
+
+    3.2 料金
+    ----------------------------------------------------------------
+        - nagios    : 無料
+        - nagios XI : https://www.nagios.com/products/nagios-xi/#pricing
+
+    3.3 demo
+    ----------------------------------------------------------------
+        http://nagioscore.demos.nagios.com/
+        http://www.jtc-i.co.jp/support/demo/demoindex.html#nagiosxi
+
+    3.4 機能/document
+    ----------------------------------------------------------------
+        http://www.cloud-tech.co.jp/solutions/nagios/function.html
+
+        https://www.nagios.org/documentation/
+        http://nagios.x-trans.jp/nagios/index.php/Nagios_3%E7%BF%BB%E8%A8%B3%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88
+        http://nagios.fm4dd.com/docs/jp/config.html
+        https://www.nagios.org/documentation/
+
+    3.5 install
+    ----------------------------------------------------------------
+        http://centossrv.com/nagios.shtml
+        http://easyramble.com/install-and-setup-nagios.html
+
+        - yum installと基本設定
+          http://qiita.com/narvaux/items/4d8d2bc59229af359c81
+          // yum install可能だが、repository指定が必要。
+
+        - plugins list
+          https://nagios-plugins.org/
+
+4 pandora fms
+================================================================
+    http://pandorafms.com/Producto/Features/jp
+
+    - まとめ
+        - 楽天で導入している
+        - リソースモニタは、muninに任せた方が見やすいと思われる。
+        - 無償版は機能制限あり。zabbixの方が機能が豊富の模様。(diffしてはいない)
+        - GUIがモダンかつ、見やすい。
+
+    - 商用サポート
+        - 有り
+
+    - 機能
+        - zabbixなどと同様、統合監視ツール
+        - GUIはモダン。他と比較すると見やすい
+        - 他とさほど遜色は無い機能有り
+        - data保存は、DB
+        - 権限でのアクセス制限が可能
+        - 障害管理機能有り
+        - mobile向けinterface
+
+    - 設定
+        - だいたいの設定(監視、アラートなど)はGUIから可能
+        - nagisoと比較すると、text baseの設定は少ない
+        - templateによる設定可能
+
+    - document
+        - 公式日本語documentあり
+
+    - etc
+
+    4.1 参考
+    ----------------------------------------------------------------
+        https://ja.wikipedia.org/wiki/Pandora_FMS
+        http://www.monoreview.com/?p=347
+
+    4.2 demo
+    ----------------------------------------------------------------
+        http://pandorafms.com/Community/demo/jp
+
+    4.3 料金
+    ----------------------------------------------------------------
+        http://pandorafms.com/Soporte/pricing/jp
+
+        // 料金明記無し
+
+    4.4 構成
+    ----------------------------------------------------------------
+        http://wiki.pandorafms.com/index.php?title=Pandora:Documentation_ja:Architecture#Pandora_FMS_.E3.82.A2.E3.83.BC.E3.82.AD.E3.83.86.E3.82.AF.E3.83.81.E3.83.A3
+
+    4.5 機能
+    ----------------------------------------------------------------
+        http://pandorafms.com/Producto/Features/jp
+        http://ms.rworks.jp/products/p-pfms/pp-feature/
+
+    4.6 document
+    ----------------------------------------------------------------
+        http://pandorafms.com/Community/doc/jp
+        http://pandorafms.jp/Pandora_FMS_jp
+        http://wiki.pandorafms.com/index.php?title=Pandora:Documentation_ja
+
+    4.7 install
+    ----------------------------------------------------------------
+        http://blog.44uk.net/2014/05/28/try-to-use-pandora-fms/
+
+        // yum で install可能
+
+5 sensu
+================================================================
+    - まとめ
+        - 自由度が高いそうだが、設定までに時間が掛かりそう
+
+    - 機能
+        - GUIは比較的モダン
+        - nagios APIが使用可能?
+        - cloud(server構成が頻繁に変わる)に向いている
+        - 自由度が高い模様
+        - 標準的な機能(mail alert, リソースモニタ)は、APIで提供
+
+    - 以下を見るに、zabbixで十分
+        http://u0sa0.hateblo.jp/entry/2014/05/18/201755
+
+    - document
+        少ないように見えるので、この点で苦労しそう
+
+    - 設定
+        - chefでのinstallが推奨されている
+        - 変更はjsonファイルの書き換え (textよりは扱いやすいと思われる)
+        - installは楽(chef)だが、設定自体は面倒多いらしい
+        - background processが多いため、maintenanceが面倒らしい
+        - slack連携が可能?
+
+    - 有償サポート
+        - 有り
+
+    - etc
+        - ruby製
+        - chef install後、即監視開始 (自動でnodeを登録する。zabbixも同一機能有り)
+
+    5.1 参考
+    ----------------------------------------------------------------
+        http://u0sa0.hateblo.jp/entry/2014/05/18/201755
+        http://www.ryuzee.com/contents/blog/6843
+
+    5.2 demo
+    ----------------------------------------------------------------
+        見当たらず
+
+        - vagrantでのdemo
+          https://github.com/om732/sensu-grafana-demo
+
+    5.3 料金
+    ----------------------------------------------------------------
+        https://sensuapp.org/sensu-enterprise#pricing
+
+    5.4 構成
+    ----------------------------------------------------------------
+        https://sensuapp.org/docs/0.12/overview
+
+        required : erlang, RabbitMQ,redis, sensu-plugin gem
+        Chef, Puppet, Graphite
+
+    5.5 document
+    ----------------------------------------------------------------
+        https://sensuapp.org/docs/latest/overview
+        https://sensuapp.org/docs/0.20/api-overview
+
+
+    5.6 install
+    ----------------------------------------------------------------
+        https://sensuapp.org/docs/0.12/guide
+        http://blog.cloudpack.jp/2014/09/21/install-uchiwa-of-sensu-according-with-document/
+        http://blog.cloudpack.jp/2015/01/21/send-sensu-notifications-to-slack/
+
+    5.7 plugin
+    ----------------------------------------------------------------
+        https://github.com/sensu/sensu-community-plugins
+
+
+
+
+6 new relic
+================================================================
+    - まとめ
+        - 無償版はlogが24時間保管。この時点で候補から外れる
+        - 有償版は比較的高価 ($150〜)
+        - 設定は簡単
+
+    - 監視項目
+        - 一般的な機能有り (cpu usage, memry, disk I/O, network I/O, process情報など)
+        - 拡張性は不明。
+
+    - 設定
+        - さっと使用したい場合は有用と思われる。設定は非常に楽。
+        - サイトでの登録、数コマンドで稼働まで可能
+
+    - 懸念点
+        - dataが外にでるため、tohmatsu向けではないと思われる
+
+    - 有償版
+        - 有り
+        - 無償版は、logが24時間のみ保管される。有償版は比較的高価。($150〜)
+
+    6.1 概要
+    ----------------------------------------------------------------
+        サーバ側にnewrelic用モジュールをインストールし、サーバ/アプリケーションの
+        レスポンスや実行にかかった時間などの統計情報をNew Relicのサイトで確認できる。
+
+    6.2 demo
+    ----------------------------------------------------------------
+        https://www.google.co.jp/aclk?sa=l&ai=Ci8w-_Jj5VcblEpP49QXRyoSYBJ3Jp-UG5dCI_Y0CnNzPrF0IABABYInTuoTQE6ABj8OfywPIAQGqBCZP0B27SAg4A4lBgRCotF9L4jgz5fdqoqTNwTCKQXMOrmq3ChSSQdIGDBD90FMYnMnemQQoAYAH9ZvpJZAHAagHpr4b2AcBohNOCkIIA0ABUggKBhIECAAQAWiMj4qtRnIlEiMQ1a_SvBcgAigBOARAtfPqPFgBaP7__________wFwAZgBAYIBBAoCCAEaCAoGZ29vZ2xl&sig=AOD64_0ipulr3TJRw8sAQWia9ERr6uBwyg&ctype=4&clui=3&q=&ved=0CCQQwgUoAmoVChMIk_X19Pz7xwIVgyWUCh3JqwL5&adurl=http://newrelic.com/request-demo%3F_bt%3D72733296797%26_bk%3Dnewrelic%26_bm%3Dp%3Futm_source%3DGOOG%26utm_medium%3Dpaid_search%26utm_content%3DApplication%2BMonitoring%2BSITELINK%26utm_campaign%3DAPM%26utm_term%3Dnewrelic%26mpc%3DPS-GOOG-APM-EN-Signup-Appication%2BMonitoring%2BSITELINK-APAC
+
+    6.3 設定
+    ----------------------------------------------------------------
+        - newrelic gemに加え、数コマンドで設定可能な模様。
+        - clolud watchと連携化
+
+        http://qiita.com/y_uuki/items/dd4fce78b1bc32b64600
+        http://qiita.com/kou/items/fcb75108e6e882fd12bb
+        http://dev.classmethod.jp/tool/newrelic/
+        http://qiita.com/y_uuki/items/dd4fce78b1bc32b64600
+
+    6.4 料金
+    ----------------------------------------------------------------
+        https://newrelic.com/application-monitoring/pricing
+
+        無料プランでは、log保存期間が24時間
+
+    6.5 データの扱い
+    ----------------------------------------------------------------
+        new relicのHP上で参照という形体から、
+        new relicにdata 転送している?
+
+7 munin
+================================================================
+    - 機能
+        - リソース監視、可視化に特化。
+        - GUIは、見難くはない。
+        - 通知機能は弱い。
+        - pluginで拡張可能。
+
+    - 設定
+        - 初期導入時で、ある程度の監視設定がなされている
+        - 設定は比較的簡単。(MRTGより柔軟では無い模様)
+        - text baseで設定
+
+    - et
+        - documentは比較的多い
+
+    7.1 参考
+    ----------------------------------------------------------------
+        http://munin.jp/wiki/%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%9A%E3%83%BC%E3%82%B8
+
+    7.2 demo
+    ----------------------------------------------------------------
+        http://demo.munin-monitoring.org/
+
+    7.3 構成
+    ----------------------------------------------------------------
+        http://qiita.com/murachi1208/items/2d27d386a2891ccf4ed1
+
+        - munin-server : web interfaceでの情報表示
+        - munin-node   : data 収集
+
+    7.4 機能
+    ----------------------------------------------------------------
+        http://www.geek.sc/archives/752
+
+        - 基本は、MRTGなどと同様にリソース監視がメイン。
+        - 通知機能は弱い。
+        - yum で install可能
+        - 設定はtext base
+        - plugin有り
+
+    7.5 install
+    ----------------------------------------------------------------
+        https://wiki.archlinuxjp.org/index.php/Munin
+        http://easyramble.com/install-and-setup-munin.html
+

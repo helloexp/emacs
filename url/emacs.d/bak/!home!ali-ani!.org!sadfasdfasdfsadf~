@@ -1,0 +1,98 @@
+ホームページ状況
+
+
+## 主担当者
+----------------------------------------------------------------
+- 管理者：沼沢
+- 最終責任者：柴田
+
+## 期限
+- 8/11 実装完了
+- 8/18 PC版リリース (社内向け公開。basic認証をかけて)
+- 8/31 スマホ版リリース
+
+
+## マイルストーン
+----------------------------------------------------------------
+
+
+## wiki
+----------------------------------------------------------------
+https://torchpad.com/workspace/wikis/ruby-webpage/pages/Home
+
+## Releaseに関して
+  - PC版単独で公開する理由
+    - 問い合わせページの公開したい（Railsアプリとして）
+    - 仙台の事務所の情報を変更したい
+  - 懸念点
+    - SEO対策で、モバイルも一緒に提供しないと下がる可能性があり
+    - ホームページを２つのドメインで、別々にリリースするとSEO rankが低下する可能性がある。
+  - 理想
+    - 8/31にモバイルとPC版を一緒にリリースする。
+    - Googleのサイト移行の手順を踏む
+    - mruby.jpドメイン管理を行う。(mail設定、Redirect設定などを行うため)
+    - https接続対応 (証明書取得に、admin@ruby-dev.jpなどで受信できる必要がある?)
+
+
+## domain周りの予定
+----------------------------------------------------------------
+- mruby.jp
+  - mruby.jpをDomain移管 (どこへ?)
+  - 既存DNS設定を、AWS Route53へ移す
+  - メール設定
+- mruby.jp移管
+  - 先方へ問い合わせ。(移管可能)
+- ruby-dev.jp
+  - [x] : アカウント設定 (gmailアカウント発行)
+  - [x] : mxレコード設定 (gmailへ向ける)
+  - [x] https証明書取得 (ruby-dev.jpで取得?)
+  - googleへHP移動申請 (要詳細確認)
+- [x] google apps for works初期導入
+
+
+## server
+----------------------------------------------------------------
+- [x] : SSL証明書取得
+- SSL署名書をserverへ設定
+- chef不具合調査 (postgres install周り)
+- 本番可動に向けて常時稼動予定 (Basic認証かける)
+- opsworks
+  - cloudformationにて基本部分はcode化 (stack設定を再構築可能) ただし、再構築試験を要する
+  - code上にpostgresのパスワードが含まれる。そのため、現状はS3上で管理
+  - [x] 廣田氏に構築して頂いた環境が突然build不可となる。要調査
+  - [x]
+
+
+## web作成
+----------------------------------------------------------------
+  - mobile対応
+    - 検討中 (gem or redirect)
+  - storys
+    - https://www.pivotaltracker.com/n/projects/1381652
+
+
+## SEO対策
+----------------------------------------------------------------
+  - https://torchpad.com/workspace/wikis/ruby-webpage/pages/%E8%AA%B2%E9%A1%8C/SEO%E5%AF%BE%E7%AD%96
+  - https://torchpad.com/workspace/wikis/ruby-webpage/pages/%E8%B3%87%E6%96%99/Google+Seach+Engine+Optimization+Starter+Guide
+  - 旧ページアクセス時は、新ページへredirect (検討中。異なるdomainで同内容を提供すると、rankが低下する)
+  - mobileを含まずに公開するとrankが低下する恐れがある。(検討中。元pageがphpのため早急に変更したい)
+  - google adwords (ruby + αの、よく利用される検索ワードが分かる。)
+  - page毎にdescription meta tagをつける。(keyword羅列はNG。ユーザーフレンドリーな文章
+  - sitemap.xml / mobilesitemap.xml (調査中)
+
+
+## 試験
+----------------------------------------------------------------
+  - 各ブラウザでの動作試験
+  - https://torchpad.com/workspace/wikis/ruby-webpage/pages/%E8%A8%AD%E8%A8%88/%E5%AF%BE%E5%BF%9C%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6
+
+## Domain切り替え
+----------------------------------------------------------------
+  - どのタイミングで?
+  - 同時運用期間は?
+  - etc
+
+## page解析
+----------------------------------------------------------------
+  - google analytics : 商用アカウントの方で改めて設定。

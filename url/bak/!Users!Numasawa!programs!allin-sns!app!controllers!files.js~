@@ -1,0 +1,13 @@
+/*eslint no-unused-vars:0*/
+'use strict';
+
+// const Feed = require('../models/feed');
+
+exports.upload = function(request, response) {
+    /* dummy json data */
+    response.json(
+        {
+            'method': 'create'
+        }
+    );
+};

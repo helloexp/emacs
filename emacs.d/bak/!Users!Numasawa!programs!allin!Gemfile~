@@ -1,0 +1,84 @@
+source "https://rubygems.org"
+
+gem 'activerecord-import', '~> 0.10.0'
+gem "act-fluent-logger-rails"
+gem "allin-file-storage", git: "git@github.com:BusinessBank/allin-file-storage.git"
+gem "attr_encrypted"
+gem "attr_uuid"
+gem "bcrypt-ruby"
+gem "bower-rails"
+gem "code_master", git: "https://github.com/shoutakenaka/code_master.git"
+gem "compass-rails"
+gem "font-awesome-rails"
+gem "grape"
+gem "grape-rabl"
+gem "holidays"
+gem "ice_cube"
+gem "jpmobile", "~> 4.2"
+gem "kaminari"
+gem "less-rails"
+gem "libv8"
+gem "lograge"
+gem "mojinizer"
+gem "mysql2", "~> 0.3.18"
+gem "paranoia"
+gem "rabl", git: "https://github.com/shoutakenaka/rabl.git"
+gem "rack-cors", require: "rack/cors"
+gem "rails", "4.2.1"
+gem "rails_config", "~> 0.4.2"
+gem "request_store"
+gem "resque"
+gem "sass-rails", "~> 4.0.3"
+gem "slim-rails"
+gem "sprockets", "~> 2.10"
+gem "therubyracer", platforms: :ruby
+gem "thinreports"
+gem "uglifier", ">= 1.3.0"
+gem "virtus"
+gem "whenever", require: false
+gem "icalendar"
+gem "zendesk_api"
+gem "jwt"
+
+group :development do
+  gem "capistrano", require: false
+  gem "capistrano-bundler", require: false
+  gem "capistrano-nvm", require: false
+  gem "capistrano-rails", require: false
+  gem "capistrano-resque", require: false
+  gem "capistrano-rvm", require: false
+  gem "capistrano3-unicorn", require: false
+  gem "newrelic-grape"
+  gem "parallel_tests"
+  gem "resque-web", require: "resque_web"
+  gem "rspec-rails"
+  gem "parser", "~> 2.2.2.6"
+  gem "rubocop", "~> 0.31.0", require: false
+  gem "spring"
+  gem "yard"
+end
+
+group :test do
+  gem "database_cleaner"
+  gem "factory_girl_rails", require: false
+  gem "faker"
+  gem "json_expressions"
+  gem "memory_test_fix"
+  gem "resque_spec"
+  gem "rspec-collection_matchers"
+  gem "rspec-its"
+  gem "rspec_junit_formatter", git: "https://github.com/circleci/rspec_junit_formatter.git"
+  gem "sqlite3"
+end
+
+group :development, :test do
+  gem "byebug"
+  gem "dotenv-rails"
+  gem "simplecov"
+end
+
+group :production, :prerelease, :staging do
+  gem "eye"
+  gem "newrelic_rpm"
+  gem "unicorn"
+end

@@ -1,0 +1,267 @@
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.3ms)[0m  SELECT @@FOREIGN_KEY_CHECKS
+  [1m[36m (0.6ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.2ms)[0m  SELECT DATABASE() as db
+  [1m[36m (2.6ms)[0m  [1mselect table_name from information_schema.views where table_schema = 'wellness_survey_test'[0m
+  [1m[35m (49.8ms)[0m  TRUNCATE TABLE `admins`;
+  [1m[36m (46.3ms)[0m  [1mTRUNCATE TABLE `aggregate_questions`;[0m
+  [1m[35m (33.7ms)[0m  TRUNCATE TABLE `answerer_health_state_group_caches`;
+  [1m[36m (59.3ms)[0m  [1mTRUNCATE TABLE `answerers`;[0m
+  [1m[35m (36.6ms)[0m  TRUNCATE TABLE `answerers_divisions`;
+  [1m[36m (31.7ms)[0m  [1mTRUNCATE TABLE `answerers_job_titles`;[0m
+  [1m[35m (26.8ms)[0m  TRUNCATE TABLE `blood_test_items`;
+  [1m[36m (37.9ms)[0m  [1mTRUNCATE TABLE `blood_test_results`;[0m
+  [1m[35m (22.8ms)[0m  TRUNCATE TABLE `branch_offices`;
+  [1m[36m (34.8ms)[0m  [1mTRUNCATE TABLE `business_positions_users`;[0m
+  [1m[35m (24.5ms)[0m  TRUNCATE TABLE `category_adjustment_for_health_at_working_enviroments`;
+  [1m[36m (23.3ms)[0m  [1mTRUNCATE TABLE `category_jobs`;[0m
+  [1m[35m (20.0ms)[0m  TRUNCATE TABLE `category_relevance_between_stress_and_jobs`;
+  [1m[36m (20.2ms)[0m  [1mTRUNCATE TABLE `category_result_of_stress_check_ups`;[0m
+  [1m[35m (25.4ms)[0m  TRUNCATE TABLE `category_stress_reactions`;
+  [1m[36m (40.7ms)[0m  [1mTRUNCATE TABLE `chapters_progresses`;[0m
+  [1m[35m (36.2ms)[0m  TRUNCATE TABLE `companies`;
+  [1m[36m (32.7ms)[0m  [1mTRUNCATE TABLE `companies_company_admins`;[0m
+  [1m[35m (30.0ms)[0m  TRUNCATE TABLE `companies_operators`;
+  [1m[36m (29.9ms)[0m  [1mTRUNCATE TABLE `company_admins`;[0m
+  [1m[35m (29.0ms)[0m  TRUNCATE TABLE `company_analysis_aspects`;
+  [1m[36m (21.7ms)[0m  [1mTRUNCATE TABLE `company_analysis_traits`;[0m
+  [1m[35m (26.0ms)[0m  TRUNCATE TABLE `company_branch_aspects`;
+  [1m[36m (33.4ms)[0m  [1mTRUNCATE TABLE `company_mails`;[0m
+  [1m[35m (21.8ms)[0m  TRUNCATE TABLE `company_wellness_scores`;
+  [1m[36m (23.2ms)[0m  [1mTRUNCATE TABLE `contract_options`;[0m
+  [1m[35m (30.4ms)[0m  TRUNCATE TABLE `contracts`;
+  [1m[36m (32.0ms)[0m  [1mTRUNCATE TABLE `conversations`;[0m
+  [1m[35m (51.7ms)[0m  TRUNCATE TABLE `corporate_survey_details`;
+  [1m[36m (39.6ms)[0m  [1mTRUNCATE TABLE `counseling_available_branch_choices`;[0m
+  [1m[35m (29.4ms)[0m  TRUNCATE TABLE `counseling_available_hospital_choices`;
+  [1m[36m (30.8ms)[0m  [1mTRUNCATE TABLE `counseling_hearing_grades`;[0m
+  [1m[35m (29.3ms)[0m  TRUNCATE TABLE `counseling_hearings`;
+  [1m[36m (26.3ms)[0m  [1mTRUNCATE TABLE `counseling_place_choices`;[0m
+  [1m[35m (41.8ms)[0m  TRUNCATE TABLE `counseling_places`;
+  [1m[36m (20.7ms)[0m  [1mTRUNCATE TABLE `counseling_question_categories`;[0m
+  [1m[35m (27.9ms)[0m  TRUNCATE TABLE `counseling_questions`;
+  [1m[36m (29.8ms)[0m  [1mTRUNCATE TABLE `counselings`;[0m
+  [1m[35m (27.3ms)[0m  TRUNCATE TABLE `countries`;
+  [1m[36m (32.2ms)[0m  [1mTRUNCATE TABLE `delayed_jobs`;[0m
+  [1m[35m (26.2ms)[0m  TRUNCATE TABLE `diseases`;
+  [1m[36m (27.1ms)[0m  [1mTRUNCATE TABLE `diseases_users`;[0m
+  [1m[35m (26.8ms)[0m  TRUNCATE TABLE `divisions`;
+  [1m[36m (32.4ms)[0m  [1mTRUNCATE TABLE `divisions_users`;[0m
+  [1m[35m (32.5ms)[0m  TRUNCATE TABLE `employee_mails`;
+  [1m[36m (26.4ms)[0m  [1mTRUNCATE TABLE `evaluation_categories`;[0m
+  [1m[35m (28.6ms)[0m  TRUNCATE TABLE `evaluation_category_scores`;
+  [1m[36m (38.4ms)[0m  [1mTRUNCATE TABLE `evaluation_factor_scores`;[0m
+  [1m[35m (29.4ms)[0m  TRUNCATE TABLE `evaluation_factors`;
+  [1m[36m (42.0ms)[0m  [1mTRUNCATE TABLE `evaluation_logics`;[0m
+  [1m[35m (39.8ms)[0m  TRUNCATE TABLE `evaluation_point_actions`;
+  [1m[36m (31.2ms)[0m  [1mTRUNCATE TABLE `evaluation_point_scores`;[0m
+  [1m[35m (32.0ms)[0m  TRUNCATE TABLE `evaluation_points`;
+  [1m[36m (40.6ms)[0m  [1mTRUNCATE TABLE `evaluation_scores`;[0m
+  [1m[35m (31.7ms)[0m  TRUNCATE TABLE `evaluation_stress_factors`;
+  [1m[36m (27.2ms)[0m  [1mTRUNCATE TABLE `faq_categories`;[0m
+  [1m[35m (24.6ms)[0m  TRUNCATE TABLE `faqs`;
+  [1m[36m (24.9ms)[0m  [1mTRUNCATE TABLE `feedbacks`;[0m
+  [1m[35m (24.5ms)[0m  TRUNCATE TABLE `finc_app_plans`;
+  [1m[36m (18.9ms)[0m  [1mTRUNCATE TABLE `genders`;[0m
+  [1m[35m (24.6ms)[0m  TRUNCATE TABLE `hr_hotlines`;
+  [1m[36m (38.0ms)[0m  [1mTRUNCATE TABLE `illness_aggregate_questions`;[0m
+  [1m[35m (30.6ms)[0m  TRUNCATE TABLE `industrial_physician_details`;
+  [1m[36m (28.9ms)[0m  [1mTRUNCATE TABLE `industrial_physician_work_places`;[0m
+  [1m[35m (22.6ms)[0m  TRUNCATE TABLE `job_titles`;
+  [1m[36m (27.2ms)[0m  [1mTRUNCATE TABLE `job_types`;[0m
+  [1m[35m (24.3ms)[0m  TRUNCATE TABLE `large_categories`;
+  [1m[36m (31.4ms)[0m  [1mTRUNCATE TABLE `large_category_company_score_caches`;[0m
+  [1m[35m (24.4ms)[0m  TRUNCATE TABLE `large_category_company_score_statistic_caches`;
+  [1m[36m (21.6ms)[0m  [1mTRUNCATE TABLE `large_category_score_statistic_caches`;[0m
+  [1m[35m (27.2ms)[0m  TRUNCATE TABLE `large_category_scores`;
+  [1m[36m (29.8ms)[0m  [1mTRUNCATE TABLE `latest_answerer_stress_category_statistic_caches`;[0m
+  [1m[35m (31.7ms)[0m  TRUNCATE TABLE `medium_categories`;
+  [1m[36m (32.2ms)[0m  [1mTRUNCATE TABLE `medium_category_company_score_caches`;[0m
+  [1m[35m (25.8ms)[0m  TRUNCATE TABLE `medium_category_company_score_statistic_caches`;
+  [1m[36m (22.1ms)[0m  [1mTRUNCATE TABLE `medium_category_score_statistic_caches`;[0m
+  [1m[35m (29.4ms)[0m  TRUNCATE TABLE `medium_category_scores`;
+  [1m[36m (44.7ms)[0m  [1mTRUNCATE TABLE `message_caches`;[0m
+  [1m[35m (26.5ms)[0m  TRUNCATE TABLE `micro_categories`;
+  [1m[36m (32.1ms)[0m  [1mTRUNCATE TABLE `micro_category_company_score_caches`;[0m
+  [1m[35m (24.2ms)[0m  TRUNCATE TABLE `micro_category_company_score_statistic_caches`;
+  [1m[36m (31.3ms)[0m  [1mTRUNCATE TABLE `micro_category_score_logics`;[0m
+  [1m[35m (14.2ms)[0m  TRUNCATE TABLE `micro_category_score_statistic_caches`;
+  [1m[36m (27.3ms)[0m  [1mTRUNCATE TABLE `micro_category_scores`;[0m
+  [1m[35m (28.7ms)[0m  TRUNCATE TABLE `notices`;
+  [1m[36m (36.5ms)[0m  [1mTRUNCATE TABLE `oauth_access_tokens`;[0m
+  [1m[35m (23.5ms)[0m  TRUNCATE TABLE `oauth_applications`;
+  [1m[36m (21.8ms)[0m  [1mTRUNCATE TABLE `obesity_fat_genotypes`;[0m
+  [1m[35m (29.9ms)[0m  TRUNCATE TABLE `ongoing_surveys`;
+  [1m[36m (35.9ms)[0m  [1mTRUNCATE TABLE `operators`;[0m
+  [1m[35m (32.4ms)[0m  TRUNCATE TABLE `operators_messages`;
+  [1m[36m (32.0ms)[0m  [1mTRUNCATE TABLE `personal_informations`;[0m
+  [1m[35m (51.7ms)[0m  TRUNCATE TABLE `published_survey_result_caches`;
+  [1m[36m (28.9ms)[0m  [1mTRUNCATE TABLE `question_options`;[0m
+  [1m[35m (33.9ms)[0m  TRUNCATE TABLE `questionnaire_answers`;
+  [1m[36m (38.1ms)[0m  [1mTRUNCATE TABLE `questionnaire_chapters`;[0m
+  [1m[35m (55.2ms)[0m  TRUNCATE TABLE `questionnaire_sections`;
+  [1m[36m (25.4ms)[0m  [1mTRUNCATE TABLE `questionnaire_versions`;[0m
+  [1m[35m (36.4ms)[0m  TRUNCATE TABLE `questions`;
+  [1m[36m (25.8ms)[0m  [1mTRUNCATE TABLE `registration_access_tokens`;[0m
+  [1m[35m (21.2ms)[0m  TRUNCATE TABLE `result_of_stress_check_ups`;
+  [1m[36m (33.1ms)[0m  [1mTRUNCATE TABLE `score_deviations`;[0m
+  [1m[35m (22.7ms)[0m  TRUNCATE TABLE `score_types`;
+  [1m[36m (30.1ms)[0m  [1mTRUNCATE TABLE `section_header_sentences`;[0m
+  [1m[35m (23.7ms)[0m  TRUNCATE TABLE `section_header_types`;
+  [1m[36m (23.3ms)[0m  [1mTRUNCATE TABLE `section_types`;[0m
+  [1m[35m (18.6ms)[0m  TRUNCATE TABLE `self_care_article_categories`;
+  [1m[36m (22.4ms)[0m  [1mTRUNCATE TABLE `self_care_articles`;[0m
+  [1m[35m (20.6ms)[0m  TRUNCATE TABLE `skype_accounts`;
+  [1m[36m (22.1ms)[0m  [1mTRUNCATE TABLE `small_categories`;[0m
+  [1m[35m (25.3ms)[0m  TRUNCATE TABLE `small_category_company_score_caches`;
+  [1m[36m (26.8ms)[0m  [1mTRUNCATE TABLE `small_category_company_score_statistic_caches`;[0m
+  [1m[35m (19.6ms)[0m  TRUNCATE TABLE `small_category_score_statistic_caches`;
+  [1m[36m (28.8ms)[0m  [1mTRUNCATE TABLE `small_category_scores`;[0m
+  [1m[35m (20.2ms)[0m  TRUNCATE TABLE `smoking_statuses`;
+  [1m[36m (21.2ms)[0m  [1mTRUNCATE TABLE `solutions`;[0m
+  [1m[35m (33.3ms)[0m  TRUNCATE TABLE `stress_categories`;
+  [1m[36m (26.4ms)[0m  [1mTRUNCATE TABLE `stress_category_group_score_statistic_caches`;[0m
+  [1m[35m (26.9ms)[0m  TRUNCATE TABLE `stress_category_groups`;
+  [1m[36m (40.1ms)[0m  [1mTRUNCATE TABLE `stress_category_score_logics`;[0m
+  [1m[35m (41.3ms)[0m  TRUNCATE TABLE `stress_category_score_ranges`;
+  [1m[36m (37.7ms)[0m  [1mTRUNCATE TABLE `stress_category_scores`;[0m
+  [1m[35m (44.9ms)[0m  TRUNCATE TABLE `stress_check_counseling_reports`;
+  [1m[36m (36.0ms)[0m  [1mTRUNCATE TABLE `stress_group_scores`;[0m
+  [1m[35m (30.2ms)[0m  TRUNCATE TABLE `sub_evaluation_categories`;
+  [1m[36m (28.6ms)[0m  [1mTRUNCATE TABLE `sub_evaluation_category_scores`;[0m
+  [1m[35m (21.9ms)[0m  TRUNCATE TABLE `sub_evaluation_category_weights`;
+  [1m[36m (24.6ms)[0m  [1mTRUNCATE TABLE `summarized_stress_check_score_statistic_caches`;[0m
+  [1m[35m (29.7ms)[0m  TRUNCATE TABLE `summarized_stress_check_scores`;
+  [1m[36m (27.7ms)[0m  [1mTRUNCATE TABLE `survey_branch_details`;[0m
+  [1m[35m (32.4ms)[0m  TRUNCATE TABLE `survey_company_analysis_aspects`;
+  [1m[36m (33.2ms)[0m  [1mTRUNCATE TABLE `survey_company_analysis_traits`;[0m
+  [1m[35m (39.0ms)[0m  TRUNCATE TABLE `survey_employees`;
+  [1m[36m (27.0ms)[0m  [1mTRUNCATE TABLE `survey_employees_survey_company_analysis_traits`;[0m
+  [1m[35m (28.7ms)[0m  TRUNCATE TABLE `survey_initialization_progresses`;
+  [1m[36m (29.7ms)[0m  [1mTRUNCATE TABLE `survey_recapitulations`;[0m
+  [1m[35m (21.1ms)[0m  TRUNCATE TABLE `survey_types`;
+  [1m[36m (31.5ms)[0m  [1mTRUNCATE TABLE `survey_types_chapters`;[0m
+  [1m[35m (33.8ms)[0m  TRUNCATE TABLE `surveys`;
+  [1m[36m (32.4ms)[0m  [1mTRUNCATE TABLE `surveys_branch_offices`;[0m
+  [1m[35m (30.4ms)[0m  TRUNCATE TABLE `surveys_divisions`;
+  [1m[36m (30.6ms)[0m  [1mTRUNCATE TABLE `symptom_evaluation_category_scores`;[0m
+  [1m[35m (30.5ms)[0m  TRUNCATE TABLE `tickets`;
+  [1m[36m (32.7ms)[0m  [1mTRUNCATE TABLE `user_blood_tests`;[0m
+  [1m[35m (34.0ms)[0m  TRUNCATE TABLE `user_latest_answerer_caches`;
+  [1m[36m (47.9ms)[0m  [1mTRUNCATE TABLE `users`;[0m
+  [1m[35m (32.0ms)[0m  TRUNCATE TABLE `users_companies`;
+  [1m[36m (33.2ms)[0m  [1mTRUNCATE TABLE `users_company_mails`;[0m
+  [1m[35m (32.1ms)[0m  TRUNCATE TABLE `users_messages`;
+  [1m[36m (28.0ms)[0m  [1mTRUNCATE TABLE `users_obesity_fat_genotypes`;[0m
+  [1m[35m (62.6ms)[0m  TRUNCATE TABLE `wellness_score_rankings`;
+  [1m[36m (32.7ms)[0m  [1mTRUNCATE TABLE `wellness_scores`;[0m
+  [1m[35m (0.2ms)[0m  SET FOREIGN_KEY_CHECKS = 1
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.3ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_3
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `companies` (`name`, `email`, `created_at`, `updated_at`) VALUES ('MyString', 'company-1@test.com', '2015-12-28 05:52:58.801868', '2015-12-28 05:52:58.801868')[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `contract_options` (`company_id`, `created_at`, `updated_at`) VALUES (1, '2015-12-28 05:52:58.831755', '2015-12-28 05:52:58.831755')
+  [1m[36mContractOption Load (0.4ms)[0m  [1mSELECT  `contract_options`.* FROM `contract_options` WHERE `contract_options`.`company_id` = 1 LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `company_branch_aspects` (`company_id`, `created_at`, `updated_at`) VALUES (1, '2015-12-28 05:52:58.852883', '2015-12-28 05:52:58.852883')
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO `company_analysis_aspects` (`company_id`, `created_at`, `updated_at`) VALUES (1, '2015-12-28 05:52:59.480963', '2015-12-28 05:52:59.480963')[0m
+  [1m[35mCompanyAnalysisAspect Load (0.3ms)[0m  SELECT  `company_analysis_aspects`.* FROM `company_analysis_aspects` WHERE `company_analysis_aspects`.`id` = 1 LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE `company_branch_aspects` SET `company_id` = 1, `created_at` = '2015-12-28 05:52:58.852883', `updated_at` = '2015-12-28 05:52:58.852883', `id` = 1, `company_analysis_aspect_id` = 1 WHERE `company_branch_aspects`.`id` = 1[0m
+  [1m[35mCompanyBranchAspect Load (0.4ms)[0m  SELECT  `company_branch_aspects`.* FROM `company_branch_aspects` WHERE `company_branch_aspects`.`company_id` = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mRELEASE SAVEPOINT active_record_3[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_3
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO `company_analysis_aspects` (`company_id`, `created_at`, `updated_at`) VALUES (1, '2015-12-28 05:52:59.496453', '2015-12-28 05:52:59.496453')[0m
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_3
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_3[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO `company_analysis_traits` (`company_analysis_aspect_id`, `created_at`, `updated_at`) VALUES (2, '2015-12-28 05:52:59.509195', '2015-12-28 05:52:59.509195')
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_3[0m
+  [1m[35m (0.3ms)[0m  SAVEPOINT active_record_3
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO `questionnaire_versions` (`created_at`, `updated_at`) VALUES ('2015-12-28 05:52:59.563879', '2015-12-28 05:52:59.563879')[0m
+  [1m[35m (0.4ms)[0m  RELEASE SAVEPOINT active_record_3
+  [1m[36m (0.3ms)[0m  [1mSAVEPOINT active_record_3[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `companies` (`name`, `email`, `created_at`, `updated_at`) VALUES ('MyString', 'company-2@test.com', '2015-12-28 05:52:59.584553', '2015-12-28 05:52:59.584553')
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO `contract_options` (`company_id`, `created_at`, `updated_at`) VALUES (2, '2015-12-28 05:52:59.588129', '2015-12-28 05:52:59.588129')[0m
+  [1m[35mContractOption Load (0.4ms)[0m  SELECT  `contract_options`.* FROM `contract_options` WHERE `contract_options`.`company_id` = 2 LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `company_branch_aspects` (`company_id`, `created_at`, `updated_at`) VALUES (2, '2015-12-28 05:52:59.592309', '2015-12-28 05:52:59.592309')[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `company_analysis_aspects` (`company_id`, `created_at`, `updated_at`) VALUES (2, '2015-12-28 05:52:59.595151', '2015-12-28 05:52:59.595151')
+  [1m[36mCompanyAnalysisAspect Load (0.4ms)[0m  [1mSELECT  `company_analysis_aspects`.* FROM `company_analysis_aspects` WHERE `company_analysis_aspects`.`id` = 3 LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE `company_branch_aspects` SET `company_id` = 2, `created_at` = '2015-12-28 05:52:59.592309', `updated_at` = '2015-12-28 05:52:59.592309', `id` = 2, `company_analysis_aspect_id` = 3 WHERE `company_branch_aspects`.`id` = 2
+  [1m[36mCompanyBranchAspect Load (0.4ms)[0m  [1mSELECT  `company_branch_aspects`.* FROM `company_branch_aspects` WHERE `company_branch_aspects`.`company_id` = 2 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_3
+  [1m[36m (0.3ms)[0m  [1mSAVEPOINT active_record_3[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `surveys` (`questionnaire_version_id`, `survey_type_id`, `created_at`, `updated_at`) VALUES (1, 6, '2015-12-28 05:52:59.607515', '2015-12-28 05:52:59.607515')
+  [1m[36mCompany Load (0.5ms)[0m  [1mSELECT  `companies`.* FROM `companies` WHERE `companies`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `corporate_survey_details` (`company_id`, `num_of_users`, `start_date`, `end_date`, `initialization_deadline`, `company_result_published_from`, `user_result_published_from`, `initialized`, `taken_as_stress_check`, `survey_id`, `created_at`, `updated_at`) VALUES (1, 10, '2015-12-18', '2015-12-23', '2015-12-11', '2016-01-28 05:52:52.689789', '2016-01-28 05:52:52.689885', 1, 1, 1, '2015-12-28 05:52:59.611706', '2015-12-28 05:52:59.611706')
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO `survey_initialization_progresses` (`survey_id`, `number_of_paper_examinees`, `created_at`, `updated_at`) VALUES (1, 1, '2015-12-28 05:52:59.639798', '2015-12-28 05:52:59.639798')[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM `corporate_survey_details` WHERE `corporate_survey_details`.`company_id` = 1
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `corporate_survey_details` WHERE `corporate_survey_details`.`company_id` = 1[0m
+  [1m[35mCompany Load (0.5ms)[0m  SELECT  `companies`.* FROM `companies` INNER JOIN `corporate_survey_details` ON `companies`.`id` = `corporate_survey_details`.`company_id` WHERE `corporate_survey_details`.`survey_id` = 1 LIMIT 1
+  [1m[36mCompanyAnalysisAspect Load (1.0ms)[0m  [1mSELECT  `company_analysis_aspects`.* FROM `company_analysis_aspects` INNER JOIN `company_branch_aspects` ON `company_branch_aspects`.`company_analysis_aspect_id` = `company_analysis_aspects`.`id` WHERE `company_branch_aspects`.`company_id` = 1  ORDER BY `company_analysis_aspects`.`id` ASC LIMIT 1[0m
+  [1m[35mSurveyCompanyAnalysisAspect Exists (0.5ms)[0m  SELECT  1 AS one FROM `survey_company_analysis_aspects` WHERE (`survey_company_analysis_aspects`.`name` = BINARY '事業場' AND `survey_company_analysis_aspects`.`survey_id` = 1) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `survey_company_analysis_aspects` (`name`, `company_analysis_aspect_id`, `survey_id`, `created_at`, `updated_at`) VALUES ('事業場', 1, 1, '2015-12-28 05:52:59.710793', '2015-12-28 05:52:59.710793')[0m
+  [1m[35m (0.5ms)[0m  RELEASE SAVEPOINT active_record_3
+  [1m[36m (0.3ms)[0m  [1mSAVEPOINT active_record_3[0m
+  [1m[35mSurveyEmployee Exists (0.5ms)[0m  SELECT  1 AS one FROM `survey_employees` WHERE (`survey_employees`.`employee_unique_identification_key` = BINARY 'MyKey1' AND `survey_employees`.`survey_id` = 1) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `survey_employees` (`email`, `first_name`, `last_name`, `joined_date`, `employee_unique_identification_key`, `survey_id`, `created_at`, `updated_at`) VALUES ('testuser1@hoge.com', 'firstname1', 'lastname1', '2012-04-12', 'MyKey1', 1, '2015-12-28 05:52:59.733491', '2015-12-28 05:52:59.733491')[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`email` = 'testuser1@hoge.com' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_3[0m
+  [1m[35m (0.3ms)[0m  SAVEPOINT active_record_3
+  [1m[36mSurveyCompanyAnalysisAspect Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM `survey_company_analysis_aspects` WHERE (`survey_company_analysis_aspects`.`name` = BINARY 'MyName1' AND `survey_company_analysis_aspects`.`survey_id` = 1) LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `survey_company_analysis_aspects` (`name`, `survey_id`, `company_analysis_aspect_id`, `created_at`, `updated_at`) VALUES ('MyName1', 1, 2, '2015-12-28 05:52:59.743668', '2015-12-28 05:52:59.743668')
+  [1m[36m (0.3ms)[0m  [1mRELEASE SAVEPOINT active_record_3[0m
+  [1m[35m (0.3ms)[0m  SAVEPOINT active_record_3
+  [1m[36mSurveyCompanyAnalysisTrait Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM `survey_company_analysis_traits` WHERE (`survey_company_analysis_traits`.`name` = BINARY 'MyString1' AND `survey_company_analysis_traits`.`survey_company_analysis_aspect_id` = 2) LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `survey_company_analysis_traits` (`id`, `name`, `survey_id`, `company_analysis_trait_id`, `survey_company_analysis_aspect_id`, `created_at`, `updated_at`) VALUES (1, 'MyString1', 1, 1, 2, '2015-12-28 05:52:59.758238', '2015-12-28 05:52:59.758238')
+  [1m[36m (0.3ms)[0m  [1mRELEASE SAVEPOINT active_record_3[0m
+  [1m[35m (0.3ms)[0m  SAVEPOINT active_record_3
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `survey_branch_details` (`survey_company_analysis_trait_id`, `zipcode`, `address`, `labor_insurance_number`, `contact_personnel_name`, `number_of_employees`, `phone_number`, `created_at`, `updated_at`) VALUES (1, '111-1111', 'MyString', '12-3-45-567890-123', 'MyString', 100, '012-3456-7890', '2015-12-28 05:52:59.775859', '2015-12-28 05:52:59.775859')[0m
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_3
+  [1m[36m (0.3ms)[0m  [1mSAVEPOINT active_record_3[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `survey_employees_survey_company_analysis_traits` (`survey_employee_id`, `survey_company_analysis_trait_id`, `created_at`, `updated_at`) VALUES (1, 1, '2015-12-28 05:52:59.790404', '2015-12-28 05:52:59.790404')
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_3[0m
+  [1m[35m (0.3ms)[0m  SAVEPOINT active_record_3
+  [1m[36mOperator Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM `operators` WHERE `operators`.`email` = BINARY 'company-1@test.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `operators` (`name`, `email`, `encrypted_password`, `roles_mask`, `created_at`, `updated_at`) VALUES ('MyString', 'company-1@test.com', '$2a$04$T2TzlywGFK/uq9V6d6LXOepBMerc167BQza6CMeFz7TaFISdAfhu6', 32, '2015-12-28 05:52:59.837780', '2015-12-28 05:52:59.837780')
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO `companies_operators` (`company_id`, `created_at`, `updated_at`) VALUES (1, '2015-12-28 05:52:59.840080', '2015-12-28 05:52:59.840080')[0m
+  [1m[35mSQL (0.8ms)[0m  UPDATE `companies_operators` SET `operator_id` = 1, `updated_at` = '2015-12-28 05:52:59.847100' WHERE `companies_operators`.`id` = 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `industrial_physician_details` (`phone_number`, `doctor_number`, `skype_identification_key`, `approval_of_privacy_policy`, `operator_id`, `created_at`, `updated_at`) VALUES ('012-3456-7890', 111, 'MyString', 1, 1, '2015-12-28 05:52:59.854368', '2015-12-28 05:52:59.854368')[0m
+  [1m[35m (0.3ms)[0m  RELEASE SAVEPOINT active_record_3
+  [1m[36m (0.3ms)[0m  [1mSAVEPOINT active_record_3[0m
+  [1m[35mOperator Exists (0.4ms)[0m  SELECT  1 AS one FROM `operators` WHERE `operators`.`email` = BINARY 'company-2@test.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `operators` (`name`, `email`, `encrypted_password`, `roles_mask`, `created_at`, `updated_at`) VALUES ('MyString', 'company-2@test.com', '$2a$04$n55At.fv.QaUm9z.v1a7IOK07F8zJV4gvkDIVsY8dJEyj6cE1boxK', 32, '2015-12-28 05:52:59.866618', '2015-12-28 05:52:59.866618')[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `companies_operators` (`company_id`, `created_at`, `updated_at`) VALUES (1, '2015-12-28 05:52:59.868745', '2015-12-28 05:52:59.868745')
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE `companies_operators` SET `operator_id` = 2, `updated_at` = '2015-12-28 05:52:59.871407' WHERE `companies_operators`.`id` = 2[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `industrial_physician_details` (`phone_number`, `doctor_number`, `skype_identification_key`, `approval_of_privacy_policy`, `operator_id`, `created_at`, `updated_at`) VALUES ('012-3456-7890', 111, 'MyString', 1, 2, '2015-12-28 05:52:59.873391', '2015-12-28 05:52:59.873391')
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_3[0m
+  [1m[35m (0.3ms)[0m  SAVEPOINT active_record_3
+  [1m[36mOperator Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM `operators` WHERE `operators`.`email` = BINARY 'company-3@test.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `operators` (`name`, `email`, `encrypted_password`, `roles_mask`, `created_at`, `updated_at`) VALUES ('MyString', 'company-3@test.com', '$2a$04$.Q8veRZNrWiL1of266mPB.pZFtiyZxi5XCzbE5jRkZmRmbKZSanZS', 1, '2015-12-28 05:52:59.883327', '2015-12-28 05:52:59.883327')
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `companies_operators` (`company_id`, `created_at`, `updated_at`) VALUES (1, '2015-12-28 05:52:59.885567', '2015-12-28 05:52:59.885567')[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE `companies_operators` SET `operator_id` = 3, `updated_at` = '2015-12-28 05:52:59.887327' WHERE `companies_operators`.`id` = 3
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_3[0m
+  [1m[35m (0.4ms)[0m  SAVEPOINT active_record_3
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM `counselings` WHERE `counselings`.`operator_id` = 1 AND ((start_at >= '2015-01-01 00:00:00.000000' AND end_at <= '2015-01-01 00:30:00.000000') OR (start_at >= '2015-01-01 00:00:00.000000' AND start_at < '2015-01-01 00:30:00.000000' AND end_at >= '2015-01-01 00:30:00.000000') OR (start_at <= '2015-01-01 00:00:00.000000' AND end_at > '2015-01-01 00:00:00.000000' AND end_at <= '2015-01-01 00:30:00.000000') OR (start_at <= '2015-01-01 00:00:00.000000' AND end_at >= '2015-01-01 00:30:00.000000'))[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `counselings` (`schedule_status`, `operator_id`, `start_at`, `end_at`, `created_at`, `updated_at`) VALUES (1, 1, '2015-01-01 00:00:00.000000', '2015-01-01 00:30:00.000000', '2015-12-28 05:52:59.949595', '2015-12-28 05:52:59.949595')
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `counseling_place_choices` (`counseling_place_type`, `memo`, `counseling_id`, `created_at`, `updated_at`) VALUES (1, 'MyText', 1, '2015-12-28 05:52:59.951702', '2015-12-28 05:52:59.951702')[0m
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_3
+  [1m[36m (0.3ms)[0m  [1mSAVEPOINT active_record_3[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `stress_check_counseling_reports` (`organization_division`, `working_hour`, `overtime_hours_for_last_half_year`, `under_medical_treatment`, `stressor`, `phisical_stress_and_psychological_stress`, `phisical_stress_and_psychological_stress_note`, `special_report`, `category_stress_reaction_ids`, `stress_reaction_note`, `category_relevance_between_stress_and_job_id`, `category_job_id`, `corrective_action_for_working_health_enviroment`, `needs_to_investigate_working_enviroment`, `special_report_based_on_the_interviews`, `category_adjustment_for_health_at_working_enviroment_id`, `other_report`, `report_details`, `represetative`, `next_counseling_date`, `interviewee`, `advices_to_improve_working_enviroment`, `advices_for_relationship_with_boss_and_colleages`, `consultation`, `others_contact_matters`, `places`, `counseling_date`, `industrial_physician_name`, `counseling_id`) VALUES ('division', 1, 1, 1, 'stressor', 1, 'stress note', 'special report', '1', 'stress reaction note', 1, 1, 1, 1, 'special report based on the interviews', 1, 'other report', 'report details', 'represetative', '2015-11-24', 'interviewee', 'advices to improve working enviroment', 'advices for relationship with boss and colleages', 'consultation', 'others contact matters', 'place', '2015-11-25', 'industrial_physician_name', 1)
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_3[0m
+  [1m[35m (0.3ms)[0m  SAVEPOINT active_record_3
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `stress_check_counseling_reports` (`organization_division`, `working_hour`, `overtime_hours_for_last_half_year`, `under_medical_treatment`, `stressor`, `phisical_stress_and_psychological_stress`, `phisical_stress_and_psychological_stress_note`, `special_report`, `category_stress_reaction_ids`, `stress_reaction_note`, `category_relevance_between_stress_and_job_id`, `category_job_id`, `corrective_action_for_working_health_enviroment`, `needs_to_investigate_working_enviroment`, `special_report_based_on_the_interviews`, `category_adjustment_for_health_at_working_enviroment_id`, `other_report`, `report_details`, `represetative`, `next_counseling_date`, `interviewee`, `advices_to_improve_working_enviroment`, `advices_for_relationship_with_boss_and_colleages`, `consultation`, `others_contact_matters`, `places`, `counseling_date`, `industrial_physician_name`) VALUES ('division', 1, 1, 1, 'stressor', 1, 'stress note', 'special report', '1', 'stress reaction note', 1, 1, 1, 1, 'special report based on the interviews', 1, 'other report', 'report details', 'represetative', '2015-11-24', 'interviewee', 'advices to improve working enviroment', 'advices for relationship with boss and colleages', 'consultation', 'others contact matters', 'place', '2015-11-25', 'industrial_physician_name')[0m
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_3
+Processing by Operators::IndustrialPhysicians::StressCheckCounselingReportsController#update as HTML
+  Parameters: {"stress_check_counseling_report"=>{"organization_division"=>"division", "working_hour"=>"1", "overtime_hours_for_last_half_year"=>true, "under_medical_treatment"=>true, "stressor"=>"stressor", "phisical_stress_and_psychological_stress"=>true, "phisical_stress_and_psychological_stress_note"=>"stress note", "special_report"=>"special report", "category_stress_reaction_ids"=>"1", "stress_reaction_note"=>"replaced stress reaction note", "category_relevance_between_stress_and_job_id"=>"1", "category_job_id"=>"1", "corrective_action_for_working_health_enviroment"=>true, "needs_to_investigate_working_enviroment"=>true, "special_report_based_on_the_interviews"=>"special report based on the interviews", "category_adjustment_for_health_at_working_enviroment_id"=>"1", "other_report"=>"other report", "report_details"=>"report details", "represetative"=>"represetative", "next_counseling_date"=>"2015-11-24", "interviewee"=>"interviewee", "advices_to_improve_working_enviroment"=>"advices to improve working enviroment", "advices_for_relationship_with_boss_and_colleages"=>"advices for relationship with boss and colleages", "consultation"=>"consultation", "others_contact_matters"=>"others contact matters", "places"=>"place", "counseling_date"=>"2015-11-25", "industrial_physician_name"=>"industrial_physician_name"}, "id"=>"2"}
+  [1m[36mOperator Load (0.4ms)[0m  [1mSELECT  `operators`.* FROM `operators` WHERE `operators`.`id` = 1  ORDER BY `operators`.`id` ASC LIMIT 1[0m
+  [1m[35mIndustrialPhysicianDetail Load (0.4ms)[0m  SELECT  `industrial_physician_details`.* FROM `industrial_physician_details` WHERE `industrial_physician_details`.`operator_id` = 1 LIMIT 1
+  [1m[36mStressCheckCounselingReport Load (0.4ms)[0m  [1mSELECT  `stress_check_counseling_reports`.* FROM `stress_check_counseling_reports` WHERE `stress_check_counseling_reports`.`id` = 2 LIMIT 1[0m
+Redirected to http://test.host/
+Completed 302 Found in 27ms (ActiveRecord: 1.3ms)
+  [1m[35mStressCheckCounselingReport Load (0.4ms)[0m  SELECT  `stress_check_counseling_reports`.* FROM `stress_check_counseling_reports` WHERE `stress_check_counseling_reports`.`id` = 2 LIMIT 1
+  [1m[36m (7.3ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_2[0m
+  [1m[35m (1.4ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m

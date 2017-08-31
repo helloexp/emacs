@@ -1,0 +1,194 @@
+/* eslint no-unused-vars: 1 */
+/* eslint object-shorthand: 0 */
+
+'use strict';
+
+process.env.NODE_ENV = 'test';
+
+const mongoose = require('mongoose');
+const should = require('chai').should();
+const Feed = require('../../models/feed');
+const Comment = require('../../models/comment');
+const Attachment = require('../../models/attachment');
+const DocumentObjectId = mongoose.Types.ObjectId;
+const MongooseError = mongoose.Error;
+const ValidationError = mongoose.Error.ValidationError;
+
+const company_id = '6a86645ee27811e59948080027599999';
+const account_id = '7b732aa2fdc011e3acbb22000a7c9999';
+const group_id = '__all__';
+const attachment_id = new DocumentObjectId;
+const feed_id = new DocumentObjectId;
+const comment_id = new DocumentObjectId;
+const file_name = 'a3807a7d-da3b-4835-b23e-7d8ac15349e3.jpg';
+const original_filename = 'test.jpg';
+const content_type = 'image/jpeg';
+const size = 243910;
+const file_type = 'file';
+
+
+describe('Attachment model spec suite', () => {
+    require('./utils')();
+    describe('create()', () => {
+
+        it('create a new Attachment to feed', (done) => {
+            Attachment.create({
+                _id:                attachment_id,
+                original_filename:  original_filename,
+                size:               size,
+                content_type:       content_type,
+                company_id:         company_id,
+                filename:           file_name,
+                feed_id:            feed_id,
+                comment_id:         null,
+                posted_by:          account_id,
+                group_id:           group_id,
+                file_type:          file_type
+            }, (err, result) => {
+                should.not.exist(err);
+                result._id.should.eql(attachment_id);
+                result.original_filename.should.eql(original_filename);
+                result.size.should.eql(size);
+                result.content_type.should.eql(content_type);
+                result.company_id.should.eql(company_id);
+                result.filename.should.eql(file_name);
+                result.feed_id.should.eql(feed_id);
+                should.not.exist(result.comment_id);
+                result.posted_by.should.eql(account_id);
+                result.group_id.should.eql(group_id);
+                result.file_type.should.eql(file_type);
+                result.created_at.should.to.be.a('date');
+                result.updated_at.should.to.be.a('date');
+
+                done();
+            });
+        });
+
+        it('create a new Attachment to comment', (done) => {
+            Attachment.create({
+                _id:                attachment_id,
+                original_filename:  original_filename,
+                size:               size,
+                content_type:       content_type,
+                company_id:         company_id,
+                filename:           file_name,
+                feed_id:            null,
+                comment_id:         comment_id,
+                posted_by:          account_id,
+                group_id:           group_id,
+                file_type:          file_type
+            }, (err, result) => {
+                should.not.exist(err);
+                result._id.should.eql(attachment_id);
+                result.original_filename.should.eql(original_filename);
+                result.size.should.eql(size);
+                result.content_type.should.eql(content_type);
+                result.company_id.should.eql(company_id);
+                result.filename.should.eql(file_name);
+                should.not.exist(result.feed_id);
+                result.comment_id.should.eql(comment_id);
+                result.posted_by.should.eql(account_id);
+                result.group_id.should.eql(group_id);
+                result.file_type.should.eql(file_type);
+                result.created_at.should.to.be.a('date');
+                result.updated_at.should.to.be.a('date');
+
+                done();
+            });
+        });
+    });
+
+
+    describe('Validataion', () => {
+        it('validation error', (done) => {
+            Attachment.create({ }, (err, result) => {
+                should.exist(err);
+                should.not.exist(result);
+                err.should.to.be.an.instanceof(MongooseError);
+                err.should.to.be.an.instanceof(ValidationError);
+                err.message.should.to.be.eql('Attachment validation failed');
+                err.errors.posted_by.message.should.to.be.eql('posted_by is required');
+                err.errors.original_filename.message.should.to.be.eql('original_filename is required');
+                err.errors.size.message.should.to.be.eql('size is required');
+                err.errors.company_id.message.should.to.be.eql('company_id is required');
+                err.errors.original_filename.message.should.to.be.eql('original_filename is required');
+                err.errors.filename.message.should.to.be.eql('filename is required');
+                err.errors.group_id.message.should.to.be.eql('group_id is required');
+
+                done();
+            });
+        });
+
+        it('filename unique validation error', (done) => {
+            Attachment.create({
+                original_filename:  original_filename,
+                size:               size,
+                content_type:       content_type,
+                company_id:         company_id,
+                filename:           file_name,
+                feed_id:            feed_id,
+                comment_id:         null,
+                posted_by:          account_id,
+                group_id:           group_id,
+                file_type:          file_type
+            }, (err, result) => {
+                should.not.exist(err);
+                should.exist(result);
+
+                Attachment.create({
+                    original_filename:  original_filename,
+                    size:               size,
+                    content_type:       content_type,
+                    company_id:         company_id,
+                    filename:           file_name,
+                    feed_id:            feed_id,
+                    comment_id:         null,
+                    posted_by:          account_id,
+                    group_id:           group_id,
+                    file_type:          file_type
+                }, (err, result) => {
+                    should.exist(err);
+                    should.not.exist(result);
+                    err.name.should.to.be.eql('MongoError');
+                    err.code.should.to.be.eql(11000);
+
+                    done();
+                });
+            });
+        });
+
+    });
+
+    describe('destroy()', () => {
+        it('destroy a attachment', (done) => {
+            Attachment.create({
+                _id:                attachment_id,
+                original_filename:  original_filename,
+                size:               size,
+                content_type:       content_type,
+                company_id:         company_id,
+                filename:           file_name,
+                feed_id:            feed_id,
+                comment_id:         null,
+                posted_by:          account_id,
+                group_id:           group_id,
+                file_type:          file_type
+            }, (err, result) => {
+                should.not.exist(err);
+                should.exist(result);
+
+                Attachment.findByIdAndRemove(attachment_id, (err, result) => {
+                    should.not.exist(err);
+                    should.exist(result);
+
+                    Attachment.findById(attachment_id, (err, result) => {
+                        should.not.exist(err);
+                        should.not.exist(result);
+
+                        done();
+                    });
+                });
+            });
+        });
+    });
+});

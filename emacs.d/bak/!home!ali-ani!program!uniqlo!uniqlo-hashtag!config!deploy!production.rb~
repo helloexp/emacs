@@ -1,0 +1,17 @@
+
+
+require 'net/ssh/proxy/command'
+
+
+server '10.0.1.50', user: 'mruby', roles: %w[app web db],
+ssh_options: {
+    keys: [File.expand_path('~/uniq/uniqlo_influencer.pem')],
+    forward_agent: true,
+    auth_methods: %w(publickey),
+    proxy: Net::SSH::Proxy::Command::new('ssh alliance@54.65.232.249 -i ~/uniq/uniqlo_influencer_gateway.pem -W %h:%p')
+}
+
+
+
+
+

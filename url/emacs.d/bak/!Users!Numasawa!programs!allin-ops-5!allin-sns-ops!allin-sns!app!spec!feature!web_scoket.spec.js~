@@ -1,0 +1,563 @@
+'use strict';
+
+process.env.NODE_ENV = 'test';
+
+const supertest = require('supertest');
+const app       = require('../../app');
+const request   = supertest(app);
+
+const url    = '/api/v1/feeds/';
+const should = require('chai').should();
+
+const co = require('co');
+
+
+describe('/api/v1', () => {
+    const ok           = 200;
+
+    const bad_request  = 400;
+    const unauthorized = 401;
+    const not_found    = 404;
+    const error        = 500;
+
+    const bad_request_code_message  = 'bad_request';
+    const bad_request_error_message = 'required';
+    const not_found_error_message = 'Record does not exists';
+    const unathorized_message = 'Web API UNAUTHORIZED';
+
+    const mock_auth_node = require('../lib/mock_server');
+    const mongodb        = require('../lib/db');
+
+    const factory = require('../lib/fixture');
+    const fixture = factory.fixture();
+
+    const Feed    = require('../../models/feed');
+    const Comment = require('../../models/comment');
+
+
+    before( (done) => {
+        Feed.collection.drop();
+        fixture.create_feed_data();
+        done();
+    });
+
+    beforeEach( (done) => {
+        mock_auth_node.create();
+        done();
+    });
+
+    afterEach( (done) => {
+        mock_auth_node.close();
+        done();
+    });
+
+    after( (done) => {
+        mongodb.clean();
+        done();
+    });
+
+
+    function find_feed(condition) {
+        return new Promise( (resolve, reject) => {
+            Feed.find(condition, (err, feeds) => {
+                if (err) return reject(err);
+                resolve(feeds);
+            });
+        });
+    }
+
+    function find_comment(condition) {
+        return new Promise( (resolve, reject) => {
+            Comment.find(condition, (err, feeds) => {
+                if (err) return reject(err);
+                resolve(feeds);
+            });
+        });
+    }
+
+
+    function get(uri, accept, content_type, authorization) {
+        return new Promise( (resolve, reject) => {
+            request
+                .get(uri)
+                .set('Accept',        accept)
+                .set('Content-type',  content_type)
+                .set('Authorization', authorization)
+                .end((err, res) => {
+                    if (err) return reject(err);
+                    resolve(res);
+                });
+        });
+    }
+
+    function post(uri, body, accept, content_type, authorization) {
+        return new Promise( (resolve, reject) => {
+            request
+                .post(uri)
+                .send(body)
+                .set('Accept',        accept)
+                .set('Content-type',  content_type)
+                .set('Authorization', authorization)
+                .end((err, res) => {
+                    if (err) return reject(err);
+                    resolve(res);
+                });
+        });
+    }
+
+    function put(uri, body, accept, content_type, authorization) {
+        return new Promise( (resolve, reject) => {
+            request
+                .put(uri)
+                .send(body)
+                .set('Accept',        accept)
+                .set('Content-type',  content_type)
+                .set('Authorization', authorization)
+                .end((err, res) => {
+                    if (err) return reject(err);
+                    resolve(res);
+                });
+        });
+    }
+
+    function del(uri, accept, content_type, authorization) {
+        return new Promise( (resolve, reject) => {
+            request
+                .del(uri)
+                .set('Accept',        accept)
+                .set('Content-type',  content_type)
+                .set('Authorization', authorization)
+                .end((err, res) => {
+                    if (err) return reject(err);
+                    resolve(res);
+                });
+        });
+    }
+
+
+
+
+    describe('/feeds', () => {
+        it('get : return 5 json data when limit 5', co.wrap(function *() {
+            const limit  = 5;
+            const offset = 0;
+
+            // request setting
+            let uri     = `${url}?group_id=${fixture.valid_seeds[0].group_id}&limit=${limit}&offset=${offset}`;
+            let accept  = fixture.valid_seeds[0].header;
+            let content = fixture.valid_seeds[0].header;
+            let auth    = fixture.valid_seeds[0].authorization;
+
+            // get index
+            let res = yield get(uri, accept, content, auth);
+            should.exist(res.statusCode);
+            res.statusCode.should.equal(ok);
+            res.body.should.have.length(limit);
+
+            res.body[0].should.have.property('id');
+            res.body[0].should.have.property('contents');
+            res.body[0].should.have.property('created_at');
+            res.body[0].should.have.property('updated_at');
+            res.body[0].should.have.property('posted_by');
+            res.body[0].should.have.property('likes');
+            res.body[0].should.have.property('attachments');
+            res.body[0].should.have.property('comments');
+
+            res.body[0].contents.should.equal(fixture.valid_seeds[0].contents);
+            res.body[0].posted_by.should.equal(fixture.valid_seeds[0].account_id);
+
+            res.body.should.be.an.instanceof(Array);
+        }));
+
+
+
+
+        it('get : failed authenticate with no header', co.wrap(function *() {
+            const limit  = 1;
+            const offset = 0;
+
+            // request setting
+            let uri     = `${url}?group_id=${fixture.valid_seeds[0].group_id}&limit=${limit}&offset=${offset}`;
+            let accept  = '';
+            let content = '';
+            let auth    = '';
+
+            // get index
+            let res = yield get(uri, accept, content, auth);
+            res.statusCode.should.equal(unauthorized);
+
+            // TODO: error時のres.body内容不明
+            res.body.should.be.empty;
+        }));
+
+
+
+
+        it('get : failed authenticate with invalid token', co.wrap(function *() {
+            const limit  = 1;
+            const offset = 0;
+
+            // request setting
+            let uri     = `${url}?group_id=${fixture.valid_seeds[0].group_id}&limit=${limit}&offset=${offset}`;
+            let accept  = fixture.valid_seeds[0].header;
+            let content = fixture.valid_seeds[0].header;
+            let auth    = fixture.invalid_seeds[0].authorization;
+
+            // get index
+            let res = yield get(uri, accept, content, auth);
+            res.statusCode.should.equal(error);
+        }));
+
+
+
+
+        it('get : return 3 json data with another compnay_id and group_id', co.wrap(function *() {
+            // group_id固定されているため、割愛
+        }));
+
+
+
+
+        it('get : return 1 json data with another compnay_id', co.wrap(function *() {
+            const limit  = 10;
+            const offset = 0;
+
+            // request setting
+            let uri     = `${url}?group_id=${fixture.valid_seeds[0].group_id}&limit=${limit}&offset=${offset}`;
+            let accept  = fixture.valid_seeds[2].header;
+            let content = fixture.valid_seeds[2].header;
+            let auth    = fixture.valid_seeds[2].authorization;
+
+            // get index
+            let res = yield get(uri, accept, content, auth);
+            res.statusCode.should.equal(ok);
+            res.body.should.have.length(1);
+        }));
+
+
+
+
+        it('get : return 0 json data with another group_id (never been wirte)', co.wrap(function *() {
+            // group_id固定されているため、割愛
+        }));
+
+
+
+
+        it('post : create feeds and return feeds json data in body', co.wrap(function *() {
+            // request setting
+            let uri     = `${url}?group_id=${fixture.valid_seeds[0].group_id}`;
+            let body    = {'contents': 'this is test text'};
+            let accept  = fixture.valid_seeds[0].header;
+            let content = fixture.valid_seeds[0].header;
+            let auth    = fixture.valid_seeds[0].authorization;
+
+            // get index
+            let res = yield post(uri, body, accept, content, auth);
+            res.statusCode.should.equal(ok);
+
+            res.body.contents.should.equal(body.contents);
+            res.body.posted_by.should.equal(fixture.valid_seeds[0].account_id);
+
+            res.body.should.have.property('id');
+            res.body.should.have.property('contents');
+            res.body.should.have.property('created_at');
+            res.body.should.have.property('updated_at');
+            res.body.should.have.property('posted_by');
+            res.body.should.have.property('likes');
+            res.body.should.have.property('attachments');
+            res.body.should.have.property('comments');
+
+            res.body.contents.should.equal(res.body.contents);
+            res.body.posted_by.should.equal(fixture.valid_seeds[0].account_id);
+        }));
+
+
+
+
+        it('post : fail create feeds with no contents. return 500', co.wrap(function *() {
+            // request setting
+            let uri     = `${url}?group_id=${fixture.valid_seeds[0].group_id}`;
+            let body    = {'contents': ''};
+            let accept  = fixture.valid_seeds[0].header;
+            let content = fixture.valid_seeds[0].header;
+            let auth    = fixture.valid_seeds[0].authorization;
+
+            // get index
+            let res = yield post(uri, body, accept, content, auth);
+            res.statusCode.should.equal(bad_request);
+
+            res.body.message.code.should.equal(bad_request_code_message);
+            res.body.message.errors.contents[0].should.equal(bad_request_error_message );
+        }));
+    });
+
+
+
+
+    describe('/:id GET', () => {
+        it('show', co.wrap(function *() {
+            // undefined
+        }));
+    });
+
+
+
+
+    describe('/:id PUT', () => {
+        it('success update feeds and return 200 ok', co.wrap(function *() {
+            // request setting
+            let uri     = `${url}?group_id=${fixture.valid_seeds[0].group_id}`;
+            let body    = {'contents': '1'};
+            let accept  = fixture.valid_seeds[0].header;
+            let content = fixture.valid_seeds[0].header;
+            let auth    = fixture.valid_seeds[0].authorization;
+
+            // post feed
+            let res = yield post(uri, body, accept, content, auth);
+            res.statusCode.should.equal(ok);
+            res.body.contents.should.equal(body.contents);
+
+            // request setting
+            uri  = `${url}${res.body.id}?group_id=${fixture.valid_seeds[0].group_id}`;
+            body = {'contents': '2'};
+            // let accept    = fixture.valid_seeds[0].header;
+            // let content   = fixture.valid_seeds[0].header;
+            // let auth      = fixture.valid_seeds[0].authorization;
+
+            // update
+            res = yield put(uri, body, accept, content, auth);
+
+            res.statusCode.should.equal(ok);
+            res.body.contents.should.equal(body.contents);
+
+            res.body.should.have.property('id');
+            res.body.should.have.property('contents');
+            res.body.should.have.property('created_at');
+            res.body.should.have.property('updated_at');
+            res.body.should.have.property('posted_by');
+            res.body.should.have.property('likes');
+            res.body.should.have.property('attachments');
+            res.body.should.have.property('comments');
+        }));
+
+
+
+
+        it('fail update feeds and return 500. no contents', co.wrap(function *() {
+            // request setting
+            let uri     = `${url}?group_id=${fixture.valid_seeds[0].group_id}`;
+            let body    = {'contents': '1'};
+            let accept  = fixture.valid_seeds[0].header;
+            let content = fixture.valid_seeds[0].header;
+            let auth    = fixture.valid_seeds[0].authorization;
+
+            // post feed
+            let res = yield post(uri, body, accept, content, auth);
+            res.statusCode.should.equal(ok);
+            res.body.contents.should.equal(body.contents);
+
+            // request setting
+            uri     = `${url}${res.body.id}'?group_id='${fixture.valid_seeds[0].group_id}`;
+            body    = {'contents': ''};
+            accept  = fixture.valid_seeds[0].header;
+            content = fixture.valid_seeds[0].header;
+            auth    = fixture.valid_seeds[0].authorization;
+
+            // update
+            res = yield put(uri, body, accept, content, auth);
+            res.body.should.not.be.empty;
+            res.body.message.should.equal(unathorized_message);
+            res.body['error-info'].should.not.be.empty;
+            res.statusCode.should.equal(error);
+        }));
+
+
+
+
+        it('fail update feeds and return 500 error. non-existed id', co.wrap(function *() {
+            // request setting
+            let uri  = `${url}?group_id=${fixture.valid_seeds[0].group_id}`;
+            let body    = {'contents': '1'};
+            let accept  = fixture.valid_seeds[0].header;
+            let content = fixture.valid_seeds[0].header;
+            let auth    = fixture.valid_seeds[0].authorization;
+
+            // get index
+            let res = yield post(uri, body, accept, content, auth);
+            res.statusCode.should.equal(ok);
+            res.body.contents.should.equal(body.contents);
+
+            // request setting
+            const dummy_id = '570f39e919494a8858353549';
+
+            uri     = `${url}${dummy_id}?group_id=${fixture.valid_seeds[0].group_id}`;
+            body    = {'contents': '2'};
+            accept  = fixture.valid_seeds[0].header;
+            content = fixture.valid_seeds[0].header;
+            auth    = fixture.valid_seeds[0].authorization;
+
+            res = yield put(uri, body, accept, content, auth);
+            res.statusCode.should.equal(not_found);
+            res.body.message.should.equal(not_found_error_message);
+        }));
+
+
+
+
+        it('fail update feeds and return 404 error. another accound_id', co.wrap(function *() {
+            // request setting
+            let uri     = `${url}?group_id=${fixture.valid_seeds[0].group_id}`;
+            let body    = {'contents': '1'};
+            let accept  = fixture.valid_seeds[0].header;
+            let content = fixture.valid_seeds[0].header;
+            let auth    = fixture.valid_seeds[0].authorization;
+
+            // get index
+            let res = yield post(uri, body, accept, content, auth);
+            res.statusCode.should.equal(ok);
+            res.body.contents.should.equal(body.contents);
+
+            // request setting
+            uri     = `${url}${res.body.id}?group_id=${fixture.valid_seeds[5].group_id}`;
+            body    = {'contents': '2'};
+            accept  = fixture.valid_seeds[5].header;
+            content = fixture.valid_seeds[5].header;
+            auth    = fixture.valid_seeds[5].authorization;
+
+            res = yield put(uri, body, accept, content, auth);
+            res.body.should.not.be.empty;
+            res.body.message.should.equal(not_found_error_message);
+            res.statusCode.should.equal(not_found);
+        }));
+
+
+
+
+        it('fail update feeds and return 404 error. another company_id', co.wrap(function *() {
+            // request setting
+            let uri     = `${url}?group_id=${fixture.valid_seeds[0].group_id}`;
+            let body    = {'contents': '1'};
+            let accept  = fixture.valid_seeds[0].header;
+            let content = fixture.valid_seeds[0].header;
+            let auth    = fixture.valid_seeds[0].authorization;
+
+            // get index
+            let res = yield post(uri, body, accept, content, auth);
+            res.statusCode.should.equal(ok);
+            res.body.contents.should.equal(body.contents);
+
+            // request setting
+            uri     = `${url}${res.body.id}?group_id=${fixture.valid_seeds[4].group_id}`;
+            body    = {'contents': '2'};
+            accept  = fixture.valid_seeds[4].header;
+            content = fixture.valid_seeds[4].header;
+            auth    = fixture.valid_seeds[4].authorization;
+
+            // update : fail
+            res = yield put(uri, body, accept, content, auth);
+            res.statusCode.should.equal(not_found);
+            res.body.message.should.equal(not_found_error_message);
+        }));
+    });
+
+
+    describe('/:id DELETE', () => {
+        it('success destroy and return 200 ok with valid id', co.wrap(function *() {
+            // TODO : attachment削除確認を
+
+            // 事前
+            const feeds    = yield find_feed({'posted_by': fixture.valid_seeds[0].account_id});
+            const comments = yield find_comment({feed_id: feeds[0].id});
+            comments.length.should.equal(fixture.comment_per_feed);
+
+            // request setting
+            let uri     = `${url}${feeds[0].id}?group_id=${fixture.valid_seeds[0].group_id}`;
+            let accept  = fixture.valid_seeds[0].header;
+            let content = fixture.valid_seeds[0].header;
+            let auth    = fixture.valid_seeds[0].authorization;
+
+            // get index
+            let res = yield del(uri, accept, content, auth);
+            res.statusCode.should.equal(ok);
+            res.body.id.should.equal(feeds[0].id);
+
+            // 事後
+            const post_feeds    = yield find_feed({'posted_by': fixture.valid_seeds[0].account_id});
+            const post_comments = yield find_comment({feed_id: feeds[0].id});
+            post_feeds.length.should.equal(feeds.length - 1);
+            post_comments.length.should.equal(0);
+
+
+        }));
+
+
+
+
+        it('fail destroy and return 200. non-existed id', co.wrap(function *() {
+            const dummy_id = '56fa421c7999999e6dda7eb5';
+
+            // 事前状態
+            const feeds = yield find_feed({});
+
+            // request setting
+            let uri     = `${url}${dummy_id}?group_id=${fixture.valid_seeds[0].group_id}`;
+            let accept  = fixture.valid_seeds[0].header;
+            let content = fixture.valid_seeds[0].header;
+            let auth    = fixture.valid_seeds[0].authorization;
+
+            // get index
+            let res = yield del(uri, accept, content, auth);
+            res.statusCode.should.equal(ok);     // TODO: errorだが200okが帰る
+            res.body.id.should.equal(dummy_id);  // TODO: error時のres.body内容不明
+
+            // 事後状態
+            const post_feeds = yield find_feed({});
+            feeds.length.should.equal(post_feeds.length);
+        }));
+
+
+
+
+
+        it('fail destroy and return 200 ok. other account id', co.wrap(function *() {
+            const feeds = yield find_feed({'posted_by': fixture.valid_seeds[0].account_id});
+
+            // request setting
+            let uri     = `${url}${feeds[0].id}?group_id=${fixture.valid_seeds[0].group_id}`;
+            let accept  = fixture.valid_seeds[5].header;
+            let content = fixture.valid_seeds[5].header;
+            let auth    = fixture.valid_seeds[5].authorization;
+
+            // get index
+            let res = yield del(uri, accept, content, auth);
+            res.statusCode.should.equal(ok);
+            res.body.id.should.equal(feeds[0].id);
+
+            // 事後
+            const post_feeds = yield find_feed({'posted_by': fixture.valid_seeds[0].account_id});
+            feeds.length.should.equal(post_feeds.length);
+        }));
+
+
+
+
+        it('fail destroy and return 200 ok. other company id', co.wrap(function *() {
+            const feeds = yield find_feed({'posted_by': fixture.valid_seeds[0].account_id});
+
+            // request setting
+            let uri     = `${url}${feeds[0].id}?group_id=${fixture.valid_seeds[0].group_id}`;
+            let accept  = fixture.valid_seeds[4].header;
+            let content = fixture.valid_seeds[4].header;
+            let auth    = fixture.valid_seeds[4].authorization;
+
+            // get index
+            let res = yield del(uri, accept, content, auth);
+            res.statusCode.should.equal(ok);        // FIX: 削除失敗しているが、200 okが返る
+            res.body.id.should.equal(feeds[0].id);
+
+            const post_feeds = yield find_feed({'posted_by': fixture.valid_seeds[0].account_id});
+            feeds.length.should.equal(post_feeds.length);
+        }));
+    });
+});

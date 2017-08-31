@@ -1,0 +1,15 @@
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+source /opt/rh/devtoolset-2/enable
+
+export PATH=/opt/rh/devtoolset-2/root/usr/bin${PATH:+:${PATH}}
+export MANPATH=/opt/rh/devtoolset-2/root/usr/share/man:$MANPATH
+export INFOPATH=/opt/rh/devtoolset-2/root/usr/share/info${INFOPATH:+:${INFOPATH}}
+export PCP_DIR=/opt/rh/devtoolset-2/root
+export PERL5LIB=/opt/rh/devtoolset-2/root//usr/lib64/perl5/vendor_perl:/opt/rh/devtoolset-2/root/usr/lib/perl5:/opt/rh/devtoolset-2/root//usr/share/perl5/vendor_perl${PERL5LIB:+:${PERL5LIB}}
+rpmlibdir=`rpm --eval "%{_libdir}"`
+if [ "$rpmlibdir" != "${rpmlibdir/lib64/}" ]; then
+  rpmlibdir32=":/opt/rh/devtoolset-2/root${rpmlibdir/lib64/lib}"
+fi
+export LD_LIBRARY_PATH=/opt/rh/devtoolset-2/root$rpmlibdir$rpmlibdir32${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+pythonvers=`python -c 'import sys; print sys.version[:3]'`
+export PYTHONPATH=/opt/rh/devtoolset-2/root/usr/lib64/python$pythonvers/site-packages:/opt/rh/devtoolset-2/root/usr/lib/python$pythonvers/site-packages${PYTHONPATH:+:${PYTHONPATH}}

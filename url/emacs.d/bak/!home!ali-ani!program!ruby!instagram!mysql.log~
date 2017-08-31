@@ -1,0 +1,240 @@
+10000
+all_Byte	data_Byte	index_Byte
+7421952	6832128	589824
+26	/var/lib/mysql/ibdata1
+20000
+all_Byte	data_Byte	index_Byte
+15040512	13123584	1916928
+35	/var/lib/mysql/ibdata1
+30000
+all_Byte	data_Byte	index_Byte
+20430848	18366464	2064384
+43	/var/lib/mysql/ibdata1
+40000
+all_Byte	data_Byte	index_Byte
+27869184	24690688	3178496
+43	/var/lib/mysql/ibdata1
+50000
+all_Byte	data_Byte	index_Byte
+35225600	30998528	4227072
+51	/var/lib/mysql/ibdata1
+60000
+all_Byte	data_Byte	index_Byte
+41517056	37289984	4227072
+59	/var/lib/mysql/ibdata1
+70000
+all_Byte	data_Byte	index_Byte
+48857088	43581440	5275648
+67	/var/lib/mysql/ibdata1
+80000
+all_Byte	data_Byte	index_Byte
+54116352	48840704	5275648
+75	/var/lib/mysql/ibdata1
+90000
+all_Byte	data_Byte	index_Byte
+60407808	55132160	5275648
+75	/var/lib/mysql/ibdata1
+100000
+all_Byte	data_Byte	index_Byte
+67747840	61423616	6324224
+83	/var/lib/mysql/ibdata1
+110000
+all_Byte	data_Byte	index_Byte
+75104256	67731456	7372800
+91	/var/lib/mysql/ibdata1
+120000
+all_Byte	data_Byte	index_Byte
+80347136	72974336	7372800
+99	/var/lib/mysql/ibdata1
+130000
+all_Byte	data_Byte	index_Byte
+87687168	79265792	8421376
+107	/var/lib/mysql/ibdata1
+140000
+all_Byte	data_Byte	index_Byte
+93995008	85573632	8421376
+107	/var/lib/mysql/ibdata1
+150000
+all_Byte	data_Byte	index_Byte
+100286464	91865088	8421376
+115	/var/lib/mysql/ibdata1
+160000
+all_Byte	data_Byte	index_Byte
+107626496	98156544	9469952
+123	/var/lib/mysql/ibdata1
+170000
+all_Byte	data_Byte	index_Byte
+112918528	103415808	9502720
+131	/var/lib/mysql/ibdata1
+180000
+all_Byte	data_Byte	index_Byte
+121307136	109707264	11599872
+139	/var/lib/mysql/ibdata1
+190000
+all_Byte	data_Byte	index_Byte
+127598592	115998720	11599872
+139	/var/lib/mysql/ibdata1
+200000
+all_Byte	data_Byte	index_Byte
+133906432	122306560	11599872
+147	/var/lib/mysql/ibdata1
+210000
+all_Byte	data_Byte	index_Byte
+141246464	128598016	12648448
+155	/var/lib/mysql/ibdata1
+220000
+all_Byte	data_Byte	index_Byte
+146489344	133840896	12648448
+163	/var/lib/mysql/ibdata1
+230000
+all_Byte	data_Byte	index_Byte
+152797184	140148736	12648448
+163	/var/lib/mysql/ibdata1
+240000
+all_Byte	data_Byte	index_Byte
+160137216	146440192	13697024
+171	/var/lib/mysql/ibdata1
+250000
+all_Byte	data_Byte	index_Byte
+166428672	152731648	13697024
+179	/var/lib/mysql/ibdata1
+260000
+all_Byte	data_Byte	index_Byte
+172752896	157990912	14761984
+187	/var/lib/mysql/ibdata1
+270000
+all_Byte	data_Byte	index_Byte
+180092928	164282368	15810560
+195	/var/lib/mysql/ibdata1
+280000
+all_Byte	data_Byte	index_Byte
+186384384	170573824	15810560
+195	/var/lib/mysql/ibdata1
+290000
+all_Byte	data_Byte	index_Byte
+192692224	176881664	15810560
+203	/var/lib/mysql/ibdata1
+300000
+all_Byte	data_Byte	index_Byte
+200032256	183173120	16859136
+211	/var/lib/mysql/ibdata1
+310000
+all_Byte	data_Byte	index_Byte
+205275136	188416000	16859136
+219	/var/lib/mysql/ibdata1
+320000
+all_Byte	data_Byte	index_Byte
+212631552	194723840	17907712
+227	/var/lib/mysql/ibdata1
+330000
+all_Byte	data_Byte	index_Byte
+219971584	201015296	18956288
+235	/var/lib/mysql/ibdata1
+340000
+all_Byte	data_Byte	index_Byte
+226263040	207306752	18956288
+235	/var/lib/mysql/ibdata1
+350000
+all_Byte	data_Byte	index_Byte
+233619456	213614592	20004864
+243	/var/lib/mysql/ibdata1
+360000
+all_Byte	data_Byte	index_Byte
+238862336	218857472	20004864
+251	/var/lib/mysql/ibdata1
+370000
+all_Byte	data_Byte	index_Byte
+245153792	225148928	20004864
+259	/var/lib/mysql/ibdata1
+380000
+all_Byte	data_Byte	index_Byte
+252510208	231456768	21053440
+259	/var/lib/mysql/ibdata1
+390000
+all_Byte	data_Byte	index_Byte
+258801664	237748224	21053440
+267	/var/lib/mysql/ibdata1
+400000
+all_Byte	data_Byte	index_Byte
+265093120	242991104	22102016
+275	/var/lib/mysql/ibdata1
+410000
+all_Byte	data_Byte	index_Byte
+272449536	249298944	23150592
+283	/var/lib/mysql/ibdata1
+420000
+all_Byte	data_Byte	index_Byte
+278740992	255590400	23150592
+291	/var/lib/mysql/ibdata1
+430000
+all_Byte	data_Byte	index_Byte
+286097408	261881856	24215552
+299	/var/lib/mysql/ibdata1
+440000
+all_Byte	data_Byte	index_Byte
+292405248	268189696	24215552
+299	/var/lib/mysql/ibdata1
+450000
+all_Byte	data_Byte	index_Byte
+297648128	273432576	24215552
+307	/var/lib/mysql/ibdata1
+460000
+all_Byte	data_Byte	index_Byte
+304988160	279724032	25264128
+315	/var/lib/mysql/ibdata1
+470000
+all_Byte	data_Byte	index_Byte
+312344576	286031872	26312704
+323	/var/lib/mysql/ibdata1
+480000
+all_Byte	data_Byte	index_Byte
+318636032	292323328	26312704
+331	/var/lib/mysql/ibdata1
+490000
+all_Byte	data_Byte	index_Byte
+325976064	298614784	27361280
+331	/var/lib/mysql/ibdata1
+500000
+all_Byte	data_Byte	index_Byte
+331235328	303874048	27361280
+339	/var/lib/mysql/ibdata1
+510000
+all_Byte	data_Byte	index_Byte
+337526784	310165504	27361280
+347	/var/lib/mysql/ibdata1
+520000
+all_Byte	data_Byte	index_Byte
+344866816	316456960	28409856
+355	/var/lib/mysql/ibdata1
+530000
+all_Byte	data_Byte	index_Byte
+351174656	322764800	28409856
+355	/var/lib/mysql/ibdata1
+540000
+all_Byte	data_Byte	index_Byte
+358514688	329056256	29458432
+363	/var/lib/mysql/ibdata1
+550000
+all_Byte	data_Byte	index_Byte
+364806144	334299136	30507008
+371	/var/lib/mysql/ibdata1
+560000
+all_Byte	data_Byte	index_Byte
+371113984	340606976	30507008
+379	/var/lib/mysql/ibdata1
+570000
+all_Byte	data_Byte	index_Byte
+378454016	346898432	31555584
+387	/var/lib/mysql/ibdata1
+580000
+all_Byte	data_Byte	index_Byte
+384745472	353189888	31555584
+387	/var/lib/mysql/ibdata1
+590000
+all_Byte	data_Byte	index_Byte
+390004736	358449152	31555584
+395	/var/lib/mysql/ibdata1
+600000
+all_Byte	data_Byte	index_Byte
+397361152	364740608	32620544
+403	/var/lib/mysql/ibdata1

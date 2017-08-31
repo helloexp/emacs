@@ -1,0 +1,40 @@
+$ ->
+  toggle_branch = (checkbox) ->
+    is_checked = checkbox.is(':checked')
+    branch_form = checkbox.parent().next('.branch_form')
+    checkboxes = $(branch_form).find('.checkbox_branch')
+    if (is_checked)
+      $(branch_form).removeClass('text--sub_font_color02')
+      $(checkboxes).each (index, checkbox) =>
+        $(checkbox).prop('disabled', false)
+    else
+      $(branch_form).addClass('text--sub_font_color02')
+      $(checkboxes).each (index, checkbox) =>
+        $(checkbox).prop('checked', false)
+        $(checkbox).prop('disabled', true)
+
+  if $('.counseling_counseling_place_types_branch')
+     toggle_branch($('.counseling_counseling_place_types_branch'))
+     $('.counseling_counseling_place_types_branch').change ->
+       toggle_branch($(this))
+
+  $('#counseling_date').datetimepicker({
+    closeOnDateSelect: true,
+    format: 'Y/m/d',
+    lang: 'ja',
+    mask: true,
+    timepicker: false,
+    validateOnBlur: false
+  })
+
+  timepickerOptions = {
+    datepicker: false,
+    defaultTime: '09:00',
+    format: 'H:i',
+    mask: true,
+    step: 30,
+    validateOnBlur: false
+  }
+
+  $('#counseling_start_time').datetimepicker(timepickerOptions)
+  $('#counseling_end_time').datetimepicker(timepickerOptions)

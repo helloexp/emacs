@@ -1,0 +1,6 @@
+animals = ["dog", "cat", "mouse"]
+puts animals.include?("cat")
+puts animals.include?("cat2")
+puts animals.include?("")
+puts animals.include?(dog)
+puts animals.include?("elephant")

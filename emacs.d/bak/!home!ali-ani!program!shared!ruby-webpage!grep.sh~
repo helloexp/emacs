@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+cd /home/ali-ani/program/shared/ruby-webpage
+
+
+slash="/"
+while read line; do
+  grep -r $line ./app #| grep $slash$line
+done < memo_mobile

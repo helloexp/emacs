@@ -1,0 +1,20 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("org-capture-last-stored"
+ (filename . "~/.org/works/gtd/todo.org")
+ (front-context-string . "** Todo 有給 / 公休 ")
+ (rear-context-string . "8-17 Thu 09:56]\n")
+ (position . 49426))
+("mail-auto-sync.service.ts"
+ (filename . "~/sources/works/techfirm/forked/src/app/services/mail-auto-sync.service.ts")
+ (front-context-string . "etchMails(Object")
+ (rear-context-string . "   return this.f")
+ (position . 2741))
+("menu-list.component.ts"
+ (filename . "~/sources/works/techfirm/forked/src/app/components/mail/menu-list.component.ts")
+ (front-context-string . "event.emit({type")
+ (rear-context-string . "する\n        this.")
+ (position . 7528))
+)

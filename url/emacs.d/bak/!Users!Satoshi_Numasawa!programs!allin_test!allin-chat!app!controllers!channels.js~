@@ -1,0 +1,38 @@
+/*eslint no-unused-vars:0*/
+'use strict';
+
+const events = require('./events');
+const Channel = require('../models/channel');
+const logger = require('../config/logger');
+const Notification = require('../models/notification');
+const queue = require('../libs/embed/queue.js');
+const type = 'Channel';
+
+class ChannelsController {
+    index(req, res, next) {
+        // TODO : index
+        console.log('index');
+    }
+
+    create(req, res, next) {
+        // TODO : create
+        console.log('create');
+    }
+
+    show(req, res, next) {
+        // TODO : show
+        console.log('show');
+    }
+
+    update(req, res, next) {
+        // TODO : update
+        console.log('update');
+    }
+
+    destroy(req, res, next) {
+        // TODO : destroy
+        console.log('destroy');
+    }
+}
+
+module.exports = ChannelsController;

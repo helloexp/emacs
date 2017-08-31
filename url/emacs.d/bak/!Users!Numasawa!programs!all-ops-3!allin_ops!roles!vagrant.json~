@@ -1,0 +1,70 @@
+{
+    "name": "vagrant",
+    "description": "", 
+    "json_class": "Chef::Role",
+    "default_attributes": {
+      "mysql": {
+        "server_root_password": "",
+        "allow_remote_root": true,
+        "root_network_acl": []
+      },
+      "monit": {
+        "polling_frequency": 60,
+        "statefile": "/var/.monit.state"
+      },
+      "redisio": {
+        "servers": [
+          {
+            "port": 6379,
+            "timeout": 300
+          }
+        ],
+        "default_settings": {
+          "noappendfsynconrewrite": "yes"
+        }
+      },
+      "user": {
+        "name": "vagrant"
+      },
+      "iptables_rules": {
+        "mysql_access": true
+      },
+      "rvm": {
+        "user_install_rubies": true,
+        "user_installs": [{
+          "user": "vagrant",
+          "default_ruby": "2.2.0",
+          "rubies": [ "2.2.0" ]
+        }]
+      }
+    },
+    "override_attributes": {
+      "solr": {
+        "port": 8982,
+        "env": ["development", "test"]
+      }
+    },
+    "chef_type": "role",
+    "run_list": [
+      "recipe[base]",
+      "recipe[iptables]",
+      "recipe[iptables_rules]",
+      "recipe[iptables_rules::webrick]",
+      "recipe[iptables_rules::plv2]",
+      "recipe[yum-epel]",
+      "recipe[mysql_client]",
+      "recipe[mysql_server]",
+      "recipe[redisio]",
+      "recipe[redisio::enable]",
+      "recipe[monit]",
+      "recipe[monit_conf]",
+      "recipe[nvm]",
+      "recipe[node]",
+      "recipe[node::bower]",
+      "recipe[rvm::user]",
+      "recipe[rvm::vagrant]",
+      "recipe[eye]",
+      "role[search_engine]"
+    ],
+    "env_run_lists": {}
+}

@@ -1,0 +1,41 @@
+'use strict';
+
+var kue = require('kue');
+var jobs = kue.createQueue();
+
+kue.app.listen(3000);
+
+
+
+
+function ob (text){
+    text = text || '';
+    var job = jobs.create('web_scrape', {
+        title : 'web_scrape',
+        name : 'web_scrape',
+        test : '',
+        text : text
+    }).delay(2000);
+
+    job
+        .on('complete', (result) => {
+            console.log('Job', job.id, 'with name', job.data.name, 'is    done');
+            console.log('result : ------------------------------------------------------------------------------');
+            console.log(result)
+            console.log('---------------------------------------------------------------------------------------');
+        })
+        .on('failed', () => {
+            console.log('Job', job.id, 'with name', job.data.name, 'has  failed');
+        });
+
+    job.save();
+}
+
+
+
+
+setInterval( () => {
+    let text = ''
+
+    ob(text);
+}, 2000);

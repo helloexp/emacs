@@ -1,0 +1,90 @@
+Influencerインフラ接続情報
+
+
+
+
+
+URL
+----------------------------------------------------------------
+    エンドユーザ参照ページ   :  http(s)://lifewear.uniqlo.com/people/
+    インフルエンサー登録画面 : https://lifewear.uniqlo.com/form/
+    管理者権限画面         :  https://admin.lifewear.uniqlo.com/
+
+
+Stepサーバの情報
+--------------------------------
+    54.250.223.60
+    hostname：mnt01-a-tky-gateway-common
+
+    ログインユーザアカウント：members
+    秘密鍵ファイル名：現在利用されているmembersユーザの鍵ファイルをご利用ください。
+    パスフレーズなし
+
+
+## EC2/ELB
+## Web
+--------------------------------
+    - user page
+    --------------------------------
+        - ELB
+        --------------------------------
+            prd01-tky-influencer-uniqlo-304455623.ap-northeast-1.elb.amazonaws.com
+            prd02-tky-influencer-uniqlo-275306959.ap-northeast-1.elb.amazonaws.com
+
+        - EC2
+        --------------------------------
+            Instance: i-2744a33f (prd01-a-tky-influencer-uniqlo)Private IP: 10.184.16.238
+
+            - Nginxドキュメントルート：
+                エンドユーザ参照ページ：/usr/share/nginx/html/lifewear.uniqlo.com/
+
+            - DNS
+                lifewear.uniqlo.com
+
+    - BATCH
+    --------------------------------
+        EC2: Instance: i-4f41a257 (prd01-a-tky-batch-influencer-uniqlo)Private IP: 10.184.17.46
+
+
+    - Admin
+    --------------------------------
+        ELB: prd01-tky-admin-inflencr-uniqlo-1751200015.ap-northeast-1.elb.amazonaws.com
+        EC2: Instance: i-b04fa8a8 (prd01-a-tky-admin-influencer-uniqlo)Private IP: 10.184.17.202
+
+        - DNS
+            インフルエンサー登録  :  lifewear.uniqlo.com (lifewear.uniqlo.com/form ?)
+            管理者             :  admin.lifewear.uniqlo.com
+
+        - Nginxドキュメントルート：
+            インフルエンサー登録：/usr/share/nginx/html/lifewear.uniqlo.com/
+            管理者（Admin）：/usr/share/nginx/html/admin.lifewear.uniqlo.com/
+
+        - ユーザ/PW
+            www/DROd3Q0n
+
+     - 注意事項：
+         Autoscalingは未設定です。
+         EC2のセッティングが完了後に、Autoscalingの設定を追加しますので、
+         ご連絡をお願い致します。
+
+
+
+
+
+## RDS
+--------------------------------
+    - マスター
+        DNS名（CNAME）: db.org.lifewear.uniqlo.com
+        アプリから接続する際に、DNS名（CNAME）を利用してください
+
+        DBName    :  influencer
+        UserName  :  influencer
+        Passwd    :  QkIPwa9k
+
+    - リードレプリカ
+        DNS名（CNAME）: db-rep.org.lifewear.uniqlo.com
+        アプリから接続する際に、DNS名（CNAME）を利用してください
+
+
+        DB Engine(Ver):Mysql 5.6.22
+        DBディスクサイズ:30GB※拡張可能ですので、追加した場合はご連絡ください。

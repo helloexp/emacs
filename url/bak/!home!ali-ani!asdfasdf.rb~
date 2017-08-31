@@ -1,0 +1,38 @@
+# -*- coding: utf-8 -*-
+require 'rubygems'
+require 'right_aws'
+require 'pp'
+
+### 使用例
+# ruby rightaws_runstop_dbinstance.rb rds_instance_name db.m1.small security-group parameter_group
+
+### 事前に指定するパラメータ
+# * RDSのインスタンス名
+# * RDSのインスタンスタイプ
+# * RDSのセキュリティグループ
+rds_db_instance = ARGV[0]
+rds_instance_type = ARGV[1]
+rds_security_group = ARGV[2]
+rds_parameter_group = ARGV[3]
+
+### スクリプト内に埋め込む設定
+# * AWSのリージョン設定
+rds_end_point_url = "rds.ap-northeast-1.amazonaws.com"
+#rds_end_point_url = 'ap-northeast-1.rds.amazonaws.com'
+#rds_end_point_url = 'db01-uniqlo-influencer.cvs9vjjju50z.ap-northeast-1.rds.amazonaws.com'
+
+
+
+### スナップショットで使用するタグ（一意なもの）
+tag = 'db01'
+
+
+## 引数が正しく設定されているかチェックします
+unless ARGV.size == 4
+  puts "Usage: #{$0} <rds_db_instance> <rds_instance_type> <rds_security_group> <rds_parameter_group>"
+  exit 0
+end
+
+## アクセスIDとシークレットアクセスキーを指定します
+ACCESS_KEY = 'AKIAIHS4A5UC4SXAZGQQ'
+SECRET_KEY = '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'

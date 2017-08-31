@@ -1,0 +1,133 @@
+  # --------------------------------
+  # defun Route table
+  # --------------------------------
+  &route_table_front RouteTableFront:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: *vpc_name
+      Tags:
+      - Key: Name
+        Value: mynavi-product-front
+
+
+  &route_table_web RouteTableWeb:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: *vpc_name
+      Tags:
+      - Key: Name
+        Value: mynavi-product-web
+
+
+  &route_table_backend RouteTableBackend:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: *vpc_name
+      Tags:
+      - Key: Name
+        Value: mynavi-product-backend
+
+
+
+  # --------------------------------
+  # config route talbe
+  # --------------------------------
+  RouteFront:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      RouteTableId:
+        Ref: RouteTableFront
+      GatewayId:
+        Ref: &default_gateway
+    DependsOn: &default_gateway
+
+
+  # RouteWeb:
+  #   Type: AWS::EC2::Route
+  #   Properties:
+  #     DestinationCidrBlock: 0.0.0.0/0
+  #     RouteTableId:
+  #       Ref: RouteTableFront
+  #     InstanceId:
+  #       Ref: instanceiec051c1f
+
+
+  # RouteBackend:
+  #   Type: AWS::EC2::Route
+  #   Properties:
+  #     DestinationCidrBlock: 0.0.0.0/0
+  #     RouteTableId:
+  #       Ref: RouteTableFront
+  #     InstanceId:
+  #       Ref: instanceiec051c1f
+
+
+
+  
+  # --------------------------------
+  # bind route table to subnet
+  # --------------------------------
+  SubnetRouteFront1a:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: RouteTableFront
+      SubnetId:
+        Ref: SubnetFront1a
+  SubnetRouteFront1c:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: RouteTableFront
+      SubnetId:
+        Ref: SubnetFront1c
+
+
+  SubnetRouteWeb1a:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: RouteTableWeb
+      SubnetId:
+        Ref: SubnetWeb1a
+  SubnetRouteWeb1c:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: RouteTableWeb
+      SubnetId:
+        Ref: SubnetWeb1c
+  SubnetRouteCms1a:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: RouteTableWeb
+      SubnetId:
+        Ref: SubnetCms1a
+  SubnetRouteCms1c:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: RouteTableWeb
+      SubnetId:
+        Ref: SubnetCms1c
+
+
+  SubnetRouteBackend1a:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: RouteTableBackend
+      SubnetId:
+        Ref: SubnetBackend1a
+  SubnetRouteBackend1c:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: RouteTableBackend
+      SubnetId:
+        Ref: SubnetBackend1c

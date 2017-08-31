@@ -1,0 +1,55 @@
+{
+    "name": "console",
+    "description": "ALLIN management console role",
+    "json_class": "Chef::Role",
+    "chef_type": "role",
+    "default_attributes": {
+        "user": {
+            "name": "svc",
+            "password": "$1$rlxUjnKi$PAvqLg9AD2Ban/2ANW6p2."
+        },
+        "monit": {
+            "alert_email": "sasaminn@gmail.com",
+            "polling_frequency": 60,
+            "statefile": "/var/.monit.state"
+        },
+        "rvm": {
+            "user_install_rubies": true,
+            "installs": {
+                "svc": true
+            },
+            "user_installs": [{
+                "user": "svc",
+                "default_ruby": "2.2.0",
+                "rubies": [ "2.2.0" ]
+            }]
+        },
+        "ntp": {
+            "servers": ["ntp.nict.jp", "ntp.jst.mfeed.ad.jp"]
+        }
+    },
+    "override_attributes": {
+        "td_agent": {
+            "includes": true
+        }
+    },
+    "run_list": [
+        "recipe[swap]",
+        "recipe[base]",
+        "recipe[yum-epel]",
+        "recipe[iptables]",
+        "recipe[iptables_rules]",
+        "recipe[iptables_rules::nginx]",
+        "recipe[sshd]",
+        "recipe[nginx]",
+        "recipe[nginx_conf]",
+        "recipe[nginx_conf::console]",
+        "recipe[ntp]",
+        "recipe[td-agent]",
+        "recipe[fluentd_conf]",
+        "recipe[monit]",
+        "recipe[monit_conf]",
+        "recipe[user]",
+        "recipe[rvm::user]"
+    ]
+}

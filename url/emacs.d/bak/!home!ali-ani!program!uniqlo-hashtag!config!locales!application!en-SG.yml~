@@ -1,0 +1,32 @@
+en:
+  labels:
+    Agree: Agree
+    Back: Back
+    MEN: MEN
+    Others: Others
+    Create: Create
+    WOMEN: WOMEN
+    required_symbol: ! '*'
+    allow_multiple: (multiple answers permitted)
+    please_select: Please select
+  genders:
+    man: Male
+    woman: Female
+  countries:
+    au: AUSTRALIA
+    be: BELGIUM
+    cn: CHINA
+    fr: FRANCE
+    de: GERMANY
+    hk: HONG KONG & MACAU
+    id: INDONESIA
+    jp: JAPAN
+    kr: KOREA
+    my: MALAYSIA
+    ph: PHILIPPINES
+    ru: RUSSIA
+    sg: SINGAPORE
+    tw: TAIWAN
+    th: THAILAND
+    gb: UK
+    us: USA

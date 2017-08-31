@@ -1,0 +1,124 @@
+* html #container{
+  height: 1%;
+}
+
+#container{
+  width               : 965px;
+  margin              : 10px auto 10px auto;
+  padding             : 0px 0px 20px 0px;
+  background          : #ffffff;
+  overflow            : hidden;
+
+  #contents {
+    width               : 955px;
+    margin              : 10px auto 0px auto;
+    background          : #FFFFFF; /*#FFFFF0*/
+
+    .text_box_L{
+      float               : left;
+      width               : 200px;
+      margin              : 5px 0px 0px 20px;
+      padding             : 15px 5px;
+      line-height         : 2.1;
+      border-top          : 1px #6a6a6a dotted;
+    }
+
+    .text_box_R{
+      float               : left;
+      width               : 600px;
+      margin              : 5px 5px 0px 0px;
+      padding             : 15px 5px 15px 15px;
+      line-height         : 2.1;
+      border-top          : 1px #6a6a6a dotted;
+
+      a {
+        font-size           : 13px;
+      }
+
+      img {
+        vertical-align      : middle;
+      }
+
+      p {
+        a.link {
+          vertical-align      : middle;
+        }
+      }
+    }
+
+    .clear {
+      clear               : both;
+    }
+
+    .last_line{
+      margin              : 5px 0px 0px 15px;
+      width               : 835px;
+      border-top          : 1px #6a6a6a dotted;
+    }
+
+    .text_box05{
+      width               : 870px;
+      margin              : 5px 5px 60px 25px;
+      padding             : 15px 15px;
+      line-height         : 2.1;
+      font-size           : 100%;
+    }
+
+    .text_box05:after {
+      content             : "";
+      display             : block;
+      clear               : both;
+      height              : 1px;
+      overflow            : hidden;
+    }
+  }
+
+  .text_box01:after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .head_Text_sm2N {
+    width               : 850px;
+    margin              : 30px 5px 20px 25px;
+    font-size           : 150%;
+    font-weight         : normal;
+    padding             : 5px 10px;
+    line-height         : 2.1;
+
+    span {
+      color               : #ea6125;
+    }
+  }
+
+  .text_msg{
+    width               : 830px;
+    margin              : 5px 5px 60px 25px;
+    padding             : 25px 30px 15px 40px;
+    line-height         : 2.1;
+    font-size           : 120%;
+    border              : 1px #A9A9A9 solid;
+
+    b.tile_b{
+      font-size           : 140%;
+      margin             : 0 0 0 -10px;
+    }
+
+    span.r_txt{
+      padding             : 5px 5px 5px 310px;
+      font-weight         : bold;
+    }
+  }
+
+  .text_msg:after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 1px;
+    overflow: hidden;
+  }
+}
+

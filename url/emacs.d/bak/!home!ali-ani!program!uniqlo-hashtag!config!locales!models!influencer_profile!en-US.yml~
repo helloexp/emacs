@@ -1,0 +1,31 @@
+en-US:
+  activerecord:
+    models:
+      influencer_profile:
+        one: Influencer Profile
+        other: Influencer Profiles
+    attributes:
+      influencer_profile:
+        name: Name
+        gender: Gender
+        country: Country that you live
+        postal_code: Zip Code
+        address: Address
+        phone_number: Phone Numbe
+        email_address: E-mail Address
+        email_address_confirm:
+        account_facebook: Facebook
+        account_twitter: Twitter
+        account_instagram: Instagram
+        tops_size: Tops (shirts, T-shirts)
+        bottoms_inner_size: Innerwear size such as boxer brief, Bratop, HEATTECH, etc.
+        bottoms_size: Bottoms size
+        size_comment:
+    errors:
+      models:
+        influencer_profile:
+          attributes:
+            email_address_confirm:
+              inconsistent: E-mail addresses do not match.
+            accounts:
+              blank_all: Please choose at least one SNS account and write your SNS account name.

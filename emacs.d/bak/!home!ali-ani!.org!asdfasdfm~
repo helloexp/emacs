@@ -1,0 +1,26 @@
+
+
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1422850958000",
+      "Effect": "Allow",
+      "Action": [
+        "s3:*",
+     ],
+      "Resource": [
+        "arn:aws:s3:::chao2sukepolicytest",
+        "arn:aws:s3:::chao2sukepolicytest/*"
+      ]
+    },
+    {
+      "Action": [
+        "s3:ListAllMyBuckets"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::*"
+    }
+  ]
+}

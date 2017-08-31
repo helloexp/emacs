@@ -1,0 +1,197 @@
+
+
+
+
+vsphere について
+--------------------------------------------------------------------------------------------------------------------------------
+    vpshereは、通常host osを必要としない。  # image :  http://thinkit.co.jp/story/2012/10/17/3722
+    hardware直上にvsphereをinstallする。
+    VM操作(vpshereへのアクセス)は、他nodeからvsphere clientを通して行う。 # vsphereのnetwork設定などは、直接hardware上で行う
+
+    以下、記述する内容は、仮想環境上にvsphereをinstallする内容となる。
+    vm上にinstallしたvsphereへ、host OS windows上(もしくは、vm上のwindows)のvpshere clientから
+    vsphereをアクセスする事を目的とする。
+
+    # なお、Windows/Linux OSいずれでも構築可能。
+
+    # AWS上での構築は保留。
+    # AWSのOS自体がGuest OSのためスムーズに動作しない。
+
+
+
+
+required and dl file url
+--------------------------------------------------------------------------------------------------------------------------------
+    - vmware vsphere system required (hardwareに直接installする場合)
+        https://pubs.vmware.com/vsphere-50/index.jsp?topic=%2Fcom.vmware.vsphere.install.doc_50%2FGUID-67C4D2A0-10F7-4158-A249-D1B7D7B3BC99.html
+
+    - host os (擬似環境構築にあたり)
+        windows7,8 64bit required # (window8などの評価版をnative installという手も)
+        linux OS 64bit require
+
+    - vmware player7
+        https://my.vmware.com/jp/web/vmware/free#desktop_end_user_computing/vmware_player/7_0
+        # vmwareへvsphereをinstallするにあたり、version7必須
+
+    - vsphere 最新版
+        https://my.vmware.com/web/vmware/evalcenter?p=free-esxi6
+        # must be regist user account
+
+        沼沢がDLした以下使用可能
+        -----------------------------------------------------------------------------------------
+
+    - vsphere client
+        http://vsphereclient.vmware.com/vsphereclient/VMware-viclient-all-6.0.0.exe
+        # windows版のみ
+        # wineで実行可能
+
+    - windows vm image
+        http://dev.modern.ie/tools/vms/linux/
+
+
+
+
+
+installにあたり
+--------------------------------------------------------------------------------------------------------------------------------
+    - vsphereを、vm上にinstallするにあたり、vmware player7 64bitを使用する。
+        # virtual box/vmware player6では、install途中で停止した。
+
+    - vsphereへアクセスするためのvsphere clientは、windows exeのみ存在。
+        linuxであれば、wineなどで実行。
+        もしくは、windows vmを用意し仮想環境からアクセス可能。(確認済み)
+        # clientは32bit OSで実行可能。
+
+    - dhcp server
+        vmが自動でIPを取得できる状態にしておく必要あり。
+
+
+
+
+* vmware player7 install
+--------------------------------------------------------------------------------------------------------------------------------
+    - DL install file
+        https://my.vmware.com/jp/web/vmware/free#desktop_end_user_computing/vmware_player/7_0
+
+    - windowsならば適宜 wizardに従う
+
+    - linuxの場合躓くケースも想定される
+        筆者の場合、install及び、install後の実行にroot権が必要であった。
+
+        $ sudo bash [downloaded file]
+        $ sudo /usr/bin/vmplayer
+
+    - vm上のwindowsにinstallする場合
+        window8.1 評価版 + virutual boxで試行したが、動作せず
+        (Intel vt-xが無いCPUのためか)
+
+        vm nestするため、恐らくnetwork周りでの不具合発生も予想される。
+
+
+
+* vsphere install to vmware
+--------------------------------------------------------------------------------------------------------------------------------
+    # windows7の場合、installにあたりエラーがでる場合がある
+    # プログラムとファイルの検索へ、[%TEMP%] を入力
+    # 開いたフォルダ内をクリア (不要?)
+    # installer fileを、上記TEMP dirへ移動して実行すると、エラー回避可能であった
+    # (実行dirによっても結果が変わるという情報もある)
+
+    - 手順
+        http://d.hatena.ne.jp/jiskay/20101106/p1
+
+    - vmware player起動
+
+    - make vm
+        - [create a new virutal machine] を選択
+        - [User ISO image:] を選択
+            # DL済みのimage fileを指定
+            # [VMware ESXi6 detected] と表示されれば正常
+
+    - 後は初期設定でも良い。
+
+    - run vm
+
+    - install vsphere (vm consoleから)
+        - Welcome to the VMware ESXi 6.0.0 Installation
+            [enter]
+
+        - End User License Agreement (EULA)
+            [F11]
+
+        - Select a Disk to Install or upgrade
+            [enter]
+
+        - Please select a keyboard layout
+            [enter]
+
+        - Enter a root password
+            set password
+
+        - Confirm Install
+            [F11]
+
+        - Installation Complete
+            [Reboot (enter)]
+
+      - reboot後
+          vmaware version, hardware infoが表示され、起動状態となる
+          後は、vpshere clientから接続する。
+          接続先ipなどは、console上に表示される。
+
+          # 当vmは起動したままとする
+
+          # 停止する場合は、F12
+          # 変更する場合は、F2
+
+
+
+
+vsphere client install
+--------------------------------------------------------------------------------------------------------------------------------
+    http://vsphereclient.vmware.com/vsphereclient/VMware-viclient-all-6.0.0.exe
+
+    - windowsの場合
+        上記からexeをDLし、wizardに従う
+
+    - 他OS
+        linuxならばwineなどで実行。
+        macは知見なし。
+
+    - vmにwindowsを入れて実行する場合
+        無料でしようできるwindows imageは以下より。
+        http://dev.modern.ie/tools/vms/linux/
+
+        # 32bit版のみ。(vsphere64bitのみ対応)
+
+
+
+vsphere client 操作
+--------------------------------------------------------------------------------------------------------------------------------
+    - vsphere client 起動
+
+    - login 情報入力
+        - IP   : vsphere console上ののIP
+        - user : root
+        - pass : install時に決定したpass
+
+    - login後、main画面が開く
+    - インベントリを選択
+    - IPを右クリック
+    - 新規仮想マシンを選択
+    - 内容に沿って設定 (初期設定可)
+    - IP配下に作成したvm listが表示される
+
+    - vmへinstallするOS image mediaを設定する
+        server名を右クリックし、[設定の編集] を選択。
+        cd/dvd deviceへimageを割り当て。
+        # OS imageは同梱されていないので、別途用意する
+        # host OS上にある、os image mediaを使う場合は、guest os起動後に指定する。
+
+    - vm起動
+        vm名を右クリックし、[power on]を選択
+
+    - コンソール(GUI)を開くには、server名を右クリックし、[コンソールを開く] を選択。
+
+    - 後は、通常os installと同じ。
+        vmの操作はvmwareと大体同じ

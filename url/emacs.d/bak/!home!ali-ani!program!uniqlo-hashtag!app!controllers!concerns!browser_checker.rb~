@@ -1,0 +1,71 @@
+# -*- coding: utf-8 -*-
+module Browser
+    extend ActiveSupport::Concern
+
+
+    
+    private
+    
+    #def 
+    #    # example
+    #    request.user_agent       #=> "Mozilla/5.0 (Linux; Android 4.3; Nexus 7 ..."
+    #    request.device_type      #=> :smartphone
+    #    request.os               #=> "Android"
+    #    request.os_version       #=> "4.3"
+    #    request.browser          #=> "Chrome"
+    #    request.browser_version  #=> "29.0.1547.72"
+    #    request.from_pc?         #=> false
+    #    request.from_smartphone? #=> true
+    #end
+    
+
+
+    def exclude_legacy_ie
+        if legacy_ie?
+            render :file => "/public/exclude_legacy_ie.html"
+        end
+    end
+
+
+    
+    
+    def legacy_ie?
+        if ie6? or ie7? or ie8? then
+            return true
+        end
+    end        
+
+
+
+    
+    def ie6?
+        if ie? then
+            if request.browser_version.to_s.gsub(/^6.*/) then return true end
+        end
+    end
+
+
+    
+    
+    def ie7?
+        if ie? then
+            if request.browser_version.to_s.gsub(/^7.*/) then return true end
+        end
+    end
+
+
+    
+    
+    def ie8?
+        if ie? then
+            if request.browser_version.to_s.gsub(/^8.*/) then return true end
+        end
+    end
+
+    
+
+
+    def ie?
+        if request.browser == "Internet Explorer" then return true end
+    end
+end

@@ -1,0 +1,18 @@
+  .domain ng-if="embed.image.url"
+    .image-url
+      img ng-src="{{embed.image.url}}"
+    .description-with-image
+      .description ng-if="embed.title"
+        | {{embed.title}} <br>
+      .description ng-if="!embed.title"
+        | {{embed.site_name}} <br>
+      .body
+        | {{embed.description[0]}}
+  .domain ng-if="!embed.image.url"
+    .description-without-image
+      .description ng-if="embed.title"
+        | {{embed.title}} <br>
+      .description ng-if="!embed.title"
+        | {{embed.site_name}} <br>
+      .body
+        | {{embed.description[0]}}

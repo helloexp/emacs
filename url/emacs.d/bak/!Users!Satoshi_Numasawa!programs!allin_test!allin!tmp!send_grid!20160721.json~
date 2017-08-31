@@ -1,0 +1,44 @@
+[
+  {
+    "to": "hamaguchi@bbank.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "自動配信",
+    "text": "自動配信\ntest02 header\nテスト02 ヘッダー\n名\t隆則\n姓\t浜口\n\n名\t隆則\n姓\t浜口\nメイ\t\nセイ\t\n国\t日本\n\n自動配信\ntest02 footer\nテスト02 フッタ\n名\t隆則\n姓\t浜口\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=YTY2OTYwMDA0ZjNhMTFlNmJkNzMwODAwMjc1ZWFhN2M6Q29ycG9yYXRlTWVt%0AYmVyOjMyZDk1OTUwNDlhZjExZTZiODM2MDgwMDI3NWVhYTdj%0A",
+    "html": "名\t隆則\n姓\t浜口\nメイ\t\nセイ\t\n国\t日本\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=YTY2OTYwMDA0ZjNhMTFlNmJkNzMwODAwMjc1ZWFhN2M6Q29ycG9yYXRlTWVt%0AYmVyOjMyZDk1OTUwNDlhZjExZTZiODM2MDgwMDI3NWVhYTdj%0A",
+    "unique_args": {
+      "mail_delivery_job_id": "a66960004f3a11e6bd730800275eaa7c",
+      "mail_addressable_type": "CorporateMember",
+      "mail_addressable_id": "32d9595049af11e6b8360800275eaa7c"
+    }
+  },
+  {
+    "to": "kobari@bbank.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "自動配信",
+    "text": "自動配信\ntest02 header\nテスト02 ヘッダー\n名\t一浩\n姓\t小針\n\n名\t一浩\n姓\t小針\nメイ\t\nセイ\t\n国\t日本\n\n自動配信\ntest02 footer\nテスト02 フッタ\n名\t一浩\n姓\t小針\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=YTY2OTYwMDA0ZjNhMTFlNmJkNzMwODAwMjc1ZWFhN2M6Q29ycG9yYXRlTWVt%0AYmVyOjMzMGM4ODE2NDlhZjExZTZiODM2MDgwMDI3NWVhYTdj%0A",
+    "html": "名\t隆則\n姓\t浜口\nメイ\t\nセイ\t\n国\t日本\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=YTY2OTYwMDA0ZjNhMTFlNmJkNzMwODAwMjc1ZWFhN2M6Q29ycG9yYXRlTWVt%0AYmVyOjMzMGM4ODE2NDlhZjExZTZiODM2MDgwMDI3NWVhYTdj%0A",
+    "unique_args": {
+      "mail_delivery_job_id": "a66960004f3a11e6bd730800275eaa7c",
+      "mail_addressable_type": "CorporateMember",
+      "mail_addressable_id": "330c881649af11e6b8360800275eaa7c"
+    }
+  },
+  {
+    "to": "takenaka@bbank.jp",
+    "from": "s-numasawa@ruby-dev.jp",
+    "from_name": "Numasawa",
+    "reply_to": null,
+    "subject": "自動配信",
+    "text": "自動配信\ntest02 header\nテスト02 ヘッダー\n名\t翔\n姓\t竹中\n\n名\t翔\n姓\t竹中\nメイ\t\nセイ\t\n国\t日本\n\n自動配信\ntest02 footer\nテスト02 フッタ\n名\t翔\n姓\t竹中\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=YTY2OTYwMDA0ZjNhMTFlNmJkNzMwODAwMjc1ZWFhN2M6Q29ycG9yYXRlTWVt%0AYmVyOjMzMjlmMjAyNDlhZjExZTZiODM2MDgwMDI3NWVhYTdj%0A",
+    "html": "名\t隆則\n姓\t浜口\nメイ\t\nセイ\t\n国\t日本\n\n配信停止\n  http://localhost:3000/mail_delivery/unsubscribe?token=YTY2OTYwMDA0ZjNhMTFlNmJkNzMwODAwMjc1ZWFhN2M6Q29ycG9yYXRlTWVt%0AYmVyOjMzMjlmMjAyNDlhZjExZTZiODM2MDgwMDI3NWVhYTdj%0A",
+    "unique_args": {
+      "mail_delivery_job_id": "a66960004f3a11e6bd730800275eaa7c",
+      "mail_addressable_type": "CorporateMember",
+      "mail_addressable_id": "3329f20249af11e6b8360800275eaa7c"
+    }
+  }
+]

@@ -1,0 +1,37 @@
+{
+    deploy : {
+        production : {
+            user : "node",
+            host : "xx.xx.xx.xx",
+            ref  : "origin/master",
+            repo : "git@github.com:allin-xxxxxxxxxxxxxxxx.git",
+            path : "/var/node",
+            "post-deploy" : "npm install ; pm2 startOrRestart ecosystem.json --env production",
+            env  : {
+                NODE_ENV: "production"
+            }
+        },
+        stg : {
+            user : "node",
+            host : "xx.xx.xx.xx",
+            ref  : "origin/master",
+            repo : "git@github.com:allin-xxxxxxxxxxxxxxxx.git",
+            path : "/var/node",
+            "post-deploy" : "npm install ; pm2 startOrRestart ecosystem.json --env stg",
+            env  : {
+                NODE_ENV: "production"
+            }
+        },
+        dev : {
+            user : "node",
+            host : "allin-sns-dev_001",
+            ref  : "origin/gridfs",
+            repo : "git@git.ruby-dev.jp:business_bank_group/allin-sns.git",
+            path : "/var/node",
+            "post-deploy" : "npm install; pm2 startOrRestart ecosystem.json --env dev",
+            env  : {
+                NODE_ENV: "dev"
+            }
+        }
+    }
+}

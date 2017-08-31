@@ -1,0 +1,120 @@
+Influencer インフラ接続情報
+
+
+
+
+// ----------------------------------------------------------------
+// URL
+// ----------------------------------------------------------------
+    - エンドユーザ参照ページ
+        https://stage-lifewear.uniqlo.com/people/
+
+        
+    - インフルエンサー登録画面
+        # https://stage-lifewear.uniqlo.com/form/
+        https://stage-form.org.lifewear.uniqlo.com/form/ja
+        
+        
+    - 管理者権限画面
+        https://stage-admin-lifewear.uniqlo.com/
+        
+
+    ※現状はリバースプロキシを利用して、以下の設定を加えています。
+        stage-lifewear.uniqlo.com/people/  ->  stage-web.org.lifewear.uniqlo.com/people/
+        stage-lifewear.uniqlo.com/form/    ->  stage-admin-lifewear.uniqlo.com/form/
+
+
+
+
+
+
+
+// --------------------------------------------------------------------------------
+//     setup info
+// --------------------------------------------------------------------------------
+
+
+   - Stepサーバの情報
+   ----------------------------------------------------------------
+       - 54.250.223.60
+       - mnt01-a-tky-gateway-common
+
+       - login user : members
+       - key        : 現在利用されているmembersユーザの鍵ファイルをご利用ください。
+                      パスフレーズなし
+
+
+    - EC2 / ELB
+    ----------------------------------------------------------------
+        - DNS
+            stage-lifewear.uniqlo.com
+            (origin:stage-web.org.lifewear.uniqlo.com)
+
+        - EC2
+            - Instance   : i-467e11b5
+            - Host       : stg01-a-tky-influencer-uniqlo
+            - Private IP : 10.184.83.153
+                
+        - ELB
+            - stg01-tky-influencer-uniqlo-1282358411.ap-northeast-1.elb.amazonaws.com
+            - stg02-tky-influencer-uniqlo-424662196.ap-northeast-1.elb.amazonaws.com
+
+
+        - エンドユーザ参照ページ
+            /usr/share/nginx/html/lifewear.uniqlo.com/
+            
+        
+    - BATCH
+    ----------------------------------------------------------------
+        - EC2
+            - Instance   : i-db7f1028
+            - host       : stg01-a-tky-batch-influencer-uniqlo
+            - Private IP : 10.184.83.70
+
+
+    - Admin
+    ----------------------------------------------------------------
+        - ELB
+            - stg01-tky-admin-inflencr-uniqlo-287637395.ap-northeast-1.elb.amazonaws.com
+        
+        - EC2
+            - Instance   : i-937d1260
+            - host       : stg01-a-tky-admin-influencer-uniqlo)
+            - Private IP : 10.184.83.4
+
+        - DNS
+            インフルエンサー登録:stage-form.org.lifewear.uniqlo.com
+            
+        - 管理者
+            stage-admin-lifewear.uniqlo.com
+
+        - Nginxドキュメントルート
+            インフルエンサー登録  : /usr/share/nginx/html/lifewear.uniqlo.com/
+            管理者（Admin）     : /usr/share/nginx/html/admin.lifewear.uniqlo.com/
+
+        - ユーザ/PW
+            user  :  www
+            pass  :  DROd3Q0n
+
+        注意事項：
+        Autoscalingは未設定です。
+        EC2のセッティングが完了後に、Autoscalingの設定を追加しますので、ご連絡をお願い致します。
+
+
+    - RDS
+    ----------------------------------------------------------------
+        - マスター
+            DNS  :  stage-db.org.lifewear.uniqlo.com
+            アプリから接続する際に、DNS名（CNAME）を利用してください
+
+        - リードレプリカ
+            DNS  :  stage-db-rep.org.lifewear.uniqlo.com
+            アプリから接続する際に、DNS名（CNAME）を利用してください
+
+        - acc
+            DBName    : influencer
+            UserName  : influencer
+            Passwd    : QkIPwa9k
+
+            DB Engine(Ver):Mysql 5.6.22
+            DBディスクサイズ:30GB※拡張可能ですので、追加した場合はご連絡ください。

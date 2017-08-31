@@ -1,0 +1,314 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Testing ",
+    "Resources": {
+        
+        "sgmynaviproductweb": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "mynavi-product-web",
+                "VpcId": {
+                    "Ref": "vpcc970d5ac"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-web"
+                    }
+                ]
+            }
+        },
+        "sgmynaviproductgateway": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "mynavi-product-gateway",
+                "VpcId": {
+                    "Ref": "vpcc970d5ac"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-gateway"
+                    }
+                ]
+            }
+        },
+        "sgmynaviproductelb": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "mynavi-product-elb",
+                "VpcId": {
+                    "Ref": "vpcc970d5ac"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-elb"
+                    }
+                ]
+            }
+        },
+        "sgmynaviproductbackend": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "mynavi-product-backend",
+                "VpcId": {
+                    "Ref": "vpcc970d5ac"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-backend"
+                    }
+                ]
+            }
+        },
+        "sgmynaviproductnat": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "mynavi-product-nat",
+                "VpcId": {
+                    "Ref": "vpcc970d5ac"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-nat"
+                    }
+                ]
+            }
+        },
+        "sgmynaviproductcms": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "mynavi-product-cms",
+                "VpcId": {
+                    "Ref": "vpcc970d5ac"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-cms"
+                    }
+                ]
+            }
+        },
+        "ingress1": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "sgmynaviproductweb"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "80",
+                "ToPort": "80",
+                "CidrIp": "0.0.0.0/0"
+            }
+        },
+        "ingress2": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "sgmynaviproductweb"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "22",
+                "ToPort": "22",
+                "SourceSecurityGroupId": {
+                    "Ref": "sgmynaviproductgateway"
+                },
+                "SourceSecurityGroupOwnerId": "689978960272"
+            }
+        },
+        "ingress3": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "sgmynaviproductweb"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "443",
+                "ToPort": "443",
+                "CidrIp": "0.0.0.0/0"
+            }
+        },
+        "ingress4": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "sgmynaviproductgateway"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "22",
+                "ToPort": "22",
+                "CidrIp": "0.0.0.0/0"
+            }
+        },
+        "ingress5": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "sgmynaviproductelb"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "80",
+                "ToPort": "80",
+                "CidrIp": "0.0.0.0/0"
+            }
+        },
+        "ingress6": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "sgmynaviproductelb"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "443",
+                "ToPort": "443",
+                "CidrIp": "0.0.0.0/0"
+            }
+        },
+        "ingress7": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "sgmynaviproductbackend"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "3306",
+                "ToPort": "3306",
+                "SourceSecurityGroupId": {
+                    "Ref": "sgmynaviproductcms"
+                },
+                "SourceSecurityGroupOwnerId": "689978960272"
+            }
+        },
+        "ingress8": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "sgmynaviproductbackend"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "3306",
+                "ToPort": "3306",
+                "SourceSecurityGroupId": {
+                    "Ref": "sgmynaviproductweb"
+                },
+                "SourceSecurityGroupOwnerId": "689978960272"
+            }
+        },
+        "ingress9": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "sgmynaviproductnat"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "0",
+                "ToPort": "65535",
+                "CidrIp": "10.0.0.0/16"
+            }
+        },
+        "ingress10": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "sgmynaviproductcms"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "80",
+                "ToPort": "80",
+                "CidrIp": "0.0.0.0/0"
+            }
+        },
+        "ingress11": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "sgmynaviproductcms"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "22",
+                "ToPort": "22",
+                "SourceSecurityGroupId": {
+                    "Ref": "sgmynaviproductgateway"
+                },
+                "SourceSecurityGroupOwnerId": "689978960272"
+            }
+        },
+        "ingress12": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "sgmynaviproductcms"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "443",
+                "ToPort": "443",
+                "CidrIp": "0.0.0.0/0"
+            }
+        },
+        "egress1": {
+            "Type": "AWS::EC2::SecurityGroupEgress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "sgmynaviproductweb"
+                },
+                "IpProtocol": "-1",
+                "CidrIp": "0.0.0.0/0"
+            }
+        },
+        "egress2": {
+            "Type": "AWS::EC2::SecurityGroupEgress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "sgmynaviproductgateway"
+                },
+                "IpProtocol": "-1",
+                "CidrIp": "0.0.0.0/0"
+            }
+        },
+        "egress3": {
+            "Type": "AWS::EC2::SecurityGroupEgress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "sgmynaviproductelb"
+                },
+                "IpProtocol": "-1",
+                "CidrIp": "0.0.0.0/0"
+            }
+        },
+        "egress4": {
+            "Type": "AWS::EC2::SecurityGroupEgress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "sgmynaviproductbackend"
+                },
+                "IpProtocol": "-1",
+                "CidrIp": "0.0.0.0/0"
+            }
+        },
+        "egress5": {
+            "Type": "AWS::EC2::SecurityGroupEgress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "sgmynaviproductnat"
+                },
+                "IpProtocol": "-1",
+                "CidrIp": "0.0.0.0/0"
+            }
+        },
+        "egress6": {
+            "Type": "AWS::EC2::SecurityGroupEgress",
+            "Properties": {
+                "GroupId": {
+                    "Ref": "sgmynaviproductcms"
+                },
+                "IpProtocol": "-1",
+                "CidrIp": "0.0.0.0/0"
+            }
+        }
+        
+    }
+}

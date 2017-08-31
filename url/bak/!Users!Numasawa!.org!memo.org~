@@ -1,0 +1,1122 @@
+-*- mode: org -*-
+
+
+あああああああああx
+
+* よう修正 - error時にずれる
+- 心理的な負担の状況及び心身の状況
+- 部 課
+  <span class="translation_missing" title="translation missing: ja.field.stress_check_counseling_report.organization_division">Organization Division</span>は240文字以内で入力してください。
+
+
+* [2015-12-15 Tue]
+** file name
+yyyymmdd_意見書_[fullname].pdf
+
+date = 当日
+
+* [2015-12-14 Mon]
+
+** Done 就業条件文言修正
+CLOSED: [2015-12-14 Mon 19:02]
+i18n修正
+「就業条件や職場環境等の調査の必要性」　を正としてください。スプレッドシートも訂正済みです。
+
+** Done 措置期間
+CLOSED: [2015-12-14 Mon 16:17]
+OKです。フリーテキストなので、表示の日 / 月 / 年　は一旦削除ください。
+こちらで直すのか？
+
+新ファイルが上がっているか確認
+
+** Done PDF生成に用いる画像(PNG)を保存したい。適切な設置 path はありますでしょうか。
+CLOSED: [2015-12-14 Mon 15:37]
+一旦該当のGitHubに張り付ける形で設置ください。
+とりあえずgithubに貼り付け。
+先方で設置してくれるのかな?
+
+** PDF画像の読み込みパス修正
+指示のもと、githubに貼り付けた。
+後ほど、以下作業が必要。
+
+- view内のファイル削除
+- sourceの読み込みパス変更が必要
+
+** Done 印刷テスト
+CLOSED: [2015-12-14 Mon 16:03]
+** 細かな位置調整
+** Done PDF file name
+CLOSED: [2015-12-14 Mon 18:46]
+数値意外に
+ユーザー名など
+
+* [2015-12-11 Fri]
+** PDF
+*** デザインファイル
+*** coding
+*** show
+personal_infomation/5.pdf
+
+*** link生成
+show_pathの最後に
+_path, :format, :pdfの様な感じ
+
+format option指定を調査
+
+*** rspec
+responseから
+
+** 文言修正
+*** 初見あり
+* [2015-12-10 Thu]
+** uniqlo
+最大値、アラーム値
+増加金額確認
+他の手法はあるか?
+
+** decorator修正 (instance)
+** FIXME check
+** Done 指摘確認
+CLOSED: [2015-12-10 Thu 14:02]
+  https://github.com/FiNCDeveloper/wellness_survey/pull/3640
+
+*** Done こちらのパス、存在しないようなので修正お願いします。
+CLOSED: [2015-12-10 Thu 09:45]
+*** Done 'common.navigation.operators.industrial_physicians.stress_check_counseling_report.edit'
+CLOSED: [2015-12-10 Thu 09:50]
+
+*** Done [nits]masterに入れる前に忘れずに直したい
+CLOSED: [2015-12-10 Thu 10:09]
+*** Done ruby的には、male?のほうがbetterですかね。どうでしょう。
+CLOSED: [2015-12-10 Thu 10:09]
+
+*** Done genderがenumなので、man?/woman?が使えるはずです。そうなるとこれらのmethodはいらなそうです。
+CLOSED: [2015-12-10 Thu 10:09]
+
+*** Done self.man?
+CLOSED: [2015-12-10 Thu 10:09]
+
+*** Done personal_information.age
+CLOSED: [2015-12-10 Thu 10:09]
+
+** 指摘修正
+*** Done 分かり難いのでcounseling modelにsurvey_employeeメソッドを追加した方が良さそうです。
+CLOSED: [2015-12-10 Thu 18:05]
+*** Done ここで@counseling.valid?がfalseになるのはどのようなケースを想定しているのか教えて下さい。
+CLOSED: [2015-12-10 Thu 14:09]
+*** Done ここでdelete("0")している理由を教えて下さい。
+CLOSED: [2015-12-10 Thu 14:10]
+*** 分かり難いのでcounseling modelにsummarized_stress_check_scoreメソッドを追加した方が良さそうです。
+*** Done ここ間違えているように見えるので確認をお願いします。
+CLOSED: [2015-12-10 Thu 16:09]
+- new訂正
+- 確認中
+*** Done if object.counseling_place.try!(counseling_place_choice).try!(web?)
+CLOSED: [2015-12-10 Thu 14:20]
+*** Done skype_id = object.user.skype_account.skype_id
+CLOSED: [2015-12-10 Thu 14:24]
+
+*** Done skype_link = "skype: #{skype_id}"
+CLOSED: [2015-12-10 Thu 14:24]
+*** Done メソッドの最後の評価式が戻り値となるのでここの'='は不要だと思います。
+CLOSED: [2015-12-10 Thu 16:11]
+*** Done object.stress_check_counseling_report.present?
+CLOSED: [2015-12-10 Thu 15:01]
+*** Done object.stress_check_counseling_report
+CLOSED: [2015-12-10 Thu 15:09]
+*** Done どうしてFIXMEなのか、日本語でも良いので書いて下さい。
+CLOSED: [2015-12-10 Thu 15:11]
+*** Done 単純なリレーションで取得できるのでこのメソッドは不要かと思います。
+CLOSED: [2015-12-10 Thu 15:36]
+*** Done データの存在チェックなのでmodelに置いたほうが自然な気がします。
+CLOSED: [2015-12-10 Thu 17:51]
+*** Done このメソッドの使用目的がよく分からないので教えて下さい。
+CLOSED: [2015-12-10 Thu 15:51]
+*** Done viewでmodelをnewするのは良くないです。controllerでnewしてviewに渡したほうが良いです。
+CLOSED: [2015-12-10 Thu 15:51]
+
+
+** 他の指摘内容は?
+** ISMS
+
+
+
+
+* 面談場所
+** 以下参照
+counseling.decorator.t_place
+
+** web面談の判断
+counseling model
+
+:counseling_place_choices
+産業医が面談する候補の場所を入れておく場所
+web面談とか事業所など複数入る
+
+:counseling_place
+実際に面談する場所が入っている。一箇所
+
+enum
+文字列で比較 "比較"
+'web'で出てくるはず
+
+* wellness
+** acc
+*** admin
+info@finc.co.jp
+19910124
+
+*** 産業医
+test_industrial_physician@finc.co.jp
+19910124
+a1234567
+
+** setup
+`$ git clone git@github.com:FiNCDeveloper/wellness_survey.git`
+`$ cd wellness_survey`
+`$ vagrant up`
+`$ vagrant ssh`
+`$ cd /vagrant`
+`$ bundle install -j4
+`$ bundle exec rake db:setup`
+`$ bundle exec rake db:seed_fu`
+`$ bundle exec rails s -b 0.0.0.0`
+
+$ git clone git@github.com:FiNCDeveloper/wellness_survey.git`
+$ cd wellness_survey`
+$ vagrant up`
+$ vagrant ssh`
+$ cd /vagrant`
+$ bundle install -j4
+$ bundle exec rake db:setup
+$ bundle exec rake mock:setup_all
+
+rails generate migration AddDetailsToStressCheckCounselingReport
+
+bundle exec rake db:drop
+bundle exec rake db:setup
+bundle exec rake db:migrate
+bundle exec rake mock:setup_all
+bundle exec rake mock:generate_counselings
+bundle exec rake mock:generate_category_for_stress_check_counseling_reports
+bundle exec rake mock:generate_counseling_hearing
+
+9. `$ bundle exec rails s -b 0.0.0.0`
+
+** todos
+*** 意見書
+**** Done route
+CLOSED: [2015-12-01 Tue 16:25]
+
+**** 意見書 : 編集 (new)
+***** [100%] 見た目から
+***** [100%] 保存実装
+- [X] user_idが保存できない
+- [X] counseling_idが保存できない
+- [X] survey_idが保存できない
+- [ ] 全部check - rspecでやるか?
+
+***** [100%] css修正
+- sass化
+- アルファベット順序に並べる
+
+***** [100%] 既存データ埋め込み
+- [X] servey_id 埋め込み
+- [X] counseling_ie 埋め込み
+- [X] user_id 埋め込み
+
+- [X] 対象者氏名
+- [X] 社員番号
+- [X] 所属
+- [X] 性別
+- [X] 年齢 = 確認が必要
+- [X] ストレス反応の程度の評価（点数 / 項目数）
+- [X] ストレスチェックを実施する直前1ヶ月の労働時間（時間外・休日労働時間を含む）
+
+- [X] 医師の所属先
+- [X] 面談実施年月日
+  Counseling.decorate.counseling_date
+
+- [X] 医師氏名
+  Counseling.operator.name
+
+***** [85%] DB作成
+  - [X] 不明点確認
+  - [X] schema
+  - [X] model
+    - [X] validate (文字列制限 : データ待ち)
+    - [X] validate presence
+
+  - [X] validation column名修正
+  - [ ] 他に必要な事は?
+  - [X] 事前ヒアリングを紐付ける : CounselingHearing
+  - [X] CounselingHearingからのデータのとり方
+        自分でとりあえずデータを入れるか
+        ただしデータの関連がわからん
+
+***** [100%] UI 右列
+- [X] やり方が解らない、なにかパクろう -> admin/personal_data が使えそう
+- [X] 面談者情報 読み込みのみ
+- [X] 面談メモ 読み込みのみ
+
+***** [100%] UI左列
+- [X] 既存データの埋め込み
+      必要なデータの作成
+- [X] text_filed
+- [X] text_area
+- [X] drop down 実装
+
+- [X] gender : checkedにする方法。decoratorかな?
+               User.find(2).personal_information.gender
+
+- [X] 最下部に、プレビュー / 保存 / 編集を表示
+  - [X] 送信 -> どこかに提出?(提出しました画面) - 後で
+  - [X] 保存 -> 保存 -> 面談詳細個人メモへ戻る
+
+***** [100%] UI上
+- [X] 日付表示
+- [X] 表示ボタン
+- [X] 提出済みの場合には、ボタン削除
+
+***** [100%] bread
+- [X] edit : HOME > 面談一覧 > 個人詳細・面談メモ > 意見書編集
+- [X] show : HOME > 面談一覧 > 個人詳細・面談メモ > 意見書詳細
+- [X] new  : HOME > 面談一覧 > 個人詳細・面談メモ > 意見書編集
+
+***** Done Validation 文字数
+CLOSED: [2015-12-02 Wed 17:55]
+- 既定で 12 pts (見易さ優先でもっと大きくても結構です）最小10 ptsまで調整
+- 最大文字数は次でお願いします。
+
+| 110 | その他のストレス要因となる勤務状況                                              |
+| 163 | 特記事項 ※ストレスの程度の評価や医師判定の背景として特記すべき事項があれば記入 |
+| 130 | 調査内容の特記事項                                                              |
+| 150 | その他の事項                                                                    |
+| 490 | 詳細内容                                                                        |
+| 240 | 職場環境の改善に関する意見                                                      |
+| 240 | 上司からのサポートに関する意見                                                  |
+| 240 | 医療機関への受診配慮等                                                          |
+| 240 | その他（連絡事項など）                                                          |
+
+**** 意見書 : 詳細 (show)
+- [ ] 編集を流用
+- [ ] slimの一部がコメントアウトしている。データ取得箇所確認後、訂正
+
+- [ ] 送信 : 以下、確認時の文言
+      送信前の確認文言：送信してもよろしいでしょうか。送信すると企業へ送信され、取り消すことはできません。内容をよくご確認いただき、送信してください。
+
+
+***** 意見書送信時の必須項目
+以下の必須項目を参照せよとのこと
+基本、null許可していないものが入っていれば良いと思われる。
+が、再確認せよ
+
+https://docs.google.com/spreadsheets/d/1iRUEfS4SBiLendIaqg4E-pNQOGXbUEL8scbknTcCc6g/edit#gid=1525121193&vpid=A1
+
+**** 疑問
+***** Done 編集画面と詳細画面の違い
+CLOSED: [2015-11-25 Wed 15:52]
+show = 詳細
+edit = 編集
+
+***** Done ストレス反応の程度の評価（点数 / 項目数）
+CLOSED: [2015-11-25 Wed 15:52]
+構造が分からない
+[項目数]の種類が複数あり、[項目数]ごとに点数が付く?
+
+項目選択 + 点数入力部
+項目選択で一つ
+点数入力部はひとつ
+
+***** Done 1カウンセリングに、複数の意見書を提出可能か?
+CLOSED: [2015-11-25 Wed 15:52]
+- 1counseling = 1意見書
+- 日付選択はなくなる
+
+***** Done ストレスチェックを実施する直前1ヶ月の労働時間（時間外・休日労働時間を含む）
+CLOSED: [2015-11-26 Thu 20:19]
+上記がUI上には表示されていない、不要か?
+fincさんに確認 => 必要
+
+[ CounselingHearing.working_hour ]
+float
+
+***** Done その他のストレス要因となる勤務状況
+基本情報となっているが、何処の情報を参照か?
+fincさんに確認
+
+[ CounselingHearing.stressor ]
+text
+
+***** new / edit
+***** test dataがない
+CLOSED: [2015-11-26 Thu 20:19]
+ストレスチェックを実施する直前1ヶ月の労働時間（時間外・休日労働時間を含む）
+その他のストレス要因となる勤務状況
+
+Finc様に依頼？
+
+***** 社員番号はどこから?
+***** 部署と課はどこから?
+***** ストレス反応の程度の評価（点数 / 項目数）
+及び、点数はどこから?
+
+***** Done 医師の所属先どこから
+CLOSED: [2015-12-10 Thu 09:33]
+***** Done 面談実施年月日どこから
+CLOSED: [2015-12-10 Thu 09:33]
+恐らく
+Counseling.start_at
+
+***** Done 医師氏名どこから
+CLOSED: [2015-12-10 Thu 09:33]
+恐らく
+Counseling.operator.name
+
+***** Done 氏名と社員番号は同一 text_filedに表示するのか?
+CLOSED: [2015-12-10 Thu 09:33]
+***** 既存データ部は、表示のみであり保存は不要と推測。左記考えでよいか?
+***** 年齢は、personal_infomationのbirthdayから算出している。左記処理 でよいか?
+***** デザインが崩れる
+<div filed_with_error>が混入し、デザインが崩れる
+***** validateのエラー表示
+<div filed_with_error>がつくが
+赤く強調されない。
+
+メッセージが表示されない
+***** survey_idが存在しないパターンはあるか?
+また、意見書登録前後で、survey_idの有無が変化することはあるか?
+***** Done 意見書 : is_reported以外、なにか対応が必要か?
+CLOSED: [2015-12-02 Wed 17:07]
+
+不要
+
+確定して送信した時、編集できなくする以外にメールを送るなどすることはあるか？
+（宮崎）
+ //　はい。あります。ただし管理コンソール内での作業ではなく、クライアントPCのメーラーでの対応を想定しています。（FiNC対応不要）
+***** Done 文字数制限
+- 既定で 12 pts (見易さ優先でもっと大きくても結構です）最小10 ptsまで調整
+- 最大文字数は次でお願いします。
+
+| 110 | その他のストレス要因となる勤務状況                                              |
+| 163 | 特記事項 ※ストレスの程度の評価や医師判定の背景として特記すべき事項があれば記入 |
+| 130 | 調査内容の特記事項                                                              |
+| 150 | その他の事項                                                                    |
+| 490 | その他の詳細                                                                    |
+| 240 | 職場環境の改善に関する意見                                                      |
+| 240 | 上司からのサポートに関する意見                                                  |
+| 240 | 医療機関への受診配慮等                                                          |
+| 240 | その他（連絡事項など）                                                          |
+
+***** Done 意見書送信時の必須項目
+CLOSED: [2015-12-02 Wed 17:15]
+以下の必須項目を参照せよとのこと
+https://docs.google.com/spreadsheets/d/1iRUEfS4SBiLendIaqg4E-pNQOGXbUEL8scbknTcCc6g/edit#gid=1525121193&vpid=A1
+
+**** メモ
+***** counselingsモデルにsurvey_idを追加しました。
+
+counselingから参考とするストレスチェック結果を取るときにつかったり、
+counselingと対応させる意見書を取るときに必要になります。
+https://github.com/FiNCDeveloper/wellness_survey/pull/3397
+
+一応メモ程度ですが、経緯を書きました。わからなければ聞いていただければと思います。
+https://github.com/FiNCDeveloper/wellness_survey/issues/3394
+**** Done select box list
+CLOSED: [2015-11-30 Mon 21:34]
+***** ストレス反応の程度の評価（点数 / 項目数）
+CLOSED: [2015-11-27 Fri 16:49]
+- Result of stress check up （Score/Section)
+- CategoryResultOfStressCheckUp （Score/Section)
+- category_result_of_stress_check_up
+- 57項目
+  23項目
+  その他
+
+***** ストレス反応について
+- stress reaction
+- CategoryStressReaction
+- category_stress_reaction
+
+- 医療措置不要
+  再面接を要す（時期)
+  現病治療継続
+  環境等の調整を要す
+  医療機関紹介
+
+***** ストレスと業務の関連性
+- Relevance between stress and job
+- CategoryRelevanceBetweenStressAndJob
+- category_relevance_between_stress_and_job
+
+- ほぼなし
+  関連を疑う
+  強く疑われる
+  不明
+
+***** 就業区分
+- Job category
+- CategoryJob
+- category_job
+- 通常勤務
+  就業制限・配慮
+  要休業
+
+***** 主要措置項目
+- adjustment for health at working enviroment
+- CategoryAdjustmentForHealthAtWorkingEnviroment
+- category_adjustment_for_health_at_working_enviroment
+- 労働時間の短縮
+  出張の制限
+  時間外労働の禁止又は制限
+  深夜業の回数の減少
+  昼間勤務への転換
+  作業の転換
+  業務負担の軽減
+  就業場所の変更
+  就業の禁止（休暇・休業の指示）
+  その他
+
+*** 個人詳細
+一時PR済み
+
+**** todos
+***** [-] デザイン修正
+  - [X] 面談場所を右列上へ
+  - [X] 面談場所の文言変更
+  - [X] 面談先住所を、skype IDのみへ
+  - [X] skype ID表示、なければ非表示
+  - [ ] drop down画像
+        対象画像がない
+
+  - [X] counseling.sassへまとめる
+
+  - [X] 事前ヒアリング結果とストレスチェック結果が項目が非常に長くなるため、デフォルトでは隠しておきたいです
+
+***** [X] 文言
+- [X] 意見書が未提出であれば、意見書作成へ
+- [X] 意見書が提出済みであれば、意見書詳細へ
+      文言不明
+
+***** Done 提出状態の判断はどうやるのが一般的?
+CLOSED: [2015-12-02 Wed 10:06]
+is_reportedから
+
+***** Done 色指定どうやる?
+CLOSED: [2015-12-02 Wed 10:05]
+$red_color: #ff6b6b
+is_reportedを参照
+decorator?
+
+***** Skype
+とりあえず、user_idを元にskype_idを引っ張って来て埋め込み
+
+
+[12] pry(main)> SkypeAccount.column_names
+=> ["id", "user_id", "skype_id", "created_at", "updated_at"]
+
+has_one
+
+**** 疑問
+***** 面談方法・場所 : web面談意外は住所表示?
+- 個人詳細で表示する面談場所
+  counseling modelのcounseling_placeとなります。
+  relationの追加を、先ほどfeature/industrial_phycisian_consoleブランチにコミットしたばかりなので、
+  実装は後回しでも良いです。
+  web面談か否かも判定可能
+
+- 面談場所表示は、佐藤さんの用意したmethodで
+
+***** Done 「Skypeを起動する」ボタンについては清水さんに確認中です。
+CLOSED: [2015-12-09 Wed 22:07]
+こちにskype_idは保存しますので参照していただければと思います。
+masterに入っていますので、取り込みお願いしたいです。
+またcouselingsにsurvey_idを追加したので、こちらも共有致します。
+counselingから、意見書をつくる場合、user_id, survey_idがひつようになるのでその際に使うと思います。
+
+has_oneです
+----------------------------------------------------------------
+create_table "skype_accounts", force: :cascade do |t|
+t.integer  "user_id",    limit: 4
+t.string   "skype_id",   limit: 255
+t.datetime "created_at",             null: false
+t.datetime "updated_at",             null: false
+end
+----------------------------------------------------------------
+
+***** Done [X] 意見書が提出されている場合は?
+CLOSED: [2015-12-09 Wed 22:07]
+is_reported
+
+***** Done [ ] 意見書のidをどこに保存する?
+CLOSED: [2015-12-09 Wed 22:07]
+1cousenling = 1意見書
+とするなら、意見書側にcounseling_idを持たせ、検索すればよいか
+
+**** 補足
+***** 上部の個人情報のパネルのviewは、既存のクラスでほぼ実装可能です。
+/companies/surveys/survey_employees/basic_information_panel.himl.slimを参考にしていただければと思います。
+*** 確認
+**** Done メンションの返信状態
+CLOSED: [2015-12-04 Fri 14:24]
+**** Done PR更新
+CLOSED: [2015-12-04 Fri 14:24]
+
+*** data生成
+desc "setup category data for stress check counseling reports"
+本番環境でも必要なデータなのでこのタスクは削除してbundle exec rake seed_fuでidが固定で同じデータが作成されるようにして下さい。
+db/fixtures/job_types.rbなどのファイルを参考にseedファイルを追加して下さい。
+
+*** [2015-12-09 Wed]
+**** 仕様再確認
+***** 確認点
+- データ取得元の確認
+    - [Done] 社員番号
+    - [ ] 部署と課
+    - [Done ] ストレス反応の程度の評価（点数 / 項目数） 及び、点数
+    - [Done] 医師の所属先
+    - [Done] 面談実施年月日
+        Counseling.start_at
+    - [Done] 医師氏名
+        Counseling.operator.name
+- [Done] 氏名と社員番号は同一 text_filedに表示するのか
+    表示する。SSから確認
+- [Done]  年齢は、personal_infomation.birthdayから算出している。左記処理 でよいか?
+
+***** Done 社員番号
+CLOSED: [2015-12-09 Wed 16:59]
+survey_employee.employee_unique_identification_key
+
+Post
+.includes(:blog, :user)
+.where(Blog.arel_table[:enable].eq(true)
+.or(User.arel_table[:enable].eq(true))
+
+Counseling.includes(:survey_employee)
+SurveyEmployee.find_by(user_id: 1, survey_id: 1)
+
+***** 部 / 課
+"部”については、既定情報（部署）を参照してください
+"課”については、未入力として必要に応じ記入する欄としてください。 (null を許可）
+
+以下参考：
+Organization/Department > 部　
+Organization/Division　>　課
+
+項目および、入力必須・任意の指示について、意見書項目のシートにも反映済みです。
+https://docs.google.com/spreadsheets/d/1iRUEfS4SBiLendIaqg4E-pNQOGXbUEL8scbknTcCc6g/edit#gid=1525121193&vpid=A1
+
+see #2909 (comment)
+
+surveyに紐づく、事業場が部
+
+- find_byでもok
+    一応、他にも手はあるよと
+
+
+****** 再確認
+- 部
+    - 何れのmodelを参照すればよろしいでしょうか?
+    - division modelが存在するが、左記か?
+      当該modelであれば(データ取得に際し手間がかかる場合)、データ構造をお教え頂けるか。
+      もしくは、部を取得できるmethodなどあるか?
+
+- 課
+    - 意見書のテーブルにもたせる
+
+****** 予定
+
+***** Done 57項目 / 23項目 / その他
+CLOSED: [2015-12-09 Wed 17:42]
+- [ ] ストレス反応の程度の評価（点数 / 項目数） 及び、点数
+    - 回答：「57項目 / 23項目 / その他」がなんなのか確認中  @Akikomi
+
+- model
+    - SummarizedStressCheckScore
+
+- 項目表示
+    - 結論として、23項目やその他を選択不可にしてもらえますか？
+    - 23項目は 57項目から質問を精査した、さらに簡易なストレスチェック（厚労省既定）です。
+      例えばサービスによっては選択可能なように検討していましたが、今はReadyではないので、 57項目のみでＯＫとしたく。
+
+- dataの取り方
+    - user_id, survery_idでanswerer
+
+- 以下3点の合計がstress check score
+    - modification_factor_score
+    - stress_factor_score
+    - stress_response_score
+
+***** Done 医師の所属先
+CLOSED: [2015-12-09 Wed 17:55]
+- 回答
+    ここは複数あるがどれを出すか?全部か？ @Akikomi
+    はい。全部でお願いします。
+
+- model
+    IndustrialPhysicianWorkPlace
+    紐づく者を全部出力。
+    それほど多くの情報は紐付かないとのこと
+
+***** Done 「全ての入力項目が入っていないと、送信できないようにしてください。」
+CLOSED: [2015-12-09 Wed 19:15]
+「全ての入力項目が入っていないと、送信できないようにしてください。」とあるが、null許可されている項目も含め全てか?
+入力と送信でチェック内容が異なるのか?
+
+[akikomi] null 許可されていないものに対して、送信時にvalidationをかけてください。
+null 許可されているものは入力していなくても送信し問題ありません。
+
+****** 再確認
+承知致しました
+
+***** Done birth day
+CLOSED: [2015-12-09 Wed 19:51]
+personal_information.age
+
+**** Done UI調整
+CLOSED: [2015-12-09 Wed 20:18]
+既存部分は、テキストのみ表示
+
+**** Done model修正
+CLOSED: [2015-12-09 Wed 21:17]
+- 措置期間
+    - stringへ
+
+**** Done counseling_hearing
+CLOSED: [2015-12-09 Wed 21:12]
+- decorator 調整
+    counseling_hearingが、counseling_id, user_idをもっている
+
+- データ取得方法
+    user_id, counseling_idでもってくるのかな?
+    確認が必要だな
+
+**** Done checkbox
+CLOSED: [2015-12-09 Wed 20:42]
+id揃ええる
+
+** 色々
+*** カウンセリング
+http://localhost:3050/operators/counselings
+
+*** role | ./config/setting.rb
+**** 判定
+if user_signed_in?
+if company_admin_signed_in?
+elsif current_operator.try(:consulation_center_role?)
+elsif current_operator.has_role?(:industrial_physician)
+
+**** roles
+operator:
+  roles: [
+      'almighty_operator',
+      'internal_test_operator',
+      'external_test_operator',
+      'consulation_center_admin',
+      'consulation_center_representative',
+      'industrial_physician'
+  ]
+  consulation_center_admin_role: 'consulation_center_admin'
+  consulation_center_representative_role: 'consulation_center_representative'
+
+  roles_mask:
+    almighty_operator: 1
+    internal_test_operator: 2
+    external_test_operator: 4
+    consulation_center_admin: 8
+    consulation_center_representative: 16
+    industrial_physician: 32
+***
+***
+
+*** sidebar初期読み込み
+- controller/counselings/
+  ----------------------------------------------------------------
+  layout 'v2/operators/industrial_physician'
+  ----------------------------------------------------------------
+
+    - ~/program/shared/wellness/app/views/layouts/v2/operators/industrial_physician.html.slim
+        - ~/program/shared/wellness/app/views/layouts/v2/partials/_sidebar.html.slim
+
+*** company/sidebar
+    ~/program/shared/wellness/app/views/layouts/v2/partials/sidebar/_company.html.slim
+
+*** i18n
+~/program/shared/wellness/config/locales/views/common/ja.yml
+
+*** path list
+
+** model
+rails generate migration クラス名 カラム名:データ型( カラム名:データ型)
+rails generate migration News status:int
+
+** form
+= form_for @counseling, url: save_note_operators_counseling_path(@counseling) do |f|
+  = f.text_area :note
+  = f.submit '保存', class: 'btn btn-primary pull-right'
+
+** db migrate
+add_column :stress_check_counseling_reports,  :category_stress_reaction_id, :integer, null: false
+add_column :stress_check_counseling_reports,  :category_relevance_between_stress_and_job_id, :integer, null: false
+add_column :stress_check_counseling_reports,  :category_job_id, :integer, null: false
+add_column :stress_check_counseling_reports,  :category_adjustment_for_health_at_working_enviroment_id, :integer, null: false
+
+rename :stress_check_counseling_reports,  :integererviewee, :interviewee
+
+
+* old
+** Testing
+*** IE9
+*** 全体
+- ヘッダーが被って見えない箇所あり
+- main画像が左によっている
+- 全体に的に、解像度100%使用した幅で表示される
+
+*** top
+- カルーセル : 画像がスライドしない
+- カルーセル : indicatorが動作しない
+- 文字が左によっている
+- 画像の囲い線が無い
+- Topic, お知らせのトピックスの [▌]が無い
+
+*** business
+- 高解像度で開くと、一部画像が複数表示される
+-
+
+*** company
+*** recruiting_rail
+cssが適用されていない?
+
+*** recruiting
+cssが適用されていない?
+メイン画像が表示されない
+
+*** parnter
+cssが適用されていない?
+メイン画像が表示されない
+
+*** qualification_support
+メイン画像が表示されない
+
+*** contact
+*** ruby_info
+メイン画像が表示されない
+cssが適用されていない?
+
+*** policy
+cssが適用されていない?
+
+*** staff
+cssが適用されていない?
+*** sitemap
+各linkが、左上によっている
+
+*** IE10
+*** top
+カルーセル矢印なし
+
+
+** 参考記事
+http://adsj-contents.s3.amazonaws.com/meister-blackbelt/20150107_AWS-BlackBelt-ETS.pdf
+http://aws.typepad.com/aws_japan/amazon-elastic-transcoder/
+http://dev.classmethod.jp/cloud/amazon-elastic-transcoder-start/
+http://akiyoko.hatenablog.jp/entry/2015/08/09/232933
+http://qiita.com/terapyon/items/e4925c15c7ee58778f92
+http://qiita.com/terapyon/items/e4925c15c7ee58778f92
+
+** what
+*** transcoderとは?
+動画および音声ファイルをスマートフォン、タブレット、PC などのデバイスで再生可能なバージョンに変換
+
+*** どんな変換が可能か?
+動画および音声ファイルを、デスクトップ、モバイルデバイス、タブレット、およびテレビでの再生に最適化された、サポートされる出力フォーマットに変換できます。
+
+幅広い入力および出力フォーマット、解像度、ビットレート、およびフレームレートに対応するほか、
+動画ビットレートの自動最適化、サムネイルの生成、ビジュアルウォーターマークのオーバーレイ、キャプションのサポート、DRM パッケージ、プログレッシブダウンロード、暗号化などの機能も用意されています。
+** 料金例
+基本無料。出力動画の長さによって課金。
+
+標準解像度 : SD（720p 未満の解像度） $0.017 /分
+高解像度   : HD（720p 以上の解像度） $0.034 /分
+音声      : $0.00522 /分
+
+1時間HD動画 : 約200円
+1時間SD動画 : 約100円
+
+*** 以下、10分のファイルを元とし、10分のファイルへ変換した場合
+**** SD に変換
+10 * 0.017 = $0.17
+
+**** HD に変換
+10 * 0.034 = $0.34
+
+**** HDとSD に変換
+10 * 0.017 = $0.17
+10 * 0.034 = $0.34
+
+0.17 + 0.34 = 0.51
+
+**** 音声のみ変換
+10 * 0.00522 = 0.0522
+
+**** 1音声 * 2SD * 2HD
+10 * 0.00522 = 0.0522
+(10 * 0.034 * 2) = $0.72
+(10 * 0.017 * 2) = $0.34
+
+0.72 + 0.34 + 0.05 = 1.11
+
+*** S3
+https://aws.amazon.com/jp/s3/pricing/
+
+$0.033 / 1GB
+
+*** cloudfront
+https://aws.amazon.com/jp/cloudfront/pricing/
+
+$0.14 / 1GB
+
+** support format
+*** 入力
+3GP, AAC, AVI, FLV, MP4
+# 正確な情報は見つけられず
+
+*** 以下、出力フォーマットへの変換をサポート
+
+H.264 動画と AAC または MP3 音声を保存した MPEG-2 TS コンテナを使った HLS
+H.264 動画と AAC 音声を保存した fmp4 コンテナを使ったスムーズストリーミング
+MPEG-2 動画と PCM 音声を保存した MXF コンテナを使った XDCAM
+H.264 動画と AAC または MP3 音声が保存された MP4 コンテナ
+VP8 動画と Vorbis 音声が保存された WebM コンテナ
+H.264 動画と AAC または MP3 音声が保存された FLV コンテナ
+MPEG-2 動画と MP2 音声が保存された MPG コンテナ
+MP3 音声が保存された MP3 コンテナ
+AAC 音声が保存された MP4 コンテナ
+Vorbis または FLAC 音声が保存された OGG コンテナ
+FLAC 音声が保存された OGA コンテナ
+FLAC 音声が保存された FLAC コンテナ
+アニメーテッド GIF
+
+
+** API
+*** AWS マネジメントコンソール、API, SDK で操作
+AWS SDK for Java、.NET、Node.js、PHP、Python、Ruby、および新しい AWS コマンドラインインターフェイスを使用できます。
+
+*** document
+http://docs.aws.amazon.com/ja_jp/elastictranscoder/latest/developerguide/introduction.html
+
+*** error list
+http://docs.aws.amazon.com/ja_jp/elastictranscoder/latest/developerguide/error-handling.html
+
+*** プリセット
+http://docs.aws.amazon.com/ja_jp/elastictranscoder/latest/developerguide/create-preset.html
+
+
+** 制限
+*** パイプライン: リージョンごとに AWS アカウントあたり 4 パイプライン
+*** キュー内のジョブの最大数: パイプラインあたり 100,000 ジョブ
+*** 出力の最大数: ジョブあたり 30 出力
+*** パイプラインごとに同時に処理されるジョブの最大数:
+**** US East (N. Virginia) リージョン：20
+**** 米国西部（北カリフォルニア） リージョン：12
+**** 米国西部（オレゴン） リージョン：20
+**** 欧州（アイルランド） リージョン：20
+**** アジアパシフィック（シンガポール） リージョン：12
+**** アジアパシフィック（東京） リージョン：12
+
+*** プリセット: AWS アカウントあたり 50 ユーザー定義プリセット（Elastic Transcoder の定義済みプリセットはこの制限数に含まれません）
+**** ジョブリクエストを送信できる最大レート:
+***** Create Job: 継続的なレートでは、AWS アカウントごとに 1 秒あたり 2 個の Create Job リクエストを送信できます。瞬間的なバーストでは、1 秒あたり 100 個のリクエストに対応できます。
+***** Read Job: 継続的なレートでは、AWS アカウントごとに 1 秒あたり 4 個の Read Job リクエストを送信できます。瞬間的なバーストでは、1 秒あたり 100 個のリクエストに対応できます。http://docs.aws.amazon.com/elastictranscoder/latest/developerguide/limits.html
+
+*** 制限解除
+https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-elastic-transcoders
+
+** 用語
+*** progressive download
+ストリーミングと同じくデータをダウンロードしながら再生する技術。
+プロトコルとして主にHTTPを使い、ファイルをダウンロードしながら再生するという形式を取っている。
+
+https://ja.wikipedia.org/wiki/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%AC%E3%83%83%E3%82%B7%E3%83%96%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89
+*** HLS
+http live streaming
+
+http://www.slideshare.net/moriyoshi/hls-46107808
+https://zencoder.com/ja/hls-guide
+http://www.slideshare.net/moriyoshi/hls-46107808
+*** smooth streaming
+*** transcode
+デジタル映像をアナログ信号にデコードしないでデジタル信号のまま再エンコードする技術である
+
+https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89
+*** watermark
+出力動画に最大 4 つまでの静止画を重ねることができます。
+出力ビデオにウォーターマークを追加するには、PNG または JPG ファイルを選択し、トランスコーディングプリセットを使ってウォーターマークの位置、
+スケール、サイズ、および透明度を指定するだけです。
+
+この機能を使って、出力ファイルにプログラムやその他の識別ロゴを追加することができます。
+*** DRM
+http://docs.aws.amazon.com/ja_jp/elastictranscoder/latest/developerguide/introduction.html
+
+
+** 形式変換
+メディアファイルをその元のソース形式からスマートフォン、タブレット、PC などのデバイスで再生可能できるバージョンに変換（または「トランスコード」）できます。
+*** 処理時間
+例えば、10 分の動画に iPhone 4 プリセットを使用する場合の期間は約 5 分です。
+変換速度はリージョンによっても異なる場合があります。
+
+パイプラインで受け付けた順に処理が開始されます。
+ジョブの変換準備ができると、入力ファイルサイズ、解像度、ビットレートなど多くの変数が変換速度に影響します。
+多数のジョブを受け付けると、ジョブはバックログ（キュー）に登録されます。
+
+*** システムトランスコーディングプリセットを使えば、簡単に適切なトランスコーディング設定を使用可能
+
+*** 様々なデバイス（スマートフォンやタブレットなど）で再生可能なメディアファイルを作成できる定義済みプリセットの他、
+特定のデバイス（Amazon Kindle Fire HD や Apple iPod touch など）での再生用に最適化されたメディアファイルを作成できるプリセットも用意されています。
+HLS プロトコルを使用して対応デバイスに配信するための、セグメント化されたファイルとプレイリストを作成することもできます。
+
+*** カスタムプリセットを作成可能
+** 処理状態
+Amazon SNS 通知を使用してジョブステータスの変化通知を受け取ることができます。
+例えば、ジョブの変換開始時や変換終了時に通知を受け取ることができます。
+Amazon SNS の詳細については、Amazon SNS の詳細ページを参照してください。
+
+** 並列処理
+メディア変換の負荷に応じ、シームレスにスケーリング可能
+大量のメディアファイルや巨大なサイズのファイルを処理できるよう設計されています。
+トランスコーディングパイプラインを使えば、複数の変換を並行処理できます。
+Amazon Elastic Transcoder は Amazon S3、Amazon EC2、Amazon DynamoDB、Amazon Simple Workflow（SWF）、Amazon Simple Notification Service（SNS）といった他のアマゾン ウェブ サービスと連携してスケーラビリティと信頼性を提供します。
+
+
+** 料金
+*** 支払いは実際に使用した分のみ。最低料金は不要
+*** コンテンツの再生時間をベースとし、変換対象メディアの出力の長さ（分単位）で課金
+**** ビデオ変換後の出力が 30 分である場合は、30 分の変換処理に対して課金。
+**** 30 分の入力ファイルから 20 分のビデオクリップを作成する場合、20 分の変換処理に対して課金。
+**** 分の端数は次の分に切り上げ
+*** 標準解像度（SD）出力の料金は、高解像度（HD）の半分
+HD は、720 ライン以上の解像度の出力
+*** 音声コンテンツのみの出力の料金は、SD 出力の価格の 3 分の 1 よりも安くなる
+
+*** storage : Amazon S3 ストレージとデータ転送料金は入力ファイルと出力ファイルの両方に適用されます
+*** 転送料金 : 変換ジョブを送信したリージョンで Amazon S3 バケットを使用する場合は、データ転送料金は発生しません
+*** 外部への転送料金 :
+s3, cloudfrontなどの料金に準じる
+
+S3 : https://aws.amazon.com/jp/s3/pricing/
+
+*** 無料利用枠
+毎月の無料利用枠を提供しています。
+無料利用枠には、毎月 20 分の無料音声のみ出力、20 分の無料 SD 出力および 10 分の無料 HD 出力があります。
+無料利用枠を超えた分については、一般料金が課金されます。
+出力コンテンツにウォーターマークが挿入されたり、サービスの機能が制限されたりすることはありません。
+
+** 配信
+Elastic Transcoder、Amazon S3、Amazon CloudFront を使用して、コンテンツの保存、変換、配信を行うことができます。
+
+Amazon Elastic Transcoder で CloudFront 配信用に S3 アクセス許可を設定すると、
+Amazon Elastic Transcoder でコンテンツを変換して、複数の出力動画をプログレッシブダウンロードまたは
+CloudFront の HLS ストリーミングから配信する作業を、簡単な 1 ステップの処理で行うことができます
+
+** 使いやすさ
+
+** 利点?
+*** 1 : 基本のトランスコードソフトウェアの購入、設定、管理の必要がなくなります。
+*** 2 : Amazon Elastic Transcoder には各種デバイス向けに事前定義されたプリセットが用意されている
+試行錯誤してデバイスごとに適切な設定を探す必要がなくなります。
+また、カスタムプリセットにも対応しているので、独自のサイズのビットレートなど、特有の変換要件に合わせて出力を調整することができます。
+
+*** 3 : 、Amazon Elastic Transcoder は作業負荷に応じて自動的にスケールアップ/ダウンするので、
+容量を無駄にすることがなく、ジョブ完了までの待機時間は最短になります
+
+*** pipeline
+Elastic Transcoder のパイプライン機能を使えば、各種シナリオ用のパイプラインを設定し、
+必要なときに必要な方法でファイルを変換することができるので、作業負荷の急増にも効率的かつスムーズに対応できます
+
+例えば、報道機関がニュース速報用に「最優先」トランスコーディングパイプラインを作成したり、ユーザー投稿ウェブサイトで各種デバイス向けに
+高、中、低の解像度別パイプラインを作成することが考えられます。
+
+**** 1 つの入力ファイルからビットレートとフォーマットが異なる複数の出力ファイルを作成できます
+** 使い方
+*** pipeline
+トランスコーディングパイプラインを作成し、入力用の Amazon S3 バケット、出力用の Amazon S3 バケットとストレージクラス、
+およびサービスがファイルにアクセスするための AWS Identity and Access Management（IAM）ロールを指定します。
+
+*** job
+トランスコーディングジョブを作成し、入力ファイル、出力ファイル、および使用する
+トランスコーディングプリセット（定義済みのトランスコーディングプリセットから選択するか（例えば 720 ピクセル）、
+独自のカスタムトランスコーディングプリセットを作成する）を指定します。
+オプションで、サムネイルや、フレームレート、解像度といったジョブ固有のトランスコーディングパラメータを指定できます。
+
+**** トランスコーディングジョブのステータスを通知経由で自動受信できます。
+**** トランスコーディングジョブのステータスを問い合わせることができます。
+**** トランスコーディングジョブを停止、開始、取り消すことで管理できます。
+
+*** preset
+任意のデバイスで再生可能な出力を作成するプリセットや、特定のデバイスを対象にしたプリセットを選択することができます。
+互換性を重視する場合は、様々なデバイスで再生可能な出力を作成する「breadth preset」（汎用プリセット）を選択します。
+品質とファイルサイズを最適化する場合は、特定のデバイスまたはデバイスのクラスに応じた出力を作成する「optimized preset」（最適化プリセット）を選択します
+
+*** custom preset
+特定の出力ターゲット向けのプリセットを作成することもできます。
+既存のトランスコーディングプリセットをカスタマイズして、リージョン内の AWS アカウントのすべてのパイプラインで使用できます
+
+*** 動画ビットレートの自動最適化
+自動動画ビットレート設定を使用すれば、変換された出力の画像品質を最適化するように 自動的にビットレートを調整します。
+最大ビットレートパラメータを使うと、出力ビデオの瞬間ビットレートを制限することができます。
+この機能を使用すると、特定のデバイスの再生要件に合わせて最大ビットレートを制限した出力ファイルを生成することができます。
+
+*** 通知
+トランスコーディングジョブの開始時、完了時、警告の発生時、エラー条件の発生時に通知を受け取り可能
+
+*** サムネイル
+出力動画のサムネイルを生成できます。
+サムネイルのサイズ、アスペクト比、および生成するサムネイルの数などのパラメータを設定することができます。
+チャプターマーカーを追加したりビジュアルスキャン機能を付けたりする場合や、コンテンツを最もよく表すサムネイルを選ぶ場合は、複数のサムネイルを生成すれば便利です。
+
+*** ビジュアルウォーターマーク
+出力動画に最大 4 つまでの静止画を重ねることができます。
+出力ビデオにウォーターマークを追加するには、PNG または JPG ファイルを選択し、トランスコーディングプリセットを使ってウォーターマークの位置、スケール、サイズ、および透明度を指定するだけです。この機能を使って、出力ファイルにプログラムやその他の識別ロゴを追加することができます。
+*** キャプション
+Amazon Elastic Transcoder がキャプションをサポートします。
+キャプションは、プログラムの音声部分を転写したり、音声を別の言語に翻訳して、ビデオに付随するテキストとして表示するプロセスです。
+Elastic Transcoder を使用して、ビデオを 1 つの形式から別の形式に変換するときに、キャプションを追加、削除、または保持できます。
+*** DRM パッケージ
+Microsoft PlayReady DRM 用のパッケージをサポートします。
+Microsoft PlayReady PIFF 1.1 を使用して Smooth Streaming ファイルを保護できます。
+また、Discretix 3.0.1 for Microsoft PlayReady を使用して HLS 出力を保護できます。
+トランスコーディングジョブの作成時には、暗号キーと、PlayReady ライセンスプロバイダーから与えられるライセンスサーバー URL が含まれるようにします。
+*** Encrypted media files
+Transcoder への入力として暗号化されたメザニンファイルを使用するか、サービスで出力を暗号化することにより、変換されたファイルを保護できます。
+Amazon S3 によるサーバー側の暗号化との完全に管理された統合から、独自に管理するキーおよび AWS Key Management Service (KMS) を利用して
+保護するキーまで、さまざまなオプションがサポートされます。
+
+さらに、暗号化のサポートは動画ファイルには限定されず、サムネイル、キャプション、さらにはウォーターマークも保護できます。
+
+*** クリップの生成
+開始時間と、オプションで希望するクリップの再生時間を指定することにより、ソースメディアからクリップを作成できます。
+トランスコーディングジョブの各出力に対して、さまざまな長さのクリップを生成できます（または、ファイル全体をトランスコードできます）。
+トランスコード出力の再生時間に対してのみ課金されるます。
+
+5 分の入力ファイルがあり、そのファイルから 1 分の出力を作成した場合、1 分のトランスコーディングに対してのみ課金されます。
+*** 高度な設定
+デフォルト値や自動ジョブとプリセットのパラメータを上書きすることができます。
+出力フレームレート、最大ビットレート、および回転を指定または制限したり、
+特定の H.264 または VP8 プロファイルレベルを設定したりすることができます。
+
+*** 適応ビットレートストリーミング
+適応ストリーミングにより、ネットワークの状態や CPU の使用状況に合わせてストリームの品質を自動的に切り替えて、ユーザーエクスペリエンスを向上できます。
+セグメント化された出力レンディションのセットをさまざまな解像度とビットレートで作成し、対応するプレイリストファイルまたはマニフェストファイルも作成します。
+これらはすべて Amazon S3 に保存されます。Amazon Elastic Transcoder では次の実装をサポートしています。
+
+**** HTTP Live Streaming (HLS)
+HLS プロトコルのバージョン 3 またはバージョン 4 と互換性のある完全な出力セットを作成できます。
+HLS は、iOS デバイス、Android デバイス、セットトップボックス、およびブラウザベースのプレーヤー向けの配信に広く使用されています。
+出力を作成したら、Amazon S3 を単独で、または Amazon CloudFront と組み合わせて使用して、メディアファイルを配信できます。
+
+**** スムーズストリーミング
+フラグメント化された MP4 出力のセットをさまざまな解像度とビットレートで作成できます。
+また、対応する ISM および ISM マニフェストファイルも作成できます。
+
+出力を作成したら、Amazon CloudFront または IIS を使用して、スムーズストリーミングを
+実装するプレーヤー（Xbox、Windows Phone、および Microsoft Silverlight プレーヤーを使用しているクライアントなど）にメディアファイルを配信できます。

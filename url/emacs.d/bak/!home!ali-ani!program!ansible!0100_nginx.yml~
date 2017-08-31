@@ -1,0 +1,5 @@
+---
+- hosts: all
+  tasks:
+    - yum: name=http://ftp.riken.jp/Linux/fedora/epel/6/i386/epel-release-6-8.noarch.rpm state=present
+    - yum: name=nginx state=present

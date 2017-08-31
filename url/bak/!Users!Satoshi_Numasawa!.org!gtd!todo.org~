@@ -1,0 +1,2884 @@
+-*- mode: org -*-
+
+
+
+
+* next
+** Done [#A] update Ruby webpage                                    :ruby:
+CLOSED: [2016-11-17 Thu 12:08] SCHEDULED: <2016-11-17 Thu>
+CLOCK: [2016-11-17 Thu 10:23]--[2016-11-17 Thu 12:08] =>  1:45
+CLOCK: [2016-11-17 Thu 10:04]--[2016-11-17 Thu 10:16] =>  0:12
+Added: [2016-11-17 Thu 09:53]
+
+[2016-11-17 Thu] 中
+助田さんに投げた
+
+*** update内容
+2013年8月  7名　売上　0.84億
+2014年8月 15名　売上　1.87億
+2015年8月 33名　売上  2.01億
+2016年8月 34名　売上　3.04億
+
+
+** Todo [#A] uniqlo                                               :uniqlo:
+Added: [2015-06-23 Tue 12:09]
+
+各種アカウント情報を残しておこう
+全然document化してない。
+
+** Todo [#A] 小針さんの指摘                                              :bb:
+Added: [2016-09-28 Wed 01:06]
+
+うーん, なんだろう.
+mailからのlinkで直接飛べないってことか?
+僕の scraping結果が表示されないってことか?
+
+*** 一時回答
+@kobari
+お疲れ様です
+
+productionの書き込み, web解析dataが表示されない, と想定しております.
+
+当該 Feed と思わしきDataをDBから直接参照しました. ( tesutoと書き込まれた Feedは一つのみかつ, 作成日時合致)
+当該 Feedには, scraping 結果のdataが存在しませんでした.
+故に表示されない状態が正しいと思われます.
+直接, 参照すると表示されておりますでしょうか?
+
+また, production環境での試験accountで試行したところ, 通知から飛んだ際, 表示される事を確認致しました.
+
+*** log
+[2016-09-27 02:41:47.215] [INFO] [default] - OPTIONS /api/v1/comments/?group_id=__all__ 204 - - 0.158 ms
+[2016-09-27 02:41:48.792] [INFO] [default] - POST /api/v1/comments/?group_id=__all__ 200 279 - 1508.692 ms
+[2016-09-27 02:41:58.128] [INFO] [default] - OPTIONS /api/v1/feeds/57e9c1f060bb15841da43035/like?group_id=__all__ 204 - - 0.195 ms
+[2016-09-27 02:41:59.578] [INFO] [default] - GET / 200 19 - 0.453 ms
+[2016-09-27 02:42:00.534] [INFO] [default] - POST /api/v1/feeds/57e9c1f060bb15841da43035/like?group_id=__all__ 200 1278 - 1277.137 ms
+
+57e9c1f060bb15841da43035
+** Done [#B] uniqlo deploy                                            :bb:
+CLOSED: [2016-11-16 Wed 19:33] DEADLINE: <2016-11-15 Tue>
+Added: [2016-11-10 Thu 11:10]
+
+- deploy方法確認
+- 連絡体制再確認
+** Todo [#D] Mail配信不具合 | やれそうなのがあれば ticket取得         :bb:
+SCHEDULED: <2016-10-27 Thu>
+Added: [2016-10-27 Thu 08:27]
+
+どれが見繕って対応してみよう
+
+** Todo [#E] 資料確認
+Added: [2015-09-14 Mon 10:03]
+
+一読
+https://git.ruby-dev.jp/home/code-guide
+
+** Todo [#E] スマートコミュニティ所感                                 :bb:
+SCHEDULED: <2016-11-13 Sun>
+Added: [2016-11-04 Fri 10:10]
+** Waiting [#F] 年末調整                                              :bb:
+DEADLINE: <2016-11-18 Fri>
+Added: [2016-11-08 Tue 09:24]
+
+- 郵送されてくるらしい
+- 要返送
+
+** Todo mail trapについて
+https://mailtrap.io/inboxes/101812/messages/173039729
+
+*** Mailtrapに登録しておく
+https://mailtrap.io/
+
+*** redisインストール
+brew install redis
+redis-server --version
+
+*** redis立ち上げる
+redis-server /usr/local/etc/redis.conf
+
+*** resque立ち上げる
+QUEUE=* rake environment resque:work
+
+*** MailtrapのSMTPをconfig/email.ymlに設定する
+例：
+development:
+    :user_name : "29207ac5450a5dd74"
+    :password  : "48d1baedb605ad"
+    :address   : "mailtrap.io"
+    :domain    : "mailtrap.io"
+    :port      : "2525"
+    :authentication : "cram_md5"
+
+*** メールを送信してみる
+** Todo aws instance health
+status checkってどういう意味だっけ
+
+** Todo compass / dot
+Added: [2016-10-21 Fri 10:01]
+
+会社の account で登録したから修正.
+** Todo 打ち合わせ                                                    :bb:
+Added: [2016-11-14 Mon 10:18]
+
+
+- [ ] chat deploy
+    - 竹中さんと連携
+    - 今日中
+    - 不鮮明なので再確認
+
+    - 環境変数
+        CHAT_DISPATCH_URL
+
+- [X] 重複record
+    - 末尾のIDを確認
+      IDは変化していた
+
+- [ ] ticket 810
+      佐藤さん
+
+- [ ] 801
+    801の件ですが、一応修正してみました。配信実績側はこれで直るような気がします。
+    https://github.com/BusinessBank/allin/pull/3657
+
+    配信予約は微妙な感じなので、再現したタイミングのNetworkのResponseを教えてもらえるとうれしいです。
+    優先度的にはチャットデプロイ優先だと思うので後でで大丈夫です。
+** Done [#A] uniqlo : deploy staging                              :uniqlo:
+CLOSED: [2016-11-16 Wed 19:32] DEADLINE: <2016-11-16 Wed> SCHEDULED: <2016-11-15 Tue>
+CLOCK: [2016-11-16 Wed 08:45]--[2016-11-16 Wed 09:57] =>  1:12
+Added: [2016-11-15 Tue 14:55]
+
+*** [2016-11-15 Tue]
+@s-numasawa ①-1 が完了次第、①-2 のステージングリリースをお願いいたします
+
+
+*** 文言変更の件
+1. PRをレビュー、マージ（@稲葉さん）
+2. 今日、明日中にステージングリリース（@沼沢さん）
+3. 先方に確認依頼の連絡（@久保）
+4. 水曜中に確認OKが返ってくるので、本番リリース日時を先方に連絡（@久保）
+5. 木曜（遅くとも金曜）に本番リリース（@沼沢さん）
+** Waiting [#B] uniqlo : deploy production                        :uniqlo:
+DEADLINE: <2016-11-23 Wed>
+
+
+** Done [#A] Qiita記事
+CLOSED: [2016-10-13 Thu 07:05] DEADLINE: <2016-09-19 Mon>
+CLOCK: [2016-10-11 Tue 08:00]--[2016-10-11 Tue 12:00] =>  4:00
+Added: [2016-09-09 Fri 21:19]
+
+
+*** description
+来週で良いのでお願いがあります。
+Qiitaに、以下のような２つの記事を書いてみる気ない？
+
+①AWS IoT Device SDK for Rubyを使ってみた
+②AWS IoT Device SDK for Rubyで、温度情報を取得してみた
+
+[13:23]
+それを元に、英語版を作って、英語サイトにも上げてみようと考えている。
+
+*** gitlabのをまとめればいいらしい
+*** 残作業
+#5, #6
+influx DB構築
+
+** Done [#A] double postの解消
+CLOSED: [2016-09-29 Thu 10:01] DEADLINE: <2016-09-30 Fri> SCHEDULED: <2016-09-26 Mon>
+Added: [2016-09-23 Fri 15:21]
+
+comment / feed
+https://bbank-devs.atlassian.net/browse/RUBYDEV-696
+
+
+** Done [#A] mail配信 : UI変更
+CLOSED: [2016-09-28 Wed 17:01] SCHEDULED: <2016-09-27 Tue>
+CLOCK: [2016-09-21 Wed 13:35]--[2016-09-21 Wed 17:35] =>  4:00
+Added: [2016-09-15 Thu 15:01]
+
+review待ち
+
+https://bbank-devs.atlassian.net/browse/RUBYDEV-648
+
+*** [100%] 確認
+- [X] 図中の文言とtext文言が異なる
+- [X] text formの表示位置は
+
+*** [100%] coding
+- [X] デザイン
+- [X] 確認
+
+*** [50%] review依頼
+- [X] 依頼
+- [ ] 完了?
+
+** Done [#A] Notification mail複数
+CLOSED: [2016-09-28 Wed 17:01] SCHEDULED: <2016-09-26 Mon>
+CLOCK: [2016-09-26 Mon 15:22]--[2016-09-26 Mon 15:42] =>  0:20
+
+https://bbank-devs.atlassian.net/browse/RUBYDEV-680
+
+*** from kobari san
+- 3通届いたそうな
+- on staging
+
+*** [100%] 調査
+- [X] log
+  芳しいlogなし
+
+- [X] on web
+    - [X] account問い合わせ中
+    - [X] 同一アドレスがあるんじゃないか?
+      3つあった
+** Done [#A] 自転車 : 任意保険
+CLOSED: [2016-09-12 Mon 19:48] DEADLINE: <2016-09-14 Wed>
+Added: [2016-08-03 Wed 17:57]
+
+社員各位
+
+お疲れ様です。総務部 田口です。
+
+掲題の件について、添付ファイルをご参照ください。
+
+通勤時、自転車を使用している社員は総務部に届けていただく書類がございます。
+
+【補足】
+現在、何らか損害保険等に加入している場合
+特約で自転車保険をカバー出来る場合があります。
+保険加入についてご不明な点がございましたら総務部にご相談ください。
+
+よろしくお願いいたします。
+
+以上
+
+** Done [#A] raspberry Pi setup
+CLOSED: [2016-06-21 Tue 12:41] SCHEDULED: <2016-06-16 Thu>
+CLOCK: [2016-06-20 Mon 17:05]--[2016-06-20 Mon 19:00] =>  1:55
+CLOCK: [2016-06-17 Fri 13:54]--[2016-06-17 Fri 15:06] =>  1:12
+CLOCK: [2016-06-16 Thu 12:30]--[2016-06-16 Thu 19:02] =>  6:32
+Added: [2016-06-16 Thu 11:26]
+
+
+*** 手順
+- [X] raspberry pi setting
+- [X] 配線
+
+- [-] AWS IoT
+    - [X] https://git.ruby-dev.jp/home/IoT_raspberry_pi
+    - [ ] wiki
+        - [ ] raspberry pi
+        - [ ] AWS web consoleへlogin // accountは記述しません。既知の方から伺ってください。
+        - [ ] AWS IoTを選択
+        - [ ]
+        - [ ]
+        - [ ]
+        - [ ]
+        - [ ]
+
+
+- [ ] AWS Lambda
+    - [ ] https://git.ruby-dev.jp/home/IoT_lambda
+    - [ ] wiki
+
+
+- Chronograph
+
+- 構成図作成
+
+*** [X] 配線
+*** setup
+参考
+http://qiita.com/toshihirock/items/8e7f0887b565defe7989
+
+**** raspbian lite DL
+https://www.raspberrypi.org/downloads/raspbian/
+$ unzip 2016-05-27-raspbian-jessie-lite.zip
+
+**** [100%] os imageをSDへ書き込み on mac
+- [X] macへSDを挿入
+
+- [X] install
+  $ diskutil list
+  $ diskutil eraseDisk FAT32 RPI /dev/disk1
+  $ diskutil unmountDisk /dev/disk1
+  $ sudo dd bs=1m if=2016-05-27-raspbian-jessie-lite.img of=/dev/rdisk1
+
+**** [100%] ssh接続
+- [X] lan cable接続
+- [X] micro SD 挿入
+- [X] 電源投入
+- [X] DHCP 払い出し ip addressを確認
+- [X] connect to raspberry
+    $ ssh pi@192.168.1.18
+    pi@192.168.1.18's password: raspberry
+
+**** [100%] wi-fi接続
+- [X] wireless interfaceを確認
+  # wlanがwi-fi
+
+  $ ip addr
+  ----------------------------------------------------------------
+  1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
+      link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+      inet 127.0.0.1/8 scope host lo
+         valid_lft forever preferred_lft forever
+      inet6 ::1/128 scope host
+         valid_lft forever preferred_lft forever
+  2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+      link/ether b8:27:eb:4e:a1:1c brd ff:ff:ff:ff:ff:ff
+      inet 192.168.1.18/24 brd 192.168.1.255 scope global eth0
+         valid_lft forever preferred_lft forever
+      inet6 2408:213:6ab:ce00:7922:c8e9:f6f6:79b6/64 scope global noprefixroute dynamic
+         valid_lft 13943sec preferred_lft 12143sec
+      inet6 fe80::de55:13ca:7f4d:5dc7/64 scope link
+         valid_lft forever preferred_lft forever
+  3: wlan0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN group default qlen 1000
+      link/ether b8:27:eb:1b:f4:49 brd ff:ff:ff:ff:ff:ff
+      inet6 fe80::a82f:f154:7a35:b999/64 scope link tentative
+         valid_lft forever preferred_lft forever
+  ----------------------------------------------------------------
+
+
+- [X] ssid設定
+  $ sudo sh -c 'wpa_passphrase [SSID] [PASSPHRASE] >> /etc/wpa_supplicant/wpa_supplicant.conf'
+  $ sudo sh -c 'wpa_passphrase rs500k-2bdd7a-1 64bc50ccfddba >> /etc/wpa_supplicant/wpa_supplicant.conf'
+
+
+- [X] password削除
+    $ sudo vi /etc/wpa_supplicant/wpa_supplicant.conf
+    # comment outしている生passwordを削除して保存
+
+- [X] IP 固定
+  ----------------------------------------------------------------
+  allow-hotplug wlan0
+  #iface wlan0 inet manual
+  iface wlan0 inet static
+  wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+  address 192.168.1.100
+  netmask 255.255.255.0
+  gateway 192.168.1.0
+  ----------------------------------------------------------------
+
+- [X] $ shut down -h now
+- [X] LAN cableを抜く
+- [X] 電源抜き差し
+- [X] wi-fi接続を確認
+    $ ssh pi@192.168.1.100
+    pi@192.168.1.100's password: raspberry
+
+**** [100%] setup cpu library
+- [X] install
+  mkdir ~/bcm
+  cd ~/bcm
+
+  wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.50.tar.gz
+
+  tar zxvf bcm2835-1.50.tar.gz
+  cd bcm2835-1.50
+  ./configure
+  make
+  sudo make check
+  sudo make install
+
+**** [100%] install node
+- [X] install
+  mkdir ~/node
+  cd ~/node
+
+  wget http://node-arm.herokuapp.com/node_latest_armhf.deb
+  sudo dpkg -i node_latest_armhf.deb
+
+- [X] check
+  $ node -v
+  v4.2.1
+
+  $ npm -v
+  2.14.7
+
+**** [3/3] install dht11
+- [X] install packge
+  mkdir ~/dht11
+  cd ~/dht11
+  npm install node-dht-sensor
+
+
+- [X] create test script
+  http://qiita.com/kobuchin1/items/da527d0997a1f66b837b
+
+vi ./app.js
+----------------------------------------------------------------
+var sensorLib = require('node-dht-sensor');
+
+var sensor = {
+  initialize: function() {
+    return sensorLib.initialize(11, 4);
+  },
+  read: function() {
+    var readout = sensorLib.read();
+    console.log('Temperature: '+readout.temperature.toFixed(2)+'C, humidity: '+readout.humidity.toFixed(2)+'%');
+    setTimeout(function() {
+      sensor.read();
+    }, 1500);
+  }
+};
+
+if (sensor.initialize()) {
+  sensor.read();
+} else {
+  console.warn('Failed to initialize sensor');
+}
+----------------------------------------------------------------
+
+
+- [X] run app
+  sudo node app.js
+
+**** [10/11] IoT setting
+http://qiita.com/toshihirock/items/05ef496bc96b38e7fd70
+
+- [ ] open AWS IoT web
+
+- [ ] create thing
+    - [ ] select [Create a resouce]
+    - [ ] select [Create thing]
+    - [ ] set name
+    - [ ] select [create]
+
+- [X] select [前工程で設定したthing name] icon
+    - [X] select [connect a device]
+    - [X] select [nodejs]
+    - [X] select [Generate ceritificate and policy]
+
+    - [X] download following 3file
+        - [X] public key
+        - [X] private key
+        - [X] certificate
+        // あとでraspberry piへ転送
+
+- [X] copy code
+{
+	"host": "A15IPMBGZHR3UC.iot.ap-northeast-1.amazonaws.com",
+	"port": 8883,
+	"clientId": "RasPi_sendai",
+	"thingName": "RasPi_sendai",
+	"caCert": "root-CA.crt",
+	"clientCert": "5e8d6b015a-certificate.pem.crt",
+	"privateKey": "5e8d6b015a-private.pem.key"
+}
+
+
+- [X] key をraspberry piへ転送
+    - [X] ssh to raspberry pi
+    - [X] mkdir
+      ```
+      mkdir ~/cert
+      ```
+
+    - [X] scp
+      scp ./xxxx-certificate.pem.crt pi@192.168.1.100:/home/pi/cert/
+      scp ./xxxx-private.pem.key     pi@192.168.1.100:/home/pi/cert/
+      scp ./xxxx-public.pem.key      pi@192.168.1.100:/home/pi/cert/
+
+
+- [X] download root証明書 on raspberry pi
+  cd ~/cert/
+  wget -O root-CA.crt https://www.symantec.com/content/en/us/enterprise/verisign/roots/VeriSign-Class%203-Public-Primary-Certification-Authority-G5.pem
+
+
+- [X] npm install sdk
+  cd ~/dht11
+  npm install aws-iot-device-sdk
+
+
+- [ ] make script
+  - create script
+    // codeは添付ファイル参照
+    cd ~/dht11/node_modules/aws-iot-device-sdk/examples/sensor.js
+
+
+  - change sensorLib path on source
+       var sensorLib = require('/home/pi/dht11/node_modules/node-dht-sensor');
+
+  - change thingName
+    const thingName = 'RasPi_sendai';
+
+- [ ] test run
+    sudo node ./node_modules/aws-iot-device-sdk/examples/sensor.js -f /home/pi/cert/ -g ap-northeast-1 -t 2
+
+**** [33%] IoT setting 2
+- [1/1] lambda
+    - [X] influxdbへDBを作成
+        - example
+          sensorMeasure_sendai
+
+        - 作成command
+          $ curl -POST http://52.38.23.147:8086/query -u ruby_dev:FiYee8PaqueJan8t --data-urlencode "q=CREATE DATABASE sensorMeasure_sendai"
+          {"results":[{}]}
+
+        - 参考issue
+          https://git.ruby-dev.jp/home/share-info/issues/1
+
+
+    - [X] lambda向けcode修正
+        - [X] 添付fileのzip解凍
+
+        - [X] measurement.jsを修正
+            DB名を前項で作成名前へ
+            --------------------------------------------------------------------------------
+            var client = influx({
+                host : '52.38.23.147',
+                port : 8086, // optional, default 8086
+                protocol : 'http', // optional, default 'http'
+                username : 'ruby_dev',
+                password : 'FiYee8PaqueJan8t',
+                database : 'sensorMeasure'
+            })
+            --------------------------------------------------------------------------------
+
+        - [X] 全ファイルをzip圧縮
+          package.json / measurement.js / node_module
+          の3つを指定して圧縮.
+          1dirにまとめて圧縮するとエラーになる。
+
+SELECT state.reported.temperature, state.reported.humidity FROM '$aws/things/MyRasPi/shadow/update/accepted'
+
+
+  - [ ] upload
+
+- [ ] IoT 連携設定test
+  - [ ] code抽出
+
+** Done [#A] manatuku : delete setting
+CLOSED: [2016-06-13 Mon 11:16] SCHEDULED: <2016-06-13 Mon>
+CLOCK: [2016-06-13 Mon 10:15]--[2016-06-13 Mon 11:16] =>  1:01
+
+予定確認
+mail / slack? に情報があったはず
+
+*** 死活監視
+- [X] server上からscript削除. stop cron
+- [X] cloudwatch設定削除
+- [X] 消すタイミングは相談
+
+*** deploy
+- [X] server上の鍵削除
+- [X] gitlabから該当鍵の削除
+- [X] 恐らくlocalの鍵と同一。
+  gitlabへ登録仕直しが必要。
+
+*** 内容
+【保守契約終了後】
+　　Ruby開発のタスク
+　　　・監視設定等の削除
+　　オーガニックスタイル様のタスク
+　　（Ruby開発側の「監視設定等の削除」タスク完了後に対応をお願いいたします）
+　　　・AWSの「ruby-dev」アカウントの削除し、新しい管理用アカウントを作成する
+　　　・AWSの「manatuku-s3」アカウントのパスワード変更
+　　　・AWSのBasic認証パスワードの変更
+　　　・STG環境のまなつくサービスアカウントのパスワード変更
+
+　【Ruby開発の開発終了後】
+　　Ruby開発のタスク
+　　　・AWSのデプロイ用SSHキーの削除
+　　　・Ruby開発のGoogleAppsの、御社アカウントの登録解除
+　　　・Ruby開発のSlackの、御社アカウントの登録解除
+　　　・Ruby開発のGitlabの、御社アカウントの登録解除
+　　オーガニックスタイル様のタスク
+　　（Ruby開発側の「監視設定等の削除」タスク完了後に対応をお願いいたします）
+　　　・pemファイル（production.pem、staging.pem）の変更
+
+以上です。
+サービスのセキュリティ保守上必要となりますので、
+お手数ですが、ご対応をお願いいたします。
+
+
+また、上記は、4月末までに引き継ぎベンダーが、
+決定した場合を想定して記載しております。
+引き継ぎベンダーが未決定の場合は、
+5月末まで保守契約を延長させていただきます。
+** Done [#A] IoT : influx DB
+CLOSED: [2016-06-13 Mon 09:35] SCHEDULED: <2016-06-09 Thu>
+CLOCK: [2016-06-13 Mon 09:45]--[2016-06-13 Mon 10:08] =>  0:23
+CLOCK: [2016-06-10 Fri 12:49]--[2016-06-10 Fri 13:47] =>  0:58
+CLOCK: [2016-06-10 Fri 12:00]--[2016-06-10 Fri 12:38] =>  0:38
+CLOCK: [2016-06-10 Fri 10:33]--[2016-06-10 Fri 11:54] =>  1:21
+CLOCK: [2016-06-09 Thu 15:23]--[2016-06-09 Thu 18:00] =>  2:37
+Added: [2016-06-09 Thu 11:54]
+
+backup 動作確認
+どうやら、permissionがNGだったらしい
+
+*** 概要
+- ec2にinflux DB
+- クロノグラフ (可視化ツール)
+
+*** 期限
+今日中
+
+*** hardware sizing info
+- info
+    https://docs.influxdata.com/influxdb/v0.12/guides/hardware_sizing/
+    https://docs.influxdata.com/influxdb/v0.13/introduction/installation/#hosting-on-aws
+
+- on aws
+  t2.small = low
+
+*** influx
+**** install
+https://docs.influxdata.com/influxdb/v0.13/introduction/installation/
+
+**** create database
+https://docs.influxdata.com/influxdb/v0.12/introduction/getting_started/
+
+**** write data : api
+https://docs.influxdata.com/influxdb/v0.13/guides/writing_data/
+
+# db作成
+curl -POST http://52.38.23.147:8086/query --data-urlencode "q=CREATE DATABASE mydb"
+curl -POST http://52.38.23.147:8086/query -u ruby_dev:FiYee8PaqueJan8t --data-urlencode "q=CREATE DATABASE mydb"
+
+# post data
+curl -i -XPOST http://52.38.23.147:8086/write?db=mydb --data-binary 'cpu_load_short,host=server01,region=us-west value=0.75'
+curl -i -XPOST http://52.38.23.147:8086/write?db=mydb -u ruby_dev:FiYee8PaqueJan8t  --data-binary  'cpu_load_short,host=server01,region=us-west value=0.75'
+
+# show data
+curl 'http://52.38.23.147:8086/query?q=select+*+from+cpu_load_short%3B&db=mydb' | jq .
+curl 'http://52.38.23.147:8086/query?q=select+*+from+cpu_load_short%3B&db=mydb' -u ruby_dev:FiYee8PaqueJan8t  | jq .
+
+**** api
+https://docs.influxdata.com/influxdb/v0.13/concepts/api/
+
+**** how to use
+http://qiita.com/akito1986/items/9c1c14a36654646db456
+**** backup
+*** Done chrono
+CLOSED: [2016-06-10 Fri 12:20]
+**** install
+https://docs.influxdata.com/chronograf/v0.13/introduction/installation/
+https://docs.influxdata.com/chronograf/v0.13/introduction/getting_started/
+
+**** setting
+emacs /opt/chronograph/
+
+127.0.0.1:10000
+から
+0.0.0.0:10000
+へ
+
+*** Done open port
+CLOSED: [2016-06-09 Thu 15:26]
+8083
+8086
+10000
+
+*** Done password
+CLOSED: [2016-06-10 Fri 12:21]
+configかな?
+/etc/influxdb/influxdb.conf
+
+--------------------------------
+[http]
+  enabled = true
+  bind-address = ":8086"
+  auth-enabled = true
+--------------------------------
+
+**** db登録ユーザーで認証
+ruby_dev
+FiYee8PaqueJan8t
+
+*** Done 外部から接続できる状態って?
+CLOSED: [2016-06-10 Fri 12:21]
+- mysql/postgresのようにdb接続できる
+- command line接続できる
+
+http api
+
+*** Done backup
+CLOSED: [2016-06-10 Fri 17:28]
+https://docs.influxdata.com/influxdb/v0.13/administration/backup_and_restore/
+
+backup dbの名前が必要?
+
+*** Done basic auth
+CLOSED: [2016-06-10 Fri 13:46]
+nginx かませよう
+
+**** nginx setting
+https://git.ruby-dev.jp/home/share-info/issues/1
+--------------------------------------------------------------------------------
+backend
+--------------------------------------------------------------------------------
+upstream backend {
+    server 127.0.0.1:5001;
+}
+
+server {
+    listen       80;
+    server_name  admin.lifewear.uniqlo.com;
+
+    server_tokens off;
+
+    access_log /var/log/nginx/admin.lifewear.uniqlo.com/access_log;
+    error_log /var/log/nginx/admin.lifewear.uniqlo.com/error_log;
+
+
+    location ~ /  {
+        proxy_pass http://backend;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For    $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host   $host;
+        proxy_set_header X-Forwarded-Server $host;
+        # proxy_set_header X-Forwarded-Proto  https;
+        proxy_set_header Host $http_host;
+	      break;
+    }
+
+    allow all;
+}
+
+**** 照合
+8083   = 18083
+8086   = 18086
+10000  = 20000
+
+*** Done 自動起動on
+*** https
+
+面倒なのでいれなかった
+
+**** 固定IPじゃないから、とりあえず保留?
+独自証明書いれる?
+openssl req -new -x509 -sha256 -newkey rsa:2048 -days 365 -nodes -out /etc/ssl/influxdb.pem -keyout /etc/ssl/influxdb.key
+
+*** ui
+http://52.38.23.147:8083/
+
+webUIから色々できそう
+
+user mydb
+select host, region, value from cpu;
+
+
+*** [2016-06-10 Fri]
+本日の作業内容は以下です
+工数は、4hです
+
+- chronographの動作確認
+- test dataの投入 (server resource monitoring)
+- nginx設定
+- basic認証付与
+- influx server自動起動設定
+- backup script設定 (restoreは未確認)
+- wiki更新
+
+** Done [#A] S3 / file name
+CLOSED: [2016-06-03 Fri 12:34] SCHEDULED: <2016-06-03 Fri>
+CLOCK: [2016-06-03 Fri 11:40]--[2016-06-03 Fri 12:34] =>  0:54
+Added: [2016-06-03 Fri 12:32]
+
+DL fileの名前がUUIDになっている。
+s3二揚げた場合は、original nameでDL可能。
+
+うちのAWSへ設定して確認する。
+** Done [#A] close : security group                                   :bb:
+CLOSED: [2016-05-24 Tue 15:08]
+Added: [2016-05-11 Wed 09:27]
+SCHEDULED: <2016-05-12 Thu>
+
+*** allin server
+- ELB : sg-989b3bfc
+- EC2 : sg-259b3b41
+
+*** sns-instance
+sg-1b4c8a7f
+full openになっているため閉塞
+その後、動作確認
+
+*** 他のserver
+大丈夫か?
+
+** Done [#A] ruby-webpage : move hub to lab
+CLOSED: [2016-04-19 Tue 09:21] SCHEDULED: <2016-04-18 Mon>
+CLOCK: [2016-04-18 Mon 11:00]--[2016-04-18 Mon 13:23] =>  2:23
+
+*** change repository : stg
+- [X] : 鍵?
+- [X] : berkshelf repo
+- [X] : main repo
+- [X] : deploy試験
+- [X] : 指定branchを、stagingへ戻す
+
+*** change repository : prd
+- [X] : 鍵?
+- [X] : berkshelf repo
+- [X] : main repo
+- [X] : deploy試験
+
+*** jenkins auto deploy
+- [X] : master branch以外でのdeploy試験
+// repository, 鍵変更などは不要だった
+
+** Done [#A] ruby-webpage staing
+CLOSED: [2016-04-13 Wed 11:19] SCHEDULED: <2016-04-12 Tue>
+CLOCK: [2016-04-12 Tue 16:00]--[2016-04-12 Tue 18:07] =>  2:07
+
+staging作成
+
+*** Done opsworks copy
+CLOSED: [2016-04-12 Tue 17:03]
+
+*** Done route53
+CLOSED: [2016-04-12 Tue 17:03]
+  stg.www.ruby-webpage
+
+*** Done nginx
+CLOSED: [2016-04-12 Tue 18:07]
+- [X] basic認証. .htpasswd作成
+- [X] nginx原盤修正
+*** Done deploy
+CLOSED: [2016-04-12 Tue 18:07]
+- [X] 手順作成
+- [X] 伝達
+*** flow
+- deploy
+    - open opsworks
+    - select [ruby-webpage-staging]
+    - select [Deployments]
+    - select [Deploy an App]
+    - select [Deploy]
+    - wait for complete
+    - you can watch deploy status at [Deployments]
+
+- change deploy branch
+    - open opsworks
+    - select [ruby-webpage-staging]
+    - select [Apps]
+    - select [edit]
+    - confirm [Branch/Revision] in [Application Source]
+
+** Done [#A] ruby-webpage staing - bug
+CLOCK: [2016-04-13 Wed 09:30]--[2016-04-13 Wed 11:55] =>  2:25
+
+staingだけdeploy失敗.
+- $ rails serverの段階でエラーだった
+- browserでアクセスすると、cssが読み込めないという状態
+
+** Done [#A] manatuku : 環境変数の新規読み込み
+CLOSED: [2016-03-28 Mon 18:20] SCHEDULED: <2016-03-28 Mon>
+なんとなくの根拠です
+
+pumaのhost restartは、SIGUSR2 signalで行っている
+以下、URLのrestartの項より
+https://github.com/puma/puma
+
+unicornも同様にSIGUSR2 signalを送ると、環境変数が適切に更新されない様です
+http://qiita.com/kenjiszk/items/51d5ad7d431d022f2962
+
+解決策は、上記のコメント欄に記述有り。
+deploy後に、環境変数を読み直す処理が必要との事。
+
+** Done [#A] manatuku
+CLOSED: [2016-03-23 Wed 18:26] SCHEDULED: <2016-03-23 Wed>
+Added: [2016-03-23 Wed 17:52]
+
+*** revision確認
+*** 手動
+手動で入れ替えたと
+
+** Done [#A] openssl update
+CLOSED: [2016-03-23 Wed 11:08] SCHEDULED: <2016-03-19 Sat>
+*** base
+CLOCK: [2016-03-18 Fri 09:30]--[2016-03-18 Fri 10:52] =>  1:22
+amazon linxuにはまだupdateがきていない [2016-03-02 Wed]
+upate情報でたら更新を
+
+[2016-03-10 Thu] づけでupdated
+
+*** pick up servers
+- [X] out
+    - [X] manatsuku : 伝達済み
+- [-] in
+    - [X] ruby-webpage
+    - [X] monitor
+    - [ ] jenkins - 助田さんへ伝達
+    - [X] skipfish : いらない
+    - [X] sakura
+
+** Done [#A] server構築, notifer
+CLOSED: [2016-05-10 Tue 18:52] SCHEDULED: <2016-05-10 Tue>
+CLOCK: [2016-05-10 Tue 15:00]--[2016-05-10 Tue 18:52] =>  3:52
+Added: [2016-05-10 Tue 14:17]
+
+・Notification
+リポジトリ: https://git.ruby-dev.jp/business_bank_group/allin-notification
+ブランチ: master
+実行ポート: 5100
+
+ポート番号が変わる以外はallin-snsとほぼ同じはずです。SNSと同じサーバにあげていただければ良いのではないかと思います。
+SNSとフロント側もデプロイする必要がありますが、まだ準備中なのでまずはNotifiationからお願い致します。
+
+
+
+{"message":"Invalid URI \"
+
+undefinedundefined?access_token=vvUMgOAHTPMNHm2deDhTlXT6Vqa8RFGPslFLPyJhyjPNuHXvv3NnWuZr4CwQRRfv4wUR8Z6dDtcqYvXTtICVfHQqcfmHOMqam3MGMHhR9S2wgJuiP4Kzj8FFooayjymH\"
+** Done [#A] rDNS / IP解放
+CLOSED: [2016-06-03 Fri 09:32] DEADLINE: <2016-06-06 Mon>
+Added: [2016-06-02 Thu 17:04]
+
+- [ ] 52.69.156.6解放
+- [X] 52.32.45.194 / ruby-dev.jp relation
+** Done [#A] uniqlo調査
+CLOSED: [2016-06-17 Fri 10:39] SCHEDULED: <2016-06-17 Fri>
+CLOCK: [2016-06-17 Fri 10:15]--[2016-06-17 Fri 10:35] =>  0:20
+
+Added: [2016-06-17 Fri 10:19]
+
+- influencer 登録フォーム [canada]
+----------------------------------------------------------------
+    https://lifewear.uniqlo.com/form/ca
+
+
+- canada user作成方法
+----------------------------------------------------------------
+    - master権限でlogin
+        https://admin-lifewear.uniqlo.com/admin/sign_in
+
+    - 左上メニューの [Member Management] を押下
+    - 画面右下の青い [New] ボタンを押下. (Account作成画面が開く)
+
+    - Account登録. 以下を設定し、saveを押下
+        - Login name    : login 時用いるユーザー名
+        - Password      : login 時用いるパスワード. (複雑なものでないと弾かれます。数値、記号、アルファベット大小を複数含む10文字以上など)
+        - Conrifmation  : パスワード確認入力
+        - Role          : Accountの権限. (Role, countoryについては別資料参照されたし)
+        - Countory      : Accountで参照/編集可能な国指定
+
+    - 作成したAccountが一覧に表示され、作成完了
+    - 最後に、Login可能かテスト
+** Done [#A] uniqlo deploy
+CLOSED: [2016-06-17 Fri 15:21] SCHEDULED: <2016-06-17 Fri 15:00>
+CLOCK: [2016-06-17 Fri 15:07]--[2016-06-17 Fri 15:21] =>  0:14
+Added: [2016-06-17 Fri 10:20]
+
+- [X] MR : account追加
+- [1/1] 本番deploy
+    - [X] run deploy
+        $ cd uniqlo-hashtag
+        $ bundle exec cap production deploy
+
+
+    - [X] ssh to server
+        // 踏み台サーバーへ
+        $ ssh  alliance@54.65.232.249 -i ~/.ssh/uniqlo_influencer_gateway.pem
+
+        // admin serverへ
+        $ ssh mruby@app-admin
+
+        // rails current dirへ
+        $ cd /var/rails/influencer/current/
+
+        // image fileの移動
+        $ cp -r ./vendor/assets/fonts/* ./public/assets/
+
+    - [X] 動作確認
+        // 擬似account作るか…
+        実際の動作は先方に見てもらうしかないか
+
+
+        insert into users (`login_name`, `encrypted_password`) values('ph_master', '$2a$10$MUjca7iKZkWyVdDw32dzXe/LWxl7pTBCbyjTbUTAuC/pldgtl0RRu');
+        insert into users_roles (`user_id`, `role_id`) values('29', '1');
+
+    https://lifewear.uniqlo.com/form/ca
+** Done [#A] 動作試験 : 460
+CLOSED: [2016-07-08 Fri 15:41] SCHEDULED: <2016-07-08 Fri>
+CLOCK: [2016-07-08 Fri 13:21]--[2016-07-08 Fri 15:41] =>  2:20
+Added: [2016-07-08 Fri 14:19]
+
+
+RUBYDEV-460
+https://github.com/BusinessBank/allin/pull/3058
+** Done [#A] allin - 意図しない時刻に送信される
+CLOSED: [2016-07-20 Wed 10:57] SCHEDULED: <2016-07-14 Thu>
+Added: [2016-07-14 Thu 10:43]
+** Done [#A] 代休申請
+CLOSED: [2016-08-08 Mon 14:51] SCHEDULED: <2016-08-03 Wed>
+CLOCK: [2016-08-03 Wed 11:21]--[2016-08-04 Thu 12:50] => 25:29
+Added: [2016-08-03 Wed 11:17]
+
+総務部へ
+** Done [#A] 竹中さんとmeatingの調整
+CLOSED: [2016-08-18 Thu 09:19] SCHEDULED: <2016-08-17 Wed>
+Added: [2016-08-17 Wed 10:15]
+** Done [#A] 竹中さんとmeating
+CLOSED: [2016-08-18 Thu 11:30] SCHEDULED: <2016-08-18 Thu 11:00>
+Added: [2016-08-18 Thu 09:19]
+
+
+*** 機能
+実装する機能ですが勝手にlink previewと読んでいます.
+
+allin-snsのFeed/Commentの本文にURLが存在した場合、
+対象のweb page の icon / descriptionなどを抽出します.
+この抽出したwebの概要データをfeedに埋め込む.
+
+という機能と理解しております.
+
+*** 参考site
+- slack
+  みなさんお使いなのでご存知かと思います.
+  chatにurlを打ち込むと、解析結果が時間差で表示されます.
+
+- facebook
+  https://www.facebook.com/
+  こちらは、text投稿後ではなく、作成中にdataが表示されます
+
+UIとしてはfacebookを
+動作としては、slackを
+それぞれ参考にしています.
+
+*** demo
+http://ec2-52-197-220-81.ap-northeast-1.compute.amazonaws.com:3000/
+
+*** 構成
+以下の図を開いていただけますでしょうか
+
+- process
+  - 既存のallin-sns processとは別に、scrapingをbackgroundを行うためのworker processを追加します
+    これは、railsのrescue / delayed_jobのようなものです
+
+- server sideで動作させている理由
+  - UI側で直接
+  -
+  -
+
+- 流れとしては
+  - userがfeedをpost
+  - feed保存後、Queueへtaskを追加
+  - worker processが、Queueからtaskを読み出しscrapingを実施
+     - scrapingが正常に完了した場合、情報をDBへ保存
+  - 解析結果をmain processへ通知
+  - 解析結果があれば、UIに更新処理をかける
+
+***
+*** cache
+- slcak
+  30minほどcacheされます.
+  公式の情報は以下
+
+  https://api.slack.com/robots
+  https://api.slack.com/docs/message-attachments#unfurling
+
+- facebook
+  恒久的にcacheされるようです.
+  更新する際には、指定pageで手動で更新をかける必要があります.
+
+  https://developers.facebook.com/tools/debug/
+  https://developers.facebook.com/docs/sharing/webmasters/crawler
+
+*** // 複数node
+対応可能
+
+// 抽出するQueueに命名則を付けれるのでそれで対応
+** Done [#A] 休み提出
+CLOSED: [2016-08-29 Mon 19:34] SCHEDULED: <2016-08-26 Fri>
+Added: [2016-08-25 Thu 10:06]
+
+08/22  :  代休
+08/23  :  夏季休暇
+08/24  :  夏季休暇
+** Done [#A] deploy notificaiont to pre/pro
+CLOSED: [2016-08-30 Tue 10:19] SCHEDULED: <2016-08-30 Tue 08:00>
+Added: [2016-08-29 Mon 09:46]
+
+*** 考察
+- [X] 竹中氏に状況確認
+
+- [X] 設定する内容は?
+  おそらく、以下で大丈夫と思うが
+    - [X] restart.shの書き換え
+    - [X] run restart.sh
+
+- [X] sendgrid API key
+    - [X] prerelase
+      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
+
+    - [X] production
+      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
+
+- [-] 簡易flow
+    - [X] prereleaseを後述する内容でupate
+    - [X] 竹中氏へ動作確認依頼.問題なければ次項目へ
+    - [ ] productionへ口授する内容でupdate (pm2再起動は、2台同時に実行する)
+    - [ ] 竹中氏へ動作確認依頼.問題なければ完了
+
+*** desc
+- 全行程、問題なければ20-30min程度
+- restart.sh実行時、UI側で数瞬Error表示が出る
+
+*** [X] prerelease
+    - [X] ssh to 52.69.125.220
+    - [X] notification
+        - [X] $ cd /var/node_notification/current/
+        - [X] $ vim shared/restart.sh
+            - [X] write following after [export NOTIFICATION_DISPATCH_URL=https://sns-staging1.all-in.xyz:5100]
+              # notification mail delivery status
+              export NOTIFICATION_MAILER_STATUS=true
+
+              # notification mail delivery sendgrid apikey
+              export NOTIFICATION_SENDGRID_APIKEY=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
+
+        - [X] $ bash /var/node_notification/shared/restart.sh
+        - [X] $ string /proc/[proc_num]/environ
+            環境変数読み込みok
+            ------------------------------------------------------------------------
+            node@ip-10-2-0-234 current]$ strings /proc/30223/environ | grep NOTIFICATION
+            NOTIFICATION_DISPATCH_URL=https://sns-prerelease1.all-in.xyz:5100
+            NOTIFICATION_SENDGRID_APIKEY=SG.***********************************************
+            NOTIFICATION_MAILER_STATUS=true
+            ------------------------------------------------------------------------
+        - [X] $ pm2 status
+        - [X] log監視
+            ok
+            ------------------------------------------------------------------------
+            [2016-08-29 05:27:57.072] [DEBUG] [default] - send data: {
+            "id": "57c3c7dd00efac0f76b9fbb3",
+            "account_id": "4677cf246da811e6869806239ec0fcff",
+            "type": "Comment",
+            "action": "create",
+            "data": {
+            "id": "57c3c7dc520560ef3ee110dd",
+            "group_id": "b1c903566da811e6b73406239ec0fcff",
+            "account_id": "544b0cba6da811e6b73406239ec0fcff",
+            "first_name": "花子",
+            "last_name": "テスト",
+            "contents": "こんにちは2",
+            "created_at": "2016-08-29T05:27:56.946Z",
+            "email": "takenaka+iwasaki+qa1@bbank.jp"
+            },
+            "unread": true,
+            "created_at": "2016-08-29T05:27:57.067Z",
+            "updated_at": "2016-08-29T05:27:57.067Z"
+            }
+
+            [2016-08-29 05:27:57.074] [INFO] [default] - ::ffff:10.2.0.103 - allinsns [29/Aug/2016:05:27:57 +0000] "POST /api/v1/notifications HTTP/1.1" 200 501 "-" "-"
+            [2016-08-29 05:27:57.369] [DEBUG] [default] - MailsDelivery:Success
+            ------------------------------------------------------------------------
+
+*** [100%] production
+    - [X] ssh to 52.196.4.97
+    - [X] notification server 01
+        - [X] $ cd /var/node_notification/current/
+        - [X] $ vim shared/restart.sh
+            - [X] write following after [export NOTIFICATION_DISPATCH_URL=........]
+              # notification mail delivery status
+              export NOTIFICATION_MAILER_STATUS=true
+
+              # notification mail delivery sendgrid apikey
+              export NOTIFICATION_SENDGRID_APIKEY=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
+
+        - [X] $ bash /var/node_notification/shared/restart.sh
+          // restartは、2台同時に実施
+
+        - [X] $ string /proc/[proc_num]/environ
+        - [X] $ pm2 status
+        - [X] log監視
+
+    - [X] ssh to 52.196.9.116
+    - [X] notification server 02
+        - [X] $ cd /var/node_notification/current/
+        - [X] $ vim shared/restart.sh
+            - [X] write following after [export NOTIFICATION_DISPATCH_URL=........]
+              # notification mail delivery status
+              export NOTIFICATION_MAILER_STATUS=true
+
+              # notification mail delivery sendgrid apikey
+              export NOTIFICATION_SENDGRID_APIKEY=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
+
+        - [X] $ bash /var/node_notification/shared/restart.sh
+              // restartは、2台同時に実施
+
+        - [X] $ string /proc/[proc_num]/environ
+        - [X] $ pm2 status
+        - [X] log監視
+
+
+
+
+** Done [#A] server立ち上げ
+CLOSED: [2016-08-29 Mon 18:50] SCHEDULED: <2016-08-29 Mon>
+Added: [2016-08-29 Mon 09:46]
+** Done [#A] Raspberypie SDK
+CLOSED: [2016-09-08 Thu 10:02] SCHEDULED: <2016-09-06 Tue>
+Added: [2016-09-06 Tue 09:19]
+
+*** instllation
+- [X] DL sdk
+- [X] env
+  export RUBYLIB=$RUBYLIB:"...path to sdk directory.../MqttAdapters":"path to sdk directory.../MqttShadowClient"
+
+*** Using the ShadowClient
+ruby "/home/pie/IoT_raspberry_pi/ "/samples/"example_file".rb -c "/home/pi/cert/5e8d6b015a-certificate.pem.crt" -a "/home/pi/cert/root-CA.crt" -k "/home/pi/cert/5e8d6b015a-private.pem.key" -H "ap-northeast-1" -t "RasPi_sendai"
+
+*** Shadow Client
+require 'shadow_client'
+require 'json'
+
+### Credentials and host information needed to connect
+root_ca_path = "PATH_TO_YOUR_ROOT_CA_FILE"
+private_key_path = "PATH_TO_YOUR_PRIVATE_KEY"
+certificate_path = "PATH_TO_YOUR_CERTIFICATE_FILE"
+
+# For exemple for Tokyo area:  host = "xxx.iot.ap-northeast-1.amazonaws.com"
+host = "ENDPOINT_URI_ON_AWS"
+
+port = 8883 #default port of MQTT protocol
+time_out = 5
+
+### Create and set up a ShadowClient
+my_shadow_client = ShadowClient.new
+my_shadow_client.configure_endpoint(host, port)
+my_shadow_client.configure_credentials(root_ca_path, private_key_path, certificate_path)
+
+### Conect the ShadoaClient and attach it to existing thing
+my_shadow_client.connect
+my_shadow_client.create_shadow_handler_with_name("YOUR_THING_NAME", false)
+
+callback = Proc.new do |message|
+    puts "Special callback for the topic #{message.topic}"
+end
+### The  three basic AWS Iot operation:
+### time_out is a integer reprensenting the time to keep request alive in second
+my_shadow_client.get_shadow(callback, "TIME_OUT")
+# or without special callback
+my_shadow_client.get_shadow(nil, "TIME_OUT")
+
+my_shadow_client.delete_shadow(callback, time_out)
+
+### Update need a formated payload:
+payload = "{\"state\":{\"desired\":{\"attr1\":\"foo\"}}}"
+my_shadow_client.update_shadow(payload, callback, time_out)
+
+*** 状態確認
+uploadされている値が変わらないので確認
+
+SDK? dht gem?
+いずれの問題
+** Done [#A] SNS : mail停止
+CLOSED: [2016-09-13 Tue 19:10] SCHEDULED: <2016-09-13 Tue>
+CLOCK: [2016-09-13 Tue 11:38]--[2016-09-13 Tue 13:57] =>  2:19
+CLOCK: [2016-09-13 Tue 09:30]--[2016-09-13 Tue 10:20] =>  0:50
+Added: [2016-09-12 Mon 18:20]
+
+https://bbank-devs.atlassian.net/browse/RUBYDEV-655
+
+- [X] notification
+    - [X] server上のrestart.sh編集 (api key commentout, 環境変数で無効化)
+
+- [X] allin
+    - [X] 竹中さんへ確認中
+    - [X] server上のsend_grid.ymlのbackup
+    - [X] server上のsend_grid.ymlの修正
+    - [X] 再起動
+
+- [-] 動作確認
+    - [X] 竹中さんへ, 試験用アカウントを確認中
+    - [ ] 動作確認実施
+
+- [ ] 不要accountのlogin停止
+
+ruby /var/www/allin/shared/bundle/ruby/2.2.0/bin/rake allin:mail_delivery_job:start
+** Done [#A] 小針さんの依頼
+CLOSED: [2016-09-21 Wed 12:22] SCHEDULED: <2016-09-21 Wed>
+CLOCK: [2016-09-21 Wed 09:42]--[2016-09-21 Wed 12:22] =>  2:40
+Added: [2016-09-21 Wed 09:32]
+
+scraping結果が表示されない
+
+- [X] hotfix方法の確認
+- [X] 修正箇所の特定
+
+- [X] prerelaeへ
+- [X] stagingへ
+- [X] masterへ
+
+- [X] productionへの展開
+  小針氏, 竹中氏へ依頼
+
+
+** Done [#A] 柴田さん依頼
+CLOSED: [2016-09-21 Wed 19:18] SCHEDULED: <2016-09-21 Wed>
+Added: [2016-09-21 Wed 09:32]
+
+review待ち
+http://crucible.all-in.xyz/cru/ALLIN-CR-2621#details
+
+socket.io修正
+http://crucible.all-in.xyz/cru/ALLIN-CR-2612#CFR-41397
+
+- [X] sns
+- [X] sns-notification
+
+- [ ] rewview依頼
+** Done [#A] 夏季休暇 申請                                            :bb:
+CLOSED: [2016-09-29 Thu 14:23] SCHEDULED: <2016-09-29 Thu>
+Added: [2016-09-29 Thu 12:24]
+** Done [#A] update allin-web                                         :bb:
+CLOSED: [2016-11-09 Wed 15:53] SCHEDULED: <2016-11-09 Wed>
+CLOCK: [2016-11-09 Wed 11:51]--[2016-11-09 Wed 12:10] =>  0:19
+Added: [2016-11-09 Wed 11:51]
+** Done [#A] webhook                                                  :bb:
+CLOSED: [2016-11-15 Tue 17:58] SCHEDULED: <2016-11-15 Tue>
+Added: [2016-11-15 Tue 10:03]
+
+
+- [ ] pierreさんに設定方法を伝達
+- [ ] stagingへwebhookの設定
+    僕のkey使ってた?
+** Done [#A] drop chat server                                         :bb:
+CLOSED: [2016-11-15 Tue 10:34] SCHEDULED: <2016-11-15 Tue>
+Added: [2016-11-15 Tue 10:11]
+** Done [#B] metaphorへの質問
+CLOSED: [2016-09-29 Thu 12:26] SCHEDULED: <2016-08-25 Thu>
+Added: [2016-08-25 Thu 10:06]
+
+- okらしいので、どうしたものか
+- 早めにやらないとあれだなぁ
+
+** Done [#D] allin-in : 本番環境のAPPサーバーの１台のNewRelicを有料版に変更する
+CLOSED: [2016-10-04 Tue 18:31] DEADLINE: <2016-09-23 Fri>
+CLOCK: [2016-09-16 Fri 10:00]--[2016-09-16 Fri 13:26] =>  3:26
+Added: [2016-09-02 Fri 09:34]
+https://bbank-devs.atlassian.net/browse/RUBYDEV-629
+
+*** [50%] 状況確認
+- [X] new keyが反映されたか?
+- [ ] 有料契約されたか?
+
+*** [100%] アクセス権
+- [X] staging_001
+- [X] production_003
+- [X] production_004
+
+*** [100%] 設定実験
+- [X] 自分で設定してみよう
+- [X] 有料は無理だが, acc x2で試してみるか?
+
+*** [100%] 状態確認
+全てconfig/newrelic.ymlが設置されているか?
+
+- [X] production_003
+- [X] production_004
+
+- [X] prerelease_01
+
+- [X] staging_001
+
+*** [100%] shared設置
+cp /var/www/allin/current/config/newrelic.yml /var/www/allin/shared/config/newrelic.yml
+
+- [X] production_003
+- [X] production_004
+
+- [X] prerelease_01
+
+- [X] staging_001
+
+*** [100%] source修正
+- [X] 構造確認
+
+- [X] newrelic.ymlのsample化
+- [X] deploy.rbのshared_linkへnewrelic.ymlを追加
+
+*** [100%] review
+- [X] review依頼
+- [X] 完了?
+
+*** [100%] test
+- [X] stagingでのtestを打診中
+  いつでもok
+- [X] pick
+- [X] deploy
+- [X] web 動作確認
+- [X] newrelic 動作確認
+
+*** [100%] productionの1serverへ有料のkeyを設定
+- [X] production_003 = 54.65.117.112
+- [X] 47ab29255cdc793cbf4ac873fcdfa30bc7220943
+
+*** [100%] 料金体型調査
+- [X] 1台のみに適用する方法はあるのか?
+  ない
+- [X] 1台限定が不可能であれば, 他のaccを作成するのはありか?
+  あり
+  同一メールアドレスの場合, 管理画面から切り替え可能.
+
+- [X] 1台に発生する料金は?
+- [X] instance sizeは?
+      c4.large = $71.88
+      c4.xlargeまでは, CUの方が安価
+      https://newrelic.com/calculator#nav_header
+
+*** [100%] owner change
+- [X] invite addressを確認中
+- [X] owner譲渡 to takenaka@bbank.jp
+
+*** 1accountでの有料無料 subscriptionの混在
+不可
+https://newrelic.degica.com/docs/accounts-partnerships/accounts/account-setup/create-multiple-accounts
+https://docs.newrelic.com/docs/accounts-partnerships/accounts/account-setup/create-sub-accounts
+
+chat suport in english / mail support in japanese
+双方同一の回答.
+
+accountを分けて運用する必要あり.
+
+*** 質問
+**** 確認
+お疲れ様です.
+newrelicについてご相談をお願い致します.
+少々長くなります.
+
+
+- 問題点
+    - 頂戴した Accountは有料契約されていないように見受けられます.
+    - 加えて, 有料Account x1で, 有料/無料レベル混在での監視不可能のようです.
+      https://docs.newrelic.com/docs/accounts-partnerships/accounts/account-setup/create-multiple-accounts
+
+
+- 対応
+    - 沼沢が新規アカウントを作成 (14日間有料レベルで使用可能) し, 左記の License keyを production server03へ設定
+    - その後, 竹中氏へAccountを譲渡
+    - 有料契約を数日中に結んで頂く (credit card情報の入力が必要でした)
+
+- 料金プラン
+    https://newrelic.com/calculator
+
+    - 以下2種あり
+        - CU (computer unit)支払い
+        - 専用server
+    - 有料プラン Pro
+        - CU : AWS instance c4.large使用の場合, CUでの年間払いで, $75/month
+        - server : server1台契約の年間払いでは, $150/month
+    - 有料プラン Essential
+        - CU : AWS instance c4.large使用の場合, CUでの年間払いで, $37.5/month
+        - server : server1台契約の年間払いでは, $75/month
+
+    ※ 月額プランの場合, 割高になります.
+
+
+*** Gem
+newrelic-grape
+newrelic_rpm
+
+*** 設定方法試行
+- linked_fileへ new relicを追加
+- 他のconfig同様に symbolic linkで対応する
+
+*** 有料/無料の違いは?
+keyを変更するだけ?
+
+** Done [#D] 有給訂正
+CLOSED: [2016-06-24 Fri 15:10]
+Added: [2016-06-17 Fri 16:20]
+
+3/18, 19, 20
+15時間分なので、二日分はあてれない
+
+片方を有給に
+
+- [ ] 勤務表
+
+- [ ] 代休申請書の書き直し
+
+
+
+原田さん
+
+お疲れ様です. 沼沢です.
+先ほどはありがとうございました.
+
+以前に提出したファイルを追記／修正しました。
+ご確認お願いいたします。
+
+割り当ては以下と致しました.
+----------------------------------------------------------------
+05/02 (月) = 03/19, 21の8時間分を代休に
+05/06 (金) = 有給
+
+修正申請書は、以下2Fileとなります.
+----------------------------------------------------------------
+
+
+以上となります。
+ご確認方よろしくお願い致します。
+お手数をおかけいたしますが、宜しくお願い致します。
+** Done [#D] allin : like連打調査
+CLOSED: [2016-06-23 Thu 14:07] SCHEDULED: <2016-06-20 Mon>
+CLOCK: [2016-06-20 Mon 10:30]--[2016-06-20 Mon 15:15] =>  4:45
+Added: [2016-06-20 Mon 10:25]
+
+*** 再現
+likeを連打
+
+*** error内容
+[2016-06-20 01:21:13.535] [DEBUG] [default] - not found : addlike
+[2016-06-20 01:21:13.535] [ERROR] [default] - not found : addlike
+[2016-06-20 01:21:13.535] [FATAL] [default] - Error: not found : addlike
+    at Query.<anonymous> (/var/node/source/app/models/feed.js:370:27)
+    at /var/node/source/node_modules/kareem/index.js:177:19
+    at /var/node/source/node_modules/kareem/index.js:109:16
+    at nextTickCallbackWith0Args (node.js:452:9)
+
+[2016-06-20 01:23:41.196] [ERROR] [default] - not found : removelike
+[2016-06-20 01:23:41.196] [FATAL] [default] - Error: not found : removelike
+    at Query.<anonymous> (/var/node/source/app/models/feed.js:390:27)
+    at /var/node/source/node_modules/kareem/index.js:177:19
+    at /var/node/source/node_modules/kareem/index.js:109:16
+    at nextTickCallbackWith0Args (node.js:452:9)
+    at process._tickDomainCallback (node.js:422:13)
+
+*** 編集箇所
+emacs ./app/assets/javascripts/controllers/groupware/sns_controller.js.erb
+
+** Done [#D] uniqlo : copy禁止
+CLOSED: [2016-06-17 Fri 17:41] DEADLINE: <2016-06-17 Fri>
+CLOCK: [2016-06-14 Tue 13:30]--[2016-06-14 Tue 16:21] =>  2:51
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-06-14 Tue 16:24
+:ARCHIVE_FILE: ~/.org/gtd/todo.org
+:ARCHIVE_OLPATH: next
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: Waiting
+:END:
+Added: [2016-06-14 Tue 13:22]
+
+- [ ] waiting review
+- [ ] 許可するaccount listを問い合わせ中
+- [ ] deploy
+
+*** 依頼
+基本的には、コピー禁止の使用にしたく、現在私と石丸が使用しているUniqloAdminのＩＤのみコピー対応可能にすることは可能でしょうか。
+
+*** 要件
+https://git.ruby-dev.jp/uniqlo/uniqlo-hashtag/commit/07b8706936d8f49e95d1476ecde02f0c6e7d3aad
+
+※ただし、コピペ可とするアカウントIDは、設定ファイルに外出ししたい (edited)
+対応できそうか、調査をお願いします。（1時間以内）対応が可能そうであれば、その旨本日夕方にメールしようと思いますので、よろしくお願いいたします。
+
+*** 考察
+- [X] get login user account name
+- [X] body部を別fileに
+- [X] methodsの追加方法は?
+- [X] account list外部化 (環境変数でいいか?)
+
+
+
+** Done [#D] uniqlo
+CLOSED: [2016-06-13 Mon 18:21] SCHEDULED: <2016-06-09 Thu>
+林さま
+
+お世話になっております.
+Ruby開発 沼沢と申します.
+
+
+vendor以外のaccount限定かつ、chrome/firefoxを使用。
+という代替案はございますので後述致します.
+また、操作上, コピーではなく,「文字を切り取り」ますので注意が必要です.
+
+- 対象influencerの、[edit]ボタンを押下
+- form内のtextを全選択
+- [Control + X] で切り取る
+- [Control + Z] で文字列を戻す
+- cancelもしくは、モーダル以外をクリックで変更をキャンセル。
+
+
+** Done [#F] chat account
+CLOSED: [2016-11-15 Tue 08:51] SCHEDULED: <2016-11-09 Wed>
+- staging作成
+    - chatのaccount作成してみんなに見てもらおうか
+
+- その後, 佐藤さんへ展開
+
+** Done スマートコミュニティ＋IoT World 東北 : 1day
+CLOSED: [2016-11-02 Wed 15:03] SCHEDULED: <2016-11-01 Tue>
+Added: [2016-10-21 Fri 10:19]
+
+*** 注意
+開催当日は、「参加証を出力」のうえ、来場受付にお持ちください。
+参加証またはご来場についての留意点は、事務局よりお送りしました「登録完了メール」をご確認ください。
+ご来場をお待ちしております。
+
+*** 持参品
+- 参加章print out
+   https://reg.f2ff.jp/public/t?aid=803979&code=af6b2e28a29c9a7bfe83762965a178e9b009e9e8
+
+- 名刺
+
+*** Done IoT時代のセキュリティ
+CLOSED: [2016-11-01 Tue 11:59]
+- 危険だと判断するセンスが重要
+- ランサムウェア
+  - ユーザーのデータを暗号化し, 復号化して欲しいならと...金銭を要求
+  - トレンドマイクロのレポート
+    - 支払った方が6割
+    - 200万以上要求
+    - データ復旧できたのは6割
+- Mirai
+  - 小型のルータ
+  - 監視カメラ
+  などに感染させておく
+  50万くらい感染済み
+
+  - 分業
+    - routerのhack
+    - 感染させる人
+    - 実際使う人
+  - sourceは公開されている
+  - 1.2TのattackをDynへ
+
+  - 対策
+    - defaultの状態で使うな
+
+  - 偽xcode
+    - ios / acのアプリ開発環境
+    - 中国製の無料で配布されている
+    - 偽unityもある
+
+  - 最も脆弱なのは人間である
+
+  - なぜ自分が攻撃を受けるのか?
+    - 自分が攻撃を受けないと思いこんでないか?
+      価値あるものを所持している. お金,情報,計算資源
+    - 何らかの主張. とばっちり )日本政府に対する何か,日本の文化に対するなにか)
+    - 踏み台
+
+   - securityの考え方
+     - securityの目的を決める
+       企業情報の隠蔽? 顧客情報を守る?
+       感染してもいいが,情報流出はさせない
+       何らかの方法で web siteを動作し続けさせる
+
+     - これらにより, 守るプロセスが決まる
+       どんな対策をするのか,必要な機器は,対応手段は,部署間の連携
+     - 人を雇う
+     - 技術を決める
+
+  - security
+    - 周知徹底しましたでは, 問題の発生を少し遅らせるだけ,
+      精神論では解決しません
+    - 全体を俯瞰して見る力
+    - 詳細に分析する能力
+
+  - 正しい投資, 銀の弾丸はありません
+    会社の全体を把握し,
+    守るものを規定する
+
+  - 大切なのは人間です
+    securityを考えるセンスを身につける
+
+*** Done もうマルウェア感染は防げない
+CLOSED: [2016-11-01 Tue 11:59]
+- 感染は防げないので, 見つける速さと対策が重要
+    - 対応する体制をつくる
+    - 発見, 被害の拡大を防ぐ, 復旧作業
+      (発見, 作用機序を見つけるのが難しい)
+
+- 潜伏期間
+  感染はまだ被害ではない
+  感染してから, データ収集されるまでが1週間とした場合
+  この期間に見つけると,被害は防げる
+  実例としては, 気づけなかった
+  情報分析能力が必要
+
+- CSIRT
+  消防署に例えられる
+
+- 人材不足
+
+- 防ぐのは重要
+  - 予防あ対策は重要だが, 万全ではない
+  - 被害を抑える対応が重要
+
+- 属人化しない
+
+*** IoT時代における制御システム・セキュリティ
+制御システム (ガスプラントや,工場など)
+
+- 制御システム open化
+  - 機器
+  - コントローラー
+  - 制御盤 HMI
+  - これらがネットワークで絡み合い構成されている
+  - 隔離されているので安全と言われたが, open化で被害を受けた実例がある
+    - ウクライナ : 停電, black energy
+      ブレーカーを落とす
+      加えて, 問い合わせ電話を繋がらなくする
+      という複合攻撃だった
+
+    - ドイツ : マルウェア
+      溶鉱炉が正常停止できずダメージを受けた
+
+    - ?
+      病院の警備員
+      空調システムをターゲットにした
+      未遂でFBIに逮捕された
+      禁固9年
+
+    - 石油
+      IoTを狙った攻撃事例
+      トルコで石油パイプラインが爆発した
+      監視カメラの通信速度脆弱性を利用して侵入した
+      監視カメラの先に制御系のネットワークに繋がっていた
+      計器など全てのデータを改ざんしていた
+
+    - 国内 自動車
+      vendorの入れ替えた端末にマルウェアが入っていた
+    - 半導体分野
+      USBメモリを慶友して感染した
+
+  - Black hat USA
+    セキュリティ間fなレンス
+    世界的なセキュリティカンファレンス
+    個人が考えた?実例教えてくれるそうな
+
+    - 新たな攻撃手法
+      DroneATM
+
+
+- 最近はopen化している
+  vendor固有のシステムだったが, コスト面からもopen化している
+  TCPにvendor固有のprotcolを載せるな
+
+- 最も脆弱な部分から漏洩する
+
+- 侵入者
+  - 物理的に侵入
+  - 攻撃者に雇われた関係者
+
+- 攻撃パターンは無数にある
+  - ネットワーク/物理
+  - 侵入手法
+  - 攻撃手法
+  これらの組み合わせ全てを塞がなくては, 対処とは言えない.
+
+- Droneを用いたもの
+  工業用無線を対象とした攻撃
+  最も簡単なクラッキング方法 : ジャミング
+  強い出力, 指向性を持った攻撃は高いので難しい
+  大掛かりな機器はいらない
+  ピンポイントでジャミングして
+
+- 条件
+   - 完全なセキュリティシステムは存在しない
+   - セキュリティシステムは日々更新が必要
+   - 脆弱性を見つけるための検証が必要
+
+- 防御
+  - PDCAサイクルを回し
+    ペネトレーションテストなどし, セキュリティを更新する
+  - 多層防御, 多重防御
+    - 同一レイヤでの多重防御, 異なるレイヤでの防御
+    - 時間によってfirewallの種類を変更
+    - 異なる規格のfirewallを多重に張る
+
+  - コストの中で
+
+
+*** 防災から考えるスマートコミュニティ
+- 災害の環境モニタリング
+  real time 浸水モニタリング
+  LED信号機の着雪対策
+  雷監視
+  落石
+
+*** MOVIMASが提供する機械学習を実装した, 設備稼働監視IoT
+- センサーによって情報収集
+
+- 機械学習を利用不調判定の仕組み
+    - 不調傾向からの故障箇所の特定
+    - 高スキル者の技術の継承
+    - 人材不足
+
+- 不調傾向からの故障箇所の特定 (機械学習エンジンによる)
+    - 設備位置の把握
+    - 警報,不備の発生状況の確認
+    - 蓄積データによる傾向の把握
+
+- Energy IoT
+    - 蓄電池の遠隔制御
+
+
+
+
+*** エネルギーフリー時代への序章
+
+** Done スマートコミュニティ＋IoT World 東北 : 2day
+CLOSED: [2016-11-04 Fri 09:44] SCHEDULED: <2016-11-02 Wed>
+Added: [2016-10-21 Fri 10:19]
+
+*** 注意
+開催当日は、「参加証を出力」のうえ、来場受付にお持ちください。
+参加証またはご来場についての留意点は、事務局よりお送りしました「登録完了メール」をご確認ください。
+ご来場をお待ちしております。
+
+*** 持参品
+- 参加章print out
+   https://reg.f2ff.jp/public/t?aid=803979&code=af6b2e28a29c9a7bfe83762965a178e9b009e9e8
+
+- 名刺
+
+*** aaa
+今日の公演でも
+どんなに高いセキュリティを作っても中に入られる
+という趣旨でした
+
+- インシデント, 対応フロー, エスカレーション体制の構築
+- 故に事前に責任者, 対応フローを検討しておく
+- 年1回でよいので訓練をしておく (消防避難のような)
+  この際, どこに連絡するのか?など考え, 車内の必要関係者を揃える
+- 合議的に対応していると, 後手になるケースが多い
+- 情報の管理者,責任者を決めておく
+
+- 情報を整理しておく
+  - 例えば, 必ずにここに通帳をおいておくなど. (そこを見れば素早くなくなったものがわかる)
+
+
+- 技術を盗む輩がいる
+  見えるだけで 150件/年
+
+- どんなに高いセキュリティを作っても中に入られる
+  - 入られても大事なものをとられない用にするが最新
+  - 何がどこにあるのか整理しておく
+    整理により, 何がなくなったのかが素早くわかる
+  - どこにあるのか? 誰が管理しているのか?
+
+- インシデント, エスカレーション体制の構築
+  - 誰が事前に担当するのか決める
+  - 経営者が管理して対応するしくみがありますか?
+
+- 合議性
+  日本は合議性
+  ビジネスをすすめるのか, serverを止めるのか
+  素早い判断が必要
+  - serverを止める権限は
+  - EUに謝るのはだれ?
+
+- 原因の追求
+  - log取得
+  原因がわからない場合, 再発する可能性がある
+
+
+- 事前に対応flow, 担当者を決める
+  事後に決めるようでは, 後手後手になる
+
+- 避難訓練で演習をする (年1回くらい)
+  - 1番とまったら困るものを決める
+  - 何が必要になるのか考える
+  - 顧客, 警察, どこに連絡する必要があるのか?
+
+
+
+- サイバーセキュリティガイドライン
+  http://www.meti.go.jp/press/2015/12/20151228002/20151228002.html
+  去年の資料だが
+
+*** 色々
+セキュリティコンサルティング (ポリシー策定など)
+システムリスクアセスメント
+CSIRT構築
+セキュリティ教育
+標的型攻撃メール訓練
+脆弱性マネジメント
+脆弱性診断 (ネットワーク, OS, platformなど)
+マルウェア感染端末調査
+セキュリティインシデントと調査/復旧
+
+ファイアウォール
+IDS/IPS
+UTM(総合脅威管理)
+ウェブアプリケーションファイアウォール
+標的型攻撃対策:未知のウイルス対策(サンドボックス)
+標的型攻撃対策:未知の脅威検知(機器のログ, アラートの草案分析)
+エンドポイント (PCやサーバ) におけるマルウェア感染範囲の特定/活動の証拠記録/感染防止
+
+*** ランサムウェアや標的型マルウェアの侵入から組織を守るサスティナブルな対策
+- 近年ランサムウェアが増えている
+
+- 事例
+  - 交通標識の表示文字を変えられた
+    ゴジラが出たぞ
+  - クライスラーの自動車をのっとり, 遠隔操作した
+    140万台 recall
+  - ウクライナ
+    大規模停電
+    遠隔操作
+  - 監視カメラ
+    panasonicのweb camera
+    ロシアのwebに日本のweb cameraと選択すると
+    実際の web cameraの映像が閲覧可能状態にあたt
+
+- アンチソフトの検知率
+  数年前は95%,どこかの会社には検知されていた
+  最近は検知されないケースが多々
+
+- 常にdataをbackup
+
+- 業界内での情報共有がよい
+  横のつながりが重要
+
+- 標的型メールの開封率テスト
+  - NTT comないで送信してみた
+  - 業務の怪しいメール(表面上は適正な内容) 3.3%
+  - 飲み会のお誘いメール 約20%が開けた
+
+- ランサムウェア
+  - dataを人質に取り金銭を要求する
+  - fileを暗号化する
+  - 駆除してもfileは戻らない
+  - 支払っても治らないケースも多々
+
+  - 日本が標的になってきた
+     - 法人中心に広がっている
+     - webからの侵入
+       脆弱性
+     - mailからの侵入
+       バラマキ型
+
+- 実例
+  - ロサンゼルスの病院
+    患者のデータだったので払ったそうな
+
+- sand box
+  仮想端末の中でvirusを放って動作をみる
+
+- 同一業界が同時期に狙われるケースもある
+  ゆえに横の繋がりが重要とのこと
+
+*** 農業及び災害対応ドローンと最新のドローンサービス
+- 産業用droneが増加していく
+  持続力 20min~40min
+  時速130kmはでる(40km飛べる)
+
+- 2030年ころには
+  いっぱいdroneが飛ぶそうな
+  USAでは, 有人/無人含めての航空ルールの作成が進められている
+
+- 楽天がdrone輸送を勧めている
+- ゴルフ場でのdroneでの物品輸送
+
+- 農業用
+  MINORI
+  農薬散布
+
+  空撮で状態を見て,
+  被害があるところに農薬をまく
+
+  新潟が特区になっている
+  - docomoが画像データの分析
+  - vegetalia
+    sy供物意志による画像診断/分析データの評価
+  - ACSL
+    droneの提供
+
+- 松がれ診断
+
+- smart phoneを載せ
+  60km離れた場所からの操作も可能
+
+
+- smart phoneが飽和しており,
+  開発方向が droneへ向いている
+
+- counter drone
+  drone捕獲用のdrone
+
+- drone専用のパラシュート
+  異常が発生した祭にパラシュートを開く
+
+- drone専用のカメラ
+  小型軽量, 雨天でも撮影可能なカメラ
+
+- 2016-2018
+  災害検知, 農業
+
+- 2019-2021
+  配達/輸送, 物流
+  法律の整備で時間がかかる
+
+- 現状, 安定性がまだ低い
+  がそれでも以下の内容へは使いたいニーズがある
+  災害検知/測量/警備/農業
+
+- 人手不足を解消することのニーズが高い
+  - 測量, 介護, 運送
+
+
+
+
+** Done [#G] area meating
+CLOSED: [2016-10-04 Tue 08:54] DEADLINE: <2016-10-14 Fri> SCHEDULED: <2016-10-14 Fri>
+Added: [2016-09-28 Wed 17:40]
+
+- [ ] 全社会議
+    - [ ] 14:50まで集合 (1時間前から入れる)
+    - [ ] 筆記用具と印鑑必須
+    - [ ] 社員交流のテーマ募集中
+
+    10/14
+    仙台全員参加
+    現地集合
+    日帰りが基本
+
+- [ ] 社員旅行
+
+- [ ] 自転車保険
+
+- 会議
+  事業部長     1/month
+  拠点長会議   1/month
+  拠点meating 1/month
+  連絡会議     随時
+
+- 勉強会への参加
+  - 1回 15kくらい
+  - 年30k
+
+- 購入
+  - 10万円以上の購入物は稟議書を提出
+    format作成中
+
+** Done dev server update
+CLOSED: [2016-09-06 Tue 09:20] SCHEDULED: <2016-08-30 Tue>
+Added: [2016-08-30 Tue 10:20]
+** Done 仙台定例MTG
+CLOSED: [2016-06-24 Fri 10:34] SCHEDULED: <2016-06-23 Thu 17:30--18:00>
+Added: [2016-06-16 Thu 19:02]
+
+** Done port閉塞
+CLOSED: [2016-06-21 Tue 13:08] SCHEDULED: <2016-06-08 Wed>
+Added: [2016-06-08 Wed 15:40]
+allin-dev
+
+** Done どの設定が影響していた
+CLOSED: [2016-06-21 Tue 13:12] DEADLINE: <2016-06-10 Fri>
+Added: [2016-06-09 Thu 15:10]
+
+ひとつひとつ戻してやってみるか?
+時間の無駄なきも
+今はちゃんと動作しているし
+
+*** 修正点
+port: 443
+protocol: https
+
+    accounting: /accounting
+
+  url_suffix: ""
+
+    reconnect_interval: 10000
+    // 2箇所
+
+*** code
+host: allin-development.ruby-dev.jp
+model:
+  shared_file:
+    path: <%= Rails.root.join("contents", "shared_files") %>
+port: 443
+protocol: https
+view:
+  links:
+    accounting: /accounting
+new_screen:
+  base_url: "https://sns-app-002.ruby-dev.jp"
+  url_suffix: ""
+sns:
+  api:
+    endpoint: "https://sns-app-002.ruby-dev.jp:5000"
+  websocket:
+    event: "allin_sns_demo"
+    reconnect_interval: 10000
+  attachment:
+    max_size: 10MB
+    accept_type: ""
+  attachment_image:
+    max_size: 5MB
+    accept_type: image/*
+  feed:
+    max_length: 4000
+    attachment:
+      max_files: 10
+    attachment_image:
+      max_files: 10
+  comment:
+    max_length: 4000
+    attachment:
+      max_files: 1
+    attachment_image:
+      max_files: 1
+notification:
+** Done orgnic style
+CLOSED: [2016-06-20 Mon 15:35] SCHEDULED: <2016-06-02 Thu>
+Added: [2016-06-02 Thu 10:12]
+mailで予定確認
+** Done uniqlo instagram token/account
+CLOSED: [2016-06-02 Thu 15:11]
+Added: [2016-05-11 Wed 13:40]
+
+- instagram account抽出
+- token抽出
+
+any other?
+
+https://www.instagram.com/accounts/login/?next=/developer/
+
+
+*** acc
+|---------+----------------+------------+-------------------------------+----------------------------|
+| env     | id             | pass       | mail                          |                            |
+|---------+----------------+------------+-------------------------------+----------------------------|
+| prd,stg | APPSTYLEUNIQLO | lifewr2015 | uniqloinfluencer@uniqlo.co.jp | prd token x1, stg token x3 |
+| prd     | ruby_dev       | mruby0225  | s-numasawa@mruby.jp           | prd token x5               |
+| dev     | mruby0901      | mruby0225  | sns@mruby.jp                  | dev token x5               |
+|---------+----------------+------------+-------------------------------+----------------------------|
+
+
+*** prd
+INSTAGRAM_CLIENT_ID=ffde84b110e248e895cc51fe63969f90
+INSTAGRAM_CLIENT_SECRET=a5293e59b7ac4de1916b94bed991539c
+
+INSTAGRAM_ACCESS_TOKENS=
+1725548089.ffde84b.d0991bd477024858a1758bf1a3bfbc69,
+1953644486.569cd68.e3b327f08fdd41aaae24cb5d8c09b7e6, # ruby-dev account
+1953644486.9d9d9eb.dc50f786802e474d8c50129c0fed9d2b, # ruby-dev account
+1953644486.ab28996.c325764d5daa4353a54bda1f252b0707, # ruby-dev account
+1953644486.7031d8f.027958c3327445d0b0b54fb75a7e1ef2, # ruby-dev account
+1953644486.28f8d14.d2c4fd086b4748f5aa0bbbb828e7d018  # ruby-dev account
+
+*** stg
+INSTAGRAM_CLIENT_ID=8fcf4dc63f5c49768ecea77ababdc0cb
+INSTAGRAM_CLIENT_SECRET=3eea1d53894d4e4dbac0778aef4f1f57
+
+INSTAGRAM_ACCESS_TOKENS=
+1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f,
+1725548089.0c56b3d.171c23a4c4fe45909c861600ab3d196e,
+1725548089.3156de7.3e357950bbef4816b881c1f68117bb7e
+
+https://api.instagram.com/oauth/authorize/?client_id=28f8d14d8ab64154a1e888df9e58d4eb&redirect_uri=http://localhost/&response_type=code
+
+curl \-F 'client_id=28f8d14d8ab64154a1e888df9e58d4eb' \
+    -F 'client_secret=e242d7977a0747a2867c1e20fd7367e5' \
+    -F 'grant_type=authorization_code' \
+    -F 'redirect_uri=http://localhost/' \
+    -F 'code=b80460d1df9d4a88923402a5d71b8709' \https://api.instagram.com/oauth/access_token
+
+
+*** dev
+INSTAGRAM_CLIENT_ID=65bfae25a972496985e349a3d5467dba
+INSTAGRAM_CLIENT_SECRET=64eb28aca5bd47f3bafda2fea7138477
+
+INSTAGRAM_ACCESS_TOKENS=
+1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f, # u-hashtag-dev_1
+1723080740.3f5525a.7c8ab33166644e349324da2ca1afbd0e, # u-hashtag-dev_2
+1723080740.9b45723.1196e8df9b094989bbbc869d810d0921, # u-hashtag-dev_3
+1723080740.789672c.99653ff469cc4716aa04df4036f9b975, # u-hashtag-dev_4
+1723080740.76fc6c4.5b3c99971a7e493fa462ceccade7a707  # u-hashtag-dev_5
+
+
+** Done opensll update
+CLOSED: [2016-05-20 Fri 10:11] SCHEDULED: <2016-05-09 Mon>
+Added: [2016-05-09 Mon 09:35]
+
+- [ ] monitor
+    - dockerないが無理がだったー
+- [X] ruby-webpage
+
+** Done ruby-webpage : staging
+CLOSED: [2016-05-19 Thu 09:57] SCHEDULED: <2016-05-19 Thu>
+Added: [2016-05-19 Thu 09:21]
+
+停止
+** Done allin update
+CLOSED: [2016-05-11 Wed 11:42] SCHEDULED: <2016-05-11 Wed>
+CLOCK: [2016-05-11 Wed 11:40]--[2016-05-11 Wed 11:42] =>  0:02
+
+
+** Done メール消化
+CLOSED: [2016-05-09 Mon 14:22] SCHEDULED: <2016-05-09 Mon>
+CLOCK: [2016-05-09 Mon 13:28]--[2016-05-09 Mon 14:22] =>  0:54
+CLOCK: [2016-05-09 Mon 12:04]--[2016-05-09 Mon 12:20] =>  0:16
+Added: [2016-05-09 Mon 09:11]
+
+** Done create iam
+CLOSED: [2016-04-19 Tue 11:41]
+CLOCK: [2016-04-19 Tue 10:00]--[2016-04-19 Tue 11:41] =>  1:41
+*** base
+new accontでiam user作成
+
+助田さん、pierreさん
+双方admin
+
+*** accs
+s-numasawa
+JSx5Mf0V{HpQ
+
+m-suketa
+kenPjtZG7O[{
+
+pierre
+qQzal^mydZsy
+
+*** 実験
+ec2
+|---------------+----------------+-------------------+-------+------+----------+---------+---------+-----+-----+-----+---|
+| region        |                | $/hour (t2.small) | month |      | ping min |     ave |     max | los | ttl | hop |   |
+|---------------+----------------+-------------------+-------+------+----------+---------+---------+-----+-----+-----+---|
+| us east       | n. virginia    |             0.013 |  9.36 | 100% |  181.272 | 182.703 | 187.439 |   0 | 228 |  32 |   |
+|---------------+----------------+-------------------+-------+------+----------+---------+---------+-----+-----+-----+---|
+| us west       | oregon         |             0.013 |  9.36 | 100% |  133.495 | 134.182 | 137.231 |   0 | 237 |  16 |   |
+|               | california     |             0.017 | 12.24 | 130% |  116.240 | 117.073 | 120.851 |   0 | 241 |  14 |   |
+|---------------+----------------+-------------------+-------+------+----------+---------+---------+-----+-----+-----+---|
+| EU            | ireland        |             0.014 | 10.08 | 107% |  270.981 | 271.931 | 275.565 |   0 |     |     |   |
+|               | frankfurt      |             0.015 |  10.8 | 115% |  285.154 | 285.979 | 289.471 |   0 |     |     |   |
+|---------------+----------------+-------------------+-------+------+----------+---------+---------+-----+-----+-----+---|
+| asia          | singapore      |              0.02 |  14.4 | 153% |   84.962 |  85.505 |  88.092 |     |     |     |   |
+|               | tokyo          |              0.02 |  14.4 | 153% |   10.695 |  11.252 |  13.712 |     |     |     |   |
+|               | sydney         |              0.02 |  14.4 | 153% |  115.640 | 116.294 | 121.675 |     |     |     |   |
+|               | seoul          |              0.02 |  14.4 | 153% |   37.374 |  38.312 |  40.510 |     |     |     |   |
+|---------------+----------------+-------------------+-------+------+----------+---------+---------+-----+-----+-----+---|
+| south america | sao paulo      |             0.027 |       |      |          |         |         |     |     |     |   |
+|---------------+----------------+-------------------+-------+------+----------+---------+---------+-----+-----+-----+---|
+| AWS GovCloud  | for Government |             0.015 |       |      |          |         |         |     |     |     |   |
+|---------------+----------------+-------------------+-------+------+----------+---------+---------+-----+-----+-----+---|
+
+** Done manatuku check依頼
+CLOSED: [2016-04-14 Thu 11:35] SCHEDULED: <2016-04-14 Thu>
+CLOCK: [2016-04-14 Thu 10:45]--[2016-04-14 Thu 11:35] =>  0:50
+
+*** 依頼内容
+上記のメールの、特に保守終了後のタスクについて、追加すべき内容や、間違っているものがないか、チェックをお願いします:bow:
+
+*** text
+オーガニックスタイル株式会社 渡辺様 森様
+
+お世話になっております、Ruby開発の久保です。
+引き継ぎ資料を添付いたします。
+添付の資料は、以下の通りとなっております。
+
+　・Account.pdf　：　AWSのアカウント情報です
+　・Structure.pdf　：　サーバー構成資料１です。（先日一度提供済みです）
+　・Structure_CNAMES-IPなど.pdf　：　サーバー構成資料２です。
+　・業務フロー.pdf　：　共有していた資料をPDF化したものです。
+　・クーポン割引一覧.pdf　：　共有していた資料をPDF化したものです。
+
+他、ソースコードのルートディレクトリや、
+「docs」ディレクトリには以下のドキュメントがございますので、ご参考ください。
+
+　・README.md　：　Ruby開発記載。Vagrant を利用した開発環境の構築の仕方等
+　・DEPLOY.md　：　既存ベンダー様記載。デプロイについて
+　・DEVEL.md　：　既存ベンダー様記載。開発環境セットアップ方法について
+　・SERVER.md　：　既存ベンダー様記載。サーバー構成について
+
+
+また、今後、以下のタイミングにて、以下のタスクの対応をお願いいたします。
+
+　【保守契約終了後（4月末日）】
+　　Ruby開発のタスク
+　　　・監視設定等の削除
+　　オーガニックスタイル様のタスク（Ruby開発のタスク完了連絡後に対応をお願いいたします）
+　　　・AWSの「ruby-dev」アカウントの削除し、新しい管理用アカウントを作成する
+　　　・AWSの「manatuku-s3」アカウントのパスワード変更
+　　　・AWSのBasic認証パスワードの変更
+　　　・STG環境のまなつくサービスアカウントのパスワード変更
+
+　【Ruby開発の開発終了後（5月中の予定）】
+　　オーガニックスタイル様のタスク
+　　　・pemファイル（production.pem、staging.pem）の変更
+
+
+以上です。
+サービスのセキュリティ保守上必要となりますので、
+お手数ですが、ご対応をお願いいたします。
+
+**** points
+- deploy
+  repositoryの変更が必要か?
+
+-
+
+** Done ruby-webpage | account作成
+CLOSED: [2016-04-13 Wed 15:49]
+https://689978960272.signin.aws.amazon.com/console
+
+pierre
+hY7Z)7LPaD#I
+
+** Done ruby-webpage | mobile acces不可
+CLOSED: [2016-04-13 Wed 16:08]
+- [X] 大丈夫そう
+- [ ] 具体的情報があれば切り分けられるか
+
+** Done 面談 / 社長からの掲示
+CLOSED: [2016-04-13 Wed 15:05]
+CLOCK: [2016-04-13 Wed 13:30]--[2016-04-13 Wed 15:05] =>  1:35
+
+** Done 証明書のupload test
+CLOSED: [2016-04-11 Mon 10:30] SCHEDULED: <2016-04-08 Fri>
+CLOCK: [2016-04-11 Mon 09:41]--[2016-04-11 Mon 10:00] =>  0:19
+CLOCK: [2016-04-08 Fri 13:56]--[2016-04-08 Fri 14:33] =>  0:37
+CLOCK: [2016-04-07 Thu 10:10]--[2016-04-07 Thu 10:32] =>  0:22
+Added: [2016-03-30 Wed 09:16]
+
+*** Done upload
+CLOSED: [2016-04-07 Thu 10:32]
+http://qiita.com/syuhei/items/83cfbf29a32785c8bbc6
+
+aws iam upload-server-certificate \
+--server-certificate-name ruby-dev \
+--path /cloudfront/ \
+--private-key file:///Users/Numasawa/temp/server.key \
+--certificate-body file:///Users/Numasawa/temp/server.crt \
+--certificate-chain file:///Users/Numasawa/temp/server.ca
+
+*** Done https
+CLOSED: [2016-04-11 Mon 09:41]
+- [ ] cloudfrontへdomainを紐付ける. how
+    http://qiita.com/n0bisuke/items/a2a7d5efdc1311dc479a
+
+- [ ] httpsでのアクセス確認
+
+*** Done delete
+CLOSED: [2016-04-11 Mon 09:44]
+how to delete key on server
+
+**** 確認
+aws iam list-server-certificates
+
+**** 移動
+$ aws iam update-server-certificate --server-certificate-name アップロードした証明書名 ¥
+                                    --new-path /cloudfront/path/
+
+**** 名前の変更
+$ aws iam update-server-certificate --server-certificate-name アップロードした証明書名 ¥
+                                    --new-server-certificate-name 変更後の証明書名
+
+**** 証明書の削除
+$ aws iam delete-server-certificate --server-certificate-name アップロードした証明書名
+
+
+*** Done 久保さんへ伝達
+CLOSED: [2016-04-08 Fri 15:33]
+以下に設定手順を残させていただきます
+
+
+** Done review | update確認
+CLOSED: [2016-04-05 Tue 10:48] SCHEDULED: <2016-03-31 Thu>
+CLOCK: [2016-04-05 Tue 10:47]--[2016-04-05 Tue 10:48] =>  0:01
+Added: [2016-03-31 Thu 10:44]
+
+** Done manatuku
+CLOSED: [2016-03-24 Thu 14:48] SCHEDULED: <2016-03-24 Thu>
+CLOCK: [2016-03-24 Thu 14:00]--[2016-03-24 Thu 15:30] =>  1:30
+
+資料作成
+https://docs.google.com/drawings/d/1r4atTUyXWOiWZZX3hcTjsK0WPml3zbfVJljTFRyveKI/edit
+
+SSL証明書どこに保存している?という声から、記録として残す
+
+** Done todo整理
+CLOSED: [2016-03-22 Tue 13:24] SCHEDULED: <2016-03-22 Tue>
+CLOCK: [2016-03-22 Tue 13:14]--[2016-03-22 Tue 13:24] =>  0:10
+** Done いらないinstance落とす
+CLOSED: [2016-03-31 Thu 10:33] SCHEDULED: <2016-03-31 Thu>
+CLOCK: [2016-03-31 Thu 09:44]--[2016-03-31 Thu 10:33] =>  0:49
+Added: [2016-03-31 Thu 09:43]
+お疲れ様です。芦田です。
+
+Ruby AssociationのGold Sponserになりました。
+
+ロゴをHPのどこかに展開できるかな？
+
+あと、会社概要の沿革並びに
+TOPページのトピックスに展開ください。
+
+-------- Forwarded Message --------
+Subject: Re: 2016年度協賛会員申請いただきありがとうございます
+Date: Tue, 22 Mar 2016 12:00:45 +0900
+From: Sayuri Yokota <yokota@ruby.or.jp>
+Reply-To: RA事務局 <info@ruby.or.jp>
+To: Ruby開発）芦田様 <h-ashida@mruby.jp>
+CC: RA事務局 <info@ruby.or.jp>
+
+株式会社Ruby開発
+芦田 様
+
+お世話になっております。
+Rubyアソシエーション）事務局の横田です。
+
+Gold Sponsorのロゴデータを本メールに添付いたしますので、
+名刺やサイト等にご利用ください。
+
+今後ともどうぞよろしくお願いいたします。
+
+On 2016/02/29 10:21, Sayuri Yokota wrote:
+
+    株式会社Ruby開発
+    芦田 様
+
+    いつもお世話になっております。
+    Rubyアソシエーション）事務局の横田です。
+
+    継続申請書をお送りいただき、ありがとうございます。
+    確かに拝受いたしました。
+
+    来期は、Gold Sponsorでご登録いただますこと、誠に感謝申し上げます。
+    ４月より、Gold Sponsorでのご登録とさせていただきます。
+
+    以下のサイトに貴社の情報を掲載させていただいておりますが、
+    ロゴの変更等ございましたら、ご連絡下さい。
+
+    http://www.ruby.or.jp/ja/sponsors/list/
+
+    Gold Sponsorのロゴデータにつきましては、3月下旬にお送りさせていただきます。
+
+    今後もRubyの普及を通じて御社の発展に貢献させていただきたいと思います。
+    引き続きどうぞよろしくお願いいたします。
+
+
+
+** Done instance確認
+CLOSED: [2016-04-01 Fri 10:16]
+Added: [2016-04-01 Fri 09:59]
+
+メール
+i-968a7e32
+** Done いらない証明書の削除
+CLOSED: [2016-04-05 Tue 10:46] SCHEDULED: <2016-04-04 Mon>
+CLOCK: [2016-04-05 Tue 10:31]--[2016-04-05 Tue 10:46] =>  0:15
+Added: [2016-04-04 Mon 16:19]
+
+残すの
+- ruby-dev-cert
+- server (確か擬似証明書だったような)
+
+** Done 休み報告
+CLOSED: [2016-04-26 Tue 10:38] SCHEDULED: <2016-04-26 Tue>
+CLOCK: [2016-04-26 Tue 10:09]--[2016-04-26 Tue 10:38] =>  0:29
+CLOCK: [2016-04-26 Tue 09:42]--[2016-04-26 Tue 09:52] =>  0:10
+Added: [2016-04-26 Tue 09:41]
+
+- [X] カレンダー
+- [X] 大吉さん、柴田さんへ
+
+2016/02/20 (土) = 2016/03/07 (月)
+としました。
+
+
+02/27 [土] = 04/28 [木]　
+02/28 [日] = 05/02 [月]
+03/12 [土] = 05/06 [金]
+** Done 休出状況修正
+CLOSED: [2016-05-09 Mon 11:00] SCHEDULED: <2016-05-09 Mon>
+CLOCK: [2016-05-09 Mon 10:54]--[2016-05-09 Mon 11:00] =>  0:06
+Added: [2016-05-09 Mon 09:10]
+
+代休消化分
+朝会docへ記述
+** Done 代休誤り訂正
+CLOSED: [2016-05-09 Mon 11:49] SCHEDULED: <2016-05-09 Mon>
+CLOCK: [2016-05-09 Mon 11:35]--[2016-05-09 Mon 11:49] =>  0:14
+Added: [2016-05-09 Mon 11:15]
+
+
+- [X] 勤怠表
+- [X] 代休申請
+- [X] 大吉さんへの訂正メール
+- [X] 朝会doc
+
+02/27
+02/28
+午前中のみだったので、訂正が必要
+** Done Ruby gold 盾
+CLOSED: [2016-05-10 Tue 14:35] SCHEDULED: <2016-05-10 Tue>
+CLOCK: [2016-05-09 Mon 12:30]--[2016-05-09 Mon 13:28] =>  0:58
+Added: [2016-05-09 Mon 12:19]
+
+送付済み、受け取り返答待ち
+
+*** 本社へ送付だそうな
+
+----------------------------------------------------------------
+お疲れ様です。芦田です。
+
+仙台オフィスにある、
+Ruby Gold　認定楯を
+本社に送ってください。
+
+ケースは
+キャビネットに入っていると思う。
+
+できれば月曜中の発送＋火曜AM必着で送ってください。
+コンビニからの発送でも大丈夫かと。
+
+もし、ケースが見当たらない場合は、電話ください。
+
+よろしく。
+** Done ruby-webpage. deploy setting
+CLOSED: [2016-05-10 Tue 18:52] SCHEDULED: <2016-05-10 Tue>
+Added: [2016-05-10 Tue 09:08]
+
+
+前に手順を聞いたような気がしたのですが、どこで設定すれば良いかわからなかったので、対応をお願いさせてください。
+
+今、ruby-webpageの本番環境のリリースを gitlab の master ブランチからリリースするようになっているのですが、
+それを release ブランチからリリースするように修正していただけますでしょうか？
+
+今後は、以下のブランチ運用案で運用することになったためです。
+https://git.ruby-dev.jp/home/ruby-webpage/issues/29#note_2347
+** Done 芦田さんのアンケート
+CLOSED: [2016-06-03 Fri 11:36] SCHEDULED: <2016-06-03 Fri>
+CLOCK: [2016-06-03 Fri 10:55]--[2016-06-03 Fri 11:36] =>  0:41
+Added: [2016-06-03 Fri 11:36]
+
+返信
+** Done 有給提出
+CLOSED: [2016-06-24 Fri 14:23] SCHEDULED: <2016-06-24 Fri>
+CLOCK: [2016-06-24 Fri 14:14]--[2016-06-24 Fri 14:23] =>  0:09
+Added: [2016-06-24 Fri 10:35]
+
+06/27 (月)
+** Done iot資料作成
+CLOSED: [2016-06-24 Fri 15:11] SCHEDULED: <2016-06-24 Fri>
+CLOCK: [2016-06-24 Fri 14:00]--[2016-06-24 Fri 15:11] =>  1:11
+Added: [2016-06-24 Fri 15:11]
+
+- [X] 簡易構成図
+- [X] InfluxDB wiki更新
+** Done IAM作成
+CLOSED: [2016-07-01 Fri 21:18] SCHEDULED: <2016-06-28 Tue>
+CLOCK: [2016-06-28 Tue 13:31]--[2016-06-28 Tue 14:12] =>  0:41
+Added: [2016-06-28 Tue 13:27]
+原田さんよう
+
+料金確認専用
+
+- [X] account作成
+  e-harada
+  rAhddK1(phgJ
+
+- [X] 経理担当権限作成
+- [X] e-haradaへ付与
+
+- [X] mail 送信
+- [X] response待ち
+
+- [X] mail返信
+- [ ] response待ち
+
+
+*** mail
+- Account
+    ID   : e-harada
+    Pass : rAhddK1(phgJ
+
+- Login webは以下
+    https://348001118836.signin.aws.amazon.com/console
+
+- Login後の操作
+    - 添付ファイルをご参照ください。
+    - 画面右上の [Account名] をクリック。
+    - Drop down menuから、[請求とコスト管理] を選択
+    - 左列メニューから、[請求書] を選択
+
+以上で、請求内容が参照できます.
+何か問題があれば、ご連絡お願い致します.
+
+** Done 代休申請
+CLOSED: [2016-07-20 Wed 10:22] SCHEDULED: <2016-07-20 Wed>
+Added: [2016-07-20 Wed 09:11]
+
+07/19 分
+** Done QA打ち合わせ
+CLOSED: [2016-07-26 Tue 20:33] SCHEDULED: <2016-07-26 Tue 14:00>
+Added: [2016-07-25 Mon 17:15]
+** Done 打ち合わせ
+CLOSED: [2016-08-19 Fri 11:25] SCHEDULED: <2016-08-19 Fri 11:15>
+Added: [2016-08-19 Fri 10:29]
+** Done allin server 落とす?
+CLOSED: [2016-08-29 Mon 18:50] SCHEDULED: <2016-08-29 Mon>
+Added: [2016-08-30 Tue 16:44]
+
+柴田さんに確認
+** Done manatuku set SSL to cloudfront
+CLOSED: [2016-05-31 Tue 09:46]
+CloudFrontへの証明書設定
+
+*** 上げる事はできる模様
+http://dev.classmethod.jp/cloud/cloudfront-ssl-options-summary/
+具体的な方法は要調査
+
+http://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/SecureConnections.html
+ここらへんかな
+
+*** 証明書をもらう必要あり
+** Done iot server : nginx fault isolation                            :bb:
+CLOSED: [2016-10-11 Tue 13:39] SCHEDULED: <2016-10-11 Tue>
+CLOCK: [2016-10-11 Tue 13:00]--[2016-10-11 Tue 13:25] =>  0:25
+Added: [2016-10-11 Tue 13:38]
+
+can't fowart port 80 to ????
+** Done 全社会議                                                      :bb:
+CLOSED: [2016-10-18 Tue 08:19] SCHEDULED: <2016-10-14 Fri>
+Added: [2016-10-13 Thu 17:39]
+
+*** 全社会議について
+総務から連絡がいっていますが、１０月に全社会議が行われます。
+基本的に業務の一環であるため、必ず出席してください。
+
+- 日時
+  平成28年10月14日 (金)
+  14:50迄に集合完了
+
+- 場所
+    世界貿易センタービル38F　WTCコンファレンスセンター
+
+- 参加対象
+    正社員
+
+※出席メンバーを確認したいので本メールに出欠の返信ください。
+  やむを得ず出席できない場合連絡ください。
+
+※会議の翌日に社員旅行があります。
+  そちらは別途、大須賀さんに返事ください。
+** Done must be delete uniqlo's elastic IP                        :uniqlo:
+CLOSED: [2016-10-21 Fri 08:14] SCHEDULED: <2016-10-21 Fri>
+Added: [2016-10-20 Thu 09:56]
+** Done 有給申請                                                      :bb:
+CLOSED: [2016-10-26 Wed 10:43] SCHEDULED: <2016-10-26 Wed>
+Added: [2016-10-25 Tue 18:32]
+** Done Ticket追加                                                    :bb:
+CLOSED: [2016-10-27 Thu 09:00]
+Added: [2016-10-27 Thu 08:52]
+
+・配信先リストの画面に「フィルター保存/フィルター解除」のボタンを追加して、フィルター設定・解除を明示的に行うようにします。
+  また、フィルター設定時にパスワードを入力した場合は、解除時にパスワードを求められるようにし、パスワードを忘れた場合は、
+  フィルター設定者にパスワード通知のメールを送れるようにします。
+
+以上のチケットを追加していただけるようお願いします。
+** Done GLS                                                           :bb:
+CLOSED: [2016-10-29 Sat 23:01] SCHEDULED: <2016-10-29 Sat>
+Added: [2016-10-29 Sat 13:02]
+
+
+*** description
+- finland ouluと連携
+
+- game / IoT health care
+
+
+IoT R.gene
+
+PC userがほとんど
+朝にアクセス数が多い
+
+*** 業務の取材をしている
+けっこう反響があって, 問い合わせがくるようになったらしい
+
+取材はweb上から受け付けている
+儲かる?より技術面をある重視して聞いている
+
+*** aaa
+- 対話システム
+    イライザ -> siri
+            -> bot
+
+- cloud vision API
+
+- commodity化されたものにはいるものは, 枯れているケースが多い
+
+***
+
+*** 今, 流行り
+自然言語処理
+音声対話処理
+
+NTT comのservice有り
+
+*** 枯れている
+- 画像解析
+
+- deep lerningはゆらぎがある
+  ゆらぎがあるのが深層学習
+  customerは上記を認識し, 取り入れるかを決める必要がある
+
+*** idea
+- 手に加速度センサー
+- 追従するrobot
+- API有り
+- snap dragon cpu程度で動く
+
+*** a
+- 体系的な知識の担当者を一人
+- データをどのように判断させるのかという方針を決める
+
+*** xpu
+neuro mophic chip
+
+*** 拡張現実
+暦本純一
+
+*** VR
+- 自体の技術は枯れている
+- VRよい
+  視覚についづいしないと酔う
+  PSVRでは開発基準があったとのこと (あまりに近くで爆発すると恐怖感が強くなる)
+
+*** MR
+- microsoft holo lens
+  できないけど, 注目
+
+- 問題点は座標
+
+*** IoT
+IoT産業会
+- 人材の効率の用意配置
+
+*** ptc
+vuforia
+
+** Done allin ec2削除                                                 :bb:
+CLOSED: [2016-11-09 Wed 08:45] SCHEDULED: <2016-11-09 Wed>
+Added: [2016-11-07 Mon 16:15]
+
+- allin, mongo, redis全て削除
+- ec2はAMIを作成
+
+** Done 代休を朝会メモへ                                              :bb:
+CLOSED: [2016-11-09 Wed 15:54] SCHEDULED: <2016-11-09 Wed>
+Added: [2016-11-09 Wed 09:11]
+** Done allin 打ち合わせ                                              :bb:
+CLOSED: [2016-11-14 Mon 16:51] SCHEDULED: <2016-11-14 Mon 14:00>
+CLOCK: [2016-11-14 Mon 14:00]--[2016-11-14 Mon 16:15] =>  2:15
+Added: [2016-11-14 Mon 15:24]
+
+*** 工数
+** Done 打ち合わせ                                                    :bb:
+CLOSED: [2016-11-15 Tue 17:58] SCHEDULED: <2016-11-15 Tue 16:00>
+CLOCK: [2016-11-15 Tue 16:00]--[2016-11-15 Tue 17:58] =>  1:58
+Added: [2016-11-15 Tue 16:42]
+** Paused [#B] AWS inspecter調査
+CLOSED: [2016-10-18 Tue 08:19] SCHEDULED: <2016-07-05 Tue>
+Added: [2016-07-02 Sat 15:47]
+
+とりあえず、走らせたので、１項目が何の単位なのか
+請求額はいくらなのか確認
+
+前回の時点2 inspet
+3 inspectになっているはず
+
+*** 実験
+- 一回 0.3$
+- おそらく、1instanceへの解析指示1回で課金される
+  解析できる項目は複数あるが、これらをまとめて1回とみなしていると思われる
+
+*** 使いどころは?
+毎日、多数のinstanceへしようすると結構な額になる。
+月数回や、version upなどの、何らかのtimingで使用すると良いか?
+
+*** 記事
+http://dev.classmethod.jp/cloud/aws/sugano-018-inspector/
+http://dev.classmethod.jp/cloud/aws/sec-vul/
+
+** Paused [#B] uniqlo instance volume
+CLOSED: [2016-09-13 Tue 19:16] SCHEDULED: <2016-06-06 Mon>
+CLOCK: [2016-07-01 Fri 09:57]--[2016-07-01 Fri 20:32] => 10:35
+Added: [2016-06-22 Wed 16:57]
+
+300G消費してるので、小さいsizeにしよう
+
+*** [2016-07-01 Fri]
+他サーバーでrsyngしたが、立ち上がらなくなった
+失敗した
+
+** Paused [#B] uniqlo
+CLOSED: [2016-09-13 Tue 19:16] SCHEDULED: <2016-06-24 Fri>
+Added: [2016-06-22 Wed 16:46]
+develop環境のELBを削除した。
+環境の修正が必要。
+
+- [ ] 固定は不要
+- [ ] bookmark更新
+- [ ] snsからadminへの接続部分は大丈夫か?
+- [ ] ソース/envなどで、当該URLが指定されていない
+** Paused [#B] uniqlo security update
+CLOSED: [2016-09-13 Tue 19:16] SCHEDULED: <2016-07-05 Tue>
+Added: [2016-07-01 Fri 09:55]
+
+3種全て
+https://gemnasium.com/4fffba95f5e25c78bca1acdff822135d/alerts
+
+- nokogiri
+- Alerts for activerecord
+
+** Paused [#B] manatuku : 構成図作成 / メンテナンス画面
+CLOSED: [2016-04-13 Wed 12:00] SCHEDULED: <2016-04-12 Tue>
+** Paused [#D] ruby-webpage : cloud watch設定
+CLOSED: [2016-09-13 Tue 19:16] DEADLINE: <2016-06-07 Tue>
+Added: [2016-05-30 Mon 11:35]
+
+伝達済み。
+設定完了を待つだけ.
+
+- aws config設定が誤っている。
+
+*** 依頼内容
+監視設定の件ですが、ピエールさんに作業を引き継ぐことは可能でしょうか？
+
+監視設定したいこと：
+https://www.ruby-dev.jp/ を監視して 200が返ってくるかどうか
+https://www.ruby-dev.jp/ehp/ は不要かな…
+
+手順の説明資料とかをピエールさんに渡すことができると嬉しいのですが、準備はできますでしょうか？
+ピエールさんの作業自体は、6月に入ってもOKです。
+** Todo [#A] uniqlo : deploy staging                              :uniqlo:
+SCHEDULED: <2016-11-18 Fri>
+CLOCK: [2016-11-18 Fri 10:31]--[2016-11-18 Fri 10:36] =>  0:05
+Added: [2016-11-18 Fri 09:25]
+
+* memo
+** きになるword
+security対応
+ローテート
+
+AをBにするとからしい
+簡単な暗号化ってことかな
+** memo [2016-11-15 Tue 16:57]
+Added: [2016-11-15 Tue 16:57]
+
+
+- クリック実績UI 1
+-- 平均クリック数
+-- 最高クリック数
+-- 最低クリック数
+
+- クリック実績リストUI (クリック実績UI 1のrecordを選択後, 遷移する画面)
+-- 列
+--- PDFでは, [タイトル件名] という箇所が [名前] となっている. なんの名前か分かりにくい
+--- [ユニーククリック数] 列 : 値が表示されないケースがあるが, 条件不明
+--- [ユニーククリック率] 列が存在しない
+--- [のべクリック数] 列 : 値が表示されないケースがあるが, 条件不明
+--- [のべクリック率] 列が存在しない
+-- pagenateが無いが, 1pageに全履歴が表示されるのか?
+-- 配信数と, 表示される行数が一致しない.
+
+- クリック実績UI 2 (クリック実績リストUIのrecordを選択後, 遷移する画面)
+-- 列
+--- [ステップ] が無い
+--- [フィードバック名] 列が [名前] となっている. なんの名前か分かりにくい
+
+- 全体
+-- クリック数が [クリック実績UI1] [配信実績リスト] [クリック実績UI2] へ反映されるまでに, 各1分~かかる.
+
+
+* 2016
+** 2016-11 November
+*** 2016-11-09 Wednesday

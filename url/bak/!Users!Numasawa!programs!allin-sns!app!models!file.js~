@@ -1,0 +1,41 @@
+'use strict';
+
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const grid = require('gridfs-stream');
+
+// Define a new 'FeedSchema'
+const FileSchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    url: {
+        type: Schema.Types.ObjectId,
+        required: true
+    },
+    created_at: {
+        type: Date,
+        default: Date.now
+    },
+    content_type: {
+        type: String,
+        required: true
+    },
+    updated_at: {
+        type: Date,
+        default: Date.now
+    }
+});
+
+
+FileSchema.statics.Upload = function (data, callback) {
+    const file = new this(data);
+
+    comment.save( (error, comment) => {
+        return callback(error, comment);
+    });
+};
+
+
+module.exprots = mongoose.model('Feed', FeedSchema);

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>chat</title>
+  </head>
+  <body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+      // ※1 サーバに接続リクエスト
+      var socket = io.connect('/');
+
+
+      function chat(room, name) {
+          socket.on('connected', function() {
+          // ※3 入室する部屋番号を送信
+          socket.json.emit('init', { 'room': room, 'name': name });
+      });
+
+      // ※7 受け取ったメッセージを表示
+      socket.on('message', function(data) {
+          if (data) {
+          update(data);
+          }
+          });
+      }
+
+      function send(name) {
+          var data = $('#comment').val();
+
+          // ※5 メッセージを送信
+          socket.json.send(data);
+
+          $('#comment').val("");
+      }
+
+      function update(data) {
+          var obj = $(document.createElement('div'));
+          obj.html(data);
+          $('#view').append(obj);
+      }
+    </script>
+    <form><input></form><div></div>
+  </body>
+  </html>

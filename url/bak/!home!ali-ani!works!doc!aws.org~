@@ -1,0 +1,330 @@
+-*- mode: org -*-
+
+
+
+* 用語
+** リージョンとアベイラビリティーゾーン 
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/using-regions-availability-zones.html
+
+*** リージョン
+地理的に離れた領域
+
+*** アベイラビリティーゾーン 
+1つのリージョン内のロケーションを指す。
+
+*** 概念
+リージョンは完全独立。
+各アベイラビリティーゾーンは独立しているが、同一リージョン内のアベイラビリティーゾーン同士は低レイテンシーのリンクで接続されている。
+
+*** 適用範囲
+Amazon EC2リソースには、グローバル、リージョン、アベイラビリティーゾーンに結び付けられているものがある。
+
+詳細は以下
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/resources.html
+
+* 初期設定
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#create-an-iam-user
+[Download Credentials] をクリックし、アクセスキーを安全な場所に保存します。アクセスキーは、AWS CLI、AWS SDK、HTTP API のいずれかを使用してプログラムから AWS にアクセスするために必要です。
+
+** iam user 作成
+*** group作成
+*** user作成
+*** userをgroupへassign
+*** user password設定
+
+** iam user としてログイン
+https://your_aws_account_id.signin.aws.amazon.com/console/
+
+新規の IAM ユーザーとしてサインインするには、AWS コンソールからサインアウトし、次の URL を使用します。
+このとき、your_aws_account_id はハイフンを除いた AWS アカウント番号です
+（たとえば AWS アカウント番号が 1234-5678-9012 であれば、AWS アカウント ID は 123456789012 となります）。
+
+** リージョン設定
+画面右上
+Asia Pacific (tokyo) を選択
+
+** key pairs作成
+*** 画面左メニュー下部から、[Key Pairs] を選択
+# [Create Key Pair] ダイアログボックスの [Key Pair Name] フィールドに新しいキーペアの名前を入力し、[Create] をクリックします。
+# 覚えやすい名前（IAM ユーザー名など）を選び、その後に -key-pair を続け、さらにリージョン名を続けます。たとえば、me-key-pair-uswest2 などです
+
+*** DL private key
+[create] クリック後、自動でDL開始される。
+
+** VPC
+- defaultのVPCが作成される (support platformがVPCのみ場合)
+
+*** EC2-Classic と EC2-VPC の違い
+**** EC2-Classic
+共有プライベート IP アドレス範囲のプライベート IP アドレスが各インスタンスに割り当てられます。
+また、Amazon は各インスタンスに、Amazon のパブリック IP アドレスのプールからパブリック IP アドレスを割り当てます。
+インスタンスは、AWS ネットワークエッジを通してインターネットに直接アクセスします。
+
+**** EC2-VPC
+お客様の VPC のプライベート IP アドレス範囲のプライベート IP アドレスが各インスタンスに割り当てられます。
+お客様は、お客様の VPC の IP アドレス範囲、サブネット、ルーティング、ネットワークゲートウェイ、ネットワーク ACL、
+セキュリティグループを制御できます。
+インスタンスが起動している間にパブリック IP アドレスを受け取るかどうかを指定できます。
+パブリック IP アドレスまたは Elastic IP アドレスが割り当てられたインスタンスは、AWS ネットワークエッジにアタッチされて
+いる論理インターネットゲートウェイを通してインターネットにアクセスできます。
+EC2-VPC の詳細については、「What is Amazon VPC?」を参照してください（『Amazon VPC ユーザーガイド』）。
+
+*** VPC user guide
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/using-vpc.html
+*** デフォルト以外の VPC を作成するには
+https://console.aws.amazon.com/vpc/
+
+- ナビゲーションバーで、VPC のリージョンを選択します。
+  VPC はリージョンに固有であるため、キーペアを作成したリージョンと同じリージョンを選択してください。
+
+- VPC ダッシュボードで、[Start VPC Wizard] をクリックします。
+
+- [Step 1: Select a VPC Configuration] ページで、[VPC with a Single Public Subnet] が選択されていることを確認し、
+  [Select] をクリックします。
+
+- [Step 2: VPC with a Single Public Subnet] ページで、[VPC name] フィールドに、わかりやすい VPC 名を入力します。
+  他のデフォルトの設定はそのままにしておき、[Create VPC] をクリックします。確認ページで、[OK] をクリックします。
+** セキュリティグループの作成
+セキュリティグループは、関連付けられたインスタンスのファイアウォールとして動作し、
+インバウンドトラフィックとアウトバウンドトラフィックの両方をインスタンスレベルでコントロールします。
+SSH を使用して IP アドレスからインスタンスに接続できるようにするためのルールをセキュリティグループに追加します。
+さらに、任意の場所からのインバウンドおよびアウトバウンドの HTTP アクセスおよび HTTPS アクセスを可能にするルールを追加できます。
+
+複数のリージョンでインスタンスを起動する予定がある場合は、各リージョンでセキュリティグループを作成する必要があります。
+リージョンの詳細については、「リージョンとアベイラビリティーゾーン」を参照してください。
+
+*** 初期設定
+- Amazon EC2 コンソールを開く。
+
+- ナビゲーションバーで、セキュリティグループのリージョンを選択します。
+  セキュリティグループはリージョンに固有であるため、キーペアを作成したリージョンと同じリージョンを選択してください。
+
+- ナビゲーションペインで [Security Groups] をクリックします。
+
+- [Create Security Group] をクリックします。
+
+- 新しいセキュリティグループの名前と説明を入力します。覚えやすい名前（IAM ユーザー名など）を選び、
+  その後に _SG_ を続け、さらにリージョン名を続けます。たとえば、me_SG_uswest2 などです。
+
+- [VPC] リストで、デフォルトの VPC が選択されていることを確認します。この VPC には、アスタリスク（*）が示されています
+
+- [Inbound] タブで、次のルールを作成し（新しいルールごとに [Add Rule] をクリック）、最後に [Create] をクリックします。
+  [Protocol] リストから [HTTP] を選択し、[Source] を [Anywhere]（0.0.0.0/0）に設定します。
+  [Type] リストから [HTTPS] を選択し、[Source] が [Anywhere]（0.0.0.0/0）に設定されていることを確認します。
+  [Type] リストから [SSH] を選択します。[Source] ボックスで、[Custom IP] が選択されていることを確認し、コンピュータまたは
+  ネットワークのパブリック IP アドレスを CIDR 表記で指定します。CIDR 表記で個々の IP アドレスを指定するには、ルーティングプレ
+  フィックスを追加します。/32例えば、IP アドレスが 216.182.234.123 の場合は、216.182.234.123/32 を指定します。
+  会社が特定の範囲からアドレスを割り当てている場合、範囲全体（203.0.113.0/24など）を指定します。
+
+  Caution
+    セキュリティ上の理由で、すべての IP アドレス（0.0.0.0/0）からインスタンスへの SSH アクセスを許可することはお勧めしません。
+    ただし、それがテスト目的で短期間の場合は例外です。
+
+
+
+*** inboud / outbound設定
+- [inbound tab] を開く
+
+- [Edit] を選択
+
+- ルールを増やす場合は、[add rule] を選択
+
+- アクセス範囲の設定
+  Type   : protocol選択
+  Source : Access元IPアドレス帯の設定
+  
+*** users guide
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/using-network-security.html
+
+** Amazon EC2 インスタンスの起動
+*** Amazon EC コンソール（https://console.aws.amazon.com/ec2/）を開きます。
+*** コンソールダッシュボードで、[Launch Instance] をクリックします。
+*** [Choose an Amazon Machine Image (AMI)] ページに、Amazon マシンイメージ（AMI）と呼ばれる基本設定のリストが表示されます。
+  これは、インスタンスのテンプレートとして機能します。[64-bit Amazon Linux AMI] を選択します。
+  この設定は、[Free tier eligible] として表示されます。
+
+*** [Choose an Instance Type] ページで、インスタンスのハードウェア構成を選択できます。
+デフォルトでは、t2.micro インスタンスタイプが選択されます。
+また、フィルタリストの [All generations] を選択して、[t1.micro] インスタンスタイプを選択することもできます。
+無料利用枠の対象となるのは、これらのインスタンスタイプのみであることに注意してください。
+
+Note
+VPC で T2 インスタンスを起動する必要があります。
+AWS アカウントが EC2-Classic をサポートしており、VPC がない場合、起動ウィザードによって VPC が作成されます。
+それ以外で、VPC がある場合は、[Next: Configure Instance Details] をクリックして VPC とサブネットを選択します。
+
+*** [Review and Launch] をクリックして、ウィザードが他の設定を完了できるようにします。
+*** [Review Instance Launch] ページの [Security Groups] に、ウィザードで作成および選択したセキュリティグループが表示されます。
+代わりに、次のステップを使ってセットアップ時に作成したセキュリティグループを選択します。
+
+- [Edit security groups] をクリックします。
+- [Configure Security Group] ページで、[Select an existing security group] オプションが選択されていることを確認します。
+- 既存のセキュリティグループのリストからセキュリティグループを選択し、[Review and Launch] をクリックします。 
+
+*** [Review Instance Launch] ページで、[Launch] をクリックします。
+*** [Select an existing key pair or create a new key pair] ダイアログボックスで、
+[Choose an existing key pair] を選択し、設定時に作成したキーペアを選択します。
+別の方法として、新しいキーペアを作成できます。[Create a new key pair] を選択し、キーペアの名前を入力して、[Download Key Pair]
+をクリックします。
+
+これは、プライベートキーファイルを保存できる唯一のチャンスなので、必ずダウンロードしてください。プライベートキーファイルを安全な場所に保存します。
+インスタンスと対応するプライベートキーの起動時には、毎回インスタンスに接続するたびに、キーペアの名前を入力する必要があります。
+
+キーペアは、SSH 経由で Linux インスタンスに接続できるようにします。
+したがって、[Proceed without a Key Pair] オプションは選択しないでください。
+
+キーペアを使用せずにインスタンスを起動すると、インスタンスに接続できません。
+準備ができたら、確認チェックボックスをオンにして、[Launch Instances] をクリックします。
+
+*** インスタンスを起動することを知らせる確認ページが表示されます。[View Instances] をクリックして確認ページを閉じ、コンソールに戻ります。
+*** [Instances] 画面で、インスタンスの状態を確認できます。インスタンスはすぐに起動します。インスタンスを起動すると、初期状態は pending になります。
+インスタンスを起動した後は、状態が running に変わり、パブリック DNS 名を受け取ります（[Public DNS] 列が非表示の場合は、
+[Show/Hide] アイコンをクリックし、[Public DNS] を選択します）。
+
+** instanceへの接続
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-connect-to-instance-linux.html#using-ssh-client
+
+$ ssh -i /path/key_pair.pem ec2-user@public_dns_name
+
+Amazon Linux の場合は、デフォルトのユーザー名は ec2-user
+RHEL5 の場合は、ユーザー名は root または ec2-user のどちらかです。
+Ubuntu の場合は、ユーザー名は ubuntu です。
+Fedora の場合は、ユーザー名は fedora または ec2-user のどちらかです。
+SUSE Linux の場合は、ユーザー名は root です。
+それ以外の場合で、ec2-user および root が機能しない場合は、ご利用の AMI プロバイダーに確認してください。 
+
+** インスタンスへのボリューム追加
+ap-northeast-1a
+
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-add-volume-to-instance.html
+
+*** Amazon EC コンソール（https://console.aws.amazon.com/ec2/）を開きます。
+*** ナビゲーションバーで、インスタンスを作成したリージョンを選択し、ナビゲーションペインで [Instances] をクリックします。
+*** 選択したリージョンの現在のインスタンス一覧がコンソールに表示されます。
+Linux インスタンスを選択します。下部のペインの [Description] タブで、インスタンスの [Availability Zone] を書き留めます。
+
+*** ナビゲーションペインの [Elastic Block Store] で、[Volumes] をクリックします。
+*** [Create Volume] をクリックします。
+*** 次のように設定し、[Create] をクリックします。
+[General Purpose (SSD)] ボリュームタイプを選択し、General Purpose (SSD) EBS ボリュームを作成します。
+
+Note
+2012 年より前に作成された一部の AWS アカウントでは、Provisioned IOPS (SSD) や General Purpose (SSD) のような SSD ボリュームを
+サポートしない us-east-1、us-west-1、または ap-northeast-1 のアベイラビリティーゾーンにアクセスできることがあります。
+これらのリージョンの 1 つに SSD ボリュームを作成できない場合（またはブロックデバイスマッピングに SSD ボリュームのあるインスタンスを起動
+できない場合）は、リージョンの別のアベイラビリティーゾーンを試します。
+アベイラビリティーゾーンが General Purpose (SSD) および Provisioned IOPS (SSD) ボリュームをサポートするかどうかは、1 GiB の 
+General Purpose (SSD) ボリュームをそのゾーンに作成することで確認できます。
+
+作成するボリュームのサイズを入力します。Amazon EBS の無料利用枠は最大 30 GiB のストレージであるため、このチュートリアルでは料金が発生し
+ないように、この限度を超過しない範囲でボリュームサイズを選択します。
+たとえば、作成したインスタンスの起動ボリュームで 8 GiB の Amazon EBS ボリュームを使用している場合は、作成するボリュームのサイズを 
+22 GiB 以下にします。
+インスタンスの作成時に使用した [Availability Zone] を選択します。別のゾーンを選択すると、インスタンスにボリュームをアタッチできません。
+
+*** ナビゲーションペインの [Elastic Block Store] で、[Volumes] をクリックします。
+新しく作成したボリュームがそこに表示され、ボリュームの状態は available なので、インスタンスにアタッチする準備ができています。
+
+*** 新しく作成したボリュームを右クリックし、[Attach Volume] を選択します。
+*** [Attach Volume] ダイアログボックスで、以下のとおり設定を行ってから、[Attach] をクリックします。
+インスタンスの名前または ID を入力して、提案されたオプションのリストからインスタンスを選択します。
+そのインスタンスの未使用のデバイス名を指定します。このチュートリアルでは、/dev/sdf を使用します。
+別のデバイス名を選択した場合、必ずそのデバイス名を書き留めてください。この情報は次の手順で必要になります。
+** インスタンスへのボリューム追加2
+*** ヴォリュームアタッチ後
+[/dev/] へ新たに追加されるため、formatとmountが必要
+
+*** dev確認コマンド 
+lsblk
+sudo fdisk -l | grep Disk 
+
+*** format
+[ec2-user ~]$ sudo mkfs -t ext4 /dev/xvdf
+
+# スナップショットを使用しない場合、空のヴォリュームになる
+
+*** mount
+[ec2-user ~]$ sudo mkdir /mnt/my-data
+[ec2-user ~]$ sudo mount /dev/xvdf /mnt/my-data
+
+*** important
+無料利用枠内で使用する限り、料金はかかりません。
+それ以外の場合、インスタンスが起動するとすぐに、インスタンスの実行時間に応じて、インスタンスがアイドル状態の場合でも課金されます。
+通常のインスタンスのステータスが shutting down または terminated になると、インスタンスの使用料は発生しなくなります。
+
+** インスタンスとボリュームのクリーンアップ
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-clean-up-your-instance.html
+
+* iam
+** 初期
+- AWS内での管理権限
+- groupを作成し、アクセス権限を設定。
+- userを作成し、各サービス(AWS CLI、AWS SDK、HTTP API のいずれかを使用してプログラムから AWS にアクセスするために必要です。)
+  へアクセスするためのキーを作成し、DLする
+
+** ユーザー間でのinstance, EBS, security ruleの共有方法
+
+* AMI
+** AMIとは
+端的に言うと、OS環境などのimageファイル
+
+** 特定ユーザーとAMI共有
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/sharingamis-explicit.html
+
+* EBS
+** 用途
+永続型volume (仮想SSD)
+
+** 種類と特性
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/EBSVolumeTypes.html#EBSVolumeTypes_gp2
+
+*** 汎用SSD
+**** ユースケース 
+system boot volume
+小規模、中規模DB
+開発テスト環境向け
+
+**** IOSP : ベースパフォーマンスとburst
+- ベースパフォーマンス
+  基本1Gにつき、3IOPS (10Gならば、30IOPS。最大3000IOPS/1T)
+
+- burst
+  ベースパフォーマンスを超える場合、最大3000IOPSまでburstする。
+
+  ただし、burst閾値が存在する。
+  初期値として、5,400,000 I/O クレジットが割り当てられる。
+  burstすると、当クレジットが消費される。
+  クレジットが0となると、IOPSはベースパフォーマンスになる。(1Gの場合、3IOPS)
+  
+  クレジットの回復量は、ベースパフォーマンスと同一となる。(1Gの場合、3IOPSが加算される。前述のURLに計算式あり)
+
+  # volume sizeを増やせば回復量は増加する。
+  
+*** プロビジョンド
+**** ユースケース
+3,000 IOPS を超える持続的な IOPS パフォーマンス
+MongoDB
+Microsoft SQL Server
+MySQL
+PostgreSQL
+Oracle
+
+ランダムアクセス I/O スループットにおけるストレージパフォーマンスと整合性が重要な、
+I/O 集約型ワークロード（特にデータベースワークロード）のニーズを満たすように設計されています
+
+**** 概要
+- ヴォリューム作成時にIOPSレートを指定
+- 最大4000IOPS
+- 3000IOPSを出すならば、最低100G必要
+- サイズ拡張、パフォーマンス向上には、複数ヴォリュームを纏めストレイプ構成に
+
+*** マグネティック
+**** ユースケース
+- データに頻繁にアクセスしないコールドワークロード
+- 低いストレージコストが重視されるシナリオ
+
+**** 概要
+- 平均100IOPS、数百 IOPS までのバースト
+- Gあたりのコストが最も低い
+- サイズの拡張とパフォーマンスの向上する場合は、RAID構成内でまとめてストライプ構成する
+

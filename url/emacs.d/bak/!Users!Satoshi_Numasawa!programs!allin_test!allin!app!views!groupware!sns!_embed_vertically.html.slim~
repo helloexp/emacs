@@ -1,0 +1,7 @@
+.description-without-image
+  .description ng-if="embed.title"
+    | {{embed.title}} <br>
+  .description ng-if="!embed.title"
+    | {{embed.site_name}} <br>
+  .body
+    | {{embed.description[0]}}

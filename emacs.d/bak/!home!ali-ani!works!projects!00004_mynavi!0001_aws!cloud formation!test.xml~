@@ -1,0 +1,15 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+
+    "Description": "Testing ",
+  
+    "Resources": {
+        "vpc7c688319": {
+            "Type": "AWS::EC2::VPC",
+            "Properties": {
+                          "CidrBlock": "10.7.0.0/16",
+                          "InstanceTenancy": "default",
+                          "EnableDnsSupport": "true",
+                          "EnableDnsHostnames": "true"
+                          }
+                       }

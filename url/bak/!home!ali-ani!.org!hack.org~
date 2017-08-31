@@ -1,0 +1,1910 @@
+-*- mode: org -*-
+
+
+
+* 確認項目
+** web
+*** 複数ブラウザ, OSで試行する
+動作が異なるが事多々
+
+** 負荷
+** セキュリティ
+
+
+* linux
+** 起動時の実行実行
+$ emacs /etc/rc.local
+
+----------------------------------------------------------------
+su -c "bash /var/rails/influencer/script/unicorn.sh start" - mruby
+----------------------------------------------------------------
+
+
+* AWS
+** Amazon Linux - init Enviroment (Ruby, RoR)
+*** AWS instance生成
+amazon linux instanceを生成しsshアクセスする。
+# instance生成手順は割愛
+
+*** user 作成
+$ sudo su - 
+
+$ adduser mruby
+$ passwd mruby
+murby3826
+
+$ usermod -G ec2-user mruby
+
+*** sudoer file書き換え
+$ chmod 700 /etc/sudoers
+$ vim /etc/sudoers
+# 追記
+----------------------------------------------------------------
+99行目 : mruby  ALL=(ALL)  ALL
+----------------------------------------------------------------
+
+$ chmod 440 /etc/sudoers
+
+*** 初期 install
+su - mruby
+
+sudo yum install -y emacs
+sudo yum install -y ruby-devel rubygems-devel
+sudo yum install -y git make gcc gcc-c++
+sudo yum install -y libyaml-devel libffi-devel libicu-devel zlib-devel readline-devel
+sudo yum install -y sqlite-devel
+sudo yum install -y openssl openssl-devel gdbm gdbm-devel
+sudo yum install -y libxml2 libxml2-devel
+sudo yum install -y libxslt libxslt-devel
+sudo yum install -y mysql mysql-devel
+
+sudo yum install nodejs npm --enablerepo=epel
+
+*** rbenv install
+# グループ名は適宜変更
+$ vim ./rbenv-install.sh
+$ chmod 755 ./rbenv-install.sh
+
+# 書き込み
+----------------------------------------------------------------
+MY_GROUP="ec2-user"
+if [ "$MY_GROUP" = "" ] ; then
+    echo '!!! undefined variable MY_GROUP.'
+    echo '!!!'
+    echo '!!! ex.) MY_GROUP=staff'
+    echo '!!!'
+    exit 1
+fi
+ 
+cd /usr/local
+git clone git://github.com/sstephenson/rbenv.git rbenv
+mkdir rbenv/shims rbenv/versions
+chgrp -R $MY_GROUP rbenv
+chmod -R g+rwxX rbenv
+ 
+git clone git://github.com/sstephenson/ruby-build.git ruby-build
+cd ruby-build
+./install.sh
+ 
+echo 'export RBENV_ROOT="/usr/local/rbenv"'     >> /etc/profile.d/rbenv.sh
+echo 'export PATH="/usr/local/rbenv/bin:$PATH"' >> /etc/profile.d/rbenv.sh
+echo 'eval "$(rbenv init -)"'                   >> /etc/profile.d/rbenv.sh
+----------------------------------------------------------------
+
+$ sudo bash ./rbenv_install.sh
+
+*** 権限変更
+cd /usr/local/rbenv/
+chown user:user -R ./*
+
+*** .gemrc
+$ vim ~/.gemrc
+----------------------------------------------------------------
+install: --no-rdoc --no-ri
+update:  --no-rdoc --no-ri
+----------------------------------------------------------------
+
+*** ruby setting
+$ rbenv install 2.2.0
+$ rbenv global 2.2.0
+
+*** gem install
+gem install bundle bundler io-console
+gem install sqlite3 mysql2
+gem install therubyracer
+gem install nokogiri -- --use-system-libraries
+gem install unicorn unicorn-rails
+
+gem install rails --version 4.2.0
+
+*** 参考
+nokogiri install
+http://appakun.hateblo.jp/entry/2014/10/08/%E5%88%83%E7%89%A9%E3%81%AE%E7%A7%8B%E3%81%A0%E3%81%97Nokogiri%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B
+http://www.e-mist.com/articles/libxml2_libxslt_for_nokogiri_install_on_centos
+http://www.nokogiri.org/tutorials/installing_nokogiri.html
+
+** Centos
+*** login
+ssh -i xxxx centos@yyy.yyy.yyy.yyy
+
+*** user add
+$ useradd mruby
+$ passwd mruby
+
+*** ssh key 
+$ cp /home/centos/.ssh/authorized_key cp /home/mruby/.ssh/authorized_key 
+$ vim /home/mruby/.ssh/authorized_key 
+
+// login拒否のscript部分を削除
+
+*** sudoer file書き換え
+$ chmod 700 /etc/sudoers
+$ vim /etc/sudoers
+# 追記
+----------------------------------------------------------------
+99行目 : mruby  ALL=(ALL)  ALL
+----------------------------------------------------------------
+
+$ chmod 440 /etc/sudoers
+
+
+
+** 要調査
+*** 料金
+以下の項目にかかる料金を確認。
+
+EBS
+RBS
+
+*** Auto Scaling Group
+- how to?
+- どの程度までscalingするのか (提案、先方からの要望しだい?)
+
+*** ELB
+- 疑問がわかない
+- 何台構成 (提案、先方からの要望しだい?)
+
+*** RDS
+数インスタンスからアクセスする際の設定
+
+*** CloudWath リソースモニタリング & アラーム
+- how to
+- それぞれ何が確認できるのか? 何ができるのか?
+
+**** 料金
+http://aws.amazon.com/jp/cloudwatch/pricing/
+
+Amazon EBS ボリューム、Elastic Load Balancers、Amazon RDS DB インスタンスのすべてのメトリックス同様、
+Amazon EC2 インスタンスの基本モニタリングのメトリックス（5分間隔）は無料でご利用いただけます。
+
+新規および既存のお客様は、10 メトリックス（Amazon EC2 インスタンスまたはカスタムメトリックス、
+または CloudWatch Logs* の詳細モニタリングに適用）、10 アラーム、および 100 万の API リクエストを追加料金なしでご利用いただけます。
+新規および既存の顧客も、追加料金なしで 1 か月あたり 5 GB のデータの取り込みおよび 5 GB のアーカイブされたストレージを受け取ることができます。 
+
+
+*** DNSラウンドロビン
+http://dev.classmethod.jp/cloud/elb-configuration-guide-1/
+
+*** Least Conns
+http://dev.classmethod.jp/cloud/elb-configuration-guide-1/
+
+** 用語
+*** リージョンとアベイラビリティーゾーン 
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/using-regions-availability-zones.html
+
+**** リージョン
+地理的に離れた領域
+
+**** アベイラビリティーゾーン 
+http://www.atmarkit.co.jp/ait/articles/1410/27/news013.html
+
+1つのリージョン内のロケーションを指す。
+
+**** 概念
+リージョンは完全独立。
+各アベイラビリティーゾーンは独立しているが、同一リージョン内のアベイラビリティーゾーン同士は低レイテンシーのリンクで接続されている。
+
+**** 適用範囲
+Amazon EC2リソースには、グローバル、リージョン、アベイラビリティーゾーンに結び付けられているものがある。
+
+詳細は以下
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/resources.html
+
+** 初期設定
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#create-an-iam-user
+[Download Credentials] をクリックし、アクセスキーを安全な場所に保存します。アクセスキーは、AWS CLI、AWS SDK、HTTP API のいずれかを使用してプログラムから AWS にアクセスするために必要です。
+
+*** iam user 作成
+**** group作成
+**** user作成
+**** userをgroupへassign
+**** user password設定
+
+*** iam user としてログイン
+https://your_aws_account_id.signin.aws.amazon.com/console/
+
+新規の IAM ユーザーとしてサインインするには、AWS コンソールからサインアウトし、次の URL を使用します。
+このとき、your_aws_account_id はハイフンを除いた AWS アカウント番号です
+（たとえば AWS アカウント番号が 1234-5678-9012 であれば、AWS アカウント ID は 123456789012 となります）。
+
+*** リージョン設定
+画面右上
+Asia Pacific (tokyo) を選択
+
+*** key pairs作成
+**** 画面左メニュー下部から、[Key Pairs] を選択
+# [Create Key Pair] ダイアログボックスの [Key Pair Name] フィールドに新しいキーペアの名前を入力し、[Create] をクリックします。
+# 覚えやすい名前（IAM ユーザー名など）を選び、その後に -key-pair を続け、さらにリージョン名を続けます。たとえば、me-key-pair-uswest2 などです
+
+**** DL private key
+[create] クリック後、自動でDL開始される。
+
+*** VPC
+- defaultのVPCが作成される (support platformがVPCのみ場合)
+
+**** EC2-Classic と EC2-VPC の違い
+***** EC2-Classic
+共有プライベート IP アドレス範囲のプライベート IP アドレスが各インスタンスに割り当てられます。
+また、Amazon は各インスタンスに、Amazon のパブリック IP アドレスのプールからパブリック IP アドレスを割り当てます。
+インスタンスは、AWS ネットワークエッジを通してインターネットに直接アクセスします。
+
+***** EC2-VPC
+お客様の VPC のプライベート IP アドレス範囲のプライベート IP アドレスが各インスタンスに割り当てられます。
+お客様は、お客様の VPC の IP アドレス範囲、サブネット、ルーティング、ネットワークゲートウェイ、ネットワーク ACL、
+セキュリティグループを制御できます。
+インスタンスが起動している間にパブリック IP アドレスを受け取るかどうかを指定できます。
+パブリック IP アドレスまたは Elastic IP アドレスが割り当てられたインスタンスは、AWS ネットワークエッジにアタッチされて
+いる論理インターネットゲートウェイを通してインターネットにアクセスできます。
+EC2-VPC の詳細については、「What is Amazon VPC?」を参照してください（『Amazon VPC ユーザーガイド』）。
+
+**** VPC user guide
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/using-vpc.html
+**** デフォルト以外の VPC を作成するには
+https://console.aws.amazon.com/vpc/
+
+- ナビゲーションバーで、VPC のリージョンを選択します。
+  VPC はリージョンに固有であるため、キーペアを作成したリージョンと同じリージョンを選択してください。
+
+- VPC ダッシュボードで、[Start VPC Wizard] をクリックします。
+
+- [Step 1: Select a VPC Configuration] ページで、[VPC with a Single Public Subnet] が選択されていることを確認し、
+  [Select] をクリックします。
+
+- [Step 2: VPC with a Single Public Subnet] ページで、[VPC name] フィールドに、わかりやすい VPC 名を入力します。
+  他のデフォルトの設定はそのままにしておき、[Create VPC] をクリックします。確認ページで、[OK] をクリックします。
+*** セキュリティグループの作成
+セキュリティグループは、関連付けられたインスタンスのファイアウォールとして動作し、
+インバウンドトラフィックとアウトバウンドトラフィックの両方をインスタンスレベルでコントロールします。
+SSH を使用して IP アドレスからインスタンスに接続できるようにするためのルールをセキュリティグループに追加します。
+さらに、任意の場所からのインバウンドおよびアウトバウンドの HTTP アクセスおよび HTTPS アクセスを可能にするルールを追加できます。
+
+複数のリージョンでインスタンスを起動する予定がある場合は、各リージョンでセキュリティグループを作成する必要があります。
+リージョンの詳細については、「リージョンとアベイラビリティーゾーン」を参照してください。
+
+**** 初期設定
+- Amazon EC2 コンソールを開く。
+
+- ナビゲーションバーで、セキュリティグループのリージョンを選択します。
+  セキュリティグループはリージョンに固有であるため、キーペアを作成したリージョンと同じリージョンを選択してください。
+
+- ナビゲーションペインで [Security Groups] をクリックします。
+
+- [Create Security Group] をクリックします。
+
+- 新しいセキュリティグループの名前と説明を入力します。覚えやすい名前（IAM ユーザー名など）を選び、
+  その後に _SG_ を続け、さらにリージョン名を続けます。たとえば、me_SG_uswest2 などです。
+
+- [VPC] リストで、デフォルトの VPC が選択されていることを確認します。この VPC には、アスタリスク（*）が示されています
+
+- [Inbound] タブで、次のルールを作成し（新しいルールごとに [Add Rule] をクリック）、最後に [Create] をクリックします。
+  [Protocol] リストから [HTTP] を選択し、[Source] を [Anywhere]（0.0.0.0/0）に設定します。
+  [Type] リストから [HTTPS] を選択し、[Source] が [Anywhere]（0.0.0.0/0）に設定されていることを確認します。
+  [Type] リストから [SSH] を選択します。[Source] ボックスで、[Custom IP] が選択されていることを確認し、コンピュータまたは
+  ネットワークのパブリック IP アドレスを CIDR 表記で指定します。CIDR 表記で個々の IP アドレスを指定するには、ルーティングプレ
+  フィックスを追加します。/32例えば、IP アドレスが 216.182.234.123 の場合は、216.182.234.123/32 を指定します。
+  会社が特定の範囲からアドレスを割り当てている場合、範囲全体（203.0.113.0/24など）を指定します。
+
+  Caution
+    セキュリティ上の理由で、すべての IP アドレス（0.0.0.0/0）からインスタンスへの SSH アクセスを許可することはお勧めしません。
+    ただし、それがテスト目的で短期間の場合は例外です。
+
+
+
+**** inboud / outbound設定
+- [inbound tab] を開く
+
+- [Edit] を選択
+
+- ルールを増やす場合は、[add rule] を選択
+
+- アクセス範囲の設定
+  Type   : protocol選択
+  Source : Access元IPアドレス帯の設定
+  
+**** users guide
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/using-network-security.html
+
+*** Amazon EC2 インスタンスの起動
+**** Amazon EC コンソール（https://console.aws.amazon.com/ec2/）を開きます。
+**** コンソールダッシュボードで、[Launch Instance] をクリックします。
+**** [Choose an Amazon Machine Image (AMI)] ページに、Amazon マシンイメージ（AMI）と呼ばれる基本設定のリストが表示されます。
+  これは、インスタンスのテンプレートとして機能します。[64-bit Amazon Linux AMI] を選択します。
+  この設定は、[Free tier eligible] として表示されます。
+
+**** [Choose an Instance Type] ページで、インスタンスのハードウェア構成を選択できます。
+デフォルトでは、t2.micro インスタンスタイプが選択されます。
+また、フィルタリストの [All generations] を選択して、[t1.micro] インスタンスタイプを選択することもできます。
+無料利用枠の対象となるのは、これらのインスタンスタイプのみであることに注意してください。
+
+Note
+VPC で T2 インスタンスを起動する必要があります。
+AWS アカウントが EC2-Classic をサポートしており、VPC がない場合、起動ウィザードによって VPC が作成されます。
+それ以外で、VPC がある場合は、[Next: Configure Instance Details] をクリックして VPC とサブネットを選択します。
+
+**** [Review and Launch] をクリックして、ウィザードが他の設定を完了できるようにします。
+**** [Review Instance Launch] ページの [Security Groups] に、ウィザードで作成および選択したセキュリティグループが表示されます。
+代わりに、次のステップを使ってセットアップ時に作成したセキュリティグループを選択します。
+
+- [Edit security groups] をクリックします。
+- [Configure Security Group] ページで、[Select an existing security group] オプションが選択されていることを確認します。
+- 既存のセキュリティグループのリストからセキュリティグループを選択し、[Review and Launch] をクリックします。 
+
+**** [Review Instance Launch] ページで、[Launch] をクリックします。
+**** [Select an existing key pair or create a new key pair] ダイアログボックスで、
+[Choose an existing key pair] を選択し、設定時に作成したキーペアを選択します。
+別の方法として、新しいキーペアを作成できます。[Create a new key pair] を選択し、キーペアの名前を入力して、[Download Key Pair]
+をクリックします。
+
+これは、プライベートキーファイルを保存できる唯一のチャンスなので、必ずダウンロードしてください。プライベートキーファイルを安全な場所に保存します。
+インスタンスと対応するプライベートキーの起動時には、毎回インスタンスに接続するたびに、キーペアの名前を入力する必要があります。
+
+キーペアは、SSH 経由で Linux インスタンスに接続できるようにします。
+したがって、[Proceed without a Key Pair] オプションは選択しないでください。
+
+キーペアを使用せずにインスタンスを起動すると、インスタンスに接続できません。
+準備ができたら、確認チェックボックスをオンにして、[Launch Instances] をクリックします。
+
+**** インスタンスを起動することを知らせる確認ページが表示されます。[View Instances] をクリックして確認ページを閉じ、コンソールに戻ります。
+**** [Instances] 画面で、インスタンスの状態を確認できます。インスタンスはすぐに起動します。インスタンスを起動すると、初期状態は pending になります。
+インスタンスを起動した後は、状態が running に変わり、パブリック DNS 名を受け取ります（[Public DNS] 列が非表示の場合は、
+[Show/Hide] アイコンをクリックし、[Public DNS] を選択します）。
+
+*** instanceへの接続
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-connect-to-instance-linux.html#using-ssh-client
+
+$ ssh -i /path/key_pair.pem ec2-user@public_dns_name
+
+Amazon Linux の場合は、デフォルトのユーザー名は ec2-user
+RHEL5 の場合は、ユーザー名は root または ec2-user のどちらかです。
+Ubuntu の場合は、ユーザー名は ubuntu です。
+Fedora の場合は、ユーザー名は fedora または ec2-user のどちらかです。
+SUSE Linux の場合は、ユーザー名は root です。
+それ以外の場合で、ec2-user および root が機能しない場合は、ご利用の AMI プロバイダーに確認してください。 
+
+*** インスタンスへのボリューム追加
+ap-northeast-1a
+
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-add-volume-to-instance.html
+
+**** Amazon EC コンソール（https://console.aws.amazon.com/ec2/）を開きます。
+**** ナビゲーションバーで、インスタンスを作成したリージョンを選択し、ナビゲーションペインで [Instances] をクリックします。
+**** 選択したリージョンの現在のインスタンス一覧がコンソールに表示されます。
+Linux インスタンスを選択します。下部のペインの [Description] タブで、インスタンスの [Availability Zone] を書き留めます。
+
+**** ナビゲーションペインの [Elastic Block Store] で、[Volumes] をクリックします。
+**** [Create Volume] をクリックします。
+**** 次のように設定し、[Create] をクリックします。
+[General Purpose (SSD)] ボリュームタイプを選択し、General Purpose (SSD) EBS ボリュームを作成します。
+
+Note
+2012 年より前に作成された一部の AWS アカウントでは、Provisioned IOPS (SSD) や General Purpose (SSD) のような SSD ボリュームを
+サポートしない us-east-1、us-west-1、または ap-northeast-1 のアベイラビリティーゾーンにアクセスできることがあります。
+これらのリージョンの 1 つに SSD ボリュームを作成できない場合（またはブロックデバイスマッピングに SSD ボリュームのあるインスタンスを起動
+できない場合）は、リージョンの別のアベイラビリティーゾーンを試します。
+アベイラビリティーゾーンが General Purpose (SSD) および Provisioned IOPS (SSD) ボリュームをサポートするかどうかは、1 GiB の 
+General Purpose (SSD) ボリュームをそのゾーンに作成することで確認できます。
+
+作成するボリュームのサイズを入力します。Amazon EBS の無料利用枠は最大 30 GiB のストレージであるため、このチュートリアルでは料金が発生し
+ないように、この限度を超過しない範囲でボリュームサイズを選択します。
+たとえば、作成したインスタンスの起動ボリュームで 8 GiB の Amazon EBS ボリュームを使用している場合は、作成するボリュームのサイズを 
+22 GiB 以下にします。
+インスタンスの作成時に使用した [Availability Zone] を選択します。別のゾーンを選択すると、インスタンスにボリュームをアタッチできません。
+
+**** ナビゲーションペインの [Elastic Block Store] で、[Volumes] をクリックします。
+新しく作成したボリュームがそこに表示され、ボリュームの状態は available なので、インスタンスにアタッチする準備ができています。
+
+**** 新しく作成したボリュームを右クリックし、[Attach Volume] を選択します。
+**** [Attach Volume] ダイアログボックスで、以下のとおり設定を行ってから、[Attach] をクリックします。
+インスタンスの名前または ID を入力して、提案されたオプションのリストからインスタンスを選択します。
+そのインスタンスの未使用のデバイス名を指定します。このチュートリアルでは、/dev/sdf を使用します。
+別のデバイス名を選択した場合、必ずそのデバイス名を書き留めてください。この情報は次の手順で必要になります。
+*** インスタンスへのボリューム追加2
+**** ヴォリュームアタッチ後
+[/dev/] へ新たに追加されるため、formatとmountが必要
+
+**** dev確認コマンド 
+lsblk
+sudo fdisk -l | grep Disk 
+
+**** format
+[ec2-user ~]$ sudo mkfs -t ext4 /dev/xvdf
+
+# スナップショットを使用しない場合、空のヴォリュームになる
+
+**** mount
+[ec2-user ~]$ sudo mkdir /mnt/my-data
+[ec2-user ~]$ sudo mount /dev/xvdf /mnt/my-data
+
+**** important
+無料利用枠内で使用する限り、料金はかかりません。
+それ以外の場合、インスタンスが起動するとすぐに、インスタンスの実行時間に応じて、インスタンスがアイドル状態の場合でも課金されます。
+通常のインスタンスのステータスが shutting down または terminated になると、インスタンスの使用料は発生しなくなります。
+
+*** インスタンスとボリュームのクリーンアップ
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-clean-up-your-instance.html
+
+** CLI
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/concepts.html#access-ec2
+
+*** init setting
+**** ~/.aws/config
+----------------------------------------------------------------
+[default]
+output = json
+region = ap-northeast-1
+----------------------------------------------------------------
+
+**** ~/.aws/credentials
+----------------------------------------------------------------
+[default]
+aws_access_key_id = AKIAIHS4A5UC4SXAZGQQ
+aws_secret_access_key = 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
+----------------------------------------------------------------
+
+**** ~/.aws/credentials-as
+Auto scale CLI用
+***** 以下ファイルを作成
+
+/home/mruby/.aws/credentials-as 
+----------------------------------------------------------------
+AWSAccessKeyId=AKIAIHS4A5UC4SXAZGQQ
+AWSSecretKey=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
+----------------------------------------------------------------
+
+***** export
+export AWS_CREDENTIAL_FILE=/home/mruby/.aws/credentials-as 
+
+*** install jq
+yum install jq
+
+フィルタプログラム (grepな感じ)
+# http://dev.classmethod.jp/tool/jq-manual-japanese-translation-roughly/
+
+*** EC2 instance
+**** start
+aws ec2 start-instances --region="ap-northeast-1" --instance-ids="[instance_id]"
+
+**** stop
+aws ec2 stop-instances --region="ap-northeast-1" --instance-ids="[instance_id]"
+
+**** reboot
+aws ec2 reboot-instances --region="ap-northeast-1" --instance-ids="[instance_id]"
+
+**** terminate
+aws ec2 terminate-instances --region="ap-northeast-1" --instance-ids="[instance_id]"
+
+
+*** AS & ELB
+ASしたinstaceを自動で、ELBへassign
+
+**** 全体像
+- LaunchConfig
+    起動するインスタンスの設定
+
+- AutoScalingGroup
+    インスタンスの増減や対象のELB、VPCなど
+    インスタンスの環境の設定。 LaunchConfigを参照する。
+
+- ScalingPolicy
+    インスタンスを何台増やす、減らすなど インスタンスを操作するのかを設定。 AutoScalingGroupを参照する。
+
+- CloudWatch
+    AlarmにScalingPolicyを設定することで
+    AutoScalingGroupのメトリクス内容を見て
+    ScalingPolicyを発動させる。
+
+**** example createcommand
+as-create-auto-scaling-group test 
+--launch-configuration uniqlo-admin   
+--availability-zones ap-northeast-1a 
+--min-size 1 
+--max-size 10   
+--load-balancers uniqlo-influencer-adm-lb 
+--health-check-type ELB 
+--grace-period 60 
+--vpc-zone-identifier subnet-92ac7ee5
+
+**** create command detail
+as-create-auto-scaling-group  [auto_scale_ group_name]
+
+--launch-configuration  上記で作成した起動設定
+--load-balancers        ELB配下にぶら下げるので対象のELBを指定
+--health-check-type     ELB以外のチェック方法調べてない
+--grace-period          ヘルスチェックをはじめるまでの時間
+--availability-zones    ASで起動させるインスタンスを置くAZを指定(複数可)
+--min-size              ASの最小インスタンス数
+--max-size              ASの最大インスタンス数
+--desired-capacity 
+--vpc-zone-identifier   VPCにアサインされているサブネットの指定(複数可)
+
+**** AS instance状態確認
+as-describe-auto-scaling-instances --region ap-northeast-1
+**** ASの最大インスタンス数と最小インスタンス数の変更
+$ as-update-auto-scaling-group --min-size 2 --max-size 4 --region ap-northeast-1
+** iam
+*** 初期
+- AWS内での管理権限
+- groupを作成し、アクセス権限を設定。
+- userを作成し、各サービス(AWS CLI、AWS SDK、HTTP API のいずれかを使用してプログラムから AWS にアクセスするために必要です。)
+  へアクセスするためのキーを作成し、DLする
+
+*** ユーザー間でのinstance, EBS, security ruleの共有方法
+
+** AMI
+*** AMIとは
+端的に言うと、OS環境などのimageファイル
+
+*** 特定ユーザーとAMI共有
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/sharingamis-explicit.html
+
+** EBS
+http://www.slideshare.net/AmazonWebServicesJapan/aws-16148274
+
+*** 用途
+永続型volume (仮想SSD)
+
+*** 種類と特性
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/EBSVolumeTypes.html#EBSVolumeTypes_gp2
+
+**** 汎用SSD
+***** ユースケース 
+system boot volume
+小規模、中規模DB
+開発テスト環境向け
+
+***** IOSP : ベースパフォーマンスとburst
+- ベースパフォーマンス
+  基本1Gにつき、3IOPS (10Gならば、30IOPS。最大3000IOPS/1T)
+
+- burst
+  ベースパフォーマンスを超える場合、最大3000IOPSまでburstする。
+
+  ただし、burst閾値が存在する。
+  初期値として、5,400,000 I/O クレジットが割り当てられる。
+  burstすると、当クレジットが消費される。
+  クレジットが0となると、IOPSはベースパフォーマンスになる。(1Gの場合、3IOPS)
+  
+  クレジットの回復量は、ベースパフォーマンスと同一となる。(1Gの場合、3IOPSが加算される。前述のURLに計算式あり)
+
+  # volume sizeを増やせば回復量は増加する。
+  
+**** プロビジョンド
+***** ユースケース
+3,000 IOPS を超える持続的な IOPS パフォーマンス
+MongoDB
+Microsoft SQL Server
+MySQL
+PostgreSQL
+Oracle
+
+ランダムアクセス I/O スループットにおけるストレージパフォーマンスと整合性が重要な、
+I/O 集約型ワークロード（特にデータベースワークロード）のニーズを満たすように設計されています
+
+***** 概要
+- ヴォリューム作成時にIOPSレートを指定
+- 最大4000IOPS
+- 3000IOPSを出すならば、最低100G必要
+- サイズ拡張、パフォーマンス向上には、複数ヴォリュームを纏めストレイプ構成に
+
+**** マグネティック
+***** ユースケース
+- データに頻繁にアクセスしないコールドワークロード
+- 低いストレージコストが重視されるシナリオ
+
+***** 概要
+- 平均100IOPS、数百 IOPS までのバースト
+- Gあたりのコストが最も低い
+- サイズの拡張とパフォーマンスの向上する場合は、RAID構成内でまとめてストライプ構成する
+
+*** Amazon EC2 ルートデバイスボリューム
+**** インスタンスストア
+- インスタンスを起動する時、ルートデバイスボリュームに格納されているイメージを使用してインスタンスがブートされます。
+- インスタンスのルートデバイスは、Amazon S3 に格納されたテンプレートから作成されるインスタンスストアボリューム
+  
+**** EBS
+- Amazon EBS スナップショットから作成される Amazon EBS ボリューム
+- は起動が高速であり、永続的ストレージを使用している
+  
+**** ルートデバイスストレージの概念
+Instance store-Backed AMI と Amazon EBS-Backed AMI という 2 種類の AMI のいずれかからインスタンスを起動できます。
+大きな違いがあるため、タイプを区別できることは重要
+
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device
+
+**** instance store-backed のインスタンス
+インスタンスストアをルートデバイスに使用するインスタンスでは自動的に、インスタンスストアボリュームを利用できるようになり、
+その 1 つがルートデバイスボリュームとなります。インスタンスを起動すると、インスタンスのブートに使用されるイメージが
+ルートボリューム（通常は sda1）にコピーされます。
+
+インスタンスストアボリュームのデータはインスタンスが実行している間は維持されますが、
+インスタンスが終了すると（Instance store-Backed インスタンスは [Stop] アクションをサポートしていません）、
+またはインスタンスが失敗すると（基盤となるドライブに問題がある場合など）、削除されます。
+
+**** デフォルトのデータストレージと永続性
+ルートデバイスにインスタンスストアボリュームを使用するインスタンスでは、自動的にインスタンスストアが利用できます（ルートボリュームにルートパーティ
+ションが含まれ、追加のデータを保存できます）。
+インスタンスが失敗するか終了すると、インスタンスストアボリューム上のすべてのデータが削除されます（ルートデバイス上のデータを除く）。
+Amazon EBS ボリュームをアタッチすることで、永続的ストレージをインスタンスに追加できます。
+
+Amazon EBS をルートデバイスに使用するインスタンスには自動的に、Amazon EBS ボリュームがアタッチされます。
+ブロックデバイスマッピングを使用して、インスタンスストレージまたは追加の Amazon EBS ボリュームを追加できます。
+詳細については、「ブロックデバイスマッピング」を参照してください。
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html
+
+インスタンスを停止すると、インスタンスストアボリュームに何が発生するかについては、「インスタンスの停止と起動」を参照してください。
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/Stop_Start.html
+
+**** 起動時間
+Amazon EBS-Backed AMI は、Amazon EC2 Instance store-Backed AMI よりも速く起動する。
+
+Amazon EC2 Instance store-Backed AMI を起動するときには、Amazon S3 からすべての部分を取得しないとインスタンスを利用できません。
+
+Amazon EBS-Backed AMI の場合、インスタンスの起動に必要な部分だけをスナップショットから取得するとインスタンスを利用できます。
+ただし、ルートデバイスに Amazon EBS ボリュームを使用するインスタンスのパフォーマンスは、残りの部分がスナップショットから取得され、
+ボリュームにロードされる少しの時間、遅くなります。
+
+インスタンスを停止し、再起動する場合は、状態が Amazon EBS ボリュームに保存されているため早く起動します。
+**** AMI の作成
+Instance Store-Backed の Linux AMI を作成するには、インスタンス自体にインスタンスの AMI を作成する必要があります。
+
+ただし、それを支援する API アクションはありません。
+
+AMI の作成は、EBS Backed の AMI の方がはるかに簡単です。
+CreateImage API アクションは、Amazon EBS-Backed AMI を作成して登録します。
+AWS Management Console にも、実行中のインスタンスから AMI を作成できるボタンがあります。
+詳細については、「Amazon EBS-Backed Linux AMI の作成」を参照してください。
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html
+
+**** 課金方法
+- 対象
+    Instance Store-Backed の AMI の場合、AMI ストレージとインスタンスの使用量に対して課金されます。
+    Amazon EBS-Backed の AMI の場合、AMI とインスタンスの使用料に加えて、ボリュームストレージおよび使用量に対して課金されます。
+
+- ストレージ
+    Amazon EC2 Instance Store-Backed の AMI の場合、AMI をカスタマイズしたり、新しい AMI を作成したりするたびに、
+    各 AMI のすべての部分が Amazon S3 に保存されます。
+    そのため、カスタマイズした各 AMI のストレージフットプリントは、AMI の完全なサイズになります。
+
+    Amazon EBS-Backed の AMI の場合、AMI をカスタマイズしたり、新しい AMI を作成したりするたびに、変更のみが保存されます。
+    最初の AMI の後にカスタマイズする後続の AMI のストレージフットプリントははるかに小さくなり、AMI ストレージ料金が少なくなります。
+
+- インスタンスの起動
+    Amazon EBS-backed instance が停止した場合、インスタンスの使用については課金されませんが、ボリュームストレージについては引き続き課金されます。
+    stopped（停止）状態から running（実行中）状態へのすべての移行に対して、1 時間内に複数回インスタンスを移行した場合でも、
+    完全インスタンス時間が課金されます。
+    例えば、インスタンスの時間当たりのインスタンス料金が 0.10 USD であるとします。
+    そのインスタンスを停止せずに実行した場合、0.10 USD 課金されます。
+    その時間中に、そのインスタンスを 2 回停止し、再起動した場合、その使用時間に対して 0.30 USD 課金されます
+    （最初の 0.10 USD に再起動ごとの 2 x 0.10 USD をたす）。 
+
+*** Amazon EBS-Backed Linux AMI の作成
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html
+
+Amazon EBS-Backed Linux AMI を作成するには、既存の Amazon EBS-Backed Linux AMI から起動したインスタンスから始めます。ニーズに合わせてインス
+タンスをカスタマイズしたら、新しい AMI を作成し、登録します。新しい AMI を使用して、カスタマイズした新しいインスタンスを起動できます。
+
+Amazon EBS-Backed Windows AMI を作成する場合、「Amazon Elastic Compute Cloud Microsoft Windows Guide」の「Creating an Amazon EBS-
+Backed Windows AMI」を参照してください。
+
+AMI の作成プロセスは、Instance Store-Backed AMI の場合とは異なります。Amazon EBS-Backed インスタンスと Instance Store-Backed インスタン
+スの違いの詳細と、インスタンスのルートデバイスタイプを判別する方法については、「ルートデバイスのストレージ」を参照してください。Instance Store-Back
+ed Linux AMI を作成する必要がある場合は、Instance Store-Backed Linux AMI の作成 を参照してください。
+
+
+
+*** ELB SSL setting
+**** backend auth
+- setting
+  ELB global    : http
+  ELB local     : https
+  backend auth  : on
+
+- 入力フォーマット(.crt)  
+  -----BEGIN CERTIFICATE-----
+  MIICATCCAWoCCQDOUAfKWZjYOjANBgkqhkiG9w0BAQUFADBFMQswCQYDVQQGEwJq
+  YTEOMAwGA1UECAwFbXJ1YnkxDjAMBgNVBAcMBXRva3lvMRYwFAYDVQQKDA1tcnVi
+  eSBkZXZlbG9wMB4XDTE1MDIxNTE0MTUyOVoXDTE2MDIxNTE0MTUyOVowRTELMAkG
+  A1UEBhMCamExDjAMBgNVBAgMBW1ydWJ5MQ4wDAYDVQQHDAV0b2t5bzEWMBQGA1UE
+  CgwNbXJ1YnkgZGV2ZWxvcDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA0N3c
+  9wL18lLQVhyEovP112vQJzZ5K/lDwaqyMJGrNFXjU+VOflWmV6jwjFHiW9TPdui7
+  E9Hg8TVLzDM+ft3V8GG7i0x1HP5D9RzLMd28Rzwi6RPfrapzV2ZHPNH4M/WhXlMk
+  Bhcp6e65H3eTdjX/4byHND+WKKcNDlbSsYlv0DMCAwEAATANBgkqhkiG9w0BAQUF
+  AAOBgQCy0BUZ1lPo1Oq+ZweWKdxe4FvYbcRY5dMgzkmGkA+O9fUAINe4gTuhfzuc
+  pDym8Upu1ukkVN+CAvaUWIrECWTDuRZ8BqJY6CesKiTPI1mZGUqPOi10Yt36SOsY
+  JlofcJos56lewpGA78Os2xSMg3wPFAthg/xMF2PvhE0T4opj6Q==
+  -----END CERTIFICATE-----
+
+**** ELB auth
+- setting
+  ELB global    : http
+  ELB local     : https
+  backend auth  : on
+
+
+- input to private key (.key) (pem encoded)
+  -----BEGIN RSA PRIVATE KEY-----
+  MIICXQIBAAKBgQDQ3dz3AvXyUtBWHISi8/XXa9AnNnkr+UPBqrIwkas0VeNT5U5+
+  VaZXqPCMUeJb1M926LsT0eDxNUvMMz5+3dXwYbuLTHUc/kP1HMsx3bxHPCLpE9+t
+  qnNXZkc80fgz9aFeUyQGFynp7rkfd5N2Nf/hvIc0P5Yopw0OVtKxiW/QMwIDAQAB
+  AoGBAIvtt1V9FEyuEok+PdX13yPdROygX/mH207qDsrfLHW5fLz+COI2e2SK9+zq
+  Bt5C6mLddEfI+gxfClLZmergr6xOaKCjxZTGFdUdCYz5rGIL/w1RErEhxhLHqF/E
+  Dd4iHwndLyt9VmJqQ1Ns1uBRfKcc1711Yh/8l3QetxSbWPzRAkEA/pg3Q1LpH1ga
+  EmoScmly+0bOwbjQ8CssPCUnASoQD8+NkuQ8pU8ZrYZmyIyDw8yw1Yg/yZrYqcde
+  iyX5o8jj/wJBANIFBrIdqcenTbxckCc/rtSCKdRlhF4RtQyQqSo/1inqJBTGllqO
+  Zgo9c5ztVQdFpbddxWCzyS5Jrq/SD8waw80CQHoUAQO+QNxvwWitBhVobOMCS+fm
+  OAHBod9hLTfItJTwQAF8gXv+1uA2/xgREKmVgAGT6IpCPrwCRlpQpkib7n8CQA3I
+  cKkN00+cBjj/ZiJ9Rm8B39bllqtJxDT/5Wo1aEu15wpKAiINSFsRr120Ialpg7el
+  +sce5WwZP9KgGZNOil0CQQDsUuDCBuuZ77mInFfn93PFuPz29X/4+hyGVLMF/0Cj
+  yrt9s2ATgNRc5FbHJSCp31f7+AH7T6DQAncbdKin2kdm
+  -----END RSA PRIVATE KEY-----
+  
+
+- input to public key certificate (.crt) (pem encoded)
+  -----BEGIN CERTIFICATE-----
+  MIICATCCAWoCCQDOUAfKWZjYOjANBgkqhkiG9w0BAQUFADBFMQswCQYDVQQGEwJq
+  YTEOMAwGA1UECAwFbXJ1YnkxDjAMBgNVBAcMBXRva3lvMRYwFAYDVQQKDA1tcnVi
+  eSBkZXZlbG9wMB4XDTE1MDIxNTE0MTUyOVoXDTE2MDIxNTE0MTUyOVowRTELMAkG
+  A1UEBhMCamExDjAMBgNVBAgMBW1ydWJ5MQ4wDAYDVQQHDAV0b2t5bzEWMBQGA1UE
+  CgwNbXJ1YnkgZGV2ZWxvcDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA0N3c
+  9wL18lLQVhyEovP112vQJzZ5K/lDwaqyMJGrNFXjU+VOflWmV6jwjFHiW9TPdui7
+  E9Hg8TVLzDM+ft3V8GG7i0x1HP5D9RzLMd28Rzwi6RPfrapzV2ZHPNH4M/WhXlMk
+  Bhcp6e65H3eTdjX/4byHND+WKKcNDlbSsYlv0DMCAwEAATANBgkqhkiG9w0BAQUF
+  AAOBgQCy0BUZ1lPo1Oq+ZweWKdxe4FvYbcRY5dMgzkmGkA+O9fUAINe4gTuhfzuc
+  pDym8Upu1ukkVN+CAvaUWIrECWTDuRZ8BqJY6CesKiTPI1mZGUqPOi10Yt36SOsY
+  JlofcJos56lewpGA78Os2xSMg3wPFAthg/xMF2PvhE0T4opj6Q==
+  -----END CERTIFICATE-----
+
+
+- input to certificate chain (連結証明書) (pem encoded)
+  未実施。
+  自己証明書の場合は不要
+  
+** RDS
+*** rds subnet作成
+**** description
+RDS instance起動時、subnetは必須。
+
+subnetを選択し、同subnet内に複数のavailability zoneに属したsubnetが必要。
+故に、VPC subnetを事前に作成しておく
+
+**** 作成法
+----------------------------------------------------------------
+- webからRDS画面を開く
+- 左列メニューから [subnet group] を選択
+- name, descriptionを選択
+- VPC IDから、対象とするVPCを選択
+- [add all subnet] をクリックすると全てのsubnetが登録される
+- [create] を選択
+----------------------------------------------------------------
+
+以上で、RDS instance起動時に、subnetを選択可能となる
+;; 恐らくこれは、複数AZへ冗長構成をとる際に必要となる?
+
+** 調査中
+得られた情報は少ないですが、纏めます。
+ELBは恐らく必要と思います。
+
+
+
+
+- Auto Scaling
+    scaling方法として、サーバー増強 / instance追加生成があるようです。
+    (サーバー増強方法の具体的方法が不明)
+
+    古い情報では、サーバー増強(t2.small -> midium)に
+
+
+
+
+
+
+
+ELB
+----------------------------------------------------------------
+    - まとめ
+    ----------------------------------------------------------------
+        以下、からApp server一台構成の場合、意味は薄い。
+        (無料枠を考えなければ) 料金も増加する。
+
+
+
+    - 無料枠
+    ----------------------------------------------------------------
+        Elastic Load Balancing 750 時間に加え 15 GB 分のデータ処理* 
+
+
+    - 基本料金
+    ----------------------------------------------------------------
+        $0.027 : Elastic Load Balancing 時間（または 1 時間未満）あたり
+        $0.008 : Elastic Load Balancing によって処理されるデータ 1 GB あたり
+
+
+    - 機能
+    ----------------------------------------------------------------
+        http://www.slideshare.net/AmazonWebServicesJapan/20130612-aws-meisterregenerateelbpublic
+
+        - 負荷分散　　　　:  複数のバックエンドサーバーに分配
+        - スケーラブル　　:  ELB自身が負荷に応じて増減
+        - 安価な従量課金　:  複数のavalable zoneにまたがるトラフィック負荷
+        - ヘルスチェック　:  健全なEC2インスタンスにのみトラフィックを分配
+        - 安価な従量課金　:  
+
+
+    - support protocol
+    ----------------------------------------------------------------
+        HTTP, HTTPS, TCP, SSL
+    
+
+    - スケールアップ
+    ----------------------------------------------------------------
+        スケールアップ時、IPが変わる。(IP固定不可)
+        ELBへアクセスする際は、必ずDNSで。
+        独自ドメインでアクセスする際は、CNAMEで (Route 53を使用)
+
+
+    - DNS
+    ----------------------------------------------------------------
+        http://kawatama.net/web/1157
+
+        - DNSのAレコードに特定のIPアドレスを指定できない。
+        - Amazon Route53には、AレコードにELBのURLを指定できる独自のエイリアス機能が実装されている
+
+        (本来は、IPアドレスを指定が必須。
+         amazonでは、URLを指定可能。
+         amazon router 53が応答し、現状のアクセス先を返す。)
+
+
+
+
+
+Route 53
+----------------------------------------------------------------
+    http://aws.amazon.com/jp/route53/
+
+    ドメインネームシステム（DNS）ウェブサービス    
+    DNS ヘルスチェックを構成し、トラフィックを正常なエンドポイントにルーティングしたり、
+    アプリケーションやそのエンドポイントの正常性を独立してモニタリングすることができます
+
+     - 料金
+     --------------------------------
+         http://aws.amazon.com/jp/route53/pricing/     
+
+
+         - ホストゾーンの管理 
+           Route 53 で管理した各ホストゾーンに対する月額料金を支払います。
+
+
+         - DNS クエリへの応答 
+           DNS クエリに対する Amazon Route 53 サービスからの応答には、料金が発生します。
+           ただし、クエリの対象がエイリアス A レコードであり、Elastic Load Balancing インスタンスまたは
+           Amazon S3 ウェブサイトバケットにマッピングされている場合は、追加料金は不要です。
+
+
+         - ドメイン名の管理 Route 53 経由で登録された各ドメイン名または Route 53 に転送された各ドメイン名に対して年間料金を支払います。
+
+
+
+
+Auto scaling
+----------------------------------------------------------------
+    - 機能
+    --------------------------------
+        http://dev.classmethod.jp/cloud/aws/autoscaling_considerations-for-system-configuration/
+        
+        - Amazon EC2 群を自動的に縮小・拡張
+        - 規模を固定して Amazon EC2 群を管理
+        - Elastic Load Balancing での Auto Scaling
+
+        つまりAutoScalingを用いる理由は「負荷分散」と「可用性向上」の2つ、といえます
+
+
+    - scaling
+    --------------------------------
+        - スケールアップ
+            インスタンスを停止し、高スペックのインスタンスを生成          
+
+        - スケールアウト (無停止)
+            追加instanceを生成
+
+
+    - health check
+    --------------------------------
+        インスタンスのヘルスチェックをし、判断可能。
+        ELBとも連携することが可能。(ELB/AS双方のヘルスチェックを使用?)
+
+
+
+
+
+** instance / volume / snapshot / AMIの違い
+http://q.hatena.ne.jp/1369319236
+http://aws.typepad.com/sajp/2014/04/trainingfaqbest10.html
+
+** auto scaling
+*** AMI作成
+自動起動するためのAMIを作成
+各種APPの起動設定を忘れずに
+
+*** Launch configurtaion作成
+起動AMI
+instance class
+割りあてHDD
+などの起動時の基本設定
+
+*** Auto scaling group 作成
+**** 設定事項
+AS group名
+使用launch 
+available zone
+instance size
+ELBへの自動割り当て
+VPC
+設定など
+
+**** scaling 設定
+scaling policyタブより
+
+policy名
+alarm設定 (ここで閾値を設定)
+alarmが発生した際の、instance追加/削除数
+次のinstance生成/削除までの待機時間?
+
+**** command例
+group_name="uniqlo-admin"
+configuration="uniqlo_admin_version5"
+az="ap-northeast-1a"
+min_size="1"
+max_size="10"
+load_balancer="uniqlo-influencer-adm-lb"
+healthcheck_type="ELB"
+grace_period="60"
+vpc_subnet="subnet-92ac7ee5"
+
+as-create-auto-scaling-group $group_name \
+--launch-configuration $configuration  \
+--availability-zones $az \
+--min-size $min_size \
+--max-size $max_size \
+--load-balancers $load_balancer \
+--health-check-type $healthcheck_type \
+--grace-period $grace_period  \
+--vpc-zone-identifier $vpc_subnet
+
+
+** cloud formation
+*** clour former
+http://dev.classmethod.jp/cloud/aws-cloudformation-cloudformer/
+http://recipe.kc-cloud.jp/archives/2344
+* docker
+sudo docker run -d -p 80:80 --name nginx1 takipone/nginx /usr/sbin/nginx -g 'daemon off;' -c /etc/nginx/nginx.conf
+sudo docker run -d -p 80:80 --name nginx1 centos6/def_env3 /usr/sbin/nginx -g 'daemon off;' -c /etc/nginx/nginx.conf
+
+** gitlab install to centos
+*** mysql
+sudo docker run --name=mysql -d \
+  -e 'DB_NAME=gitlab' -e 'DB_USER=gitlab' -e 'DB_PASS=mruby'\
+  -v /opt/docker_data/mysql:/var/lib/mysql \
+  sameersbn/mysql:latest
+
+*** redis
+sudo docker run --name=redis -d \
+  -v /opt/docker_data/redis:/var/lib/redis \
+ sameersbn/redis:latest
+
+*** gitlab
+sudo docker run --name=gitlab -d \
+  --link mysql:mysql \
+  --link redis:redisio \
+  -e 'GITLAB_PORT=10080' -e 'GITLAB_SSH_PORT=10022'\
+  -e 'GITLAB_HOST=160.16.96.217'\
+  -p 10022:22 -p 10080:80 \
+  -v /opt/docker_data/gitlab:/home/git/data \
+  sameersbn/gitlab:latest
+
+* github
+** 他ユーザーのrepositoryへアクセス
+github側でユーザーがssh設定をし、鍵を作成し、他ユーザーへ開放。
+鍵をもらう
+
+** ~/.ssh/config setting
+Host github.com
+    User         twinfang
+    port         22
+    Hostname     github.com
+    IdentityFile /home/ali-ani/works/doc/00001_marunouchipix/git/mruby_marupix  # 作成した鍵
+    TCPKeepAlive yes
+    IdentitiesOnly yes
+
+** 接続テスト
+$ ssh -i [key] git@github.com
+Hi arsnovare! You've successfully authenticated, but GitHub does not provide shell access.
+
+というメッセージが出ればアクセスはok
+
+** git init, push to github
+$ git config --global user.name "ユーザ名"
+$ git config --global user.email メールアドレス
+
+$ git init
+$ git add .
+$ git commit -m "Initialize repository"
+$ git remote add origin https://github.com/Satoshi-Numasawa/chef_mynavi_web
+
+** cloneからpush, request pullまで
+http://blog.qnyp.com/2013/05/28/pull-request-for-github-beginners/
+
+*** clone
+$ git clone git@github.com:arsnovare/marunouchi_pix-develop.git
+
+*** branch作成
+git branch [branchname]
+
+# 以下だと、切り替えまで同時に行う
+# git branch -b [branchname]
+
+*** branchの切り替え
+git checkout [branchname]
+
+*** file 登録
+git add *
+
+*** commit
+git commit -m "message"
+
+*** push
+git push origin [branchname]
+
+*** pull request
+GUI上で行う
+該当pageの右上あたり
+
+** 特定fileのversionを戻す
+git checkout HEAD^ path/to/file
+
+* gitlab
+** sakura server
+*** install
+[[file:~/.org/hack.org::*gitlab%20install%20to%20centos][gitlab install to centos]]
+
+*** 起動
+/home/numasawa/script/start_docker_gitlab.sh
+/home/numasawa/script/restart_docker_gitlab.sh
+
+*** データ永続化 : host os上のデータ保存先
+/opt/docker_data/mysql
+/opt/docker_data/redis
+/opt/docker_data/gitlab
+
+** s
+https://about.gitlab.com/downloads/
+
+yum -y install openssh-server
+yum -y install postfix
+yum -y install cronie
+service postfix start
+chkconfig postfix on
+lokkit -s http -s ssh
+
+curl -O https://downloads-packages.s3.amazonaws.com/centos-6.6/gitlab-7.8.0_omnibus-1.el6.x86_64.rpm
+rpm -i gitlab-7.8.0_omnibus-1.el6.x86_64.rpm
+
+sudo gitlab-ctl reconfigure
+
+* jmeter
+** 基本設定
+http://d.hatena.ne.jp/shibainu55/20090418/1240105201
+
+/usr/share/jmeter/bin/jmeter.properties
+
+** thread group
+スレッド数       : 一回のテストケースで生成されるスレッドの数
+Ramp-Up期間(秒) :  何秒間でそれら全スレッドを生成するか
+
+「スレッド数」を100、「Ramp-Up期間(秒)」を10に設定すると、1秒間に10回のテストケースが実行されることになります。
+なお、「Ramp-Up期間(秒)」を0に設定すると、JMeterは全てのテストケースを同時に生成します。
+「ループ回数」は、以上のようなテストケースの生成を何回行うかを決定します。
+デフォルトでは「無限ループ」の項にチェックが入っていますが、有限回で終了したい場合はこのチェックを外してループ回数を設定します。
+
+** http request | sampler
+** basic認証
+** remote server設定
+ELB用設定
+jmeter-serverに追記
+${DIRNAME}/jmeter ${RMI_HOST_DEF} -Dsun.net.inetaddr.ttl=0 -Dserver_port=${SERVER_PORT:-1099} -s -j jmeter-server.log "$@"
+http://qiita.com/takudo/items/1e4dac976cfbd3c775d2
+
+** master server設定
+jmeter.properties を開き
+remote serverのIP addressを記述
+
+jmeterを起動すると、remote serverへ自動でアクセスする
+
+
+
+* logrotate
+http://www.mk-mode.com/octopress/2014/02/02/unicorn-logrotation/
+
+** rotateを試す
+logrotate -df /etc/logrotate.d/sns
+* nginx
+** 参考サイト
+- 基本
+  http://heartbeats.jp/hbblog/2012/02/nginx03.html
+
+** conf
+*** 基本
+**** worker process
+nginxのworkerプロセス数。                      
+通常はCPUコア数以下に設定                       
+# event駆動のため、CPUコア数以上設定しても意味がない
+
+**** sendfile, tcp_nopush
+sendfileは、コンテンツのファイルの読み込みと、クライアントへのレスポンスの送信にsendfile() APIを使うかを設定します。
+sendfile()を使うとカーネル空間内でファイルの読み込みと送信が完了するため、効率良くファイルの内容をクライアントに送信できます。
+
+tcp_nopushディレクティブはsendfileが有効なときに、FreeBSDの場合はTCP_NOPUSHソケットオプション、
+Linuxの場合はTCP_CORKソケットオプションを使うかを設定します。
+このオプションを使うと、レスポンスヘッダとファイルの内容をまとめて送るようになり、少ないパケット数で効率良く送ることができます
+
+*** セッション
+**** worker_connections
+1つのwork processが同時に処理できる最大コネクション数
+
+***** syntax
+worker_connections 1024;
+**** keepalive_timeout
+server側のクライアントコネクションのタイムアウト時間。
+
+***** syntax
+- 通常
+  keepalive_timeout 120;
+
+- upstream directive
+  keepalive 120;
+
+***** 通常設定
+5-10秒程度
+数万クライントのセッションを保持する事はサーバーのメモリが消費される。
+故に、セッションは早々に切断する。
+(恐らく、portも消費する?)
+
+***** AWS ELB配下で仕様する場合
+ELBは基本、クライアントとは早々に切断される。(値未調査)
+ELB配下のserver(EC2 instance)へは、60secセッションを維持する。
+故に、server側はセッションを維持した方が効率が上がる。
+(serverから見た際、ELBとのセッションになるため)
+
+故に、60-120sec程度のkeep alive時間とするのがベター。
+
+http://qiita.com/inokappa/items/8fc76d7390d595e60712
+
+**** keepalive_requests
+持続的な接続上で許可されるリクエストの数を設定します。（デフォルト : 100）
+
+defaultでは、KeepAlive中の同じ接続で、100件までの要求を処理する
+100件を超えたら、セッションを切る?
+
+http://server-setting.info/centos/nginx-keepalive-setting.html
+
+***** syntax
+keepalive_requests 100;
+ *
+*** dns
+**** resolver
+reverse proxy先を、定期的に名前解決
+http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass
+
+***** syntax
+location / {
+    reslover   127.0.0.1 valid=2s
+    proxy_pass http://xxx.xxx:80;
+}
+
+*** 記録IPの書き換え
+ELBなどのIPを記録するのではなく、
+clieantのIPを記録する。
+http://blog.hello-world.jp.net/nginx/1014/
+
+**** syntax 
+# http directive
+
+set_real_ip_from 10.0.0.0/24;  # ELBのアドレス帯
+set_real_ip_from 10.0.1.0/24;
+
+real_ip_header     X-Forwarded-For;  # client IPが記述されているhttp header (?)
+
+*** file discripter
+**** worker_rlimit_nofile
+次はプロセス毎のファイルディスクリプタ上限数を増やす
+
+***** syntax
+ worker_rlimit_nofile  4096;
+
+***** 確認方法
+cat /proc/pid/limits
+
+# max file opens行を参照
+# 設定値になっているはず
+** https設定例
+# ----------------------------------------------------------------
+#
+# http redirect to http
+#
+# ----------------------------------------------------------------
+server {
+    listen       80 default_server;
+    listen       8080 default_server;
+    server_name  _;
+
+    server_name  uniqlo-influencer-adm-lb-1338278061.ap-northeast-1.elb.amazonaws.com;
+    rewrite      ^(.*) https://certification-on-ELB-1649502361.ap-northeast-1.elb.amazonaws.com$1 permanent;
+}
+
+
+# ----------------------------------------------------------------
+# 
+# ssl setting
+# 
+# ----------------------------------------------------------------
+ssl on;
+ssl_prefer_server_ciphers on;
+ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ssl_ciphers HIGH:!aNULL:!MD5;
+ssl_ciphers ECDHE+RSAGCM:ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:!aNULL!eNull:!EXPORT:!DES:!3DES:!MD5:!DSS;
+   
+ssl_certificate     /var/rails/uniqlo/current/config/certification/server.crt;
+ssl_certificate_key /var/rails/uniqlo/current/config/certification/server.key;
+
+ssl_session_cache   shared:SSL:128m;
+ssl_session_timeout 300m;
+
+OCSP stapling
+ssl_stapling             on;
+ssl_stapling_verify      on;
+ssl_trusted_certificate  /var/rails/uniqlo_influencer/release/uniqlo-hashtag-develop/config/certification/server.crt;
+
+add_header Strict-Transport-Security max-age=31536000;
+
+** redirect
+# ----------------------------------------------------------------
+# http://~~~/へアクセスしたものを
+# http://~~~/form/jaへredirect
+#
+#    permanentを付けない場合、ブラウザ上のURLは表面上変化しない。(http://~~~/のままとなる)
+# ----------------------------------------------------------------
+location /$ {
+    rewrite ^(.*) $1/form/ja permanent;
+}
+
+** error page redirect
+# --------------------------------
+#  error codes
+# --------------------------------
+error_page  404  /usr/share/nginx/html;  # 404 の場合、第2引数を読み込む
+location = /40x.html {
+    root   /usr/share/nginx/html;
+}
+
+
+error_page  500 502 503 504  /usr/share/nginx/html;
+location = /50x.html {
+    root   /usr/share/nginx/html;
+}
+
+* mysql
+** mruby for docker
+grant all on docker.* to 'docker'@'localhost' identified by 'mruby';
+
+** backup and resotre
+*** 参考サイト
+http://phpspot.net/php/pgmysqldump%E3%81%A7%E3%83%90%E3%83%83%E3%82%AF%E3%82%A2%E3%83%83%E3%83%97%EF%BC%86%E5%BE%A9%E5%85%83.html
+http://qiita.com/crimson_21/items/6171a95f8ddb2861e2e6
+
+*** base 
+**** bakcup all db
+$ mysqldump -u root -x --all-databases > dump.sql
+
+**** backup a db
+$ mysqldump -u root データベース名 > dump.sql
+
+**** restore all db
+$ mysql -u root -p < dump.sql 
+
+**** restore a db
+$ mysql -u root データベース名 < dump.sql 
+*** option
+**** db lock
+--lock-table
+
+** table 照合順
+SHOW FULL COLUMNS FROM hashtags;
+
+* sns
+** get SNS access token
+tokens
+----------------------------------------------------------------
+    - Twiiter
+    --------------------------------
+        login acc : mruby0901 (edited)
+        pass      : mruby0225
+
+        Consumer Key (API Key)       : hGXnBypOsG40sTVTr9vtGLmjT
+        Consumer Secret (API Secret) : 2NYSk2dcKaFkGc9gFXo5OxOETSee0n9HKdLLdsbChkQriiSmPM
+        Access Token                 : 3040525110-m1WDikMktLXYFGwMkRpaPqzINa2JZBMrX09qPFw
+        Access Token Secret          : EfrkZQLG8E6JlQMCoww7nV4Y1HwCgwAVJcC6RGm2IhOl1
+
+        permission : read & write
+
+
+    - Instagram
+    --------------------------------
+        login acc : mruby0901 (edited)
+        pass      : mruby0225
+
+        Client ID      : 65bfae25a972496985e349a3d5467dba
+        Client Secret  : 64eb28aca5bd47f3bafda2fea7138477
+        Website URL    : http://dummy.com
+        Redirect URI   : http://localhost
+        token          : 1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f
+
+        permission : basic, comment, likes
+
+
+    - Facebook
+    --------------------------------
+        login acc : sns@mruby.jp (edited)
+        pass      : mruby0224
+
+
+        ※ Acc発行後に取得
+        ※ 必要なpermission(権限)の確認が必要
+
+
+
+
+
+Twitter
+----------------------------------------------------------------
+    - 参考サイト
+    ----------------------------------------------------------------
+        token get flow :  http://pocketstudio.jp/log3/2012/02/12/how_to_get_twitter_apikey_and_token/
+        token get flow :  http://geektrainee.hatenablog.jp/entry/2014/03/06/231633
+        gem            :  http://qiita.com/gosshys/items/d31b4ef37f7614363029
+        methods        :  http://route477.net/w/RubyTwitterJa.html
+        permission     :  http://so-zou.jp/web-app/tech/web-api/twitter/authorization/
+
+        
+        
+    - 事前認証
+    ----------------------------------------------------------------
+        メールアドレス認証
+        電話番号登録が必須
+
+        
+    - 作成手順
+    ----------------------------------------------------------------
+        - [https://apps.twitter.com/] へアクセス
+        - [Create New App] を選択
+        
+            - 以下入力
+                - Name        : application name 
+                - Description : app 概要
+                - Website     : web site URL (テスト時は、http://localhost.com/ で通った)
+                - Callback URL: 任意
+
+            - [Yes, I agree] へチェック
+            - [Create your Twitter application] を押下
+
+        - 成功すればapp画面へ遷移
+            - [key and Access Tokens] を選択
+            - [Create my access token] を選択
+
+            当該page上に、API key, API secret, Access token, Access token secret
+            が表示される。
+
+
+        - permission
+            - Permissionタブを選択
+            - permission 3種から選択する
+                read
+                read & write
+                read, write and Access direct message
+                
+        
+    - sumple code
+    ----------------------------------------------------------------
+        # -*- coding: utf-8 -*-
+        require 'twitter'
+        require 'pp'
+
+        require "twitter"
+
+        client = Twitter::REST::Client.new do |config|
+            config.consumer_key        = "QlgoLGYSidrM9UTYFEmYAzthw"
+            config.consumer_secret     = "i3Wzlf2GHFFgAGcv3jDE8G2t6dJ28nx68HDSc7qIboCisKPUgo"
+            config.access_token        = "3040525110-aHCCceqnKV8tqUHTCumut51YLyzXfxE0Jg8jADS"
+            config.access_token_secret = "XahsPYPRjALjG8CKtPhJofXwrN0LQpyKrUnGgzK0ll6Gj"
+        end
+
+
+        #自分のタイムラインの取得
+        #pp client.home_timeline
+        #自分宛てのReplyの取得
+        #pp client.mentions
+        #自分宛てのDMの取得
+        #pp client.direct_messages
+        #発言する
+        #client.update("テストです。")
+
+
+        limit   = 10     # 取得するツイートの上限数
+        keyword = "cat"   # ハッシュタグによる検索を行う際のキーワード
+
+        # limitで指定された数だけツイートを取得
+        client.search("#{keyword} -rt", :locale => "ja", :result_type => "recent", :include_entity => true).take(limit).map do |tweet|
+            # entities内にメディア(画像等)を含む場合の処理
+            if tweet.media? then
+                tweet.media.each do |value|
+                    puts value.media_uri
+                end
+            end
+        end
+
+
+
+
+Instagram
+----------------------------------------------------------------
+    - 参考
+    ----------------------------------------------------------------
+        token get flow  :  http://qiita.com/zurg/items/4c423b93b6a7f1ac737d
+        gem             :  https://gist.github.com/masato-nakamura/5943770
+        API             :  http://www.dcrew.jp/ja-instagram-api-doc-v1/index.php/auth
+        API             :  http://www.rubydoc.info/github/Instagram/instagram-ruby-gem/Instagram/Client
+        scope           :  http://syncer.jp/instagram-api-matome
+
+
+    - 登録手順
+    ----------------------------------------------------------------
+        - https://instagram.com/developer/clients/manage/
+        - 画面右上の、[Manage Clients] を選択
+        - 画面右上の、緑色の [Register a New Client] を選択
+
+        - 入力項目
+            - Applictaiton Name      : アプリケーションの名前
+            - Dscription             : 説明などを入力
+            - Website                : サイトのURLを入力（適当でOK）
+            - OAuth redirect_uri     : アクセストークンを取得する際にリダイレクトされるURL（適当でもOK）
+            - Disable implicit OAuth : チェック入れたまま
+            - Enforce signed header  : チェックしないまま
+
+        - access codeを取得 (one time code)
+            - 通常
+                https://api.instagram.com/oauth/authorize/?client_id=CLIENT-ID&redirect_uri=REDIRECT-URI&response_type=code
+                上記へ値入力しアクセスすると、codeが返り値として得られる
+
+
+            - scope設定付与する場合
+                前項のURLへ追加権限パラメータを追記。
+                [ &scope=basic+comment+likes+relationship ]
+
+                ※ 許可を求める画面の後、tokenが表示される
+
+                
+        - access token取得
+            curl \-F 'client_id=CLIENT-ID' \
+                -F 'client_secret=CLIENT-SECRET' \
+                -F 'grant_type=authorization_code' \
+                -F 'redirect_uri=YOUR-REDIRECT-URI' \
+                -F 'code=CODE' \https://api.instagram.com/oauth/access_token
+
+            上記へ値を入力し、コマンドラインから実行すると、access tokenなどが返り値として得られる。
+            
+
+        - data取得例
+            https://api.instagram.com/v1/users/self/media/recent/?access_token=ACCESS-TOKEN
+
+            access tokenを入力し、アクセスすると返り値として自己投稿データが得られる。
+            関数は未調査
+        
+
+    - account 
+    ----------------------------------------------------------------
+        - webから参照
+            - instagramへアクセスしログイン
+            - 画面最下部のAPIを選択
+            - 右上のmanage clientを選択
+            - 登録済みの情報が表示される
+
+            ※ tokenは表示されない
+            
+            
+        - accs
+            Client ID       65bfae25a972496985e349a3d5467dba
+            Client Secret   64eb28aca5bd47f3bafda2fea7138477
+            Website URL     http://dummy.com
+            Redirect URI    http://localhost
+            code            [都度変わる]
+            token           1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f
+
+
+    - scope
+    ----------------------------------------------------------------
+        - permission list
+            basic         - to read any and all data related to a user (e.g. following/followed-by lists, photos, etc.) (granted by default)
+            comments      - to create or delete comments on a user’s behalf (this permission is restricted to approved apps only. See the documentation for more details)
+            relationships - to follow and unfollow users on a user’s behalf
+            likes         - to like and unlike items on a user’s behalf
+
+
+    - test code
+    ----------------------------------------------------------------
+        require "instagram"
+        Instagram.configure do |config|
+            config.client_id = "65bfae25a972496985e349a3d5467dba"
+            config.access_token = "1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f"
+        end
+
+        photos = Instagram.user_recent_media("1723080740",{count:5})
+        photos.each do |photo|
+            print photo["link"]
+        end
+
+        pp Instagram.tag_recent_media("uniqlo")
+
+
+
+    - test code
+    ----------------------------------------------------------------
+        https://api.instagram.com/v1/tags/#uniqlo/media/recent?access_token=&client_id=65bfae25a972496985e349a3d5467dba&count=10
+        
+
+
+
+Facebook
+----------------------------------------------------------------
+    - 参考HP
+    ----------------------------------------------------------------
+        etc                 :  http://komasaru.github.io/blog/2013/08/29/facebook-api-access-token/
+        get token official  :  https://developers.facebook.com/docs/facebook-login/access-tokens
+        mk APP              :  https://smashballoon.com/custom-facebook-feed/access-token/
+        mk APP              :  https://smashballoon.com/custom-facebook-feed/docs/get-extended-facebook-user-access-token/
+        page token          :  http://qiita.com/dogyear/items/e4de999971fbf7231496                                           
+        graph API ref       :  http://facebook-docs.oklahome.net/archives/51906043.html
+
+
+
+    - develop site
+    ----------------------------------------------------------------
+        https://developers.facebook.com/
+
+        
+    - user token取得
+    ----------------------------------------------------------------
+        - webから
+            - develop siteを開く
+            - [My APP] を選択 (appがなければ、Appを作成)
+            
+            - [Tool&Support] を選択
+            - [Graph API Exploere] を選択
+            - [Application] プルダウンから、対象appを選択
+            - [Get APP Token] を選択
+            - [Permission] を選択
+            - 左側フォームにTokenが表示される
+
+        - 期限2ヶ月のuser tokenへupdate
+            https://graph.facebook.com/oauth/access_token?
+                grant_type=fb_exchange_token&
+                client_id={app-id}&
+                client_secret={app-secret}&
+                fb_exchange_token={short-lived-token}
+
+            // app id            = web app画面から
+            // app secret        = 同上
+            // short-lived-token = 前項で発行した、user token id
+                
+
+    - app token 取得
+    ----------------------------------------------------------------
+        - httpから取得
+            https://graph.facebook.com/oauth/access_token?
+                client_id={app-id}&
+                client_secret={app-secret}&
+                grant_type=client_credentials
+
+        - webから
+            - develop siteを開く
+            - [My APP] を選択 (appがなければ、Appを作成)
+            
+            - [Tool&Support] を選択
+            - [Graph API Exploere] を選択
+            - [Application] プルダウンから、対象appを選択
+            - [Get APP Token] を選択
+            - 左側フォームにTokenが表示される
+
+
+
+    - page token
+    ----------------------------------------------------------------
+        - http
+            https://graph.facebook.com/me/accounts?access_token={user_token}
+
+            {user_token} へ、user_tokenを入力。
+            返り値として、user page listと対応する、tokenが得られる。
+            ※ manage_pageのpermissionが必要
+
+
+        - webから
+            - develop siteを開く
+            - [My APP] を選択 (appがなければ、Appを作成)
+            
+            - [Tool&Support] を選択
+            - [Graph API Exploere] を選択
+            - [Application] プルダウンから、対象appを選択
+            - [Get APP Token] を選択
+            - コマンドへ [me/accounts] を入力して実行
+            - 返り値として、自己管理しているpageの一覧が得られる
+
+        
+    - token一覧
+    ----------------------------------------------------------------
+        - https://developers.facebook.com/tools/access_token/
+            // develop画面の、[Tool&Support]
+            // [Access Token Tool]
+
+
+
+
+
+
+476342872512690|9FOu4HQV5yGw6QSCM6FQbLKtY20
+
+* ssh
+** aws user追加
+$ useradd [username]
+$ sudo passwd [username]
+$ cp  -r  /home/ec2-user/.ssh  /home/[user_name]/
+
+$ sudo emacs /etc/sudoer
+# ALL ALLで設定
+
+* ssl
+** 自己証明書の生成
+http://www.maruko2.com/mw/Apache/SSL%E8%87%AA%E5%B7%B1%E8%A8%BC%E6%98%8E%E6%9B%B8%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%A8mod_ssl%E3%81%AE%E8%A8%AD%E5%AE%9A
+
+openssl genrsa -aes128 1024 > server.key
+openssl req -new -key server.key > server.csr
+openssl x509 -in server.csr -days 365 -req -signkey server.key > server.crt
+
+
+# $ mkdir .config/certification
+# $ cd ./config/certification
+
+# $ openssl genrsa -aes128 1024 > server.key
+# $ openssl req -new -key server.key > server.csr
+# $ openssl x509 -in server.csr -days 365 -req -signkey server.key > server.crt
+
+# $ mv server.ekey server.key.back
+# $ openssl rsa -in server.key.back > server.key
+   
+
+*** 秘密鍵の作成
+openssl genrsa -aes128 1024 > server.key
+  
+# genrsa  : RSA形式の秘密鍵
+# -aes128 : 128ビット AES方式で暗号化
+# 1024    : 1024バイトの鍵作成
+  
+*** 公開鍵の作成
+openssl req -new -key server.key > server.csr
+
+# req   :  CSRファイルを作成
+# -new  :  新規にCSRを作成
+# -key  :  秘密鍵のファイル名を指定
+
+**** 補足
+WebサーバのCSRファイル（server.csr）を作成する。
+CSR（Certificate Signing Request）とは、SSL 証明書を作成する元になる情報が書かれている。
+内容は、組織名やサーバのアドレスなどの情報を含む公開鍵のファイル。 
+
+Country Name (2 letter code) [AU]                          :  国名
+State or Province Name (full name) [Some-State]            :  都道府県名
+Locality Name (eg, city) []                                :  市町村名
+Organization Name (eg, company) [Internet Widgits Pty Ltd] :  組織名
+Organizational Unit Name (eg, section) []                  :  部門名
+Common Name (eg, YOUR name) []                             :  サイトの名前
+Email Address []                                           :  メールアドレス（空欄でもよい）
+A challenge password []                                    :  証明書を破棄する時に必要になるパスワード（空欄でもよい）
+An optional company name []                                :  別の組織名の入力（空欄でもよい） 
+
+*** 証明書の作成
+openssl x509 -in server.csr -days 365 -req -signkey server.key > server.crt
+
+x509     :  X.509 形式のデジタル証明書を作成する。 
+-in CSR  :  CSR ファイル名を指定する。 
+-days    :  証明書の有効期限を指定する。 
+-req     :  入力ファイルがCSRファイルであることを指定する。 
+-signkey :  秘密鍵ファイル。自己証明書作成時に使用するオプション。秘密鍵ファイルを指定する。 
+
+** 証明書の申請
+AWSから
+http://docs.aws.amazon.com/ja_jp/ElasticLoadBalancing/latest/DeveloperGuide/ssl-server-cert.html
+
+- 暗号化キー作成
+
+- 証明書署名リクエストCSRの作成
+
+- 認証局へCSRを提出
+  追加情報を求められる場合もある
+
+- 認証局から返信
+  パブリック証明書、チェーン証明書などが返信される
+
+- 
+  
+** 用語 
+*** base
+ルート証明書
+中間CA証明書
+
+*** on aws
+- public key certificate
+  公開鍵証明書公開鍵方式において, 認証局が発行する利用者の身分証明書
+  恐らく、証明書そのもの
+  .crt
+
+- certificate chain
+  中間証明書?
+
+
+- private key
+  暗号化キー
+  .key
+  
+* rails
+** rake
+*** rake一覧出力
+rake -w
+
+** productionで動作させるとき
+secret keyを書き込む必要がある。
+
+# 以下で出よくされた内容を後述ファイルに書き込む
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+production:
+    secret_key_base: [here]
+----------------------------------------------------------------
+
+* rbenv
+** install for amazon linux
+$ sudo su - 
+
+yum install gcc readline-devel openssl-devel zlib-devel gdbm-devel libffi-devel git make
+
+cd /usr/local
+git clone git://github.com/sstephenson/rbenv.git rbenv
+mkdir rbenv/{shims,versions}
+
+mkdir /usr/local/rbenv/plugins
+cd /usr/local/rbenv/plugins
+git clone git://github.com/sstephenson/ruby-build.git
+cd ruby-build
+./install.sh
+
+echo 'export RBENV_ROOT=/usr/local/rbenv' >> /etc/bashrc
+echo 'export PATH="$RBENV_ROOT/bin:$PATH"' >> /etc/bashrc
+echo 'eval "$(rbenv init -)"' >> /etc/bashrc
+source ~/.bashrc
+
+rbenv install 2.0.0-p0
+rbenv global 2.0.0-p0
+
+* thunderbird
+** profile移行
+*** ~/.thunbird内
+の、profile direcotry (random name)を、移行先dirにコピー
+
+*** [profile.ini] へ読み込みdirecotry名を記述
+[General]
+StartWithLastProfile=1
+
+[Profile0]
+Name=default
+IsRelative=1
+Path=lhu5cp95.default  # 対象行
+
+
+
+* DNS
+** 基本
+http://www.geekpage.jp/blog/?id=2011/10/27/1&p=6
+
+** 権威サーバー変更実験
+http://www.e-ontap.com/dns/propagation/test/
+
+** DNS変更確認
+http://www.e-ontap.com/dns/propagation/dig.html
+* google
+** analytics
+*** 強制的に前回のsessionを切る
+ga('send', 'pageview', { sessionControl: 'start' });
+
+- 単純に同一IPからアクセスし続けた場合、500hitがlimit
+
+
+- 下記サイトにて「500 hits per session not including ecommerce (item and transaction hit types)」
+  https://developers.google.com/analytics/devguides/collection/analyticsjs/limits-quotas
+
+
+* TEST
+** 確認点
+*** TODO deploy.shが適切に動作するか
+暗号化が動いてなかった
+
+*** DONE 言語で開くか
+CLOSED: [2015-03-12 木 16:14]
+- 日本語    : jp
+- English  : US, UK, SG, MY, AU
+- Korean   : KR
+- French   : FR
+- Cantonese: HK
+- Chinese  : CN
+*** DONE 必須確認メッセージが出るか
+CLOSED: [2015-03-12 木 16:14]
+*** DONE その他コメント
+CLOSED: [2015-03-12 木 18:08]
+100文字と表示されるが
+255文字まで入る
+*** DONE メールアドレス不一致メッセージ
+CLOSED: [2015-03-12 木 16:14]
+*** DONE 不正メールアドレス形式のメッセージ
+CLOSED: [2015-03-12 木 16:14]
+*** DONE au, hk | privary policy 
+CLOSED: [2015-03-12 木 16:14]
+policy linkが適切に動作するか
+
+*** DONE admin 適切にsort可能か
+CLOSED: [2015-03-12 木 16:14]
+*** DONE 国で絞り込めるか 
+CLOSED: [2015-03-12 木 16:14]
+*** DONE edit画面が開くか
+CLOSED: [2015-03-12 木 16:14]
+*** DONE 氏名、acconuでsearchできるか
+CLOSED: [2015-03-12 木 16:14]
+
+
+
+* crontab
+** ユーザー指定して実行
+// 基本的に下記の記述が問題が怒らなさそう。
+
+/etc/crontabへ直接記述
+
+# run instagram rest
+*/10 * * * * root su - www -lc "/var/rails/influencer/script/sns/instagram_rest.sh >> /var/rails/influencer/shared/log/sns/instagram_rest.log 2>> /var/rails/influencer/shared/log/sns/err_instagram_rest.log"
+
+

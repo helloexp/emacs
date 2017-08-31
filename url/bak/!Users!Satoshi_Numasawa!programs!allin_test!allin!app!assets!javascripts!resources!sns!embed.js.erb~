@@ -1,0 +1,31 @@
+(function () {
+    "use strict";
+
+    /**
+     * SnsAttachment resource class
+     * @class SnsAttachment
+     */
+    angular.module("app").factory("SnsAttachment", function ($http, Upload) {
+        return {
+            upload: function(groupId, feed, comment, attachments, fileType) {
+                var url = '<%= Settings.sns.api.endpoint %>/api/v1/attachments/upload';
+                if (comment) {
+                    url += '?comment_id=' + comment.id;
+                } else {
+                    url += '?feed_id=' + feed.id;
+                }
+                url += '&group_id=' + groupId;
+                url += '&file_type=' + fileType;
+
+                return Upload.upload({url: url, method: 'POST', data: {file: attachments}});
+            },
+
+            delete: function(groupId, attachment) {
+                var url = '<%= Settings.sns.api.endpoint %>/api/v1/attachments/' + attachment.id;
+                url += '?group_id=' + groupId;
+
+                return $http({url: url, method: 'DELETE'});
+            }
+        }
+    });
+})();

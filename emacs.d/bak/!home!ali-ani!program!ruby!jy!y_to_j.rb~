@@ -1,0 +1,6 @@
+require 'json'
+require 'yaml'
+
+print YAML::load(ARGF.read).to_json
+
+

@@ -1,0 +1,18 @@
+
+
+
+server構成
+----------------------------------------------------------------
+    - 踏み台server      : 下記3serverへ踏み台 (ssh接続)
+    - user app server  : 一般ユーザー公開 (lifewear page) 
+    - admin app server : 管理機能用
+    - sns app server   : sns data集約
+
+
+接続方法
+----------------------------------------------------------------
+    踏み台サーバー上で下記コマンドを実行。
+
+    - user app server  : ssh mruby@app-user
+    - admin app server : ssh mruby@app-admin
+    - sns app server   : ssh mruby@app-sns

@@ -1,0 +1,754 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /Users/Numasawa/.org/gtd/projects.org
+
+
+* Todo [#B] ruby-dev214へgitlab URL記述
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-03-28 Mon 17:40
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: SNS/todos
+:ARCHIVE_CATEGORY: projects
+:ARCHIVE_TODO: Todo
+:ARCHIVE_ITAGS: bb BB
+:END:
+- [X] : ruby-dev214へgitlab URL記述
+  https://git.ruby-dev.jp/business_bank_group/allin-sns/issues/20
+
+* road map
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-04-04 Mon 17:17
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: SNS
+:ARCHIVE_CATEGORY: projects
+:ARCHIVE_ITAGS: bb BB
+:END:
+https://docs.google.com/spreadsheets/d/1EBNm4FDyQKAq_wT_STuFh3Lbw7P6srfqdHBFRoUV660/edit#gid=0
+https://docs.google.com/spreadsheets/d/1uEiI2SFBPv-Z_WgswEhY24NnGe3Z3THCCzRZhmCDbRk/edit#gid=1069237278
+
+** mine
+- [2016-03-22 Tue] -[2016-03-27 Sun]
+    - [ ] : test作成
+
+- [ ] : development環境update
+- [ ] : production環境構築の必要事項列挙
+- [ ] : production環境構築
+- [ ] : deploy手法のdocument化
+- [ ] : 負荷試験
+- [ ] : security試験?
+- [ ] : 監視設定
+** sibata san no
+- [ ] 3/17〜3/27：テスト
+    - [ ] feature
+        - [ ] APIテスト
+        - [ ] WS通知テスト
+        - [ ] 認証テスト
+        - [ ] アクセス制御テスト
+    - [ ] モデル
+        - [ ] feed
+        - [ ] comment
+        - [ ] attachment
+        - [ ] allinAccount
+    - [ ] コントローラ
+        - [ ] feed
+        - [ ] comment
+        - [ ] attachment
+    - [ ] ルート
+        - [ ] WebAPI
+- [ ] クライアントとの接続シーケンス（dispatch）の追加
+- [ ] AttachmentsController証明書の期限
+- [ ] ファイルアップロードの制限を5Mまでにする。
+- [ ] 認証＆権限のレビュー
+- [ ] WSの再接続
+    - [ ] クライアント側
+        - [ ] 初回接続時、ELBへ接続
+        - [ ] disconnectを検出したら、接続先をELBへ戻して接続
+    - [ ] サーバサイド
+        - [ ] 必要な処理がないか確認する。
+- [ ] AttachmentsController
+    - [ ] エラー処理でのファイルの削除
+- [ ] 3/27：DBのインデックス設定
+- [ ] 3/27：セキュリティー
+    - [ ] helmetの設定
+    - [ ] crosの設定
+    - [ ] 書籍からその他
+- [ ] commentクラスのリファクタリング
+- [ ] feedクラスのリファクタリング
+- [ ] AttachmentsControllerの非同期処理の改善
+- [-] 運用環境での動作確認
+    - [ ] 3/23：AWSの料金説明
+    - [ ] 3/23〜3/25：プロダクション環境の構築
+    - [ ] 3/28〜3/31：プロダクション環境での動作テスト
+    - [ ] 4/1〜4/3：運用環境での負荷試験とセキュリティー試験
+    - [X] DBのバックアップは差分バックアップが可能か？
+
+* Todo attachment
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-04-14 Thu 09:27
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: SNS/todos/test作成
+:ARCHIVE_CATEGORY: projects
+:ARCHIVE_TODO: Todo
+:ARCHIVE_ITAGS: bb BB
+:END:
+** Todo 以下テスト追記
+*** 社内SNSは、現在フロント側で、画像ファイルのみアップ出来るように制限しています。
+後、一度のアップロード操作で、添付出来るファイルは10ファイルまでです。
+アップロードを複数に分ければ、10ファイル以上アップロード出来ます
+
+*** fileみ指定の場合400が返るようになった
+test修正
+
+** /api/v1/attachments/upload/?feed_id=xxxx
+*** post
+**** req
+***** header
+Content-Type: application/json
+Accept: application/json
+Authorization: "Bearer  K1iJTJ91j4ubcj1VGRkQndUmRRBfMsPKPriYlq2vrmIuaZOj0Uj8Qj5WuHJ4mDk6wA7XPqnuW58xJKVFJBrdxLOWhXM2sP8GFQja5ZRjRYxSnzSBFclPOXlNFraihmu3"
+
+***** body
+なし
+**** res
+***** header
+***** body
+{ id: '56ff6d171eb9c2ba37692312',
+  created_at: '2016-04-02T06:56:23.423Z',
+  updated_at: '2016-04-02T06:56:23.423Z',
+  posted_by: '7b732aa2fdc011e3acbb22000a7c9000',
+  filename: 'test.jpq',
+  size: 0,
+  content_type: 'application/octet-stream',
+  url: 'http://localhost:5000/uploads/6a86645ee27811e59948080027599000/08faa15b-2b27-48f3-9af0-25f062e11fa2.jpq',
+  company_id: '6a86645ee27811e59948080027599000',
+  feed_id: '56ff6d171eb9c2ba376922d1',
+  comment_id: null }
+** /api/v1/attachments/upload/?comment_id=xxxx
+*** post
+**** req
+***** header
+***** body
+**** res
+***** header
+***** body
+** Done /api/v1/attachments/:id/download
+CLOSED: [2016-03-26 Sat 12:36]
+*** Done get : 不要
+CLOSED: [2016-03-26 Sat 12:36]
+**** req
+***** header
+***** body
+**** res
+***** header
+***** body
+** /api/v1/attachments/:id
+*** delete
+**** req
+***** header
+***** body
+**** res
+***** header
+***** body
+
+* mail配信テスト前のデータなどの調整
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-07-07 Thu 20:14
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: allin mail自動配信/todos/Mail配信 QA
+:ARCHIVE_CATEGORY: projects
+:END:
+- data
+    db:seed
+    bin/rake allin:delivery:set_birth_month_day
+
+- mail送信
+    config/sendgrid.yml
+    # json指定に、忘れるな
+
+* 文字数
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-08-01 Mon 18:58
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: allin mail自動配信/todos/Mail 配信 QA/一斉配信
+:ARCHIVE_CATEGORY: projects
+:END:
+- [X] タイトル : 128
+- [X] footer / header : 65535
+- [X] subject   : 128
+- [#NG] txt body  : 65535
+    model validationはかかるが、angular側で validationかかっていない
+- [#NG] html body : 65535
+    model validationはかかるが、angular側で validationかかっていない
+
+* 営業ステータス変更日
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-08-03 Wed 17:19
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: allin mail自動配信/todos/Mail 配信 QA/実送信テスト/on Staging/ステップ配信/受信
+:ARCHIVE_CATEGORY: projects
+:END:
+小針氏、沼沢のみを対象.
+
+- [X] 新規問い合わせ : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [X] 2016/07/30 19:15
+
+- [X] 初回提案 : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [X] 2016/07/30 19:15
+
+- [X] 見積書作成依頼 : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [X] 2016/07/30 19:15
+
+- [X] 見積書提出済み : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [X] 2016/07/30 19:15
+
+- [X] 最終提案 : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [X] 2016/07/30 19:15
+
+- [X] 成約 : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [X] 2016/07/30 19:15
+
+- [X] 長期フォロー : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [X] 2016/07/30 19:15
+
+- [X] OUT : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [X] 2016/07/30 19:15
+
+
+- [-] ベストプラクティス : 新規案件作成 : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [ ] 2016/07/30 19:15
+
+- [X] ベストプラクティス : 失注 : 2016/07/28
+    - [X] 2016/07/28 19:15
+    - [X] 2016/07/29 19:15
+    - [X] 2016/07/30 19:15
+
+* base
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-08-04 Thu 04:08
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: allin mail自動配信/todos/Mail 配信 QA/自動配信/誕生日/月日
+:ARCHIVE_CATEGORY: projects
+:END:
+- [X] 99日前
+- [X] 2日前
+- [X] 前日
+- [X] 当日
+- [X] 翌日
+- [X] 2日後
+- [X] 99日後
+
+* [100%] validation
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-08-04 Thu 15:03
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: allin mail自動配信/todos/Mail 配信 QA/テンプレート/差出人
+:ARCHIVE_CATEGORY: projects
+:END:
+- [X] 差出人
+    - [X] !blank
+    - [X] 64文字 validation
+- [X] 差出人アドレス
+    - [X] !blank
+    - [X] 128文字 validation
+
+* Todo [#G] url link preview
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-09-23 Fri 09:07
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: SNS | link preview/todos
+:ARCHIVE_CATEGORY: projects
+:ARCHIVE_TODO: Todo
+:ARCHIVE_ITAGS: bb BB
+:END:
+** Done Facebook / slackは、clientで情報を取得しているのか?
+CLOSED: [2016-07-12 Tue 15:12]
+- [X] facebook : facebook botかつ、client IPではなかった
+- [X] slack    : slack botかつ、client IPではなかった
+
+** Done Facebookは、リアルタイムでデータを取りに行くのか?
+CLOSED: [2016-07-21 Thu 10:05] SCHEDULED: <2016-07-13 Wed>
+
+一度目はリアルタイムっぽい
+その後は、サーバー全体で同じデータが使われる?
+別アカウントで試してみないと確実ではないな
+
+ある瞬間のサイトデータを facebook feedに書き込み.
+サイト側データを更新し、以下を試す.
+
+*** 1度保存されたサイトデータは更新されなさそう
+- [X] 書き込みから1時間後に、Facebookを更新しても旧データのままだった
+- [ ] 新たに同じサイトのデータを取得した場合、旧データも変動するのか?
+
+*** cacheは、30分するらしい
+- [X] 一度、サイトデータを取得した後は、確かに読み込みにいかない様子
+- [X] 1時間後に読みにいっても同じデータ読み込んだぞ
+- [ ] 1日後に読みにいったら?
+
+http://52.197.165.231
+
+** Done Slackは、real time で data を取りに行くのか
+CLOSED: [2016-08-10 Wed 15:29]
+更新が反映されるか?
+30分 cacすうっらしい
+- こちらのじっそうもそうしよう
+
+** meta tag / oembed / twitter card / blog card / og
+などなど違いをはっきりさせよう
+
+*** embedlyとは
+**** https://syncer.jp/oembed-api-matome
+oEmbedとは、埋め込み用コードを取得するためのシステム、統一規格です。
+TwitterやYoutube、Vimeoなどといった世界的に有名なwebサービスの各々がこのoEmbedの規格を採用しています。
+
+**** http://jp.techcrunch.com/2011/01/27/20110126embedly-pro-lets-developers-embed-content-from-any-link/
+Facebookでリンクを共有すると、親切にもFacebookがリンク先から先取りしてきた小さな画像やリンク先のテキストが表示される
+この機能を実装することは、デベロッパにとってかなりの大仕事だ。
+
+コンテンツの埋め込みをサービスとして提供しているEmbedlyが、名案を考え出した。
+Embedly Proというサービス
+
+180のあらかじめ決まったサービスからコンテンツを埋め込むことができた.
+Embedly Proでは、どんなサイトのコンテンツでも自分のページに埋め込める.
+
+*** embed.ly
+http://netpr.jp/media/tools/19677/
+
+埋め込み用のデータ (blog card) などを作成してくれるサイト.
+で、自己サイトに埋め込む?
+今回の要件には不要
+
+*** oembed
+https://syncer.jp/oembed-api-matome
+
+各サイト側が用意する、他サイト埋め込みデータ様を吐き出すURL.
+つまり、サイト側が対応していない場合は利用不可.
+
+埋め込み用のjsonデータを返してくれる.
+これには、タイトル、html, url, thumbnail urlなど、サイト毎のmulti media dataが入っている.
+(youtubeなら、動画urlなど)
+
+- twitter
+    https://publish.twitter.com/oembed?url=https://twitter.com/Interior/status/463440424141459456
+
+- instagram
+    https://api.instagram.com/oembed/?url=https://www.instagram.com/p/BHudC-kDSty/?taken-by=therock
+
+
+http://hatenablog.com/oembed
+http://www.youtube.com/oembed
+http://www.ifttt.com/oembed/
+http://www.flickr.com/services/oembed/
+http://vimeo.com/api/oembed.json
+http://www.slideshare.net/api/oembed/2
+https://api.app.net/oembed
+
+*** embed対応site
+http://embed.ly/providers
+
+*** meta tag
+https://reference.hyper-text.org/html5/element/meta/
+
+- サイトの概要データ
+- facebookなどの op企画としても利用されている
+
+*** twitter card
+*** blog card
+*** og
+
+** 参考サイト
+*** slack
+https://api.slack.com/docs/message-attachments#unfurling
+https://api.slack.com/robots
+
+unufrlすると、30分間サービス全体でグローバルキャッシュされる.
+同じURLをなんども読み込むべきではない、という感じらしい.
+たしかに連続での同じURLは受け付けられない.
+
+*** facebook
+https://developers.facebook.com/docs/sharing/webmasters/crawler
+
+一度、読み込まれると、サーバー全体でシェアされる?
+# その時のデータを反映するが、更新されるのは次回クロール時?
+# おそらく自動では更新されない?か何らかのタイミング?
+# 未調査
+
+以下のURLで直接スクレイピングしなおせる模様。
+global cahce されてそうだが、他アカウントでは未確認.
+
+** scraping library
+*** angular
+- http://riteshkr.com/ng-embed/
+  通常siteの読み込みはしてくれなかった
+
+- https://github.com/lithiumtech/angular-embedly
+  maintenanceされていない
+  embed.lyへの登録が必要かつ、youtubeなどは読み込み失敗。
+  お金がかかりそう
+
+- http://lab.leocardz.com/link-preview/
+  required php
+
+*** rails
+https://github.com/gottfrois/link_thumbnailer
+https://github.com/jaimeiniesta/metainspector
+
+*** nodejs
+https://github.com/hueniverse/metaphor
+
+*** jQuery
+https://github.com/stephan-fischer/jQuery-LiveUrl
+
+** queue library
+http://qiita.com/masato/items/fbe503dbf34e7cfd2fe3
+
+kue : https://github.com/Automattic/kue
+
+** child process (background process)
+http://qiita.com/hshimo/items/156249ec8e6dbf75205a
+http://c4se.hatenablog.com/entry/2013/10/25/131245
+
+fugue, Spark2, cluster
+** 調査
+*** client sideで動作させる際の考察
+- facebook動作を見るに、text記述時にURLを検知し、previewをとりにいっている
+  で、投稿後は読み込みに行ってる風に見えないので、保存しているのではないか?
+
+- facebookを参考にするなら、client側で情報取得。
+  書き込み者が preview 情報を取得。
+  本文とpreview情報を書き込み。
+  他者はこれを参照。
+  リアルタイムでの取得はできない...?
+  うーん、リアルタイムとはいると面倒になりそうな
+
+- angular側での packag の調査が必要だ
+
+*** ボツ : server sideで動作させると不安とのこと
+- 想定
+  nodejs側でtext中からURLを得、siteを読み込む。
+  site preview情報はDB保存。
+  処理完了後、frontへwsにて通知。
+
+  slackの動作を元に、初期書き込み時の、preview読み込みを行う。
+
+- 懸念
+    - nodejs がhttp accessする。この際、非同期処理が適切に行われるのか?
+      rails delayed jobの様な、background処理の導入を検討。
+
+- slack reference
+  https://api.slack.com/docs/unfurling
+  // slackでは当該機能を、unfurling linksと呼称
+
+- npm package
+    - metaphor : https://github.com/hueniverse/metaphor
+    - kue : https://github.com/Automattic/kue
+
+- angular
+    - ng-embed : https://github.com/ritz078/ng-embed
+      // 動作未確認
+
+- todos
+    - [ ] model検討/作成
+    - [ ] text解析. URLの抽出. (package調査)
+    - [ ] preview取得.
+        - [ ] timeout時などの挙動調査
+        - [ ] background処理(kue)との連携
+        - [ ] error処理の検討
+    - [ ] DBへdata保存.
+    - [ ] frontへ通知.
+    - [ ] spec記述
+
+
+*** 調査 : slack
+54.209.231.248 - - [11/Jul/2016:08:43:09 +0000] "GET / HTTP/1.1" 200 396 "-" "Slackbot-LinkExpanding 1.0 (+https://api.slack.com/robots)"
+54.174.33.17 - - [11/Jul/2016:08:43:10 +0000] "GET /favicon.ico HTTP/1.1" 404 151 "https://slack.com" "Slackbot-LinkExpanding 1.0 (+https://api.slack.com/robots)"
+
+- [ ]  slackへ書き込みと同時に、上記 server へのアクセスを確認.
+- [ ]  一度だけの読み込みなので、writerのみをトリガーにしているのだろう (head-officeへ書き込んだが、アクセスは一度だけなので)
+- [ ]  で、読み込みURLが自己IPではないので、API server?が代替してアクセスしてるんじゃないかな
+
+https://api.slack.com/robots
+
+*** 調査 : facebook
+173.252.90.231 - - [11/Jul/2016:08:52:16 +0000] "GET / HTTP/1.1" 200 396 "-" "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)"
+
+- [ ] formへ1回書き込み、上記からの読み込みを確認。
+- [ ]  IPは、facebookの pool IP
+- [ ]  同一URLを再度書き込むと、キャッシュされているのか、サーバーへのアクセスはなし
+  これは、他のブラウザかからでも動作が同じなので、サーバー側でキャッシュしているのでは?
+- [ ]  で、読み込みURLが自己IPではないので、API server?が代替してアクセスしてるんじゃないかな
+
+https://developers.facebook.com/docs/sharing/webmasters/crawler
+http://qiita.com/hkusu/items/bb54982a3645b1ee3623
+
+*** IP
+http://52.197.171.222/
+
+** 考察
+*** server / clientどちらがいいのか?
+client側は、各種 server と sessionをはっている。
+何らかのコードを実行され、直接影響があるのは、clientと接続先のserverになる。
+
+それよりなら、専用のAPI serverを一つ建て、影響範囲を絞った方がいいのでは?
+
+*** Server languageは?
+- [ ] railsでいいんじゃないか?
+- [ ] nodeは、I/O waitは非同期だが、httpは?
+- [X] nodeが必要なほどのアクセスは発生しないだろう
+
+*** crawl頻度
+- [X] robots.txtを見てクロール頻度を決める
+- [X] 30分はキャッシュを用いる
+    - [ ] 5分毎にDBを確認し、不要なデータを削除する
+- [ ] あとなんかある?
+
+*** dataは?
+- [ ] jsonで、mongoDBには新たにフィールドを設けなければいけないが
+- [ ] 画像転送は不可が高いと思う…どうしたものか
+- [ ] API serverでキャッシュした内容を使用する?
+      それが、sns serverから scraping serverへの結節点が必要となるが、
+      あまりよろしくないのでは...
+
+- [ ] APIはただのキャッシュ? データ流用できないか?
+
+- [ ] API / SNS双方 (両方使う場合は)同一のデータ形式で良いと思う
+
+*** UI側
+- [ ] スクレイピングできる?
+- [ ] text中のURL判定
+- [ ] APIへの
+    - [ ] post
+- [ ] SNS serverへの
+    - [ ] post
+    - [ ] put
+    - [ ] delete
+- [ ] UI上への
+    - [ ] 表示
+    - [ ] 削除
+
+* roadmap
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-11-10 Thu 11:11
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: SNS
+:ARCHIVE_CATEGORY: projects
+:ARCHIVE_ITAGS: bb BB
+:END:
+1. (着手中)： 通知アイコンに通知件数と通知内容を表示する機能
+2. (着手中)：グループのメニューの表示方法の修正
+3. (2.5人日)：SNSで画像以外のファイル（PDFやExcelなど）をアップロード／ダウンロード出来るようにする。
+4.  (9人日)：画像のリサイズ
+----->4.5. URLリンクで飛べるだけ。
+
+６月末までにーーーーーーーーーーーーーーーーーー
+
+----->4.5. 文字と画像を持ってきて表示する。
+5. (5人日)：自分の所属しているグループに投稿があったときにメールで通知
+6. (1.5人日)：自分の投稿にコメントがついたときにメールで通知
+7. (1.5人日)：自分のコメントにコメントがついたときにメールで通知
+8. (5人日)：通知機能での未読時間が一定時間を超えたときメールで通知
+9. (7人日)：グループに件数表示
+10.(1.5人日)：投稿者の写真を表示する（画像は人事マスタから（Person）に保存）
+
+
+** 13日以降にmailの方は割り当てられるかも
+
+** 4
+*** file upload
+DL時file名を変更した。
+AWS上のDLじゃないとうまくいかない。
+
+動作確認.
+
+*** resize sisin
+- attachment modelで判断
+- resizeは、image magickで
+
+*** 既存 fileは、別対応で
+*** 要件
+さて、先日の「画像を元サイズのままでダウンロードしたいのでは？」
+という点については、３と４の対応で解決したいと思います。
+
+３の対応では、「写真を追加」の横に「ファイルを追加」のリンクを追加します。
+「ファイルを追加」はPDFやエクセルファイルなどの共有が主な目的ですが、
+画像ファイルもアップロードできるようにします。
+この場合は、元のファイルサイズのままアップロードできるようにします。
+このとき画像は表示せず、ファイルアイコンで表示されます。
+
+4の「写真を追加」は、表示スピードを最優先にして画像をリサイズして保存します。
+
+といった感じで進めてください。
+
+* [0%] filter
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-11-12 Sat 20:56
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: Mail Tier2/todos/QA/配信予約
+:ARCHIVE_CATEGORY: projects
+:END:
+- [-] 列 filter
+    - [X] 日時
+        - [X] A-Z
+        - [X] Z-A
+        - [X] 日付範囲
+        - [X] 日付範囲 + A-Z/Z-A
+        - [#BUG] unitime超
+            error発生
+    - [-] タイトル
+        - [X] A-Z
+        - [X] Z-A
+        - [ ] 指定の値に等しい
+        - [ ] 指定の値に等しくない
+        - [ ] で始まる
+        - [ ] で始まらない
+        - [X] で終わる
+        - [X] で終わらない
+        - [X] 指定の値を含む
+        - [X] 指定の値を含まない
+    - [-] 件名
+        - [X] A-Z
+        - [X] Z-A
+        - [X] 指定の値に等しい
+        - [X] 指定の値に等しくない
+        - [X] で始まる
+        - [X] で始まらない
+        - [ ] で終わる
+        - [ ] で終わらない
+        - [ ] 指定の値を含む
+        - [ ] 指定の値を含まない
+    - [ ] 形式
+        https://bbank-devs.atlassian.net/browse/RUBYDEV-800
+        - [#BUG] A-Z
+        - [#BUG] Z-A
+        - [#BUG] 選択したものを含む
+        - [#BUG] 選択したものを含まない
+    - [X] 文字コード
+        - [X] A-Z
+        - [X] Z-A
+        - [X] 選択したものを含む
+        - [X] 選択したものを含まない
+    - [-] 重要度
+        - [#BUG] A-Z
+        - [#BUG] Z-A
+        - [#BUG] 選択したものを含む
+        - [#BUG] 選択したものを含まない
+    - [ ] 配信予定件数
+        - [ ] filter無し
+    - [ ] 最終更新者
+        - [ ] A-Z
+        - [ ] Z-A
+        - [ ] 選択したものを含む
+        - [ ] 選択したものを含まない
+    - [ ] 最終更新日
+        - [ ] A-Z
+        - [ ] Z-A
+        - [ ] 選択したものを含む
+        - [ ] 選択したものを含まない
+
+
+
+- [ ] 期間
+    - [ ] unixtime超
+    - [ ] 日付形式以外
+    - [ ] 記号
+    - [ ] xss
+        - [ ] <p>Hello, <script>alert("警告")</script></p>
+- [ ] 検索form
+    - [ ] 全角, 半角, 英数字, 記号
+    - [ ] xss
+        - [ ] <p>Hello, <script>alert("警告")</script></p>
+
+* [33%] メールの重要度
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-11-13 Sun 20:12
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: Mail Tier2/todos/QA
+:ARCHIVE_CATEGORY: projects
+:END:
+// Thunderbirdで確認
+
+- [ ] テスト送信では?
+    # BUG?
+    重要度が付かない
+- [X] 重要度設定が可能である事
+- [ ] allin web UI上での重要度表示
+    # BUG有り
+    https://bbank-devs.atlassian.net/browse/RUBYDEV-807
+
+- [ ] 一斉配信
+- [X] 自動配信
+- [ ] ステップ配信
+
+* flow
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-11-14 Mon 15:20
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: Allin-chat/todos/chat Deploy
+:ARCHIVE_CATEGORY: projects
+:END:
+- [X] まだ deploy されていないっぽい
+
+- [X] restart.sh修正
+    - [X] 修正点の確認
+
+- [X] dir作成
+    - [X] mkdir node_chat
+    - [X] pm2 deploy ./app/config/deploy/deploy.json staging setup
+
+- [X] restart.sh 設置
+    - [X] restart.sh 確認
+      # ELB/ec2 sgへ5200を開けました
+    - [X] CHAT_DISPATCH_URL
+
+- [X] deploy
+    - [X] pm2 deploy ./app/config/deploy/deploy.json staging update --force
+
+- [X] 他環境への反映
+    # 不要
+    - [X] pre-release
+    - [X] production
+
+- [ ] key権限
+    - ssh key 権限不足. chat clone不可
+    - 現状, 沼沢のkeyを暫定的に上げた.
+    - bbさんでkeyを上げた方が良い.
+      github-sns-notification
+
+* [100%] 一斉配信
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-11-22 Tue 14:34
+:ARCHIVE_FILE: ~/.org/gtd/projects.org
+:ARCHIVE_OLPATH: Mail Tier2/todos/QA/メールの重要度
+:ARCHIVE_CATEGORY: projects
+:END:
+- [X] テスト送信では?
+    - [X] 低
+    - [X] やや低
+    - [X] 普通
+    - [X] やや高
+    - [X] 高
+
+- [X] 実送信
+    - [X] 低
+    - [X] やや低
+    - [X] 普通
+    - [X] やや高
+    - [X] 高

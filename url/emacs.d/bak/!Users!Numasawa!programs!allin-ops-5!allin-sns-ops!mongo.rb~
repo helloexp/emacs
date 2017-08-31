@@ -1,0 +1,79 @@
+require 'json'
+require 'mongo'
+
+
+
+class Mg
+  def initialize
+    # @con = Mongo::Client.new([ '10.0.1.100:27017', '10.0.1.101:27017',  '10.0.1.103:27017'], :database => 'testing')
+    @con = Mongo::Client.new([ 'localhost:27017'], :database => 'testing')
+
+    @posted_by  = "7b732aa2fdc011e3acbb22000a7c8883"
+    @company_id = "44388244b2af11e5802c0800275eaa7c"
+  end
+
+
+  def insert(json)
+    id = @con[:feed].insert_many(json)
+  end
+
+
+  def generate_feed(num)
+    posted_by  = @posted_by + rand(10).to_s
+    company_id = @company_id + rand(10).to_s
+
+    feed_seed = { "contents":"#{num}",
+                  "group_id":"__all__",
+                  "posted_by":"#{posted_by}",
+                  "company_id":"#{company_id}",
+                  "attachments":[ ],
+                  "comments":[ ],
+                  "likes":[ ],
+                  "created_at": Time::now
+                }
+  end
+
+
+  def generate_comment(num, feed_id)
+    feed_seed = { "contents":"#{num}",
+                  "group_id":"__all__",
+                  "posted_by":"#{@posted_by}",
+                  "company_id":"#{@company_id}",
+                  "attachments":[ ],
+                  "comments":[ ],
+                  "likes":[ ],
+                  "feed_id":"#{feed_id}",
+                  "created_at": Time::now
+                }
+  end
+end
+
+
+
+
+def main
+  records = 100000
+
+  mg = Mg.new
+  feeds = []
+
+
+  records.times { |num|
+    feed = mg.generate_feed(num)
+    feeds.push(feed)
+
+    # comments = rand(30)
+    # comments.times {|num|
+    #   puts 'comment'
+    #   puts generate_comment(num, feed["contents"])
+    # }
+  }
+
+  mg.insert(feeds)
+end
+
+
+
+100.times { |a|
+  main()
+}

@@ -1,0 +1,51 @@
+    def from_date
+      @from_date ||=
+        begin
+          case schedule_type
+          when "on_that_day"
+            process_on
+          when "after_day"
+            (Time.at(process_on) - before_or_after_number.days).to_i
+          when "before_day"
+            (Time.at(process_on) + before_or_after_number.days).to_i
+          when "after_month"
+            (Time.at(process_on) - before_or_after_number.months).to_i
+          when "before_month"
+            (Time.at(process_on) + before_or_after_number.months).to_i
+          else
+            fail "Invalid schedule_type"
+          end
+        end
+    end
+
+    def to_date
+      @to_date ||= (Time.at(from_date) + 1.day).to_i
+    end
+
+    def before_or_after_number
+      @before_or_after_number ||= setting.base_date_before_or_after_number
+    end
+
+    def process_on
+      @process_on ||= job.process_on.to_i
+    end
+
+    def month_day
+      @month_day ||= Time.at(from_date).strftime("%m%d")
+    end
+
+    def use_month_day?
+      @use_month_day ||= setting.base_date_use_month_day
+    end
+
+    def schedule_type
+      @schedule_type ||= setting.base_date_schedule_type
+    end
+
+    def on_week_day
+      @week_day ||= setting.base_date_on_weekday
+    end
+
+    def on_day
+      @on_day ||= setting.base_date_on_day
+    end

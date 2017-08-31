@@ -1,0 +1,5 @@
+require 'json'
+require 'yaml'
+
+print JSON.parse(ARGF.read).to_yaml
+

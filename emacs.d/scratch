@@ -1,0 +1,9 @@
+;; This buffer is for notes you don't want to save, and for Lisp evaluation.
+;; If you want to create a file, visit that file with C-x C-f,
+;; then enter the text in that file's own buffer.
+
+
+marketing_registered
+
+
+#<Counterparty uuid: "\x8AG\xE9\xC2\x96\x8F\x11\xE6\xB2;\b\x00'^\xAA|", contract_id: nil, lock_version: 0, created_at: 1476945392, updated_at: 1476945392, type: "Counterparty", is_disabled: false, owner_id: "(m\"L\x95\xC4\x11\xE6\xB24\b\x00'^\xAA|", consumption_tax_entry_method_id: nil, rounding_method_id: nil, display_name: "and Sons", shortcut1: nil, shortcut2: nil, search_target: "and Sons", deleted_at: nil, established_at: nil, created_by_id: "+\xA5\xE4D\x95\xC4\x11\xE6\xB24\b\x00'^\xAA|", updated_by_id: "+\xA5\xE4D\x95\xC4\x11\xE6\xB24\b\x00'^\xAA|", other_own_company_id: nil>

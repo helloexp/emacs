@@ -1,0 +1,16 @@
+{
+    apps : [
+        {
+            // stg
+            name      : "allin-sns",
+            script    : "app/app.js",
+            env: {
+                // TODO
+                COMMON_VARIABLE: "true"
+            },
+            env_production : {
+                NODE_ENV: "staging"
+            }
+        }
+    ]
+}

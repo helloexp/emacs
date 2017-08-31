@@ -1,0 +1,2294 @@
+% Created 2015-02-20 金 17:20
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+
+\title{-*- mode: org -*-}
+\author{ali-ani}
+\date{20 2月 2015}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+\vspace*{1cm}
+
+
+
+
+
+
+
+
+\section{today}
+\label{sec-1}
+
+\subsection{\textbf{DONE} marunouchi pix}
+\label{sec-1.1}
+
+\texttt{CLOSED:} \textit{2015-02-20 金 17:17}\newline
+insntaceは落とした
+EIPは解放
+
+\subsection{\textbf{DONE} アヴァシス}
+\label{sec-1.2}
+
+\texttt{CLOSED:} \textit{2015-02-20 金 17:18}\newline
+擬似環境構築し、keyとhost名などを送付
+
+rails周りは弱いと打ち明け
+検討段階から担当して欲しい
+アヴァシスさんへお任せ
+
+AWSへアクセス
+アヴァシスもアクセス
+
+\subsection{\textbf{DONE} server構成資料}
+\label{sec-1.3}
+
+\texttt{CLOSED:} \textit{2015-02-20 金 17:18}\newline
+\begin{itemize}
+\item 日数料金を追加
+\item アバシス向け
+  サーバー構成図に付加情報を追記
+\end{itemize}
+\subsection{Jmeter使用方法確認と、試行方法の確立}
+\label{sec-1.4}
+
+\subsection{cloud watch / autoscale}
+\label{sec-1.5}
+
+負荷試験に向けて調査
+見方の確認
+
+\subsection{server構成確認事項}
+\label{sec-1.6}
+
+\hyperref[*%20A%20_%20develop%20server]{develop server設定}
+
+\begin{itemize}
+\item SNS appは、外部から見える必要はあるか?
+\item 料金と構成周りを説明し、EIPとELBを割り当てていいか確認
+  特にRDS
+\end{itemize}
+\subsection{ELB}
+\label{sec-1.7}
+
+スケールアウトした時に、IPが変わるのか? (private, global)
+また、domainも変わるのか?
+
+\subsection{nginx conf}
+\label{sec-1.8}
+
+基本上から詠みこまれて、マッチしたルールを適用すると思われる
+が、確認はしていない
+
+書き方を考える必要がありそうだ
+
+\subsection{\textbf{WAITING} uniqlo擬似環境 : key送付}
+\label{sec-1.9}
+
+柴田さんが、先方へ確認後に送付
+
+\subsection{\textbf{WAITING} AWS - RDS質問}
+\label{sec-1.10}
+
+回答待ち
+
+
+\section{Projects}
+\label{sec-2}
+
+\subsection{00000$_{\mathrm{template}}$}
+\label{sec-2.1}
+
+\subsubsection{todos}
+\label{sec-2.1.1}
+
+
+\subsubsection{Env}
+\label{sec-2.1.2}
+
+
+\subsubsection{Flow : project}
+\label{sec-2.1.3}
+
+
+\begin{itemize}
+
+\item description\\
+\label{sec-2.1.3.1}
+
+\begin{itemize}
+
+\item 担当者\\
+\label{sec-2.1.3.1.1}
+
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+\subsubsection{Flow : deploy, server setting}
+\label{sec-2.1.4}
+
+
+\subsubsection{Keywords}
+\label{sec-2.1.5}
+
+
+tagboard
+
+\subsection{00001$_{\mathrm{marunouchi}}$ pics}
+\label{sec-2.2}
+
+\subsubsection{todos}
+\label{sec-2.2.1}
+
+\begin{itemize}
+
+\item \textbf{DONE} [富士]ブックマーク解除の色変更\\
+\label{sec-2.2.1.1}
+
+\texttt{CLOSED:} \textit{2015-02-18 水 17:50}\newline
+小林さんが対応
+
+
+\item \textbf{DONE} [富士]ブックマーク解除の文言変更\\
+\label{sec-2.2.1.2}
+
+\texttt{CLOSED:} \textit{2015-02-18 水 17:51}\newline
+
+「済み」へ変更
+de
+
+
+
+\item \textbf{WAITING} marupix response待ち\\
+\label{sec-2.2.1.3}
+
+修正対応方針待ち
+
+\begin{itemize}
+
+\item [2015-02-17 火]\\
+\label{sec-2.2.1.3.1}
+
+小林氏の修正をdeploy
+沼沢の修正分をpushしdeploy
+
+\item [2015-02-16 月]\\
+\label{sec-2.2.1.3.2}
+
+返信あり
+\end{itemize} % ends low level
+
+\item \textbf{TODO} soruce理解\\
+\label{sec-2.2.1.4}
+
+\begin{itemize}
+
+\item 頭出し\\
+\label{sec-2.2.1.4.1}
+
+来週、以降の細かい修正をお願いしたい。
+全体構造の理解をすすめる。
+次回の依頼
+
+沼沢にもチケットをふる。
+02/17に間に合わないようなら、即チケットは返却し相談。
+
+
+\item \textbf{CANCEL} admin画面の編集\\
+\label{sec-2.2.1.4.2}
+
+\texttt{CLOSED:} \textit{2015-02-15 日 16:55}\newline
+\textit{2015-02-14 土}-\textit{2015-02-16 月}
+
+囲み線を他の右側の線を変更
+太めにして淡い色に変更
+\end{itemize} % ends low level
+
+\item \textbf{TODO} 本番環境へのdeployは誰が行うか\\
+\label{sec-2.2.1.5}
+
+柴田さん預かり
+恐らくdeployしない
+
+メールには、repository一式を納品時に頂戴できれば
+とあり。
+
+\begin{itemize}
+
+\item 疑問\\
+\label{sec-2.2.1.5.1}
+
+\begin{itemize}
+\item deploy誰がやるのか?
+\item メールでは、repositoryを渡せばokとあったが
+    repository譲渡で、imageを渡すのではない?
+\item マニュアルが必要?
+\item 開発方法を理解していないので、イメージがわかない
+\end{itemize}
+\end{itemize} % ends low level
+
+\item \textbf{WAITING} 本番環境へのdeploy方法の注意点確認\\
+\label{sec-2.2.1.6}
+
+沼沢メモと
+小林さんからの情報確認  
+
+\end{itemize} % ends low level
+\subsubsection{schejuled}
+\label{sec-2.2.2}
+
+\subsubsection{担当者}
+\label{sec-2.2.3}
+
+三菱地所
+
+\subsubsection{環境}
+\label{sec-2.2.4}
+
+\begin{itemize}
+\item source管理
+  githubでweb上で共有設定を頂戴済み
+  沼沢の鍵でアクセスできる?
+\end{itemize}
+\subsubsection{strcutures}
+\label{sec-2.2.5}
+
+\begin{itemize}
+
+\item image共有/初期設定/起動方法など\\
+\label{sec-2.2.5.1}
+
+\begin{itemize}
+
+\item original image name\\
+\label{sec-2.2.5.1.1}
+
+maru-stg2
+
+
+\item nginx setting\\
+\label{sec-2.2.5.1.2}
+
+\$ vim /etc/nginx/nginx.conf
+
+\begin{itemize}
+
+\item basic認証\\
+\label{sec-2.2.5.1.2.1}
+
+ID   : marupix
+pass : mec$_{\mathrm{marupix}}$
+
+;; 初期設定をそのまま使用
+;; \href{http://~~/}{http://\~~/}, \href{http://~~/admin/}{http://\~~/admin/} 双方で認証が入る
+
+
+\item server$_{\mathrm{name}}$設定\\
+\label{sec-2.2.5.1.2.2}
+
+74行目  :  server$_{\mathrm{name}}$  stg-marupix.agsr.org  \# コメントアウト
+75行目  :  server$_{\mathrm{name}}$  ec2-54-92-102-138.ap-northeast-1.compute.amazonaws.com;  \# 追記
+
+\emph{/ ruby環境のURLへ変更
+/\} IP固定予定
+  
+
+\item location \~{} /admin  \# access 設定\\
+\label{sec-2.2.5.1.2.3}
+
+deny all;  \# コメントアウト
+allow all; \# 追記
+
+// \href{http://~~/admin}{http://\~~/admin} へのアクセス権限
+
+
+\item 全体アクセスaccess設定\\
+\label{sec-2.2.5.1.2.4}
+
+128行目付近
+allow all; \# コメントを外す
+
+// \href{http://~~~/}{http://\~~\~/} へのアクセス権限
+
+
+\item redirect設定\\
+\label{sec-2.2.5.1.2.5}
+
+156行目以下全てコメントアウト
+marunouchipixの本HPへredirectしているため
+// 開発環境では不要
+
+\end{itemize} % ends low level
+
+\item nginx 起動\\
+\label{sec-2.2.5.1.3}
+
+\$ sudo service nginx start
+
+\emph{/ 設定後起動
+/\} 前述の設定変更後に起動
+
+
+\item mysql 起動\\
+\label{sec-2.2.5.1.4}
+
+image起動直後、自動起動されている
+
+
+\item rails 起動\\
+\label{sec-2.2.5.1.5}
+
+\$ sudo su - cap
+\$ cd /var/rails/marunouchi$_{\mathrm{pix}}$/current
+\$ bundle exec unicorn$_{\mathrm{rails}}$ -c config/unicorn/staging.rb -E staging -D
+
+\emph{/ ec2-userでは起動できず
+/\} cap userで行う
+
+\end{itemize} % ends low level
+
+\item applications\\
+\label{sec-2.2.5.2}
+
+\begin{itemize}
+
+\item OS\\
+\label{sec-2.2.5.2.1}
+
+Linux marunouchi-stg 3.10.48-55.140.amzn1.x86$_{\mathrm{64}}$ \#1 SMP Wed Jul 9 23:32:19 UTC 2014 x86$_{\mathrm{64}}$ x86$_{\mathrm{64}}$ x86$_{\mathrm{64}}$ GNU/Linux
+
+
+\item web\\
+\label{sec-2.2.5.2.2}
+
+nginx   : 1.4.7
+unicorn : 4.8.2
+mysql   : mysql  Ver 14.14 Distrib 5.5.40, for Linux (x86$_{\mathrm{64}}$) using readline 5.1
+
+
+\item language / framework\\
+\label{sec-2.2.5.2.3}
+
+ruby      : 2.1.2p95 (2014-05-08 revision 45877) [x86$_{\mathrm{64}}$-linux]
+rails     : 4.1.4
+Bootstrap : 3.1.1
+
+\end{itemize} % ends low level
+
+\item database\\
+\label{sec-2.2.5.3}
+
+\begin{itemize}
+
+\item login to mysql CUI\\
+\label{sec-2.2.5.3.1}
+
+\$ sudo mysql -u marupix -p
+HyW9554ijBCAeWov1Sx5
+
+
+\item rails database.yml\\
+\label{sec-2.2.5.3.2}
+
+staging:
+    adapter: mysql2
+    encoding: utf8
+    database: marunouchi$_{\mathrm{pix}}$$_{\mathrm{staging}}$
+    pool: 5
+    username: marupix
+    password: HyW9554ijBCAeWov1Sx5
+
+production:
+    adapter: mysql2
+    encoding: utf8
+    reconnect: false
+    host: marupix.ccuxzdz4ubgj.ap-northeast-1.rds.amazonaws.com
+    database: marunouchi$_{\mathrm{pix}}$$_{\mathrm{production}}$
+    pool: 5
+    username: marupix
+    password: 9kefnoMXvTs6vplNsWyn
+
+
+\item DB / table\\
+\label{sec-2.2.5.3.3}
+
+\begin{itemize}
+
+\item DB\\
+\label{sec-2.2.5.3.3.1}
+
+marunouchi$_{\mathrm{pix}}$$_{\mathrm{staging}}$
+
+
+\item tables\\
+\label{sec-2.2.5.3.3.2}
+
+\begin{itemize}
+
+\item admin$_{\mathrm{users}}$\\
+\label{sec-2.2.5.3.3.2.1}
+
+
+\begin{center}
+\begin{tabular}{llllll}
+\hline
+ Field                                                          &  Type          &  Null  &  Key  &  Default  &  Extra                        \\
+\hline
+ id                                                             &  int(11)       &  NO    &  PRI  &  NULL     &  auto$_{\mathrm{increment}}$  \\
+ email                                                          &  varchar(255)  &  NO    &  UNI  &           &                               \\
+ encrypted$_{\mathrm{password}}$                                &  varchar(255)  &  NO    &       &           &                               \\
+ role                                                           &  varchar(255)  &  NO    &       &  editor   &                               \\
+ reset$_{\mathrm{password}}$$_{\mathrm{token}}$                 &  varchar(255)  &  YES   &  UNI  &  NULL     &                               \\
+ reset$_{\mathrm{password}}$$_{\mathrm{sent}}$$_{\mathrm{at}}$  &  datetime      &  YES   &       &  NULL     &                               \\
+ remember$_{\mathrm{created}}$$_{\mathrm{at}}$                  &  datetime      &  YES   &       &  NULL     &                               \\
+ sign$_{\mathrm{in}}$$_{\mathrm{count}}$                        &  int(11)       &  NO    &       &  0        &                               \\
+ current$_{\mathrm{sign}}$$_{\mathrm{in}}$$_{\mathrm{at}}$      &  datetime      &  YES   &       &  NULL     &                               \\
+ last$_{\mathrm{sign}}$$_{\mathrm{in}}$$_{\mathrm{at}}$         &  datetime      &  YES   &       &  NULL     &                               \\
+ current$_{\mathrm{sign}}$$_{\mathrm{in}}$$_{\mathrm{ip}}$      &  varchar(255)  &  YES   &       &  NULL     &                               \\
+ last$_{\mathrm{sign}}$$_{\mathrm{in}}$$_{\mathrm{ip}}$         &  varchar(255)  &  YES   &       &  NULL     &                               \\
+ created$_{\mathrm{at}}$                                        &  datetime      &  YES   &       &  NULL     &                               \\
+ updated$_{\mathrm{at}}$                                        &  datetime      &  YES   &       &  NULL     &                               \\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+
+\item comments\\
+\label{sec-2.2.5.3.3.2.2}
+
+
+\begin{center}
+\begin{tabular}{llllll}
+\hline
+ Field                                    &  Type      &  Null  &  Key  &  Default  &  Extra                        \\
+\hline
+ id                                       &  int(11)   &  NO    &  PRI  &  NULL     &  auto$_{\mathrm{increment}}$  \\
+ admin$_{\mathrm{user}}$$_{\mathrm{id}}$  &  int(11)   &  NO    &       &  NULL     &                               \\
+ medium$_{\mathrm{id}}$                   &  int(11)   &  NO    &       &  NULL     &                               \\
+ text                                     &  text      &  YES   &       &  NULL     &                               \\
+ created$_{\mathrm{at}}$                  &  datetime  &  YES   &       &  NULL     &                               \\
+ updated$_{\mathrm{at}}$                  &  datetime  &  YES   &       &  NULL     &                               \\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+
+\item media\\
+\label{sec-2.2.5.3.3.2.3}
+
+
+\begin{center}
+\begin{tabular}{llllll}
+\hline
+ Field                           &  Type          &  Null  &  Key  &  Default  &  Extra                        \\
+\hline
+ id                              &  int(11)       &  NO    &  PRI  &  NULL     &  auto$_{\mathrm{increment}}$  \\
+ instagram$_{\mathrm{comment}}$  &  int(11)       &  NO    &       &  0        &                               \\
+ image$_{\mathrm{thumb}}$        &  text          &  NO    &       &  NULL     &                               \\
+ image$_{\mathrm{low}}$          &  text          &  NO    &       &  NULL     &                               \\
+ image$_{\mathrm{standard}}$     &  text          &  NO    &       &  NULL     &                               \\
+ instagram$_{\mathrm{like}}$     &  int(11)       &  NO    &       &  0        &                               \\
+ original$_{\mathrm{url}}$       &  text          &  NO    &  UNI  &  NULL     &                               \\
+ posted$_{\mathrm{at}}$          &  datetime      &  YES   &       &  NULL     &                               \\
+ status                          &  varchar(255)  &  NO    &  MUL  &  active   &                               \\
+ text                            &  text          &  YES   &       &  NULL     &                               \\
+ user$_{\mathrm{image}}$         &  text          &  NO    &       &  NULL     &                               \\
+ user$_{\mathrm{name}}$          &  varchar(255)  &  NO    &       &  NULL     &                               \\
+ created$_{\mathrm{at}}$         &  datetime      &  YES   &       &  NULL     &                               \\
+ updated$_{\mathrm{at}}$         &  datetime      &  YES   &       &  NULL     &                               \\
+ pickup$_{\mathrm{order}}$       &  int(11)       &  YES   &  MUL  &  NULL     &                               \\
+ instagram$_{\mathrm{id}}$       &  varchar(255)  &  YES   &       &  NULL     &                               \\
+ media$_{\mathrm{type}}$         &  varchar(255)  &  NO    &       &  image    &                               \\
+ pickuped$_{\mathrm{at}}$        &  datetime      &  YES   &       &  NULL     &                               \\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+
+\item medium$_{\mathrm{ngs}}$\\
+\label{sec-2.2.5.3.3.2.4}
+
+
+\begin{center}
+\begin{tabular}{llllll}
+\hline
+ Field                    &  Type          &  Null  &  Key  &  Default  &  Extra                        \\
+\hline
+ id                       &  int(11)       &  NO    &  PRI  &  NULL     &  auto$_{\mathrm{increment}}$  \\
+ word                     &  varchar(255)  &  NO    &       &  NULL     &                               \\
+ created$_{\mathrm{at}}$  &  datetime      &  YES   &       &  NULL     &                               \\
+ updated$_{\mathrm{at}}$  &  datetime      &  YES   &       &  NULL     &                               \\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+
+\item schema$_{\mathrm{migrations}}$\\
+\label{sec-2.2.5.3.3.2.5}
+
+
+\begin{center}
+\begin{tabular}{llllll}
+\hline
+ Field    &  Type          &  Null  &  Key  &  Default  &  Extra  \\
+\hline
+ version  &  varchar(255)  &  NO    &  PRI  &  NULL     &         \\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+
+\item cron\\
+\label{sec-2.2.5.4}
+
+\begin{itemize}
+
+\item setting on cap user\\
+\label{sec-2.2.5.4.1}
+
+\$ crontab -e
+
+05,15,25,35,45,55 1-23 * * * /bin/bash -l -c `cd /var/rails/marunouchi$_{\mathrm{pix}}$/releases/20140812091155 \&& RAILS$_{\mathrm{ENV}}$=staging bundle exec rake instagram:get$_{\mathrm{tag}}$$_{\mathrm{media}}$ --silent >> log/cron.log 2>\&1'
+05 0 * * * /bin/bash -l -c `cd /var/rails/marunouchi$_{\mathrm{pix}}$/releases/20140812091155 \&& RAILS$_{\mathrm{ENV}}$=staging bundle exec rake instagram:update$_{\mathrm{info}}$ --silent >> log/cron.log 2>\&1'
+05 1 * * * /bin/bash -l -c `cd /var/rails/marunouchi$_{\mathrm{pix}}$/releases/20140812091155 \&& RAILS$_{\mathrm{ENV}}$=staging bundle exec rake instagram:check$_{\mathrm{image}}$ --silent >> log/cron.log 2>\&1'
+
+\end{itemize} % ends low level
+
+\item basic認証\\
+\label{sec-2.2.5.5}
+
+\begin{itemize}
+\item 以下、双方でbasic認証が入る
+    \href{http://~~~~/}{http://\~~\~~/}
+    \href{http://~~~~/admin}{http://\~~\~~/admin}
+\item 認証情報    
+    ID   : marupix
+    PASS : mec$_{\mathrm{marupix}}$
+\end{itemize}
+
+\item rails directory\\
+\label{sec-2.2.5.6}
+
+\begin{itemize}
+
+\item root\\
+\label{sec-2.2.5.6.1}
+
+/var/rails/marunouchi$_{\mathrm{pix}}$
+
+
+\item nginx.conf内での読み込み先 (root dir指定)\\
+\label{sec-2.2.5.6.2}
+
+/var/rails/marunouchi$_{\mathrm{pix}}$/current/public
+
+\emph{/ current dirは symbolic link
+/\} 参照先は、/var/rails/marunouchi$_{\mathrm{pix}}$/releases/20140812091155
+// crontabの内容と合致
+
+\end{itemize} % ends low level
+
+\item http / ssh access\\
+\label{sec-2.2.5.7}
+
+\begin{itemize}
+
+\item http\\
+\label{sec-2.2.5.7.1}
+
+\href{http://ec2-54-92-102-138.ap-northeast-1.compute.amazonaws.com/}{http://ec2-54-92-102-138.ap-northeast-1.compute.amazonaws.com/}
+
+
+\item ssh\\
+\label{sec-2.2.5.7.2}
+
+ssh -i s-numasawa-key-pair-tokyo.pem root@54.92.102.138
+
+\end{itemize} % ends low level
+
+\item rake\\
+\label{sec-2.2.5.8}
+
+以下、実行せずとも動いたので不要とも思える。
+instagramデターの取得は、cronで自動実行されている。
+根拠を特定できず。
+
+
+以下、森氏よりの情報
+\hrule
+ですが、最初だけlib/taskの下のrakeを実行してください。
+(ハッシュタグに紐づくinstaデータを取ってくるとかの処理)
+cron自体は気にしなくてもよいです。スコープに関係ないのと取りすぎると
+API制限に引っかかる恐れがあるためです。
+
+機能
+\begin{itemize}
+\item 投稿の検索10分1回 : 新規追加
+\item ユーザー側のコメント、ライクを1日おきで更新
+\item ユーザー投稿を非公開/削除した場合
+\item NoImageを出す処理
+\end{itemize}
+\hrule
+
+
+上記と、crontabの情報、rakeファイル内を参照し、実行可能な処理は以下。
+\hrule
+\$ bundle exec rake db$_{\mathrm{load}}$:medium$_{\mathrm{ng}}$$_{\mathrm{by}}$$_{\mathrm{csv}}$ RAILS$_{\mathrm{ENV}}$=staging
+
+\$ bundle exec rake instagram:get$_{\mathrm{tag}}$$_{\mathrm{media}}$      RAILS$_{\mathrm{ENV}}$=staging  \# instagramの特定のタグの付いた写真を取得
+\$ bundle exec rake instagram:update$_{\mathrm{info}}$        RAILS$_{\mathrm{ENV}}$=staging  \# DB内のinstagram(media)の情報を最新に更新(最新1,500件)'
+\$ bundle exec rake instagram:check$_{\mathrm{image}}$        RAILS$_{\mathrm{ENV}}$=staging  \# instagram(media)の画像の存在確認
+\$ bundle exec rake instagram:update$_{\mathrm{pickup}}$$_{\mathrm{date}}$ RAILS$_{\mathrm{ENV}}$=staging  \# ステータスがpickupの場合はピックアップ日時を更新
+\hrule
+
+
+実行対象
+// cronで自動実行されているので、基本実行しなくて良い様にみえる
+\hrule
+\$ sudo su - cap 
+\$ cd /var/rails/marunouchi$_{\mathrm{pix}}$/releases/20140812091155
+
+\$ bundle exec rake instagram:get$_{\mathrm{tag}}$$_{\mathrm{media}}$      RAILS$_{\mathrm{ENV}}$=staging  \# instagramの特定のタグの付いた写真を取得
+
+\$ bundle exec rake instagram:update$_{\mathrm{info}}$        RAILS$_{\mathrm{ENV}}$=staging  \# DB内のinstagram(media)の情報を最新に更新(最新1,500件)'
+
+\$ bundle exec rake instagram:check$_{\mathrm{image}}$        RAILS$_{\mathrm{ENV}}$=staging  \# instagram(media)の画像の存在確認
+\hrule
+
+\end{itemize} % ends low level
+\subsubsection{初期設定 / deploy}
+\label{sec-2.2.6}
+
+\begin{itemize}
+
+\item marupix settings\\
+\label{sec-2.2.6.1}
+
+\begin{itemize}
+
+\item AWSへログイン\\
+\label{sec-2.2.6.1.1}
+
+
+\item EC2 instance起動\\
+\label{sec-2.2.6.1.2}
+
+\begin{itemize}
+\item EC2を開く
+\item AMIを選択
+\item 絞り込みから [private images] を選択
+\item [maru-stg2] を右クリック
+\item [Launch] を選択
+\item [t2.midium] を選択
+\item [Next: Configure Instance Details] を選択
+\item networkから [test$_{\mathrm{vps}}$] を選択  \# [marupix] へ変更予定
+\item [Preview and Launch] を選択
+\item [Edit Security Group] を選択
+\item [Select an existing security group] を選択
+\item [marpupix] を選択
+\item [Preview and Launch] を選択
+\item [Launch] を選択
+\item SSH key選択
+  [choose an existing key pair] を選択
+  [s-numasawa-key-pari-tokyo] を選択
+  [check boxをchekc]
+  [Launchi Instance] を選択
+\end{itemize}
+
+\item Elastic IP割り当て\\
+\label{sec-2.2.6.1.3}
+
+\begin{itemize}
+\item [Elastic IPs] を選択
+\item [54.92.111.233] を右クリック
+\item [Associate Address] を選択
+\item marupix instanceを指定
+  (instance formをfocusすると、running中のinstance名が表示され、選択可能)
+  (instance一覧の、instance IDから確認可能
+\item [Associate] を選択
+
+  (以上で、対象IPにグローバルIPが割り当てられる)
+\end{itemize}
+
+\item ssh access\\
+\label{sec-2.2.6.1.4}
+
+\begin{itemize}
+\item \$ ssh ec2-user@54.92.111.233
+\end{itemize}
+\end{itemize} % ends low level
+
+\item marupix deploy\\
+\label{sec-2.2.6.2}
+
+\begin{itemize}
+
+\item su to cap user\\
+\label{sec-2.2.6.2.1}
+
+\$ su - cap
+
+
+\item make release dir\\
+\label{sec-2.2.6.2.2}
+
+\$ cd \emph{var/rails/marunouchi$_{\mathrm{pix}}$/releases}
+\$ mkdir `date +''\%Y\%m\%d\%H\%M\%S''`
+\$ cd 20150212180122
+
+
+
+\item source DL\\
+\label{sec-2.2.6.2.3}
+
+\href{https://github.com/arsnovare/marunouchi_pix-develop/tree/fuji-bul}{https://github.com/arsnovare/marunouchi\_pix-develop/tree/fuji-bul}
+
+
+
+\item upload source\\
+\label{sec-2.2.6.2.4}
+
+\$ scp marunouchi$_{\mathrm{pix}}$-develop-fuji-bul.zip ec2-user@54.92.111.233:/var/rails/marunouchi$_{\mathrm{pix}}$/releases/20150212180122/
+
+\$ unzip ./marunouchi$_{\mathrm{pix}}$-develop-fuji-bul.zip
+\$ rm ./marunouchi$_{\mathrm{pix}}$-develop-fuji-bul.zip
+\$ mv ./marunouchi$_{\mathrm{pix}}$-develop-fuji-bul/* ./
+\$ rm -rf ./marunouchi$_{\mathrm{pix}}$-develop-fuji-bul
+
+
+\item bundle install\\
+\label{sec-2.2.6.2.5}
+
+\$ bundle install
+
+\$ bundle exec rake db:migrate RAILS$_{\mathrm{ENV}}$=staging
+
+\$ rake assets:clobber
+\$ rake assets:precompile
+
+
+\item make symbolic link\\
+\label{sec-2.2.6.2.6}
+
+\begin{itemize}
+
+\item bin, log dir\\
+\label{sec-2.2.6.2.6.1}
+
+\$ rm -rf ./log
+\$ ln -s \emph{var/rails/marunouchi$_{\mathrm{pix}}$/shared/log} ./log
+
+\$ rm -rf ./bin
+\$ ln -s \emph{var/rails/marunouchi$_{\mathrm{pix}}$/shared/bin} ./bin
+
+
+\item change current release dir\\
+\label{sec-2.2.6.2.6.2}
+
+\$ cd \emph{var/rails/marunouchi$_{\mathrm{pix}}$/current}
+\$ rm ./current
+\$ ln -s \emph{var/rails/marunouchi$_{\mathrm{pix}}$/releases/20150212180122} ./current
+
+\end{itemize} % ends low level
+
+\item nginx setting \& start\\
+\label{sec-2.2.6.2.7}
+
+\$ sudo su -
+\$ chkconfig nginx on
+\$ vim /etc/nginx/nginx.conf
+\hrule
+\begin{itemize}
+\item 87行目 : コメントアウト
+\item 144行目 : \#を削除
+\item 74行目 : コメントアウト
+\item 75行目 : 以下追記
+           server$_{\mathrm{name}}$  ec2-54-92-111-233.ap-northeast-1.compute.amazonaws.com;
+\end{itemize}
+\hrule
+
+
+\$ /etc/init.d/nginx restart
+
+
+\item rails/unicorn start\\
+\label{sec-2.2.6.2.8}
+
+\$ cd \emph{var/rails/marunouchi$_{\mathrm{pix}}$/current}
+\$ bundle exec unicorn$_{\mathrm{rails}}$ -c ./config/unicorn/staging.rb -E staging -D
+
+
+\item done\\
+\label{sec-2.2.6.2.9}
+
+下記へアクセスし、web画面が開くことを確認。
+\href{http://ec2-54-92-111-233.ap-northeast-1.compute.amazonaws.com/admin}{http://ec2-54-92-111-233.ap-northeast-1.compute.amazonaws.com/admin}
+ 
+\end{itemize} % ends low level
+
+\item marupix dir structure\\
+\label{sec-2.2.6.3}
+
+\emph{var/rails\}
+└── marunouchi$_{\mathrm{pix}}$
+    ├── current -> \emph{var/rails/marunouchi$_{\mathrm{pix}}$/releases/20150212180122}
+    ├── releases
+    │   ├── 20140812054104
+    │   ├── 20140812073400
+    │   ├── 20140812075835
+    │   ├── 20140812090416
+    │   ├── 20140812091155
+    │   └── 20150212180122
+    ├── repo
+    │   ├── branches
+    │   ├── hooks
+    │   ├── info
+    │   ├── objects
+    │   └── refs
+    └── shared
+        ├── bin
+        ├── bundle
+        ├── log
+        ├── tmp
+        └── vendor
+
+
+\item add commands\\
+\label{sec-2.2.6.4}
+
+\$ marupix$_{\mathrm{start}}$
+
+\$ marupix$_{\mathrm{kill}}$
+
+\$ marupix$_{\mathrm{reboot}}$
+
+\end{itemize} % ends low level
+\subsection{00002_ユニクロ}
+\label{sec-2.3}
+
+\subsubsection{todos}
+\label{sec-2.3.1}
+
+
+\begin{itemize}
+
+\item \textbf{DONE} uniqlo admin server構築(product)\\
+\label{sec-2.3.1.1}
+
+\texttt{DEADLINE:} \textit{2015-02-18 水} \texttt{CLOSED:} \textit{2015-02-18 水 02:27}\newline
+
+ruby, rails, nginx, unicorn install
+各種設定
+ 
+
+\item \textbf{DONE} unisql ssl調査\\
+\label{sec-2.3.1.2}
+
+\texttt{CLOSED:} \textit{2015-02-18 水 02:27}\newline
+\textit{2015-02-17 火}がdeadline
+  
+
+
+\item \textbf{WAITING} uniqlo influencer 登録画面BUG?\\
+\label{sec-2.3.1.3}
+
+pivotal up済み
+そもそも、nginx側の設定の問題かもしれない
+
+\hrule
+[ \href{https://*/form/ja}{https://*/form/ja} ]へアクセスした際、
+assetsの読み込みは本来 [https://*/form/assets] となる。
+が、稀に [https://*/form/ja/assets/] となる。
+現状、10言語中、kr / frにおいて事象が発生するこ
+\hrule
+
+
+\item \textbf{TODO} product server設定\\
+\label{sec-2.3.1.4}
+
+\begin{itemize}
+
+\item admin\\
+\label{sec-2.3.1.4.1}
+
+\begin{itemize}
+
+\item 自動実行\\
+\label{sec-2.3.1.4.1.1}
+
+\end{itemize} % ends low level
+
+\item user\\
+\label{sec-2.3.1.4.2}
+
+\begin{itemize}
+
+\item 自動実行\\
+\label{sec-2.3.1.4.2.1}
+
+
+\end{itemize} % ends low level
+
+\item SNS\\
+\label{sec-2.3.1.4.3}
+
+\begin{itemize}
+
+\item 自動実行\\
+\label{sec-2.3.1.4.3.1}
+
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+
+\item \textbf{TODO} develop server設定\\
+\label{sec-2.3.1.5}
+
+
+\begin{itemize}
+
+\item VPC / subnet / IGW\\
+\label{sec-2.3.1.5.1}
+
+\begin{itemize}
+
+\item VPC\\
+\label{sec-2.3.1.5.1.1}
+
+name  :  uniqlo
+CIDR  :  10.0.0.0/22
+
+
+\item subnet - 1a\\
+\label{sec-2.3.1.5.1.2}
+
+name        :  uniqlo$_{\mathrm{public}}$$_{\mathrm{1a}}$
+CIDR        :  10.0.1.0/25
+route table :  0.0.0.0/0  |  igw-3eb5405b
+
+
+\item subnet - 1c\\
+\label{sec-2.3.1.5.1.3}
+
+name        :  uniqlo$_{\mathrm{public}}$$_{\mathrm{1c}}$
+CIDR        :  10.0.1.128/25
+route table :  0.0.0.0/0  |  igw-3eb5405b
+
+
+\item internet gateway\\
+\label{sec-2.3.1.5.1.4}
+
+name        :  uniqlo
+attach VPC  :  vpc-2ac80641 (10.0.0.0/22 | uniqlo)
+
+\end{itemize} % ends low level
+
+\item 踏み台\\
+\label{sec-2.3.1.5.2}
+
+\begin{itemize}
+\item instance   :  t2.micro
+\item AL         :  ap-northeast-1a
+\item security group
+    name  :  uniqlo$_{\mathrm{influencer}}$$_{\mathrm{gateway}}$
+    port  :  22
+\item linux user
+
+\begin{itemize}
+\item user  :  alliance
+\item pass  :  Ukzm3383
+\end{itemize}
+
+\item user   :  mruby
+\item pass   :  Kimg4488
+\end{itemize}
+
+\item App server : user\\
+\label{sec-2.3.1.5.3}
+
+\begin{itemize}
+\item instance    :  t2.midium
+\item AL          :  ap-northeast-1a
+\item private IP  :  10.0.1.10
+\item global IP   :  ELB
+\item host name   :  usr01-tky-a-uniqlo-influencer
+\item security group
+  name   : uniqlo$_{\mathrm{influencer}}$$_{\mathrm{user}}$
+  local  : 22 (10.0.0.0/22)
+  global : 80, 443
+\item user
+
+\begin{itemize}
+\item name  :  mruby
+\item pass  :  mruby3826
+\end{itemize}
+
+\item installed app
+    rails, ruby, nginx, mysql(CLI)
+\end{itemize}
+
+\item App server : admin\\
+\label{sec-2.3.1.5.4}
+
+\begin{itemize}
+\item instance     :  t2.midium
+\item AL           :  ap-northeast-1a
+\item private IP   :  10.0.1.50
+\item global IP    :  54.92.123.82
+\item host name    :  adm01-tky-a-uniqlo-influencer
+\item security group
+  name   : uniqlo$_{\mathrm{influencer}}$$_{\mathrm{admin}}$
+  local  : 22 (10.0.0.0/22)
+  global : 80, 443
+\item user
+
+\begin{itemize}
+\item name  :  mruby
+\item pass  :  mruby3826
+\end{itemize}
+
+\item installed app
+    rails, ruby, nginx, mysql(cli)
+\end{itemize}
+
+\item App server : sns\\
+\label{sec-2.3.1.5.5}
+
+\begin{itemize}
+\item instance     :  t2.midium
+\item AL           :  sns01-tky-a-uniqlo-influencer
+\item private IP   :  10.0.1.60
+\item global IP    :  現状では不要。
+\item host name    :  sns01-tky-a-uniqlo-influencer
+\item security
+  name   :  uniqlo$_{\mathrm{influencer}}$$_{\mathrm{sns}}$
+  local  :  22 (10.0.0.0/22)
+  local  :  80, 443
+\item user
+
+\begin{itemize}
+\item name  :  mruby
+\item pas   :  mruby3826
+\end{itemize}
+
+\item installed app
+    rails, ruby, nginx, mysql(cli)
+\end{itemize}
+
+\item App server : 共通\\
+\label{sec-2.3.1.5.6}
+
+
+
+\item RDS\\
+\label{sec-2.3.1.5.7}
+
+\begin{itemize}
+\item AL         :  ap-northeast-1a
+\item private IP :  10.0.1.70
+\item host       : db01-uniqlo-influencer.cvs9vjjju50z.ap-northeast-1.rds.amazonaws.com
+\item DB engine  : mysql
+\item DB version : 5.6.22
+\item DB Instance Identifier : db01-uniqlo-influencer
+\item VPC             :  uniqlo
+\item subnet          :  uniqlo$_{\mathrm{public}}$$_{\mathrm{default}}$
+\item public access   :  yes
+\item AZ              :  1a
+\item security
+
+\begin{itemize}
+\item name   :  uniqlo$_{\mathrm{influencer}}$$_{\mathrm{db}}$
+\item local  :  mysql (10.0.0.0/22)
+\item global :  全て閉塞
+\end{itemize}
+
+\item enable ecryption
+
+\begin{itemize}
+\item enable :  yes
+\item key    :  default
+\end{itemize}
+
+\item master
+
+\begin{itemize}
+\item master user   :  root
+\item master pass   :  9xiRR828
+\end{itemize}
+
+\item 作業ユーザー
+
+\begin{itemize}
+\item DB name :  influencer
+\item user    :  influencer
+\item pass    :  Dim933Plw
+\end{itemize}
+
+\item bakcup       :  7day / start 01:00 / duration 0.5h
+\item auto upgrate :  sunday  / start 02:00 / duration 0.5h
+\item msyql portのみopen
+\item 各種サーバーからのアクセスを許可する
+  user, admin, sns, 踏み台
+\end{itemize}
+
+\item ELB\\
+\label{sec-2.3.1.5.8}
+
+CNAME      :  uniqlo-influencer-adm-lb-1338278061.ap-northeast-1.elb.amazonaws.com
+forward to :  adm01-tky-a-uniqlo-influencer
+
+
+\end{itemize} % ends low level
+
+\item \textbf{TODO} RDS料金調査\\
+\label{sec-2.3.1.6}
+
+ソフトで暗号化
+ハードで暗号化
+
+
+\item \textbf{WAITING} CSV import確認\\
+\label{sec-2.3.1.7}
+
+imporot OK
+
+mysql -u root -p --local-inflie=1
+load data local infile ``/home/ali-ani/test2.csv'' into table influencer$_{\mathrm{profiles}}$ fields terminated by `,' enclosed by `''';
+
+
+SHOW CREATE TABLE テーブル名
+
+
+\item \textbf{TODO} uniqlo ruby社での擬似環境\\
+\label{sec-2.3.1.8}
+
+\textit{2015-02-20 金}
+\textit{2015-02-23 月}に公開できるように
+
+
+\item \textbf{TODO} uniqlo test\\
+\label{sec-2.3.1.9}
+
+\textit{2015-02-20 金}
+
+田口さんに依頼予定
+
+
+\item \textbf{TODO} uniqlo first relase\\
+\label{sec-2.3.1.10}
+
+\texttt{DEADLINE:} \textit{2015-02-20 金}-\textit{2015-02-22 日}\newline
+
+
+\item \textbf{TODO} uniqlo 負荷テスト\\
+\label{sec-2.3.1.11}
+
+\textit{2015-03-09 月}
+\begin{itemize}
+\item 負荷テスト
+  アプリサーバーへアクセスさせ、落ちるかなど
+
+  3月の第２週までに試す
+\end{itemize}
+
+\item \textbf{TODO} uniqlo security test\\
+\label{sec-2.3.1.12}
+
+\textit{2015-03-09 月}
+3月の第２週までに試す
+
+\begin{itemize}
+\item skipfish
+  \href{http:/knowledge.sakura.ad.jp/tech/389}{http:/knowledge.sakura.ad.jp/tech/389}
+
+  NGのところは直していく
+\end{itemize}
+\end{itemize} % ends low level
+\subsubsection{Env}
+\label{sec-2.3.2}
+
+\begin{itemize}
+
+\item Accounts\\
+\label{sec-2.3.2.1}
+
+\begin{itemize}
+
+\item prodcut\\
+\label{sec-2.3.2.1.1}
+
+
+\item dev\\
+\label{sec-2.3.2.1.2}
+
+\href{file:///home/ali-ani/.org/todo.org}{develop server設定}
+
+\end{itemize} % ends low level
+
+\item Influencerインフラ接続情報\\
+\label{sec-2.3.2.2}
+
+\begin{itemize}
+
+\item URL\\
+\label{sec-2.3.2.2.1}
+
+\hrule
+エンドユーザ参照ページ   :  http(s)://lifewear.uniqlo.com/people/
+インフルエンサー登録画面 : \href{https://lifewear.uniqlo.com/form/}{https://lifewear.uniqlo.com/form/}
+管理者権限画面         :  \href{https://admin.lifewear.uniqlo.com/}{https://admin.lifewear.uniqlo.com/}
+
+
+\item Stepサーバの情報\\
+\label{sec-2.3.2.2.2}
+
+IP    : 54.250.223.60
+host  : mnt01-a-tky-gateway-common
+
+login account  : members
+ssh key        : members.pem
+pass           : none
+
+
+\item \## EC2/ELB\## Web\\
+\label{sec-2.3.2.2.3}
+
+\begin{itemize}
+
+\item user page\\
+\label{sec-2.3.2.2.3.1}
+
+\begin{itemize}
+\item ELB
+\end{itemize}
+\hrule
+   prd01-tky-influencer-uniqlo-304455623.ap-northeast-1.elb.amazonaws.com
+   prd02-tky-influencer-uniqlo-275306959.ap-northeast-1.elb.amazonaws.com
+
+\begin{itemize}
+\item EC2
+\end{itemize}
+\hrule
+    Instance: i-2744a33f (prd01-a-tky-influencer-uniqlo)Private IP: 10.184.16.238
+
+\begin{itemize}
+\item Nginxドキュメントルート
+        エンドユーザ参照ページ : \emph{usr/share/nginx/html/lifewear.uniqlo.com}
+\item DNS
+        lifewear.uniqlo.com
+\end{itemize}
+
+\item Admin\\
+\label{sec-2.3.2.2.3.2}
+
+\begin{itemize}
+\item ELB
+    prd01-tky-admin-inflencr-uniqlo-1751200015.ap-northeast-1.elb.amazonaws.com
+\item EC2
+    Instance   :  i-b04fa8a8  /  prd01-a-tky-admin-influencer-uniqlo
+    Private IP : 10.184.17.202
+\item DNS
+
+\begin{itemize}
+\item インフルエンサー登録
+        lifewear.uniqlo.com  /  (lifewear.uniqlo.com/form)
+\item 管理者
+        admin.lifewear.uniqlo.com
+\end{itemize}
+
+\item Nginxドキュメントルート：
+    インフルエンサー登録  :  \emph{usr/share/nginx/html/lifewear.uniqlo.com}
+    管理者（Admin）     :  \emph{usr/share/nginx/html/admin.lifewear.uniqlo.com}
+\item account
+    linux user  :  www
+    pass        :  DROd3Q0n
+\item 注意事項
+    Autoscalingは未設定です。
+    EC2のセッティングが完了後に、Autoscalingの設定を追加しますので、
+    ご連絡をお願い致します。
+\end{itemize}
+
+\item BATCH\\
+\label{sec-2.3.2.2.3.3}
+
+\begin{itemize}
+\item EC2
+    Instance    :  i-4f41a257  (prd01-a-tky-batch-influencer-uniqlo)
+    Private IP  :  10.184.17.46
+\end{itemize}
+\end{itemize} % ends low level
+
+\item RDS\\
+\label{sec-2.3.2.2.4}
+
+\begin{itemize}
+
+\item マスター\\
+\label{sec-2.3.2.2.4.1}
+
+\begin{itemize}
+\item DNS名 (CNAME)
+    db.org.lifewear.uniqlo.com
+    \# アプリから接続する際に、DNS名（CNAME）を利用してください
+\item DBName    :  influencer
+\item UserName  :  influencer
+\item Passwd    :  QkIPwa9k
+\end{itemize}
+
+\item リードレプリカ\\
+\label{sec-2.3.2.2.4.2}
+
+\begin{itemize}
+\item DNS名（CNAME）
+    db-rep.org.lifewear.uniqlo.com
+    \# アプリから接続する際に、DNS名（CNAME）を利用してください
+\item DB Engine(Ver)  :  Mysql 5.6.22
+\item DBディスクサイズ  :  30GB※拡張可能ですので、追加した場合はご連絡ください。
+\end{itemize}
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+
+\item uniqlo server information\\
+\label{sec-2.3.2.3}
+
+Influencerインフラ接続情報
+
+\begin{itemize}
+
+\item URL\\
+\label{sec-2.3.2.3.1}
+
+Front : ドメイン確認中
+Admin : ドメイン確認中
+
+
+\item Stepサーバの情報 (踏み台)\\
+\label{sec-2.3.2.3.2}
+
+IP         : 54.250.223.60
+hostname   : mnt01-a-tky-gateway-common
+login user : members
+pass       : 無し
+key        : ppkからpemへ変換可能
+
+
+\item EC2/ELB/Web\\
+\label{sec-2.3.2.3.3}
+
+\begin{itemize}
+\item ELB
+  prd01-tky-influencer-uniqlo-304455623.ap-northeast-1.elb.amazonaws.com
+  prd02-tky-influencer-uniqlo-275306959.ap-northeast-1.elb.amazonaws.com
+\item E2C
+  Instance   : i-2744a33f
+  host       : prd01-a-tky-influencer-uniqlo
+  Private IP : 10.184.16.238
+\end{itemize}
+
+\item Admin\\
+\label{sec-2.3.2.3.4}
+
+\begin{itemize}
+\item ELB
+  prd01-tky-admin-inflencr-uniqlo-1751200015.ap-northeast-1.elb.amazonaws.com
+\item EC2
+  Instance   : i-b04fa8a8
+  host       : prd01-a-tky-admin-influencer-uniqlo
+  private IP : 10.184.17.202
+\item DNS
+  adminに関するドメインを確認
+\item pass
+
+\begin{itemize}
+\item user : www
+\item pass : DROd3Q0n
+\end{itemize}
+
+\end{itemize}
+
+\item Autoscaling\\
+\label{sec-2.3.2.3.5}
+
+未設定。
+EC2のセッティングが完了後に、Autoscalingの設定を追加しますので、
+ご連絡をお願い致します。
+
+auto scalingで、常時1台立ち上げるようにする
+SNSからリアルタイムにデータを取ってこれるらしい。
+将来的に使いたい
+
+
+\item RDS\\
+\label{sec-2.3.2.3.6}
+
+\begin{itemize}
+\item source 
+  DNS名（CNAME）: db.influencer.org.www.uniqlo.com
+\item read replica
+  DNS名（CNAME）: db-rep.influencer.org.www.uniqlo.com.
+\item DB info
+  DB name : influencer
+  user    : influencer
+  pass    : QkIPwa9k
+  ver     : Mysql 5.6.22
+
+  DBディスクサイズ:30GB※拡張可能ですので、追加した場合はご連絡ください。
+\end{itemize}
+\end{itemize} % ends low level
+
+\item uniqlo server setting\\
+\label{sec-2.3.2.4}
+
+ruby 2.2.0p0 (2.2.0系)
+rails 4.2.0  (4.2系使用)
+mysql 5.5.41 (最新版でok)
+
+\begin{itemize}
+
+\item EC2\\
+\label{sec-2.3.2.4.1}
+
+\href{file://.~/.org/aws.org}{Amazon Linux - init Enviroment (Ruby, RoR)}
+
+\begin{itemize}
+
+\item make user\\
+\label{sec-2.3.2.4.1.1}
+
+    
+mruby
+mruby4836
+
+
+\item ruby / rails install 準備\\
+\label{sec-2.3.2.4.1.2}
+
+yum install gcc
+yum install openssl-devel.x86$_{\mathrm{64}}$
+
+
+\item ruby install\\
+\label{sec-2.3.2.4.1.3}
+
+\$ cd /usr/local/src
+\$ wget \href{http://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.zip}{http://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.zip}
+
+\$ unzip ruby-2.2.0.zip 
+\$ cd ruby-2.0.0
+\$ ./configure
+\$ make
+\$ make install   
+ 
+\$ echo `export PATH=''\emph{usr/local/bin:\$PATH''' >> /etc}.bashrc
+
+\$ rvm system
+
+
+\item ruby rbenv\\
+\label{sec-2.3.2.4.1.4}
+
+
+\$ sudo su - 
+
+\$ yum install gcc readline-devel openssl-devel zlib-devel gdbm-devel libffi-devel git make
+
+\$ cd /usr/local
+\$ git clone git://github.com/sstephenson/rbenv.git rbenv
+\$ mkdir rbenv/\{shims,versions\}
+
+\$ mkdir /usr/local/rbenv/plugins
+\$ cd /usr/local/rbenv/plugins
+\$ git clone git://github.com/sstephenson/ruby-build.git
+\$ cd ruby-build
+\$ ./install.sh
+
+\$ echo `export RBENV$_{\mathrm{ROOT}}$=/usr/local/rbenv' >> /etc/bashrc
+\$ echo `export PATH=''\$RBENV$_{\mathrm{ROOT}}$/bin:\$PATH''' >> \emph{etc/bashrc
+\$ echo `eval ``\$(rbenv init -)''' >> /etc/bashrc \$ source \~{}\}.bashrc
+
+\$ rbenv install 2.0.0-p0
+\$ rbenv global 2.0.0-p0
+   
+
+\item rails install\\
+\label{sec-2.3.2.4.1.5}
+
+gem install rails --version 4.2.0
+
+
+\item make basic auth file\\
+\label{sec-2.3.2.4.1.6}
+
+\$ yum install httpd
+\$ chkconfig httpd off
+\$ cd /var/rails/uniqlo$_{\mathrm{influencer}}$/release/uniqlo-hashtag-develop
+\$ htpasswd -c .htpasswd uniqlo
+
+
+
+\item secret key base\\
+\label{sec-2.3.2.4.1.7}
+
+\$ touch ./config/secrets.yml
+
+\$ bundle exec rake secret
+
+vim ./config/secrets.yml
+\hrule
+development:
+    secret$_{\mathrm{key}}$$_{\mathrm{base}}$: [here]
+
+\hrule
+
+
+\item rails settings\\
+\label{sec-2.3.2.4.1.8}
+
+\begin{itemize}
+\item \$ bundle install
+\item \$ bundle exec rake db:migrate
+\item \$ bundle exec assets:precompile
+\item listen portを合わせる
+\end{itemize}
+
+\item access\\
+\label{sec-2.3.2.4.1.9}
+
+\href{http://~~~/form/ja}{http://\~~\~/form/ja}
+
+\end{itemize} % ends low level
+
+\item RDS\\
+\label{sec-2.3.2.4.2}
+
+\begin{itemize}
+
+\item mysql database, user seeting\\
+\label{sec-2.3.2.4.2.1}
+
+create database uniqlo$_{\mathrm{hashtag}}$$_{\mathrm{development}}$ CHARACTER SET=utf8;
+
+grant all on uniqlo$_{\mathrm{hashtag}}$$_{\mathrm{development}}$.* to `uniqlo'@'\%' identified by `uniqlo';
+
+FLUSH PRIVILEGES;
+
+\end{itemize} % ends low level
+
+\item SNS集約サーバー\\
+\label{sec-2.3.2.4.3}
+
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+\subsubsection{Flow : project}
+\label{sec-2.3.3}
+
+
+
+\begin{itemize}
+
+\item description\\
+\label{sec-2.3.3.1}
+
+\begin{itemize}
+
+\item 担当者\\
+\label{sec-2.3.3.1.1}
+
+\begin{itemize}
+
+\item 先方\\
+\label{sec-2.3.3.1.1.1}
+
+マネージ : 船山さん
+開発さん : 綾部さん
+
+
+\item Ruby本社\\
+\label{sec-2.3.3.1.1.2}
+
+青柳さんがhelp
+
+
+\item 協力会社\\
+\label{sec-2.3.3.1.1.3}
+
+コミュニティクリエーション
+アヴァシス
+
+女性２名
+管理者1名
+
+skypeが必要
+
+\end{itemize} % ends low level
+
+\item 頭出し\\
+\label{sec-2.3.3.1.2}
+
+tabboard HP
+ユニクロ用のtagboardを作りたい
+tagboardをまねしていく
+
+\begin{itemize}
+\item 使い方
+\item 気に入らない点
+  taboardのロゴが気に入らない
+  もっと柔軟な表示をしたい
+  国ごと、pickupしたものを必ず表示。
+\item クリックした時の動きも変えたい
+  オーバーレイ表示のカスタマイズ
+\item 環境構築はruby社まかせ
+\item RoR, nginx, MySQL or Postgres, AWS
+\end{itemize}
+
+\item etc\\
+\label{sec-2.3.3.1.3}
+
+\textit{2015-02-05 木}
+\begin{itemize}
+\item tagboardでlifewareに関するものをpickup
+\item 国ごとに絞り込みをしたい
+  tagboadに国情報は無い。が、登録者情報に国の情報がある。(登録者しか投稿できないとかなんとか)
+\end{itemize}
+\end{itemize} % ends low level
+
+\item [2015-02-18 水]\\
+\label{sec-2.3.3.2}
+
+\begin{itemize}
+
+\item real time更新処理とりやめ\\
+\label{sec-2.3.3.2.1}
+
+自動で状態を見に行って更新があれば、
+自動で画面も更新する。
+というのが当初の企画。
+
+これを取りやめ、ユーザーからのトリガーがあるときだけ
+更新処理を行う。
+(どこの話かは分からないが、恐らくSNSデータを表示するところ)
+
+
+\item 予算の関係上で機能を絞る。\\
+\label{sec-2.3.3.2.2}
+
+今日?打ち合わせして、機能を決定する
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+\subsubsection{Flow : deploy, release, server setting}
+\label{sec-2.3.4}
+
+
+\begin{itemize}
+
+\item deploy flow : develop\\
+\label{sec-2.3.4.1}
+
+\begin{itemize}
+
+\item deploy\\
+\label{sec-2.3.4.1.1}
+
+\begin{itemize}
+
+\item upload\\
+\label{sec-2.3.4.1.1.1}
+
+\$ scp -i mruby$_{\mathrm{default}}$$_{\mathrm{key}}$.pem ./uniqlo-hashtag-develop.zip mruby@54.65.210.190:/home/mruby
+
+
+\item decompress\\
+\label{sec-2.3.4.1.1.2}
+
+\$ cd /var/rails/uniqlo/release
+
+\$ mkdir `date +''\%Y\%m\%d\%H\%M\%S''`
+\$ cd 20150217015610/
+\$ cp \emph{home/mruby/uniqlo-hashtag-develop.zip .}
+\$ unzip uniqlo-hashtag-develop.zip
+
+\$ rm uniqlo-hashtag-develop.zip
+\$ mv ./uniqlo-hashtag-develop/* ./
+\$ rm -rf ./uniqlo-hashtag-develop
+
+
+\item edit database.yml\\
+\label{sec-2.3.4.1.1.3}
+
+\$ vim ./config/database.yml
+  ----------------------------------------------------------------
+\begin{itemize}
+\item 18行目 : host: localhost
+\item 18行目 : host: db.org.lifewear.uniqlo.com
+\end{itemize}
+  ----------------------------------------------------------------
+  
+
+\item install / database setting\\
+\label{sec-2.3.4.1.1.4}
+
+\$ echo ``gem `unicorn'''  >> ./Gemfile
+\$ echo ``gem `unicorn-rails'''  >> ./Gemfile
+
+\$ bundle install
+\$ bundle exec rake db:migrate RAILS$_{\mathrm{ENV}}$=development
+\$ bundle exec rake assets:clobber
+\$ bundle exec rake assets:precompile RAILS$_{\mathrm{ENV}}$=development
+  
+
+\item secret key base\\
+\label{sec-2.3.4.1.1.5}
+
+
+\$ bundle exec rake secret
+
+vim ./config/secrets.yml
+\hrule
+development:
+    secret$_{\mathrm{key}}$$_{\mathrm{base}}$: [here]
+
+production:
+    secret$_{\mathrm{key}}$$_{\mathrm{base}}$: [here]
+\hrule
+
+
+\item curtificate setting (SSL認証する場合)\\
+\label{sec-2.3.4.1.1.6}
+
+\$ mkdir .config/certification
+\$ cd ./config/certification
+
+\$ openssl genrsa -aes128 1024 > server.key
+\$ openssl req -new -key server.key > server.csr
+\$ openssl x509 -in server.csr -days 365 -req -signkey server.key > server.crt
+
+\$ mv server.ekey server.key.back
+\$ openssl rsa -in server.key.back > server.key
+ 
+
+\item change current version\\
+\label{sec-2.3.4.1.1.7}
+
+\$ cd \emph{var/rails/uniqlo}
+\$ ln -s \emph{var/rails/uniqlo/release/20150217015610} ./current
+
+
+\item unicron start\\
+\label{sec-2.3.4.1.1.8}
+
+\$ cd /var/rails/uniqlo/current
+\$ bundle exec unicorn$_{\mathrm{rails}}$ -c /var/rails/uniqlo/env/config/unicorn/development.rb -E development -D  
+
+\end{itemize} % ends low level
+
+\item initsetting | unicorn config file\\
+\label{sec-2.3.4.1.2}
+
+\$ mkdir \emph{var/rails/uniqlo/env/config/unicorn}
+
+
+\$ vim /var/rails/uniqlo/env/config/unicorn/development.rb
+\hrule
+worker$_{\mathrm{processes}}$ 3
+
+pid File.expand$_{\mathrm{path}}$(`tmp/pids/unicorn.pid', ENV['RAILS$_{\mathrm{ROOT}}$']).to$_s$
+listen 5001
+
+stderr$_{\mathrm{path}}$ File.expand$_{\mathrm{path}}$(`log/error.log', ENV['RAILS$_{\mathrm{ROOT}}$'])
+stdout$_{\mathrm{path}}$ File.expand$_{\mathrm{path}}$(`log/development.log', ENV['RAILS$_{\mathrm{ROOT}}$'])
+
+preload$_{\mathrm{app}}$ true
+
+before$_{\mathrm{fork}}$ do |server, worker|
+  ENV['BUNDLE$_{\mathrm{GEMFILE}}$'] = File.expand$_{\mathrm{path}}$(`Gemfile', ENV['RAILS$_{\mathrm{ROOT}}$'])
+
+  defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
+end
+
+after$_{\mathrm{fork}}$ do |server, worker|
+  defined?(ActiveRecord::Base) and ActiveRecord::Base.establish$_{\mathrm{connection}}$
+end
+\hrule
+
+
+\$ vim /var/rails/uniqlo/env/config/unicorn/production.rb
+\hrule
+File Edit Options Buffers Tools Help                                                                                                                                         
+worker$_{\mathrm{processes}}$ 10
+
+pid File.expand$_{\mathrm{path}}$(`tmp/pids/unicorn.pid', ENV['RAILS$_{\mathrm{ROOT}}$']).to$_s$
+listen 5001
+
+stderr$_{\mathrm{path}}$ File.expand$_{\mathrm{path}}$(`log/error.log', ENV['RAILS$_{\mathrm{ROOT}}$'])
+stdout$_{\mathrm{path}}$ File.expand$_{\mathrm{path}}$(`log/production.log', ENV['RAILS$_{\mathrm{ROOT}}$'])
+
+preload$_{\mathrm{app}}$ true
+
+before$_{\mathrm{fork}}$ do |server, worker|
+  ENV['BUNDLE$_{\mathrm{GEMFILE}}$'] = File.expand$_{\mathrm{path}}$(`Gemfile', ENV['RAILS$_{\mathrm{ROOT}}$'])
+
+  defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
+end
+
+after$_{\mathrm{fork}}$ do |server, worker|
+  defined?(ActiveRecord::Base) and ActiveRecord::Base.establish$_{\mathrm{connection}}$
+end
+\hrule
+
+
+\item nginx setting file loc\\
+\label{sec-2.3.4.1.3}
+
+/etc/nginx/conf.d/lifewear.uniqlo.com.conf
+/etc/nginx/conf.d/admin.lifewear.uniqlo.com.conf
+
+\end{itemize} % ends low level
+
+\item deploy flow : product\\
+\label{sec-2.3.4.2}
+
+\begin{itemize}
+
+\item edit database.yml\\
+\label{sec-2.3.4.2.1}
+
+\$ vim ./config/database.yml
+\hrule
+default: \&default
+    adapter: mysql2
+    encoding: utf8
+    pool: 5
+    username: influencer
+    password: QkIPwa9k
+    host: db.org.lifewear.uniqlo.com
+
+production:
+    <<: *default
+    database: influencer
+    username: influencer
+    password: <\%= ENV['UNIQLO-HASHTAG$_{\mathrm{DATABASE}}$$_{\mathrm{PASSWORD}}$'] \%>
+\hrule
+  
+
+\item install / database setting\\
+\label{sec-2.3.4.2.2}
+
+\$ echo ``gem `unicorn'''  >> ./Gemfile
+\$ echo ``gem `unicorn-rails'''  >> ./Gemfile
+
+\$ bundle install
+\$ bundle exec rake db:migrate RAILS$_{\mathrm{ENV}}$=production
+\$ bundle exec rake assets:clobber
+\$ bundle exec rake assets:precompile RAILS$_{\mathrm{ENV}}$=production
+
+
+\item secret key base\\
+\label{sec-2.3.4.2.3}
+
+
+\$ bundle exec rake secret
+
+vim ./config/secrets.yml
+\hrule
+production:
+    secret$_{\mathrm{key}}$$_{\mathrm{base}}$: [here]
+\hrule
+
+
+\item change assets default url\\
+\label{sec-2.3.4.2.4}
+
+\begin{itemize}
+
+\item assets読み込みURL変更\\
+\label{sec-2.3.4.2.4.1}
+
+
+\$ vim ./config/application.rb
+
+\hrule
+module UniqloHashtag
+  class Application < Rails::Application
+
+  \~{}~
+  config.assets.enable = true
+  config.assets.prefix = ``assets''
+
+  end
+end  
+\hrule
+
+
+\item chmod\\
+\label{sec-2.3.4.2.4.2}
+
+chmod 755 ./public/assets*
+
+\end{itemize} % ends low level
+
+\item change current version\\
+\label{sec-2.3.4.2.5}
+
+\$ cd \emph{var/rails/uniqlo}
+\$ ln -s \emph{var/rails/uniqlo/release/20150217015610} ./current
+
+
+\item unicron start\\
+\label{sec-2.3.4.2.6}
+
+\$ cd /var/rails/uniqlo/current
+\$ bundle exec unicorn$_{\mathrm{rails}}$ -c /var/rails/uniqlo/env/config/unicorn/production.rb -E production -D  
+
+\end{itemize} % ends low level
+
+\item init product env\\
+\label{sec-2.3.4.3}
+
+\begin{itemize}
+
+\item admin\\
+\label{sec-2.3.4.3.1}
+
+\begin{itemize}
+
+\item mysql\\
+\label{sec-2.3.4.3.1.1}
+
+admin user : root
+pass       : mruby4836
+
+mysql -u root -p
+mysql> grant all on influencer.* to `influencer'@'10.184.17.202'; 
+
+\end{itemize} % ends low level
+
+\item nginx setting\\
+\label{sec-2.3.4.3.2}
+
+\begin{itemize}
+
+\item settingにあたって\\
+\label{sec-2.3.4.3.2.1}
+
+\begin{itemize}
+\item admin server access path
+\end{itemize}
+\hrule
+    admin.lifewear.uniqlo.comf
+    lifewer.uniqlo.conf/form
+
+\begin{itemize}
+\item normal server access path
+\end{itemize}
+\hrule
+    lifewer.uniqlo.conf
+
+
+\item install\\
+\label{sec-2.3.4.3.2.2}
+
+\$ yum install nginx
+
+
+\item setting conf file\\
+\label{sec-2.3.4.3.2.3}
+
+\$ vim /etc/nginx/conf.d/lifewear.uniqlo.com.conf
+
+
+\hrule
+
+upstream backend \{
+    server 127.0.0.1:5001;
+\}
+
+
+
+server \{
+    listen       80;
+    server$_{\mathrm{name}}$  lifewear.uniqlo.com;
+
+    server$_{\mathrm{tokens}}$ off;
+
+    access$_{\mathrm{log}}$ /var/log/nginx/lifewear.uniqlo.com/access$_{\mathrm{log}}$;
+    error$_{\mathrm{log}}$  /var/log/nginx/lifewear.uniqlo.com/error$_{\mathrm{log}}$;
+
+    root /var/rails/influencer/current/public;
+
+
+    \# --------------------------------------------------------------------------------
+    \# switch
+    \# --------------------------------------------------------------------------------
+
+    \# ----------------
+    \# assets
+    \# ----------------
+    location \~{} /form/assets(.*) \{
+        alias /var/rails/influencer/current/public/assets/\$1;
+    \}
+
+
+    \# ----------------
+    \# form - rails
+    \# ----------------
+    location \~{} / \{
+        root /var/rails/influencer/current/public;
+
+        proxy$_{\mathrm{pass}}$ \href{http://backend}{http://backend};
+        proxy$_{\mathrm{set}}$$_{\mathrm{header}}$ X-Real-IP \$remote$_{\mathrm{addr}}$;
+        proxy$_{\mathrm{set}}$$_{\mathrm{header}}$ X-Forwarded-For \$proxy$_{\mathrm{add}}$$_x$$_{\mathrm{forwarded}}$$_{\mathrm{for}}$;
+        proxy$_{\mathrm{set}}$$_{\mathrm{header}}$ Host \$http$_{\mathrm{host}}$;
+    \}
+
+
+    \# ----------------
+    \# root
+    \# ----------------
+    \#location / \{
+    \#    \# root   \emph{usr/share/nginx/html/lifewear.uniqlo.com};
+    \#    \# index  index.html index.htm;
+
+    \#    proxy$_{\mathrm{pass}}$ \href{http://backend}{http://backend};
+    \#    break;
+    \#\}
+
+
+    \# ----------------
+    \# status check
+    \# ----------------
+    location = /status.html \{
+        return 200;
+        break;
+    \}
+    allow all;
+    auth$_{\mathrm{basic}}$ ``Influencer Admin Authentication'';
+    auth$_{\mathrm{basic}}$$_{\mathrm{user}}$$_{\mathrm{file}}$ ``/usr/share/nginx/.htpasswd'';
+
+\}
+
+
+\end{itemize} % ends low level
+
+\item rails unicorn 自動起動\\
+\label{sec-2.3.4.3.3}
+
+\begin{itemize}
+
+\item 起動 script生成\\
+\label{sec-2.3.4.3.3.1}
+
+
+
+\$ vim /var/rails/uniqlo/script/unicorn.sh
+
+\hrule
+set -e
+
+TIMEOUT=\$\{TIMEOUT-60\}
+APP$_{\mathrm{ROOT}}$=''/var/rails/uniqlo/current''
+CONFIG=''/var/rails/uniqlo/env''
+PID=''\$APP$_{\mathrm{ROOT}}$/tmp/pids/unicorn.pid''
+RAILS$_{\mathrm{ENV}}$=development
+CMD=''bundle exec unicorn$_{\mathrm{rails}}$ -D -c \$CONFIG/config/unicorn/\$RAILS$_{\mathrm{ENV}}$.rb -E \$RAILS$_{\mathrm{ENV}}$''
+action=''\$1''
+set -u
+
+old$_{\mathrm{pid}}$=''\$PID.oldbin''
+
+cd \$APP$_{\mathrm{ROOT}}$ || exit 1
+
+sig () \{
+    test -s ``\$PID'' \&& kill -\$1 `cat \$PID`
+\}
+
+oldsig () \{
+    test -s \$old$_{\mathrm{pid}}$ \&& kill -\$1 `cat \$old$_{\mathrm{pid}}$`
+\}
+
+case \$action in
+start)
+    sig 0 \&& echo >\&2 ``Already running'' \&& exit 0
+    \$CMD
+    ;;
+stop)
+    sig QUIT \&& rm -f \$\{PID\} \&& exit 0
+    echo >\&2 ``Not running''
+    ;;
+force-stop)
+    sig TERM \&& exit 0
+    echo >\&2 ``Not running''
+    ;;
+restart|reload)
+    sig HUP \&& echo reloaded OK \&& exit 0
+    echo >\&2 ``Couldn't reload, starting `\$CMD' instead''
+    \$CMD
+    ;;
+upgrade)
+    if sig USR2 \&& sleep 2 \&& sig 0 \&& oldsig QUIT
+    then
+        n=\$TIMEOUT
+        while test -s \$old$_{\mathrm{pid}}$ \&& test \$n -ge 0
+        do
+            printf `.' \&& sleep 1 \&& n=\$(( \$n - 1 ))
+        done
+        echo
+
+        if test \$n -lt 0 \&& test -s \$old$_{\mathrm{pid}}$
+        then
+            echo >\&2 ``\$old$_{\mathrm{pid}}$ still exists after \$TIMEOUT seconds''
+            exit 1
+        fi
+        exit 0
+    fi
+    echo >\&2 ``Couldn't upgrade, starting `\$CMD' instead''
+    \$CMD
+    ;;
+reopen-logs)
+    sig USR1
+    ;;
+*)  
+    echo >\&2 ``Usage: \$0 <start|stop|restart|upgrade|force-stop|reopen-logs>''
+    exit 1
+    ;;
+esac
+\hrule
+
+
+\item \$ vim /etc/rc.d/rc.local\\
+\label{sec-2.3.4.3.3.2}
+
+\hrule
+su -c ``bash /var/rails/uniqlo/script/unicorn.sh start'' - mruby
+\hrule
+
+
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+
+\item 言語, 文言変更\\
+\label{sec-2.3.4.4}
+
+./config/locate
+
+文言変更依頼は、沼沢で対応。
+(実施不可の時は要相談だな)
+
+
+\item basic認証\\
+\label{sec-2.3.4.5}
+
+
+\begin{itemize}
+\item setting file
+  ./config/setting.yml
+\item 無効化する場合
+  ./app/controller/influencer$_{\mathrm{profiles}}$$_{\mathrm{controller}}$.rb
+\end{itemize}
+\end{itemize} % ends low level
+\subsubsection{Keywords}
+\label{sec-2.3.5}
+
+
+tagboard
+
+\section{Inner Projects Mruby}
+\label{sec-3}
+
+\subsection{HW}
+\label{sec-3.1}
+
+STM3240G
+Wi-SUN
+
+\subsection{SW}
+\label{sec-3.2}
+
+mruby
+Wi-Sun driver  (900M Hlz)
+シリアル driver
+
+\subsection{etc}
+\label{sec-3.3}
+
+Raspberry Pi
+
+\subsection{game作成}
+\label{sec-3.4}
+
+\subsubsection{Wi-SUNの強みは?}
+\label{sec-3.4.1}
+
+物理レイヤーで、ある程度の距離で通信できるメリットは?
+何に応用できるか
+\subsubsection{何をつくる?}
+\label{sec-3.4.2}
+
+\subsubsection{商用?}
+\label{sec-3.4.3}
+
+\subsubsection{ドラゴンレーダー / スカウター}
+\label{sec-3.4.4}
+
+\subsection{sakura server}
+\label{sec-3.5}
+
+\subsubsection{eth}
+\label{sec-3.5.1}
+
+\begin{itemize}
+\item eth3つ存在する?
+    今後の帯域を考えた時に、分離して利用するべき。
+\item 契約上、3interface存在する
+  未接続状態。
+  how to use.
+\end{itemize}
+\subsubsection{mruby}
+\label{sec-3.5.2}
+
+mrubyもsakuraでgitlabで管理
+
+\section{personal info}
+\label{sec-4}
+
+\subsection{ruby社}
+\label{sec-4.1}
+
+210.128.101.38
+\section{Mondo}
+\label{sec-5}
+
+\subsection{\textbf{TODO} nginx security 調査}
+\label{sec-5.1}
+
+調べて行こう
+
+\end{document}

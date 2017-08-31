@@ -1,0 +1,44 @@
+'use strict';
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+const Embed = require('../embed/mongoose.js')
+const kue = require('kue');
+let jobs = kue.createQueue();
+
+const metaphor = require('metaphor');
+const link_extractor = require('../embed/link_extractor.js');
+const co = require('co');
+
+
+
+class Scrape_worker {
+    run() {
+        jobs.process('web_scrape', 1, (job, done) => {
+            let links = link_extractor.find_links(job.data.text);
+
+            if (links == null) {
+                // TODO : error
+                done();
+                return;
+            }
+
+            let engine = new metaphor.Engine({providers:true, preview:true})
+            engine.describe(links[0].href, (site_datas) => {
+                if (site_datas.sources === undefined) {
+                    done(null, job.data);
+                    return
+                }
+
+                Embed.create(site_datas).then( (res) => {
+                    console.log(res)
+                    done(null, site_datas);
+                })
+            })
+        });
+    }
+}
+
+
+const worker = new Scrape_worker;
+worker.run();

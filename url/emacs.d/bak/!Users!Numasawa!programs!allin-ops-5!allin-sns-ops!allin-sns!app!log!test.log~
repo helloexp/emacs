@@ -1,0 +1,3516 @@
+[2016-04-22 08:09:27.874] [DEBUG] [default] - ALL-IN SNS Server running at http://localhost:5000
+[2016-04-22 08:09:27.903] [DEBUG] [default] - Connected to MongoDB
+[2016-04-22 08:09:28.127] [DEBUG] [default] - WS:feed [/sns#oXpjLoxCPgSRAdABAAAA] CONNECTING
+[2016-04-22 08:09:28.170] [DEBUG] [default] - SOCKET [/sns#oXpjLoxCPgSRAdABAAAA] AUTHENTICATING
+[2016-04-22 08:09:28.170] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:28.176] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:28.184] [DEBUG] [default] - SOCKET [/sns#oXpjLoxCPgSRAdABAAAA] AUTHENTICATED
+[2016-04-22 08:09:28.202] [DEBUG] [default] - [ReferenceError: ur is not defined]
+ReferenceError: ur is not defined
+    at /vagrant/allin-sns/app/spec/lib/request.js:91:41
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/request.js:82:13
+    at Ws.post (/vagrant/allin-sns/app/spec/lib/request.js:79:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:108:21)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at process._tickDomainCallback (node.js:444:9)
+[2016-04-22 08:09:29.203] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:09:29.204] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:110:26)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:09:29.364] [DEBUG] [default] - WS:feed [/sns#ddX4zibYWMQzFVuBAAAB] CONNECTING
+[2016-04-22 08:09:29.436] [DEBUG] [default] - SOCKET [/sns#ddX4zibYWMQzFVuBAAAB] AUTHENTICATING
+[2016-04-22 08:09:29.436] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:29.438] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:29.449] [DEBUG] [default] - SOCKET [/sns#ddX4zibYWMQzFVuBAAAB] AUTHENTICATED
+[2016-04-22 08:09:29.511] [DEBUG] [default] - WS:feed [/sns#RQmoz0H6hqcv8n8-AAAC] CONNECTING
+[2016-04-22 08:09:29.538] [DEBUG] [default] - SOCKET [/sns#RQmoz0H6hqcv8n8-AAAC] AUTHENTICATING
+[2016-04-22 08:09:29.539] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:29.541] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:29.549] [DEBUG] [default] - SOCKET [/sns#RQmoz0H6hqcv8n8-AAAC] AUTHENTICATED
+[2016-04-22 08:09:29.638] [DEBUG] [default] - WS:feed [/sns#02dJWxww22kQ5ph7AAAD] CONNECTING
+[2016-04-22 08:09:29.682] [DEBUG] [default] - SOCKET [/sns#02dJWxww22kQ5ph7AAAD] AUTHENTICATING
+[2016-04-22 08:09:29.682] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:29.683] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:29.706] [DEBUG] [default] - SOCKET [/sns#02dJWxww22kQ5ph7AAAD] AUTHENTICATED
+[2016-04-22 08:09:29.712] [DEBUG] [default] - [ReferenceError: ur is not defined]
+ReferenceError: ur is not defined
+    at /vagrant/allin-sns/app/spec/lib/request.js:91:41
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/request.js:82:13
+    at Ws.post (/vagrant/allin-sns/app/spec/lib/request.js:79:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:137:21)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at process._tickDomainCallback (node.js:444:9)
+[2016-04-22 08:09:30.711] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:09:30.712] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:09:30.712] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:09:30.713] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:141:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:09:30.713] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:141:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:09:30.714] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:141:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:09:30.714] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:141:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:09:30.842] [DEBUG] [default] - WS:feed [/sns#-pCnCn-VthZJnJdaAAAE] CONNECTING
+[2016-04-22 08:09:30.866] [DEBUG] [default] - SOCKET [/sns#-pCnCn-VthZJnJdaAAAE] AUTHENTICATING
+[2016-04-22 08:09:30.866] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:30.867] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:30.872] [DEBUG] [default] - SOCKET [/sns#-pCnCn-VthZJnJdaAAAE] AUTHENTICATED
+[2016-04-22 08:09:30.910] [DEBUG] [default] - WS:feed [/sns#JJR54nWjw7B7Ar0lAAAF] CONNECTING
+[2016-04-22 08:09:30.933] [DEBUG] [default] - SOCKET [/sns#JJR54nWjw7B7Ar0lAAAF] AUTHENTICATING
+[2016-04-22 08:09:30.933] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:30.935] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:30.942] [DEBUG] [default] - SOCKET [/sns#JJR54nWjw7B7Ar0lAAAF] AUTHENTICATED
+[2016-04-22 08:09:30.951] [DEBUG] [default] - [ReferenceError: ur is not defined]
+ReferenceError: ur is not defined
+    at /vagrant/allin-sns/app/spec/lib/request.js:91:41
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/request.js:82:13
+    at Ws.post (/vagrant/allin-sns/app/spec/lib/request.js:79:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:158:21)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at process._tickDomainCallback (node.js:444:9)
+[2016-04-22 08:09:31.951] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:09:31.953] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:162:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:09:31.954] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:162:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:09:32.064] [DEBUG] [default] - WS:feed [/sns#PoIu-R0ddDg68DhxAAAG] CONNECTING
+[2016-04-22 08:09:32.103] [DEBUG] [default] - SOCKET [/sns#PoIu-R0ddDg68DhxAAAG] AUTHENTICATING
+[2016-04-22 08:09:32.104] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:32.105] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:32.116] [DEBUG] [default] - SOCKET [/sns#PoIu-R0ddDg68DhxAAAG] AUTHENTICATED
+[2016-04-22 08:09:32.164] [DEBUG] [default] - WS:feed [/sns#7vK3V00QV2o3H3cFAAAH] CONNECTING
+[2016-04-22 08:09:32.185] [DEBUG] [default] - SOCKET [/sns#7vK3V00QV2o3H3cFAAAH] AUTHENTICATING
+[2016-04-22 08:09:32.185] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:32.185] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:32.194] [DEBUG] [default] - SOCKET [/sns#7vK3V00QV2o3H3cFAAAH] AUTHENTICATED
+[2016-04-22 08:09:32.207] [DEBUG] [default] - [ReferenceError: ur is not defined]
+ReferenceError: ur is not defined
+    at /vagrant/allin-sns/app/spec/lib/request.js:91:41
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/request.js:82:13
+    at Ws.post (/vagrant/allin-sns/app/spec/lib/request.js:79:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:179:21)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at process._tickDomainCallback (node.js:444:9)
+[2016-04-22 08:09:32.220] [DEBUG] [default] - SOCKET [/sns#7vK3V00QV2o3H3cFAAAH] DISCONNECTED
+[2016-04-22 08:09:33.208] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:09:33.208] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:183:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:09:33.209] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:183:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:09:33.308] [DEBUG] [default] - WS:feed [/sns#CkJFiHofbbC_ojrUAAAI] CONNECTING
+[2016-04-22 08:09:33.329] [DEBUG] [default] - SOCKET [/sns#CkJFiHofbbC_ojrUAAAI] AUTHENTICATING
+[2016-04-22 08:09:33.329] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:33.330] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:33.335] [DEBUG] [default] - SOCKET [/sns#CkJFiHofbbC_ojrUAAAI] AUTHENTICATED
+[2016-04-22 08:09:33.534] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:33.535] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:33.537] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:33.537] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:33.538] [DEBUG] [default] - route:root
+[2016-04-22 08:09:33.538] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:33.549] [DEBUG] [default] - Feed:update
+[2016-04-22 08:09:33.550] [DEBUG] [default] - send data: {
+ "id": "5719dc3da951f5605cb7e41c",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:09:33.212Z",
+ "updated_at": "2016-04-22T08:09:33.539Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dc3da951f5605cb7e41e",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.213Z",
+   "updated_at": "2016-04-22T08:09:33.213Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e41c"
+  },
+  {
+   "id": "5719dc3da951f5605cb7e41f",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.213Z",
+   "updated_at": "2016-04-22T08:09:33.213Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e41c"
+  },
+  {
+   "id": "5719dc3da951f5605cb7e41d",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.212Z",
+   "updated_at": "2016-04-22T08:09:33.212Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e41c"
+  },
+  {
+   "id": "5719dc3da951f5605cb7e420",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.213Z",
+   "updated_at": "2016-04-22T08:09:33.213Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e41c"
+  },
+  {
+   "id": "5719dc3da951f5605cb7e421",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.213Z",
+   "updated_at": "2016-04-22T08:09:33.213Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e41c"
+  }
+ ]
+}
+[2016-04-22 08:09:33.562] [INFO] [default] - [0mPUT /api/v1/feeds/5719dc3da951f5605cb7e41c?group_id=__all__ [32m200 [0m16.996 ms - 1512[0m
+
+[2016-04-22 08:09:33.596] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:33.597] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:33.600] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:33.600] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:33.600] [DEBUG] [default] - route:root
+[2016-04-22 08:09:33.601] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:33.608] [DEBUG] [default] - Feed:update
+[2016-04-22 08:09:33.609] [DEBUG] [default] - send data: {
+ "id": "5719dc3da951f5605cb7e41c",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:09:33.212Z",
+ "updated_at": "2016-04-22T08:09:33.602Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dc3da951f5605cb7e41e",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.213Z",
+   "updated_at": "2016-04-22T08:09:33.213Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e41c"
+  },
+  {
+   "id": "5719dc3da951f5605cb7e41f",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.213Z",
+   "updated_at": "2016-04-22T08:09:33.213Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e41c"
+  },
+  {
+   "id": "5719dc3da951f5605cb7e41d",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.212Z",
+   "updated_at": "2016-04-22T08:09:33.212Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e41c"
+  },
+  {
+   "id": "5719dc3da951f5605cb7e420",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.213Z",
+   "updated_at": "2016-04-22T08:09:33.213Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e41c"
+  },
+  {
+   "id": "5719dc3da951f5605cb7e421",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.213Z",
+   "updated_at": "2016-04-22T08:09:33.213Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e41c"
+  }
+ ]
+}
+[2016-04-22 08:09:33.611] [INFO] [default] - [0mPUT /api/v1/feeds/5719dc3da951f5605cb7e41c?group_id=__all__ [32m200 [0m11.963 ms - 1512[0m
+
+[2016-04-22 08:09:33.639] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:33.640] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:33.641] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:33.641] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:33.641] [DEBUG] [default] - route:root
+[2016-04-22 08:09:33.641] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:33.649] [DEBUG] [default] - Feed:update
+[2016-04-22 08:09:33.650] [DEBUG] [default] - send data: {
+ "id": "5719dc3da951f5605cb7e41c",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:09:33.212Z",
+ "updated_at": "2016-04-22T08:09:33.641Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dc3da951f5605cb7e41e",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.213Z",
+   "updated_at": "2016-04-22T08:09:33.213Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e41c"
+  },
+  {
+   "id": "5719dc3da951f5605cb7e41f",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.213Z",
+   "updated_at": "2016-04-22T08:09:33.213Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e41c"
+  },
+  {
+   "id": "5719dc3da951f5605cb7e41d",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.212Z",
+   "updated_at": "2016-04-22T08:09:33.212Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e41c"
+  },
+  {
+   "id": "5719dc3da951f5605cb7e420",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.213Z",
+   "updated_at": "2016-04-22T08:09:33.213Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e41c"
+  },
+  {
+   "id": "5719dc3da951f5605cb7e421",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.213Z",
+   "updated_at": "2016-04-22T08:09:33.213Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e41c"
+  }
+ ]
+}
+[2016-04-22 08:09:33.652] [INFO] [default] - [0mPUT /api/v1/feeds/5719dc3da951f5605cb7e41c?group_id=__all__ [32m200 [0m9.753 ms - 1512[0m
+
+[2016-04-22 08:09:33.659] [DEBUG] [default] - SOCKET [/sns#CkJFiHofbbC_ojrUAAAI] DISCONNECTED
+[2016-04-22 08:09:33.755] [DEBUG] [default] - WS:feed [/sns#GgZhByV31x61d2f2AAAJ] CONNECTING
+[2016-04-22 08:09:33.776] [DEBUG] [default] - SOCKET [/sns#GgZhByV31x61d2f2AAAJ] AUTHENTICATING
+[2016-04-22 08:09:33.776] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:33.779] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:33.785] [DEBUG] [default] - SOCKET [/sns#GgZhByV31x61d2f2AAAJ] AUTHENTICATED
+[2016-04-22 08:09:33.828] [DEBUG] [default] - WS:feed [/sns#PrBHVLHks69mZmeTAAAK] CONNECTING
+[2016-04-22 08:09:33.850] [DEBUG] [default] - SOCKET [/sns#PrBHVLHks69mZmeTAAAK] AUTHENTICATING
+[2016-04-22 08:09:33.850] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:33.851] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:33.857] [DEBUG] [default] - SOCKET [/sns#PrBHVLHks69mZmeTAAAK] AUTHENTICATED
+[2016-04-22 08:09:33.908] [DEBUG] [default] - WS:feed [/sns#Q2hgIb9cbNa7ci-EAAAL] CONNECTING
+[2016-04-22 08:09:33.945] [DEBUG] [default] - SOCKET [/sns#Q2hgIb9cbNa7ci-EAAAL] AUTHENTICATING
+[2016-04-22 08:09:33.945] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:33.946] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:33.966] [DEBUG] [default] - SOCKET [/sns#Q2hgIb9cbNa7ci-EAAAL] AUTHENTICATED
+[2016-04-22 08:09:34.016] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:34.016] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:34.017] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:34.017] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:34.017] [DEBUG] [default] - route:root
+[2016-04-22 08:09:34.017] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:34.027] [DEBUG] [default] - Feed:update
+[2016-04-22 08:09:34.028] [DEBUG] [default] - send data: {
+ "id": "5719dc3da951f5605cb7e460",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:09:33.660Z",
+ "updated_at": "2016-04-22T08:09:34.017Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dc3da951f5605cb7e464",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.662Z",
+   "updated_at": "2016-04-22T08:09:33.662Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e460"
+  },
+  {
+   "id": "5719dc3da951f5605cb7e465",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.662Z",
+   "updated_at": "2016-04-22T08:09:33.662Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e460"
+  },
+  {
+   "id": "5719dc3da951f5605cb7e461",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.661Z",
+   "updated_at": "2016-04-22T08:09:33.661Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e460"
+  },
+  {
+   "id": "5719dc3da951f5605cb7e462",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.661Z",
+   "updated_at": "2016-04-22T08:09:33.661Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e460"
+  },
+  {
+   "id": "5719dc3da951f5605cb7e463",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:33.661Z",
+   "updated_at": "2016-04-22T08:09:33.661Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3da951f5605cb7e460"
+  }
+ ]
+}
+[2016-04-22 08:09:34.030] [INFO] [default] - [0mPUT /api/v1/feeds/5719dc3da951f5605cb7e460?group_id=__all__ [32m200 [0m11.418 ms - 1512[0m
+
+[2016-04-22 08:09:34.111] [DEBUG] [default] - SOCKET [/sns#GgZhByV31x61d2f2AAAJ] DISCONNECTED
+[2016-04-22 08:09:34.113] [DEBUG] [default] - SOCKET [/sns#PrBHVLHks69mZmeTAAAK] DISCONNECTED
+[2016-04-22 08:09:34.113] [DEBUG] [default] - SOCKET [/sns#Q2hgIb9cbNa7ci-EAAAL] DISCONNECTED
+[2016-04-22 08:09:34.150] [DEBUG] [default] - WS:feed [/sns#yDzyypekcCIb5EXCAAAM] CONNECTING
+[2016-04-22 08:09:34.167] [DEBUG] [default] - SOCKET [/sns#yDzyypekcCIb5EXCAAAM] AUTHENTICATING
+[2016-04-22 08:09:34.167] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:34.170] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:34.179] [DEBUG] [default] - SOCKET [/sns#yDzyypekcCIb5EXCAAAM] AUTHENTICATED
+[2016-04-22 08:09:34.216] [DEBUG] [default] - WS:feed [/sns#MWSbZVFAQFjZidvWAAAN] CONNECTING
+[2016-04-22 08:09:34.234] [DEBUG] [default] - SOCKET [/sns#MWSbZVFAQFjZidvWAAAN] AUTHENTICATING
+[2016-04-22 08:09:34.234] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:34.236] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:34.246] [DEBUG] [default] - SOCKET [/sns#MWSbZVFAQFjZidvWAAAN] AUTHENTICATED
+[2016-04-22 08:09:34.371] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:34.372] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:34.373] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:34.373] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:34.373] [DEBUG] [default] - route:root
+[2016-04-22 08:09:34.373] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:34.380] [DEBUG] [default] - Feed:update
+[2016-04-22 08:09:34.383] [DEBUG] [default] - send data: {
+ "id": "5719dc3ea951f5605cb7e4a4",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:09:34.046Z",
+ "updated_at": "2016-04-22T08:09:34.373Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dc3ea951f5605cb7e4a5",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:34.046Z",
+   "updated_at": "2016-04-22T08:09:34.046Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3ea951f5605cb7e4a4"
+  },
+  {
+   "id": "5719dc3ea951f5605cb7e4a6",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:34.047Z",
+   "updated_at": "2016-04-22T08:09:34.047Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3ea951f5605cb7e4a4"
+  },
+  {
+   "id": "5719dc3ea951f5605cb7e4a7",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:34.047Z",
+   "updated_at": "2016-04-22T08:09:34.047Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3ea951f5605cb7e4a4"
+  },
+  {
+   "id": "5719dc3ea951f5605cb7e4a8",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:34.047Z",
+   "updated_at": "2016-04-22T08:09:34.047Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3ea951f5605cb7e4a4"
+  },
+  {
+   "id": "5719dc3ea951f5605cb7e4a9",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:34.048Z",
+   "updated_at": "2016-04-22T08:09:34.048Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3ea951f5605cb7e4a4"
+  }
+ ]
+}
+[2016-04-22 08:09:34.386] [INFO] [default] - [0mPUT /api/v1/feeds/5719dc3ea951f5605cb7e4a4?group_id=__all__ [32m200 [0m9.101 ms - 1512[0m
+
+[2016-04-22 08:09:35.317] [DEBUG] [default] - SOCKET [/sns#yDzyypekcCIb5EXCAAAM] DISCONNECTED
+[2016-04-22 08:09:35.317] [DEBUG] [default] - SOCKET [/sns#MWSbZVFAQFjZidvWAAAN] DISCONNECTED
+[2016-04-22 08:09:35.358] [DEBUG] [default] - WS:feed [/sns#DJ8U7wwUBeO_08p5AAAO] CONNECTING
+[2016-04-22 08:09:35.384] [DEBUG] [default] - SOCKET [/sns#DJ8U7wwUBeO_08p5AAAO] AUTHENTICATING
+[2016-04-22 08:09:35.385] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:35.385] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:35.389] [DEBUG] [default] - SOCKET [/sns#DJ8U7wwUBeO_08p5AAAO] AUTHENTICATED
+[2016-04-22 08:09:35.424] [DEBUG] [default] - WS:feed [/sns#gKPo_SJVGa8V5AjqAAAP] CONNECTING
+[2016-04-22 08:09:35.442] [DEBUG] [default] - SOCKET [/sns#gKPo_SJVGa8V5AjqAAAP] AUTHENTICATING
+[2016-04-22 08:09:35.442] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:35.444] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:35.449] [DEBUG] [default] - SOCKET [/sns#gKPo_SJVGa8V5AjqAAAP] AUTHENTICATED
+[2016-04-22 08:09:35.461] [DEBUG] [default] - SOCKET [/sns#gKPo_SJVGa8V5AjqAAAP] DISCONNECTED
+[2016-04-22 08:09:35.571] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:35.572] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:35.573] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:35.573] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:35.573] [DEBUG] [default] - route:root
+[2016-04-22 08:09:35.573] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:35.578] [DEBUG] [default] - Feed:update
+[2016-04-22 08:09:35.580] [DEBUG] [default] - send data: {
+ "id": "5719dc3fa951f5605cb7e4e7",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:09:35.261Z",
+ "updated_at": "2016-04-22T08:09:35.573Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dc3fa951f5605cb7e4eb",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:35.264Z",
+   "updated_at": "2016-04-22T08:09:35.264Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3fa951f5605cb7e4e7"
+  },
+  {
+   "id": "5719dc3fa951f5605cb7e4ec",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:35.264Z",
+   "updated_at": "2016-04-22T08:09:35.264Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3fa951f5605cb7e4e7"
+  },
+  {
+   "id": "5719dc3fa951f5605cb7e4e8",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:35.262Z",
+   "updated_at": "2016-04-22T08:09:35.262Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3fa951f5605cb7e4e7"
+  },
+  {
+   "id": "5719dc3fa951f5605cb7e4e9",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:35.263Z",
+   "updated_at": "2016-04-22T08:09:35.263Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3fa951f5605cb7e4e7"
+  },
+  {
+   "id": "5719dc3fa951f5605cb7e4ea",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:35.263Z",
+   "updated_at": "2016-04-22T08:09:35.263Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc3fa951f5605cb7e4e7"
+  }
+ ]
+}
+[2016-04-22 08:09:35.583] [INFO] [default] - [0mPUT /api/v1/feeds/5719dc3fa951f5605cb7e4e7?group_id=__all__ [32m200 [0m8.013 ms - 1512[0m
+
+[2016-04-22 08:09:36.461] [DEBUG] [default] - SOCKET [/sns#DJ8U7wwUBeO_08p5AAAO] DISCONNECTED
+[2016-04-22 08:09:36.574] [DEBUG] [default] - WS:feed [/sns#Kf6Q0RNEKPUMwwZmAAAQ] CONNECTING
+[2016-04-22 08:09:36.602] [DEBUG] [default] - SOCKET [/sns#Kf6Q0RNEKPUMwwZmAAAQ] AUTHENTICATING
+[2016-04-22 08:09:36.602] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:36.604] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:36.613] [DEBUG] [default] - SOCKET [/sns#Kf6Q0RNEKPUMwwZmAAAQ] AUTHENTICATED
+[2016-04-22 08:09:36.795] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:36.795] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:36.796] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:36.796] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:36.796] [DEBUG] [default] - route:root
+[2016-04-22 08:09:36.796] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:36.807] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:09:36.807] [DEBUG] [default] - send data: {
+ "id": "5719dc40a951f5605cb7e52a"
+}
+[2016-04-22 08:09:36.811] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dc40a951f5605cb7e52a?group_id=__all__ [32m200 [0m12.530 ms - 33[0m
+
+[2016-04-22 08:09:36.828] [DEBUG] [default] - null
+[2016-04-22 08:09:36.829] [DEBUG] [default] - null
+[2016-04-22 08:09:36.833] [DEBUG] [default] - null
+[2016-04-22 08:09:36.834] [DEBUG] [default] - null
+[2016-04-22 08:09:36.834] [DEBUG] [default] - null
+[2016-04-22 08:09:36.878] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:36.878] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:36.879] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:36.880] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:36.880] [DEBUG] [default] - route:root
+[2016-04-22 08:09:36.880] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:36.884] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:09:36.884] [DEBUG] [default] - send data: {
+ "id": "5719dc40a951f5605cb7e530"
+}
+[2016-04-22 08:09:36.885] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dc40a951f5605cb7e530?group_id=__all__ [32m200 [0m5.344 ms - 33[0m
+
+[2016-04-22 08:09:36.897] [DEBUG] [default] - null
+[2016-04-22 08:09:36.898] [DEBUG] [default] - null
+[2016-04-22 08:09:36.900] [DEBUG] [default] - null
+[2016-04-22 08:09:36.901] [DEBUG] [default] - null
+[2016-04-22 08:09:36.901] [DEBUG] [default] - null
+[2016-04-22 08:09:36.918] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:36.918] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:36.919] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:36.919] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:36.919] [DEBUG] [default] - route:root
+[2016-04-22 08:09:36.919] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:36.922] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:09:36.922] [DEBUG] [default] - send data: {
+ "id": "5719dc40a951f5605cb7e536"
+}
+[2016-04-22 08:09:36.925] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dc40a951f5605cb7e536?group_id=__all__ [32m200 [0m4.688 ms - 33[0m
+
+[2016-04-22 08:09:36.944] [DEBUG] [default] - null
+[2016-04-22 08:09:36.945] [DEBUG] [default] - null
+[2016-04-22 08:09:36.945] [DEBUG] [default] - null
+[2016-04-22 08:09:36.946] [DEBUG] [default] - SOCKET [/sns#Kf6Q0RNEKPUMwwZmAAAQ] DISCONNECTED
+[2016-04-22 08:09:36.946] [DEBUG] [default] - null
+[2016-04-22 08:09:36.946] [DEBUG] [default] - null
+[2016-04-22 08:09:37.125] [DEBUG] [default] - WS:feed [/sns#GnFIbJgDSDD6_DtfAAAR] CONNECTING
+[2016-04-22 08:09:37.145] [DEBUG] [default] - SOCKET [/sns#GnFIbJgDSDD6_DtfAAAR] AUTHENTICATING
+[2016-04-22 08:09:37.146] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:37.149] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:37.155] [DEBUG] [default] - SOCKET [/sns#GnFIbJgDSDD6_DtfAAAR] AUTHENTICATED
+[2016-04-22 08:09:37.204] [DEBUG] [default] - WS:feed [/sns#X8aIqQXb1ce_314GAAAS] CONNECTING
+[2016-04-22 08:09:37.226] [DEBUG] [default] - SOCKET [/sns#X8aIqQXb1ce_314GAAAS] AUTHENTICATING
+[2016-04-22 08:09:37.226] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:37.227] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:37.236] [DEBUG] [default] - SOCKET [/sns#X8aIqQXb1ce_314GAAAS] AUTHENTICATED
+[2016-04-22 08:09:37.291] [DEBUG] [default] - WS:feed [/sns#EwprWSIIROAnIGkIAAAT] CONNECTING
+[2016-04-22 08:09:37.334] [DEBUG] [default] - SOCKET [/sns#EwprWSIIROAnIGkIAAAT] AUTHENTICATING
+[2016-04-22 08:09:37.335] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:37.338] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:37.355] [DEBUG] [default] - SOCKET [/sns#EwprWSIIROAnIGkIAAAT] AUTHENTICATED
+[2016-04-22 08:09:37.398] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:37.399] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:37.400] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:37.400] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:37.400] [DEBUG] [default] - route:root
+[2016-04-22 08:09:37.400] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:37.405] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:09:37.405] [DEBUG] [default] - send data: {
+ "id": "5719dc40a951f5605cb7e56e"
+}
+[2016-04-22 08:09:37.406] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dc40a951f5605cb7e56e?group_id=__all__ [32m200 [0m6.423 ms - 33[0m
+
+[2016-04-22 08:09:37.421] [DEBUG] [default] - null
+[2016-04-22 08:09:37.422] [DEBUG] [default] - null
+[2016-04-22 08:09:37.422] [DEBUG] [default] - null
+[2016-04-22 08:09:37.423] [DEBUG] [default] - SOCKET [/sns#GnFIbJgDSDD6_DtfAAAR] DISCONNECTED
+[2016-04-22 08:09:37.423] [DEBUG] [default] - SOCKET [/sns#X8aIqQXb1ce_314GAAAS] DISCONNECTED
+[2016-04-22 08:09:37.423] [DEBUG] [default] - SOCKET [/sns#EwprWSIIROAnIGkIAAAT] DISCONNECTED
+[2016-04-22 08:09:37.424] [DEBUG] [default] - null
+[2016-04-22 08:09:37.424] [DEBUG] [default] - null
+[2016-04-22 08:09:37.551] [DEBUG] [default] - WS:feed [/sns#meCjiWw16W4YFAJLAAAU] CONNECTING
+[2016-04-22 08:09:37.578] [DEBUG] [default] - SOCKET [/sns#meCjiWw16W4YFAJLAAAU] AUTHENTICATING
+[2016-04-22 08:09:37.578] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:37.582] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:37.587] [DEBUG] [default] - SOCKET [/sns#meCjiWw16W4YFAJLAAAU] AUTHENTICATED
+[2016-04-22 08:09:37.626] [DEBUG] [default] - WS:feed [/sns#QOjLqT0I57EQtBOiAAAV] CONNECTING
+[2016-04-22 08:09:37.646] [DEBUG] [default] - SOCKET [/sns#QOjLqT0I57EQtBOiAAAV] AUTHENTICATING
+[2016-04-22 08:09:37.646] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:37.648] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:37.653] [DEBUG] [default] - SOCKET [/sns#QOjLqT0I57EQtBOiAAAV] AUTHENTICATED
+[2016-04-22 08:09:37.786] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:37.787] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:37.788] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:37.788] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:37.788] [DEBUG] [default] - route:root
+[2016-04-22 08:09:37.788] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:37.793] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:09:37.793] [DEBUG] [default] - send data: {
+ "id": "5719dc41a951f5605cb7e5b2"
+}
+[2016-04-22 08:09:37.795] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dc41a951f5605cb7e5b2?group_id=__all__ [32m200 [0m8.284 ms - 33[0m
+
+[2016-04-22 08:09:37.805] [DEBUG] [default] - null
+[2016-04-22 08:09:37.806] [DEBUG] [default] - null
+[2016-04-22 08:09:37.807] [DEBUG] [default] - null
+[2016-04-22 08:09:37.807] [DEBUG] [default] - null
+[2016-04-22 08:09:37.807] [DEBUG] [default] - null
+[2016-04-22 08:09:38.720] [DEBUG] [default] - SOCKET [/sns#meCjiWw16W4YFAJLAAAU] DISCONNECTED
+[2016-04-22 08:09:38.721] [DEBUG] [default] - SOCKET [/sns#QOjLqT0I57EQtBOiAAAV] DISCONNECTED
+[2016-04-22 08:09:38.759] [DEBUG] [default] - WS:feed [/sns#jYFOy3tnWqpVYLuxAAAW] CONNECTING
+[2016-04-22 08:09:38.777] [DEBUG] [default] - SOCKET [/sns#jYFOy3tnWqpVYLuxAAAW] AUTHENTICATING
+[2016-04-22 08:09:38.777] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:38.779] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:38.786] [DEBUG] [default] - SOCKET [/sns#jYFOy3tnWqpVYLuxAAAW] AUTHENTICATED
+[2016-04-22 08:09:38.825] [DEBUG] [default] - WS:feed [/sns#Ay-RGiaWdScShPJJAAAX] CONNECTING
+[2016-04-22 08:09:38.842] [DEBUG] [default] - SOCKET [/sns#Ay-RGiaWdScShPJJAAAX] AUTHENTICATING
+[2016-04-22 08:09:38.842] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:38.843] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:38.856] [DEBUG] [default] - SOCKET [/sns#Ay-RGiaWdScShPJJAAAX] AUTHENTICATED
+[2016-04-22 08:09:38.872] [DEBUG] [default] - SOCKET [/sns#Ay-RGiaWdScShPJJAAAX] DISCONNECTED
+[2016-04-22 08:09:39.003] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:39.006] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:39.007] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:39.007] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:39.007] [DEBUG] [default] - route:root
+[2016-04-22 08:09:39.007] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:39.012] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:09:39.012] [DEBUG] [default] - send data: {
+ "id": "5719dc42a951f5605cb7e5f5"
+}
+[2016-04-22 08:09:39.013] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dc42a951f5605cb7e5f5?group_id=__all__ [32m200 [0m8.006 ms - 33[0m
+
+[2016-04-22 08:09:39.023] [DEBUG] [default] - null
+[2016-04-22 08:09:39.023] [DEBUG] [default] - null
+[2016-04-22 08:09:39.024] [DEBUG] [default] - null
+[2016-04-22 08:09:39.025] [DEBUG] [default] - null
+[2016-04-22 08:09:39.025] [DEBUG] [default] - null
+[2016-04-22 08:09:39.870] [DEBUG] [default] - SOCKET [/sns#jYFOy3tnWqpVYLuxAAAW] DISCONNECTED
+[2016-04-22 08:09:45.011] [DEBUG] [default] - ALL-IN SNS Server running at http://localhost:5000
+[2016-04-22 08:09:45.056] [DEBUG] [default] - Connected to MongoDB
+[2016-04-22 08:09:45.315] [DEBUG] [default] - WS:feed [/sns#iPq0lo3ORTvVzLsCAAAA] CONNECTING
+[2016-04-22 08:09:45.355] [DEBUG] [default] - SOCKET [/sns#iPq0lo3ORTvVzLsCAAAA] AUTHENTICATING
+[2016-04-22 08:09:45.355] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:45.360] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:45.379] [DEBUG] [default] - SOCKET [/sns#iPq0lo3ORTvVzLsCAAAA] AUTHENTICATED
+[2016-04-22 08:09:45.395] [DEBUG] [default] - [ReferenceError: ur is not defined]
+ReferenceError: ur is not defined
+    at /vagrant/allin-sns/app/spec/lib/request.js:91:41
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/request.js:82:13
+    at Ws.post (/vagrant/allin-sns/app/spec/lib/request.js:79:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:108:21)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at process._tickDomainCallback (node.js:444:9)
+[2016-04-22 08:09:46.398] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:09:46.399] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:110:26)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:09:46.544] [DEBUG] [default] - WS:feed [/sns#anM10rWleJL7CiK3AAAB] CONNECTING
+[2016-04-22 08:09:46.588] [DEBUG] [default] - SOCKET [/sns#anM10rWleJL7CiK3AAAB] AUTHENTICATING
+[2016-04-22 08:09:46.589] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:46.589] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:46.595] [DEBUG] [default] - SOCKET [/sns#anM10rWleJL7CiK3AAAB] AUTHENTICATED
+[2016-04-22 08:09:46.636] [DEBUG] [default] - WS:feed [/sns#auwKgReoadMe1Yd_AAAC] CONNECTING
+[2016-04-22 08:09:46.667] [DEBUG] [default] - SOCKET [/sns#auwKgReoadMe1Yd_AAAC] AUTHENTICATING
+[2016-04-22 08:09:46.667] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:46.668] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:46.673] [DEBUG] [default] - SOCKET [/sns#auwKgReoadMe1Yd_AAAC] AUTHENTICATED
+[2016-04-22 08:09:46.740] [DEBUG] [default] - WS:feed [/sns#eiOP62UC2oOnMCryAAAD] CONNECTING
+[2016-04-22 08:09:46.774] [DEBUG] [default] - SOCKET [/sns#eiOP62UC2oOnMCryAAAD] AUTHENTICATING
+[2016-04-22 08:09:46.774] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:46.775] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:46.789] [DEBUG] [default] - SOCKET [/sns#eiOP62UC2oOnMCryAAAD] AUTHENTICATED
+[2016-04-22 08:09:46.796] [DEBUG] [default] - [ReferenceError: ur is not defined]
+ReferenceError: ur is not defined
+    at /vagrant/allin-sns/app/spec/lib/request.js:91:41
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/request.js:82:13
+    at Ws.post (/vagrant/allin-sns/app/spec/lib/request.js:79:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:137:21)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at process._tickDomainCallback (node.js:444:9)
+[2016-04-22 08:09:47.796] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:09:47.796] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:09:47.796] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:09:47.797] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:141:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:09:47.797] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:141:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:09:47.797] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:141:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:09:47.798] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:141:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:09:47.914] [DEBUG] [default] - WS:feed [/sns#fhPDv-tmriL6nufzAAAE] CONNECTING
+[2016-04-22 08:09:47.939] [DEBUG] [default] - SOCKET [/sns#fhPDv-tmriL6nufzAAAE] AUTHENTICATING
+[2016-04-22 08:09:47.939] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:47.940] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:47.947] [DEBUG] [default] - SOCKET [/sns#fhPDv-tmriL6nufzAAAE] AUTHENTICATED
+[2016-04-22 08:09:47.980] [DEBUG] [default] - WS:feed [/sns#BvxRNzyG59VbtZqlAAAF] CONNECTING
+[2016-04-22 08:09:47.996] [DEBUG] [default] - SOCKET [/sns#BvxRNzyG59VbtZqlAAAF] AUTHENTICATING
+[2016-04-22 08:09:47.996] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:47.997] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:48.004] [DEBUG] [default] - SOCKET [/sns#BvxRNzyG59VbtZqlAAAF] AUTHENTICATED
+[2016-04-22 08:09:48.009] [DEBUG] [default] - [ReferenceError: ur is not defined]
+ReferenceError: ur is not defined
+    at /vagrant/allin-sns/app/spec/lib/request.js:91:41
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/request.js:82:13
+    at Ws.post (/vagrant/allin-sns/app/spec/lib/request.js:79:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:158:21)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at process._tickDomainCallback (node.js:444:9)
+[2016-04-22 08:09:49.011] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:09:49.013] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:162:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:09:49.013] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:162:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:09:49.093] [DEBUG] [default] - WS:feed [/sns#tdqkhlO1KC3D2gabAAAG] CONNECTING
+[2016-04-22 08:09:49.112] [DEBUG] [default] - SOCKET [/sns#tdqkhlO1KC3D2gabAAAG] AUTHENTICATING
+[2016-04-22 08:09:49.113] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:49.113] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:49.121] [DEBUG] [default] - SOCKET [/sns#tdqkhlO1KC3D2gabAAAG] AUTHENTICATED
+[2016-04-22 08:09:49.150] [DEBUG] [default] - WS:feed [/sns#jF_OMvvnBaXdX12oAAAH] CONNECTING
+[2016-04-22 08:09:49.163] [DEBUG] [default] - SOCKET [/sns#jF_OMvvnBaXdX12oAAAH] AUTHENTICATING
+[2016-04-22 08:09:49.163] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:49.164] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:49.167] [DEBUG] [default] - SOCKET [/sns#jF_OMvvnBaXdX12oAAAH] AUTHENTICATED
+[2016-04-22 08:09:49.172] [DEBUG] [default] - [ReferenceError: ur is not defined]
+ReferenceError: ur is not defined
+    at /vagrant/allin-sns/app/spec/lib/request.js:91:41
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/request.js:82:13
+    at Ws.post (/vagrant/allin-sns/app/spec/lib/request.js:79:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:179:21)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at process._tickDomainCallback (node.js:444:9)
+[2016-04-22 08:09:49.189] [DEBUG] [default] - SOCKET [/sns#jF_OMvvnBaXdX12oAAAH] DISCONNECTED
+[2016-04-22 08:09:50.170] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:09:50.171] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:183:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:09:50.171] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:183:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:09:50.271] [DEBUG] [default] - WS:feed [/sns#Y1TH7coK42YYAVGTAAAI] CONNECTING
+[2016-04-22 08:09:50.290] [DEBUG] [default] - SOCKET [/sns#Y1TH7coK42YYAVGTAAAI] AUTHENTICATING
+[2016-04-22 08:09:50.290] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:50.291] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:50.296] [DEBUG] [default] - SOCKET [/sns#Y1TH7coK42YYAVGTAAAI] AUTHENTICATED
+[2016-04-22 08:09:50.495] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:50.495] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:50.498] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:50.499] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:50.499] [DEBUG] [default] - route:root
+[2016-04-22 08:09:50.499] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:50.514] [DEBUG] [default] - Feed:update
+[2016-04-22 08:09:50.515] [DEBUG] [default] - send data: {
+ "id": "5719dc4edae4c1755ce46f67",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:09:50.176Z",
+ "updated_at": "2016-04-22T08:09:50.501Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dc4edae4c1755ce46f68",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.177Z",
+   "updated_at": "2016-04-22T08:09:50.177Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46f67"
+  },
+  {
+   "id": "5719dc4edae4c1755ce46f69",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.178Z",
+   "updated_at": "2016-04-22T08:09:50.178Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46f67"
+  },
+  {
+   "id": "5719dc4edae4c1755ce46f6a",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.178Z",
+   "updated_at": "2016-04-22T08:09:50.178Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46f67"
+  },
+  {
+   "id": "5719dc4edae4c1755ce46f6b",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.179Z",
+   "updated_at": "2016-04-22T08:09:50.179Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46f67"
+  },
+  {
+   "id": "5719dc4edae4c1755ce46f6c",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.179Z",
+   "updated_at": "2016-04-22T08:09:50.179Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46f67"
+  }
+ ]
+}
+[2016-04-22 08:09:50.526] [INFO] [default] - [0mPUT /api/v1/feeds/5719dc4edae4c1755ce46f67?group_id=__all__ [32m200 [0m21.244 ms - 1512[0m
+
+[2016-04-22 08:09:50.561] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:50.562] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:50.563] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:50.563] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:50.563] [DEBUG] [default] - route:root
+[2016-04-22 08:09:50.563] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:50.569] [DEBUG] [default] - Feed:update
+[2016-04-22 08:09:50.569] [DEBUG] [default] - send data: {
+ "id": "5719dc4edae4c1755ce46f67",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:09:50.176Z",
+ "updated_at": "2016-04-22T08:09:50.563Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dc4edae4c1755ce46f68",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.177Z",
+   "updated_at": "2016-04-22T08:09:50.177Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46f67"
+  },
+  {
+   "id": "5719dc4edae4c1755ce46f69",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.178Z",
+   "updated_at": "2016-04-22T08:09:50.178Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46f67"
+  },
+  {
+   "id": "5719dc4edae4c1755ce46f6a",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.178Z",
+   "updated_at": "2016-04-22T08:09:50.178Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46f67"
+  },
+  {
+   "id": "5719dc4edae4c1755ce46f6b",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.179Z",
+   "updated_at": "2016-04-22T08:09:50.179Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46f67"
+  },
+  {
+   "id": "5719dc4edae4c1755ce46f6c",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.179Z",
+   "updated_at": "2016-04-22T08:09:50.179Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46f67"
+  }
+ ]
+}
+[2016-04-22 08:09:50.572] [INFO] [default] - [0mPUT /api/v1/feeds/5719dc4edae4c1755ce46f67?group_id=__all__ [32m200 [0m7.914 ms - 1512[0m
+
+[2016-04-22 08:09:50.601] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:50.602] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:50.603] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:50.603] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:50.603] [DEBUG] [default] - route:root
+[2016-04-22 08:09:50.603] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:50.608] [DEBUG] [default] - Feed:update
+[2016-04-22 08:09:50.609] [DEBUG] [default] - send data: {
+ "id": "5719dc4edae4c1755ce46f67",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:09:50.176Z",
+ "updated_at": "2016-04-22T08:09:50.603Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dc4edae4c1755ce46f68",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.177Z",
+   "updated_at": "2016-04-22T08:09:50.177Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46f67"
+  },
+  {
+   "id": "5719dc4edae4c1755ce46f69",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.178Z",
+   "updated_at": "2016-04-22T08:09:50.178Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46f67"
+  },
+  {
+   "id": "5719dc4edae4c1755ce46f6a",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.178Z",
+   "updated_at": "2016-04-22T08:09:50.178Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46f67"
+  },
+  {
+   "id": "5719dc4edae4c1755ce46f6b",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.179Z",
+   "updated_at": "2016-04-22T08:09:50.179Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46f67"
+  },
+  {
+   "id": "5719dc4edae4c1755ce46f6c",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.179Z",
+   "updated_at": "2016-04-22T08:09:50.179Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46f67"
+  }
+ ]
+}
+[2016-04-22 08:09:50.612] [INFO] [default] - [0mPUT /api/v1/feeds/5719dc4edae4c1755ce46f67?group_id=__all__ [32m200 [0m6.864 ms - 1512[0m
+
+[2016-04-22 08:09:50.694] [DEBUG] [default] - SOCKET [/sns#Y1TH7coK42YYAVGTAAAI] DISCONNECTED
+[2016-04-22 08:09:50.706] [DEBUG] [default] - WS:feed [/sns#sbtplEwrZzsAff22AAAJ] CONNECTING
+[2016-04-22 08:09:50.727] [DEBUG] [default] - SOCKET [/sns#sbtplEwrZzsAff22AAAJ] AUTHENTICATING
+[2016-04-22 08:09:50.727] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:50.729] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:50.734] [DEBUG] [default] - SOCKET [/sns#sbtplEwrZzsAff22AAAJ] AUTHENTICATED
+[2016-04-22 08:09:50.766] [DEBUG] [default] - WS:feed [/sns#irue8J2MyEjoXyETAAAK] CONNECTING
+[2016-04-22 08:09:50.791] [DEBUG] [default] - SOCKET [/sns#irue8J2MyEjoXyETAAAK] AUTHENTICATING
+[2016-04-22 08:09:50.791] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:50.794] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:50.805] [DEBUG] [default] - SOCKET [/sns#irue8J2MyEjoXyETAAAK] AUTHENTICATED
+[2016-04-22 08:09:50.841] [DEBUG] [default] - WS:feed [/sns#D1ruI9tk6Y4IorBIAAAL] CONNECTING
+[2016-04-22 08:09:50.857] [DEBUG] [default] - SOCKET [/sns#D1ruI9tk6Y4IorBIAAAL] AUTHENTICATING
+[2016-04-22 08:09:50.859] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:50.859] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:50.865] [DEBUG] [default] - SOCKET [/sns#D1ruI9tk6Y4IorBIAAAL] AUTHENTICATED
+[2016-04-22 08:09:50.964] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:50.966] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:50.967] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:50.967] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:50.967] [DEBUG] [default] - route:root
+[2016-04-22 08:09:50.967] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:50.991] [DEBUG] [default] - Feed:update
+[2016-04-22 08:09:50.992] [DEBUG] [default] - send data: {
+ "id": "5719dc4edae4c1755ce46fab",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:09:50.621Z",
+ "updated_at": "2016-04-22T08:09:50.967Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dc4edae4c1755ce46fac",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.621Z",
+   "updated_at": "2016-04-22T08:09:50.621Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46fab"
+  },
+  {
+   "id": "5719dc4edae4c1755ce46fad",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.622Z",
+   "updated_at": "2016-04-22T08:09:50.622Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46fab"
+  },
+  {
+   "id": "5719dc4edae4c1755ce46fae",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.623Z",
+   "updated_at": "2016-04-22T08:09:50.623Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46fab"
+  },
+  {
+   "id": "5719dc4edae4c1755ce46faf",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.623Z",
+   "updated_at": "2016-04-22T08:09:50.623Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46fab"
+  },
+  {
+   "id": "5719dc4edae4c1755ce46fb0",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:50.623Z",
+   "updated_at": "2016-04-22T08:09:50.623Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4edae4c1755ce46fab"
+  }
+ ]
+}
+[2016-04-22 08:09:50.994] [INFO] [default] - [0mPUT /api/v1/feeds/5719dc4edae4c1755ce46fab?group_id=__all__ [32m200 [0m26.875 ms - 1512[0m
+
+[2016-04-22 08:09:51.009] [DEBUG] [default] - SOCKET [/sns#sbtplEwrZzsAff22AAAJ] DISCONNECTED
+[2016-04-22 08:09:51.010] [DEBUG] [default] - SOCKET [/sns#irue8J2MyEjoXyETAAAK] DISCONNECTED
+[2016-04-22 08:09:51.011] [DEBUG] [default] - SOCKET [/sns#D1ruI9tk6Y4IorBIAAAL] DISCONNECTED
+[2016-04-22 08:09:51.111] [DEBUG] [default] - WS:feed [/sns#grUqbQ5zRuqo20-LAAAM] CONNECTING
+[2016-04-22 08:09:51.128] [DEBUG] [default] - SOCKET [/sns#grUqbQ5zRuqo20-LAAAM] AUTHENTICATING
+[2016-04-22 08:09:51.129] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:51.130] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:51.134] [DEBUG] [default] - SOCKET [/sns#grUqbQ5zRuqo20-LAAAM] AUTHENTICATED
+[2016-04-22 08:09:51.164] [DEBUG] [default] - WS:feed [/sns#SX5jeNOuiazaCuAkAAAN] CONNECTING
+[2016-04-22 08:09:51.193] [DEBUG] [default] - SOCKET [/sns#SX5jeNOuiazaCuAkAAAN] AUTHENTICATING
+[2016-04-22 08:09:51.194] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:51.195] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:51.205] [DEBUG] [default] - SOCKET [/sns#SX5jeNOuiazaCuAkAAAN] AUTHENTICATED
+[2016-04-22 08:09:51.328] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:51.328] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:51.329] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:51.329] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:51.329] [DEBUG] [default] - route:root
+[2016-04-22 08:09:51.329] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:51.339] [DEBUG] [default] - Feed:update
+[2016-04-22 08:09:51.340] [DEBUG] [default] - send data: {
+ "id": "5719dc4fdae4c1755ce46fef",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:09:51.017Z",
+ "updated_at": "2016-04-22T08:09:51.329Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dc4fdae4c1755ce46ff0",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:51.018Z",
+   "updated_at": "2016-04-22T08:09:51.018Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4fdae4c1755ce46fef"
+  },
+  {
+   "id": "5719dc4fdae4c1755ce46ff1",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:51.019Z",
+   "updated_at": "2016-04-22T08:09:51.019Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4fdae4c1755ce46fef"
+  },
+  {
+   "id": "5719dc4fdae4c1755ce46ff2",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:51.019Z",
+   "updated_at": "2016-04-22T08:09:51.019Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4fdae4c1755ce46fef"
+  },
+  {
+   "id": "5719dc4fdae4c1755ce46ff3",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:51.019Z",
+   "updated_at": "2016-04-22T08:09:51.019Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4fdae4c1755ce46fef"
+  },
+  {
+   "id": "5719dc4fdae4c1755ce46ff4",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:51.019Z",
+   "updated_at": "2016-04-22T08:09:51.019Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc4fdae4c1755ce46fef"
+  }
+ ]
+}
+[2016-04-22 08:09:51.341] [INFO] [default] - [0mPUT /api/v1/feeds/5719dc4fdae4c1755ce46fef?group_id=__all__ [32m200 [0m10.543 ms - 1512[0m
+
+[2016-04-22 08:09:52.281] [DEBUG] [default] - SOCKET [/sns#grUqbQ5zRuqo20-LAAAM] DISCONNECTED
+[2016-04-22 08:09:52.282] [DEBUG] [default] - SOCKET [/sns#SX5jeNOuiazaCuAkAAAN] DISCONNECTED
+[2016-04-22 08:09:52.322] [DEBUG] [default] - WS:feed [/sns#ZR-RI9SZvvlqeSwjAAAO] CONNECTING
+[2016-04-22 08:09:52.349] [DEBUG] [default] - SOCKET [/sns#ZR-RI9SZvvlqeSwjAAAO] AUTHENTICATING
+[2016-04-22 08:09:52.350] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:52.350] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:52.355] [DEBUG] [default] - SOCKET [/sns#ZR-RI9SZvvlqeSwjAAAO] AUTHENTICATED
+[2016-04-22 08:09:52.390] [DEBUG] [default] - WS:feed [/sns#FNlUhDx9eurwThTSAAAP] CONNECTING
+[2016-04-22 08:09:52.410] [DEBUG] [default] - SOCKET [/sns#FNlUhDx9eurwThTSAAAP] AUTHENTICATING
+[2016-04-22 08:09:52.410] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:52.411] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:52.417] [DEBUG] [default] - SOCKET [/sns#FNlUhDx9eurwThTSAAAP] AUTHENTICATED
+[2016-04-22 08:09:52.430] [DEBUG] [default] - SOCKET [/sns#FNlUhDx9eurwThTSAAAP] DISCONNECTED
+[2016-04-22 08:09:52.551] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:52.553] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:52.554] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:52.554] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:52.554] [DEBUG] [default] - route:root
+[2016-04-22 08:09:52.554] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:52.559] [DEBUG] [default] - Feed:update
+[2016-04-22 08:09:52.561] [DEBUG] [default] - send data: {
+ "id": "5719dc50dae4c1755ce47032",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:09:52.216Z",
+ "updated_at": "2016-04-22T08:09:52.554Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dc50dae4c1755ce47033",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:52.217Z",
+   "updated_at": "2016-04-22T08:09:52.217Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc50dae4c1755ce47032"
+  },
+  {
+   "id": "5719dc50dae4c1755ce47034",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:52.217Z",
+   "updated_at": "2016-04-22T08:09:52.217Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc50dae4c1755ce47032"
+  },
+  {
+   "id": "5719dc50dae4c1755ce47035",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:52.217Z",
+   "updated_at": "2016-04-22T08:09:52.217Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc50dae4c1755ce47032"
+  },
+  {
+   "id": "5719dc50dae4c1755ce47036",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:52.217Z",
+   "updated_at": "2016-04-22T08:09:52.217Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc50dae4c1755ce47032"
+  },
+  {
+   "id": "5719dc50dae4c1755ce47037",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:09:52.218Z",
+   "updated_at": "2016-04-22T08:09:52.218Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dc50dae4c1755ce47032"
+  }
+ ]
+}
+[2016-04-22 08:09:52.564] [INFO] [default] - [0mPUT /api/v1/feeds/5719dc50dae4c1755ce47032?group_id=__all__ [32m200 [0m8.584 ms - 1512[0m
+
+[2016-04-22 08:09:53.430] [DEBUG] [default] - SOCKET [/sns#ZR-RI9SZvvlqeSwjAAAO] DISCONNECTED
+[2016-04-22 08:09:53.537] [DEBUG] [default] - WS:feed [/sns#nqkznOybfQ2XWsBuAAAQ] CONNECTING
+[2016-04-22 08:09:53.555] [DEBUG] [default] - SOCKET [/sns#nqkznOybfQ2XWsBuAAAQ] AUTHENTICATING
+[2016-04-22 08:09:53.555] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:53.557] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:53.565] [DEBUG] [default] - SOCKET [/sns#nqkznOybfQ2XWsBuAAAQ] AUTHENTICATED
+[2016-04-22 08:09:53.711] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:53.711] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:53.712] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:53.712] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:53.712] [DEBUG] [default] - route:root
+[2016-04-22 08:09:53.712] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:53.722] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:09:53.722] [DEBUG] [default] - send data: {
+ "id": "5719dc51dae4c1755ce47075"
+}
+[2016-04-22 08:09:53.725] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dc51dae4c1755ce47075?group_id=__all__ [32m200 [0m10.946 ms - 33[0m
+
+[2016-04-22 08:09:53.740] [DEBUG] [default] - null
+[2016-04-22 08:09:53.741] [DEBUG] [default] - null
+[2016-04-22 08:09:53.742] [DEBUG] [default] - null
+[2016-04-22 08:09:53.743] [DEBUG] [default] - null
+[2016-04-22 08:09:53.743] [DEBUG] [default] - null
+[2016-04-22 08:09:53.774] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:53.775] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:53.775] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:53.775] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:53.775] [DEBUG] [default] - route:root
+[2016-04-22 08:09:53.775] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:53.779] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:09:53.779] [DEBUG] [default] - send data: {
+ "id": "5719dc51dae4c1755ce4707b"
+}
+[2016-04-22 08:09:53.780] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dc51dae4c1755ce4707b?group_id=__all__ [32m200 [0m4.966 ms - 33[0m
+
+[2016-04-22 08:09:53.790] [DEBUG] [default] - null
+[2016-04-22 08:09:53.791] [DEBUG] [default] - null
+[2016-04-22 08:09:53.794] [DEBUG] [default] - null
+[2016-04-22 08:09:53.795] [DEBUG] [default] - null
+[2016-04-22 08:09:53.795] [DEBUG] [default] - null
+[2016-04-22 08:09:53.811] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:53.811] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:53.812] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:53.812] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:53.812] [DEBUG] [default] - route:root
+[2016-04-22 08:09:53.812] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:53.815] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:09:53.815] [DEBUG] [default] - send data: {
+ "id": "5719dc51dae4c1755ce47081"
+}
+[2016-04-22 08:09:53.818] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dc51dae4c1755ce47081?group_id=__all__ [32m200 [0m4.709 ms - 33[0m
+
+[2016-04-22 08:09:53.832] [DEBUG] [default] - null
+[2016-04-22 08:09:53.833] [DEBUG] [default] - null
+[2016-04-22 08:09:53.833] [DEBUG] [default] - null
+[2016-04-22 08:09:53.834] [DEBUG] [default] - SOCKET [/sns#nqkznOybfQ2XWsBuAAAQ] DISCONNECTED
+[2016-04-22 08:09:53.834] [DEBUG] [default] - null
+[2016-04-22 08:09:53.834] [DEBUG] [default] - null
+[2016-04-22 08:09:53.913] [DEBUG] [default] - WS:feed [/sns#NjMA4nFB2ktdrKHSAAAR] CONNECTING
+[2016-04-22 08:09:53.929] [DEBUG] [default] - SOCKET [/sns#NjMA4nFB2ktdrKHSAAAR] AUTHENTICATING
+[2016-04-22 08:09:53.929] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:53.931] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:53.937] [DEBUG] [default] - SOCKET [/sns#NjMA4nFB2ktdrKHSAAAR] AUTHENTICATED
+[2016-04-22 08:09:53.969] [DEBUG] [default] - WS:feed [/sns#0mDJaHU8AtE5khwOAAAS] CONNECTING
+[2016-04-22 08:09:53.989] [DEBUG] [default] - SOCKET [/sns#0mDJaHU8AtE5khwOAAAS] AUTHENTICATING
+[2016-04-22 08:09:53.989] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:53.990] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:53.997] [DEBUG] [default] - SOCKET [/sns#0mDJaHU8AtE5khwOAAAS] AUTHENTICATED
+[2016-04-22 08:09:54.044] [DEBUG] [default] - WS:feed [/sns#0mLIxvpCr5M8_Tu1AAAT] CONNECTING
+[2016-04-22 08:09:54.087] [DEBUG] [default] - SOCKET [/sns#0mLIxvpCr5M8_Tu1AAAT] AUTHENTICATING
+[2016-04-22 08:09:54.088] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:54.090] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:54.104] [DEBUG] [default] - SOCKET [/sns#0mLIxvpCr5M8_Tu1AAAT] AUTHENTICATED
+[2016-04-22 08:09:54.137] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:54.138] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:54.138] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:54.139] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:54.139] [DEBUG] [default] - route:root
+[2016-04-22 08:09:54.139] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:54.142] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:09:54.142] [DEBUG] [default] - send data: {
+ "id": "5719dc51dae4c1755ce470b9"
+}
+[2016-04-22 08:09:54.143] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dc51dae4c1755ce470b9?group_id=__all__ [32m200 [0m4.886 ms - 33[0m
+
+[2016-04-22 08:09:54.153] [DEBUG] [default] - null
+[2016-04-22 08:09:54.154] [DEBUG] [default] - null
+[2016-04-22 08:09:54.154] [DEBUG] [default] - null
+[2016-04-22 08:09:54.155] [DEBUG] [default] - SOCKET [/sns#NjMA4nFB2ktdrKHSAAAR] DISCONNECTED
+[2016-04-22 08:09:54.155] [DEBUG] [default] - SOCKET [/sns#0mDJaHU8AtE5khwOAAAS] DISCONNECTED
+[2016-04-22 08:09:54.155] [DEBUG] [default] - SOCKET [/sns#0mLIxvpCr5M8_Tu1AAAT] DISCONNECTED
+[2016-04-22 08:09:54.156] [DEBUG] [default] - null
+[2016-04-22 08:09:54.156] [DEBUG] [default] - null
+[2016-04-22 08:09:54.243] [DEBUG] [default] - WS:feed [/sns#gcY25I0fR8e2zQz8AAAU] CONNECTING
+[2016-04-22 08:09:54.265] [DEBUG] [default] - SOCKET [/sns#gcY25I0fR8e2zQz8AAAU] AUTHENTICATING
+[2016-04-22 08:09:54.265] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:54.267] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:54.273] [DEBUG] [default] - SOCKET [/sns#gcY25I0fR8e2zQz8AAAU] AUTHENTICATED
+[2016-04-22 08:09:54.301] [DEBUG] [default] - WS:feed [/sns#in60c2eUuHsPxam3AAAV] CONNECTING
+[2016-04-22 08:09:54.316] [DEBUG] [default] - SOCKET [/sns#in60c2eUuHsPxam3AAAV] AUTHENTICATING
+[2016-04-22 08:09:54.316] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:54.316] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:54.326] [DEBUG] [default] - SOCKET [/sns#in60c2eUuHsPxam3AAAV] AUTHENTICATED
+[2016-04-22 08:09:54.451] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:54.452] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:54.453] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:54.453] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:54.453] [DEBUG] [default] - route:root
+[2016-04-22 08:09:54.453] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:54.457] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:09:54.457] [DEBUG] [default] - send data: {
+ "id": "5719dc52dae4c1755ce470fd"
+}
+[2016-04-22 08:09:54.458] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dc52dae4c1755ce470fd?group_id=__all__ [32m200 [0m6.103 ms - 33[0m
+
+[2016-04-22 08:09:54.465] [DEBUG] [default] - null
+[2016-04-22 08:09:54.466] [DEBUG] [default] - null
+[2016-04-22 08:09:54.466] [DEBUG] [default] - null
+[2016-04-22 08:09:54.466] [DEBUG] [default] - null
+[2016-04-22 08:09:54.466] [DEBUG] [default] - null
+[2016-04-22 08:09:55.398] [DEBUG] [default] - SOCKET [/sns#gcY25I0fR8e2zQz8AAAU] DISCONNECTED
+[2016-04-22 08:09:55.398] [DEBUG] [default] - SOCKET [/sns#in60c2eUuHsPxam3AAAV] DISCONNECTED
+[2016-04-22 08:09:55.429] [DEBUG] [default] - WS:feed [/sns#Z2bv61nfBaPbagF2AAAW] CONNECTING
+[2016-04-22 08:09:55.442] [DEBUG] [default] - SOCKET [/sns#Z2bv61nfBaPbagF2AAAW] AUTHENTICATING
+[2016-04-22 08:09:55.442] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:55.443] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:55.450] [DEBUG] [default] - SOCKET [/sns#Z2bv61nfBaPbagF2AAAW] AUTHENTICATED
+[2016-04-22 08:09:55.486] [DEBUG] [default] - WS:feed [/sns#YiNpkN5pIVZRe7exAAAX] CONNECTING
+[2016-04-22 08:09:55.501] [DEBUG] [default] - SOCKET [/sns#YiNpkN5pIVZRe7exAAAX] AUTHENTICATING
+[2016-04-22 08:09:55.501] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:55.502] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:55.517] [DEBUG] [default] - SOCKET [/sns#YiNpkN5pIVZRe7exAAAX] AUTHENTICATED
+[2016-04-22 08:09:55.532] [DEBUG] [default] - SOCKET [/sns#YiNpkN5pIVZRe7exAAAX] DISCONNECTED
+[2016-04-22 08:09:55.622] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:09:55.626] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:09:55.627] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:09:55.627] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:09:55.627] [DEBUG] [default] - route:root
+[2016-04-22 08:09:55.627] [DEBUG] [default] - route:feeds
+[2016-04-22 08:09:55.633] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:09:55.633] [DEBUG] [default] - send data: {
+ "id": "5719dc53dae4c1755ce47140"
+}
+[2016-04-22 08:09:55.634] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dc53dae4c1755ce47140?group_id=__all__ [32m200 [0m9.027 ms - 33[0m
+
+[2016-04-22 08:09:55.642] [DEBUG] [default] - null
+[2016-04-22 08:09:55.642] [DEBUG] [default] - null
+[2016-04-22 08:09:55.643] [DEBUG] [default] - null
+[2016-04-22 08:09:55.643] [DEBUG] [default] - null
+[2016-04-22 08:09:55.643] [DEBUG] [default] - null
+[2016-04-22 08:09:56.530] [DEBUG] [default] - SOCKET [/sns#Z2bv61nfBaPbagF2AAAW] DISCONNECTED
+[2016-04-22 08:11:42.333] [DEBUG] [default] - ALL-IN SNS Server running at http://localhost:5000
+[2016-04-22 08:11:42.364] [DEBUG] [default] - Connected to MongoDB
+[2016-04-22 08:11:42.588] [DEBUG] [default] - WS:feed [/sns#jCnJL90xjTi9WM6dAAAA] CONNECTING
+[2016-04-22 08:11:42.629] [DEBUG] [default] - SOCKET [/sns#jCnJL90xjTi9WM6dAAAA] AUTHENTICATING
+[2016-04-22 08:11:42.629] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:42.635] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:42.643] [DEBUG] [default] - SOCKET [/sns#jCnJL90xjTi9WM6dAAAA] AUTHENTICATED
+[2016-04-22 08:11:42.665] [ERROR] [default] - [ReferenceError: ur is not defined]
+ReferenceError: ur is not defined
+    at /vagrant/allin-sns/app/spec/lib/request.js:91:41
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/request.js:82:13
+    at Ws.post (/vagrant/allin-sns/app/spec/lib/request.js:79:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:108:21)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at process._tickDomainCallback (node.js:444:9)
+[2016-04-22 08:11:43.664] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:11:43.665] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:110:26)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:11:43.824] [DEBUG] [default] - WS:feed [/sns#Z627fSrh5LX5be44AAAB] CONNECTING
+[2016-04-22 08:11:43.867] [DEBUG] [default] - SOCKET [/sns#Z627fSrh5LX5be44AAAB] AUTHENTICATING
+[2016-04-22 08:11:43.871] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:43.872] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:43.879] [DEBUG] [default] - SOCKET [/sns#Z627fSrh5LX5be44AAAB] AUTHENTICATED
+[2016-04-22 08:11:43.928] [DEBUG] [default] - WS:feed [/sns#u-6t2pfRvKYaZgPLAAAC] CONNECTING
+[2016-04-22 08:11:43.947] [DEBUG] [default] - SOCKET [/sns#u-6t2pfRvKYaZgPLAAAC] AUTHENTICATING
+[2016-04-22 08:11:43.949] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:43.950] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:43.957] [DEBUG] [default] - SOCKET [/sns#u-6t2pfRvKYaZgPLAAAC] AUTHENTICATED
+[2016-04-22 08:11:44.023] [DEBUG] [default] - WS:feed [/sns#bMF3z3ynK28_khSaAAAD] CONNECTING
+[2016-04-22 08:11:44.068] [DEBUG] [default] - SOCKET [/sns#bMF3z3ynK28_khSaAAAD] AUTHENTICATING
+[2016-04-22 08:11:44.068] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:44.068] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:44.084] [DEBUG] [default] - SOCKET [/sns#bMF3z3ynK28_khSaAAAD] AUTHENTICATED
+[2016-04-22 08:11:44.092] [ERROR] [default] - [ReferenceError: ur is not defined]
+ReferenceError: ur is not defined
+    at /vagrant/allin-sns/app/spec/lib/request.js:91:41
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/request.js:82:13
+    at Ws.post (/vagrant/allin-sns/app/spec/lib/request.js:79:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:137:21)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at process._tickDomainCallback (node.js:444:9)
+[2016-04-22 08:11:45.094] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:11:45.094] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:11:45.094] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:11:45.095] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:141:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:11:45.095] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:141:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:11:45.095] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:141:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:11:45.096] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:141:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:11:45.210] [DEBUG] [default] - WS:feed [/sns#m5P_vgEy_B0IXU7NAAAE] CONNECTING
+[2016-04-22 08:11:45.233] [DEBUG] [default] - SOCKET [/sns#m5P_vgEy_B0IXU7NAAAE] AUTHENTICATING
+[2016-04-22 08:11:45.233] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:45.234] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:45.239] [DEBUG] [default] - SOCKET [/sns#m5P_vgEy_B0IXU7NAAAE] AUTHENTICATED
+[2016-04-22 08:11:45.270] [DEBUG] [default] - WS:feed [/sns#CeHzgJ0S8pdhcRsAAAAF] CONNECTING
+[2016-04-22 08:11:45.287] [DEBUG] [default] - SOCKET [/sns#CeHzgJ0S8pdhcRsAAAAF] AUTHENTICATING
+[2016-04-22 08:11:45.287] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:45.291] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:45.299] [DEBUG] [default] - SOCKET [/sns#CeHzgJ0S8pdhcRsAAAAF] AUTHENTICATED
+[2016-04-22 08:11:45.303] [ERROR] [default] - [ReferenceError: ur is not defined]
+ReferenceError: ur is not defined
+    at /vagrant/allin-sns/app/spec/lib/request.js:91:41
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/request.js:82:13
+    at Ws.post (/vagrant/allin-sns/app/spec/lib/request.js:79:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:158:21)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at process._tickDomainCallback (node.js:444:9)
+[2016-04-22 08:11:46.303] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:11:46.305] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:162:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:11:46.306] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:162:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:11:46.415] [DEBUG] [default] - WS:feed [/sns#uFulQu7xUa3tUbv3AAAG] CONNECTING
+[2016-04-22 08:11:46.443] [DEBUG] [default] - SOCKET [/sns#uFulQu7xUa3tUbv3AAAG] AUTHENTICATING
+[2016-04-22 08:11:46.444] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:46.444] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:46.450] [DEBUG] [default] - SOCKET [/sns#uFulQu7xUa3tUbv3AAAG] AUTHENTICATED
+[2016-04-22 08:11:46.489] [DEBUG] [default] - WS:feed [/sns#7yjlTlbKdEQBqXwGAAAH] CONNECTING
+[2016-04-22 08:11:46.507] [DEBUG] [default] - SOCKET [/sns#7yjlTlbKdEQBqXwGAAAH] AUTHENTICATING
+[2016-04-22 08:11:46.507] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:46.508] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:46.513] [DEBUG] [default] - SOCKET [/sns#7yjlTlbKdEQBqXwGAAAH] AUTHENTICATED
+[2016-04-22 08:11:46.528] [ERROR] [default] - [ReferenceError: ur is not defined]
+ReferenceError: ur is not defined
+    at /vagrant/allin-sns/app/spec/lib/request.js:91:41
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/request.js:82:13
+    at Ws.post (/vagrant/allin-sns/app/spec/lib/request.js:79:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:179:21)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at process._tickDomainCallback (node.js:444:9)
+[2016-04-22 08:11:46.536] [DEBUG] [default] - SOCKET [/sns#7yjlTlbKdEQBqXwGAAAH] DISCONNECTED
+[2016-04-22 08:11:47.529] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:11:47.530] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:183:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:11:47.530] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:183:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:11:47.624] [DEBUG] [default] - WS:feed [/sns#yH0szyhtQ6uXu95AAAAI] CONNECTING
+[2016-04-22 08:11:47.646] [DEBUG] [default] - SOCKET [/sns#yH0szyhtQ6uXu95AAAAI] AUTHENTICATING
+[2016-04-22 08:11:47.647] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:47.648] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:47.659] [DEBUG] [default] - SOCKET [/sns#yH0szyhtQ6uXu95AAAAI] AUTHENTICATED
+[2016-04-22 08:11:47.853] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:47.854] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:47.856] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:11:47.856] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:11:47.856] [DEBUG] [default] - route:root
+[2016-04-22 08:11:47.856] [DEBUG] [default] - route:feeds
+[2016-04-22 08:11:47.868] [DEBUG] [default] - Feed:update
+[2016-04-22 08:11:47.869] [DEBUG] [default] - send data: {
+ "id": "5719dcc38f92d49f5c571b9b",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:11:47.533Z",
+ "updated_at": "2016-04-22T08:11:47.858Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dcc38f92d49f5c571b9c",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.533Z",
+   "updated_at": "2016-04-22T08:11:47.533Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571b9b"
+  },
+  {
+   "id": "5719dcc38f92d49f5c571b9d",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.534Z",
+   "updated_at": "2016-04-22T08:11:47.534Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571b9b"
+  },
+  {
+   "id": "5719dcc38f92d49f5c571b9e",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.534Z",
+   "updated_at": "2016-04-22T08:11:47.534Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571b9b"
+  },
+  {
+   "id": "5719dcc38f92d49f5c571b9f",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.534Z",
+   "updated_at": "2016-04-22T08:11:47.534Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571b9b"
+  },
+  {
+   "id": "5719dcc38f92d49f5c571ba0",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.534Z",
+   "updated_at": "2016-04-22T08:11:47.534Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571b9b"
+  }
+ ]
+}
+[2016-04-22 08:11:47.880] [INFO] [default] - [0mPUT /api/v1/feeds/5719dcc38f92d49f5c571b9b?group_id=__all__ [32m200 [0m16.923 ms - 1512[0m
+
+[2016-04-22 08:11:47.918] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:47.918] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:47.919] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:11:47.919] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:11:47.919] [DEBUG] [default] - route:root
+[2016-04-22 08:11:47.919] [DEBUG] [default] - route:feeds
+[2016-04-22 08:11:47.928] [DEBUG] [default] - Feed:update
+[2016-04-22 08:11:47.929] [DEBUG] [default] - send data: {
+ "id": "5719dcc38f92d49f5c571b9b",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:11:47.533Z",
+ "updated_at": "2016-04-22T08:11:47.919Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dcc38f92d49f5c571b9c",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.533Z",
+   "updated_at": "2016-04-22T08:11:47.533Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571b9b"
+  },
+  {
+   "id": "5719dcc38f92d49f5c571b9d",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.534Z",
+   "updated_at": "2016-04-22T08:11:47.534Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571b9b"
+  },
+  {
+   "id": "5719dcc38f92d49f5c571b9e",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.534Z",
+   "updated_at": "2016-04-22T08:11:47.534Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571b9b"
+  },
+  {
+   "id": "5719dcc38f92d49f5c571b9f",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.534Z",
+   "updated_at": "2016-04-22T08:11:47.534Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571b9b"
+  },
+  {
+   "id": "5719dcc38f92d49f5c571ba0",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.534Z",
+   "updated_at": "2016-04-22T08:11:47.534Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571b9b"
+  }
+ ]
+}
+[2016-04-22 08:11:47.934] [INFO] [default] - [0mPUT /api/v1/feeds/5719dcc38f92d49f5c571b9b?group_id=__all__ [32m200 [0m10.364 ms - 1512[0m
+
+[2016-04-22 08:11:47.966] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:47.966] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:47.968] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:11:47.968] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:11:47.968] [DEBUG] [default] - route:root
+[2016-04-22 08:11:47.968] [DEBUG] [default] - route:feeds
+[2016-04-22 08:11:47.973] [DEBUG] [default] - Feed:update
+[2016-04-22 08:11:47.974] [DEBUG] [default] - send data: {
+ "id": "5719dcc38f92d49f5c571b9b",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:11:47.533Z",
+ "updated_at": "2016-04-22T08:11:47.968Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dcc38f92d49f5c571b9c",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.533Z",
+   "updated_at": "2016-04-22T08:11:47.533Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571b9b"
+  },
+  {
+   "id": "5719dcc38f92d49f5c571b9d",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.534Z",
+   "updated_at": "2016-04-22T08:11:47.534Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571b9b"
+  },
+  {
+   "id": "5719dcc38f92d49f5c571b9e",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.534Z",
+   "updated_at": "2016-04-22T08:11:47.534Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571b9b"
+  },
+  {
+   "id": "5719dcc38f92d49f5c571b9f",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.534Z",
+   "updated_at": "2016-04-22T08:11:47.534Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571b9b"
+  },
+  {
+   "id": "5719dcc38f92d49f5c571ba0",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.534Z",
+   "updated_at": "2016-04-22T08:11:47.534Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571b9b"
+  }
+ ]
+}
+[2016-04-22 08:11:47.976] [INFO] [default] - [0mPUT /api/v1/feeds/5719dcc38f92d49f5c571b9b?group_id=__all__ [32m200 [0m7.722 ms - 1512[0m
+
+[2016-04-22 08:11:47.983] [DEBUG] [default] - SOCKET [/sns#yH0szyhtQ6uXu95AAAAI] DISCONNECTED
+[2016-04-22 08:11:48.061] [DEBUG] [default] - WS:feed [/sns#Edv20WW-XBRGNQ_5AAAJ] CONNECTING
+[2016-04-22 08:11:48.066] [DEBUG] [default] - SOCKET [/sns#Edv20WW-XBRGNQ_5AAAJ] AUTHENTICATING
+[2016-04-22 08:11:48.066] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:48.072] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:48.078] [DEBUG] [default] - SOCKET [/sns#Edv20WW-XBRGNQ_5AAAJ] AUTHENTICATED
+[2016-04-22 08:11:48.116] [DEBUG] [default] - WS:feed [/sns#Y1f2wXAXqMP1l8njAAAK] CONNECTING
+[2016-04-22 08:11:48.140] [DEBUG] [default] - SOCKET [/sns#Y1f2wXAXqMP1l8njAAAK] AUTHENTICATING
+[2016-04-22 08:11:48.140] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:48.140] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:48.148] [DEBUG] [default] - SOCKET [/sns#Y1f2wXAXqMP1l8njAAAK] AUTHENTICATED
+[2016-04-22 08:11:48.185] [DEBUG] [default] - WS:feed [/sns#lUETUev6qRB8k18lAAAL] CONNECTING
+[2016-04-22 08:11:48.205] [DEBUG] [default] - SOCKET [/sns#lUETUev6qRB8k18lAAAL] AUTHENTICATING
+[2016-04-22 08:11:48.205] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:48.206] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:48.213] [DEBUG] [default] - SOCKET [/sns#lUETUev6qRB8k18lAAAL] AUTHENTICATED
+[2016-04-22 08:11:48.319] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:48.320] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:48.321] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:11:48.321] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:11:48.321] [DEBUG] [default] - route:root
+[2016-04-22 08:11:48.321] [DEBUG] [default] - route:feeds
+[2016-04-22 08:11:48.334] [DEBUG] [default] - Feed:update
+[2016-04-22 08:11:48.335] [DEBUG] [default] - send data: {
+ "id": "5719dcc38f92d49f5c571bdf",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:11:47.987Z",
+ "updated_at": "2016-04-22T08:11:48.321Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dcc38f92d49f5c571be1",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.988Z",
+   "updated_at": "2016-04-22T08:11:47.988Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571bdf"
+  },
+  {
+   "id": "5719dcc38f92d49f5c571be2",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.988Z",
+   "updated_at": "2016-04-22T08:11:47.988Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571bdf"
+  },
+  {
+   "id": "5719dcc38f92d49f5c571be3",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.988Z",
+   "updated_at": "2016-04-22T08:11:47.988Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571bdf"
+  },
+  {
+   "id": "5719dcc38f92d49f5c571be4",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.988Z",
+   "updated_at": "2016-04-22T08:11:47.988Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571bdf"
+  },
+  {
+   "id": "5719dcc38f92d49f5c571be0",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:47.988Z",
+   "updated_at": "2016-04-22T08:11:47.988Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc38f92d49f5c571bdf"
+  }
+ ]
+}
+[2016-04-22 08:11:48.339] [INFO] [default] - [0mPUT /api/v1/feeds/5719dcc38f92d49f5c571bdf?group_id=__all__ [32m200 [0m14.942 ms - 1512[0m
+
+[2016-04-22 08:11:48.416] [DEBUG] [default] - SOCKET [/sns#Edv20WW-XBRGNQ_5AAAJ] DISCONNECTED
+[2016-04-22 08:11:48.416] [DEBUG] [default] - SOCKET [/sns#Y1f2wXAXqMP1l8njAAAK] DISCONNECTED
+[2016-04-22 08:11:48.417] [DEBUG] [default] - SOCKET [/sns#lUETUev6qRB8k18lAAAL] DISCONNECTED
+[2016-04-22 08:11:48.456] [DEBUG] [default] - WS:feed [/sns#1ubIfjZEYxJrIKphAAAM] CONNECTING
+[2016-04-22 08:11:48.475] [DEBUG] [default] - SOCKET [/sns#1ubIfjZEYxJrIKphAAAM] AUTHENTICATING
+[2016-04-22 08:11:48.475] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:48.476] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:48.481] [DEBUG] [default] - SOCKET [/sns#1ubIfjZEYxJrIKphAAAM] AUTHENTICATED
+[2016-04-22 08:11:48.516] [DEBUG] [default] - WS:feed [/sns#2o8cLBHoNrZlHLb-AAAN] CONNECTING
+[2016-04-22 08:11:48.533] [DEBUG] [default] - SOCKET [/sns#2o8cLBHoNrZlHLb-AAAN] AUTHENTICATING
+[2016-04-22 08:11:48.533] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:48.535] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:48.547] [DEBUG] [default] - SOCKET [/sns#2o8cLBHoNrZlHLb-AAAN] AUTHENTICATED
+[2016-04-22 08:11:48.658] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:48.659] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:48.659] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:11:48.660] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:11:48.660] [DEBUG] [default] - route:root
+[2016-04-22 08:11:48.660] [DEBUG] [default] - route:feeds
+[2016-04-22 08:11:48.669] [DEBUG] [default] - Feed:update
+[2016-04-22 08:11:48.671] [DEBUG] [default] - send data: {
+ "id": "5719dcc48f92d49f5c571c23",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:11:48.353Z",
+ "updated_at": "2016-04-22T08:11:48.660Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dcc48f92d49f5c571c24",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:48.354Z",
+   "updated_at": "2016-04-22T08:11:48.354Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc48f92d49f5c571c23"
+  },
+  {
+   "id": "5719dcc48f92d49f5c571c25",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:48.354Z",
+   "updated_at": "2016-04-22T08:11:48.354Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc48f92d49f5c571c23"
+  },
+  {
+   "id": "5719dcc48f92d49f5c571c26",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:48.354Z",
+   "updated_at": "2016-04-22T08:11:48.354Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc48f92d49f5c571c23"
+  },
+  {
+   "id": "5719dcc48f92d49f5c571c27",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:48.354Z",
+   "updated_at": "2016-04-22T08:11:48.354Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc48f92d49f5c571c23"
+  },
+  {
+   "id": "5719dcc48f92d49f5c571c28",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:48.355Z",
+   "updated_at": "2016-04-22T08:11:48.355Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc48f92d49f5c571c23"
+  }
+ ]
+}
+[2016-04-22 08:11:48.672] [INFO] [default] - [0mPUT /api/v1/feeds/5719dcc48f92d49f5c571c23?group_id=__all__ [32m200 [0m10.697 ms - 1512[0m
+
+[2016-04-22 08:11:49.642] [DEBUG] [default] - SOCKET [/sns#1ubIfjZEYxJrIKphAAAM] DISCONNECTED
+[2016-04-22 08:11:49.642] [DEBUG] [default] - SOCKET [/sns#2o8cLBHoNrZlHLb-AAAN] DISCONNECTED
+[2016-04-22 08:11:49.674] [DEBUG] [default] - WS:feed [/sns#R68zp1jpYUWg3NAfAAAO] CONNECTING
+[2016-04-22 08:11:49.698] [DEBUG] [default] - SOCKET [/sns#R68zp1jpYUWg3NAfAAAO] AUTHENTICATING
+[2016-04-22 08:11:49.698] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:49.699] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:49.704] [DEBUG] [default] - SOCKET [/sns#R68zp1jpYUWg3NAfAAAO] AUTHENTICATED
+[2016-04-22 08:11:49.747] [DEBUG] [default] - WS:feed [/sns#eB5FaRnNFuzHMn3HAAAP] CONNECTING
+[2016-04-22 08:11:49.768] [DEBUG] [default] - SOCKET [/sns#eB5FaRnNFuzHMn3HAAAP] AUTHENTICATING
+[2016-04-22 08:11:49.768] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:49.769] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:49.777] [DEBUG] [default] - SOCKET [/sns#eB5FaRnNFuzHMn3HAAAP] AUTHENTICATED
+[2016-04-22 08:11:49.792] [DEBUG] [default] - SOCKET [/sns#eB5FaRnNFuzHMn3HAAAP] DISCONNECTED
+[2016-04-22 08:11:49.900] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:49.901] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:49.902] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:11:49.902] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:11:49.902] [DEBUG] [default] - route:root
+[2016-04-22 08:11:49.902] [DEBUG] [default] - route:feeds
+[2016-04-22 08:11:49.908] [DEBUG] [default] - Feed:update
+[2016-04-22 08:11:49.909] [DEBUG] [default] - send data: {
+ "id": "5719dcc58f92d49f5c571c66",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:11:49.556Z",
+ "updated_at": "2016-04-22T08:11:49.902Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dcc58f92d49f5c571c68",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:49.557Z",
+   "updated_at": "2016-04-22T08:11:49.557Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc58f92d49f5c571c66"
+  },
+  {
+   "id": "5719dcc58f92d49f5c571c69",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:49.557Z",
+   "updated_at": "2016-04-22T08:11:49.557Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc58f92d49f5c571c66"
+  },
+  {
+   "id": "5719dcc58f92d49f5c571c67",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:49.557Z",
+   "updated_at": "2016-04-22T08:11:49.557Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc58f92d49f5c571c66"
+  },
+  {
+   "id": "5719dcc58f92d49f5c571c6a",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:49.558Z",
+   "updated_at": "2016-04-22T08:11:49.558Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc58f92d49f5c571c66"
+  },
+  {
+   "id": "5719dcc58f92d49f5c571c6b",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:11:49.558Z",
+   "updated_at": "2016-04-22T08:11:49.558Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcc58f92d49f5c571c66"
+  }
+ ]
+}
+[2016-04-22 08:11:49.911] [INFO] [default] - [0mPUT /api/v1/feeds/5719dcc58f92d49f5c571c66?group_id=__all__ [32m200 [0m8.348 ms - 1512[0m
+
+[2016-04-22 08:11:50.789] [DEBUG] [default] - SOCKET [/sns#R68zp1jpYUWg3NAfAAAO] DISCONNECTED
+[2016-04-22 08:11:50.889] [DEBUG] [default] - WS:feed [/sns#3MNOttbaJevOMllcAAAQ] CONNECTING
+[2016-04-22 08:11:50.906] [DEBUG] [default] - SOCKET [/sns#3MNOttbaJevOMllcAAAQ] AUTHENTICATING
+[2016-04-22 08:11:50.907] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:50.909] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:50.916] [DEBUG] [default] - SOCKET [/sns#3MNOttbaJevOMllcAAAQ] AUTHENTICATED
+[2016-04-22 08:11:51.077] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:51.078] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:51.078] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:11:51.079] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:11:51.079] [DEBUG] [default] - route:root
+[2016-04-22 08:11:51.079] [DEBUG] [default] - route:feeds
+[2016-04-22 08:11:51.091] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:11:51.091] [DEBUG] [default] - send data: {
+ "id": "5719dcc68f92d49f5c571ca9"
+}
+[2016-04-22 08:11:51.096] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dcc68f92d49f5c571ca9?group_id=__all__ [32m200 [0m13.055 ms - 33[0m
+
+[2016-04-22 08:11:51.113] [DEBUG] [default] - null
+[2016-04-22 08:11:51.114] [DEBUG] [default] - null
+[2016-04-22 08:11:51.115] [DEBUG] [default] - null
+[2016-04-22 08:11:51.116] [DEBUG] [default] - null
+[2016-04-22 08:11:51.116] [DEBUG] [default] - null
+[2016-04-22 08:11:51.162] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:51.164] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:51.164] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:11:51.165] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:11:51.165] [DEBUG] [default] - route:root
+[2016-04-22 08:11:51.165] [DEBUG] [default] - route:feeds
+[2016-04-22 08:11:51.169] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:11:51.169] [DEBUG] [default] - send data: {
+ "id": "5719dcc68f92d49f5c571caf"
+}
+[2016-04-22 08:11:51.170] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dcc68f92d49f5c571caf?group_id=__all__ [32m200 [0m6.760 ms - 33[0m
+
+[2016-04-22 08:11:51.180] [DEBUG] [default] - null
+[2016-04-22 08:11:51.180] [DEBUG] [default] - null
+[2016-04-22 08:11:51.182] [DEBUG] [default] - null
+[2016-04-22 08:11:51.182] [DEBUG] [default] - null
+[2016-04-22 08:11:51.182] [DEBUG] [default] - null
+[2016-04-22 08:11:51.206] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:51.207] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:51.209] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:11:51.209] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:11:51.209] [DEBUG] [default] - route:root
+[2016-04-22 08:11:51.209] [DEBUG] [default] - route:feeds
+[2016-04-22 08:11:51.215] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:11:51.215] [DEBUG] [default] - send data: {
+ "id": "5719dcc68f92d49f5c571cb5"
+}
+[2016-04-22 08:11:51.218] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dcc68f92d49f5c571cb5?group_id=__all__ [32m200 [0m9.232 ms - 33[0m
+
+[2016-04-22 08:11:51.239] [DEBUG] [default] - null
+[2016-04-22 08:11:51.239] [DEBUG] [default] - null
+[2016-04-22 08:11:51.240] [DEBUG] [default] - null
+[2016-04-22 08:11:51.242] [DEBUG] [default] - SOCKET [/sns#3MNOttbaJevOMllcAAAQ] DISCONNECTED
+[2016-04-22 08:11:51.243] [DEBUG] [default] - null
+[2016-04-22 08:11:51.243] [DEBUG] [default] - null
+[2016-04-22 08:11:51.322] [DEBUG] [default] - WS:feed [/sns#FV_ZQKDBsoBQOqNTAAAR] CONNECTING
+[2016-04-22 08:11:51.341] [DEBUG] [default] - SOCKET [/sns#FV_ZQKDBsoBQOqNTAAAR] AUTHENTICATING
+[2016-04-22 08:11:51.341] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:51.343] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:51.350] [DEBUG] [default] - SOCKET [/sns#FV_ZQKDBsoBQOqNTAAAR] AUTHENTICATED
+[2016-04-22 08:11:51.386] [DEBUG] [default] - WS:feed [/sns#X67C-0GvGsGSIN4wAAAS] CONNECTING
+[2016-04-22 08:11:51.399] [DEBUG] [default] - SOCKET [/sns#X67C-0GvGsGSIN4wAAAS] AUTHENTICATING
+[2016-04-22 08:11:51.399] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:51.400] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:51.405] [DEBUG] [default] - SOCKET [/sns#X67C-0GvGsGSIN4wAAAS] AUTHENTICATED
+[2016-04-22 08:11:51.438] [DEBUG] [default] - WS:feed [/sns#TxJxPGwufcBzY4KuAAAT] CONNECTING
+[2016-04-22 08:11:51.479] [DEBUG] [default] - SOCKET [/sns#TxJxPGwufcBzY4KuAAAT] AUTHENTICATING
+[2016-04-22 08:11:51.480] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:51.482] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:51.493] [DEBUG] [default] - SOCKET [/sns#TxJxPGwufcBzY4KuAAAT] AUTHENTICATED
+[2016-04-22 08:11:51.524] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:51.524] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:51.525] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:11:51.525] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:11:51.525] [DEBUG] [default] - route:root
+[2016-04-22 08:11:51.525] [DEBUG] [default] - route:feeds
+[2016-04-22 08:11:51.529] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:11:51.529] [DEBUG] [default] - send data: {
+ "id": "5719dcc78f92d49f5c571ced"
+}
+[2016-04-22 08:11:51.530] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dcc78f92d49f5c571ced?group_id=__all__ [32m200 [0m5.342 ms - 33[0m
+
+[2016-04-22 08:11:51.540] [DEBUG] [default] - null
+[2016-04-22 08:11:51.541] [DEBUG] [default] - null
+[2016-04-22 08:11:51.541] [DEBUG] [default] - null
+[2016-04-22 08:11:51.542] [DEBUG] [default] - SOCKET [/sns#FV_ZQKDBsoBQOqNTAAAR] DISCONNECTED
+[2016-04-22 08:11:51.542] [DEBUG] [default] - SOCKET [/sns#X67C-0GvGsGSIN4wAAAS] DISCONNECTED
+[2016-04-22 08:11:51.543] [DEBUG] [default] - SOCKET [/sns#TxJxPGwufcBzY4KuAAAT] DISCONNECTED
+[2016-04-22 08:11:51.543] [DEBUG] [default] - null
+[2016-04-22 08:11:51.544] [DEBUG] [default] - null
+[2016-04-22 08:11:51.637] [DEBUG] [default] - WS:feed [/sns#j96aF29zHvfosJ-BAAAU] CONNECTING
+[2016-04-22 08:11:51.656] [DEBUG] [default] - SOCKET [/sns#j96aF29zHvfosJ-BAAAU] AUTHENTICATING
+[2016-04-22 08:11:51.656] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:51.659] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:51.664] [DEBUG] [default] - SOCKET [/sns#j96aF29zHvfosJ-BAAAU] AUTHENTICATED
+[2016-04-22 08:11:51.694] [DEBUG] [default] - WS:feed [/sns#VYFv77nueFAW3vE1AAAV] CONNECTING
+[2016-04-22 08:11:51.707] [DEBUG] [default] - SOCKET [/sns#VYFv77nueFAW3vE1AAAV] AUTHENTICATING
+[2016-04-22 08:11:51.708] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:51.708] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:51.713] [DEBUG] [default] - SOCKET [/sns#VYFv77nueFAW3vE1AAAV] AUTHENTICATED
+[2016-04-22 08:11:51.823] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:51.824] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:51.825] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:11:51.825] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:11:51.825] [DEBUG] [default] - route:root
+[2016-04-22 08:11:51.825] [DEBUG] [default] - route:feeds
+[2016-04-22 08:11:51.829] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:11:51.829] [DEBUG] [default] - send data: {
+ "id": "5719dcc78f92d49f5c571d31"
+}
+[2016-04-22 08:11:51.830] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dcc78f92d49f5c571d31?group_id=__all__ [32m200 [0m6.831 ms - 33[0m
+
+[2016-04-22 08:11:51.838] [DEBUG] [default] - null
+[2016-04-22 08:11:51.839] [DEBUG] [default] - null
+[2016-04-22 08:11:51.839] [DEBUG] [default] - null
+[2016-04-22 08:11:51.840] [DEBUG] [default] - null
+[2016-04-22 08:11:51.840] [DEBUG] [default] - null
+[2016-04-22 08:11:52.776] [DEBUG] [default] - SOCKET [/sns#j96aF29zHvfosJ-BAAAU] DISCONNECTED
+[2016-04-22 08:11:52.776] [DEBUG] [default] - SOCKET [/sns#VYFv77nueFAW3vE1AAAV] DISCONNECTED
+[2016-04-22 08:11:52.815] [DEBUG] [default] - WS:feed [/sns#jGTWe5PCzifDIjoHAAAW] CONNECTING
+[2016-04-22 08:11:52.833] [DEBUG] [default] - SOCKET [/sns#jGTWe5PCzifDIjoHAAAW] AUTHENTICATING
+[2016-04-22 08:11:52.833] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:52.834] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:52.842] [DEBUG] [default] - SOCKET [/sns#jGTWe5PCzifDIjoHAAAW] AUTHENTICATED
+[2016-04-22 08:11:52.876] [DEBUG] [default] - WS:feed [/sns#Jc9hCEUKTtOqGH7DAAAX] CONNECTING
+[2016-04-22 08:11:52.891] [DEBUG] [default] - SOCKET [/sns#Jc9hCEUKTtOqGH7DAAAX] AUTHENTICATING
+[2016-04-22 08:11:52.892] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:52.893] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:52.904] [DEBUG] [default] - SOCKET [/sns#Jc9hCEUKTtOqGH7DAAAX] AUTHENTICATED
+[2016-04-22 08:11:52.918] [DEBUG] [default] - SOCKET [/sns#Jc9hCEUKTtOqGH7DAAAX] DISCONNECTED
+[2016-04-22 08:11:53.024] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:11:53.027] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:11:53.028] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:11:53.028] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:11:53.028] [DEBUG] [default] - route:root
+[2016-04-22 08:11:53.028] [DEBUG] [default] - route:feeds
+[2016-04-22 08:11:53.034] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:11:53.034] [DEBUG] [default] - send data: {
+ "id": "5719dcc88f92d49f5c571d74"
+}
+[2016-04-22 08:11:53.037] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dcc88f92d49f5c571d74?group_id=__all__ [32m200 [0m8.244 ms - 33[0m
+
+[2016-04-22 08:11:53.046] [DEBUG] [default] - null
+[2016-04-22 08:11:53.046] [DEBUG] [default] - null
+[2016-04-22 08:11:53.047] [DEBUG] [default] - null
+[2016-04-22 08:11:53.047] [DEBUG] [default] - null
+[2016-04-22 08:11:53.047] [DEBUG] [default] - null
+[2016-04-22 08:11:53.913] [DEBUG] [default] - SOCKET [/sns#jGTWe5PCzifDIjoHAAAW] DISCONNECTED
+[2016-04-22 08:12:02.111] [DEBUG] [default] - ALL-IN SNS Server running at http://localhost:5000
+[2016-04-22 08:12:02.141] [DEBUG] [default] - Connected to MongoDB
+[2016-04-22 08:12:02.382] [DEBUG] [default] - WS:feed [/sns#3LeYCqxIn-TU9O8jAAAA] CONNECTING
+[2016-04-22 08:12:02.420] [DEBUG] [default] - SOCKET [/sns#3LeYCqxIn-TU9O8jAAAA] AUTHENTICATING
+[2016-04-22 08:12:02.420] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:02.425] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:02.447] [DEBUG] [default] - SOCKET [/sns#3LeYCqxIn-TU9O8jAAAA] AUTHENTICATED
+[2016-04-22 08:12:02.461] [ERROR] [default] - [ReferenceError: ur is not defined]
+ReferenceError: ur is not defined
+    at /vagrant/allin-sns/app/spec/lib/request.js:91:41
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/request.js:82:13
+    at Ws.post (/vagrant/allin-sns/app/spec/lib/request.js:79:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:108:21)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at process._tickDomainCallback (node.js:444:9)
+[2016-04-22 08:12:03.463] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:12:03.465] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:110:26)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:12:03.614] [DEBUG] [default] - WS:feed [/sns#oJuBn7pX450oDxAnAAAB] CONNECTING
+[2016-04-22 08:12:03.649] [DEBUG] [default] - SOCKET [/sns#oJuBn7pX450oDxAnAAAB] AUTHENTICATING
+[2016-04-22 08:12:03.649] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:03.650] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:03.666] [DEBUG] [default] - SOCKET [/sns#oJuBn7pX450oDxAnAAAB] AUTHENTICATED
+[2016-04-22 08:12:03.709] [DEBUG] [default] - WS:feed [/sns#tjeE9UpzsQ53XaYgAAAC] CONNECTING
+[2016-04-22 08:12:03.740] [DEBUG] [default] - SOCKET [/sns#tjeE9UpzsQ53XaYgAAAC] AUTHENTICATING
+[2016-04-22 08:12:03.740] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:03.741] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:03.747] [DEBUG] [default] - SOCKET [/sns#tjeE9UpzsQ53XaYgAAAC] AUTHENTICATED
+[2016-04-22 08:12:03.801] [DEBUG] [default] - WS:feed [/sns#ZrBQMSxbERSOAerBAAAD] CONNECTING
+[2016-04-22 08:12:03.843] [DEBUG] [default] - SOCKET [/sns#ZrBQMSxbERSOAerBAAAD] AUTHENTICATING
+[2016-04-22 08:12:03.843] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:03.844] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:03.858] [DEBUG] [default] - SOCKET [/sns#ZrBQMSxbERSOAerBAAAD] AUTHENTICATED
+[2016-04-22 08:12:03.863] [ERROR] [default] - [ReferenceError: ur is not defined]
+ReferenceError: ur is not defined
+    at /vagrant/allin-sns/app/spec/lib/request.js:91:41
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/request.js:82:13
+    at Ws.post (/vagrant/allin-sns/app/spec/lib/request.js:79:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:137:21)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at process._tickDomainCallback (node.js:444:9)
+[2016-04-22 08:12:04.859] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:12:04.860] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:12:04.860] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:12:04.861] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:141:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:12:04.861] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:141:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:12:04.861] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:141:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:12:04.861] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:141:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:12:04.938] [DEBUG] [default] - WS:feed [/sns#oAJ8LU9JirIvlU9RAAAE] CONNECTING
+[2016-04-22 08:12:04.942] [DEBUG] [default] - SOCKET [/sns#oAJ8LU9JirIvlU9RAAAE] AUTHENTICATING
+[2016-04-22 08:12:04.942] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:04.942] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:04.944] [DEBUG] [default] - SOCKET [/sns#oAJ8LU9JirIvlU9RAAAE] AUTHENTICATED
+[2016-04-22 08:12:04.968] [DEBUG] [default] - WS:feed [/sns#ygFrXFtpRJrN-9xaAAAF] CONNECTING
+[2016-04-22 08:12:04.986] [DEBUG] [default] - SOCKET [/sns#ygFrXFtpRJrN-9xaAAAF] AUTHENTICATING
+[2016-04-22 08:12:04.986] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:04.987] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:04.993] [DEBUG] [default] - SOCKET [/sns#ygFrXFtpRJrN-9xaAAAF] AUTHENTICATED
+[2016-04-22 08:12:05.003] [ERROR] [default] - [ReferenceError: ur is not defined]
+ReferenceError: ur is not defined
+    at /vagrant/allin-sns/app/spec/lib/request.js:91:41
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/request.js:82:13
+    at Ws.post (/vagrant/allin-sns/app/spec/lib/request.js:79:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:158:21)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at process._tickDomainCallback (node.js:444:9)
+[2016-04-22 08:12:06.009] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:12:06.010] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:162:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:12:06.011] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:162:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:12:06.106] [DEBUG] [default] - WS:feed [/sns#qhTRhd7VrEgckyCJAAAG] CONNECTING
+[2016-04-22 08:12:06.132] [DEBUG] [default] - SOCKET [/sns#qhTRhd7VrEgckyCJAAAG] AUTHENTICATING
+[2016-04-22 08:12:06.132] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:06.133] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:06.137] [DEBUG] [default] - SOCKET [/sns#qhTRhd7VrEgckyCJAAAG] AUTHENTICATED
+[2016-04-22 08:12:06.169] [DEBUG] [default] - WS:feed [/sns#8ABVbpR0pwOBnsH8AAAH] CONNECTING
+[2016-04-22 08:12:06.191] [DEBUG] [default] - SOCKET [/sns#8ABVbpR0pwOBnsH8AAAH] AUTHENTICATING
+[2016-04-22 08:12:06.191] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:06.191] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:06.195] [DEBUG] [default] - SOCKET [/sns#8ABVbpR0pwOBnsH8AAAH] AUTHENTICATED
+[2016-04-22 08:12:06.206] [ERROR] [default] - [ReferenceError: ur is not defined]
+ReferenceError: ur is not defined
+    at /vagrant/allin-sns/app/spec/lib/request.js:91:41
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/request.js:82:13
+    at Ws.post (/vagrant/allin-sns/app/spec/lib/request.js:79:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:179:21)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at process._tickDomainCallback (node.js:444:9)
+[2016-04-22 08:12:06.214] [DEBUG] [default] - SOCKET [/sns#8ABVbpR0pwOBnsH8AAAH] DISCONNECTED
+[2016-04-22 08:12:07.203] [ERROR] [default] - [Error: Promise timed out after 1000 ms]
+Error: Promise timed out after 1000 ms
+    at null._onTimeout (/vagrant/allin-sns/app/spec/lib/ws.js:75:29)
+    at Timer.listOnTimeout (timers.js:92:15)
+[2016-04-22 08:12:07.204] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:183:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:12:07.204] [ERROR] [default] - [Error: Error: Promise timed out after 1000 ms]
+Error: Error: Promise timed out after 1000 ms
+    at /vagrant/allin-sns/app/spec/lib/expect.js:19:20
+    at parse (/vagrant/allin-sns/app/spec/lib/expect.js:13:12)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:84:32
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+    at /vagrant/allin-sns/node_modules/co/index.js:54:5
+    at co (/vagrant/allin-sns/node_modules/co/index.js:50:10)
+    at /vagrant/allin-sns/app/spec/lib/expect.js:83:13
+    at Ws.feed (/vagrant/allin-sns/app/spec/lib/expect.js:80:16)
+    at /vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:79:39
+    at classify (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:74:16)
+    at Context.<anonymous> (/vagrant/allin-sns/app/spec/web_socket/feeds.spec.js:183:31)
+    at next (native)
+    at onFulfilled (/vagrant/allin-sns/node_modules/co/index.js:65:19)
+[2016-04-22 08:12:07.299] [DEBUG] [default] - WS:feed [/sns#F6L2ThgLq25cCRt7AAAI] CONNECTING
+[2016-04-22 08:12:07.319] [DEBUG] [default] - SOCKET [/sns#F6L2ThgLq25cCRt7AAAI] AUTHENTICATING
+[2016-04-22 08:12:07.319] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:07.320] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:07.327] [DEBUG] [default] - SOCKET [/sns#F6L2ThgLq25cCRt7AAAI] AUTHENTICATED
+[2016-04-22 08:12:07.521] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:07.522] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:07.523] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:12:07.523] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:12:07.524] [DEBUG] [default] - route:root
+[2016-04-22 08:12:07.524] [DEBUG] [default] - route:feeds
+[2016-04-22 08:12:07.535] [DEBUG] [default] - Feed:update
+[2016-04-22 08:12:07.536] [DEBUG] [default] - send data: {
+ "id": "5719dcd78b80cab35c067301",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:12:07.208Z",
+ "updated_at": "2016-04-22T08:12:07.525Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dcd78b80cab35c067302",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.209Z",
+   "updated_at": "2016-04-22T08:12:07.209Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067301"
+  },
+  {
+   "id": "5719dcd78b80cab35c067303",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.209Z",
+   "updated_at": "2016-04-22T08:12:07.209Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067301"
+  },
+  {
+   "id": "5719dcd78b80cab35c067304",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.209Z",
+   "updated_at": "2016-04-22T08:12:07.209Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067301"
+  },
+  {
+   "id": "5719dcd78b80cab35c067305",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.209Z",
+   "updated_at": "2016-04-22T08:12:07.209Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067301"
+  },
+  {
+   "id": "5719dcd78b80cab35c067306",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.210Z",
+   "updated_at": "2016-04-22T08:12:07.210Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067301"
+  }
+ ]
+}
+[2016-04-22 08:12:07.546] [INFO] [default] - [0mPUT /api/v1/feeds/5719dcd78b80cab35c067301?group_id=__all__ [32m200 [0m18.585 ms - 1512[0m
+
+[2016-04-22 08:12:07.584] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:07.584] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:07.586] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:12:07.586] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:12:07.586] [DEBUG] [default] - route:root
+[2016-04-22 08:12:07.586] [DEBUG] [default] - route:feeds
+[2016-04-22 08:12:07.593] [DEBUG] [default] - Feed:update
+[2016-04-22 08:12:07.593] [DEBUG] [default] - send data: {
+ "id": "5719dcd78b80cab35c067301",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:12:07.208Z",
+ "updated_at": "2016-04-22T08:12:07.586Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dcd78b80cab35c067302",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.209Z",
+   "updated_at": "2016-04-22T08:12:07.209Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067301"
+  },
+  {
+   "id": "5719dcd78b80cab35c067303",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.209Z",
+   "updated_at": "2016-04-22T08:12:07.209Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067301"
+  },
+  {
+   "id": "5719dcd78b80cab35c067304",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.209Z",
+   "updated_at": "2016-04-22T08:12:07.209Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067301"
+  },
+  {
+   "id": "5719dcd78b80cab35c067305",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.209Z",
+   "updated_at": "2016-04-22T08:12:07.209Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067301"
+  },
+  {
+   "id": "5719dcd78b80cab35c067306",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.210Z",
+   "updated_at": "2016-04-22T08:12:07.210Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067301"
+  }
+ ]
+}
+[2016-04-22 08:12:07.597] [INFO] [default] - [0mPUT /api/v1/feeds/5719dcd78b80cab35c067301?group_id=__all__ [32m200 [0m8.795 ms - 1512[0m
+
+[2016-04-22 08:12:07.629] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:07.630] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:07.631] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:12:07.631] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:12:07.631] [DEBUG] [default] - route:root
+[2016-04-22 08:12:07.631] [DEBUG] [default] - route:feeds
+[2016-04-22 08:12:07.637] [DEBUG] [default] - Feed:update
+[2016-04-22 08:12:07.638] [DEBUG] [default] - send data: {
+ "id": "5719dcd78b80cab35c067301",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:12:07.208Z",
+ "updated_at": "2016-04-22T08:12:07.632Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dcd78b80cab35c067302",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.209Z",
+   "updated_at": "2016-04-22T08:12:07.209Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067301"
+  },
+  {
+   "id": "5719dcd78b80cab35c067303",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.209Z",
+   "updated_at": "2016-04-22T08:12:07.209Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067301"
+  },
+  {
+   "id": "5719dcd78b80cab35c067304",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.209Z",
+   "updated_at": "2016-04-22T08:12:07.209Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067301"
+  },
+  {
+   "id": "5719dcd78b80cab35c067305",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.209Z",
+   "updated_at": "2016-04-22T08:12:07.209Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067301"
+  },
+  {
+   "id": "5719dcd78b80cab35c067306",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.210Z",
+   "updated_at": "2016-04-22T08:12:07.210Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067301"
+  }
+ ]
+}
+[2016-04-22 08:12:07.641] [INFO] [default] - [0mPUT /api/v1/feeds/5719dcd78b80cab35c067301?group_id=__all__ [32m200 [0m7.671 ms - 1512[0m
+
+[2016-04-22 08:12:07.708] [DEBUG] [default] - SOCKET [/sns#F6L2ThgLq25cCRt7AAAI] DISCONNECTED
+[2016-04-22 08:12:07.717] [DEBUG] [default] - WS:feed [/sns#zfRjd9LnswpXFe_NAAAJ] CONNECTING
+[2016-04-22 08:12:07.721] [DEBUG] [default] - SOCKET [/sns#zfRjd9LnswpXFe_NAAAJ] AUTHENTICATING
+[2016-04-22 08:12:07.721] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:07.727] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:07.735] [DEBUG] [default] - SOCKET [/sns#zfRjd9LnswpXFe_NAAAJ] AUTHENTICATED
+[2016-04-22 08:12:07.773] [DEBUG] [default] - WS:feed [/sns#lWhZTdQzjkrIL18BAAAK] CONNECTING
+[2016-04-22 08:12:07.790] [DEBUG] [default] - SOCKET [/sns#lWhZTdQzjkrIL18BAAAK] AUTHENTICATING
+[2016-04-22 08:12:07.790] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:07.793] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:07.799] [DEBUG] [default] - SOCKET [/sns#lWhZTdQzjkrIL18BAAAK] AUTHENTICATED
+[2016-04-22 08:12:07.828] [DEBUG] [default] - WS:feed [/sns#YkbdLtT51lLR1UqwAAAL] CONNECTING
+[2016-04-22 08:12:07.849] [DEBUG] [default] - SOCKET [/sns#YkbdLtT51lLR1UqwAAAL] AUTHENTICATING
+[2016-04-22 08:12:07.849] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:07.850] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:07.858] [DEBUG] [default] - SOCKET [/sns#YkbdLtT51lLR1UqwAAAL] AUTHENTICATED
+[2016-04-22 08:12:07.958] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:07.959] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:07.960] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:12:07.960] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:12:07.960] [DEBUG] [default] - route:root
+[2016-04-22 08:12:07.960] [DEBUG] [default] - route:feeds
+[2016-04-22 08:12:07.976] [DEBUG] [default] - Feed:update
+[2016-04-22 08:12:07.977] [DEBUG] [default] - send data: {
+ "id": "5719dcd78b80cab35c067345",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:12:07.649Z",
+ "updated_at": "2016-04-22T08:12:07.960Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dcd78b80cab35c067346",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.649Z",
+   "updated_at": "2016-04-22T08:12:07.649Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067345"
+  },
+  {
+   "id": "5719dcd78b80cab35c067347",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.650Z",
+   "updated_at": "2016-04-22T08:12:07.650Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067345"
+  },
+  {
+   "id": "5719dcd78b80cab35c067348",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.650Z",
+   "updated_at": "2016-04-22T08:12:07.650Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067345"
+  },
+  {
+   "id": "5719dcd78b80cab35c067349",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.650Z",
+   "updated_at": "2016-04-22T08:12:07.650Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067345"
+  },
+  {
+   "id": "5719dcd78b80cab35c06734a",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.650Z",
+   "updated_at": "2016-04-22T08:12:07.650Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067345"
+  }
+ ]
+}
+[2016-04-22 08:12:07.980] [INFO] [default] - [0mPUT /api/v1/feeds/5719dcd78b80cab35c067345?group_id=__all__ [32m200 [0m17.620 ms - 1512[0m
+
+[2016-04-22 08:12:08.068] [DEBUG] [default] - SOCKET [/sns#zfRjd9LnswpXFe_NAAAJ] DISCONNECTED
+[2016-04-22 08:12:08.069] [DEBUG] [default] - SOCKET [/sns#lWhZTdQzjkrIL18BAAAK] DISCONNECTED
+[2016-04-22 08:12:08.069] [DEBUG] [default] - SOCKET [/sns#YkbdLtT51lLR1UqwAAAL] DISCONNECTED
+[2016-04-22 08:12:08.114] [DEBUG] [default] - WS:feed [/sns#8V6KMf5Y0kRUpA3mAAAM] CONNECTING
+[2016-04-22 08:12:08.133] [DEBUG] [default] - SOCKET [/sns#8V6KMf5Y0kRUpA3mAAAM] AUTHENTICATING
+[2016-04-22 08:12:08.133] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:08.135] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:08.144] [DEBUG] [default] - SOCKET [/sns#8V6KMf5Y0kRUpA3mAAAM] AUTHENTICATED
+[2016-04-22 08:12:08.184] [DEBUG] [default] - WS:feed [/sns#PDLJd0bUz9C-2WBoAAAN] CONNECTING
+[2016-04-22 08:12:08.204] [DEBUG] [default] - SOCKET [/sns#PDLJd0bUz9C-2WBoAAAN] AUTHENTICATING
+[2016-04-22 08:12:08.204] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:08.205] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:08.215] [DEBUG] [default] - SOCKET [/sns#PDLJd0bUz9C-2WBoAAAN] AUTHENTICATED
+[2016-04-22 08:12:08.340] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:08.340] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:08.341] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:12:08.341] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:12:08.341] [DEBUG] [default] - route:root
+[2016-04-22 08:12:08.341] [DEBUG] [default] - route:feeds
+[2016-04-22 08:12:08.349] [DEBUG] [default] - Feed:update
+[2016-04-22 08:12:08.351] [DEBUG] [default] - send data: {
+ "id": "5719dcd78b80cab35c067389",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:12:07.990Z",
+ "updated_at": "2016-04-22T08:12:08.341Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dcd78b80cab35c06738a",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.991Z",
+   "updated_at": "2016-04-22T08:12:07.991Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067389"
+  },
+  {
+   "id": "5719dcd78b80cab35c06738b",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.991Z",
+   "updated_at": "2016-04-22T08:12:07.991Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067389"
+  },
+  {
+   "id": "5719dcd78b80cab35c06738c",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.991Z",
+   "updated_at": "2016-04-22T08:12:07.991Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067389"
+  },
+  {
+   "id": "5719dcd78b80cab35c06738d",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.992Z",
+   "updated_at": "2016-04-22T08:12:07.992Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067389"
+  },
+  {
+   "id": "5719dcd78b80cab35c06738e",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:07.992Z",
+   "updated_at": "2016-04-22T08:12:07.992Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd78b80cab35c067389"
+  }
+ ]
+}
+[2016-04-22 08:12:08.353] [INFO] [default] - [0mPUT /api/v1/feeds/5719dcd78b80cab35c067389?group_id=__all__ [32m200 [0m9.443 ms - 1512[0m
+
+[2016-04-22 08:12:09.226] [DEBUG] [default] - SOCKET [/sns#8V6KMf5Y0kRUpA3mAAAM] DISCONNECTED
+[2016-04-22 08:12:09.227] [DEBUG] [default] - SOCKET [/sns#PDLJd0bUz9C-2WBoAAAN] DISCONNECTED
+[2016-04-22 08:12:09.308] [DEBUG] [default] - WS:feed [/sns#RFm6dI9DgfmDuVuIAAAO] CONNECTING
+[2016-04-22 08:12:09.329] [DEBUG] [default] - SOCKET [/sns#RFm6dI9DgfmDuVuIAAAO] AUTHENTICATING
+[2016-04-22 08:12:09.329] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:09.330] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:09.334] [DEBUG] [default] - SOCKET [/sns#RFm6dI9DgfmDuVuIAAAO] AUTHENTICATED
+[2016-04-22 08:12:09.368] [DEBUG] [default] - WS:feed [/sns#sewd0opu0OfcetI4AAAP] CONNECTING
+[2016-04-22 08:12:09.390] [DEBUG] [default] - SOCKET [/sns#sewd0opu0OfcetI4AAAP] AUTHENTICATING
+[2016-04-22 08:12:09.390] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:09.390] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:09.395] [DEBUG] [default] - SOCKET [/sns#sewd0opu0OfcetI4AAAP] AUTHENTICATED
+[2016-04-22 08:12:09.416] [DEBUG] [default] - SOCKET [/sns#sewd0opu0OfcetI4AAAP] DISCONNECTED
+[2016-04-22 08:12:09.529] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:09.530] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:09.531] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:12:09.531] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:12:09.531] [DEBUG] [default] - route:root
+[2016-04-22 08:12:09.531] [DEBUG] [default] - route:feeds
+[2016-04-22 08:12:09.536] [DEBUG] [default] - Feed:update
+[2016-04-22 08:12:09.537] [DEBUG] [default] - send data: {
+ "id": "5719dcd98b80cab35c0673cc",
+ "contents": "this is test text",
+ "created_at": "2016-04-22T08:12:09.234Z",
+ "updated_at": "2016-04-22T08:12:09.531Z",
+ "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+ "likes": [],
+ "attachments": [],
+ "comments": [
+  {
+   "id": "5719dcd98b80cab35c0673cd",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:09.235Z",
+   "updated_at": "2016-04-22T08:12:09.235Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd98b80cab35c0673cc"
+  },
+  {
+   "id": "5719dcd98b80cab35c0673ce",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:09.235Z",
+   "updated_at": "2016-04-22T08:12:09.235Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd98b80cab35c0673cc"
+  },
+  {
+   "id": "5719dcd98b80cab35c0673cf",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:09.235Z",
+   "updated_at": "2016-04-22T08:12:09.235Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd98b80cab35c0673cc"
+  },
+  {
+   "id": "5719dcd98b80cab35c0673d0",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:09.236Z",
+   "updated_at": "2016-04-22T08:12:09.236Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd98b80cab35c0673cc"
+  },
+  {
+   "id": "5719dcd98b80cab35c0673d1",
+   "contents": "contents text 00",
+   "created_at": "2016-04-22T08:12:09.236Z",
+   "updated_at": "2016-04-22T08:12:09.236Z",
+   "posted_by": "7b732aa2fdc011e3acbb22000a7c9000",
+   "likes": [],
+   "attachments": [],
+   "feed_id": "5719dcd98b80cab35c0673cc"
+  }
+ ]
+}
+[2016-04-22 08:12:09.539] [INFO] [default] - [0mPUT /api/v1/feeds/5719dcd98b80cab35c0673cc?group_id=__all__ [32m200 [0m6.994 ms - 1512[0m
+
+[2016-04-22 08:12:10.403] [DEBUG] [default] - SOCKET [/sns#RFm6dI9DgfmDuVuIAAAO] DISCONNECTED
+[2016-04-22 08:12:10.515] [DEBUG] [default] - WS:feed [/sns#_y9vMqyale04BXV5AAAQ] CONNECTING
+[2016-04-22 08:12:10.534] [DEBUG] [default] - SOCKET [/sns#_y9vMqyale04BXV5AAAQ] AUTHENTICATING
+[2016-04-22 08:12:10.534] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:10.539] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:10.546] [DEBUG] [default] - SOCKET [/sns#_y9vMqyale04BXV5AAAQ] AUTHENTICATED
+[2016-04-22 08:12:10.744] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:10.744] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:10.745] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:12:10.745] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:12:10.745] [DEBUG] [default] - route:root
+[2016-04-22 08:12:10.745] [DEBUG] [default] - route:feeds
+[2016-04-22 08:12:10.753] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:12:10.753] [DEBUG] [default] - send data: {
+ "id": "5719dcda8b80cab35c06740f"
+}
+[2016-04-22 08:12:10.756] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dcda8b80cab35c06740f?group_id=__all__ [32m200 [0m9.536 ms - 33[0m
+
+[2016-04-22 08:12:10.771] [DEBUG] [default] - null
+[2016-04-22 08:12:10.771] [DEBUG] [default] - null
+[2016-04-22 08:12:10.773] [DEBUG] [default] - null
+[2016-04-22 08:12:10.773] [DEBUG] [default] - null
+[2016-04-22 08:12:10.774] [DEBUG] [default] - null
+[2016-04-22 08:12:10.806] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:10.806] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:10.807] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:12:10.807] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:12:10.807] [DEBUG] [default] - route:root
+[2016-04-22 08:12:10.807] [DEBUG] [default] - route:feeds
+[2016-04-22 08:12:10.812] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:12:10.812] [DEBUG] [default] - send data: {
+ "id": "5719dcda8b80cab35c067415"
+}
+[2016-04-22 08:12:10.813] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dcda8b80cab35c067415?group_id=__all__ [32m200 [0m6.259 ms - 33[0m
+
+[2016-04-22 08:12:10.822] [DEBUG] [default] - null
+[2016-04-22 08:12:10.823] [DEBUG] [default] - null
+[2016-04-22 08:12:10.825] [DEBUG] [default] - null
+[2016-04-22 08:12:10.825] [DEBUG] [default] - null
+[2016-04-22 08:12:10.825] [DEBUG] [default] - null
+[2016-04-22 08:12:10.842] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:10.843] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:10.844] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:12:10.844] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:12:10.844] [DEBUG] [default] - route:root
+[2016-04-22 08:12:10.844] [DEBUG] [default] - route:feeds
+[2016-04-22 08:12:10.847] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:12:10.847] [DEBUG] [default] - send data: {
+ "id": "5719dcda8b80cab35c06741b"
+}
+[2016-04-22 08:12:10.850] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dcda8b80cab35c06741b?group_id=__all__ [32m200 [0m5.795 ms - 33[0m
+
+[2016-04-22 08:12:10.864] [DEBUG] [default] - null
+[2016-04-22 08:12:10.865] [DEBUG] [default] - null
+[2016-04-22 08:12:10.865] [DEBUG] [default] - null
+[2016-04-22 08:12:10.865] [DEBUG] [default] - SOCKET [/sns#_y9vMqyale04BXV5AAAQ] DISCONNECTED
+[2016-04-22 08:12:10.866] [DEBUG] [default] - null
+[2016-04-22 08:12:10.866] [DEBUG] [default] - null
+[2016-04-22 08:12:10.954] [DEBUG] [default] - WS:feed [/sns#gwJZg3MI7JlQ8lsPAAAR] CONNECTING
+[2016-04-22 08:12:10.967] [DEBUG] [default] - SOCKET [/sns#gwJZg3MI7JlQ8lsPAAAR] AUTHENTICATING
+[2016-04-22 08:12:10.967] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:10.968] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:10.973] [DEBUG] [default] - SOCKET [/sns#gwJZg3MI7JlQ8lsPAAAR] AUTHENTICATED
+[2016-04-22 08:12:11.008] [DEBUG] [default] - WS:feed [/sns#xmCMG2qnLu8lrgPbAAAS] CONNECTING
+[2016-04-22 08:12:11.025] [DEBUG] [default] - SOCKET [/sns#xmCMG2qnLu8lrgPbAAAS] AUTHENTICATING
+[2016-04-22 08:12:11.025] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:11.025] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:11.030] [DEBUG] [default] - SOCKET [/sns#xmCMG2qnLu8lrgPbAAAS] AUTHENTICATED
+[2016-04-22 08:12:11.065] [DEBUG] [default] - WS:feed [/sns#GwYLnthac7g0YdrxAAAT] CONNECTING
+[2016-04-22 08:12:11.103] [DEBUG] [default] - SOCKET [/sns#GwYLnthac7g0YdrxAAAT] AUTHENTICATING
+[2016-04-22 08:12:11.103] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:11.106] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:11.123] [DEBUG] [default] - SOCKET [/sns#GwYLnthac7g0YdrxAAAT] AUTHENTICATED
+[2016-04-22 08:12:11.159] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:11.159] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:11.160] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:12:11.160] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:12:11.160] [DEBUG] [default] - route:root
+[2016-04-22 08:12:11.160] [DEBUG] [default] - route:feeds
+[2016-04-22 08:12:11.163] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:12:11.163] [DEBUG] [default] - send data: {
+ "id": "5719dcda8b80cab35c067453"
+}
+[2016-04-22 08:12:11.164] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dcda8b80cab35c067453?group_id=__all__ [32m200 [0m4.360 ms - 33[0m
+
+[2016-04-22 08:12:11.175] [DEBUG] [default] - null
+[2016-04-22 08:12:11.175] [DEBUG] [default] - null
+[2016-04-22 08:12:11.176] [DEBUG] [default] - null
+[2016-04-22 08:12:11.176] [DEBUG] [default] - SOCKET [/sns#gwJZg3MI7JlQ8lsPAAAR] DISCONNECTED
+[2016-04-22 08:12:11.176] [DEBUG] [default] - SOCKET [/sns#xmCMG2qnLu8lrgPbAAAS] DISCONNECTED
+[2016-04-22 08:12:11.177] [DEBUG] [default] - SOCKET [/sns#GwYLnthac7g0YdrxAAAT] DISCONNECTED
+[2016-04-22 08:12:11.177] [DEBUG] [default] - null
+[2016-04-22 08:12:11.177] [DEBUG] [default] - null
+[2016-04-22 08:12:11.305] [DEBUG] [default] - WS:feed [/sns#lyb6DkIhacZa5pL6AAAU] CONNECTING
+[2016-04-22 08:12:11.329] [DEBUG] [default] - SOCKET [/sns#lyb6DkIhacZa5pL6AAAU] AUTHENTICATING
+[2016-04-22 08:12:11.329] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:11.331] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:11.336] [DEBUG] [default] - SOCKET [/sns#lyb6DkIhacZa5pL6AAAU] AUTHENTICATED
+[2016-04-22 08:12:11.362] [DEBUG] [default] - WS:feed [/sns#4VYnF1jZbc65Ev3YAAAV] CONNECTING
+[2016-04-22 08:12:11.375] [DEBUG] [default] - SOCKET [/sns#4VYnF1jZbc65Ev3YAAAV] AUTHENTICATING
+[2016-04-22 08:12:11.375] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:11.375] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:11.380] [DEBUG] [default] - SOCKET [/sns#4VYnF1jZbc65Ev3YAAAV] AUTHENTICATED
+[2016-04-22 08:12:11.483] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:11.484] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:11.485] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:12:11.485] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:12:11.485] [DEBUG] [default] - route:root
+[2016-04-22 08:12:11.485] [DEBUG] [default] - route:feeds
+[2016-04-22 08:12:11.526] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:12:11.526] [DEBUG] [default] - send data: {
+ "id": "5719dcdb8b80cab35c067497"
+}
+[2016-04-22 08:12:11.526] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dcdb8b80cab35c067497?group_id=__all__ [32m200 [0m42.459 ms - 33[0m
+
+[2016-04-22 08:12:11.533] [DEBUG] [default] - null
+[2016-04-22 08:12:11.534] [DEBUG] [default] - null
+[2016-04-22 08:12:11.534] [DEBUG] [default] - null
+[2016-04-22 08:12:11.534] [DEBUG] [default] - null
+[2016-04-22 08:12:11.535] [DEBUG] [default] - null
+[2016-04-22 08:12:12.389] [DEBUG] [default] - SOCKET [/sns#lyb6DkIhacZa5pL6AAAU] DISCONNECTED
+[2016-04-22 08:12:12.390] [DEBUG] [default] - SOCKET [/sns#4VYnF1jZbc65Ev3YAAAV] DISCONNECTED
+[2016-04-22 08:12:12.476] [DEBUG] [default] - WS:feed [/sns#93BVdYFanVd9O0L8AAAW] CONNECTING
+[2016-04-22 08:12:12.498] [DEBUG] [default] - SOCKET [/sns#93BVdYFanVd9O0L8AAAW] AUTHENTICATING
+[2016-04-22 08:12:12.498] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:12.499] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:12.505] [DEBUG] [default] - SOCKET [/sns#93BVdYFanVd9O0L8AAAW] AUTHENTICATED
+[2016-04-22 08:12:12.535] [DEBUG] [default] - WS:feed [/sns#zi5qMkfb2Ny2PlmZAAAX] CONNECTING
+[2016-04-22 08:12:12.558] [DEBUG] [default] - SOCKET [/sns#zi5qMkfb2Ny2PlmZAAAX] AUTHENTICATING
+[2016-04-22 08:12:12.558] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:12.559] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:12.570] [DEBUG] [default] - SOCKET [/sns#zi5qMkfb2Ny2PlmZAAAX] AUTHENTICATED
+[2016-04-22 08:12:12.585] [DEBUG] [default] - SOCKET [/sns#zi5qMkfb2Ny2PlmZAAAX] DISCONNECTED
+[2016-04-22 08:12:12.679] [DEBUG] [default] - Web API AUTHENTICATING
+[2016-04-22 08:12:12.681] [DEBUG] [default] - Web API AUTHENTICATED
+[2016-04-22 08:12:12.681] [DEBUG] [default] - Web API AUTHORIZING
+[2016-04-22 08:12:12.682] [DEBUG] [default] - Web API AUTHORIZED
+[2016-04-22 08:12:12.682] [DEBUG] [default] - route:root
+[2016-04-22 08:12:12.682] [DEBUG] [default] - route:feeds
+[2016-04-22 08:12:12.687] [DEBUG] [default] - Feed:delete
+[2016-04-22 08:12:12.687] [DEBUG] [default] - send data: {
+ "id": "5719dcdc8b80cab35c0674da"
+}
+[2016-04-22 08:12:12.688] [INFO] [default] - [0mDELETE /api/v1/feeds/5719dcdc8b80cab35c0674da?group_id=__all__ [32m200 [0m7.492 ms - 33[0m
+
+[2016-04-22 08:12:12.696] [DEBUG] [default] - null
+[2016-04-22 08:12:12.697] [DEBUG] [default] - null
+[2016-04-22 08:12:12.698] [DEBUG] [default] - null
+[2016-04-22 08:12:12.698] [DEBUG] [default] - null
+[2016-04-22 08:12:12.698] [DEBUG] [default] - null
+[2016-04-22 08:12:13.580] [DEBUG] [default] - SOCKET [/sns#93BVdYFanVd9O0L8AAAW] DISCONNECTED

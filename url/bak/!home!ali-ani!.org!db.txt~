@@ -1,0 +1,127 @@
+**** comments;
+|-----------------+--------------+------+-----+---------+----------------+-------|
+| Field           | Type         | Null | Key | Default | Extra          | bytes |
+|-----------------+--------------+------+-----+---------+----------------+-------|
+| id              | int(11)      | NO   | PRI | NULL    | auto_increment |     4 |
+| type            | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| sns_post_id     | varchar(255) | YES  | MUL | NULL    |                | 255x3 |
+| user_account_id | int(11)      | YES  | MUL | NULL    |                |     4 |
+| content         | text         | YES  |     | NULL    |                |  1000 |
+| posted_at       | datetime     | YES  |     | NULL    |                |     8 |
+| created_at      | datetime     | NO   |     | NULL    |                |     8 |
+| updated_at      | datetime     | NO   |     | NULL    |                |     8 |
+|-----------------+--------------+------+-----+---------+----------------+-------|
+|                 |              |      |     |         |                |  2562 |
+|-----------------+--------------+------+-----+---------+----------------+-------|
+**** comments_media;
+|------------+---------+------+-----+---------+-------+-------|
+| Field      | Type    | Null | Key | Default | Extra | bytes |
+|------------+---------+------+-----+---------+-------+-------|
+| comment_id | int(11) | YES  | MUL | NULL    |       |     4 |
+| medium_id  | int(11) | YES  | MUL | NULL    |       |     4 |
+|------------+---------+------+-----+---------+-------+-------|
+|            |         |      |     |         |       |     8 |
+|------------+---------+------+-----+---------+-------+-------|
+
+**** hashtags;
+|----------------+---------------+------+-----+---------+----------------+--------|
+| Field          | Type          | Null | Key | Default | Extra          |  bytes |
+|----------------+---------------+------+-----+---------+----------------+--------|
+| id             | int(11)       | NO   | PRI | NULL    | auto_increment |      4 |
+| parent_hashtag | varchar(50)   | NO   |     | NULL    |                |   50x3 |
+| hashtag        | varchar(50)   | YES  |     | NULL    |                |   50x3 |
+| comment        | varchar(1000) | YES  |     | NULL    |                | 1000x3 |
+| created_at     | datetime      | NO   |     | NULL    |                |      8 |
+| updated_at     | datetime      | NO   |     | NULL    |                |      8 |
+|----------------+---------------+------+-----+---------+----------------+--------|
+|                |               |      |     |         |                |   3320 |
+|----------------+---------------+------+-----+---------+----------------+--------|
+
+**** influencer_profiles;
+|--------------------+---------------+------+-----+---------+----------------+--------|
+| Field              | Type          | Null | Key | Default | Extra          |  bytes |
+|--------------------+---------------+------+-----+---------+----------------+--------|
+| id                 | int(11)       | NO   | PRI | NULL    | auto_increment |      4 |
+| name               | varchar(100)  | NO   |     | NULL    |                |  100x3 |
+| gender             | varchar(255)  | NO   |     | NULL    |                |  255x3 |
+| country            | varchar(255)  | NO   |     | NULL    |                |  255x3 |
+| postal_code        | varchar(100)  | NO   |     | NULL    |                |  100x3 |
+| address            | varchar(100)  | NO   |     | NULL    |                |  100x3 |
+| phone_number       | varchar(100)  | NO   |     | NULL    |                |  100x3 |
+| email_address      | varchar(100)  | NO   |     | NULL    |                |  100x3 |
+| account_facebook   | varchar(100)  | YES  |     | NULL    |                |  100x3 |
+| account_twitter    | varchar(100)  | YES  |     | NULL    |                |  100x3 |
+| account_instagram  | varchar(100)  | YES  |     | NULL    |                |  100x3 |
+| favorite_url1      | varchar(100)  | YES  |     | NULL    |                |  100x3 |
+| favorite_url2      | varchar(100)  | YES  |     | NULL    |                |  100x3 |
+| favorite_url3      | varchar(100)  | YES  |     | NULL    |                |  100x3 |
+| tops_size          | varchar(255)  | NO   |     | NULL    |                |  255x3 |
+| bottoms_size       | varchar(255)  | NO   |     | NULL    |                |  255x3 |
+| bottoms_inner_size | varchar(255)  | NO   |     | NULL    |                |  255x3 |
+| size_comment       | varchar(255)  | YES  |     | NULL    |                |  255x3 |
+| created_at         | datetime      | NO   |     | NULL    |                |      8 |
+| updated_at         | datetime      | NO   |     | NULL    |                |      8 |
+| uniqlo_comment     | varchar(1000) | YES  |     | NULL    |                | 1000x3 |
+| topics_fashion     | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_art         | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_culture     | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_travel      | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_pets        | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_sports      | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_food        | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_kids        | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_friends     | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_music       | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_other       | tinyint(1)    | YES  |     | 0       |                |      1 |
+| topics_comment     | varchar(30)   | YES  |     | NULL    |                |   30x3 |
+|--------------------+---------------+------+-----+---------+----------------+--------|
+|                    |               |      |     |         |                |   8011 |
+|--------------------+---------------+------+-----+---------+----------------+--------|
+
+**** describe media;
+|-----------------+--------------+------+-----+---------+----------------+-------|
+| Field           | Type         | Null | Key | Default | Extra          | bytes |
+|-----------------+--------------+------+-----+---------+----------------+-------|
+| id              | int(11)      | NO   | PRI | NULL    | auto_increment |     4 |
+| type            | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| sns_post_id     | varchar(255) | YES  | MUL | NULL    |                | 255x3 |
+| user_account_id | int(11)      | YES  | MUL | NULL    |                |     4 |
+| content         | text         | YES  |     | NULL    |                |  1000 |
+| posted_at       | datetime     | YES  |     | NULL    |                |     8 |
+| post_url        | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| photo_id        | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| photo_url       | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| created_at      | datetime     | NO   |     | NULL    |                |     8 |
+| updated_at      | datetime     | NO   |     | NULL    |                |     8 |
+|-----------------+--------------+------+-----+---------+----------------+-------|
+
+**** medium_approvals;
+|------------+------------+------+-----+---------+----------------+-------|
+| Field      | Type       | Null | Key | Default | Extra          | bytes |
+|------------+------------+------+-----+---------+----------------+-------|
+| id         | int(11)    | NO   | PRI | NULL    | auto_increment |     4 |
+| medium_id  | int(11)    | YES  | MUL | NULL    |                |     4 |
+| display    | tinyint(1) | YES  |     | NULL    |                |     1 |
+| featured   | tinyint(1) | YES  |     | 0       |                |     1 |
+| created_at | datetime   | NO   |     | NULL    |                |     8 |
+| updated_at | datetime   | NO   |     | NULL    |                |     8 |
+|------------+------------+------+-----+---------+----------------+-------|
+
+**** user_accounts;
+|-------------------+--------------+------+-----+---------+----------------+-------|
+| Field             | Type         | Null | Key | Default | Extra          | bytes |
+|-------------------+--------------+------+-----+---------+----------------+-------|
+| id                | int(11)      | NO   | PRI | NULL    | auto_increment |     4 |
+| sns               | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| sns_user_id       | varchar(255) | YES  | MUL | NULL    |                | 255x3 |
+| username          | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| full_name         | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| description       | text         | YES  |     | NULL    |                |  1000 |
+| follows_count     | int(11)      | YES  |     | NULL    |                |     4 |
+| followed_by_count | int(11)      | YES  |     | NULL    |                |     4 |
+| user_page_url     | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| user_website_url  | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| profile_image_url | varchar(255) | YES  |     | NULL    |                | 255x3 |
+| created_at        | datetime     | NO   |     | NULL    |                |     8 |
+| updated_at        | datetime     | NO   |     | NULL    |                |     8 |
+|-------------------+--------------+------+-----+---------+----------------+-------|

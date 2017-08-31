@@ -1,0 +1,134 @@
+'use strict';
+
+process.env.NODE_ENV = 'test';
+
+const supertest = require('supertest');
+const app       = require('../../app');
+const request   = supertest(app);
+
+const url    = '/api/v1/feeds/';
+const should = require('chai').should();
+
+const co = require('co');
+
+
+
+
+describe('/api/v1', () => {
+    const ok           = 200;
+
+    const bad_request  = 400;
+    const unauthorized = 401;
+    const not_found    = 404;
+    const error        = 500;
+
+    const bad_request_code_message  = 'bad_request';
+    const bad_request_error_message = 'required';
+    const not_found_error_message = 'Record does not exists';
+    const unathorized_message = 'Web API UNAUTHORIZED';
+
+    const mock_auth_node = require('../lib/mock_server');
+    const mongodb        = require('../lib/db');
+
+    const factory = require('../lib/fixture');
+    const fixture = factory.fixture();
+    const token   = fixture.valid_seeds[0].authorization.split(' ')[1];
+    // const token   = fixture.valid_seeds[0].authorization
+
+    const Feed    = require('../../models/feed');
+    const Comment = require('../../models/comment');
+
+
+    before( (done) => {
+        Feed.collection.drop();
+        fixture.create_feed_data();
+        done();
+    });
+
+    beforeEach( (done) => {
+        mock_auth_node.create();
+        done();
+    });
+
+    afterEach( (done) => {
+        mock_auth_node.close();
+        done();
+    });
+
+    after( (done) => {
+        mongodb.clean();
+        done();
+    });
+
+
+    function sleep(ms) {
+        return function (cb) {
+            setTimeout(cb, ms);
+        };
+    }
+
+
+    function post(uri, body, accept, content_type, authorization) {
+        return new Promise( (resolve, reject) => {
+            request
+                .post(uri)
+                .send(body)
+                .set('Accept',        accept)
+                .set('Content-type',  content_type)
+                .set('Authorization', authorization)
+                .end((err, res) => {
+                    if (err) return reject(err);
+                    resolve(res);
+                });
+        });
+    }
+
+    function expect(result, contents) {
+        return new Promise( (resolve, reject) => {
+
+        });
+    }
+
+
+
+
+    describe('/sns', () => {
+        it('', co.wrap(function *() {
+            // prepare ws
+            const wb   = require('../lib/ws')
+            let socket = wb.connect();
+
+            // request setting
+            let uri     = `${url}?group_id=${fixture.valid_seeds[0].group_id}`;
+            let body    = {'contents': 'this is test text'};
+            let accept  = fixture.valid_seeds[0].header;
+            let content = fixture.valid_seeds[0].header;
+            let auth    = fixture.valid_seeds[0].authorization;
+
+            // post
+            post(uri, body, accept, content, auth);
+
+            // ws
+            let result = yield socket.wait_message();
+            result = JSON.parse(result);
+            result.should.not.empty;
+
+            result.type.should.equal('Feed');
+            result.action.should.equal('create');
+
+            result.data.should.have.property('id');
+            result.data.should.have.property('contents');
+            result.data.should.have.property('created_at');
+            result.data.should.have.property('updated_at');
+            result.data.should.have.property('posted_by');
+            result.data.should.have.property('likes');
+            result.data.should.have.property('attachments');
+            result.data.should.have.property('comments');
+
+            result.data.contents.should.eql(body.contents);
+            result.data.posted_by.should.equal(fixture.valid_seeds[0].account_id);
+
+            yield disconnect(socket);
+        }));
+    });
+});

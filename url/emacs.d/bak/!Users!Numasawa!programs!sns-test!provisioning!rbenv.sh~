@@ -1,0 +1,22 @@
+#!/bin/bash
+
+MY_GROUP="vagrant"
+
+cd /usr/local/share
+mkdir ./ruby-build
+chgrp -R $MY_GROUP .rbenv
+chmod -R g+rwxX .rbenv
+
+cd ~/
+git clone git://github.com/sstephenson/rbenv.git ./.rbenv
+mkdir .rbenv/shims .rbenv/versions
+chgrp -R $MY_GROUP .rbenv
+chmod -R g+rwxX .rbenv
+
+git clone git://github.com/sstephenson/ruby-build.git .rbenv/ruby-build
+cd .rbenv/ruby-build
+./install.sh
+
+echo 'export RBENV_ROOT="~/.rbenv"'     >> ~/.bashrc
+echo 'export PATH="~/.rbenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(rbenv init -)"'           >> ~/.bashrc

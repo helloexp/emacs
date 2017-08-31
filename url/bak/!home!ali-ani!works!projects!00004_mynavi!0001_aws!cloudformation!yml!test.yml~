@@ -1,0 +1,28 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Testing '
+Resources:
+    HostedZoneMain:
+        Type: AWS::Route53::HostedZone
+        Properties:
+            HostedZoneTags:
+            -   Key: Name
+                Value: mynavi
+            Name: mynavi.testing.net
+    DnsTesting:
+        Type: AWS::Route53::RecordSetGroup
+        Properties:
+            HostedZoneId:
+                Ref: HostedZoneMain
+            RecordSets:
+            -   Name: localdb.mynavi-testing.net.
+                Type: A
+                AliasTarget:
+                    HostedZoneId:
+                        Fn::GetAtt:
+                        - myELB
+                        - CanonicalHostedZoneNameID
+                    DNSName:
+                        Fn::GetAtt:
+                        - myELB
+                        - CanonicalHostedZoneName

@@ -1,0 +1,46 @@
+# -*- coding: utf-8 -*-
+require 'twitter'
+require 'pp'
+require "instagram"
+require 'rubygems'
+require 'koala'
+
+
+
+
+# -*- coding: utf-8 -*-
+require 'twitter'
+require 'pp'
+
+require "twitter"
+
+client = Twitter::REST::Client.new do |config|
+    config.consumer_key        = "TtB5upNIXCvDXvVoDGu7eq00f"
+    config.consumer_secret     = "2cH3CdH4MagPsfLJajtnFJQ2SKhMs28ADmwCv0ptwYp1W0rCBR"
+    config.access_token        = "3044986898-CGLRFBEo89dJ5eKfr4MGocNHM37wRXHhJKCKdhg"
+    config.access_token_secret = "1XTimBn74X491lJq2N0Amtt0gT8JB8RcJbxzA89D0ilpl"
+end
+
+
+#自分のタイムラインの取得
+#pp client.home_timeline
+#自分宛てのReplyの取得
+#pp client.mentions
+#自分宛てのDMの取得
+#pp client.direct_messages
+#発言する
+#client.update("テストです。")
+
+
+limit   = 100     # 取得するツイートの上限数
+keyword = "lifewear"   # ハッシュタグによる検索を行う際のキーワード
+
+# limitで指定された数だけツイートを取得
+client.search("#{keyword} -rt", :locale => "ja", :result_type => "recent", :include_entity => true).take(limit).map do |tweet|
+    # entities内にメディア(画像等)を含む場合の処理
+    if tweet.media? then
+        tweet.media.each do |value|
+            puts value.media_uri
+        end
+    end
+end

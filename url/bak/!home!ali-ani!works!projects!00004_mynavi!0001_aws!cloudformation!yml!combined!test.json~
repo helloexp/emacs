@@ -1,0 +1,1 @@
+{"HostedZone":{"Type":"AWS::Route53::HostedZone","Properties":{"HostedZoneConfig":{"HostedZoneConfig":null},"HostedZoneTags":["HostedZoneTags","..."],"Name":"String","VPCs":["HostedZoneVPCs","..."]}}}

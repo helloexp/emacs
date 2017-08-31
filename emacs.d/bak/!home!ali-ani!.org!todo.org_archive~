@@ -1,0 +1,1064 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /home/ali-ani/.org/todo.org
+* 機能
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2015-02-10 火 18:00
+  :ARCHIVE_FILE: ~/.org/todo.org
+  :ARCHIVE_OLPATH: todos/AWS学習/AWS 機能 / 金額調査/利用機能/Amazon RDS
+  :ARCHIVE_CATEGORY: todo
+  :END:
+MySQL、 Postgres、Oracle、SQL Server、Amazon Aurora のためのマネージド型リレーショナルデータベースサービス
+
+* DONE [#A] pivotal tracker
+CLOSED: [2015-02-12 木 09:59]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-12 木 09:59
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: todos
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+調査、
+メール来てた
+
+
+* DONE 大吉さんへの返信
+CLOSED: [2015-02-12 木 09:59]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-12 木 09:59
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: todos
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+<2015-02-09 月>
+
+勤怠
+* todos
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-12 木 11:53
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: Develop/00002_ユニクロ
+:ARCHIVE_CATEGORY: todo
+:END:
+** TODO [#A] インフルエンサーに向けて
+遅くとも来週末(土日含む)までリリース
+
+*** server構成
+- ruby        : 2.1
+- rails       : 4.1
+- unicorn     : 最新
+- gem         : 最新 (依存関係があればok)
+- folder stru : フォルダ構成
+
+*** サーバー構築
+
+** TODO [#A] read docs
+資料読め
+要件把握
+
+** TODO 確認 : サーバー構築担当は?
+立ち上げはやってくれる。
+
+** SSL認証が入る
+*** [#A] 証明書が必要 / 証明書とは?
+試験環境では擬似証明書
+本番は?
+料金は
+AWSで完結できるか
+そもそも、証明書とは
+
+*** 個人情報の入力があるらしい
+
+* DONE [#A] deploy
+CLOSED: [2015-02-12 木 19:51]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-13 金 12:14
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: Projects/00001_marunouchi pics/todos
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+<2015-02-12 木>
+
+新たにフォルダを切ってdeploy
+
+* DONE [#B] marunouchi
+CLOSED: [2015-02-12 木 19:50]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-13 金 12:14
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: Projects/00001_marunouchi pics/todos
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+instance再構築し、整理してから。
+社内開発へ上げる
+
+* DONE [#A] Linux User 青柳氏追加
+CLOSED: [2015-02-07 土 23:51]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-13 金 12:14
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: Projects/00001_marunouchi pics/todos
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+pass, mruby0010
+
+
+user id,pass, ssh keyは、掲示板で圧縮ファイルで展開
+メール送信済み (掲示板 添付ファイルの解凍パスを送信)
+
+* 作業目標とスケジュール
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-13 金 18:38
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: daily/reminder
+:ARCHIVE_CATEGORY: todo
+:END:
+- 作業目標
+- スケジュール(計画)
+  マイルストーン
+* DONE saleseforceの案件 / 柴田さん
+SCHEDULED: <2015-02-05 木> CLOSED: [2015-02-06 金 00:09]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-13 金 18:38
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: global schedule
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+
+芦田さん, 柴田さん
+前の日に提案資料を作って、仕事をとりにいくそうな
+
+無理そうだとかなんとか
+時間的に無理なので、3月に伸ばしたとか
+
+* DONE ユニクロ打ち合わせ / 柴田さん
+SCHEDULED: <2015-02-04 水> CLOSED: [2015-02-05 木 09:49]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-13 金 18:38
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: global schedule
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+- 打ち合わせ日を決める
+- 2/4 11時に芦田さんと打ち合わせに行ってくる
+
+- 環境構築はruby社まかせ
+
+- RoR, nginx, MySQL or Postgres, AWS
+
+* DONE marunouchi 打ち合わせ
+CLOSED: [2015-02-06 金 18:55]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-13 金 18:38
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: global schedule
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+[2015-02-06 金]
+
+参照webを元に提案するそうな
+
+* DONE 作業場所の件
+SCHEDULED: <2015-02-09 月 15:00> CLOSED: [2015-02-10 火 17:03]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-13 金 18:38
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: global schedule
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+
+リージャス 15時
+芦田さんを呼び出し
+結果、自宅勤務となる
+
+
+* uniqlo develop
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-15 日 16:53
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: today
+:ARCHIVE_CATEGORY: todo
+:END:
+branch develop
+うちの
+* DONE Marunouchipix ST / 仮公開
+DEADLINE: <2015-02-16 月> CLOSED: [2015-02-16 月 03:07]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-16 月 09:18
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: Projects/00001_marunouchi pics/todos
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+
+- 片山さんが試験
+  <2015-02-14 土>
+  問題があれば、チケットを上げる
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* DONE 綾部さんのメール確認
+CLOSED: [2015-02-17 火 17:02]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-17 火 17:02
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: personal info
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+RE:basic認証
+
+* TODO AWS 即調査
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-18 水 02:25
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: global todos/AWS学習
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: TODO
+:END:
+** SSL使用方法 / 証明書
+ELB以外でも使用できるか?
+証明書はどうやって?
+
+** RDS
+*** Read replica
+- source DBと同じMySQL versionとなる
+- storage, mem, cpu は独自に設定可能。 (後から増強可能)
+  通常、sourceと同等以上のspecにする。(why?)
+- 5 read replica max / DB instance
+- 価格は、通常のRDSと同じ
+
+*** slave側では、read replica不要? 
+恐らく不要
+
+*** EC2 / RDS間の暗号化
+できるという記事も見たが…うーん
+
+RDS立ち上げる時に選択可能
+http://aws.typepad.com/aws_japan/2015/01/amazon-rds-now-supports-encryption-via-aws-key-management-service.html
+
+** Auto scaling
+instance起動イメージの作成
+そもそも、それが可能なのか調査
+
+** SNSからの情報を集約してくるサーバー
+というのが図にあるが、何ぞ
+
+現状は、RoRで対応
+kinesiiを使う今後予定
+
+** cloud watch
+概要はわかる。
+具体的に何に使用する。
+
+* DONE uniqlo 
+CLOSED: [2015-02-18 水 02:25]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-18 水 02:25
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: today
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+mysqlの列の入力項目を、excelで作成
+
+* DONE uniqlo 本番環境へのdeploy
+CLOSED: [2015-02-17 火 23:19]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-18 水 02:25
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: today
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+
+* DONE marupix 修正とdeploy
+CLOSED: [2015-02-17 火 23:18]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-18 水 02:26
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: today
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+
+- 文言変更
+- pushしたsourceでdeploy実施
+* DONE marupix test
+CLOSED: [2015-02-17 火 17:03]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-18 水 02:26
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: today
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+** DONE 試験実施
+CLOSED: [2015-02-17 火 17:03]
+沼沢で確認点を考える。
+リグレッション試験はいらないかも
+
+** DONE 試験環境へのdeploy
+CLOSED: [2015-02-17 火 17:03]
+仮releaseのみか
+repositoryを当時点で上げるのか
+* DONE marunouchi pix
+CLOSED: [2015-02-18 水 02:30]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-18 水 02:30
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: Mondo
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+文言変更
+git
+deploy
+
+<2015-02-17 火>
+
+
+
+* rails unicorn 自動起動
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-19 木 20:44
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: Projects/00002_ユニクロ/Flow : deploy, release, server setting/init product env
+:ARCHIVE_CATEGORY: todo
+:END:
+$ vim /etc/rc.d/rc.local
+
+# 追記
+----------------------------------------------------------------
+su -c "bash /var/rails/uniqlo/script/unicorn.sh start" - mruby
+----------------------------------------------------------------
+* DONE maruhoucni pix
+CLOSED: [2015-02-19 木 19:07]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-20 金 01:31
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: today
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+- release完了
+- phase2依頼は無し
+* 
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-22 日 09:21
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: reminder/reminder
+:ARCHIVE_CATEGORY: todo
+:END:
+
+* DONE locale
+CLOSED: [2015-02-22 日 18:39]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-23 月 21:42
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: today
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+多言語10カ国,6言語
+メンテナンス
+確認。
+* DONE スケジュール
+CLOSED: [2015-02-21 土 22:12]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-23 月 21:43
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: today
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+08-23時で設定
+柴田さん指示
+* DONE marunouchi pix
+CLOSED: [2015-02-20 金 17:17]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-23 月 21:44
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: today
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+insntaceは落とした
+EIPは解放
+
+* DONE アヴァシス
+CLOSED: [2015-02-20 金 17:18]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-23 月 21:44
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: today
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+擬似環境構築し、keyとhost名などを送付
+
+rails周りは弱いと打ち明け
+検討段階から担当して欲しい
+アヴァシスさんへお任せ
+
+# 本来はうちでやる
+AWSへアクセス
+アヴァシスもアクセス
+
+* DONE server構成資料
+CLOSED: [2015-02-20 金 17:18]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-23 月 21:44
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: today
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+- 日数料金を追加
+  
+- アバシス向け
+  サーバー構成図に付加情報を追記
+* DONE server構成変動
+CLOSED: [2015-02-23 月 10:08]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-23 月 21:45
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: [2015-02-23 月]
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+構成図変更
+text変更
+
+** mail to avasys
+** cybozuへup
+
+* DONE mailが飛ぶか
+CLOSED: [2015-02-23 月 21:26]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-23 月 21:45
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: [2015-02-23 月]
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+./app/controllers/influencer_profiles_controller.rb 
+
+rise入れてメールとログ確認。
+error log / mail log
+
+* DONE bug pivotal
+CLOSED: [2015-02-23 月 21:22]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-23 月 21:45
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: [2015-02-23 月]
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+** DONE help URL
+CLOSED: [2015-02-23 月 21:22]
+
+
+** DONE size radioボタン
+CLOSED: [2015-02-23 月 20:48]
+men 28inchをクリックすると
+women 28inchががチェックされる
+
+** DONE 入力に不備がある状態で、agree を押すと error pop up
+CLOSED: [2015-02-23 月 20:51]
+英語だけの模様
+* DONE AWS回答の確認
+CLOSED: [2015-02-23 月 21:40]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-23 月 21:52
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: [2015-02-23 月]
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+問題なければ、close thread
+  
+* DONE 本番環境へのdeploy方法の注意点確認
+CLOSED: [2015-02-24 火 16:05]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-24 火 16:05
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: Projects/00001_marunouchi pics/todos
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+沼沢メモと
+小林さんからの情報確認  
+
+* DONE AWS - RDS質問
+CLOSED: [2015-02-24 火 16:05]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-25 水 09:24
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: [2015-02-24 火]
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+回答待ち
+
+* DONE [2015-02-24 火]
+CLOSED: [2015-02-25 水 09:25]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-25 水 09:25
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+** DONE 午前中試験
+CLOSED: [2015-02-25 水 09:24]
+test pattern確認
+IE, chrome, safari
+
+** DONE 午後deploy
+CLOSED: [2015-02-25 水 09:24]
+* DONE please confirm文言
+CLOSED: [2015-02-27 金 00:47]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-27 金 00:47
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: [2015-02-26 木]
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+** DONE 現在の最新版を擬似環境へアップ
+CLOSED: [2015-02-26 木 12:05]
+動作確認
+(数言語で)
+
+** DONE 問題なければユニクロ環境へアップ
+CLOSED: [2015-02-26 木 12:05]
+** DONE please_confirm文言
+CLOSED: [2015-02-26 木 12:05]
+綾部さんからの文言情報を
+please_confirm: へ書き込んで
+マージ
+動作確認
+** DONE 綾部さんの確認後
+CLOSED: [2015-02-27 金 00:47]
+本番環境へup
+
+* DONE error文言変更
+CLOSED: [2015-02-27 金 00:47]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-27 金 00:47
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: [2015-02-26 木]
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+
+* DONE uniqlo first relase
+DEADLINE: <2015-02-20 金>-<2015-02-22 日> CLOSED: [2015-02-27 金 01:38]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-27 金 01:38
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: Projects/00002_ユニクロ/todos
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+
+* DONE uniqlo ruby社での擬似環境
+CLOSED: [2015-02-27 金 01:38]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-27 金 01:39
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: Projects/00002_ユニクロ/todos
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+<2015-02-20 金>
+<2015-02-23 月>に公開できるように
+
+* DONE uniqlo test
+CLOSED: [2015-02-27 金 01:39]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-27 金 01:39
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: Projects/00002_ユニクロ/todos
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+<2015-02-20 金>
+
+田口さんに依頼予定
+
+* DONE uniqlo admin server構築(product)
+DEADLINE: <2015-02-18 水> CLOSED: [2015-02-18 水 02:27]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-27 金 01:41
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: Projects/00002_ユニクロ/todos
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+
+ruby, rails, nginx, unicorn install
+各種設定
+ 
+* DONE unisql ssl調査
+CLOSED: [2015-02-18 水 02:27]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-27 金 01:41
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: Projects/00002_ユニクロ/todos
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+[2015-02-17 火]がdeadline
+
+* DONE 今日
+CLOSED: [2015-02-28 土 00:12]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-28 土 00:12
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: [2015-02-27 金]
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+** DONE https://uniqlo-influencer-adm-lb-1392900919.ap-northeast-1.elb.amazonaws.com/form/kr
+CLOSED: [2015-02-27 金 21:07]
+
+※※ 고객님께서 기입한 내용을 다시 한번 확인하신 후 밑에 있는 "제출" 버튼을 클릭해주세요.
+↓
+※を一つ取ってください。
+
+-----------------------------------------------------------------------
+** DONE https://uniqlo-influencer-adm-lb-1392900919.ap-northeast-1.elb.amazonaws.com/form/hk
+CLOSED: [2015-02-28 土 00:11]
+
+chの方ではなくhkが広東語となります。
+ですので、改めてEXCELにていただいている下記指示を反映いただけますと幸いです。
+
+** DONE ■確認するページの上部にあるコメント
+CLOSED: [2015-02-28 土 00:11]
+請重閱確保所有資料正確無誤, 再按下⎾確認提交⏌鍵
+
+** DONE ■Email address confirm
+CLOSED: [2015-02-28 土 00:12]
+請再次輸入電郵地址以作確認
+-----------------------------------------------------------------------
+* DONE 今日中
+CLOSED: [2015-02-28 土 00:18]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-02-28 土 00:18
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: [2015-02-27 金]
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+** DONE kr
+CLOSED: [2015-02-27 金 16:34]
+https://uniqlo-influencer-adm-lb-1392900919.ap-northeast-1.elb.amazonaws.com/form/kr/
+고객님의 이메일 주소를 입력해주세요null
+↓
+고객님의 이메일 주소를 입력해주세요
+----------------------------------------------------------------------------------
+
+** DONE link
+CLOSED: [2015-02-27 金 16:35]
+----------------------------------------------------------------------------------
+https://uniqlo-influencer-adm-lb-1392900919.ap-northeast-1.elb.amazonaws.com/form/au/
+ECXELの指示通り
+privacy policyの部分にリンクを張る　別Win対応
+
+
+https://uniqlo-influencer-adm-lb-1392900919.ap-northeast-1.elb.amazonaws.com/form/hk/
+http://www.uniqlo.com/hk/corp/privacypolicy.html
+にリンクを張り別WINで開く
+---------------------------------------------------------------------
+
+** DONE レガシーブラウザ対応
+CLOSED: [2015-02-27 金 16:35]
+IE6, 7, 8
+** DONE 404 not found
+CLOSED: [2015-02-27 金 16:40]
+
+** DONE 文言変更
+CLOSED: [2015-02-27 金 19:03]
+
+* TODO uniqlo security test
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-03-05 木 18:35
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: Projects/00002_ユニクロ/todos
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: TODO
+:END:
+<2015-03-09 月>
+3月の第２週までに試す
+
+- skipfish
+  http:/knowledge.sakura.ad.jp/tech/389
+
+  NGのところは直していく
+* DONE skyep ID作成
+CLOSED: [2015-03-03 火 11:48]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-03-05 木 18:35
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: today
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+
+* DONE 健康診断
+SCHEDULED: <2015-03-10 火 13:30> CLOSED: [2015-03-10 火 22:22]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-03-10 火 22:24
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: todos
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+
+* プロジェクト
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-03-12 木 23:05
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: todays
+:ARCHIVE_CATEGORY: todo
+:END:
+** fb APIの仕様が変わった
+のでphase2で作業予定。
+* DONE 綾部さんに
+CLOSED: [2015-03-11 水 17:01]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-03-12 木 23:05
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: todays
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+擬似環境に最新版を上げた事をメール
+
+* DONE csv importの
+CLOSED: [2015-03-12 木 23:05]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-03-12 木 23:05
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: todays
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+** DONE 諏訪さんへの確認
+CLOSED: [2015-03-11 水 17:01]
+
+** TODO script生成
+** 必須項目
+氏名
+性別
+国
+郵便番号
+住所
+電話番号
+メールアドレス
+SNS acc
+    insta
+    twitter
+    facebook
+Category
+    何れか
+tops
+bottoms
+inner
+
+** 不足 / 不明点
+*** DONE mail address
+CLOSED: [2015-03-11 水 20:11]
+- Anna Jepson  
+    address記入無し
+
+- 10行目
+    末尾に不明文字
+
+*** sns account
+全てアカウント名へ変更
+@削除
+URLは末尾がaccount
+
+**** instagramへの複数フォーマット混在
+    - これらは全て、instagram accと判断してよいか?
+        (urlと@acc形式の2つ)
+
+    - フォーマットは統一せず投入してよいか?
+
+*** DONE URL1 
+CLOSED: [2015-03-11 水 20:12]
+- 56行目
+    住所が記述されている。
+    削除が必要か?
+
+- URL format
+    http(https)から開始されていないものが存在。
+    formatは統一するべきか?
+
+*** 備考欄
+Uniqlo Commentへ投入
+
+**** これは、Uniqlo Comment欄に投入する内容でしょうか?
+
+** DB column
+
+* DONE 綾部さんの修正依頼
+CLOSED: [2015-03-12 木 23:05]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-03-12 木 23:05
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: todays
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+** DONE categoryに※マークを
+CLOSED: [2015-03-11 水 17:26]
+
+** DONE #不要文言追記
+** DONE 30文字以内で記入して下さい
+CLOSED: [2015-03-11 水 19:23]
+文言追加
+各国文言あり
+
+** CANCEL masterの1列は表示不要
+** DONE New, delete the checked
+CLOSED: [2015-03-11 水 19:33]
+並び
+
+** DONE 綾部さんへ報告
+CLOSED: [2015-03-12 木 09:49]
+* DONE time schejule
+CLOSED: [2015-03-11 水 14:19]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-03-12 木 23:05
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: todays
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+大まかですが以下の様に考えております
+----------------------------------------------------------------
+- 1), 3)  : 13時〜15時   | release, 動作確認
+- DNS     : 15時半〜16時   | DNS切り替え, nginx設定変更, 動作確認
+- 2       : 残時間       | data投入、投入状態確認
+----------------------------------------------------------------
+
+いずれも、作業状況によっては、次々進めていけると考えております。
+
+DNSについては、どの程度で浸透するか、時間が不明ですが、状況によっては2)の作業を前倒すな
+ど対応可能。
+(deploy自体が終了していれば、DNS変更は何れのタイミングで実行しても問題はありません。)
+
+* DONE 返信 : hashtag入力
+CLOSED: [2015-03-11 水 19:48]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-03-12 木 23:05
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: todays
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+綾部さんへ
+
+午前中に、データが来て、時間内に入れられるようだったら、対応すると、返事しましょうか。
+* DONE 今日中
+CLOSED: [2015-03-10 火 22:23]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-03-12 木 23:07
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: todays
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+release
+influencer hashtag管理画面
+
+* DONE [#A] 擬似環境へのdeploy
+CLOSED: [2015-03-10 火 22:23]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-03-12 木 23:07
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: todays
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+
+
+
+* DONE time schejule
+CLOSED: [2015-03-12 木 18:07]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-03-12 木 23:07
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: today's
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+----------------------------------------------------------------
+- 1), 3)  : 13:00 - 15:00 | release, 動作確認
+- DNS     : 15:30 - 16:00 | DNS切り替え, nginx設定変更, 動作確認
+- 2)      : after         | data投入、投入状態確認
+----------------------------------------------------------------
+
+
+
+* DONE time schejule
+CLOSED: [2015-03-12 木 18:07]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-03-12 木 23:08
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: today's
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+----------------------------------------------------------------
+- 1), 3)  : 13:00 - 15:00 | release, 動作確認
+- DNS     : 15:30 - 16:00 | DNS切り替え, nginx設定変更, 動作確認
+- 2)      : after         | data投入、投入状態確認
+----------------------------------------------------------------
+
+* DONE BUG 100文字以内
+CLOSED: [2015-03-12 木 23:04]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-03-12 木 23:08
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: today's
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+100文字か255文字なのか確認
+source修正が必要
+* DONE image作成
+CLOSED: [2015-03-12 木 23:07]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-03-12 木 23:24
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: Mondo
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+起動状態でイメージ化できるのか?
+できない
+
+
+* DONE 労務訪問
+SCHEDULED: <2015-03-11 水> CLOSED: [2015-03-18 水 10:55]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-03-18 水 10:55
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: todos
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+> 11日（水）12:00～　勾当台公園付近
+* DONE capistrano
+CLOSED: [2015-03-17 火 09:29]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-03-18 水 10:56
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: [2015-03-16 月]
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+
+usr/sns
+migrate止める
+
+* DONE 各種appの設置
+CLOSED: [2015-03-17 火 09:36]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-03-18 水 10:56
+:ARCHIVE_FILE: ~/.org/todo.org
+:ARCHIVE_OLPATH: [2015-03-16 月]
+:ARCHIVE_CATEGORY: todo
+:ARCHIVE_TODO: DONE
+:END:
+ok
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

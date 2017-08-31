@@ -1,0 +1,1283 @@
+-*- mode: org -*-
+
+
+* security
+** proxy
+*** 何かを登録するときは、proxyを通すな。
+情報が漏れる可能性があるだろ
+
+* system
+** hardware
+*** 3rd
+Power unit : KRPW-SS500W/85+  /  80PLUS
+
+*** router
+NEC WR8170N
+
+** network
+*** WR8170N
+**** AP-mode
+
+
+** bash
+*** 比較
+|----+-----|
+| == | -eq |
+| != | -ne |
+| <  | -lt |
+| >  | -gt |
+| <= | -le |
+| >= | -ge |
+|----+-----|
+
+*** 記法
+**** while 
+while [ 条件 ]
+do                                                                                                                                                                           
+    commands
+done
+
+**** if
+if [ 条件 ]
+then
+    commands
+fi
+** Language
+*** Mysql
+**** setting
+***** char-set
+my.conf
+
+[client]
+default-character-set=utf8
+
+[mysql]
+default-character-set=utf8
+
+[mysqld]
+default-character-set=utf8
+language=/usr/share/mysql/japanese
+skip-character-set-client-handshake
+
+***** add user
+mysql > GRAND ALL PRIVILEGES ON *.* TO aliani IDENTIFIED BY 'password' WITH GRANT OPTION;
+
+***** user list
+mysql> select host, user from mysql.user;
+
+***** check user power
+show grants for user_name;
+
+***** create database
+mysql> create database db_name;
+
+*** postgres
+**** install
+apt-get install postgres
+
+**** server setting
+***** pg_hba.conf
+hostのアクセス範囲の設定
+基本、初期設定でlocalhostからのアクセス可能
+
+***** phppgadmin
+ユーザー作成済みであれば使用可能
+
+**** user create
+su - postgres
+psql
+create user [user_name] with password [password]
+
+**** db create
+su - postgres
+psql
+create database [db_name]
+
+**** aceess権限設定
+user, user, user groupに、object(table, view, シーケンス)の特定権限を与える。
+
+***** 権限付与
+grant all on [db_name] to [user_name]
+grant [all / select / etc....]
+
+***** 権限剥奪
+revoke all on [db_name] from [user_name]
+
+*** Ruby
+**** rbenv setting
+***** rbenvとは
+***** install required packages
+apt-get install
+build-essential bison openssl libreadline6 libreadline6-dev 
+curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev
+libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf
+libc6-dev ncurses-dev
+***** how to install rbenv
+# move to install dir
+
+# get source from github
+$ git clone  git://github.com/sstephenson/rbenv.git  .rbenv
+
+# set rbenv path.  直接書き込みでもok
+$ echo  'export PATH="$HOME/.rbenv/bin:$PATH"'  >>  ~/.bashrc
+$ echo  'eval "$(rbenv init -)"' >> ~/.bashrc
+
+# rbenvにrubyをinstallする機能はない
+# pluginの [ruby-build] をinstallして対応する。
+$ mkdir -p ~/.rbenv/plugins
+$ cd ~/.rbenv/plugins
+$ git clone git://github.com/sstephenson/ruby-build.git
+
+# shell 再起動
+# もしくは以下
+$ exec $SHELL
+
+***** how to use
+# install可能versionのlist
+$ rbenv list
+
+# for example
+#     rehashは、ruby versionが増える度に実施
+$ rbenv install 2.1.5
+$ rbenv rehash
+
+# localで仕様するruby versionの指定
+#     hashは、$PATHの再構築
+
+rbenv local 2.1.5
+hash -r  
+ruby -
+
+
+**** string
+***** include?
+文字列探査
+return : bool
+
+***** index
+文字列探査
+return :  integer / 合致位置の座標.
+
+*** rails / passenger
+**** install apps
+apt-get install apache2
+
+gem install rails
+gem install passenger
+
+passenger-install-apache2-module
+
+apt-get install libcurl4-openssl-dev
+apt-get install apache2-threaded-dev
+apt-get install libapr1-dev
+apt-get install libaprutil1-dev
+
+**** /etc/apache2/conf.d/passenger.conf
+passenger install時に表示された、passenger settingを記述
+
+# ----------------------------------------------------------------
+LoadModule passenger_module /home/ali-ani/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/passenger-4.0.56/buildout/apache2/mod_passenger.so
+<IfModule mod_passenger.c>
+    PassengerRoot /home/ali-ani/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/passenger-4.0.56
+    PassengerDefaultRuby /home/ali-ani/.rbenv/versions/2.1.5/bin/ruby
+</IfModule>
+# ----------------------------------------------------------------
+
+**** /etc/apache2/ports.conf
+passenger install時に表示された、passenger settingを記述
+
+# ----------------------------------------------------------------
+#  rails testing
+# ----------------------------------------------------------------
+<VirtualHost *:80>
+    ServerName localhost
+    DocumentRoot /home/ali-ani/program/rails/
+
+    PassengerEnabled on
+    
+    <Directory /home/ali-ani/program/rails/first/>
+        AllowOverride all
+        Options -MultiViews
+    </Directory>
+</VirtualHost>
+
+**** javascript runtime install
+恐らく、rails new毎に必要
+
+rails new sample
+cd ./sample
+echo gem 'therubyracer' >> ./Gemfile
+
+bundle install
+
+# gemからinstallすると認識しないとか何とか
+
+**** db setting
+config/database.yml
+
+development:
+  adapter: postgresql
+  database: sapmle
+  username: test
+  passowrd: asdf
+  encoding: utf8
+
+# prodcutionなどに記述すると、rakeする時に環境指定する必要が出る
+# rails db:migrate RAILS_ENV=productionなど
+
+**** scaffold
+***** 失敗する場合
+$ spring stop
+
+# springが動いてるとrails generateできないらしい
+
+***** make user list
+rails generate scaffold user no:string name:string age:integer birthday:date active:boolean
+rake db:migrate
+rake dbfixtures:load FIXTURES=users
+
+rails server
+
+# 以下pathでwebを開ける
+localhost/users/
+
+***** access
+
+** linux command
+
+*** tar
+**** bzip2
+tar cvjf 圧縮後ファイル名 圧縮対象ファイル群
+
+**** gzip
+tar cvzf 圧縮後ファイル名 圧縮対象ファイル群
+
+*** expect
+**** cron / shell外から実効
+interactではなく、exitで終える。
+interactは、shellに戻すらしい。
+(= 戻さなければ、expectの中でstreamをhandleするってことか)
+
+*** rename
+正規表現で指定
+
+rename s/original/change/ ./file_name
+
+
+*** lspci
+PCIバスのディバイスについての情報を出力する。
+本文で使った出力は、-vオプションをつけて実行したもの。
+The PCI Utilitiesに含まれる。wiki.debianのHowToIdentifyADevice USBを参照のこと。
+*** lsusb
+USBバスについての情報を出力する。
+*** lsmod
+Linuxカーネルモジュールの状態を出力する。
+*** modprobe
+Linuxカーネルにモジュールを追加したり、削除したりする。
+*** rmmod
+Linuxカーネルからモジュールを削除する。参考: modprobe -r
+
+*** update-alternatives
+同じ機能を持つソフトウェア間の優先順位を決める。
+*** Xorg -configure
+xorg.confファイルを生成する。ファイルは、/root/xorg.conf.newに生成される。エラーが出てもファイルは生成される。
+
+*** nvidia-config
+nvidiaドライバのおまけ。nvidia用のxorg.confを/etc/X11/以下に作る。
+
+** linux command pipes
+*** 1列を1行へ
+ls -1 | grep -v bzip2 | head -n 200 | awk '{printf $0" " }'
+
+*** 複数ファイル圧縮
+ls -1 | grep -v bzip2 | head -n 200 | awk '{printf $0" " }' | xargs tar  cjzf `date +"%Y%m%d_%H%M%S"`.tar.gzip  --remove-file
+
+当例は、ディレクトリ内のファイル(bzip2を含むファイルを除く)を１列に列挙する。
+列挙されたファイルの上位200件を、スペース区切りで一行へ形式へ変換。
+xargsを用い、tarコマンドへファイルを渡す(ここの動きがわからない)
+要調査
+**** 基本
+各圧縮コマンドは単体ファイルを圧縮する(調査不足だが)
+故に、tarで纏め、tarファイルに圧縮をかけることとなる。
+
+
+** Linux setting
+*** install app
+vlc
+
+conky
+
+cairo
+    cairo-dock-compiz-icon-plugin
+    cairo-dock
+
+compiz
+    compiz-gtk
+    compiz-gnome
+    compizconfig-settings-manager
+    compiz-fusion-plugins-main
+    compiz-fusion-plugins-extra
+    compiz-fusion-plugins-unsupported
+
+    nvidia-settings
+    nvidia-xconfig
+    xserver-xorg-video-nv
+
+emacs23
+flashplugin-nonfree
+
+synergy
+
+rsync
+
+ruby1.9.1
+
+erlang
+
+sip-tester
+
+nmap
+
+wine
+libwine  libwine-alsa  libwine-gl
+lib32nss-mdns
+
+iperf
+
+filezilla
+
+libqt4-dbus  libqt4-network  libqtcore4  libqtgui4
+
+lm-sensor
+hddtemp
+hdparm
+
+cifs
+
+
+*** apps
+**** bazaar
+atp-get install bzr bzr-explorer
+
+**** synergy
+***** setting file
+/etc/synergy.conf
+
+***** sample
+------------------------------------------------------------------------------------------------
+section: screens
+    moonstone:
+    doomstone:
+end
+
+
+section: links
+    moonstone:
+        left = doomstone
+
+    doomstone:
+        right = moonstone
+end
+
+***** run
+$ synergys --daemon --restart
+
+**** mozilla
+バイナリからインストールし直しが必要かもしれない
+***** firefox install
+- DL is64 binary
+- # apt-get install ia32-libs-gtk ia32-libs-dev ia32-libs
+
+you can run now
+
+***** thunderbird
+same
+
+- DL
+- tar jxf thunderbird-11.0.tar.bz2
+
+**** mysql
+***** users
+root / ImmortalBane
+diamond / carbon2501
+
+***** Syntax
+- create database [db_name]
+- grant all on [db_name].[table] to [user] identified by '[pass]';
+
+**** conky
+***** ちらつく
+/etc/conky.confへ
+[double_buffer yes]
+**** flash player
+i386版でなければならない。
+公式からDLし、/home/xxxx/.mozilla/plugin/ へ
+libflashplayers.soへインストール
+
+*** window
+**** startx
+***** change client when exec startx
+you can change client. input option or set to .bashrc alias
+
+$ startx /usr/bin/startkde
+$ startx /usr/bin/gnome-session
+
+
+上記のコマンドでは、anthyが働くなる
+一度、window managerを設定すると、startxのみで起動可能となる。
+この固定状態でのstartxで、anthyが有効となる
+
+**** window-managers
+***** kde
+$ startx /usr/bin/startkde
+
+***** gnome
+$ startx /usr/bin/gnome-session
+
+***** 日本語入力
+未解析
+デフォルトマネージャーに指定する、自動でanthyが立ち上がる
+
+update-alternatives --config x-session-manager
+
+***** kdm/gdm stop
+$ update.rc.d -f gdm remove
+$ update.rc.d -f kdm remove
+    
+**** gnome
+
+**** X keybind
+- $ emacs  /etc/X11/xorg.conf
+------------------------------------
+Section "InputDevice"
+    # generated from default
+	    Option	   "XkbLayout"	"us"
+        Option	   "XkbModel" 	"101"
+EndSection
+
+**** Unvisible Desk top Icon
+- gnoem-editor
+- apps  ->  nautilus  ->  desktop
+- visible項目から、チェックを外す
+
+**** kde
+***** window session 
+- system settings
+- advanced
+- Session Manager
+
+*** keyboard
+**** GnomeのkeybindをEmacs風に
+- システムツール
+- 設定エディタ
+- Desktop
+- gnome
+- interface
+- gtk_key_map = emacs
+
+
+X keybind
+----------------------------------------------------------------------------------------
+- $ emacs  /etc/X11/xorg.conf
+
+    Section "InputDevice"
+        # generated from default
+	    Option	   "XkbLayout"	"us"
+            Option	   "XkbModel" 	"101"
+    EndSection
+
+**** hhk setting
+$setxkbmap -layout us -model hhkprocustom
+write to auto start at starup
+
+**** key settings
+***** os全体をemacs風に
+gnome設定を參照せよ。
+
+***** xmodでのキーバインド変更
+- 現在の設定の吐き出し
+    # xmodmap -pke > xmod.settings
+
+- 編集
+    吐き出したファイルを編集
+
+- 編集後ファイルの読み込み
+    # xmodmap xmod.settings
+
+- 自動読み込み
+    cp ./xmod.settings  >  ~/.xmodsetting
+
+***** default keyboard setting
+$ emacs  /etc/default/keyboard
+
+XKBMODEL="hhk"
+XKBLAYOUT="us"
+XKBVARIANT=""
+XKBOPTIONS="lv3:ralt_alt,terminate:ctrl_alt_bksp"
+ 
+*** GPU
+**** nvidia
+リポジトリより、公式パッケージインストールが動作が軽い
+
+***** DL
+DL most newer file from nVidia
+
+***** Linux source
+$ apt-get install linux-source-2.6.xx linux-headers-2.6.26-1-amd64
+$ cd /usr/src
+$ tar jxfv linux-source-2.6.xx.tar.bz2
+
+***** install Driver
+$ /etc/init.d/gdm3 stop
+$ export CC=gcc-4.3
+$ sh NVIDIA-Linux-x86_64-xxxx.run
+
+
+*** hdd
+**** hdaprm
+$ hdparm -S 120 /dev/sdx
+
+**** hdparm auto-start
+$ emacs /etc/hdparm.conf
+
+// ----------------------------
+/dev/sdc {
+    spindown_time = 240
+}
+
+/dev/sdd {
+    spindown_time = 240
+}
+
+/dev/sde {
+    spindown_time = 240
+}
+
+/dev/sdf {
+    spindown_time = 240
+}
+// ----------------------------
+
+*** intialize
+**** installer.sh
+各種アプリインストール
+
+**** restre local data
+server上の[public\backup_nords\ali-ni\home] を
+local [/home\alia-ani\0000_local\] へコピー
+
+**** change default session manager
+update-alternative --config x-sesseiong-manager
+
+**** firefox setting
+**** thunderbird setting
+**** kde setting
+    
+*** run level
+**** exclude gdm 
+$ update-rc.d -f gdm3 remove
+
+**** run gdm
+$ update-rc.d gdm3 defaults
+
+
+*** mount
+**** mount samba
+$ cifsでauto mount
+$ emacs /etc/fstab
+    //10.250.1.1/local-datas  /home/ali-ani/0000_server  cifs  credentials=/etc/samba/cifspasswd,iocharset=utf8,defaults  0  0
+
+
+;; passwordを外部ファイルに記述
+$ emacs /etc/samba/cifspasswd
+    username=username
+    password=password
+
+*** grub resolution setting
+$ emacs  /etc/default/grub
+  GRUB_CMDLINE_LINUX="795"
+
+$ update-grub
+
+*** use japanese language on console
+$ jfbterm
+
+# never use in x-window system
+
+*** capture
+**** DVD ripping
+***** appli
+brasero
+
+***** so - required 
+http://packages.medibuntu.org/pool/free/libd/libdvdcss/?C=M;O=A
+cpuアーキテクチャの最も新しいdebファイルを
+
+# dpki -i [file]
+でOK
+
+braseroが起動済みなら、再起動が必要。
+一応、サーバーに保存済み
+
+
+    
+
+
+
+      
+*** debian sources
+**** how to get 
+for example get clear commands source
+
+----------------------------------------------------------------------------
+# whereis clear
+clear: /usr/bin/clear /usr/bin/X11/clear /usr/share/man/man1/clear.1.gz
+
+;; search packege, it has source
+# apt-file search /usr/bin/clear
+bash: /usr/bin/clear_console
+libncurses5-dbg: /usr/lib/debug/usr/bin/clear
+ncurses-bin: /usr/bin/clear
+
+# apt-get source ncurses-bin
+# cd ncurses-5.9/
+# find . -name "*clear*"
+./progs/clear.sh
+./progs/clear.c
+./man/curs_clear.3x
+./man/clear.1
+./ncurses/base/lib_clearok.c
+./ncurses/base/lib_clear.c
+./ncurses/base/lib_slkclear.c
+./doc/html/man/curs_clear.3x.html
+./doc/html/man/clear.1.html
+----------------------------------------------------------------------------
+
+** windows settings
+*** current info
+***** GPU driver !!
+GalaxyのCDからinstallしないとダメ
+認識しなかった
+
+*** usb install
+How to make windows7 install usb from Linux
+
+# cfdisk /dev/sdb
+***** Create an NTFS filesystem:
+ # mkfs.ntfs -f /dev/sdb1
+
+***** Mount ISO and USB media:
+ # mount -o loop win7.iso /mnt/iso
+ # mount /dev/sdb1 /mnt/usb
+
+***** Copy over all files:
+ # cp -r /mnt/iso/* /mnt/usb/
+
+***** Write Windows 7 MBR on the USB stick:
+ # ms-sys -7 /dev/sdb
+
+***** ms-sys install
+--------------------------------------------------------------------
+ # apt-get install gettext  ;; for msgfmt
+
+ # ms-sys bin Download
+ http://ms-sys.sourceforge.net/#Download
+
+ done
+
+*** ruby
+***** windows
+ruby-installer
+devkit
+
+***** install ruby-intaller
+and decompres devkit and put to the ruby diretory
+
+*** capture
+**** nvidia shadowplay
+負荷が少なく、今のところ最高
+
+
+** emacs
+*** auto-install
+*** org-mode
+org-mode使い方
+http://hpcgi1.nifty.com/spen/index.cgi?OrgMode%2fManual1
+
+#+STARTUP: indent
+#+TODO: TODO(t) WAIT(w) READING(r) SOMEDAY(s) | DONE(d) AGAIN(a)
+
+**** add setting to .emacs
+----------------------------------------------------------------------------------------------------------------
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+
+(add-hook 'org-mode-hook 'turn-on-font-lock)  ; org-modeのバッファのみで有効
+
+**** tree structure
+----------------------------------------------------------------------------------------------------------------
+
+**** Visibility cycling
+----------------------------------------------------------------------------------------------------------------
+TAB
+    サブツリーの表示切り替え
+    ->  折りたたみ -> 子の表示 -> サブツリーの表示 -> [折りたたみに戻る]
+
+
+S-TAB / C-u TAB
+    グローバルサイクル:バッファ全体の状態を変更する
+    -> 外観表示 -> 内容表示 -> 全部表示
+
+
+C-c C-a
+    全て表示
+
+
+C-c C-r
+    現在の項目や、下の見出しや上の階層を表示して、
+    その場所での文脈を表示します。
+    ツリーの抽出（Sparse trees参照）やアジェンダのコマンド（Agenda commands）
+    によって表示された場所の周辺で作業をするのに役立ちます。
+    prefixをつけることで、各階層での同一レベルの見出しを表示します。
+
+
+C-c C-x b
+    現在のサブツリーを別のバッファ（注３）に表示します。
+    数字のprefixを付けたときは、その数字のレベルまでさかのぼり、
+    ツリーを取得します。
+    もしもprefixの数字がマイナスならば、その数字のレベルまで
+    （訳注：-1なら１つ上の階層、-2なら２つ上の階層まで）さかのぼります。
+    「C-u」というprefixをつけたら、別のバッファでは前に移動できません。
+
+
+
+**** 移動
+----------------------------------------------------------------------------------------------------------------
+| C-c C-n | 次の見出しへ                                               |
+| C-c C-p | 前の見出しへ                                               |
+| C-c C-f | 次の同一階層の見出しへ                                     |
+| C-c C-b | 前の同一階層の見出しへ                                     |
+| C-c C-u | ひとつ上の階層の見出しに戻る                               |
+| C-c C-j | その時点でのアウトラインの表示・非表示の状況を維持しながら |
+    別の場所に移動します。
+    一時的なバッファで文書の構造を表示し、
+    ＜TAB＞を押すことで（その項目の）表示・非表示を切り替えて、
+    目的の行を探します。
+    そして＜RET＞を押すことでカーソルはオリジナルのバッファの
+    選択した位置へ移動し、（それ以外の場所の表示・非表示の状況は維持しながら）
+    移動した場所の見出しは表示された状態になります|
+    
+**** timestamp
+***** timestamp, deadline, schejule
+****** timestampの範囲 <2004-08-23 Mon>--<2004-08-26 Thu>
+２つのタイムスタンプを「--」で結ぶ。見出しは期間の範囲の最初と最後の日が表示されます
+
+****** repeat
+N days(d), week(w), months(m), year(y)
+<2001-05-16 Mon 23:000 +1w>
+<2001-05-16 Mon 23:000 +1m>
+Gillian comes late for the fifth time [2006-11-01 Wed]
+
+****** shcejuling
+timestampの前に、[SCHEJULED:] と記載されている場合、予定の作業開始日をさす。
+あくまでも作業予定である。
+DONEになるまで、リマインダーとして表示され続ける
+
+****** deadline
+timestampの前に、[DEADLINE:] と記述されている場合、その日付までに完了しなければならない。
+DONEがつけられるまで警告が表示され続ける。
+
+***** command
+| C-c .     | 日付挿入                                                                                                                     |
+| C-c C-c . | ?                                                                                                                            |
+| C-c !     | アジェンダの対象とはならないtimestamp                                                                                        |
+| C-c >     | 原罪の日付に対応したカレンダーに飛ぶ。現在行にtimestampがある場合、その日付に飛ぶ                                            |
+| C-c C-o   | ポイントの置かれた場所のタイムスタンプまたは、期限で指定された日のアジェンダにアクセス                                       |
+| C-c C-d   | deadline挿入                                                                                                                 |
+| C-c C-w   | 期日超過、期限間近の対象を抽出。C-uをつけるとファイル内の全てが対象となる。[C-1 C-C C-w]とすると、期限が明日までのものを表示 |
+| C-c C-s   | schejuledを挿入                                                                                                              |
+| C-c C-y   | 開始と収量の差を求める                                                                                                       |
+
+**** link
+***** file link
+file:~/.emacs
+***** command
+|C-c C-o |link上で行うと、対象ファイルお開く
+
+
+
+**** 繰り返し
+- State "DONE"       from "TODO"       [2012-02-27 月 08:11]
+- State "DONE"       from "DONE"       [2012-02-27 月 08:11]
+- State "DONE"       from "TODO"       [2012-02-27 月 08:11]
+- State "DONE"       from ""           [2012-02-27 月 08:10]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:END:
+
+**** check list
+[]内で C-c C-c
+
+- [ ] test
+- [ ] test
+
+**** tags
++ 見出し行の上で [C-c C-c]
++ タグの検索 [C-m / m]
+
+**** propatie
+プロパティ名と、値を持つことができる
+
+- プロパティ設定には、 [C-C C-x p]
+- プロパティの検索は、 [C-c / p]
+  
+**** output to html
+CLOSED: [2012-07-29 日 01:00]
+C-c C-e h
+吐き出し先は、org-modeディレクトリk
+
+** wordpress
+*** change language
+基本、language packを入手し、upする必要あり。
+公式ページやwiki参照。
+
+その後、wp-config.phpの
+DEFINE('WPLANG', 'ja')
+を書き換える。
+
+jaをblankにすると、英語にな
+る
+** VirtualBox
+*** Additional on Debian8
+apt-get install build-essential module-assistant
+apt-get install linux-headers-3.16.0-4-all
+
+# VBox menuからInsert Guest Additions CD Image...を選択
+cd /media/cdrom
+sudo sh VBoxLinuxAdditions.run
+
+** bind
+*** command
+http://www.geocities.jp/yasasikukaitou/rndc2.html
+
+*** clear dns cache
+rndc flush
+* tools
+** rbenv install
+# グループ名は適宜変更
+$ vim ./rbenv-install.sh
+$ chmod 755 ./rbenv-install.sh
+
+# 書き込み
+----------------------------------------------------------------
+MY_GROUP="ec2-user"
+if [ "$MY_GROUP" = "" ] ; then
+    echo '!!! undefined variable MY_GROUP.'
+    echo '!!!'
+    echo '!!! ex.) MY_GROUP=staff'
+    echo '!!!'
+    exit 1
+fi
+ 
+cd /usr/local
+git clone git://github.com/sstephenson/rbenv.git rbenv
+mkdir rbenv/shims rbenv/versions
+chgrp -R $MY_GROUP rbenv
+chmod -R g+rwxX rbenv
+ 
+git clone git://github.com/sstephenson/ruby-build.git ruby-build
+cd ruby-build
+./install.sh
+ 
+echo 'export RBENV_ROOT="/usr/local/rbenv"'     >> /etc/profile.d/rbenv.sh
+echo 'export PATH="/usr/local/rbenv/bin:$PATH"' >> /etc/profile.d/rbenv.sh
+echo 'eval "$(rbenv init -)"'                   >> /etc/profile.d/rbenv.sh
+----------------------------------------------------------------
+
+$ sudo bash ./rbenv_install.sh
+** vagrant
+*** commands
+**** box list
+vagrant box list
+
+**** vm stop
+vagrant halt
+
+**** vm 破棄
+vagrant destroy
+
+**** ohai
+chefと同時にinstallされる。
+system内の情報を、jsonで返す
+
+argで、特定の情報のみ取得可能
+$ ohai languages # 利用可能言語一覧
+$ ohai platform  
+
+*** vm setup
+**** images
+http://www.vagrantbox.es/
+
+**** add OS image
+vagrant box add [box_name] [url]
+
+$ vagrant box add centos7 https://github.com/holms/vagrant-centos7-box/releases/download/7.1.1503.001/CentOS-7.1.1503-x86_64-netboot.box
+
+**** init
+# current dirにbox_name 読み込むよう設定ファイルが作成される。
+
+$ vagrant init centos7
+
+**** vm start
+$ vagrant up
+
+**** connest to vm
+vagrant ssh
+
+**** sync folder
+***** make link dir | at host
+$ emacs Vagrantfile
+----------------------------------------------------------------
+config.vm.synced_folder "./share", "/vagrant", type: "rsync"                        |
+----------------------------------------------------------------
+
+# config.vm.synced_folder [host_dir] [remote_dire] type: "rsync"                        |
+
+***** auto rsync | at host
+$ rsync-auto
+
+**** ssh host 登録
+$ vagrant ssh-config --host webdb >> ~/.ssh/config
+
+**** add private IP to vm
+# 以下で、eth1が追加される
+
+$ emacs Vagrantfile
+----------------------------------------------------------------
+config.vm.network :private_network, ip: "192.168.33.10"
+----------------------------------------------------------------
+
+$ vagrant halt
+$ vagrant up
+
+*** recipe
+**** group / user
+# OS のグループとユーザを 定義
+# 当該ユーザが作成済みの場合は 、新規作成は行われない
+----------------------------------------------------------------
+group 'td-agent' do
+    group_name 'td-agent'
+    gid         403
+    action      :create
+end
+
+user 'td-agent' do
+    comment  'td-agent'
+    uid      403
+    group    'td-agent'
+    home     '/var/run/td-agent'
+    shell    '/bin/false'
+    password nil
+    supports :manage_home => true
+    action   [:create, :manage]
+end
+----------------------------------------------------------------
+**** make dir
+# すでに存在する場合は、作成されない
+----------------------------------------------------------------
+directory '/etc/td-agent/' do
+    owner 'td-agent'
+    group 'td-agent'
+    mode '0755'
+    action :create
+end
+----------------------------------------------------------------
+
+**** plastform毎のrepository追加
+case node['platform']
+when "ubuntu"
+    dist = node['lsb']['codename']
+    source = (dist == 'precise') ? "http://packages.treasure-data.com/precise/" : "http://packages.treasure-data.com/debian/"
+    apt_repository "treasure-data" do
+        uri source
+        distribution dist
+        components ["contrib"]
+        action :add
+    end
+when "centos", "redhat"
+    yum_repository "treasure-data" do
+        url "http://packages.treasure-data.com/redhat/$basearch"
+        action :add
+    end
+end
+
+
+*** example
+Vagrant.configure(2) do |config|
+  config.vm.box = "opscode_ubuntu-14.04_chef-provisionerless"
+  config.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box"
+
+  config.vm.network "private_network", ip: "192.168.33.30"
+  config.vm.network :forwarded_port, guest: 3000, host: 3000
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1024"
+  end
+
+  config.vm.synced_folder ".", "/vagrant", type: "nfs"
+
+  config.vm.provision "chef_zero" do |chef|
+    chef.version = '11.18.0'
+    chef.cookbooks_path = "./chef/cookbooks"
+    chef.add_recipe "apt"
+    chef.add_recipe "ruby_build"
+    chef.add_recipe "rails_support"
+    chef.add_recipe "rbenv::user"
+    chef.add_recipe "postgresql::server"
+    chef.add_recipe "postgresql::server_dev"
+    chef.json = {
+      "rbenv" => {
+        "user_installs" => [{
+          "user" => "vagrant",
+          "rubies" => ["2.2.2"],
+          "global" => "2.2.2",
+          "gems" => { "2.2.2" => [{"name" => "bundler"}] }
+        }]
+      },
+      "postgresql" => {
+          "pg_hba" => [
+            { "type" => 'local', "db" => 'all', "user" => 'postgres', "addr" => '', "method" => 'trust' }
+          ],
+          "databases" => [
+            {
+              "name" => "ruby_webpage_development",
+              "owner" => "postgres",
+              "encoding" => "UTF-8"
+            },
+            {
+              "name" => "ruby_webpage_test",
+              "owner" => "postgres",
+              "encoding" => "UTF-8"
+            },
+            {
+              "name" => "ruby_webpage_production",
+              "owner" => "postgres",
+              "encoding" => "UTF-8"
+            }
+          ]
+      }
+    }
+  end
+end
+** chef
+*** チートシート
+http://hogehuga.inokara.com/2014/05/05/chef-cheat-sheet.html
+http://www.google.co.jp/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0CCYQFjAB&url=http%3A%2F%2Fwww.egrep.jp%2Fwiki%2Findex.php%2FChef_cheat_sheet&ei=CBSiVdKzMcO50gSgoK7QCw&usg=AFQjCNHSbzsN0DTNtsz6DeU_2NJXKojyQw&sig2=9KZtkXKAMx3ulFDF0FYk6A
+
+*** base 
+**** chef structure
+kitchen(repository) > cook book > recipe
+
+**** global chef kitchen dir
+/var/chef
+
+**** berkshelf
+knife-solo は 、 ほかの gem のインストール 有無 によってデフォルトのオプションが 変化する。
+berkshlefは、クックブックの依存関係を管理する。
+
+----------------------------------------------------------------
+$ gem install berkshelf
+----------------------------------------------------------------
+
+*** commands
+**** knife
+kitchen操作コマンド
+
+# 各client用の設定ファイルを作成するコマンド。
+# 指定したディレクトリに、client.rb、validation.pemを作成する。この2つのファイルを使って、各nodeの設定を行う。
+knife configure client [tmp directory]
+
+**** knife-solo
+hostで作成したcookbookをremote serverへ転送し、chef-soloコマンドを実行。
+
+***** install
+----------------------------------------------------------------
+gem install knife-solo
+----------------------------------------------------------------
+
+***** 指定hostへchef-soloをインストール
+# 以後リモートホスト上でchef-soloが通るように、いい感じに調整してくれる。
+$ knife solo prepare <host>
+$ knife solo prepare <user>@<host>
+
+***** <host>でchef-soloを実行させる
+$ knife solo cook <host>
+
+***** run_listを個別に指定（ver0.3.0以降）
+$ knife solo cook <host> -o hello::default, nginx::default
+
+***** <host>に転送したレシピ群を削除
+$ knife solo clean <host>
+
+***** 新規Chefリポジトリを作成
+$ knife solo init chef-repo
+
+*** on nodes | chef-solo
+**** init cookbook | put log
+$ sudo knife cookbook create hello -o /var/chef/cookbooks
+
+**** edit recipe
+$ sudo emacs /var/chef/cookbooks/hello/recipes/default.rb
+
+add
+----------------------------------------------------------------
+log "Hello, World!"
+----------------------------------------------------------------
+**** run
+$ sudo chef-solo -o hello
+
+----------------------------------------------------------------
+[2014-03-24T12:21:06+00:00] WARN: *********
+[2014-03-24T12:21:06+00:00] WARN: Did not find config file: /etc/chef/sol
+o.rb, using command line options.
+[2014-03-24T12:21:06+00:00] WARN: *********
+Starting Chef Client, version 11.10.4
+[2014-03-24T12:21:08+00:00] WARN: Run List override has been provided.
+[2014-03-24T12:21:08+00:00] WARN: Original Run List: []
+[2014-03-24T12:21:08+00:00] WARN: Overridden Run List: [recipe[hello]]
+Compiling Cookbooks...
+Converging 1 resources
+Recipe: hello::default
+ log[Hello, World!] action write
+Running handlers:
+Running handlers complete
+Chef Client finished, 1/1 resour
+----------------------------------------------------------------
+
+**** init cookbook | install dstat
+$ sudo knife cookbook create dstat -o /var/chef/cookbooks
+
+**** edit recipe
+package "dstat" do
+    action :install
+end
+**** run
+$ sudo chef-solo -o hello,dstat
+
+*** host to nodes | knife solo
+**** knife solo init
+----------------------------------------------------------------
+$ knife solo init.
+----------------------------------------------------------------
+
+**** init cookbook
+$ knife cookbook create dstat -o site-cookbooks
+
+**** knife solo
+# chef install & run
+$ knife solo bootstrap webdb
+
+# only chef install
+$ knife solo prepare webdb
+
+**** run install
+$ knife solo cook webdb
+
+*** 複数サーバーへ一度に適用
+$ echo node1 node2 node3 | xargs -n 1 knife solo cook
+
+*** errors
+https://docs.chef.io/errors.html
+
+*** recipe
+**** package
+***** install
+package "httpd" do
+    action :install
+end
+
+***** upgrade
+# 最新版に入れ替える
+# installされていない場合、installと同処理
+package "httpd" do
+    action :upgrade
+end
+
+***** remove
+package "perl" do
+    action :remove
+end
+
+***** 指定ファイルからinstall
+package "tar" do
+    action :install
+    source "/tmp/tar-1.16.1-1.rpm"
+end
+
+***** 複数
+%w{gcc make git}.each do |pkg|
+    package pkg do
+        action :install
+    end
+end
+
+***** version指定
+package "perl" do
+    action :install
+    version "5.10.1"
+end
+
+**** service
+----------------------------------------------------------------
+service "httpd" do
+    action [ :enable, :start ]
+end
+----------------------------------------------------------------
+
+
+:enable = /sbin/chkconfig httpd on
+:start  = /sbin/service   httpd start
+
+**** make user 
+http://d.hatena.ne.jp/yk5656/20140406/1397003758
+
+***** prepare shado password
+$ openssl passwd -1 'パスワード'
+
+***** recipe
+user "hoge" do
+  password "シャドーなパスワードの文字列"
+  supports :manage_home => true
+  action :create
+end
+
+group "wheel" do
+  action [:modify]
+  members ["hoge"]
+  append true
+end
+
+***** wheel group
+no password sudo 
+
+/etc/sudoers 末尾に
+%wheel ALL=NOPASSWD: ALL
+
+**** 複数
+**** 注意
+package名と、service(daemon)名は異なるケースがある。
+
+
+*** github
+- postgres
+  https://github.com/phlipper/chef-postgresql
+
+- apt
+  https://github.com/opscode-cookbooks/apt
+
+- rbenv
+  https://github.com/fnichol/chef-rbenv
+
+- ruby-build
+  https://github.com/fnichol/chef-ruby_build

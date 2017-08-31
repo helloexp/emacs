@@ -1,0 +1,66 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Testing '
+Resources:
+  s3mrubymynavi:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: Private
+      VersioningConfiguration:
+        Status: Suspended
+  s3policymrubymynavi:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket:
+        Ref: s3mrubymynavi
+      PolicyDocument:
+        Version: '2008-10-17'
+        Id: PolicyForCloudFrontPrivateContent
+        Statement:
+        - Sid: '1'
+          Effect: Allow
+          Principal:
+            AWS: arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity E1P192DG2B7OBV
+          Action: s3:GetObject
+          Resource:
+            Fn::Join:
+            - ''
+            - - 'arn:aws:s3:::'
+              - Ref: s3mrubymynavi
+              - "/*"
+  distd2jhou709suy1tcloudfrontnet:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        PriceClass: PriceClass_200
+        DefaultCacheBehavior:
+          TargetOriginId: S3-mruby-mynavi
+          ViewerProtocolPolicy: allow-all
+          MinTTL: 0
+          AllowedMethods:
+          - HEAD
+          - DELETE
+          - POST
+          - GET
+          - OPTIONS
+          - PUT
+          - PATCH
+          CachedMethods:
+          - HEAD
+          - GET
+          ForwardedValues:
+            Cookies:
+              Forward: none
+        Origins:
+        - DomainName: mruby-mynavi.s3.amazonaws.com
+          Id: S3-mruby-mynavi
+          S3OriginConfig:
+            OriginAccessIdentity: origin-access-identity/cloudfront/E1P192DG2B7OBV
+        Restrictions:
+          GeoRestriction:
+            RestrictionType: none
+            Locations: []
+        ViewerCertificate:
+          CloudFrontDefaultCertificate: 'true'
+          MinimumProtocolVersion: SSLv3

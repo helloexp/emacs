@@ -1,0 +1,19 @@
+pick 58b66cf [#101105214] edit slim : 定数追加
+pick 32c32e4 [#101105214] edit contact model : 文字数制限追加
+pick 829f0bc [#101105214] edit spec : 文字数境界値前後のテスト追加
+
+# Rebase b7049d4..829f0bc onto b7049d4
+#
+# Commands:
+#  p, pick = use commit
+#  r, reword = use commit, but edit the commit message
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#  f, fixup = like "squash", but discard this commit's log message
+#  x, exec = run command (the rest of the line) using shell
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+# However, if you remove everything, the rebase will be aborted.
+#

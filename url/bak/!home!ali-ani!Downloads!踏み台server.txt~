@@ -1,0 +1,11 @@
+
+
+ssh access (各ユーザーサーバーアクセス用)
+    user          alliance
+    port          22
+    Hostname      54.65.232.249
+
+
+aws 実行ユーザ
+    user  :  mruby
+    pass  :  Kimg4488

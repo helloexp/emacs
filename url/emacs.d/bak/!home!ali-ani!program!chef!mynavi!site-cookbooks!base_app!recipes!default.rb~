@@ -1,0 +1,72 @@
+#
+# Cookbook Name:: base_app
+# Recipe:: default
+#
+# Copyright 2015, YOUR_COMPANY_NAME
+#
+# All rights reserved - Do Not Redistribute
+#
+# add repo
+rpm_package "mysql-community-release" do
+    source "http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm"
+    action :install
+end
+
+
+
+
+# install base packages
+base_packages = ["epel-release", "git", "make", "gcc", "gcc-c++"]
+base_packages.push("sqlite-devel", "libyaml-devel", "libffi-devel", "libicu-devel", "zlib-devel", "readline-devel")
+base_packages.push("openssl", "openssl-devel", "gdbm", "gdbm-devel")
+base_packages.push("libxml2", "libxml2-devel", "libxslt", "libxslt-devel")
+base_packages.push("zip", "unzip")
+
+base_packages.each do |pkg|
+    package pkg do
+        action :install
+    end
+end
+
+
+
+
+# install packages from epel repo
+epel_packages = ["mysql-community-client", "mysql-community-devel", "munin-node"]
+epel_packages.push("nginx", "nodejs", "npm")
+
+epel_packages.each do |pkg|
+    package pkg do
+        action :upgrade
+        options "--enablerepo=epel"
+    end
+end
+
+
+
+
+# make user
+user 'mruby' do
+  shell    '/bin/bash'
+  password '$1$mP3fjzzo$tfE8snZIH/vh4I2H3Qkfj1'
+  supports :manage_home => true, :non_unique => false
+  action   :create
+end
+
+
+# for no password sudo
+group "wheel" do
+  action  :modify
+  members "mruby"
+  append  true
+end
+
+
+# make rails root dir
+directory '/var/www/mynavi-cms/' do
+  owner      'mruby'
+  group      'mruby'
+  mode       '0755'
+  recursive  true
+  action     :create
+end

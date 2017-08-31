@@ -1,0 +1,30 @@
+'use strict';
+
+module.exports = {
+    port: 5000,
+    logLevel: 'combined',
+    crossOrigin: 'https://staging.all-in.xyz',
+    attachmentsConfig: {
+        storage: 's3',
+        bucket: 'staging-ruby-dev-all-in'
+    },
+    redisConfig: {
+        host: 'localhost',
+        port: '6379',
+        auth: 'password1!'
+    },
+    mongoConfig: {
+        url: 'mongodb://localhost:27017/sns-staging',
+        username: '',
+        password: ''
+    },
+    ioConfig: {
+        // ToDo:プロトタイプ用に暫定
+        eventName: 'allin_sns_demo'
+    },
+    authConfig: {
+        hostname: 'staging.all-in.xyz',
+        port: '80',
+        path: '/api/v1/grant'
+    }
+};

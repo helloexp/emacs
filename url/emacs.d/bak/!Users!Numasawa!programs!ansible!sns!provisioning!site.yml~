@@ -1,0 +1,22 @@
+- hosts: vagrants
+  #sudo: true
+  user: vagrant
+  tasks:
+    - name: be sure common packages are installed
+      yum: name={{ item }} state=installed enablerepo=epel
+      with_items:
+        - git
+        - curl
+      tags: common-packages
+
+
+    - name: install nvm
+      git: repo=git://github.com/creationix/nvm.git dest=/home/vagrant/.nvm
+
+
+    - name: bashrc
+      lineinfile:
+        dest: /home/vagrant/.bashrc
+        line: JAVA_OPTS="if [[ -s ~/.nvm/nvm.sh ]];"
+        line: JAVA_OPTS="  then source ~/.nvm/nvm.sh"
+        line: JAVA_OPTS="fi"

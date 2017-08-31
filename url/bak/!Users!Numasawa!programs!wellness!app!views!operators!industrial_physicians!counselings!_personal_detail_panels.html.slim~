@@ -1,0 +1,41 @@
+  #accordion.panel-group
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title
+          a[data-toggle="collapse" data-parent="#accordion_personal_detail" href="#accordion_personal_detail" ]
+            = t '.subject_personal_information'
+      #accordion_personal_detail.panel-collapse.collapse.in
+        .panel-body
+           = render partial: 'personal_information', locals: { counseling: @counseling }
+           = render partial: 'personal_information_buttons', locals: { counseling: @counseling, stress_check_counseling_report: @stress_check_counseling_report }
+
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title
+          a[data-toggle="collapse" data-parent="#accordion_counseling_note" href="#accordion_counseling_note"]
+            = t '.subject_counseling_memo'
+      #accordion_counseling_note.panel-collapse.collapse.in
+        .panel-body
+          = form_for @counseling, url: save_note_operators_industrial_physicians_counseling_path(@counseling) do |f|
+            = f.text_area :note, class: 'counseling_note'
+            = f.submit t('.save_counseling_note'), class: 'btn btn-primary pull-right'
+
+
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title
+          a[data-toggle="collapse" data-parent="#accordion_pre_hearing" href="#accordion_pre_hearing"]
+            = t '.subject_pre_hearing_result'
+      #accordion_pre_hearing.panel-collapse.collapse
+        .panel-body
+          | #
+
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title
+          a[data-toggle="collapse" data-parent="#accordion_first_stress_check_result" href="#accordion_first_stress_check_result"]
+            = t '.subject_first_stress_check_result'
+      #accordion_first_stress_check_result.panel-collapse.collapse
+        .panel-body
+          // = render template: "users/personal_data/stress_check", object: @counseling.user
+          | #

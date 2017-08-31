@@ -1,0 +1,19 @@
+<dl class="acordion">
+<dt class="trigger">雇用形態<span class="open-close">open</span></dt>
+<dd class="acordion_tree">
+正社員／契約社員<br />
+※ご相談に応じます<br />
+<!-- acordion_tree --></dd>
+<!-- acordion --></dl>
+<div class = "clear"></div>
+<dl class="acordion">
+<dt class="trigger">募集職種<span class="open-close">open</span></dt>
+<dd class="acordion_tree">
+<b>Ruby/Ruby on Rails エンジニア</b><br /><br />
+Ruby on RailsでWEBアプリケーションのシステム開発を担当していただきます。<br />
+・ソーシャル・ネットワーキング・サービス（SNS）のシステム開発<br />
+・スマートフォン向けWEBアプリケーションのシステム開発<br />
+・大手通販サイトのシステム開発<br />
+・大手転職サイトのシステム開発<br />
+その他、大小プロジェクトがあり、様々なWEBアプリケーションをRuby/Ruby on Railsで開発していただきます。<br /><br />
+プロジェクトのほとんどはユーザー様と直接お取り引きさせていただいておりますので、システム構想から設計～実装・運用まで幅広く手掛けさせていただいております。また、ご担当していただく開発フェーズはスキルに応じ担当していただきながら実践の中でスキルアップしていくことが可能です。上級者であればお客様の要求に沿ってアーキテクチャから独自に設計しながら進めていくことが出来ます。<br />

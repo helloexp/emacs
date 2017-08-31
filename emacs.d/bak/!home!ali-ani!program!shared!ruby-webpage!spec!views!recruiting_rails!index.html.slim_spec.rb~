@@ -1,0 +1,71 @@
+require 'rails_helper'
+
+describe "recruiting" do
+  feature "check text" do
+    let(:msgs){['―― 応募方法 ――',
+                '履歴書、職務経歴書を以下何れかの方法で送付ください。',
+                '書類選考後、数日以内にご連絡いたします。',
+                'FAXの場合 ⇒ 03-3525-4302',
+                '郵送の場合 ⇒ 〒101-0022 東京都千代田区神田練塀町73 プロミエ秋葉原９階（902）採用担当宛',
+                '代表メッセージ',
+                '輝き続けるエンジニアリングステージへ',
+                '代表取締役  芦田  秀之']}
+
+    scenario "title : 下記と合致する事" do
+      visit recruiting_path
+      expect(page).to have_title('Ruby開発 | アプリケーションエンジニア採用・求人・募集')
+    end
+
+    scenario "messages : 応募方法、連絡先が表示される事、代表メッセージ(一部)が表示される事" do
+      visit recruiting_path
+      msgs.each { |msg|
+        expect(page).to have_content msg
+      }
+    end
+  end
+
+  feature "check link" do
+    let(:welfare_links){['宿泊制度 全国の約20,000のホテル・旅館が、お得にご利用可能！しかも格安！',
+                         '豊かなくらしをサポートするライフメニュー',
+                         'あなたのライフステージを全般的にサポートします。',
+                         '日常生活を全般的にサポートします。24時間相談可能・相談料無料',
+                         '家族も使える！当社の福利厚生制度',
+                         '使って満足「利用者の声」。実際にご利用いただいたみなさまの声を集めました。']}
+
+    let(:recruiting_rails){'Ruby/Ruby on Rails エンジニア職の詳細ページ'}
+    let(:staff){'社内行事・社員紹介ページ'}
+    let(:contact_link){'お問い合わせフォーム'}
+
+    scenario 'link exist : 福利厚生ページへのlinkが全て存在する事' do
+      visit recruiting_path
+      welfare_links.each { |link|
+        expect(page).to have_link link
+      }
+    end
+
+    scenario '問い合わせフォームへのlinkが存在し、当該ページが開くこと' do
+      visit recruiting_path
+      expect(page).to have_link contact_link
+
+      click_on contact_link
+      expect(current_path).to eq contact_path
+    end
+
+    scenario 'rails求人linkが存在し、当該ページが開く事' do
+      visit recruiting_path
+      expect(page).to have_link recruiting_rails
+      click_on recruiting_rails
+
+      expect(current_path).to eq recruiting_rails_path
+    end
+
+    scenario '社内行事・社員紹介ページが存在し、当該ページが開く事' do
+      visit recruiting_path
+      expect(page).to have_link staff
+      click_on staff
+
+      expect(current_path).to eq staff_path
+    end
+  end
+end
+

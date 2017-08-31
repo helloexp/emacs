@@ -1,0 +1,12 @@
+require 'sendgrid-ruby'
+
+client = SendGrid::Client.new(api_user: api_user, api_key: api_key)
+
+email = SendGrid::Mail.new do |m|
+  m.to      = 'test@sendgrid.com'
+  m.from    = 'you@youremail.com'
+  m.subject = 'Sending with SendGrid is Fun'
+  m.html    = 'and easy to do anywhere, even with Ruby'
+end
+
+client.send(email)

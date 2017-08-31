@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0">
+<!--  created with free sitemap generation system www.sitemapxml.jp  --> 
+<url>
+  <loc>https://www.ruby-dev.jp/m/</loc>
+  <priority>1.0</priority>
+  <mobile:mobile />
+</url>
+<url>
+  <loc>https://www.ruby-dev.jp/m/business</loc>
+  <priority>0.8</priority>
+  <mobile:mobile />
+</url>
+<url>
+  <loc>https://www.ruby-dev.jp/m/company</loc>
+  <priority>0.8</priority>
+  <mobile:mobile />
+</url>
+<url>
+  <loc>https://www.ruby-dev.jp/m/recruiting_rails</loc>
+  <priority>0.8</priority>
+  <mobile:mobile />
+</url>
+<url>
+  <loc>https://www.ruby-dev.jp/m/partner_offer</loc>
+  <priority>0.8</priority>
+  <mobile:mobile />
+</url>
+<url>
+  <loc>https://www.ruby-dev.jp/m/qualification_support</loc>
+  <priority>0.8</priority>
+  <mobile:mobile />
+</url>
+<url>
+  <loc>https://www.ruby-dev.jp/m/ruby_info</loc>
+  <priority>0.8</priority>
+  <mobile:mobile />
+</url>
+<url>
+  <loc>https://www.ruby-dev.jp/m/contact</loc>
+  <priority>0.8</priority>
+  <mobile:mobile />
+</url>
+<url>
+  <loc>https://www.ruby-dev.jp/m/policy</loc>
+  <priority>0.8</priority>
+  <mobile:mobile />
+</url>
+<url>
+  <loc>https://www.ruby-dev.jp/m/sitemap</loc>
+  <priority>0.8</priority>
+  <mobile:mobile />
+</url>
+<url>
+  <loc>https://www.ruby-dev.jp/m/recruiting</loc>
+  <priority>0.8</priority>
+  <mobile:mobile />
+</url>
+<url>
+  <loc>https://www.ruby-dev.jp/m/contact/application</loc>
+  <priority>0.8</priority>
+  <mobile:mobile />
+</url>
+<url>
+  <loc>https://www.ruby-dev.jp/m/staff</loc>
+  <priority>0.7</priority>
+  <mobile:mobile />
+</url>
+<url>
+  <loc>https://www.ruby-dev.jp/m/contact/recruiting_rails</loc>
+  <priority>0.7</priority>
+  <mobile:mobile />
+</url>
+<url>
+  <loc>https://www.ruby-dev.jp/m/contact/partner</loc>
+  <priority>0.7</priority>
+  <mobile:mobile />
+</url>
+
+</urlset>

@@ -1,0 +1,4 @@
+class ChangeColumnsNameToStressCheckCounselingReport < ActiveRecord::Migration
+  def change
+  end
+end

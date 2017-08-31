@@ -1,0 +1,766 @@
+-*- mode: org -*-
+
+
+* Amazon Linux - init Enviroment (Ruby, RoR)
+** AWS instance生成
+amazon linux instanceを生成しsshアクセスする。
+# instance生成手順は割愛
+
+** user 作成
+$ sudo su - 
+
+$ adduser mruby
+$ passwd mruby
+murby3826
+
+$ usermod -G ec2-user mruby
+
+** sudoer file書き換え
+$ chmod 700 /etc/sudoers
+$ vim /etc/sudoers
+# 追記
+----------------------------------------------------------------
+99行目 : mruby  ALL=(ALL)  ALL
+----------------------------------------------------------------
+
+$ chmod 440 /etc/sudoers
+
+** 初期 install
+su - mruby
+
+sudo yum install -y emacs
+sudo yum install -y ruby-devel rubygems-devel
+sudo yum install -y git make gcc gcc-c++
+sudo yum install -y libyaml-devel libffi-devel libicu-devel zlib-devel readline-devel
+sudo yum install -y sqlite-devel
+sudo yum install -y openssl openssl-devel gdbm gdbm-devel
+sudo yum install -y libxml2 libxml2-devel
+sudo yum install -y libxslt libxslt-devel
+sudo yum install -y mysql mysql-devel
+
+** rbenv install
+$ vim ./rbenv-install.sh
+$ chmod 755 ./rbenv-install.sh
+
+# 書き込み
+----------------------------------------------------------------
+MY_GROUP="ec2-user"
+if [ "$MY_GROUP" = "" ] ; then
+    echo '!!! undefined variable MY_GROUP.'
+    echo '!!!'
+    echo '!!! ex.) MY_GROUP=staff'
+    echo '!!!'
+    exit 1
+fi
+ 
+cd /usr/local
+git clone git://github.com/sstephenson/rbenv.git rbenv
+mkdir rbenv/shims rbenv/versions
+chgrp -R $MY_GROUP rbenv
+chmod -R g+rwxX rbenv
+ 
+git clone git://github.com/sstephenson/ruby-build.git ruby-build
+cd ruby-build
+./install.sh
+ 
+echo 'export RBENV_ROOT="/usr/local/rbenv"'     >> /etc/profile.d/rbenv.sh
+echo 'export PATH="/usr/local/rbenv/bin:$PATH"' >> /etc/profile.d/rbenv.sh
+echo 'eval "$(rbenv init -)"'                   >> /etc/profile.d/rbenv.sh
+----------------------------------------------------------------
+
+$ sudo bash ./rbenv_install.sh
+
+** ruby setting
+$ rbenv install 2.2.0
+$ rbenv global 2.2.0
+
+** .gemrc
+$ vim ~/.gemrc
+----------------------------------------------------------------
+install: --no-rdoc --no-ri
+update:  --no-rdoc --no-ri
+----------------------------------------------------------------
+
+** gem install
+gem install bundle bundler io-console
+gem install sqlite3 mysql2
+gem install therubyracer
+gem install nokogiri -- --use-system-libraries
+
+gem install rails --version 4.2.0
+
+** 参考
+nokogiri install
+http://appakun.hateblo.jp/entry/2014/10/08/%E5%88%83%E7%89%A9%E3%81%AE%E7%A7%8B%E3%81%A0%E3%81%97Nokogiri%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B
+http://www.e-mist.com/articles/libxml2_libxslt_for_nokogiri_install_on_centos
+http://www.nokogiri.org/tutorials/installing_nokogiri.html
+
+
+* 要調査
+** 料金
+以下の項目にかかる料金を確認。
+
+EBS
+RBS
+
+** Auto Scaling Group
+- how to?
+- どの程度までscalingするのか (提案、先方からの要望しだい?)
+
+** ELB
+- 疑問がわかない
+- 何台構成 (提案、先方からの要望しだい?)
+
+** RDS
+数インスタンスからアクセスする際の設定
+
+** CloudWath リソースモニタリング & アラーム
+- how to
+- それぞれ何が確認できるのか? 何ができるのか?
+
+*** 料金
+http://aws.amazon.com/jp/cloudwatch/pricing/
+
+Amazon EBS ボリューム、Elastic Load Balancers、Amazon RDS DB インスタンスのすべてのメトリックス同様、
+Amazon EC2 インスタンスの基本モニタリングのメトリックス（5分間隔）は無料でご利用いただけます。
+
+新規および既存のお客様は、10 メトリックス（Amazon EC2 インスタンスまたはカスタムメトリックス、
+または CloudWatch Logs* の詳細モニタリングに適用）、10 アラーム、および 100 万の API リクエストを追加料金なしでご利用いただけます。
+新規および既存の顧客も、追加料金なしで 1 か月あたり 5 GB のデータの取り込みおよび 5 GB のアーカイブされたストレージを受け取ることができます。 
+
+
+** DNSラウンドロビン
+http://dev.classmethod.jp/cloud/elb-configuration-guide-1/
+
+** Least Conns
+http://dev.classmethod.jp/cloud/elb-configuration-guide-1/
+
+* 用語
+** リージョンとアベイラビリティーゾーン 
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/using-regions-availability-zones.html
+
+*** リージョン
+地理的に離れた領域
+
+*** アベイラビリティーゾーン 
+http://www.atmarkit.co.jp/ait/articles/1410/27/news013.html
+
+1つのリージョン内のロケーションを指す。
+
+*** 概念
+リージョンは完全独立。
+各アベイラビリティーゾーンは独立しているが、同一リージョン内のアベイラビリティーゾーン同士は低レイテンシーのリンクで接続されている。
+
+*** 適用範囲
+Amazon EC2リソースには、グローバル、リージョン、アベイラビリティーゾーンに結び付けられているものがある。
+
+詳細は以下
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/resources.html
+
+* 初期設定
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#create-an-iam-user
+[Download Credentials] をクリックし、アクセスキーを安全な場所に保存します。アクセスキーは、AWS CLI、AWS SDK、HTTP API のいずれかを使用してプログラムから AWS にアクセスするために必要です。
+
+** iam user 作成
+*** group作成
+*** user作成
+*** userをgroupへassign
+*** user password設定
+
+** iam user としてログイン
+https://your_aws_account_id.signin.aws.amazon.com/console/
+
+新規の IAM ユーザーとしてサインインするには、AWS コンソールからサインアウトし、次の URL を使用します。
+このとき、your_aws_account_id はハイフンを除いた AWS アカウント番号です
+（たとえば AWS アカウント番号が 1234-5678-9012 であれば、AWS アカウント ID は 123456789012 となります）。
+
+** リージョン設定
+画面右上
+Asia Pacific (tokyo) を選択
+
+** key pairs作成
+*** 画面左メニュー下部から、[Key Pairs] を選択
+# [Create Key Pair] ダイアログボックスの [Key Pair Name] フィールドに新しいキーペアの名前を入力し、[Create] をクリックします。
+# 覚えやすい名前（IAM ユーザー名など）を選び、その後に -key-pair を続け、さらにリージョン名を続けます。たとえば、me-key-pair-uswest2 などです
+
+*** DL private key
+[create] クリック後、自動でDL開始される。
+
+** VPC
+- defaultのVPCが作成される (support platformがVPCのみ場合)
+
+*** EC2-Classic と EC2-VPC の違い
+**** EC2-Classic
+共有プライベート IP アドレス範囲のプライベート IP アドレスが各インスタンスに割り当てられます。
+また、Amazon は各インスタンスに、Amazon のパブリック IP アドレスのプールからパブリック IP アドレスを割り当てます。
+インスタンスは、AWS ネットワークエッジを通してインターネットに直接アクセスします。
+
+**** EC2-VPC
+お客様の VPC のプライベート IP アドレス範囲のプライベート IP アドレスが各インスタンスに割り当てられます。
+お客様は、お客様の VPC の IP アドレス範囲、サブネット、ルーティング、ネットワークゲートウェイ、ネットワーク ACL、
+セキュリティグループを制御できます。
+インスタンスが起動している間にパブリック IP アドレスを受け取るかどうかを指定できます。
+パブリック IP アドレスまたは Elastic IP アドレスが割り当てられたインスタンスは、AWS ネットワークエッジにアタッチされて
+いる論理インターネットゲートウェイを通してインターネットにアクセスできます。
+EC2-VPC の詳細については、「What is Amazon VPC?」を参照してください（『Amazon VPC ユーザーガイド』）。
+
+*** VPC user guide
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/using-vpc.html
+*** デフォルト以外の VPC を作成するには
+https://console.aws.amazon.com/vpc/
+
+- ナビゲーションバーで、VPC のリージョンを選択します。
+  VPC はリージョンに固有であるため、キーペアを作成したリージョンと同じリージョンを選択してください。
+
+- VPC ダッシュボードで、[Start VPC Wizard] をクリックします。
+
+- [Step 1: Select a VPC Configuration] ページで、[VPC with a Single Public Subnet] が選択されていることを確認し、
+  [Select] をクリックします。
+
+- [Step 2: VPC with a Single Public Subnet] ページで、[VPC name] フィールドに、わかりやすい VPC 名を入力します。
+  他のデフォルトの設定はそのままにしておき、[Create VPC] をクリックします。確認ページで、[OK] をクリックします。
+** セキュリティグループの作成
+セキュリティグループは、関連付けられたインスタンスのファイアウォールとして動作し、
+インバウンドトラフィックとアウトバウンドトラフィックの両方をインスタンスレベルでコントロールします。
+SSH を使用して IP アドレスからインスタンスに接続できるようにするためのルールをセキュリティグループに追加します。
+さらに、任意の場所からのインバウンドおよびアウトバウンドの HTTP アクセスおよび HTTPS アクセスを可能にするルールを追加できます。
+
+複数のリージョンでインスタンスを起動する予定がある場合は、各リージョンでセキュリティグループを作成する必要があります。
+リージョンの詳細については、「リージョンとアベイラビリティーゾーン」を参照してください。
+
+*** 初期設定
+- Amazon EC2 コンソールを開く。
+
+- ナビゲーションバーで、セキュリティグループのリージョンを選択します。
+  セキュリティグループはリージョンに固有であるため、キーペアを作成したリージョンと同じリージョンを選択してください。
+
+- ナビゲーションペインで [Security Groups] をクリックします。
+
+- [Create Security Group] をクリックします。
+
+- 新しいセキュリティグループの名前と説明を入力します。覚えやすい名前（IAM ユーザー名など）を選び、
+  その後に _SG_ を続け、さらにリージョン名を続けます。たとえば、me_SG_uswest2 などです。
+
+- [VPC] リストで、デフォルトの VPC が選択されていることを確認します。この VPC には、アスタリスク（*）が示されています
+
+- [Inbound] タブで、次のルールを作成し（新しいルールごとに [Add Rule] をクリック）、最後に [Create] をクリックします。
+  [Protocol] リストから [HTTP] を選択し、[Source] を [Anywhere]（0.0.0.0/0）に設定します。
+  [Type] リストから [HTTPS] を選択し、[Source] が [Anywhere]（0.0.0.0/0）に設定されていることを確認します。
+  [Type] リストから [SSH] を選択します。[Source] ボックスで、[Custom IP] が選択されていることを確認し、コンピュータまたは
+  ネットワークのパブリック IP アドレスを CIDR 表記で指定します。CIDR 表記で個々の IP アドレスを指定するには、ルーティングプレ
+  フィックスを追加します。/32例えば、IP アドレスが 216.182.234.123 の場合は、216.182.234.123/32 を指定します。
+  会社が特定の範囲からアドレスを割り当てている場合、範囲全体（203.0.113.0/24など）を指定します。
+
+  Caution
+    セキュリティ上の理由で、すべての IP アドレス（0.0.0.0/0）からインスタンスへの SSH アクセスを許可することはお勧めしません。
+    ただし、それがテスト目的で短期間の場合は例外です。
+
+
+
+*** inboud / outbound設定
+- [inbound tab] を開く
+
+- [Edit] を選択
+
+- ルールを増やす場合は、[add rule] を選択
+
+- アクセス範囲の設定
+  Type   : protocol選択
+  Source : Access元IPアドレス帯の設定
+  
+*** users guide
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/using-network-security.html
+
+** Amazon EC2 インスタンスの起動
+*** Amazon EC コンソール（https://console.aws.amazon.com/ec2/）を開きます。
+*** コンソールダッシュボードで、[Launch Instance] をクリックします。
+*** [Choose an Amazon Machine Image (AMI)] ページに、Amazon マシンイメージ（AMI）と呼ばれる基本設定のリストが表示されます。
+  これは、インスタンスのテンプレートとして機能します。[64-bit Amazon Linux AMI] を選択します。
+  この設定は、[Free tier eligible] として表示されます。
+
+*** [Choose an Instance Type] ページで、インスタンスのハードウェア構成を選択できます。
+デフォルトでは、t2.micro インスタンスタイプが選択されます。
+また、フィルタリストの [All generations] を選択して、[t1.micro] インスタンスタイプを選択することもできます。
+無料利用枠の対象となるのは、これらのインスタンスタイプのみであることに注意してください。
+
+Note
+VPC で T2 インスタンスを起動する必要があります。
+AWS アカウントが EC2-Classic をサポートしており、VPC がない場合、起動ウィザードによって VPC が作成されます。
+それ以外で、VPC がある場合は、[Next: Configure Instance Details] をクリックして VPC とサブネットを選択します。
+
+*** [Review and Launch] をクリックして、ウィザードが他の設定を完了できるようにします。
+*** [Review Instance Launch] ページの [Security Groups] に、ウィザードで作成および選択したセキュリティグループが表示されます。
+代わりに、次のステップを使ってセットアップ時に作成したセキュリティグループを選択します。
+
+- [Edit security groups] をクリックします。
+- [Configure Security Group] ページで、[Select an existing security group] オプションが選択されていることを確認します。
+- 既存のセキュリティグループのリストからセキュリティグループを選択し、[Review and Launch] をクリックします。 
+
+*** [Review Instance Launch] ページで、[Launch] をクリックします。
+*** [Select an existing key pair or create a new key pair] ダイアログボックスで、
+[Choose an existing key pair] を選択し、設定時に作成したキーペアを選択します。
+別の方法として、新しいキーペアを作成できます。[Create a new key pair] を選択し、キーペアの名前を入力して、[Download Key Pair]
+をクリックします。
+
+これは、プライベートキーファイルを保存できる唯一のチャンスなので、必ずダウンロードしてください。プライベートキーファイルを安全な場所に保存します。
+インスタンスと対応するプライベートキーの起動時には、毎回インスタンスに接続するたびに、キーペアの名前を入力する必要があります。
+
+キーペアは、SSH 経由で Linux インスタンスに接続できるようにします。
+したがって、[Proceed without a Key Pair] オプションは選択しないでください。
+
+キーペアを使用せずにインスタンスを起動すると、インスタンスに接続できません。
+準備ができたら、確認チェックボックスをオンにして、[Launch Instances] をクリックします。
+
+*** インスタンスを起動することを知らせる確認ページが表示されます。[View Instances] をクリックして確認ページを閉じ、コンソールに戻ります。
+*** [Instances] 画面で、インスタンスの状態を確認できます。インスタンスはすぐに起動します。インスタンスを起動すると、初期状態は pending になります。
+インスタンスを起動した後は、状態が running に変わり、パブリック DNS 名を受け取ります（[Public DNS] 列が非表示の場合は、
+[Show/Hide] アイコンをクリックし、[Public DNS] を選択します）。
+
+** instanceへの接続
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-connect-to-instance-linux.html#using-ssh-client
+
+$ ssh -i /path/key_pair.pem ec2-user@public_dns_name
+
+Amazon Linux の場合は、デフォルトのユーザー名は ec2-user
+RHEL5 の場合は、ユーザー名は root または ec2-user のどちらかです。
+Ubuntu の場合は、ユーザー名は ubuntu です。
+Fedora の場合は、ユーザー名は fedora または ec2-user のどちらかです。
+SUSE Linux の場合は、ユーザー名は root です。
+それ以外の場合で、ec2-user および root が機能しない場合は、ご利用の AMI プロバイダーに確認してください。 
+
+** インスタンスへのボリューム追加
+ap-northeast-1a
+
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-add-volume-to-instance.html
+
+*** Amazon EC コンソール（https://console.aws.amazon.com/ec2/）を開きます。
+*** ナビゲーションバーで、インスタンスを作成したリージョンを選択し、ナビゲーションペインで [Instances] をクリックします。
+*** 選択したリージョンの現在のインスタンス一覧がコンソールに表示されます。
+Linux インスタンスを選択します。下部のペインの [Description] タブで、インスタンスの [Availability Zone] を書き留めます。
+
+*** ナビゲーションペインの [Elastic Block Store] で、[Volumes] をクリックします。
+*** [Create Volume] をクリックします。
+*** 次のように設定し、[Create] をクリックします。
+[General Purpose (SSD)] ボリュームタイプを選択し、General Purpose (SSD) EBS ボリュームを作成します。
+
+Note
+2012 年より前に作成された一部の AWS アカウントでは、Provisioned IOPS (SSD) や General Purpose (SSD) のような SSD ボリュームを
+サポートしない us-east-1、us-west-1、または ap-northeast-1 のアベイラビリティーゾーンにアクセスできることがあります。
+これらのリージョンの 1 つに SSD ボリュームを作成できない場合（またはブロックデバイスマッピングに SSD ボリュームのあるインスタンスを起動
+できない場合）は、リージョンの別のアベイラビリティーゾーンを試します。
+アベイラビリティーゾーンが General Purpose (SSD) および Provisioned IOPS (SSD) ボリュームをサポートするかどうかは、1 GiB の 
+General Purpose (SSD) ボリュームをそのゾーンに作成することで確認できます。
+
+作成するボリュームのサイズを入力します。Amazon EBS の無料利用枠は最大 30 GiB のストレージであるため、このチュートリアルでは料金が発生し
+ないように、この限度を超過しない範囲でボリュームサイズを選択します。
+たとえば、作成したインスタンスの起動ボリュームで 8 GiB の Amazon EBS ボリュームを使用している場合は、作成するボリュームのサイズを 
+22 GiB 以下にします。
+インスタンスの作成時に使用した [Availability Zone] を選択します。別のゾーンを選択すると、インスタンスにボリュームをアタッチできません。
+
+*** ナビゲーションペインの [Elastic Block Store] で、[Volumes] をクリックします。
+新しく作成したボリュームがそこに表示され、ボリュームの状態は available なので、インスタンスにアタッチする準備ができています。
+
+*** 新しく作成したボリュームを右クリックし、[Attach Volume] を選択します。
+*** [Attach Volume] ダイアログボックスで、以下のとおり設定を行ってから、[Attach] をクリックします。
+インスタンスの名前または ID を入力して、提案されたオプションのリストからインスタンスを選択します。
+そのインスタンスの未使用のデバイス名を指定します。このチュートリアルでは、/dev/sdf を使用します。
+別のデバイス名を選択した場合、必ずそのデバイス名を書き留めてください。この情報は次の手順で必要になります。
+** インスタンスへのボリューム追加2
+*** ヴォリュームアタッチ後
+[/dev/] へ新たに追加されるため、formatとmountが必要
+
+*** dev確認コマンド 
+lsblk
+sudo fdisk -l | grep Disk 
+
+*** format
+[ec2-user ~]$ sudo mkfs -t ext4 /dev/xvdf
+
+# スナップショットを使用しない場合、空のヴォリュームになる
+
+*** mount
+[ec2-user ~]$ sudo mkdir /mnt/my-data
+[ec2-user ~]$ sudo mount /dev/xvdf /mnt/my-data
+
+*** important
+無料利用枠内で使用する限り、料金はかかりません。
+それ以外の場合、インスタンスが起動するとすぐに、インスタンスの実行時間に応じて、インスタンスがアイドル状態の場合でも課金されます。
+通常のインスタンスのステータスが shutting down または terminated になると、インスタンスの使用料は発生しなくなります。
+
+** インスタンスとボリュームのクリーンアップ
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-clean-up-your-instance.html
+
+* コマンドライン
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/concepts.html#access-ec2
+* iam
+** 初期
+- AWS内での管理権限
+- groupを作成し、アクセス権限を設定。
+- userを作成し、各サービス(AWS CLI、AWS SDK、HTTP API のいずれかを使用してプログラムから AWS にアクセスするために必要です。)
+  へアクセスするためのキーを作成し、DLする
+
+** ユーザー間でのinstance, EBS, security ruleの共有方法
+
+* AMI
+** AMIとは
+端的に言うと、OS環境などのimageファイル
+
+** 特定ユーザーとAMI共有
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/sharingamis-explicit.html
+
+* EBS
+** 用途
+永続型volume (仮想SSD)
+
+** 種類と特性
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/EBSVolumeTypes.html#EBSVolumeTypes_gp2
+
+*** 汎用SSD
+**** ユースケース 
+system boot volume
+小規模、中規模DB
+開発テスト環境向け
+
+**** IOSP : ベースパフォーマンスとburst
+- ベースパフォーマンス
+  基本1Gにつき、3IOPS (10Gならば、30IOPS。最大3000IOPS/1T)
+
+- burst
+  ベースパフォーマンスを超える場合、最大3000IOPSまでburstする。
+
+  ただし、burst閾値が存在する。
+  初期値として、5,400,000 I/O クレジットが割り当てられる。
+  burstすると、当クレジットが消費される。
+  クレジットが0となると、IOPSはベースパフォーマンスになる。(1Gの場合、3IOPS)
+  
+  クレジットの回復量は、ベースパフォーマンスと同一となる。(1Gの場合、3IOPSが加算される。前述のURLに計算式あり)
+
+  # volume sizeを増やせば回復量は増加する。
+  
+*** プロビジョンド
+**** ユースケース
+3,000 IOPS を超える持続的な IOPS パフォーマンス
+MongoDB
+Microsoft SQL Server
+MySQL
+PostgreSQL
+Oracle
+
+ランダムアクセス I/O スループットにおけるストレージパフォーマンスと整合性が重要な、
+I/O 集約型ワークロード（特にデータベースワークロード）のニーズを満たすように設計されています
+
+**** 概要
+- ヴォリューム作成時にIOPSレートを指定
+- 最大4000IOPS
+- 3000IOPSを出すならば、最低100G必要
+- サイズ拡張、パフォーマンス向上には、複数ヴォリュームを纏めストレイプ構成に
+
+*** マグネティック
+**** ユースケース
+- データに頻繁にアクセスしないコールドワークロード
+- 低いストレージコストが重視されるシナリオ
+
+**** 概要
+- 平均100IOPS、数百 IOPS までのバースト
+- Gあたりのコストが最も低い
+- サイズの拡張とパフォーマンスの向上する場合は、RAID構成内でまとめてストライプ構成する
+
+** Amazon EC2 ルートデバイスボリューム
+*** インスタンスストア
+- インスタンスを起動する時、ルートデバイスボリュームに格納されているイメージを使用してインスタンスがブートされます。
+- インスタンスのルートデバイスは、Amazon S3 に格納されたテンプレートから作成されるインスタンスストアボリューム
+  
+*** EBS
+- Amazon EBS スナップショットから作成される Amazon EBS ボリューム
+- は起動が高速であり、永続的ストレージを使用している
+  
+*** ルートデバイスストレージの概念
+Instance store-Backed AMI と Amazon EBS-Backed AMI という 2 種類の AMI のいずれかからインスタンスを起動できます。
+大きな違いがあるため、タイプを区別できることは重要
+
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device
+
+*** instance store-backed のインスタンス
+インスタンスストアをルートデバイスに使用するインスタンスでは自動的に、インスタンスストアボリュームを利用できるようになり、
+その 1 つがルートデバイスボリュームとなります。インスタンスを起動すると、インスタンスのブートに使用されるイメージが
+ルートボリューム（通常は sda1）にコピーされます。
+
+インスタンスストアボリュームのデータはインスタンスが実行している間は維持されますが、
+インスタンスが終了すると（Instance store-Backed インスタンスは [Stop] アクションをサポートしていません）、
+またはインスタンスが失敗すると（基盤となるドライブに問題がある場合など）、削除されます。
+
+*** デフォルトのデータストレージと永続性
+ルートデバイスにインスタンスストアボリュームを使用するインスタンスでは、自動的にインスタンスストアが利用できます（ルートボリュームにルートパーティ
+ションが含まれ、追加のデータを保存できます）。
+インスタンスが失敗するか終了すると、インスタンスストアボリューム上のすべてのデータが削除されます（ルートデバイス上のデータを除く）。
+Amazon EBS ボリュームをアタッチすることで、永続的ストレージをインスタンスに追加できます。
+
+Amazon EBS をルートデバイスに使用するインスタンスには自動的に、Amazon EBS ボリュームがアタッチされます。
+ブロックデバイスマッピングを使用して、インスタンスストレージまたは追加の Amazon EBS ボリュームを追加できます。
+詳細については、「ブロックデバイスマッピング」を参照してください。
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html
+
+インスタンスを停止すると、インスタンスストアボリュームに何が発生するかについては、「インスタンスの停止と起動」を参照してください。
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/Stop_Start.html
+
+*** 起動時間
+Amazon EBS-Backed AMI は、Amazon EC2 Instance store-Backed AMI よりも速く起動する。
+
+Amazon EC2 Instance store-Backed AMI を起動するときには、Amazon S3 からすべての部分を取得しないとインスタンスを利用できません。
+
+Amazon EBS-Backed AMI の場合、インスタンスの起動に必要な部分だけをスナップショットから取得するとインスタンスを利用できます。
+ただし、ルートデバイスに Amazon EBS ボリュームを使用するインスタンスのパフォーマンスは、残りの部分がスナップショットから取得され、
+ボリュームにロードされる少しの時間、遅くなります。
+
+インスタンスを停止し、再起動する場合は、状態が Amazon EBS ボリュームに保存されているため早く起動します。
+*** AMI の作成
+Instance Store-Backed の Linux AMI を作成するには、インスタンス自体にインスタンスの AMI を作成する必要があります。
+
+ただし、それを支援する API アクションはありません。
+
+AMI の作成は、EBS Backed の AMI の方がはるかに簡単です。
+CreateImage API アクションは、Amazon EBS-Backed AMI を作成して登録します。
+AWS Management Console にも、実行中のインスタンスから AMI を作成できるボタンがあります。
+詳細については、「Amazon EBS-Backed Linux AMI の作成」を参照してください。
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html
+
+*** 課金方法
+- 対象
+    Instance Store-Backed の AMI の場合、AMI ストレージとインスタンスの使用量に対して課金されます。
+    Amazon EBS-Backed の AMI の場合、AMI とインスタンスの使用料に加えて、ボリュームストレージおよび使用量に対して課金されます。
+
+- ストレージ
+    Amazon EC2 Instance Store-Backed の AMI の場合、AMI をカスタマイズしたり、新しい AMI を作成したりするたびに、
+    各 AMI のすべての部分が Amazon S3 に保存されます。
+    そのため、カスタマイズした各 AMI のストレージフットプリントは、AMI の完全なサイズになります。
+
+    Amazon EBS-Backed の AMI の場合、AMI をカスタマイズしたり、新しい AMI を作成したりするたびに、変更のみが保存されます。
+    最初の AMI の後にカスタマイズする後続の AMI のストレージフットプリントははるかに小さくなり、AMI ストレージ料金が少なくなります。
+
+- インスタンスの起動
+    Amazon EBS-backed instance が停止した場合、インスタンスの使用については課金されませんが、ボリュームストレージについては引き続き課金されます。
+    stopped（停止）状態から running（実行中）状態へのすべての移行に対して、1 時間内に複数回インスタンスを移行した場合でも、
+    完全インスタンス時間が課金されます。
+    例えば、インスタンスの時間当たりのインスタンス料金が 0.10 USD であるとします。
+    そのインスタンスを停止せずに実行した場合、0.10 USD 課金されます。
+    その時間中に、そのインスタンスを 2 回停止し、再起動した場合、その使用時間に対して 0.30 USD 課金されます
+    （最初の 0.10 USD に再起動ごとの 2 x 0.10 USD をたす）。 
+
+** Amazon EBS-Backed Linux AMI の作成
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html
+
+Amazon EBS-Backed Linux AMI を作成するには、既存の Amazon EBS-Backed Linux AMI から起動したインスタンスから始めます。ニーズに合わせてインス
+タンスをカスタマイズしたら、新しい AMI を作成し、登録します。新しい AMI を使用して、カスタマイズした新しいインスタンスを起動できます。
+
+Amazon EBS-Backed Windows AMI を作成する場合、「Amazon Elastic Compute Cloud Microsoft Windows Guide」の「Creating an Amazon EBS-
+Backed Windows AMI」を参照してください。
+
+AMI の作成プロセスは、Instance Store-Backed AMI の場合とは異なります。Amazon EBS-Backed インスタンスと Instance Store-Backed インスタン
+スの違いの詳細と、インスタンスのルートデバイスタイプを判別する方法については、「ルートデバイスのストレージ」を参照してください。Instance Store-Back
+ed Linux AMI を作成する必要がある場合は、Instance Store-Backed Linux AMI の作成 を参照してください。
+
+
+
+** ELB SSL setting
+*** backend auth
+- setting
+  ELB global    : http
+  ELB local     : https
+  backend auth  : on
+
+- 入力フォーマット(.crt)  
+  -----BEGIN CERTIFICATE-----
+  MIICATCCAWoCCQDOUAfKWZjYOjANBgkqhkiG9w0BAQUFADBFMQswCQYDVQQGEwJq
+  YTEOMAwGA1UECAwFbXJ1YnkxDjAMBgNVBAcMBXRva3lvMRYwFAYDVQQKDA1tcnVi
+  eSBkZXZlbG9wMB4XDTE1MDIxNTE0MTUyOVoXDTE2MDIxNTE0MTUyOVowRTELMAkG
+  A1UEBhMCamExDjAMBgNVBAgMBW1ydWJ5MQ4wDAYDVQQHDAV0b2t5bzEWMBQGA1UE
+  CgwNbXJ1YnkgZGV2ZWxvcDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA0N3c
+  9wL18lLQVhyEovP112vQJzZ5K/lDwaqyMJGrNFXjU+VOflWmV6jwjFHiW9TPdui7
+  E9Hg8TVLzDM+ft3V8GG7i0x1HP5D9RzLMd28Rzwi6RPfrapzV2ZHPNH4M/WhXlMk
+  Bhcp6e65H3eTdjX/4byHND+WKKcNDlbSsYlv0DMCAwEAATANBgkqhkiG9w0BAQUF
+  AAOBgQCy0BUZ1lPo1Oq+ZweWKdxe4FvYbcRY5dMgzkmGkA+O9fUAINe4gTuhfzuc
+  pDym8Upu1ukkVN+CAvaUWIrECWTDuRZ8BqJY6CesKiTPI1mZGUqPOi10Yt36SOsY
+  JlofcJos56lewpGA78Os2xSMg3wPFAthg/xMF2PvhE0T4opj6Q==
+  -----END CERTIFICATE-----
+
+*** ELB auth
+- setting
+  ELB global    : http
+  ELB local     : https
+  backend auth  : on
+
+
+- input to private key (.key) (pem encoded)
+  -----BEGIN RSA PRIVATE KEY-----
+  MIICXQIBAAKBgQDQ3dz3AvXyUtBWHISi8/XXa9AnNnkr+UPBqrIwkas0VeNT5U5+
+  VaZXqPCMUeJb1M926LsT0eDxNUvMMz5+3dXwYbuLTHUc/kP1HMsx3bxHPCLpE9+t
+  qnNXZkc80fgz9aFeUyQGFynp7rkfd5N2Nf/hvIc0P5Yopw0OVtKxiW/QMwIDAQAB
+  AoGBAIvtt1V9FEyuEok+PdX13yPdROygX/mH207qDsrfLHW5fLz+COI2e2SK9+zq
+  Bt5C6mLddEfI+gxfClLZmergr6xOaKCjxZTGFdUdCYz5rGIL/w1RErEhxhLHqF/E
+  Dd4iHwndLyt9VmJqQ1Ns1uBRfKcc1711Yh/8l3QetxSbWPzRAkEA/pg3Q1LpH1ga
+  EmoScmly+0bOwbjQ8CssPCUnASoQD8+NkuQ8pU8ZrYZmyIyDw8yw1Yg/yZrYqcde
+  iyX5o8jj/wJBANIFBrIdqcenTbxckCc/rtSCKdRlhF4RtQyQqSo/1inqJBTGllqO
+  Zgo9c5ztVQdFpbddxWCzyS5Jrq/SD8waw80CQHoUAQO+QNxvwWitBhVobOMCS+fm
+  OAHBod9hLTfItJTwQAF8gXv+1uA2/xgREKmVgAGT6IpCPrwCRlpQpkib7n8CQA3I
+  cKkN00+cBjj/ZiJ9Rm8B39bllqtJxDT/5Wo1aEu15wpKAiINSFsRr120Ialpg7el
+  +sce5WwZP9KgGZNOil0CQQDsUuDCBuuZ77mInFfn93PFuPz29X/4+hyGVLMF/0Cj
+  yrt9s2ATgNRc5FbHJSCp31f7+AH7T6DQAncbdKin2kdm
+  -----END RSA PRIVATE KEY-----
+  
+
+- input to public key certificate (.crt) (pem encoded)
+  -----BEGIN CERTIFICATE-----
+  MIICATCCAWoCCQDOUAfKWZjYOjANBgkqhkiG9w0BAQUFADBFMQswCQYDVQQGEwJq
+  YTEOMAwGA1UECAwFbXJ1YnkxDjAMBgNVBAcMBXRva3lvMRYwFAYDVQQKDA1tcnVi
+  eSBkZXZlbG9wMB4XDTE1MDIxNTE0MTUyOVoXDTE2MDIxNTE0MTUyOVowRTELMAkG
+  A1UEBhMCamExDjAMBgNVBAgMBW1ydWJ5MQ4wDAYDVQQHDAV0b2t5bzEWMBQGA1UE
+  CgwNbXJ1YnkgZGV2ZWxvcDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA0N3c
+  9wL18lLQVhyEovP112vQJzZ5K/lDwaqyMJGrNFXjU+VOflWmV6jwjFHiW9TPdui7
+  E9Hg8TVLzDM+ft3V8GG7i0x1HP5D9RzLMd28Rzwi6RPfrapzV2ZHPNH4M/WhXlMk
+  Bhcp6e65H3eTdjX/4byHND+WKKcNDlbSsYlv0DMCAwEAATANBgkqhkiG9w0BAQUF
+  AAOBgQCy0BUZ1lPo1Oq+ZweWKdxe4FvYbcRY5dMgzkmGkA+O9fUAINe4gTuhfzuc
+  pDym8Upu1ukkVN+CAvaUWIrECWTDuRZ8BqJY6CesKiTPI1mZGUqPOi10Yt36SOsY
+  JlofcJos56lewpGA78Os2xSMg3wPFAthg/xMF2PvhE0T4opj6Q==
+  -----END CERTIFICATE-----
+
+
+- input to certificate chain (連結証明書) (pem encoded)
+  未実施。
+  自己証明書の場合は不要
+  
+* 調査中
+得られた情報は少ないですが、纏めます。
+ELBは恐らく必要と思います。
+
+
+
+
+- Auto Scaling
+    scaling方法として、サーバー増強 / instance追加生成があるようです。
+    (サーバー増強方法の具体的方法が不明)
+
+    古い情報では、サーバー増強(t2.small -> midium)に
+
+
+
+
+
+
+
+ELB
+----------------------------------------------------------------
+    - まとめ
+    ----------------------------------------------------------------
+        以下、からApp server一台構成の場合、意味は薄い。
+        (無料枠を考えなければ) 料金も増加する。
+
+
+
+    - 無料枠
+    ----------------------------------------------------------------
+        Elastic Load Balancing 750 時間に加え 15 GB 分のデータ処理* 
+
+
+    - 基本料金
+    ----------------------------------------------------------------
+        $0.027 : Elastic Load Balancing 時間（または 1 時間未満）あたり
+        $0.008 : Elastic Load Balancing によって処理されるデータ 1 GB あたり
+
+
+    - 機能
+    ----------------------------------------------------------------
+        http://www.slideshare.net/AmazonWebServicesJapan/20130612-aws-meisterregenerateelbpublic
+
+        - 負荷分散　　　　:  複数のバックエンドサーバーに分配
+        - スケーラブル　　:  ELB自身が負荷に応じて増減
+        - 安価な従量課金　:  複数のavalable zoneにまたがるトラフィック負荷
+        - ヘルスチェック　:  健全なEC2インスタンスにのみトラフィックを分配
+        - 安価な従量課金　:  
+
+
+    - support protocol
+    ----------------------------------------------------------------
+        HTTP, HTTPS, TCP, SSL
+    
+
+    - スケールアップ
+    ----------------------------------------------------------------
+        スケールアップ時、IPが変わる。(IP固定不可)
+        ELBへアクセスする際は、必ずDNSで。
+        独自ドメインでアクセスする際は、CNAMEで (Route 53を使用)
+
+
+    - DNS
+    ----------------------------------------------------------------
+        http://kawatama.net/web/1157
+
+        - DNSのAレコードに特定のIPアドレスを指定できない。
+        - Amazon Route53には、AレコードにELBのURLを指定できる独自のエイリアス機能が実装されている
+
+        (本来は、IPアドレスを指定が必須。
+         amazonでは、URLを指定可能。
+         amazon router 53が応答し、現状のアクセス先を返す。)
+
+
+
+
+
+Route 53
+----------------------------------------------------------------
+    http://aws.amazon.com/jp/route53/
+
+    ドメインネームシステム（DNS）ウェブサービス    
+    DNS ヘルスチェックを構成し、トラフィックを正常なエンドポイントにルーティングしたり、
+    アプリケーションやそのエンドポイントの正常性を独立してモニタリングすることができます
+
+     - 料金
+     --------------------------------
+         http://aws.amazon.com/jp/route53/pricing/     
+
+
+         - ホストゾーンの管理 
+           Route 53 で管理した各ホストゾーンに対する月額料金を支払います。
+
+
+         - DNS クエリへの応答 
+           DNS クエリに対する Amazon Route 53 サービスからの応答には、料金が発生します。
+           ただし、クエリの対象がエイリアス A レコードであり、Elastic Load Balancing インスタンスまたは
+           Amazon S3 ウェブサイトバケットにマッピングされている場合は、追加料金は不要です。
+
+
+         - ドメイン名の管理 Route 53 経由で登録された各ドメイン名または Route 53 に転送された各ドメイン名に対して年間料金を支払います。
+
+
+
+
+Auto scaling
+----------------------------------------------------------------
+    - 機能
+    --------------------------------
+        http://dev.classmethod.jp/cloud/aws/autoscaling_considerations-for-system-configuration/
+        
+        - Amazon EC2 群を自動的に縮小・拡張
+        - 規模を固定して Amazon EC2 群を管理
+        - Elastic Load Balancing での Auto Scaling
+
+        つまりAutoScalingを用いる理由は「負荷分散」と「可用性向上」の2つ、といえます
+
+
+    - scaling
+    --------------------------------
+        - スケールアップ
+            インスタンスを停止し、高スペックのインスタンスを生成          
+
+        - スケールアウト (無停止)
+            追加instanceを生成
+
+
+    - health check
+    --------------------------------
+        インスタンスのヘルスチェックをし、判断可能。
+        ELBとも連携することが可能。(ELB/AS双方のヘルスチェックを使用?)
+
+
+
+
+

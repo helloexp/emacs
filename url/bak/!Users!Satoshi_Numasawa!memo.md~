@@ -1,0 +1,60 @@
+-   [ ] 簡易flow
+    -   [ ] prereleaseを後述する内容でupate
+    -   [ ] 竹中氏へ動作確認依頼.問題なければ次項目へ
+    -   [ ] productionへ口授する内容でupdate (pm2再起動は、2台同時に実行する)
+    -   [ ] 竹中氏へ動作確認依頼.問題なければ完了
+
+-   desc
+    -   全行程、問題なければ20-30min程度
+    -   restart.sh実行時、UI側で数瞬Error表示が出る
+
+-   [ ] prerelease
+    -   [ ] ssh to 52.69.125.220
+    -   [ ] notification
+        -   [ ] $ cd *var/node<sub>notification</sub>/current*
+        -   [ ] $ vim shared/restart.sh
+            -   [ ] write following after [export NOTIFICATION<sub>DISPATCH</sub><sub>URL</sub>=<https://sns-staging1.all-in.xyz:5100>]
+
+
+                export NOTIFICATION<sub>MAILER</sub><sub>STATUS</sub>=true
+
+
+                export NOTIFICATION<sub>SENDGRID</sub><sub>APIKEY</sub>=SG.gHQyFyjaR1Sm-7OvLHYIFg.EfszJ3UZ6OgGZl4fKVwbqQA42<sub>44XmVF8jGBNtMDDVQ</sub>
+
+        -   [ ] $ bash /var/node<sub>notification</sub>/shared/restart.sh
+        -   [ ] $ pm2 status
+
+-   [ ] production
+    -   [ ] ssh to 52.196.4.97
+    -   [ ] notification server 01
+        -   [ ] $ cd *var/node<sub>notification</sub>/current*
+        -   [ ] $ vim shared/restart.sh
+            -   [ ] write following after [export NOTIFICATION<sub>DISPATCH</sub><sub>URL</sub>=&#x2026;&#x2026;..]
+
+
+                export NOTIFICATION<sub>MAILER</sub><sub>STATUS</sub>=true
+
+
+                export NOTIFICATION<sub>SENDGRID</sub><sub>APIKEY</sub>=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
+
+        -   [ ] $ bash *var/node<sub>notification</sub>/shared/restart.sh
+            /* restartは、2台同時に実施
+
+        -   [ ] $ pm2 status
+
+    -   [ ] ssh to 52.196.9.116
+    -   [ ] notification server 02
+        -   [ ] $ cd *var/node<sub>notification</sub>/current*
+        -   [ ] $ vim shared/restart.sh
+            -   [ ] write following after [export NOTIFICATION<sub>DISPATCH</sub><sub>URL</sub>=&#x2026;&#x2026;..]
+
+
+                export NOTIFICATION<sub>MAILER</sub><sub>STATUS</sub>=true
+
+
+                export NOTIFICATION<sub>SENDGRID</sub><sub>APIKEY</sub>=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
+
+        -   [ ] $ bash *var/node<sub>notification</sub>/shared/restart.sh
+            /* restartは、2台同時に実施
+
+        -   [ ] $ pm2 status

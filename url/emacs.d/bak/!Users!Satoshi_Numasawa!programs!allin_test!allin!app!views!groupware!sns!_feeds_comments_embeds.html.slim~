@@ -1,0 +1,4 @@
+.timeline-embed ng-if="#{post}.$edit" ng-repeat="embed in #{post}.$embeds | filter: isExist"
+  = render 'embeds', post: 'post', embed: 'embed'
+.timeline-embed ng-if="!#{post}.$edit" ng-repeat="embed in #{post}.embeds"
+  = render 'embeds', post: 'post', embed: 'embed'

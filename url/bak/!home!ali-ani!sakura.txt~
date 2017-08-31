@@ -1,0 +1,20 @@
+
+
+
+
+
+
+
+Description
+----------------------------------------------------------------
+   # excelファイル参照
+
+   - 稼働サーバー
+       sakura server
+
+   - 使用 app
+       Docker  :  仮想化ソフト
+       gitlab
+       redis
+       mysql
+       

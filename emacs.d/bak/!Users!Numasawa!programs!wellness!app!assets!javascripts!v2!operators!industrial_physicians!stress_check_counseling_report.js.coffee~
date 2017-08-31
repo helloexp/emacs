@@ -1,0 +1,6 @@
+input_onof = ->
+  if document.getElementById('stress_check_counseling_report_category_stress_reaction_ids_2').checked
+    document.getElementById('stress_check_counseling_report_stress_reaction_note').disabled = false
+  else
+    document.getElementById('stress_check_counseling_report_stress_reaction_note').disabled = true
+  return

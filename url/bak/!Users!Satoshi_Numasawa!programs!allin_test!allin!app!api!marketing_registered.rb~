@@ -1,0 +1,21 @@
+class SaleStateAPI < Grape::API
+  include APIExtensions
+
+  prefix "api"
+  version "v1", using: :path
+  format :json
+  formatter :json, Grape::Formatter::Rabl
+
+  helpers do
+    def service
+      SaleStateService.new(actor)
+    end
+  end
+
+  resource :sale_states do
+    desc "Get a list of sale states, optionally filtered by parameters."
+    get "/", rabl: "sale_states" do
+      @result = service.search(params)
+    end
+  end
+end

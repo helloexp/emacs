@@ -1,0 +1,17 @@
+'use strict';
+
+const Wreck = require('wreck');
+let req = null;
+const jar = {};
+
+const setup = {
+
+};
+
+const url = 'http://yahoo.co.jp'
+
+req = Wreck.request('GET', url, setup, (err, res) => {
+	console.log(err);
+	console.log(res.statusCode);
+    })
+    

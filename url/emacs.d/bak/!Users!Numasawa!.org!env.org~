@@ -1,0 +1,3936 @@
+-*- mode: org -*-
+#+LINK: doc file+sys:~/.org/
+
+
+* 時系列
+- 15:19 障害検知
+    - 直近のBackup Imageが作成途中のため、即時切り戻し不可 (恐らく、HDD80Gを先日追加したため)
+
+- 動画再生不可である事を確認
+    - cloudfront上の動画のみ再生不可
+    - CloudFront URLを直接参照 : Access Denied
+
+- 今回追加した、maintenance pageへの自動切り替え設定を見直す (CloudFront/S3)
+    - 直接的な影響はみられず。 (ただし、manatuku.comを用いるため関節的影響の可能性はある)
+    - 切り分けのため、CloudFrontの新規設定を削除するも変化なし
+
+- CloudFront の認証keyなどを確認.  (S3部は未確認)
+    - 特段の差異は見受けられず
+
+- 16:02 久保さん指示
+    - CloudFront の cache error の切り分けのため、現在のcache を全削除
+    - 結果、変化なし
+
+- Backup Image完成しないため、昨年のimageからinstance生成
+    - 久保さんに協力いただくも、deployで失敗
+
+- Backup Image 完成
+    - maitenance pageへの自動切り替えを再設定
+    - 設定後、CloudFrontのprogressが終了せず時間を要する
+    - 17:44 自動切り替え反映
+    - 現状の異常動作中のInstanceをbackup
+    - backup imageから直近のinstanceを復元
+
+- 18:09 佐藤さん調べ
+    - stgにおいても同症状 (再生不可。同じ理由での障害かは要検証)
+    - stg環境での動画再生確認は、森氏、久保さん、沼沢全員実施しておらず
+
+- 18:2x 切り戻し実施
+    - 結果、改善に至る
+
+* coding rules / self rule
+** タブ混入
+全てスペースへ変換
+
+** 行末スペース
+delete-trailing-whitespace
+で削除可能。
+
+** commit message
+# pivotalのticket番号付与
+
+[#0123456] add page
+
+
+* AWS : server update作業例
+** manatsuku - glibc udpate
+amazon linux
+https://alas.aws.amazon.com/ALAS-2016-653.html
+
+*** security update off
+$ vi /etc/cloud/cloud.cfg
+
+securityをcomment out
+----------------------------------------------------------------
+# repo_upgrade: security
+repo_upgrade: none
+----------------------------------------------------------------
+
+※ AMIからinstanceを作成する際、自動でlinux packageがupdateされるのを抑制する設定です。
+
+*** server 停止
+EC2 web interface上から、対象serverを停止
+
+- 対象serverを右click
+- 「インスタンスの状態」を選択
+- 「停止」を選択
+- 停止するまで待機 (EC2 instance一覧の状態から状態確認可能)
+
+*** AMI 作成
+EC2 web interface上から、対象serverのAMI(image)を作成
+
+- 対象serverを右click
+- 「イメージ」を選択
+- 「イメージを作成」を選択
+- 「イメージ名」、「イメージの説明」を入力
+    production_[backup日] などとしていました。
+- 右下「イメージの作成」を選択
+
+- 左列の中から「AMI」を選択
+- 対象AMIの作成が完了するまで待機(画面更新しないと、適切なデータ得られない場合あり)
+
+*** server 起動
+- EC2 web interface上から、対象serverを起動
+- checkが全て終わるまで待機
+    ※ EC2 instance選択後、ステータスチェックタブ内の
+    ※ システムステータスチェック / インスタンスステータスチェックの2種
+
+*** version 事前確認
+yum clean all
+
+yum list installed | grep glibc
+yum list updates | grep glibc
+
+*** upate
+sudo yum update glibc
+yum list installed | grep glibc # version確認
+
+*** reboot
+$ reboot
+
+* 00000_template
+** Env
+# 開発, server環境情報
+
+** Flow : project
+# projectの仕様変更、打ち合わせによる状態変異など
+
+**** description
+***** 担当者
+
+** Flow : deploy, server setting
+# 固定化済み作業, など
+
+** Keywords
+# 当projectに関わる単語群
+
+tagboard
+
+* 00001_marunouchi pics
+** todos
+*** DONE [富士]ブックマーク解除の色変更
+CLOSED: [2015-02-18 水 17:50]
+小林さんが対応
+
+*** DONE [富士]ブックマーク解除の文言変更
+CLOSED: [2015-02-18 水 17:51]
+
+「済み」へ変更
+de
+
+
+*** DONE [#B] marupix response待ち
+CLOSED: [2015-02-27 金 01:37]
+修正対応方針待ち
+
+**** [2015-02-17 火]
+小林氏の修正をdeploy
+沼沢の修正分をpushしdeploy
+**** [2015-02-16 月]
+返信あり
+*** TODO [#A] soruce理解
+**** 頭出し
+来週、以降の細かい修正をお願いしたい。
+全体構造の理解をすすめる。
+次回の依頼
+
+沼沢にもチケットをふる。
+02/17に間に合わないようなら、即チケットは返却し相談。
+
+**** CANCEL [#A] admin画面の編集
+CLOSED: [2015-02-15 日 16:55]
+<2015-02-14 土>-<2015-02-16 月>
+
+囲み線を他の右側の線を変更
+太めにして淡い色に変更
+*** DONE 本番環境へのdeployは誰が行うか
+CLOSED: [2015-02-27 金 01:42]
+柴田さん預かり
+恐らくdeployしない
+
+メールには、repository一式を納品時に頂戴できれば
+とあり。
+
+**** 疑問
+- deploy誰がやるのか?
+
+- メールでは、repositoryを渡せばokとあったが
+    repository譲渡で、imageを渡すのではない?
+
+- マニュアルが必要?
+- 開発方法を理解していないので、イメージがわかない
+
+** schejuled
+** 担当者
+三菱地所
+
+** 環境
+- source管理
+  githubでweb上で共有設定を頂戴済み
+  沼沢の鍵でアクセスできる?
+
+** strcutures
+*** image共有/初期設定/起動方法など
+**** original image name
+maru-stg2
+
+**** nginx setting
+$ vim /etc/nginx/nginx.conf
+
+***** basic認証
+ID   : marupix
+pass : mec_marupix
+
+;; 初期設定をそのまま使用
+;; http://~~/, http://~~/admin/ 双方で認証が入る
+
+***** server_name設定
+74行目  :  server_name  stg-marupix.agsr.org  # コメントアウト
+75行目  :  server_name  ec2-54-92-102-138.ap-northeast-1.compute.amazonaws.com;  # 追記
+
+// ruby環境のURLへ変更
+// IP固定予定
+
+***** location ~ /admin  # access 設定
+deny all;  # コメントアウト
+allow all; # 追記
+
+// http://~~/admin へのアクセス権限
+
+***** 全体アクセスaccess設定
+128行目付近
+allow all; # コメントを外す
+
+// http://~~~/ へのアクセス権限
+
+***** redirect設定
+156行目以下全てコメントアウト
+marunouchipixの本HPへredirectしているため
+// 開発環境では不要
+
+**** nginx 起動
+$ sudo service nginx start
+
+// 設定後起動
+// 前述の設定変更後に起動
+
+**** mysql 起動
+image起動直後、自動起動されている
+
+**** rails 起動
+$ sudo su - cap
+$ cd /var/rails/marunouchi_pix/current
+$ bundle exec unicorn_rails -c config/unicorn/staging.rb -E staging -D
+
+// ec2-userでは起動できず
+// cap userで行う
+
+*** applications
+**** OS
+Linux marunouchi-stg 3.10.48-55.140.amzn1.x86_64 #1 SMP Wed Jul 9 23:32:19 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+
+**** web
+nginx   : 1.4.7
+unicorn : 4.8.2
+mysql   : mysql  Ver 14.14 Distrib 5.5.40, for Linux (x86_64) using readline 5.1
+
+**** language / framework
+ruby      : 2.1.2p95 (2014-05-08 revision 45877) [x86_64-linux]
+rails     : 4.1.4
+Bootstrap : 3.1.1
+
+*** database
+**** login to mysql CUI
+$ sudo mysql -u marupix -p
+HyW9554ijBCAeWov1Sx5
+
+**** rails database.yml
+staging:
+    adapter: mysql2
+    encoding: utf8
+    database: marunouchi_pix_staging
+    pool: 5
+    username: marupix
+    password: HyW9554ijBCAeWov1Sx5
+
+production:
+    adapter: mysql2
+    encoding: utf8
+    reconnect: false
+    host: marupix.ccuxzdz4ubgj.ap-northeast-1.rds.amazonaws.com
+    database: marunouchi_pix_production
+    pool: 5
+    username: marupix
+    password: 9kefnoMXvTs6vplNsWyn
+
+**** DB / table
+***** DB
+marunouchi_pix_staging
+
+***** tables
+****** admin_users
+|------------------------+--------------+------+-----+---------+----------------|
+| Field                  | Type         | Null | Key | Default | Extra          |
+|------------------------+--------------+------+-----+---------+----------------|
+| id                     | int(11)      | NO   | PRI | NULL    | auto_increment |
+| email                  | varchar(255) | NO   | UNI |         |                |
+| encrypted_password     | varchar(255) | NO   |     |         |                |
+| role                   | varchar(255) | NO   |     | editor  |                |
+| reset_password_token   | varchar(255) | YES  | UNI | NULL    |                |
+| reset_password_sent_at | datetime     | YES  |     | NULL    |                |
+| remember_created_at    | datetime     | YES  |     | NULL    |                |
+| sign_in_count          | int(11)      | NO   |     | 0       |                |
+| current_sign_in_at     | datetime     | YES  |     | NULL    |                |
+| last_sign_in_at        | datetime     | YES  |     | NULL    |                |
+| current_sign_in_ip     | varchar(255) | YES  |     | NULL    |                |
+| last_sign_in_ip        | varchar(255) | YES  |     | NULL    |                |
+| created_at             | datetime     | YES  |     | NULL    |                |
+| updated_at             | datetime     | YES  |     | NULL    |                |
+|------------------------+--------------+------+-----+---------+----------------|
+
+****** comments
+|---------------+----------+------+-----+---------+----------------|
+| Field         | Type     | Null | Key | Default | Extra          |
+|---------------+----------+------+-----+---------+----------------|
+| id            | int(11)  | NO   | PRI | NULL    | auto_increment |
+| admin_user_id | int(11)  | NO   |     | NULL    |                |
+| medium_id     | int(11)  | NO   |     | NULL    |                |
+| text          | text     | YES  |     | NULL    |                |
+| created_at    | datetime | YES  |     | NULL    |                |
+| updated_at    | datetime | YES  |     | NULL    |                |
+|---------------+----------+------+-----+---------+----------------|
+
+****** media
+|-------------------+--------------+------+-----+---------+----------------|
+| Field             | Type         | Null | Key | Default | Extra          |
+|-------------------+--------------+------+-----+---------+----------------|
+| id                | int(11)      | NO   | PRI | NULL    | auto_increment |
+| instagram_comment | int(11)      | NO   |     | 0       |                |
+| image_thumb       | text         | NO   |     | NULL    |                |
+| image_low         | text         | NO   |     | NULL    |                |
+| image_standard    | text         | NO   |     | NULL    |                |
+| instagram_like    | int(11)      | NO   |     | 0       |                |
+| original_url      | text         | NO   | UNI | NULL    |                |
+| posted_at         | datetime     | YES  |     | NULL    |                |
+| status            | varchar(255) | NO   | MUL | active  |                |
+| text              | text         | YES  |     | NULL    |                |
+| user_image        | text         | NO   |     | NULL    |                |
+| user_name         | varchar(255) | NO   |     | NULL    |                |
+| created_at        | datetime     | YES  |     | NULL    |                |
+| updated_at        | datetime     | YES  |     | NULL    |                |
+| pickup_order      | int(11)      | YES  | MUL | NULL    |                |
+| instagram_id      | varchar(255) | YES  |     | NULL    |                |
+| media_type        | varchar(255) | NO   |     | image   |                |
+| pickuped_at       | datetime     | YES  |     | NULL    |                |
+|-------------------+--------------+------+-----+---------+----------------|
+
+****** medium_ngs
+|------------+--------------+------+-----+---------+----------------|
+| Field      | Type         | Null | Key | Default | Extra          |
+|------------+--------------+------+-----+---------+----------------|
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| word       | varchar(255) | NO   |     | NULL    |                |
+| created_at | datetime     | YES  |     | NULL    |                |
+| updated_at | datetime     | YES  |     | NULL    |                |
+|------------+--------------+------+-----+---------+----------------|
+
+****** schema_migrations
+|---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
+|---------+--------------+------+-----+---------+-------+
+| version | varchar(255) | NO   | PRI | NULL    |       |
+|---------+--------------+------+-----+---------+-------+
+
+*** cron
+**** setting on cap user
+$ crontab -e
+
+# Begin Whenever generated tasks for: marunouchi_pix_staging
+05,15,25,35,45,55 1-23 * * * /bin/bash -l -c 'cd /var/rails/marunouchi_pix/releases/20140812091155 && RAILS_ENV=staging bundle exec rake instagram:get_tag_media --silent >> log/cron.log 2>&1'
+05 0 * * * /bin/bash -l -c 'cd /var/rails/marunouchi_pix/releases/20140812091155 && RAILS_ENV=staging bundle exec rake instagram:update_info --silent >> log/cron.log 2>&1'
+05 1 * * * /bin/bash -l -c 'cd /var/rails/marunouchi_pix/releases/20140812091155 && RAILS_ENV=staging bundle exec rake instagram:check_image --silent >> log/cron.log 2>&1'
+# End Whenever generated tasks for: marunouchi_pix_staging
+
+*** basic認証
+- 以下、双方でbasic認証が入る
+    http://~~~~/
+    http://~~~~/admin
+
+- 認証情報
+    ID   : marupix
+    PASS : mec_marupix
+
+*** rails directory
+**** root
+/var/rails/marunouchi_pix
+
+**** nginx.conf内での読み込み先 (root dir指定)
+/var/rails/marunouchi_pix/current/public
+
+// current dirは symbolic link
+// 参照先は、/var/rails/marunouchi_pix/releases/20140812091155
+// crontabの内容と合致
+
+*** http / ssh access
+**** http
+http://ec2-54-92-102-138.ap-northeast-1.compute.amazonaws.com/
+
+**** ssh
+ssh -i s-numasawa-key-pair-tokyo.pem root@54.92.102.138
+
+*** rake
+以下、実行せずとも動いたので不要とも思える。
+instagramデターの取得は、cronで自動実行されている。
+根拠を特定できず。
+
+
+以下、森氏よりの情報
+----------------------------------------------------------------
+ですが、最初だけlib/taskの下のrakeを実行してください。
+(ハッシュタグに紐づくinstaデータを取ってくるとかの処理)
+cron自体は気にしなくてもよいです。スコープに関係ないのと取りすぎると
+API制限に引っかかる恐れがあるためです。
+
+機能
+    - 投稿の検索10分1回 : 新規追加
+    - ユーザー側のコメント、ライクを1日おきで更新
+    - ユーザー投稿を非公開/削除した場合
+    - NoImageを出す処理
+----------------------------------------------------------------
+
+
+上記と、crontabの情報、rakeファイル内を参照し、実行可能な処理は以下。
+----------------------------------------------------------------
+$ bundle exec rake db_load:medium_ng_by_csv RAILS_ENV=staging
+
+$ bundle exec rake instagram:get_tag_media      RAILS_ENV=staging  # instagramの特定のタグの付いた写真を取得
+$ bundle exec rake instagram:update_info        RAILS_ENV=staging  # DB内のinstagram(media)の情報を最新に更新(最新1,500件)'
+$ bundle exec rake instagram:check_image        RAILS_ENV=staging  # instagram(media)の画像の存在確認
+$ bundle exec rake instagram:update_pickup_date RAILS_ENV=staging  # ステータスがpickupの場合はピックアップ日時を更新
+----------------------------------------------------------------
+
+
+実行対象
+// cronで自動実行されているので、基本実行しなくて良い様にみえる
+----------------------------------------------------------------
+$ sudo su - cap
+$ cd /var/rails/marunouchi_pix/releases/20140812091155
+
+# cronで、10分毎に実行されている
+$ bundle exec rake instagram:get_tag_media      RAILS_ENV=staging  # instagramの特定のタグの付いた写真を取得
+
+# cronで、00:05に実行されている。重い
+# cronの情報を見るに下記コマンドは、cronを止め、instagram:get_tag_mediaが未動作の時に実行する必要がある
+$ bundle exec rake instagram:update_info        RAILS_ENV=staging  # DB内のinstagram(media)の情報を最新に更新(最新1,500件)'
+
+# cronで、01:05に実行されている。軽い
+$ bundle exec rake instagram:check_image        RAILS_ENV=staging  # instagram(media)の画像の存在確認
+----------------------------------------------------------------
+
+** 初期設定 / deploy
+*** marupix settings
+**** AWSへログイン
+**** EC2 instance起動
+- EC2を開く
+- AMIを選択
+- 絞り込みから [private images] を選択
+- [maru-stg2] を右クリック
+- [Launch] を選択
+
+- [t2.midium] を選択
+- [Next: Configure Instance Details] を選択
+- networkから [test_vps] を選択  # [marupix] へ変更予定
+- [Preview and Launch] を選択
+
+- [Edit Security Group] を選択
+- [Select an existing security group] を選択
+- [marpupix] を選択
+- [Preview and Launch] を選択
+
+- [Launch] を選択
+
+- SSH key選択
+  [choose an existing key pair] を選択
+  [s-numasawa-key-pari-tokyo] を選択
+  [check boxをchekc]
+  [Launchi Instance] を選択
+
+# maru-stg2は、AWS内で共有されたimage
+
+**** Elastic IP割り当て
+- [Elastic IPs] を選択
+- [54.92.111.233] を右クリック
+- [Associate Address] を選択
+- marupix instanceを指定
+  (instance formをfocusすると、running中のinstance名が表示され、選択可能)
+  (instance一覧の、instance IDから確認可能
+
+- [Associate] を選択
+
+  (以上で、対象IPにグローバルIPが割り当てられる)
+
+**** ssh access
+- $ ssh ec2-user@54.92.111.233
+
+# keyは、担当者から入手
+
+*** marupix deploy
+**** su to cap user
+$ su - cap
+
+**** make release dir
+$ cd /var/rails/marunouchi_pix/releases/
+$ mkdir `date +"%Y%m%d%H%M%S"`
+$ cd 20150212180122
+
+# dir名は、日付時刻で変動します
+
+**** source DL
+# 現状では、github上のprivate領域からDL
+https://github.com/arsnovare/marunouchi_pix-develop/tree/fuji-bul
+
+# branch間違えないように。
+# 最新版を落とす
+
+**** upload source
+# upload
+$ scp marunouchi_pix-develop-fuji-bul.zip ec2-user@54.92.111.233:/var/rails/marunouchi_pix/releases/20150212180122/
+
+$ unzip ./marunouchi_pix-develop-fuji-bul.zip
+$ rm ./marunouchi_pix-develop-fuji-bul.zip
+$ mv ./marunouchi_pix-develop-fuji-bul/* ./
+$ rm -rf ./marunouchi_pix-develop-fuji-bul
+
+**** bundle install
+# 数分待機
+$ bundle install
+
+# make db
+$ bundle exec rake db:migrate RAILS_ENV=staging
+
+# css, jsの圧縮? (及び、恐らく読み込みファイル名の変更)
+$ rake assets:clobber
+$ rake assets:precompile
+
+**** make symbolic link
+# 元々存在する、release dir群を踏襲
+***** bin, log dir
+$ rm -rf ./log
+$ ln -s /var/rails/marunouchi_pix/shared/log/ ./log
+
+$ rm -rf ./bin
+$ ln -s /var/rails/marunouchi_pix/shared/bin/ ./bin
+
+***** change current release dir
+# 最新版のdirを指定
+$ cd /var/rails/marunouchi_pix/current/
+$ rm ./current
+$ ln -s /var/rails/marunouchi_pix/releases/20150212180122/ ./current
+
+**** nginx setting & start
+$ sudo su -
+$ chkconfig nginx on
+$ vim /etc/nginx/nginx.conf
+--------------------------------
+-  87行目 : コメントアウト
+- 144行目 : #を削除
+
+-  74行目 : コメントアウト
+-  75行目 : 以下追記
+           server_name  ec2-54-92-111-233.ap-northeast-1.compute.amazonaws.com;
+--------------------------------
+# 一度のみ実施
+# deploy二回目からは不要
+
+
+$ /etc/init.d/nginx restart
+
+**** rails/unicorn start
+$ cd /var/rails/marunouchi_pix/current/
+$ bundle exec unicorn_rails -c ./config/unicorn/staging.rb -E staging -D
+
+**** done
+下記へアクセスし、web画面が開くことを確認。
+http://ec2-54-92-111-233.ap-northeast-1.compute.amazonaws.com/admin
+
+*** marupix dir structure
+/var/rails/
+└── marunouchi_pix
+    ├── current -> /var/rails/marunouchi_pix/releases/20150212180122/
+    ├── releases
+    │   ├── 20140812054104
+    │   ├── 20140812073400
+    │   ├── 20140812075835
+    │   ├── 20140812090416
+    │   ├── 20140812091155
+    │   └── 20150212180122
+    ├── repo
+    │   ├── branches
+    │   ├── hooks
+    │   ├── info
+    │   ├── objects
+    │   └── refs
+    └── shared
+        ├── bin
+        ├── bundle
+        ├── log
+        ├── tmp
+        └── vendor
+
+*** add commands
+# rails / unicron start
+$ marupix_start
+
+# rails kill
+$ marupix_kill
+
+# rails / unicron restart
+$ marupix_reboot
+
+* 00002_uniqlo
+** todos
+*** WAITING uniqlo influencer 登録画面BUG?
+pivotal up済み
+そもそも、nginx側の設定の問題かもしれない
+
+----------------------------------------------------------------
+[ https://*/form/ja ]へアクセスした際、
+assetsの読み込みは本来 [https://*/form/assets] となる。
+が、稀に [https://*/form/ja/assets/] となる。
+現状、10言語中、kr / frにおいて事象が発生するこ
+----------------------------------------------------------------
+
+*** WAITING CSV import確認
+imporot OK
+
+# --local-infile optionで、local読み込みを許可
+mysql -u root -p --local-inflie=1
+load data local infile "/home/ali-ani/test2.csv" into table influencer_profiles fields terminated by ',' enclosed by '"';
+
+
+# 既存テーブルから、create分を生成
+SHOW CREATE TABLE テーブル名
+
+
+*** TODO product server設定
+**** DONE admin
+CLOSED: [2015-03-10 火 22:25]
+***** 自動実行
+maintenance日時の返答待ち
+
+**** user
+***** 自動実行
+
+**** SNS
+***** 自動実行
+
+*** Done DONE uniqlo 負荷試験
+SCHEDULED: <2015-03-20 金>-<2015-03-23 月> CLOSED: [2015-06-16 火 12:24]
+
+**** 予定
+擬似環境の構築も念頭に先方から
+
+- 13,14,15日
+  あたりにappそろうので、当該週にテスト
+
+- 20日
+  擬似環境で試験
+
+- 21,22日
+  擬似環境での試験とチューニング
+
+- 23日移行
+  本番環境で試験
+
+**** 負荷試験 - 設定
+- request数
+  瞬間最大、4万リクエスト程度／分
+
+- User app server、DB serverの instance Type
+  Web    :  c3.large 汎用SSD30GB
+  Admin  :  c3.large 汎用SSD30GB
+  Batch  :  c3.large 汎用SSD30GB
+
+  RDS(Mysql) Multi-AZ    :  m3.medium SSD30GB
+  RDS(Mysql) Readreplica :  m3.medium SSD30GB
+
+
+- Auto scaleの閾値など (想定、暫定値)
+  Desired  :  2
+  Min      :  2
+  Max      :  10
+  HealthCheckType         :  ELB
+  HealthCheckGracePeriod  :  400
+  DefaultCooldown         :  720
+
+*** TODO SNS token発行
+facebookのacc発行待ち
+必要権限の確認
+
+** Env
+*** Account
+**** production
+***** linux user
+|-----+----------+-------------|
+| www | DROd3Q0n | can be sudo |
+|-----+----------+-------------|
+
+**** develop
+***** jump
++ 共通ユーザー
+    - user   :  alliance
+    - pass   :  Ukzm3383
+
++ aws user
+    - user   :  mruby
+    - pass   :  Kimg4488
+
+***** app server public
++ linux user
+    - name  :  mruby
+    - pass  :  mruby3826
+
+***** RDS
++ master
+    - master user   :  root
+    - master pass   :  9xiRR828
+
+
++ 作業ユーザー
+    - DB name :  influencer
+    - user    :  influencer
+    - pass    :  Dim933Plw
+
++ sns
+    - DB    :  uniqlo-hashtag-crontab_production.* to
+    - user  :  uniqlo-hashtag-crontab
+    - pass  :  DRd003lw
+
+***** user server
+basic auth
+
+|---------------+----------|
+| uniqlomystyle | lifewear |
+|---------------+----------|
+
+**** influencer management
+keysnail経由だと、ペースト失敗する
+
+***** development
+https://uniqlo-influencer-adm-lb-1392900919.ap-northeast-1.elb.amazonaws.com/admin/sign_in
+
+|------------------+--------------------------|
+| uniqlo_admin     | kwtcn0Wtvbkzc9xgokbagqBr |
+| test_master      | cncuume7Mkscnnijo8aIiytt |
+|------------------+--------------------------|
+| test_regional_jp | nwq0taejekiIwklb0xajwPsy |
+| test_regional_us | ioc3sfmhelLkjXlrrstox9rl |
+| test_regional_cn | zrwe7fepeEmxkbouYogia5ba |
+|------------------+--------------------------|
+| test_verndor_jp  | Ctvsxugjqgk4qhCeqyip2vrc |
+| test_verndor_us  | jhxsekS1rapox6nhohGgtler |
+| test_verndor_cn  | gkzxXk4lklxxbAyue2achnuv |
+|------------------+--------------------------|
+
+***** staging
+https://stage-admin-lifewear.uniqlo.com/admin/sign_in
+
+|---------------+--------------------------|
+| uniqlo_admin  | ntfxfvtsjU0iQmamhk6xitno |
+| ph_master     | ntfxfvtsjU0iQmamhk6xitno |
+|---------------+--------------------------|
+| regional_jp   | eCtkwst4xddsxbewzxgwG8zf |
+| regional_us   | cfytdsui8vNjjijtKznva0sx |
+| regional_cn   | xnx7bqutppkSyBp1efnjddtk |
+|---------------+--------------------------|
+| vendor_jp     | oy9pffeyFrbreno7iTnpnrxv |
+| vendor_us     | 3ymrgbnzDzwtolgj8bdPjljz |
+| vendor_cn     | mhalCktpz5yvvcrWztdvna8h |
+|---------------+--------------------------|
+| test_acc_lock | bvswfDvsx3iuDxkxzibbg0gh |
+|---------------+--------------------------|
+
+***** production
+----------------------------------------------------------------
+https://admin-lifewear.uniqlo.com/admin/sign_in
+
+|----------+--------------+--------------------------------------------------|
+| master   | uniqlo_admin | enhzrdjgnxbfzklooYjmmoq7Ynytojwq2fjgujulnrpphhtr |
+|          | ph_master    | Fzcftwxv8ciqyswjagkspznncfcfpuxmiuefg7pttkttlFuy |
+|----------+--------------+--------------------------------------------------|
+| regional | regional_jp  | qyvhiSvvoixjbevw1difzihtourlbfefgljpp2ipwjmivPcd |
+|          | regional_us  | rczcctBkmqfdmqlmaiirsph3cytddxtie7qnrhdopxhcuaaZ |
+|          | regional_fr  | carpjehmxnKijxvor3hflfanvArxxlh5sogwgzhxvgqwzlmr |
+|          | regional_cn  | rdm0jOzmqxurvxldezjekedhknffnbrutpejJdvjgqp6tyfx |
+|          | regional_hk  | hryauao6okoqtbhejwrypRkhwhmhydvylo0lnpwvQqoiwyvy |
+|          | regional_kr  | pssdvqkDrzkjsgohcjzku0apesvlpvHfwm4vdhxbvvcjoqil |
+|          | regional_my  | cjilblzm8lyIwbptgzplxxbtpbHlomgh0cjnaxbuotdrpsko |
+|          | regional_ph  | v6jwmyqbkygdqqvbmicXwsjabunLcbjz5srslcjwtniqjvnq |
+|          | regional_sg  | wjwnxeVzim7uigckxhpkizrfzvb5gIcizwzzuwsamfhoofhw |
+|----------+--------------+--------------------------------------------------|
+| vendor   | vendor_jp    | kmdcyr1ewfkvdesztjlEhsez9xtifkkflfutcgedctvetbnL |
+|          | vendor_us    | yynqeiznfmaegtbonfCw7hpqvdcrhdinerhtqcorwpzm1Duc |
+|          | vendor_fr    | w6oddyzqabpleEwtsevlxdpynTpdxmppmkzcdghpchef6iuz |
+|          | vendor_cn    | kdoocvquvsxhftmFkb8kgsey7qyauSnmizhwondxxgejqvby |
+|          | vendor_hk    | v6pymyNxodetevhkvprlfelqqildozispnyOzp9rlkawxgpw |
+|          | vendor_kr    | ohZvyswzpjqfxryz3bjkxnaetxelvnapifgqnNtdawc0acxt |
+|          | vendor_my    | njaMfnehpvycnzxkujaewev0zgnxHtfwzzxpmxlp0aybxnha |
+|          | vendor_ph    | Ewirhfoqktwwipq9ooremjeeqpxpygmelzamhbrap9gbxunX |
+|          | vendor_sg    | iangqoawprpjviii2ufhjGsoeqabltdqfbvkPqqal9jtnpfm |
+|----------+--------------+--------------------------------------------------|
+
+**** instangram
+|---------+----------------+------------+-------------------------------+----------------------------|
+| env     | id             | pass       | mail                          |                            |
+|---------+----------------+------------+-------------------------------+----------------------------|
+| prd,stg | APPSTYLEUNIQLO | lifewr2015 | uniqloinfluencer@uniqlo.co.jp | prd token x1, stg token x3 |
+| prd     | ruby_dev       | mruby0225  | s-numasawa@mruby.jp           | prd token x5               |
+| dev     | mruby0901      | mruby0225  | sns@mruby.jp                  | dev token x5               |
+|---------+----------------+------------+-------------------------------+----------------------------|
+
+[2016-05-11 Wed] に 照合
+
+***** develop
+|---------------------+-----------+-----------|
+| sns@mruby.jp        | mruby0901 | mruby0225 |
+|---------------------+-----------+-----------|
+
+***** staging
+|---------------------+----------+-----------|
+| s-numasawa@mruby.jp | ruby_dev | Close0404 |
+|---------------------+----------+-----------|
+***** production
+|----------------+------------|
+| APPSTYLEUNIQLO | lifewr2015 |
+|----------------+------------|
+
+**** twitter
+***** develop
+|-----------+-----------|
+| mruby0901 | mruby0225 |
+|-----------+-----------|
+
+***** staging
+|-------------------------------+---------------|
+| uniqloinfluencer@uniqlo.co.jp | uniqlomystyle |
+|-------------------------------+---------------|
+
+***** production
+|-------------------------------+---------------|
+| uniqloinfluencer@uniqlo.co.jp | uniqlomystyle |
+|-------------------------------+---------------|
+
+
+*** Prodcution env
+**** URL
+----------------------------------------------------------------
+エンドユーザ参照ページ   :  http(s)://lifewear.uniqlo.com/people/
+インフルエンサー登録画面 :  https://lifewear.uniqlo.com/form/
+管理者権限画面         :  https://admin.lifewear.uniqlo.com/
+
+**** Stepサーバの情報
+IP    : 54.250.223.60
+host  : mnt01-a-tky-gateway-common
+
+login account  : members
+ssh key        : members.pem
+pass           : none
+
+**** ## EC2/ELB## Web
+***** user page
+- ELB
+--------------------------------
+   prd01-tky-influencer-uniqlo-304455623.ap-northeast-1.elb.amazonaws.com
+   prd02-tky-influencer-uniqlo-275306959.ap-northeast-1.elb.amazonaws.com
+
+- EC2
+--------------------------------
+    Instance: i-2744a33f
+    prd01-a-tky-influencer-uniqlo)
+    Private IP: 10.184.16.238
+
+    - Nginxドキュメントルート
+        エンドユーザ参照ページ : /usr/share/nginx/html/lifewear.uniqlo.com/
+
+    - DNS
+        lifewear.uniqlo.com
+
+***** Admin
+- ELB
+    prd01-tky-admin-inflencr-uniqlo-1751200015.ap-northeast-1.elb.amazonaws.com
+
+- EC2
+    Instance   :  i-b04fa8a8  /  prd01-a-tky-admin-influencer-uniqlo
+    Private IP :  10.184.17.202
+
+- DNS
+    - インフルエンサー登録
+        lifewear.uniqlo.com  /  (lifewear.uniqlo.com/form)
+
+    - 管理者
+        admin.lifewear.uniqlo.com
+
+- Nginxドキュメントルート：
+    インフルエンサー登録  :  /usr/share/nginx/html/lifewear.uniqlo.com/
+    管理者（Admin）     :  /usr/share/nginx/html/admin.lifewear.uniqlo.com/
+
+- account
+    linux user  :  www
+    pass        :  DROd3Q0n
+
+- 注意事項
+    Autoscalingは未設定です。
+    EC2のセッティングが完了後に、Autoscalingの設定を追加しますので、
+    ご連絡をお願い致します。
+
+***** BATCH
+- EC2
+    Instance    :  i-4f41a257  (prd01-a-tky-batch-influencer-uniqlo)
+    Private IP  :  10.184.17.46
+
+**** RDS
+***** マスター
+- DNS名 (CNAME)
+    db.org.lifewear.uniqlo.com
+    # アプリから接続する際に、DNS名（CNAME）を利用してください
+
+- DBName    :  influencer
+- UserName  :  influencer
+- Passwd    :  QkIPwa9k
+
+***** リードレプリカ
+- DNS名（CNAME）
+    db-rep.org.lifewear.uniqlo.com
+    # アプリから接続する際に、DNS名（CNAME）を利用してください
+
+- DB Engine(Ver)  :  Mysql 5.6.22
+- DBディスクサイズ  :  30GB※拡張可能ですので、追加した場合はご連絡ください。
+
+
+*** Production env old
+Influencerインフラ接続情報
+
+**** URL
+Front : ドメイン確認中
+Admin : ドメイン確認中
+
+**** Stepサーバの情報 (踏み台)
+IP         : 54.250.223.60
+hostname   : mnt01-a-tky-gateway-common
+login user : members
+pass       : 無し
+key        : ppkからpemへ変換可能
+
+**** EC2/ELB/Web
+- ELB
+  prd01-tky-influencer-uniqlo-304455623.ap-northeast-1.elb.amazonaws.com
+  prd02-tky-influencer-uniqlo-275306959.ap-northeast-1.elb.amazonaws.com
+
+- E2C
+  Instance   : i-2744a33f
+  host       : prd01-a-tky-influencer-uniqlo
+  Private IP : 10.184.16.238
+
+**** Admin
+- ELB
+  prd01-tky-admin-inflencr-uniqlo-1751200015.ap-northeast-1.elb.amazonaws.com
+
+- EC2
+  Instance   : i-b04fa8a8
+  host       : prd01-a-tky-admin-influencer-uniqlo
+  private IP : 10.184.17.202
+
+- DNS
+  adminに関するドメインを確認
+
+- pass
+  - user : www
+  - pass : DROd3Q0n
+
+**** Autoscaling
+未設定。
+EC2のセッティングが完了後に、Autoscalingの設定を追加しますので、
+ご連絡をお願い致します。
+
+auto scalingで、常時1台立ち上げるようにする
+SNSからリアルタイムにデータを取ってこれるらしい。
+将来的に使いたい
+
+**** RDS
+- source
+  DNS名（CNAME）: db.influencer.org.www.uniqlo.com
+
+- read replica
+  DNS名（CNAME）: db-rep.influencer.org.www.uniqlo.com.
+
+- DB info
+  DB name : influencer
+  user    : influencer
+  pass    : QkIPwa9k
+  ver     : Mysql 5.6.22
+
+  DBディスクサイズ:30GB※拡張可能ですので、追加した場合はご連絡ください。
+
+*** Production server setting
+ruby 2.2.0p0 (2.2.0系)
+rails 4.2.0  (4.2系使用)
+mysql 5.5.41 (最新版でok)
+
+**** EC2
+[[file:~/.org/aws.org::*Amazon%20Linux%20init%20Enviroment%20Ruby%20RoR][Amazon Linux - init Enviroment (Ruby, RoR)]]
+
+***** make user
+# useradd mruby
+# passwd mruby
+
+mruby
+mruby4836
+
+***** ruby / rails install 準備
+yum install gcc
+yum install openssl-devel.x86_64
+
+***** ruby install
+$ cd /usr/local/src
+$ wget http://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.zip
+
+$ unzip ruby-2.2.0.zip
+$ cd ruby-2.0.0
+$ ./configure
+$ make
+$ make install
+
+$ echo 'export PATH="/usr/local/bin:$PATH"' >> /etc/.bashrc
+
+# rails 実行userで実行
+$ rvm system
+
+***** ruby rbenv
+# sourceからのcompileでは、gemが起動できなかったため
+# rbenvを仕様
+
+$ sudo su -
+
+yum install -y gcc readline-devel openssl-devel zlib-devel gdbm-devel libffi-devel git make
+
+cd /usr/local
+git clone git://github.com/sstephenson/rbenv.git rbenv
+mkdir rbenv/{shims,versions}
+
+mkdir /usr/local/rbenv/plugins
+cd /usr/local/rbenv/plugins
+git clone git://github.com/sstephenson/ruby-build.git
+cd ruby-build
+./install.sh
+
+echo 'export RBENV_ROOT=/usr/local/rbenv' >> /etc/bashrc
+echo 'export PATH="$RBENV_ROOT/bin:$PATH"' >> /etc/bashrc
+echo 'eval "$(rbenv init -)"' >> /etc/bashrc
+source ~/.bashrc
+
+rbenv install 2.2.0
+rbenv global 2.2.0
+
+
+作業ユーザで、bashrc設定
+----------------------------------------------------------------
+echo 'export RBENV_ROOT=/usr/local/rbenv' >> /etc/bashrc
+echo 'export PATH="$RBENV_ROOT/bin:$PATH"' >> /etc/bashrc
+echo 'eval "$(rbenv init -)"' >> /etc/bashrc
+source ~/.bashrc
+
+
+rbenv version dirの権限変更
+----------------------------------------------------------------
+sudo su -
+cd /usr/local/rbenv/versions/
+$ chown -R user:user ./*
+
+***** rails install
+gem install rails --version 4.2.0
+
+***** make basic auth file
+$ yum install httpd
+$ chkconfig httpd off
+$ cd /var/rails/uniqlo_influencer/release/uniqlo-hashtag-develop
+$ htpasswd -c .htpasswd uniqlo
+
+# passは要確認
+
+***** secret key base
+$ touch ./config/secrets.yml
+
+# 以下で出力よくされた内容を
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+development:
+    secret_key_base: [here]
+
+----------------------------------------------------------------
+
+***** rails settings
+- $ bundle install
+- $ bundle exec rake db:migrate
+- $ bundle exec assets:precompile
+
+- listen portを合わせる
+
+***** access
+http://~~~/form/ja
+
+**** RDS
+***** mysql database, user seeting
+# make database
+create database uniqlo_hashtag_development CHARACTER SET=utf8;
+
+# uniqlo_hashtag_development db, user uniqlo / host 全てへアクセス権限を付与。 user pass uniqlo
+grant all on uniqlo_hashtag_development.* to 'uniqlo'@'%' identified by 'uniqlo';
+
+FLUSH PRIVILEGES;
+
+**** SNS集約サーバー
+
+
+*** develop server structure
+**** VPC / subnet / IGW
+***** VPC
+name  :  uniqlo
+CIDR  :  10.0.0.0/22
+
+***** subnet - 1a
+name        :  uniqlo_public_1a
+CIDR        :  10.0.1.0/25
+route table :  0.0.0.0/0  |  igw-3eb5405b
+
+***** subnet - 1c
+name        :  uniqlo_public_1c
+CIDR        :  10.0.1.128/25
+route table :  0.0.0.0/0  |  igw-3eb5405b
+
+***** internet gateway
+name        :  uniqlo
+attach VPC  :  vpc-2ac80641 (10.0.0.0/22 | uniqlo)
+
+**** 踏み台
+- instance   :  t2.micro
+- AL         :  ap-northeast-1a
+- host name  :  prx01-uniqlo-influencer-a-tky-gw
+
+- security group
+    name  :  uniqlo_influencer_gateway
+    port  :  22
+
+- linux user
+    - user  :  alliance
+    - pass  :  Ukzm3383
+
+    # sudo権付与
+    - user   :  mruby
+    - pass   :  Kimg4488
+
+- cron
+    instance start/stop scheduled all server (usr, adm, sns)
+
+    - start at 08:30
+    - stop  at 21:00
+
+    - script locateion
+        /home/mruby/scripts/aws/
+
+    - cron setting
+        $ crontab -e  # mruby user
+
+
+
+**** App server : user
+- instance    :  t2.midium
+- AL          :  ap-northeast-1a
+
+- private IP  :  10.0.1.10
+- global IP   :  ELB
+- host name   :  usr01-tky-a-uniqlo-influencer
+
+- security group
+  name   : uniqlo_influencer_user
+  local  : 22 (10.0.0.0/22)
+  global : 80, 443
+
+**** App server : admin
+- instance     :  t2.midium
+- AL           :  ap-northeast-1a
+
+- private IP   :  10.0.1.50
+- global IP    :  54.92.123.82
+- host name    :  adm01-tky-a-uniqlo-influencer
+
+- security group
+  name   : uniqlo_influencer_admin
+  local  : 22 (10.0.0.0/22)
+  global : 80, 443
+
+**** App server : sns
+- instance     :  t2.midium
+- AL           :  sns01-tky-a-uniqlo-influencer
+
+- private IP   :  10.0.1.60
+- global IP    :  現状では不要。
+- host name    :  sns01-tky-a-uniqlo-influencer
+
+- security
+  name   :  uniqlo_influencer_sns
+  local  :  22 (10.0.0.0/22)
+  local  :  80, 443
+
+**** App server : 共通
+- user
+    - name  :  mruby
+    - pas   :  mruby3826
+
+- installed app
+    rails, ruby, nginx, mysql(cli)
+
+**** RDS
+- AL         :  ap-northeast-1a
+- private IP :  10.0.1.70
+- host       : db01-uniqlo-influencer.cvs9vjjju50z.ap-northeast-1.rds.amazonaws.com
+
+- DB engine  : mysql
+- DB version : 5.6.22
+
+- DB Instance Identifier : db01-uniqlo-influencer
+
+- VPC             :  uniqlo
+- subnet          :  uniqlo_public_default
+- public access   :  yes
+- AZ              :  1a
+
+- security
+    - name   :  uniqlo_influencer_db
+    - local  :  mysql (10.0.0.0/22)
+    - global :  全て閉塞
+
+- enable ecryption
+    - enable :  yes
+    - key    :  default
+
++ master
+    - master user   :  root
+    - master pass   :  9xiRR828
+
++ 作業ユーザー
+    - DB name :  influencer
+    - user    :  influencer
+    - pass    :  Dim933Plw
+
+- bakcup       :  7day / start 01:00 / duration 0.5h
+- auto upgrate :  sunday  / start 02:00 / duration 0.5h
+
+- msyql portのみopen
+- 各種サーバーからのアクセスを許可する
+  user, admin, sns, 踏み台
+
+**** ELB
+CNAME      :  uniqlo-influencer-adm-lb-1338278061.ap-northeast-1.elb.amazonaws.com
+forward to :  adm01-tky-a-uniqlo-influencer
+
+*** language list
+- 日本語    : jp
+- English  : US, UK, SG, MY, AU
+- Korean   : KR
+- French   : FR
+- Cantonese: HK
+- Chinese  : CN
+
+*** deploy時のDB backup
+/var/rails_backup/db/
+暗号化も
+script組み込み済み
+
+*** Instance
+- request数
+  瞬間最大、4万リクエスト程度／分
+
+- User app server、DB serverの instance Type
+  Web    :  c3.large 汎用SSD30GB
+  Admin  :  c3.large 汎用SSD30GB
+  Batch  :  c3.large 汎用SSD30GB
+
+  RDS(Mysql) Multi-AZ    :  m3.medium SSD30GB
+  RDS(Mysql) Readreplica :  m3.medium SSD30GB
+
+
+- Auto scaleの閾値など (想定、暫定値)
+  Desired  :  2
+  Min      :  2
+  Max      :  10
+  HealthCheckType         :  ELB
+  HealthCheckGracePeriod  :  400
+  DefaultCooldown         :  720
+
+
+- scale
+  スケールアウトポリシー：60秒に5回連続CPU使用率が60%を超えたら2インスタンス追加
+  スケールインポリシー：60秒に60回連続CPU使用率が10%を下回ったら2インスタンス減少
+
+
+*** sns tokens
+ある程度ok
+どのアカウントがどれに当てられているのかは、また未確認
+
+**** development
+TWITTER_CONSUMER_KEY      = wT3iKJTOCOrpcREA9UACekMwN
+TWITTER_CONSUMER_SECRET   = cccirTDen2NUxz9h57K4w0EIDS2nky3u3TLB3KP4rIQMy6r06W
+TWITTER_ACCESS_TOKEN      = 3040525110-b3n5XzzcmgGIr82g7BG5UQgMvYJ5F1sL7OlcsNy
+TWITTER_TOKEN_SECRET      = PACzJccC7QI9QO7w2PkgRfjJzDxMGqhVwwm3g3hnKRQls
+
+INSTAGRAM_CLIENT_ID       = 65bfae25a972496985e349a3d5467dba
+INSTAGRAM_CLIENT_SECRET   = 64eb28aca5bd47f3bafda2fea7138477
+INSTAGRAM_ACCESS_TOKENS   = 1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f,
+                            1723080740.3f5525a.7c8ab33166644e349324da2ca1afbd0e,
+                            1723080740.9b45723.1196e8df9b094989bbbc869d810d0921,
+                            1723080740.789672c.99653ff469cc4716aa04df4036f9b975,
+                            1723080740.76fc6c4.5b3c99971a7e493fa462ceccade7a707
+
+**** staging
+TWITTER_CONSUMER_KEY      = QjT6gbmktOmXbOIXJKutLis1e
+TWITTER_CONSUMER_SECRET   = fmZLt4oOauK0Goos7nfepsrhqM8jJQY0aDPQsXjOxFMILRoyv4
+TWITTER_ACCESS_TOKEN      = 3044986898-HwCqzNQYaQKIMQD3nTeg9dySb2FnaVYsFzsoOcl
+TWITTER_TOKEN_SECRET      = yjlmGDcg9kL1Q9LJJHwYZqGuPiehoNNMYfY3GqrHQHPFW
+
+INSTAGRAM_CLIENT_ID       = 8fcf4dc63f5c49768ecea77ababdc0cb
+INSTAGRAM_CLIENT_SECRET   = 3eea1d53894d4e4dbac0778aef4f1f57
+INSTAGRAM_ACCESS_TOKEN    = 1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f
+INSTAGRAM_ACCESS_TOKENS   = 1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f,
+                            1725548089.0c56b3d.171c23a4c4fe45909c861600ab3d196e,
+                            1725548089.3156de7.3e357950bbef4816b881c1f68117bb7e
+
+**** production
+TWITTER_CONSUMER_KEY       = PsXO5MdcKmS3hDoj2Mk3hwAtZ
+TWITTER_CONSUMER_SECRET    = NtspSin1p4nFBcnBsMcnnKlbaI2syK2sO9VmP0WSTYwrnViSCh
+TWITTER_ACCESS_TOKEN       = 3044986898-WpRqi8ADPGaQOnB8Y7bJDFJujHu3Zys2SKpqGRA
+TWITTER_TOKEN_SECRET       = c0gzLx0KSFqifjwPSUGsE0i7L71FqrLaMuOGzBSTCDma6
+
+INSTAGRAM_CLIENT_ID        = ffde84b110e248e895cc51fe63969f90
+INSTAGRAM_CLIENT_SECRET    = a5293e59b7ac4de1916b94bed991539c
+INSTAGRAM_ACCESS_TOKENS    = 1725548089.ffde84b.d0991bd477024858a1758bf1a3bfbc69,
+                             1953644486.569cd68.e3b327f08fdd41aaae24cb5d8c09b7e6,
+                             1953644486.9d9d9eb.dc50f786802e474d8c50129c0fed9d2b,
+                             1953644486.ab28996.c325764d5daa4353a54bda1f252b0707,
+                             1953644486.7031d8f.027958c3327445d0b0b54fb75a7e1ef2,
+                             1953644486.28f8d14.d2c4fd086b4748f5aa0bbbb828e7d018
+
+** Flow : project
+# projectの仕様変更、打ち合わせによる状態変異など
+
+
+*** schedule
+**** Done DONE 15 : 負荷試験。取れる情報の整理
+SCHEDULED: <2015-03-15 日> CLOSED: [2015-06-16 火 12:24]
+**** Done DONE 18 : DBに必要な容量計算。(土日でおおよその構造が決まる)
+SCHEDULED: <2015-03-18 水> CLOSED: [2015-06-16 火 12:24]
+負荷試験の方針提出
+**** Done DONE 20 : 負荷テスト
+SCHEDULED: <2015-03-20 金> CLOSED: [2015-06-16 火 12:24]
+
+**** Done DONE 21 : セキュリティテスト
+SCHEDULED: <2015-03-21 土> CLOSED: [2015-06-16 火 12:24]
+**** Done DONE 23 : リリース
+SCHEDULED: <2015-03-23 月> CLOSED: [2015-06-16 火 12:24]
+
+**** Done DONE 24 : セキュリティテスト
+SCHEDULED: <2015-03-24 火> CLOSED: [2015-06-16 火 12:24]
+
+**** Done DONE 25 : 本番負荷テスト
+SCHEDULED: <2015-03-25 水> CLOSED: [2015-06-16 火 12:24]
+
+staging
+
+**** Done DONE 27 : リリース日
+SCHEDULED: <2015-03-27 金> CLOSED: [2015-06-16 火 12:24]
+
+*** Done DONE user公開日
+SCHEDULED: <2015-03-27 金> CLOSED: [2015-06-16 火 12:24]
+
+03/23にはRuby者としては開発を終わらせる。
+
+ここから負荷試験、security試験
+そして、微調整
+
+英語版リリース
+一週間おきに各言語をリリース
+
+*** avasysさんとはおわり
+*** [2015-02-23 月] 対応予定ブラウザ
+**** IE7, 8
+元々対応していないので、対応しない
+
+**** IE9
+こちらは対応
+
+**** chrome, safari
+
+
+
+
+ja - ja.yml
+us -
+kr - ko.yml
+hk - zh-HK.yml
+
+*** description
+**** 担当者
+***** 先方
+マネージ : 船山さん
+開発さん : 綾部さん
+
+***** Ruby本社
+青柳さんがhelp
+
+***** 協力会社
+コミュニティクリエーション
+アヴァシス
+
+女性２名
+管理者1名
+
+skypeが必要
+
+**** 頭出し
+tabboard HP
+ユニクロ用のtagboardを作りたい
+tagboardをまねしていく
+
+- 使い方
+
+- 気に入らない点
+  taboardのロゴが気に入らない
+  もっと柔軟な表示をしたい
+  国ごと、pickupしたものを必ず表示。
+
+- クリックした時の動きも変えたい
+  オーバーレイ表示のカスタマイズ
+
+- 環境構築はruby社まかせ
+
+- RoR, nginx, MySQL or Postgres, AWS
+
+**** etc
+[2015-02-05 木]
+- tagboardでlifewareに関するものをpickup
+- 国ごとに絞り込みをしたい
+  tagboadに国情報は無い。が、登録者情報に国の情報がある。(登録者しか投稿できないとかなんとか)
+
+*** [2015-02-18 水]
+**** real time更新処理とりやめ
+自動で状態を見に行って更新があれば、
+自動で画面も更新する。
+というのが当初の企画。
+
+これを取りやめ、ユーザーからのトリガーがあるときだけ
+更新処理を行う。
+(どこの話かは分からないが、恐らくSNSデータを表示するところ)
+
+**** 予算の関係上で機能を絞る。
+今日?打ち合わせして、機能を決定する
+
+** Flow : deploy, release, server setting
+# 固定化済み作業, など
+
+*** deploy flow : develop
+**** deploy to admin
+***** upload
+# 踏み台サーバーへアップ後, # adminサーバーへアップする
+$ scp -i mruby_default_key.pem ./uniqlo-hashtag-develop.zip alliance@54.65.232.249:/home/alliance
+$ ssh -i mruby_default_key.pem alliance@54.65.232.249
+
+$ scp ./uniqlo-hashtag-develop.zip mruby@app-admin:/home/mruby
+$ ssh mruby@app-admin
+
+***** kill unicorn
+kill `cat /var/rails/unicorn/current/tmp/pids/unicorn.pid`
+
+***** mysql buckup
+mysqldump -u influencer --password=Dim933Plw --lock-table -h db01-uniqlo-influencer.cvs9vjjju50z.ap-northeast-1.rds.amazonaws.com influencer > /var/rails/uniqlo/backup/db/$date
+mysqldump -u influencer --password=QkIPwa9k --lock-table -h stage-db.org.lifewear.uniqlo.com influencer > /var/rails/influencer/backup/db/2015_03_20
+
+***** decompress / file move
+$ cd /var/rails/uniqlo/release
+
+$ mkdir `date +"%Y%m%d%H%M%S"`
+$ cd 20150217015610/
+$ cp /home/mruby/uniqlo-hashtag-develop.zip ./
+$ unzip uniqlo-hashtag-develop.zip
+
+$ rm uniqlo-hashtag-develop.zip
+$ mv ./uniqlo-hashtag-develop/* ./
+$ rm -rf ./uniqlo-hashtag-develop
+
+***** edit database.yml
+$ vim ./config/database.yml
+
+----------------------------------------------------------------
+production:
+    <<: *default
+    database: influencer
+    username: influencer
+    #password: <%= ENV['UNIQLO-HASHTAG_DATABASE_PASSWORD'] %>
+    password: Dim933Plw
+    host: db01-uniqlo-influencer.cvs9vjjju50z.ap-northeast-1.rds.amazonaws.com
+----------------------------------------------------------------
+
+***** bundle / assets setting
+$ bundle install
+$ bundle exec rake db:migrate RAILS_ENV=production
+$ bundle exec rake assets:clobber
+$ bundle exec rake assets:precompile RAILS_ENV=production
+
+***** secret key base
+# 基本、埋め込んであるので作業は不要
+
+
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+development:
+    secret_key_base: [here]
+
+production:
+    secret_key_base: [here]
+----------------------------------------------------------------
+
+***** curtificate setting (SSL認証する場合)
+# ELBで認証しているので不要
+
+$ mkdir .config/certification
+$ cd ./config/certification
+
+$ openssl genrsa -aes128 1024 > server.key
+$ openssl req -new -key server.key > server.csr
+$ openssl x509 -in server.csr -days 365 -req -signkey server.key > server.crt
+
+# delete pass phrase
+# nginx起動の度にパスを求められるため
+$ mv server.ekey server.key.back
+$ openssl rsa -in server.key.back > server.key
+
+***** change log dir
+$ rm -rf ./log
+$ rm -rf ./tmp
+
+$ ln -s /var/rails/uniqlo/shared/log ./log
+$ ln -s /var/rails/uniqlo/shared/tmp ./tmp
+
+
+
+***** change current version
+$ cd /var/rails/uniqlo/
+$ ln -s /var/rails/uniqlo/release/20150217015610/ ./current
+
+***** unicron start
+$ cd /var/rails/uniqlo/current
+$ bundle exec unicorn_rails -c /var/rails/uniqlo/env/config/unicorn/production.rb -E production -D
+
+**** deploy view to user
+***** ./javascript/postphots.js
+内の読み込みURLを変更する
+
+IMAGE_PATH = 'http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/images/';
+IMAGE_PATH = 'http://test066.members-dev.com/uniqlo_lifewear/images/';
+
+***** ./config/settings/production.yml
+urlが本番環境を向いているため、試験環境へ向ける。
+
+js_pc_url: "http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/javascripts/postphotos.js"
+js_sp_url: "http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/javascripts/postphotos_sp.js"
+css_pc_url: "http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/stylesheets/tag_photo_list.css"
+css_sp_url: "http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/stylesheets/tag_photo_list_sp.css"
+logo_url: "http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/images/tag_photo_list_logo.png"
+
+
+
+**** deploy auto
+~/ dirの、deploy.shを使用する
+$ bash deploy.sh [zip file]
+
+# ./は付けない
+
+**** init setting | unicorn config file
+$ mkdir /var/rails/uniqlo/env/config/unicorn/
+
+
+$ vim /var/rails/uniqlo/env/config/unicorn/development.rb
+----------------------------------------------------------------
+worker_processes 3
+
+pid File.expand_path('tmp/pids/unicorn.pid', ENV['RAILS_ROOT']).to_s
+listen 5001
+
+stderr_path File.expand_path('log/error.log', ENV['RAILS_ROOT'])
+stdout_path File.expand_path('log/development.log', ENV['RAILS_ROOT'])
+
+preload_app true
+
+before_fork do |server, worker|
+  ENV['BUNDLE_GEMFILE'] = File.expand_path('Gemfile', ENV['RAILS_ROOT'])
+
+  defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
+end
+
+after_fork do |server, worker|
+  defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
+end
+----------------------------------------------------------------
+
+
+$ vim /var/rails/uniqlo/env/config/unicorn/production.rb
+----------------------------------------------------------------
+File Edit Options Buffers Tools Help
+worker_processes 10
+
+pid File.expand_path('tmp/pids/unicorn.pid', ENV['RAILS_ROOT']).to_s
+listen 5001
+
+stderr_path File.expand_path('log/error.log', ENV['RAILS_ROOT'])
+stdout_path File.expand_path('log/production.log', ENV['RAILS_ROOT'])
+
+preload_app true
+
+before_fork do |server, worker|
+  ENV['BUNDLE_GEMFILE'] = File.expand_path('Gemfile', ENV['RAILS_ROOT'])
+
+  defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
+end
+
+after_fork do |server, worker|
+  defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
+end
+----------------------------------------------------------------
+
+**** nginx setting file loc
+/etc/nginx/conf.d/lifewear.uniqlo.com.conf
+/etc/nginx/conf.d/admin.lifewear.uniqlo.com.conf
+
+
+*** deploy flow : staging-hastag
+**** mk release dir
+cd /var/rails/influencer/releases/
+mkdir `date +"%Y%m%d%H%M%S"`
+
+**** kill unicorn
+kill `cat /var/rails/influencer/current/tmp/pids/unicorn.pid`
+
+# 停止時間を短くするならば、後で止める
+
+**** mysql buckup
+mysqldump -u influencer -p --lock-table -h stage-db.org.lifewear.uniqlo.com influencer > /var/rails/influencer/backup/db/$date
+
+**** copy / edit database.yml
+cp ./config/deploy/db/production.yml ./config/database.yml
+
+
+$ vim ./config/database.yml
+----------------------------------------------------------------
+default: &default
+    adapter: mysql2
+    encoding: utf8
+    pool: 5
+
+production:
+    <<: *default
+    database: influencer
+    username: influencer
+    #password: <%= ENV['UNIQLO_HASHTAG_DATABASE_PASSWORD'] %>
+    QkIPwa9k
+    host: db.org.lifewear.uniqlo.com
+
+----------------------------------------------------------------
+
+**** copy / unicron.rb
+cp ./config/deploy/unicorn/production.rb ./config/unicorn.rb
+
+**** bundle / assets
+bundle install
+bundle exec rake db:migrate RAILS_ENV=production
+bundle exec rake assets:clobber
+bundle exec rake assets:precompile RAILS_ENV=production
+
+**** secret key base
+# 埋め込まれているので作業不要
+
+# 以下で出よくされた内容を後述ファイルに書き込む
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+production:
+    secret_key_base: [here]
+----------------------------------------------------------------
+
+**** change assets default url
+***** assets読み込みURL変更
+# 読み込みURLを
+# [https://~~~/assets] を
+# [https://~~~/form/asset] へ変更
+# [https://~~~/] と [https://~~~/form/] ではアクセス先サーバーが異なる
+
+$ vim ./config/application.rb
+
+----------------------------------------------------------------
+module UniqloHashtag
+  class Application < Rails::Application
+
+  ~~
+  config.assets.enable = true
+  config.assets.prefix = "assets"
+
+  end
+end
+----------------------------------------------------------------
+
+***** chmod
+chmod 755 ./public/assets*
+
+**** change log dir, tmp dir, .env
+rm -rf ./log
+ln -s /var/rails/influencer/shared/log ./log
+
+rm -rf ./tmp
+ln -s /var/rails/influencer/shared/tmp ./tmp
+
+ln -s /var/rails/influencer/shared/.env ./.env
+
+**** change current version
+$ cd /var/rails/influencer/
+$ ln -s /var/rails/influencer/release/20150217015610/ ./current
+
+**** unicron start
+$ cd /var/rails/uniqlo/current
+$ bundle exec unicorn_rails -c /var/rails/uniqlo/env/config/unicorn/production.rb -E production -D
+
+*** deploy flow : staging-hatag-view
+image
+https://lifewear.uniqlo.com/images/
+https://lifewear.uniqlo.com/stylesheets/
+https://lifewear.uniqlo.com/javascripts/
+
+*** deploy flow : staging-hatag-main
+**** mk release dir
+cd /var/rails/influencer/releases/
+mkdir `date +"%Y%m%d%H%M%S"`
+
+**** kill unicorn
+kill `cat /var/rails/influencer/current/tmp/pids/unicorn.pid`
+
+# 停止時間を短くするならば、後で止める
+
+**** mysql buckup
+mysqldump -u influencer -p --lock-table -h stage-db.org.lifewear.uniqlo.com influencer > /var/rails/influencer/backup/db/$date
+
+**** copy / edit database.yml
+cp ./config/deploy/db/production.yml ./config/database.yml
+
+
+$ vim ./config/database.yml
+----------------------------------------------------------------
+default: &default
+    adapter: mysql2
+    encoding: utf8
+    pool: 5
+
+production:
+    <<: *default
+    database: influencer
+    username: influencer
+    #password: <%= ENV['UNIQLO_HASHTAG_DATABASE_PASSWORD'] %>
+    QkIPwa9k
+    host: db-rep.org.lifewear.uniqlo.com
+
+----------------------------------------------------------------
+
+**** copy / unicron.rb
+cp ./config/deploy/unicorn/production.rb ./config/unicorn.rb
+
+**** bundle
+$ bundle install
+
+**** 読み込みファイル
+./config/settings/production.yml
+urlが本番環境を向いているため、stating環境へ向ける。
+
+
+**** secret key base
+# 埋め込まれているので作業不要
+
+# 以下で出よくされた内容を後述ファイルに書き込む
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+production:
+    secret_key_base: [here]
+----------------------------------------------------------------
+
+**** change log/tmp dir
+rm -rf ./log
+ln -s /var/rails/influencer/shared/log ./log
+
+rm -rf ./tmp
+ln -s /var/rails/influencer/shared/tmp ./tmp
+
+**** change current version
+$ cd /var/rails/influencer/
+$ ln -s /var/rails/uniqlo/release/20150217015610/ ./current
+
+**** unicron start
+$ cd /var/rails/uniqlo/current
+$ bundle exec unicorn_rails -c /var/rails/uniqlo/env/config/unicorn/production.rb -E production -D
+
+*** deploy flow : staging-hatag-cron
+**** mk release dir
+cd /var/rails/influencer/releases/
+mkdir `date +"%Y%m%d%H%M%S"`
+
+**** kill unicorn
+kill `cat /var/rails/influencer/current/tmp/pids/unicorn.pid`
+
+# 停止時間を短くするならば、後で止める
+
+**** mysql buckup
+mysqldump -u influencer -p --lock-table -h stage-db.org.lifewear.uniqlo.com influencer > /var/rails/influencer/backup/db/$date
+
+**** copy / edit database.yml
+cp ./config/deploy/db/production.yml ./config/database.yml
+
+
+$ vim ./config/database.yml
+----------------------------------------------------------------
+default: &default
+    adapter: mysql2
+    encoding: utf8
+    pool: 5
+
+production:
+    <<: *default
+    database: influencer
+    username: influencer
+    #password: <%= ENV['UNIQLO_HASHTAG_DATABASE_PASSWORD'] %>
+    host: db.org.lifewear.uniqlo.com
+
+----------------------------------------------------------------
+
+**** copy / unicron.rb
+cp ./config/deploy/unicorn/production.rb ./config/unicorn.rb
+
+**** .env
+vim /var/rails/influencer/shared/.env
+
+
+
+以下、記述例
+sns tokenは適宜、変更すること
+以下は最新ではなく、staging/developが混在
+
+----------------------------------------------------------------
+DB_USERNAME=
+DB_PASSWORD=
+
+TWITTER_CONSUMER_KEY=
+TWITTER_CONSUMER_SECRET=
+TWITTER_ACCESS_TOKEN=
+TWITTER_TOKEN_SECRET=
+
+INSTAGRAM_CLIENT_ID=
+INSTAGRAM_CLIENT_SECRET=
+INSTAGRAM_ACCESS_TOKEN=
+
+FACEBOOK_APP_ID=
+FACEBOOK_APP_SECRET=
+
+API_ENDPOINT=10.0.1.50/
+
+
+# Instagramからタグ検索する際のリクエスト上限
+MAX_API_COUNT_FOR_INSTAGRAM=500
+
+# Instagramからタグ検索する際のマスターとなるタグ
+MASTER_TAG=uniqlolifewear
+----------------------------------------------------------------
+
+**** bundle
+$ bundle install
+
+**** secret key base
+# 埋め込まれているので作業不要
+
+# 以下で出よくされた内容を後述ファイルに書き込む
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+production:
+    secret_key_base: [here]
+----------------------------------------------------------------
+
+**** change log dir
+rm -rf ./log
+rm -rf ./tmp
+
+ln -s /var/rails/influencer/shared/log ./log
+ln -s /var/rails/influencer/shared/tmp ./tmp
+
+ln -s /var/rails/influencer/shared/.env ./.env
+
+**** change current version
+$ cd /var/rails/influencer/
+$ ln -s /var/rails/influencer/release/20150217015610/ ./current
+
+**** unicron start
+$ cd /var/rails/uniqlo/current
+$ bundle exec unicorn_rails -c /var/rails/influencer/current/config/unicorn.rb -E production -D
+
+**** 管理サーバー basic 認証設定
+vim config/settings/production.yml
+
+----------------------------------------------------------------
+api_server:
+  api_schema: 'http://'
+  api_endpoint: <%= ENV['API_ENDPOINT'] %>
+  api_basic_auth_user: uniql0inf7uencer
+  api_basic_auth_password: uniql0mysty7e
+----------------------------------------------------------------
+
+**** command test
+RAILS_ENV=production bundle exec rake twitter:get_by_rest
+RAILS_ENV=production bundle exec rake instagram:get_by_rest
+RAILS_ENV=production bundle exec rails runner TwitterStreamingDaemon.run run
+
+
+
+
+
+*** deploy flow : production-hastag
+**** mk release dir
+cd /var/rails/influencer/releases/
+mkdir `date +"%Y%m%d%H%M%S"`
+
+**** kill unicorn
+kill `cat /var/rails/influencer/current/tmp/pids/unicorn.pid`
+
+# 停止時間を短くするならば、後で止める
+
+**** mysql buckup
+mysqldump -u influencer -p --lock-table -h stage-db.org.lifewear.uniqlo.com influencer > /var/rails/influencer/backup/db/$date
+
+**** copy / edit database.yml
+cp ./config/deploy/db/production.yml ./config/database.yml
+
+
+$ vim ./config/database.yml
+----------------------------------------------------------------
+default: &default
+    adapter: mysql2
+    encoding: utf8
+    pool: 5
+
+production:
+    <<: *default
+    database: influencer
+    username: influencer
+    #password: <%= ENV['UNIQLO_HASHTAG_DATABASE_PASSWORD'] %>
+    QkIPwa9k
+    host: db.org.lifewear.uniqlo.com
+
+----------------------------------------------------------------
+
+**** copy / unicron.rb
+cp ./config/deploy/unicorn/production.rb ./config/unicorn.rb
+
+**** bundle / assets
+bundle install
+bundle exec rake db:migrate RAILS_ENV=production
+bundle exec rake assets:clobber
+bundle exec rake assets:precompile RAILS_ENV=production
+
+**** secret key base
+# 埋め込まれているので作業不要
+
+# 以下で出よくされた内容を後述ファイルに書き込む
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+production:
+    secret_key_base: [here]
+----------------------------------------------------------------
+
+**** change assets default url
+***** assets読み込みURL変更
+# 読み込みURLを
+# [https://~~~/assets] を
+# [https://~~~/form/asset] へ変更
+# [https://~~~/] と [https://~~~/form/] ではアクセス先サーバーが異なる
+
+$ vim ./config/application.rb
+
+----------------------------------------------------------------
+module UniqloHashtag
+  class Application < Rails::Application
+
+  ~~
+  config.assets.enable = true
+  config.assets.prefix = "assets"
+
+  end
+end
+----------------------------------------------------------------
+
+***** chmod
+chmod 755 ./public/assets*
+
+**** change log dir, tmp dir, .env
+rm -rf ./log
+ln -s /var/rails/influencer/shared/log ./log
+
+rm -rf ./tmp
+ln -s /var/rails/influencer/shared/tmp ./tmp
+
+ln -s /var/rails/influencer/shared/.env ./.env
+
+**** change current version
+$ cd /var/rails/influencer/
+$ ln -s /var/rails/influencer/release/20150217015610/ ./current
+
+**** unicron start
+$ cd /var/rails/uniqlo/current
+$ bundle exec unicorn_rails -c /var/rails/uniqlo/env/config/unicorn/production.rb -E production -D
+
+*** deploy flow : production-hatag-view
+image
+https://lifewear.uniqlo.com/images/
+https://lifewear.uniqlo.com/stylesheets/
+https://lifewear.uniqlo.com/javascripts/
+
+*** deploy flow : production-hatag-main
+**** mk release dir
+cd /var/rails/influencer/releases/
+mkdir `date +"%Y%m%d%H%M%S"`
+
+**** kill unicorn
+kill `cat /var/rails/influencer/current/tmp/pids/unicorn.pid`
+
+# 停止時間を短くするならば、後で止める
+
+**** mysql buckup
+mysqldump -u influencer -p --lock-table -h stage-db.org.lifewear.uniqlo.com influencer > /var/rails/influencer/backup/db/$date
+
+**** copy / edit database.yml
+cp ./config/deploy/db/production.yml ./config/database.yml
+
+
+$ vim ./config/database.yml
+----------------------------------------------------------------
+default: &default
+    adapter: mysql2
+    encoding: utf8
+    pool: 5
+
+production:
+    <<: *default
+    database: influencer
+    username: influencer
+    #password: <%= ENV['UNIQLO_HASHTAG_DATABASE_PASSWORD'] %>
+    QkIPwa9k
+    host: db-rep.org.lifewear.uniqlo.com
+
+----------------------------------------------------------------
+
+**** copy / unicron.rb
+cp ./config/deploy/unicorn/production.rb ./config/unicorn.rb
+
+**** bundle
+$ bundle install
+
+**** secret key base
+# 埋め込まれているので作業不要
+
+# 以下で出よくされた内容を後述ファイルに書き込む
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+production:
+    secret_key_base: [here]
+----------------------------------------------------------------
+
+**** change log/tmp dir
+rm -rf ./log
+ln -s /var/rails/influencer/shared/log ./log
+
+rm -rf ./tmp
+ln -s /var/rails/influencer/shared/tmp ./tmp
+
+**** change current version
+$ cd /var/rails/influencer/
+$ ln -s /var/rails/uniqlo/release/20150217015610/ ./current
+
+**** unicron start
+$ cd /var/rails/uniqlo/current
+$ bundle exec unicorn_rails -c /var/rails/uniqlo/env/config/unicorn/production.rb -E production -D
+
+*** deploy flow : production-hatag-cron
+**** mk release dir
+cd /var/rails/influencer/releases/
+mkdir `date +"%Y%m%d%H%M%S"`
+
+**** kill unicorn
+kill `cat /var/rails/influencer/current/tmp/pids/unicorn.pid`
+
+# 停止時間を短くするならば、後で止める
+
+**** mysql buckup
+mysqldump -u influencer -p --lock-table -h stage-db.org.lifewear.uniqlo.com influencer > /var/rails/influencer/backup/db/$date
+
+**** copy / edit database.yml
+cp ./config/deploy/db/production.yml ./config/database.yml
+
+
+$ vim ./config/database.yml
+----------------------------------------------------------------
+default: &default
+    adapter: mysql2
+    encoding: utf8
+    pool: 5
+
+production:
+    <<: *default
+    database: influencer
+    username: influencer
+    #password: <%= ENV['UNIQLO_HASHTAG_DATABASE_PASSWORD'] %>
+    QkIPwa9k
+    host: db.org.lifewear.uniqlo.com
+
+----------------------------------------------------------------
+
+**** copy / unicron.rb
+cp ./config/deploy/unicorn/production.rb ./config/unicorn.rb
+
+**** .env
+vim /var/rails/influencer/shared/.env
+
+
+
+以下、記述例
+sns tokenは適宜、変更すること
+以下は最新ではなく、staging/developが混在
+
+----------------------------------------------------------------
+DB_USERNAME=
+DB_PASSWORD=
+
+TWITTER_CONSUMER_KEY=
+TWITTER_CONSUMER_SECRET=
+TWITTER_ACCESS_TOKEN=
+TWITTER_TOKEN_SECRET=
+
+INSTAGRAM_CLIENT_ID=
+INSTAGRAM_CLIENT_SECRET=
+INSTAGRAM_ACCESS_TOKEN=
+
+FACEBOOK_APP_ID=
+FACEBOOK_APP_SECRET=
+
+API_ENDPOINT=10.0.1.50/
+
+
+# Instagramからタグ検索する際のリクエスト上限
+MAX_API_COUNT_FOR_INSTAGRAM=500
+
+# Instagramからタグ検索する際のマスターとなるタグ
+MASTER_TAG=uniqlolifewear
+----------------------------------------------------------------
+
+**** bundle
+$ bundle install
+
+**** secret key base
+# 埋め込まれているので作業不要
+
+# 以下で出よくされた内容を後述ファイルに書き込む
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+production:
+    secret_key_base: [here]
+----------------------------------------------------------------
+
+**** change log dir
+rm -rf ./log
+rm -rf ./tmp
+
+ln -s /var/rails/influencer/shared/log ./log
+ln -s /var/rails/influencer/shared/tmp ./tmp
+
+ln -s /var/rails/influencer/shared/.env ./.env
+
+**** change current version
+$ cd /var/rails/influencer/
+$ ln -s /var/rails/influencer/release/20150217015610/ ./current
+
+**** unicron start
+$ cd /var/rails/uniqlo/current
+$ bundle exec unicorn_rails -c /var/rails/influencer/current/config/unicorn.rb -E production -D
+
+**** 管理サーバー basic 認証設定
+vim config/settings/production.yml
+
+----------------------------------------------------------------
+api_server:
+  api_schema: 'http://'
+  api_endpoint: <%= ENV['API_ENDPOINT'] %>
+  api_basic_auth_user: uniql0inf7uencer
+  api_basic_auth_password: uniql0mysty7e
+----------------------------------------------------------------
+
+**** command test
+RAILS_ENV=production bundle exec rake twitter:get_by_rest
+RAILS_ENV=production bundle exec rake instagram:get_by_rest
+RAILS_ENV=production bundle exec rails runner TwitterStreamingDaemon.run run
+
+
+
+*** deploy flow : product
+**** mk release dir
+cd /var/rails/influencer/releases/
+mkdir `date +"%Y%m%d%H%M%S"`
+
+**** kill unicorn
+kill `cat /var/rails/unicorn/current/tmp/pids/unicorn.pid`
+
+# 停止時間を短くするならば、後で止める
+
+**** mysql buckup
+mysqldump -u influencer -p --lock-table -h db.org.lifewear.uniqlo.com influencer > /var/rails/influencer/backup/db/$date
+
+**** edit database.yml
+$ vim ./config/database.yml
+----------------------------------------------------------------
+default: &default
+    adapter: mysql2
+    encoding: utf8
+    pool: 5
+
+production:
+    <<: *default
+    database: influencer
+    username: influencer
+    password: QkIPwa9k
+    #password: <%= ENV['UNIQLO-HASHTAG_DATABASE_PASSWORD'] %>
+    host: db.org.lifewear.uniqlo.com
+
+----------------------------------------------------------------
+
+**** bundle / assets
+$ bundle install
+$ bundle exec rake db:migrate RAILS_ENV=production
+$ bundle exec rake assets:clobber
+$ bundle exec rake assets:precompile RAILS_ENV=production
+
+**** secret key base
+# 埋め込まれているので作業不要
+
+# 以下で出よくされた内容を後述ファイルに書き込む
+$ bundle exec rake secret
+
+# [here] へ記述
+vim ./config/secrets.yml
+----------------------------------------------------------------
+production:
+    secret_key_base: [here]
+----------------------------------------------------------------
+
+**** change assets default url
+***** assets読み込みURL変更
+# 読み込みURLを
+# [https://~~~/assets] を
+# [https://~~~/form/asset] へ変更
+# [https://~~~/] と [https://~~~/form/] ではアクセス先サーバーが異なる
+
+$ vim ./config/application.rb
+
+----------------------------------------------------------------
+module UniqloHashtag
+  class Application < Rails::Application
+
+  ~~
+  config.assets.enable = true
+  config.assets.prefix = "assets"
+
+  end
+end
+----------------------------------------------------------------
+
+***** chmod
+chmod 755 ./public/assets*
+
+**** change log dir
+$ rm -rf ./log
+$ ln -s /var/rails/influencer/log ./log
+
+**** change current version
+$ cd /var/rails/influencer/
+$ ln -s /var/rails/uniqlo/release/20150217015610/ ./current
+
+**** unicron start
+$ cd /var/rails/uniqlo/current
+$ bundle exec unicorn_rails -c /var/rails/uniqlo/env/config/unicorn/production.rb -E production -D
+
+
+
+*** AMI /AS group更新作業
+**** 作業server
+admin server
+
+Instance   :  i-b04fa8a8
+host       :  prd01-a-tky-admin-influencer-uniqlo
+Private IP :  10.184.17.202
+
+**** 1 : ELB(AS)配下のinstance抽出
+***** instance ID取得
+aws elb describe-instance-health --load-balancer-name prd01-tky-influencer-uniqlo --region ap-northeast-1
+
+***** 対象instanceの Private IPを取得
+aws ec2 describe-instances --instance-ids i-b1de1b44 --region ap-northeast-1|grep PrivateIpAddress
+aws ec2 describe-instances --instance-ids i-b8a9da4b --region ap-northeast-1|grep PrivateIpAddress
+# instance IDは適宜修正
+
+**** 2 : AMI作成用instanceを起動
+- 起動状態確認
+  aws ec2 describe-instances --instance-ids i-2744a33f --region ap-northeast-1
+
+- 起動/終了コマンド
+  aws ec2 stop-instances --instance-ids i-2744a33f --region ap-northeast-1
+  aws ec2 start-instances --instance-ids i-2744a33f --region ap-northeast-1
+
+**** 3 : deploy
+Image元instance及び、項番1の全Instanceへdeploy
+
+**** 4 : AS Group作成
+# 恐らく、AMI作成とAS group更新を行なっているが
+# job更新が即時反映されている
+# 恐らく裏でAMI作成など、jobが走っていると予想。
+
+***** AMI作成用Instance stop
+aws ec2 stop-instances --instance-ids i-2744a33f --region ap-northeast-1
+aws ec2 describe-instances --instance-ids i-2744a33f --region ap-northeast-1
+# Statusが「stopped」になってから続行
+
+***** AS group更新
+curl -X post -u lifewear:09dbca3c43da1f7d39af9ec9febbd2d6 \
+    -s http://jobcontroller.aws.fastretailing.com/jenkins/job/lifewear_infra_update_asg/build \
+    --data TOKEN=lifewear-admin
+
+***** Job結果確認
+curl -X get -u lifewear:09dbca3c43da1f7d39af9ec9febbd2d6 \
+    -s http://jobcontroller.aws.fastretailing.com/jenkins/job/lifewear_infra_update_asg/lastBuild/api/json \
+    --data TOKEN=lifewear-admin
+
+
+
+
+
+
+
+
+
+
+
+*** init product env
+**** bash 環境変数
+ADMIN_USER
+ADMIN_PASS
+**** nginx setting
+
+*** init develop env
+**** admin
+***** mysql
+admin user : root
+pass       : mruby4836
+
+mysql -u root -p
+mysql> grant all on influencer.* to 'influencer'@'10.184.17.202';
+
+**** nginx setting
+***** settingにあたって
+- admin server access path
+--------------------------------
+    admin.lifewear.uniqlo.comf
+    lifewer.uniqlo.conf/form
+
+
+- normal server access path
+--------------------------------
+    lifewer.uniqlo.conf
+
+***** install
+$ yum install nginx
+
+***** setting conf file
+$ vim /etc/nginx/conf.d/lifewear.uniqlo.com.conf
+
+
+----------------------------------------------------------------
+
+# --------------------------------------------------------------------------------
+# backend
+# --------------------------------------------------------------------------------
+upstream backend {
+    server 127.0.0.1:5001;
+}
+
+
+
+server {
+    listen       80;
+    server_name  lifewear.uniqlo.com;
+
+    server_tokens off;
+
+    access_log /var/log/nginx/lifewear.uniqlo.com/access_log;
+    error_log  /var/log/nginx/lifewear.uniqlo.com/error_log;
+
+    root /var/rails/influencer/current/public;
+
+
+    # --------------------------------------------------------------------------------
+    # switch
+    # --------------------------------------------------------------------------------
+
+    # ----------------
+    # assets
+    # ----------------
+    location ~ /form/assets(.*) {
+        alias /var/rails/influencer/current/public/assets/$1;
+    }
+
+
+    # ----------------
+    # form - rails
+    # ----------------
+    location ~ / {
+        root /var/rails/influencer/current/public;
+
+        proxy_pass http://backend;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+    }
+
+
+    # ----------------
+    # root
+    # ----------------
+    #location / {
+    #    # root   /usr/share/nginx/html/lifewear.uniqlo.com/;
+    #    # index  index.html index.htm;
+
+    #    proxy_pass http://backend;
+    #    break;
+    #}
+
+
+    # ----------------
+    # status check
+    # ----------------
+    location = /status.html {
+        return 200;
+        break;
+    }
+    allow all;
+    auth_basic "Influencer Admin Authentication";
+    auth_basic_user_file "/usr/share/nginx/.htpasswd";
+
+}
+
+**** rails unicorn 自動起動
+***** 起動 script生成
+# uniqlo admin app server developでの例
+
+
+$ vim /var/rails/uniqlo/script/unicorn.sh
+
+----------------------------------------------------------------
+#!/bin/bash
+set -e
+
+TIMEOUT=${TIMEOUT-60}
+APP_ROOT="/var/rails/uniqlo/current"
+CONFIG="/var/rails/uniqlo/env"
+PID="$APP_ROOT/tmp/pids/unicorn.pid"
+#RAILS_ENV=production
+RAILS_ENV=development
+CMD="bundle exec unicorn_rails -D -c $CONFIG/config/unicorn/$RAILS_ENV.rb -E $RAILS_ENV"
+action="$1"
+set -u
+
+old_pid="$PID.oldbin"
+
+cd $APP_ROOT || exit 1
+
+sig () {
+    test -s "$PID" && kill -$1 `cat $PID`
+}
+
+oldsig () {
+    test -s $old_pid && kill -$1 `cat $old_pid`
+}
+
+case $action in
+start)
+    sig 0 && echo >&2 "Already running" && exit 0
+    $CMD
+    ;;
+stop)
+    sig QUIT && rm -f ${PID} && exit 0
+    echo >&2 "Not running"
+    ;;
+force-stop)
+    sig TERM && exit 0
+    echo >&2 "Not running"
+    ;;
+restart|reload)
+    sig HUP && echo reloaded OK && exit 0
+    echo >&2 "Couldn't reload, starting '$CMD' instead"
+    $CMD
+    ;;
+upgrade)
+    if sig USR2 && sleep 2 && sig 0 && oldsig QUIT
+    then
+        n=$TIMEOUT
+        while test -s $old_pid && test $n -ge 0
+        do
+            printf '.' && sleep 1 && n=$(( $n - 1 ))
+        done
+        echo
+
+        if test $n -lt 0 && test -s $old_pid
+        then
+            echo >&2 "$old_pid still exists after $TIMEOUT seconds"
+            exit 1
+        fi
+        exit 0
+    fi
+    echo >&2 "Couldn't upgrade, starting '$CMD' instead"
+    $CMD
+    ;;
+reopen-logs)
+    sig USR1
+    ;;
+*)
+    echo >&2 "Usage: $0 <start|stop|restart|upgrade|force-stop|reopen-logs>"
+    exit 1
+    ;;
+esac
+----------------------------------------------------------------
+
+***** $ vim /etc/rc.d/rc.local
+# 追記
+----------------------------------------------------------------
+su -c "bash /var/rails/uniqlo/script/unicorn.sh start" - mruby
+----------------------------------------------------------------
+
+# ----------------------------------------------------------------
+# su -c "[script path]"- [実行ユーザ]
+# ----------------------------------------------------------------
+
+
+*** 言語, 文言変更
+./config/locate
+
+文言変更依頼は、沼沢で対応。
+(実施不可の時は要相談だな)
+
+*** basic認証
+# nginx側でのbasic認証では、複数回認証を求められるケースがあるため
+# rails側のbasic認証を用いる
+
+- setting file
+  ./config/setting.yml
+
+- 無効化する場合
+  ./app/controller/influencer_profiles_controller.rb
+
+** Keywords
+# 当projectに関わる単語群
+
+tagboard
+
+twitter
+instagram
+facebook
+token
+
+*** SNS token
+Twitter
+----------------------------------------------------------------
+    メールアドレスの認証が必要
+    綾部 さま
+
+    いつもお世話になっております。
+    Ruby開発の柴田です。
+
+    SNSのアクセストークン作成時の必要情報を調べました。
+    すいません。情報をExcelなどにまとめる時間がございませんでした。
+
+    以下の情報で、
+    Twitterの「Callback URL」以外は、
+    全て必要となります。
+
+    よろしくお願いいたします。
+-----------------------------------------
+【Twitter】
+  ※アカウントが必要です。
+     どのアカウント（ユニクロ／メンバーズ／弊社）を
+     使用するか相談させてください。
+
+  ・Name(必須)
+     アプリケーションの名称です。
+     他のアプリケーション名と重複しない名前が必要です。
+  ・Description(必須)
+     アプリケーションの概要です。
+  ・Website（必須)
+     ウェブサイトのトップページのURLアドレス。
+  ・Callback URL(任意）
+     ユーザーが認証(アプリ連携)作業をした後の、戻り先となるURLアドレス。
+     今回は不要です。
+
+-----------------------------------------
+【Instagram】
+  ※アカウントが必要です。
+     どのアカウント（ユニクロ／メンバーズ／弊社）を
+     使用するか相談させてください。
+
+  ・Application Name(必須)
+     アプリケーションの名称です。
+     他のアプリケーション名と重複しない名前が必要です。
+  ・Description(必須)
+     アプリケーションの概要です。
+  ・Website(必須)
+     ウェブサイトのトップページのURLアドレス。
+  ・OAuth redirect_uri(必須)
+     ユーザーが認証(アプリ連携)作業をした後の、戻り先となるURLアドレス。
+     今回は不要ですが、必須のため、ダミーのURLで結構です。
+
+-----------------------------------------
+【Facebook】
+  ※アカウントが必要です。
+     どのアカウント（ユニクロ／メンバーズ／弊社）を
+     使用するか相談させてください。
+
+  ・Display Name(必須)
+     アプリケーションの名称です。
+     他のアプリケーション名と重複しない名前が必要です。
+  ・カテゴリ(必須)
+     以下から、選択してください。
+      エンターテインメント/ゲーム/コミュニケーション/ショッピング/スポーツ
+      ナビゲーション/ニュース/ビジネス/ファイナンス/ファッション/フード・ドリンク
+      プロダクティビティ/プロモーション・コンテスト/ページ用アプリ/ユーティリティ
+      ライフスタイル/健康・フィットネス/写真/動画/地域/天気/教育/旅行/本
+      辞書・参考資料/音楽
+  ・サイトURL(必須)
+     ウェブサイトのトップページのURLアドレス。
+  ・モバイルサイトURL(必須)
+     モバイルサイトのトップページのURLアドレス。
+  ・App Domains(任意)
+    アプリケーションが動作するドメイン名を登録します。
+    Facebookページと連携する場合に必要なため、必要です。
+    通常は、上記のサイトURLのドメイン部分を記載します。
+-----------------------------------------
+以上です。
+
+** 保守
+- FRインフラチーム
+  infra@mail.fastretailing.com
+
+- NTT data中山様
+  nakayamatkb@nttdata.co.jp,
+
+- nnetworks 成田様
+  Ken Narita <narita@nnetworks.co.jp>,
+
+- uniqlo
+  konomi.hayashi@uniqlo.co.jp
+  kanako.ishimaru@uniqlo.co.jp
+
+* 00004_mynavi
+** flow
+*** [[file:gtd/todo.org::*%202015%2006%2016%20Tue%20mynavi][{2015-06-16 Tue} mynavi様との打ち合わせ内容]]
+** aws
+*** cloud formation
+ver 1
+https://s3-ap-northeast-1.amazonaws.com/dxlab-bastion-s3dxlabresources-194ordb1q7gr4/cloudformer.template
+
+
+** 利用機能/サービス
+えびスマート
+** 作業手順
+*** web serverのimage作成時
+// 起動中のinstances全てへ、deployできるか
+
+- image作成用　起動
+- 対象server内で設定変更
+- instance停止
+
+- image作成
+- scale 起動設定コピーし、amiだけ変更
+- scale groupの起動設定を変更
+
+* 00005_organic_style
+** Env
+*** 試験環境（stg環境）情報
+**** ベーシック認証
+ID: mana2ku
+PW: Ao2eichah9phahm7
+
+**** ユーザ画面
+https://stg.manatuku.com/
+id: mori@vcross.jp
+pw: morimori10
+
+**** 講師画面
+https://stg.manatuku.com/trainer/
+id: mori@visteam.jp
+pw: morimori10
+
+s-numasawa@ruby-dev.jp
+Toonai6eeyailohc
+
+**** 事務局画面
+https://stg.manatuku.com/organizer/
+id: admin@example.com
+pw: manatsuku777
+
+*** AWS
+**** root
+|-----+----------------------------|
+| URL | https://aws.amazon.com/jp/ |
+| ID  | otogakucom@gmail.com       |
+| PW  | organicstyle               |
+|-----+----------------------------|
+
+**** IAM
+https://signin.aws.amazon.com/oauth?SignatureVersion=4&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJMOATPLHVSJ563XQ&X-Amz-Date=2015-11-09T02%3A36%3A24.529Z&X-Amz-Signature=72eb85a35a6febd1776fbce86e2a5a61565ed40e998afdc671bafb26b28e5444&X-Amz-SignedHeaders=host&client_id=arn%3Aaws%3Aiam%3A%3A015428540659%3Auser%2Fhomepage&redirect_uri=https%3A%2F%2Fconsole.aws.amazon.com%2Fconsole%2Fhome%3Fstate%3DhashArgs%2523%26isauthcode%3Dtrue&response_type=code&state=hashArgs%23
+| ruby-dev    | oon1Eetaezohch8i |
+| Manatuku-s3 | zaesaiKaemieL3oo |
+**** SSL
+aws iam list-server-certificates --output text --query 'ServerCertificateMetadataList[].[ServerCertificateName]' | xargs -L 1 \
+aws iam get-server-certificate --output text --query 'ServerCertificate.[ServerCertificateMetadata.ServerCertificateName,CertificateBody]' --server-certificate-name
+
+***** CSR
+-----BEGIN CERTIFICATE REQUEST-----
+MIICqzCCAZMCAQAwZjELMAkGA1UEBhMCSlAxDjAMBgNVBAgMBVRva3lvMRQwEgYD
+VQQHDAtTdWdpbmFtaS1rdTEaMBgGA1UECgwRT3JnYW5pYyBTdHlsZSBDby4xFTAT
+BgNVBAMMDG1hbmF0dWt1LmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoC
+ggEBALE+Z3ifAw7dL/GLB0XdAA/+PZJkJhSeo5e7ctKW6mszk3yiz+pAvmOYMwye
+abyReyFc+NmQ/v7SVApRh9mH9Te5RBDASqj92yU8Eem2FIQPLLtefyIi9rrsNml7
+mUfd83yn3oSkttuMqD2SqFFmUoI06qsvcidfuGUycSY4nDDYAwVpLwglVEvGFlaT
+m65QOd5yBnPwZBJB8dj2CmooSC3F7ioP3c9HUFEHdAGWBdrd8QgYV0huf/iixg6H
+mH/G0J1g+sgHABfYsASxQOgmKKSiTgPlWLgBLmURTC0FZRvByHL0pYRM5YZdQmfd
+bv+PDywgBm4OBAPUj6JiQC/XdHsCAwEAAaAAMA0GCSqGSIb3DQEBBQUAA4IBAQB0
+Il/BZNmJ9THCSjFdIS0V4VCXC4nI1I1jZ/NCVz+aXkAWcghzUMaB50OMdQNA3Yx7
+x+BS/odkGspyZCB7VzsCQdRZJOQVfqcYjXO/3fk8+QlUMUVgm5VcpGAdAIJwaL90
+uviZqXdNG6aQoq9f0KSCLyQ34uaESe0oyOnJJFSJxGGvYh4c9LgLR8RmgPeMj/fI
+zMJQD6FvjLo21WBqFSIe95fIxhWaPsU/bFi6YFt5GZw+hkkO5flpxkeHiW7TMVYP
+7sJkco+Xu0i5gHIfVClrKt1pgsiX1u1NFcJdzpfizPCzXBoA4sSAmoXccyjI50Ef
+OplPZlcF6XV/lk0Dkh8p
+-----END CERTIFICATE REQUEST-----
+
+***** certification
+manatuku.com    -----BEGIN CERTIFICATE-----
+MIIEmzCCA4OgAwIBAgIDBZIuMA0GCSqGSIb3DQEBCwUAMEcxCzAJBgNVBAYTAlVT
+MRYwFAYDVQQKEw1HZW9UcnVzdCBJbmMuMSAwHgYDVQQDExdSYXBpZFNTTCBTSEEy
+NTYgQ0EgLSBHMzAeFw0xNTA3MDgyMjMyMjZaFw0xNjA3MDkwNTU1MzhaMIGQMRMw
+EQYDVQQLEwpHVDE3NDAzMzAzMTEwLwYDVQQLEyhTZWUgd3d3LnJhcGlkc3NsLmNv
+bS9yZXNvdXJjZXMvY3BzIChjKTE1MS8wLQYDVQQLEyZEb21haW4gQ29udHJvbCBW
+YWxpZGF0ZWQgLSBSYXBpZFNTTChSKTEVMBMGA1UEAxMMbWFuYXR1a3UuY29tMIIB
+IjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsT5neJ8DDt0v8YsHRd0AD/49
+kmQmFJ6jl7ty0pbqazOTfKLP6kC+Y5gzDJ5pvJF7IVz42ZD+/tJUClGH2Yf1N7lE
+EMBKqP3bJTwR6bYUhA8su15/IiL2uuw2aXuZR93zfKfehKS224yoPZKoUWZSgjTq
+qy9yJ1+4ZTJxJjicMNgDBWkvCCVUS8YWVpObrlA53nIGc/BkEkHx2PYKaihILcXu
+Kg/dz0dQUQd0AZYF2t3xCBhXSG5/+KLGDoeYf8bQnWD6yAcAF9iwBLFA6CYopKJO
+A+VYuAEuZRFMLQVlG8HIcvSlhEzlhl1CZ91u/48PLCAGbg4EA9SPomJAL9d0ewID
+AQABo4IBRDCCAUAwHwYDVR0jBBgwFoAUw5zz/NNGCDS7zkZ/oHxb8+IIy1kwVwYI
+KwYBBQUHAQEESzBJMB8GCCsGAQUFBzABhhNodHRwOi8vZ3Yuc3ltY2QuY29tMCYG
+CCsGAQUFBzAChhpodHRwOi8vZ3Yuc3ltY2IuY29tL2d2LmNydDAOBgNVHQ8BAf8E
+BAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMBcGA1UdEQQQMA6C
+DG1hbmF0dWt1LmNvbTArBgNVHR8EJDAiMCCgHqAchhpodHRwOi8vZ3Yuc3ltY2Iu
+Y29tL2d2LmNybDAMBgNVHRMBAf8EAjAAMEEGA1UdIAQ6MDgwNgYGZ4EMAQIBMCww
+KgYIKwYBBQUHAgEWHmh0dHBzOi8vd3d3LnJhcGlkc3NsLmNvbS9sZWdhbDANBgkq
+hkiG9w0BAQsFAAOCAQEAYws+AvTd2/jy51GA4xIQyW0jH2vADuuCw4QgpdrxUz/i
+h3+SWkf33m1rLEqyNR7jrqEu+cvNWwRclw7x44DvHaGpGTme5SV+RU2eU7334XID
+3X7VKHS8HXZ3zVqUvlRbII8r6AWaHBG39K0YytzxkuTtRTekkDuGPJb2t50pTnu5
+eRpWZ4Dnu9eiR/VCHhZ/i0Lrw6HlKFFA/Tfjvv8JgmIHfmK2/VotqYp4/aa68y7n
+WW90IgFwBGnIeErF9s9LWPlDC165AekrukbPz4A2yFX1KJ34m4Hv3T/0F1guqiOn
+uv8fK68vwcW0cu8+RxEHYVVCLmMK/FFlvbgMR2O4rw==
+-----END CERTIFICATE-----
+***** chain certification
+"CertificateChain":
+-----BEGIN CERTIFICATE-----
+MIIEJTCCAw2gAwIBAgIDAjp3MA0GCSqGSIb3DQEBCwUAMEIxCzAJBgNVBAYTAlVT\nMRYwFAYDVQQK
+Ew1HZW9UcnVzdCBJbmMuMRswGQYDVQQDExJHZW9UcnVzdCBHbG9i\nYWwgQ0EwHhcNMTQwODI5MjEzOTMyWhcNMjIwNTIwMjEzOTMyWjBHMQswCQYDVQQG\nEwJVUzEWMBQGA1UE
+ChMNR2VvVHJ1c3QgSW5jLjEgMB4GA1UEAxMXUmFwaWRTU0wg\nU0hBMjU2IENBIC0gRzMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCv\nVJvZWF0eLFbG1eh/9H0W
+A//Qi1rkjqfdVC7UBMBdmJyNkA+8EGVf2prWRHzAn7Xp\nSowLBkMEu/SW4ib2YQGRZjEiwzQ0Xz8/kS9EX9zHFLYDn4ZLDqP/oIACg8PTH2lS\n1p1kD8mD5xvEcKyU58Okaiy9
+uJ5p2L4KjxZjWmhxgHsw3hUEv8zTvz5IBVV6s9cQ\nDAP8m/0Ip4yM26eO8R5j3LMBL3+vV8M8SKeDaCGnL+enP/C1DPz1hNFTvA5yT2AM\nQriYrRmIV9cE7Ie/fodOoyH5U/02
+mEiN1vi7SPIpyGTRzFRIU4uvt2UevykzKdkp\nYEj4/5G8V1jlNS67abZZAgMBAAGjggEdMIIBGTAfBgNVHSMEGDAWgBTAephojYn7\nqwVkDBF9qn1luMrMTjAdBgNVHQ4EFgQU
+w5zz/NNGCDS7zkZ/oHxb8+IIy1kwEgYD\nVR0TAQH/BAgwBgEB/wIBADAOBgNVHQ8BAf8EBAMCAQYwNQYDVR0fBC4wLDAqoCig\nJoYkaHR0cDovL2cuc3ltY2IuY29tL2NybHMv
+Z3RnbG9iYWwuY3JsMC4GCCsGAQUF\nBwEBBCIwIDAeBggrBgEFBQcwAYYSaHR0cDovL2cuc3ltY2QuY29tMEwGA1UdIARF\nMEMwQQYKYIZIAYb4RQEHNjAzMDEGCCsGAQUFBwIB
+FiVodHRwOi8vd3d3Lmdlb3Ry\ndXN0LmNvbS9yZXNvdXJjZXMvY3BzMA0GCSqGSIb3DQEBCwUAA4IBAQCjWB7GQzKs\nrC+TeLfqrlRARy1+eI1Q9vhmrNZPc9ZE768LzFvB9E+a
+j0l+YK/CJ8cW8fuTgZCp\nfO9vfm5FlBaEvexJ8cQO9K8EWYOHDyw7l8NaEpt7BDV7o5UzCHuTcSJCs6nZb0+B\nkvwHtnm8hEqddwnxxYny8LScVKoSew26T++TGezvfU5ho452
+nFnPjJSxhJf3GrkH\nuLLGTxN5279PURt/aQ1RKsHWFf83UTRlUfQevjhq7A6rvz17OQV79PP7GqHQyH5O\nZI3NjGFVkP46yl0lD/gdo0p0Vk8aVUBwdSWmMy66S6VdU5oNMOGN
+X2Esr8zvsJmh\ngP8L8mJMcCaY\n-----END CERTIFICATE-----
+
+-----BEGIN CERTIFICATE-----
+MIIDfTCCAuagAwIBAgIDErvmMA0GCSqGSIb3DQEBBQUAME4xCzAJ
+BgNVBAYTAlVT\nMRAwDgYDVQQKEwdFcXVpZmF4MS0wKwYDVQQLEyRFcXVpZmF4IFNlY3VyZSBDZXJ0\naWZpY2F0ZSBBdXRob3JpdHkwHhcNMDIwNTIxMDQwMDAwWhcNMTgwODIx
+MDQwMDAw\nWjBCMQswCQYDVQQGEwJVUzEWMBQGA1UEChMNR2VvVHJ1c3QgSW5jLjEbMBkGA1UE\nAxMSR2VvVHJ1c3QgR2xvYmFsIENBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+MIIB\nCgKCAQEA2swYYzD99BcjGlZ+W988bDjkcbd4kdS8odhM+KhDtgPpTSEHCIjaWC9m\nOSm9BXiLnTjoBbdqfnGk5sRgprDvgOSJKA+eJdbtg/OtppHHmMlCGDUUna2YRpIu
+\nT8rxh0PBFpVXLVDviS2Aelet8u5fa9IAjbkU+BQVNdnARqN7csiRv8lVK83Qlz6c\nJmTM386DGXHKTubU1XupGc1V3sjs0l44U+VcT4wt/lAjNvxm5suOpDkZALeVAjmR\nCw
+7+OC7RHQWa9k0+bw8HHa8sHo9gOeL6NlMTOdReJivbPagUvTLrGAMoUgRx5asz\nPeE4uwc2hGKceeoWMPRfwCvocWvk+QIDAQABo4HwMIHtMB8GA1UdIwQYMBaAFEjm\naPkr0r
+KV10fYIyAQTzOYkJ/UMB0GA1UdDgQWBBTAephojYn7qwVkDBF9qn1luMrM\nTjAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIBBjA6BgNVHR8EMzAxMC+g\nLaArhilodH
+RwOi8vY3JsLmdlb3RydXN0LmNvbS9jcmxzL3NlY3VyZWNhLmNybDBO\nBgNVHSAERzBFMEMGBFUdIAAwOzA5BggrBgEFBQcCARYtaHR0cHM6Ly93d3cuZ2Vv\ndHJ1c3QuY29tL3
+Jlc291cmNlcy9yZXBvc2l0b3J5MA0GCSqGSIb3DQEBBQUAA4GB\nAHbhEm5OSxYShjAGsoEIz/AIx8dxfmbuwu3UOx//8PDITtZDOLC5MH0Y0FWDomrL\nNhGc6Ehmo21/uBPUR/
+6LWlxz/K7ZGzIZOKuXNBSqltLroxwUCEm2u+WR74M26x1W\nb8ravHNjkOR/ez4iyz0H7V84dJzjA1BOoa+Y7mHyhD8S
+-----END CERTIFICATE-----
+** Flow : project
+# projectの仕様変更、打ち合わせによる状態変異など
+
+*** 初期情報 [2015-09-11 Fri]
+**** 動画配信部分が必要
+aws streamingを使う
+**** frontの見た目は作成済み
+**** メール認証が必要
+**** スマートフォン対応
+**** クーポン割引
+**** securityを所望
+**** 会員数
+4000人程度
+
+**** 負荷
+- 20人 / 1secに耐えられる (動画? http?)
+- site / 動画配信 serverは別
+
+**** 重要
+スマートフォン / メール認証の開発完了すれば公開可能w
+
+
+
+*** description
+**** 担当者
+
+** Flow : deploy, server setting
+# 固定化済み作業, など
+
+** Keywords
+# 当projectに関わる単語群
+
+*** 動画配信
+講師が自分で動画を投稿
+クーポンを発行
+
+*** amazon elastic transcoder
+
+*** 静的ページ
+s3
+aws console
+sub domain
+
+* 00006_finc
+** Env
+# 開発, server環境情報
+
+http://localhost:3000/operators/sign_inから
+id: 6,
+name: 'test産業医',
+email: 'test_industrial_physician@finc.co.jp',
+password: '19910124',
+roles: :industrial_physician
+
+
+*** git flow for ruby開発
+industrial_physician_console
+
+*** Account
+**** 管理者
+info@finc.co.jp : 19910124
+
+**** 事業者
+***** 法人担当者
+test_company@finc.co.jp : 19910124
+
+***** 医療従事者
+test_company_health@finc.co.jp : 19910124
+
+***** 人事担当者
+test_company_hr@finc.co.jp : 19910124
+
+***** ユーザー
+test_user1@finc.co.jp : koba0124
+test_user2@finc.co.jp : koba0124
+
+**** オペレーター
+***** 産業医
+test_industrial_physician@finc.co.jp : 19910124
+
+*** 基本情報
+**** 基本
+https://github.com/FiNCDeveloper/wellness_survey/wiki
+
+**** マスターデータの入手方法
+Dropboxで管理してます（2015/02現在）。プロジェクトの誰かに招待してもらって下さい。（2GBほどあるので注意）
+
+**** マスターデータのインポート方法
+***** GUIから
+以下からインポート、アップデートができます。ファイルを指定して、実行して下さい。
+
+local：http://localhost:3000/admins/logics/new
+production: https://wellness-survey.finc.co.jp/admins/logics/new
+
+***** CLIから
+bundle exec rake dev:master_data:import [FILEPATH=/path/to/master.xlsx]
+
+FILEPATHを指定しない場合は、lib/tasks/dev/master_data.rake内で指定された、db/xlsx/にあるmaster_dataを読み込みます。
+
+**** 2-2.issueの進め方
+issueの要件を自分で読んで理解する
+ビジネス、デザイン担当の人と一度は必ず対面で話して要件を確認する
+タスク分解
+
+    分解したタスクに見積もり時間を記入
+        見積もりは1day(7h)以上大きくしない。
+
+設計
+
+    table
+        必ずレビューを依頼する
+    その他の具体的な実装方法を検討
+
+実装開始
+(必要あれば気軽に)WIPでpullrequestを出す
+正式なpull requestをだす(WIP外す）
+review依頼をする(mention飛ばす)
+review修正
+マージ
+終了
+
+**** 2-3.Pull Requestについて
+ルートディレクトリにある.pr_message.txtのフォーマットに沿ってだす。
+
+[#issue-no][WIP] pull-request-message
+
+----------------------------------------------------------------
+## Issue
+https://github.com/FiNCDeveloper/wellness_survey/issues/issue-no
+## Review Point
+## QA List
+----------------------------------------------------------------
+
+**** 2-5.Wellness Survey コーディング規約
+***** css
+https://github.com/FiNCDeveloper/wellness_survey/wiki/Wellness-Survey-HTML-CSS-coding-rules
+
+***** i18n
+https://github.com/FiNCDeveloper/wellness_survey/wiki/%5BWIP%5D-Wellness-Survey-i18n-coding-rules
+
+***** ruby/rails(rubocop)
+整理中
+
+***** Rspec
+best practices
+https://github.com/FiNCDeveloper/wellness_survey/wiki/%5BWIP%5DRSpec%E8%A6%8F%E7%B4%84
+
+***** テーブル追加
+以下のissueに記録を残して、ビジネスサイドに共有する。
+https://github.com/FiNCDeveloper/wellness_survey/issues/1982
+
+変更の意図を残すこと、過不足なく伝えることが目的。
+
+***** その他前提・意識項目
+
+    CSSの書き方はCSSruleに従う
+    ruby/railsの書き方はrubocopに従う
+    specの書き方はspec規約に従う
+    文言はviewに直接書かず、i18nを使う
+    命名は妥協しない。決まらなければチームで知恵を絞る。
+    railsのレールに基本的に乗る。独自ルールは慎重に相談して作る。
+    railsではMVCの他に、decorator, service, view modelを適切に用いる
+    マジックナンバーを避ける。rails_configを使うor適切なクラスの定数にする
+    見通しの良いコードをかく。メソッドは小さく、意味ある分割、命名をする。DRYに。
+    インデントの設定はspace x2. space x4はNG.
+
+**** 3-1.ローカル環境構築
+- README のConfigurationを行う。
+- 上記で環境構築後、
+- rake mock:setup_all
+  をすると、mockデータが生成され、アンケート回答結果なども全て見れる状態になる。
+**** debug / 開発FAQ
+https://github.com/FiNCDeveloper/wellness_survey/wiki/%E9%96%8B%E7%99%BAFAQ
+
+*** css
+- cssはapp/assets/stylesheets/v2/moduleにmoduleを使う形で基本書きます。
+  jsはrailsのデフォルトと同じで、対応するresouceのjs (resurce.js.coffee)に書いてもらえばOKです。	(edited)
+
+- moduleに_counseling.sassのようなファイルを追加してスタイルを適用すればよろしいでしょうか？
+  ----------------
+  OKです！moduleは１コンポーネントにつき、1fileでお願いします。どうしても再利用性のないものは1つのページにつき1つのmoduleにしてもらえばと思います。
+  今回の一覧だと既存コンポーネント(module/_select_formとbootstrapのtable--default)を使うことになるかと思います！
+  はい、けっこう独特かと思うのでwiki を読んでもらう、
+  CSSのSMACSSってフレームワークを調べてもらうっていう、
+  とりあえずこちらに聞いてみる、をしてもらえるといいと思います。
+
+
+** Flow : project
+# projectの仕様変更、打ち合わせによる状態変異など
+
+**** description
+***** 担当者
+
+** Flow : deploy, server setting
+# 固定化済み作業, など
+
+** Keywords
+# 当projectに関わる単語群
+
+tagboard
+
+
+** wellness いろいろ
+*** acc
+**** admin
+info@finc.co.jp
+19910124
+
+**** 産業医
+test_industrial_physician@finc.co.jp
+19910124
+a1234567
+
+*** setup
+`$ git clone git@github.com:FiNCDeveloper/wellness_survey.git`
+`$ cd wellness_survey`
+`$ vagrant up`
+`$ vagrant ssh`
+`$ cd /vagrant`
+`$ bundle install -j4
+`$ bundle exec rake db:setup`
+`$ bundle exec rake db:seed_fu`
+`$ bundle exec rails s -b 0.0.0.0`
+
+$ git clone git@github.com:FiNCDeveloper/wellness_survey.git`
+$ cd wellness_survey`
+$ vagrant up`
+$ vagrant ssh`
+$ cd /vagrant`
+$ bundle install -j4
+$ bundle exec rake db:setup
+$ bundle exec rake mock:setup_all
+
+rails generate migration AddDetailsToStressCheckCounselingReport
+
+bundle exec rake db:drop
+bundle exec rake db:setup
+bundle exec rake db:migrate
+bundle exec rake mock:setup_all
+bundle exec rake mock:generate_counselings
+bundle exec rake mock:generate_category_for_stress_check_counseling_reports
+bundle exec rake mock:generate_counseling_hearing
+
+9. `$ bundle exec rails s -b 0.0.0.0`
+
+*** todos
+**** 意見書
+***** Done route
+CLOSED: [2015-12-01 Tue 16:25]
+
+***** 意見書 : 編集 (new)
+****** [100%] 見た目から
+****** [100%] 保存実装
+- [X] user_idが保存できない
+- [X] counseling_idが保存できない
+- [X] survey_idが保存できない
+- [ ] 全部check - rspecでやるか?
+
+****** [100%] css修正
+- sass化
+- アルファベット順序に並べる
+
+****** [100%] 既存データ埋め込み
+- [X] servey_id 埋め込み
+- [X] counseling_ie 埋め込み
+- [X] user_id 埋め込み
+
+- [X] 対象者氏名
+- [X] 社員番号
+- [X] 所属
+- [X] 性別
+- [X] 年齢 = 確認が必要
+- [X] ストレス反応の程度の評価（点数 / 項目数）
+- [X] ストレスチェックを実施する直前1ヶ月の労働時間（時間外・休日労働時間を含む）
+
+- [X] 医師の所属先
+- [X] 面談実施年月日
+  Counseling.decorate.counseling_date
+
+- [X] 医師氏名
+  Counseling.operator.name
+
+****** [85%] DB作成
+  - [X] 不明点確認
+  - [X] schema
+  - [X] model
+    - [X] validate (文字列制限 : データ待ち)
+    - [X] validate presence
+
+  - [X] validation column名修正
+  - [ ] 他に必要な事は?
+  - [X] 事前ヒアリングを紐付ける : CounselingHearing
+  - [X] CounselingHearingからのデータのとり方
+        自分でとりあえずデータを入れるか
+        ただしデータの関連がわからん
+
+****** [100%] UI 右列
+- [X] やり方が解らない、なにかパクろう -> admin/personal_data が使えそう
+- [X] 面談者情報 読み込みのみ
+- [X] 面談メモ 読み込みのみ
+
+****** [100%] UI左列
+- [X] 既存データの埋め込み
+      必要なデータの作成
+- [X] text_filed
+- [X] text_area
+- [X] drop down 実装
+
+- [X] gender : checkedにする方法。decoratorかな?
+               User.find(2).personal_information.gender
+
+- [X] 最下部に、プレビュー / 保存 / 編集を表示
+  - [X] 送信 -> どこかに提出?(提出しました画面) - 後で
+  - [X] 保存 -> 保存 -> 面談詳細個人メモへ戻る
+
+****** [100%] UI上
+- [X] 日付表示
+- [X] 表示ボタン
+- [X] 提出済みの場合には、ボタン削除
+
+****** [100%] bread
+- [X] edit : HOME > 面談一覧 > 個人詳細・面談メモ > 意見書編集
+- [X] show : HOME > 面談一覧 > 個人詳細・面談メモ > 意見書詳細
+- [X] new  : HOME > 面談一覧 > 個人詳細・面談メモ > 意見書編集
+
+****** Done Validation 文字数
+CLOSED: [2015-12-02 Wed 17:55]
+- 既定で 12 pts (見易さ優先でもっと大きくても結構です）最小10 ptsまで調整
+- 最大文字数は次でお願いします。
+
+| 110 | その他のストレス要因となる勤務状況                                              |
+| 163 | 特記事項 ※ストレスの程度の評価や医師判定の背景として特記すべき事項があれば記入 |
+| 130 | 調査内容の特記事項                                                              |
+| 150 | その他の事項                                                                    |
+| 490 | 詳細内容                                                                        |
+| 240 | 職場環境の改善に関する意見                                                      |
+| 240 | 上司からのサポートに関する意見                                                  |
+| 240 | 医療機関への受診配慮等                                                          |
+| 240 | その他（連絡事項など）                                                          |
+
+***** 意見書 : 詳細 (show)
+- [ ] 編集を流用
+- [ ] slimの一部がコメントアウトしている。データ取得箇所確認後、訂正
+
+- [ ] 送信 : 以下、確認時の文言
+      送信前の確認文言：送信してもよろしいでしょうか。送信すると企業へ送信され、取り消すことはできません。内容をよくご確認いただき、送信してください。
+
+
+****** 意見書送信時の必須項目
+以下の必須項目を参照せよとのこと
+基本、null許可していないものが入っていれば良いと思われる。
+が、再確認せよ
+
+https://docs.google.com/spreadsheets/d/1iRUEfS4SBiLendIaqg4E-pNQOGXbUEL8scbknTcCc6g/edit#gid=1525121193&vpid=A1
+
+***** 疑問
+****** Done 編集画面と詳細画面の違い
+CLOSED: [2015-11-25 Wed 15:52]
+show = 詳細
+edit = 編集
+
+****** Done ストレス反応の程度の評価（点数 / 項目数）
+CLOSED: [2015-11-25 Wed 15:52]
+構造が分からない
+[項目数]の種類が複数あり、[項目数]ごとに点数が付く?
+
+項目選択 + 点数入力部
+項目選択で一つ
+点数入力部はひとつ
+
+****** Done 1カウンセリングに、複数の意見書を提出可能か?
+CLOSED: [2015-11-25 Wed 15:52]
+- 1counseling = 1意見書
+- 日付選択はなくなる
+
+****** Done ストレスチェックを実施する直前1ヶ月の労働時間（時間外・休日労働時間を含む）
+CLOSED: [2015-11-26 Thu 20:19]
+上記がUI上には表示されていない、不要か?
+fincさんに確認 => 必要
+
+[ CounselingHearing.working_hour ]
+float
+
+****** Done その他のストレス要因となる勤務状況
+基本情報となっているが、何処の情報を参照か?
+fincさんに確認
+
+[ CounselingHearing.stressor ]
+text
+
+****** new / edit
+****** test dataがない
+CLOSED: [2015-11-26 Thu 20:19]
+ストレスチェックを実施する直前1ヶ月の労働時間（時間外・休日労働時間を含む）
+その他のストレス要因となる勤務状況
+
+Finc様に依頼？
+
+****** 社員番号はどこから?
+****** 部署と課はどこから?
+****** ストレス反応の程度の評価（点数 / 項目数）
+及び、点数はどこから?
+
+****** Done 医師の所属先どこから
+CLOSED: [2015-12-10 Thu 09:33]
+****** Done 面談実施年月日どこから
+CLOSED: [2015-12-10 Thu 09:33]
+恐らく
+Counseling.start_at
+
+****** Done 医師氏名どこから
+CLOSED: [2015-12-10 Thu 09:33]
+恐らく
+Counseling.operator.name
+
+****** Done 氏名と社員番号は同一 text_filedに表示するのか?
+CLOSED: [2015-12-10 Thu 09:33]
+****** 既存データ部は、表示のみであり保存は不要と推測。左記考えでよいか?
+****** 年齢は、personal_infomationのbirthdayから算出している。左記処理 でよいか?
+****** デザインが崩れる
+<div filed_with_error>が混入し、デザインが崩れる
+****** validateのエラー表示
+<div filed_with_error>がつくが
+赤く強調されない。
+
+メッセージが表示されない
+****** survey_idが存在しないパターンはあるか?
+また、意見書登録前後で、survey_idの有無が変化することはあるか?
+****** Done 意見書 : is_reported以外、なにか対応が必要か?
+CLOSED: [2015-12-02 Wed 17:07]
+
+不要
+
+確定して送信した時、編集できなくする以外にメールを送るなどすることはあるか？
+（宮崎）
+ //　はい。あります。ただし管理コンソール内での作業ではなく、クライアントPCのメーラーでの対応を想定しています。（FiNC対応不要）
+****** Done 文字数制限
+- 既定で 12 pts (見易さ優先でもっと大きくても結構です）最小10 ptsまで調整
+- 最大文字数は次でお願いします。
+
+| 110 | その他のストレス要因となる勤務状況                                              |
+| 163 | 特記事項 ※ストレスの程度の評価や医師判定の背景として特記すべき事項があれば記入 |
+| 130 | 調査内容の特記事項                                                              |
+| 150 | その他の事項                                                                    |
+| 490 | その他の詳細                                                                    |
+| 240 | 職場環境の改善に関する意見                                                      |
+| 240 | 上司からのサポートに関する意見                                                  |
+| 240 | 医療機関への受診配慮等                                                          |
+| 240 | その他（連絡事項など）                                                          |
+
+****** Done 意見書送信時の必須項目
+CLOSED: [2015-12-02 Wed 17:15]
+以下の必須項目を参照せよとのこと
+https://docs.google.com/spreadsheets/d/1iRUEfS4SBiLendIaqg4E-pNQOGXbUEL8scbknTcCc6g/edit#gid=1525121193&vpid=A1
+
+***** メモ
+****** counselingsモデルにsurvey_idを追加しました。
+
+counselingから参考とするストレスチェック結果を取るときにつかったり、
+counselingと対応させる意見書を取るときに必要になります。
+https://github.com/FiNCDeveloper/wellness_survey/pull/3397
+
+一応メモ程度ですが、経緯を書きました。わからなければ聞いていただければと思います。
+https://github.com/FiNCDeveloper/wellness_survey/issues/3394
+***** Done select box list
+CLOSED: [2015-11-30 Mon 21:34]
+****** ストレス反応の程度の評価（点数 / 項目数）
+CLOSED: [2015-11-27 Fri 16:49]
+- Result of stress check up （Score/Section)
+- CategoryResultOfStressCheckUp （Score/Section)
+- category_result_of_stress_check_up
+- 57項目
+  23項目
+  その他
+
+****** ストレス反応について
+- stress reaction
+- CategoryStressReaction
+- category_stress_reaction
+
+- 医療措置不要
+  再面接を要す（時期)
+  現病治療継続
+  環境等の調整を要す
+  医療機関紹介
+
+****** ストレスと業務の関連性
+- Relevance between stress and job
+- CategoryRelevanceBetweenStressAndJob
+- category_relevance_between_stress_and_job
+
+- ほぼなし
+  関連を疑う
+  強く疑われる
+  不明
+
+****** 就業区分
+- Job category
+- CategoryJob
+- category_job
+- 通常勤務
+  就業制限・配慮
+  要休業
+
+****** 主要措置項目
+- adjustment for health at working enviroment
+- CategoryAdjustmentForHealthAtWorkingEnviroment
+- category_adjustment_for_health_at_working_enviroment
+- 労働時間の短縮
+  出張の制限
+  時間外労働の禁止又は制限
+  深夜業の回数の減少
+  昼間勤務への転換
+  作業の転換
+  業務負担の軽減
+  就業場所の変更
+  就業の禁止（休暇・休業の指示）
+  その他
+
+**** 個人詳細
+一時PR済み
+
+***** todos
+****** [-] デザイン修正
+  - [X] 面談場所を右列上へ
+  - [X] 面談場所の文言変更
+  - [X] 面談先住所を、skype IDのみへ
+  - [X] skype ID表示、なければ非表示
+  - [ ] drop down画像
+        対象画像がない
+
+  - [X] counseling.sassへまとめる
+
+  - [X] 事前ヒアリング結果とストレスチェック結果が項目が非常に長くなるため、デフォルトでは隠しておきたいです
+
+****** [X] 文言
+- [X] 意見書が未提出であれば、意見書作成へ
+- [X] 意見書が提出済みであれば、意見書詳細へ
+      文言不明
+
+****** Done 提出状態の判断はどうやるのが一般的?
+CLOSED: [2015-12-02 Wed 10:06]
+is_reportedから
+
+****** Done 色指定どうやる?
+CLOSED: [2015-12-02 Wed 10:05]
+$red_color: #ff6b6b
+is_reportedを参照
+decorator?
+
+****** Skype
+とりあえず、user_idを元にskype_idを引っ張って来て埋め込み
+
+
+[12] pry(main)> SkypeAccount.column_names
+=> ["id", "user_id", "skype_id", "created_at", "updated_at"]
+
+has_one
+
+***** 疑問
+****** 面談方法・場所 : web面談意外は住所表示?
+- 個人詳細で表示する面談場所
+  counseling modelのcounseling_placeとなります。
+  relationの追加を、先ほどfeature/industrial_phycisian_consoleブランチにコミットしたばかりなので、
+  実装は後回しでも良いです。
+  web面談か否かも判定可能
+
+- 面談場所表示は、佐藤さんの用意したmethodで
+
+****** Done 「Skypeを起動する」ボタンについては清水さんに確認中です。
+CLOSED: [2015-12-09 Wed 22:07]
+こちにskype_idは保存しますので参照していただければと思います。
+masterに入っていますので、取り込みお願いしたいです。
+またcouselingsにsurvey_idを追加したので、こちらも共有致します。
+counselingから、意見書をつくる場合、user_id, survey_idがひつようになるのでその際に使うと思います。
+
+has_oneです
+----------------------------------------------------------------
+create_table "skype_accounts", force: :cascade do |t|
+t.integer  "user_id",    limit: 4
+t.string   "skype_id",   limit: 255
+t.datetime "created_at",             null: false
+t.datetime "updated_at",             null: false
+end
+----------------------------------------------------------------
+
+****** Done [X] 意見書が提出されている場合は?
+CLOSED: [2015-12-09 Wed 22:07]
+is_reported
+
+****** Done [ ] 意見書のidをどこに保存する?
+CLOSED: [2015-12-09 Wed 22:07]
+1cousenling = 1意見書
+とするなら、意見書側にcounseling_idを持たせ、検索すればよいか
+
+***** 補足
+****** 上部の個人情報のパネルのviewは、既存のクラスでほぼ実装可能です。
+/companies/surveys/survey_employees/basic_information_panel.himl.slimを参考にしていただければと思います。
+**** 確認
+***** Done メンションの返信状態
+CLOSED: [2015-12-04 Fri 14:24]
+***** Done PR更新
+CLOSED: [2015-12-04 Fri 14:24]
+
+**** data生成
+desc "setup category data for stress check counseling reports"
+本番環境でも必要なデータなのでこのタスクは削除してbundle exec rake seed_fuでidが固定で同じデータが作成されるようにして下さい。
+db/fixtures/job_types.rbなどのファイルを参考にseedファイルを追加して下さい。
+
+**** [2015-12-09 Wed]
+***** 仕様再確認
+****** 確認点
+- データ取得元の確認
+    - [Done] 社員番号
+    - [ ] 部署と課
+    - [Done ] ストレス反応の程度の評価（点数 / 項目数） 及び、点数
+    - [Done] 医師の所属先
+    - [Done] 面談実施年月日
+        Counseling.start_at
+    - [Done] 医師氏名
+        Counseling.operator.name
+- [Done] 氏名と社員番号は同一 text_filedに表示するのか
+    表示する。SSから確認
+- [Done]  年齢は、personal_infomation.birthdayから算出している。左記処理 でよいか?
+
+****** Done 社員番号
+CLOSED: [2015-12-09 Wed 16:59]
+survey_employee.employee_unique_identification_key
+
+Post
+.includes(:blog, :user)
+.where(Blog.arel_table[:enable].eq(true)
+.or(User.arel_table[:enable].eq(true))
+
+Counseling.includes(:survey_employee)
+SurveyEmployee.find_by(user_id: 1, survey_id: 1)
+
+****** 部 / 課
+"部”については、既定情報（部署）を参照してください
+"課”については、未入力として必要に応じ記入する欄としてください。 (null を許可）
+
+以下参考：
+Organization/Department > 部　
+Organization/Division　>　課
+
+項目および、入力必須・任意の指示について、意見書項目のシートにも反映済みです。
+https://docs.google.com/spreadsheets/d/1iRUEfS4SBiLendIaqg4E-pNQOGXbUEL8scbknTcCc6g/edit#gid=1525121193&vpid=A1
+
+see #2909 (comment)
+
+surveyに紐づく、事業場が部
+
+- find_byでもok
+    一応、他にも手はあるよと
+
+
+******* 再確認
+- 部
+    - 何れのmodelを参照すればよろしいでしょうか?
+    - division modelが存在するが、左記か?
+      当該modelであれば(データ取得に際し手間がかかる場合)、データ構造をお教え頂けるか。
+      もしくは、部を取得できるmethodなどあるか?
+
+- 課
+    - 意見書のテーブルにもたせる
+
+******* 予定
+
+****** Done 57項目 / 23項目 / その他
+CLOSED: [2015-12-09 Wed 17:42]
+- [ ] ストレス反応の程度の評価（点数 / 項目数） 及び、点数
+    - 回答：「57項目 / 23項目 / その他」がなんなのか確認中  @Akikomi
+
+- model
+    - SummarizedStressCheckScore
+
+- 項目表示
+    - 結論として、23項目やその他を選択不可にしてもらえますか？
+    - 23項目は 57項目から質問を精査した、さらに簡易なストレスチェック（厚労省既定）です。
+      例えばサービスによっては選択可能なように検討していましたが、今はReadyではないので、 57項目のみでＯＫとしたく。
+
+- dataの取り方
+    - user_id, survery_idでanswerer
+
+- 以下3点の合計がstress check score
+    - modification_factor_score
+    - stress_factor_score
+    - stress_response_score
+
+****** Done 医師の所属先
+CLOSED: [2015-12-09 Wed 17:55]
+- 回答
+    ここは複数あるがどれを出すか?全部か？ @Akikomi
+    はい。全部でお願いします。
+
+- model
+    IndustrialPhysicianWorkPlace
+    紐づく者を全部出力。
+    それほど多くの情報は紐付かないとのこと
+
+****** Done 「全ての入力項目が入っていないと、送信できないようにしてください。」
+CLOSED: [2015-12-09 Wed 19:15]
+「全ての入力項目が入っていないと、送信できないようにしてください。」とあるが、null許可されている項目も含め全てか?
+入力と送信でチェック内容が異なるのか?
+
+[akikomi] null 許可されていないものに対して、送信時にvalidationをかけてください。
+null 許可されているものは入力していなくても送信し問題ありません。
+
+******* 再確認
+承知致しました
+
+****** Done birth day
+CLOSED: [2015-12-09 Wed 19:51]
+personal_information.age
+
+***** Done UI調整
+CLOSED: [2015-12-09 Wed 20:18]
+既存部分は、テキストのみ表示
+
+***** Done model修正
+CLOSED: [2015-12-09 Wed 21:17]
+- 措置期間
+    - stringへ
+
+***** Done counseling_hearing
+CLOSED: [2015-12-09 Wed 21:12]
+- decorator 調整
+    counseling_hearingが、counseling_id, user_idをもっている
+
+- データ取得方法
+    user_id, counseling_idでもってくるのかな?
+    確認が必要だな
+
+***** Done checkbox
+CLOSED: [2015-12-09 Wed 20:42]
+id揃ええる
+
+*** 色々
+**** カウンセリング
+http://localhost:3050/operators/counselings
+
+**** role | ./config/setting.rb
+***** 判定
+if user_signed_in?
+if company_admin_signed_in?
+elsif current_operator.try(:consulation_center_role?)
+elsif current_operator.has_role?(:industrial_physician)
+
+***** roles
+operator:
+  roles: [
+      'almighty_operator',
+      'internal_test_operator',
+      'external_test_operator',
+      'consulation_center_admin',
+      'consulation_center_representative',
+      'industrial_physician'
+  ]
+  consulation_center_admin_role: 'consulation_center_admin'
+  consulation_center_representative_role: 'consulation_center_representative'
+
+  roles_mask:
+    almighty_operator: 1
+    internal_test_operator: 2
+    external_test_operator: 4
+    consulation_center_admin: 8
+    consulation_center_representative: 16
+    industrial_physician: 32
+***
+***
+
+**** sidebar初期読み込み
+- controller/counselings/
+  ----------------------------------------------------------------
+  layout 'v2/operators/industrial_physician'
+  ----------------------------------------------------------------
+
+    - ~/program/shared/wellness/app/views/layouts/v2/operators/industrial_physician.html.slim
+        - ~/program/shared/wellness/app/views/layouts/v2/partials/_sidebar.html.slim
+
+**** company/sidebar
+    ~/program/shared/wellness/app/views/layouts/v2/partials/sidebar/_company.html.slim
+
+**** i18n
+~/program/shared/wellness/config/locales/views/common/ja.yml
+
+**** path list
+
+*** model
+rails generate migration クラス名 カラム名:データ型( カラム名:データ型)
+rails generate migration News status:int
+
+*** form
+= form_for @counseling, url: save_note_operators_counseling_path(@counseling) do |f|
+  = f.text_area :note
+  = f.submit '保存', class: 'btn btn-primary pull-right'
+
+*** db migrate
+add_column :stress_check_counseling_reports,  :category_stress_reaction_id, :integer, null: false
+add_column :stress_check_counseling_reports,  :category_relevance_between_stress_and_job_id, :integer, null: false
+add_column :stress_check_counseling_reports,  :category_job_id, :integer, null: false
+add_column :stress_check_counseling_reports,  :category_adjustment_for_health_at_working_enviroment_id, :integer, null: false
+
+rename :stress_check_counseling_reports,  :integererviewee, :interviewee
+
+* 00007_business_bank
+** Env
+# 開発, server環境情報
+
+*** account
+**** staging
+https://staging.all-in.xyz/
+
+s-numasawa@ruby-dev.jp
+s-numasawa@ruby-dev.jp
+
+**** atlassian
+s-numasawa@ruby-dev.jp
+Aingoh0quae6taoja
+
+**** Crucible
+s-numasawa
+いつもの
+
+** Flow : project
+# projectの仕様変更、打ち合わせによる状態変異など
+
+*** [2016-02-08 Mon] meating
+**** 分割統治
+青柳さんがフロント
+柴田さんがモデルを検討
+そこからAPIが決まってくる。
+APIが決まらないと、server sideも設計ができない (routingなど)
+
+**** 沼沢作業
+- test frame work, test runnerの調査
+- mongooseでmodel作って、テストを記述
+- modelについては以下
+https://git.ruby-dev.jp/business_bank_group/sns/issues/1
+
+*** 仮想環境開発 - allinでの参考資料
+https://bbank-devs.atlassian.net/wiki/pages/viewpage.action?pageId=22511659
+https://bbank-devs.atlassian.net/wiki/display/ALLIN/Directory+Structure+of+PLv2
+https://bbank-devs.atlassian.net/wiki/display/ALLIN/Instruction+for+Setup+PLv2+development+environment
+
+file構造など参考になりそう
+
+*** SNS / chat 開発指針
+- 期限
+  - 3月末までに基本的な部分の作成
+  - 肉付けは後々
+
+- node.js
+  - express
+  - websocket
+
+- mongodB
+  - 基本的な使い方
+
+- SNS
+  - feed : FBを参考に
+
+*** [2016-01-07 Thu]
+- 各自作業時間を作業報告書に記載
+    https://docs.google.com/spreadsheets/d/1RrwC0gKgBpC4gTamWYo06zmDFRxj4kp3kXAlHbR6vnI/edit#gid=1686012713
+
+- BBの作業工数の記入をお願いします（沼沢、佐藤）
+
+- BBのチケットに、記載出来ることがあれば調査結果の記入をお願いします（佐藤）
+    https://bbank-devs.atlassian.net/browse/RUBYDEV-22
+
+- icalサーバを進めて良いか確認
+    小針さんに確認する。
+
+- スプリントの開始は誰がしてくれるのか？
+    柴田に権限を渡す
+    ポイントもつけられるように設定を変更してくれる。
+
+- コードレビューはどうするか？現在、GitHubのPRでは行っていない
+    crucibleで行う。アカウントを追加してもらえる　。
+
+- Circle CIでfailしている内容を表示できない。ローカルで全specを実行するとものすごく時間がかかるので、Circle CIで確認したい。
+    GitHubアカウントでCircleCIのアカウントを作成すれば、れそのまま連携可能
+    柴田の方で Circle CI のfailが見れることを確認
+
+- コミットメッセージのルール。’ALLIN-xxxx’のようなルールだが、Ruby開発の場合は’RUBYDEV-xxxx’のようにして良いか？
+    良い。
+    コミットメッセージは端的に英語で記載
+    PR時のコメントは不要
+
+- チャット的な連絡手段を用意してもらえないか？
+    今週中に用意する。
+
+*** description
+**** 担当者
+
+** Flow : deploy, server setting
+# 固定化済み作業, など
+
+** Keywords
+# 当projectに関わる単語群
+
+- mongodb
+- nodejs
+
+- gridFS
+
+** memo
+*** etc
+If you don't setup ALLIN standard Vagrant VM yet, you should setup it. Please refer to Setup Vagrant VM for development.
+Change directory to cloned ALLIN repository's root directory.
+Execute 'hooks/install' to apply custom git hooks. For more detail, please refer Custom Git Hooks.
+Execute 'cp config/database.yml.sample config/database.yml'.
+Execute 'cp config/secrets.yml.sample config/secrets.yml'.
+Execute 'cp config/email.yml.sample config/email.yml'. Note that database.yml, secrets.yml and email.yml contain sensitive data (e.g. password), so we should not commit them to the allin repository.
+Execute 'bundle install --path vendor/bundle' to install gems.
+Execute 'bin/rake bower:install' to install frontend libraries via Bower.
+Execute 'bin/rake db:setup' to create database, create tables and load master data.
+Execute 'bin/rake db:seed:init' to load account data.
+Execute 'RAILS_ENV=test bin/rake db:setup' to create test database, create tables and load master data.
+Execute 'bundle exec rspec' to run all specs.
+Execute 'bin/rails s -b 0.0.0.0' to start development server.
+Access http://localhost:13000/#/login to login ALLIN is running on Vagrant VM.
+
+* biglobe 法人
+03-6479-5695
+10-12 / 13-17
+
+id : mtf47586
+passwrd : f7nb2y2z
+
+* ruby-dev.jp
+** SSL証明書
+*** keyのpassword
+rubyrails20150807
+
+// 復号化時に利用
+$ openssl rsa -in 20150807_ruby_dev.pem -out server.key
+> pass
+*** private key - 復号化済み
+-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAuwHtKHXXdZAvg/CKCbAzd6cWtOcIhrJyua6wjN2ZFjLKOj4G
+9zxJQPyWmYgDmZY6fJ85ACPmWkEkApPA5tKdXMvT6FCL5e0CuZajERSa3qazAyKh
+VucIOmj4fo8aFzhpZmNrREtlKYkqctfynCPOja7E5c2z8erFGH6dfQttJPhbpGI6
+yGOVcnZ3SUyJoZbi10pQmEb0L+TO7KQnffdDv93Si5DEK+9Jtj+PGBDaxbT/Tjlm
+yXvGCN2SUiZ/Qi8rz9v3y9Q7dsyMX+MPtwJLiOHVQN8O0FzF6jv+Ifu3eef1aAd/
+Lw9ec2+HqL/UDGJG2t6JJWZidQa8+QJPbxO1/wIDAQABAoIBAFl0CXKiM+dLij8N
+r6oEvAnPRmBQZ1avQ4uokVFAqvrgXrXPd9uJ3eyVJqDYXAh6wQ1dyJFVmtmvcT8+
+WDbRpm5+HaZx6QmZ/wSxlt0TwyUgDl9AkHaWWuw9zCgV4cAbvuc4RVZMzl44+7Il
+tCqWQjap1AutAxeEWrVl04W+En5s8O6WeccCJf+8lvsKEvCL95pEohPkzL6CcLUE
+rC9+bu1rinIREGrpEb0iWnJVsVdQ6u4OnpS+PNgwm+UrJMbNvd1XO9DdP+4nFha0
+exU34NBRB8173B7YjPA/WCrRn+I0cFlQvqqA4ghDsBJnhzWneG9wUBA5WwQvPIRP
+3T6N2LkCgYEA6mgZEfIpq7DRpC23/Qx1MdN2cEeocQnuFIeX7UfdzaoNTTCxQDu9
+PmEc44TKZppzxAOZGs1j9/1vgHgwRmoFnx/EReR5dSZ2gVfbKgDePxFLjHzbhvtP
+MQAO1VlKKeE+XylnrYtjTwI31koCiibJc6RJg1p2RiwGbyDmP+BHuD0CgYEAzDwJ
+l2TjnQdFiVA+QgEfC18KmDpqnpeV90Lk1ym5BA34olC11N1koM3Brzx8BKCyrn/d
+ZhSqlhQjt2e5ulGc6DJj+TWmoatKUp4L0ZvjFCZeNNo6eb1qL/d6Cj/dFL0v2ZF1
+84jwnFCg+dwsp0AlSCDg7DZHPbquCGMDKnY3TusCgYAaz51OeCxb/vV7md8Zins9
+H7rETO3vP/uDTZ8K/NVZ2MF8ur0LY8nZgLIVM/MSmUf0e5Tfg+6TRuGiCB09cJME
+CFYiyGc8BxI26R2gSEkjXY8Omplhbw03xZHsxTG+aI0BxXKeXvsU5mQMlpqDwrv4
+BiqCY65ziEWUIGc1lymc4QKBgE8+uGYC4oJqcOO/u/h2YOpTnVPFztrsbGb9kLef
+28cj+KZadMM8iDAQxidNa72L8OjeejSCrlH/TIB8gcc2pZA/BSWMWLSANx1pb6KM
+PwbxgDo3ttrH0Sz9dGAHuauzYJ6l30N4jgvJCT0J3lWjARRElaFxyiC8j4x3hqHy
+LrGzAoGAX1PySU6zu1N/ErN7auMk1QWRQ+LsZU2Wlu6GNLQJ3wvcyCSiIAAd6rF/
+mNney1QJM89YWMvhR/jTmxzFC2HNpw7JLMdp7y1KRpXTuQlFJfpTjOPUrscVWMN7
+JPgzXlu9KphR4rqZ+qbJKaGWkgW8HmCPxBh4wreEBbSGUq8sQe0=
+-----END RSA PRIVATE KEY-----
+
+*** private key
+-----BEGIN RSA PRIVATE KEY-----
+Proc-Type: 4,ENCRYPTED
+DEK-Info: DES-EDE3-CBC,5CD8AD22501ADB19
+
+hVby17E5Sis40+Gwe++fEazmRH9h+NTIWEK9a40DCIrouHf6YlV9e1hlNSfJL/Nl
+4hwzfdJK9C7i3008CAHYtkGMB7W5XN6KkWWZdXJvBl4+lHPMg+PMv9E9uD+9ZBdB
+BzEkFSnRe0T2Z0+cWGVmJAoP/RJzBPE74XkanTAT24hwnrxS2ggUOcQFWHckLG0S
+8EuKBFRhjICUZD/mdcl4wCtqu77o4t+fVykb1U9KQEKs1E9J2nR9xwqXesXm+Hxs
+zy87Uw+Dzs4Jm53Zo4PCN0D48cQdlp/hRKVU4b+SS5BZpV4tp5oDFxE/R206mdAQ
+TPUgGtgjh4COXl6Y0dLeLnZueiMaDHMcyprBFmyheK44cg2fzYAsESd+OJLoAgpv
+gZErWiWFKbWNf+HoGg+KQ5IOTUvZoIec/g5Gae8pWWNcIzHchy/w4FbnfrHIq99n
+Bc9cV/Xqk0ThvZwoT4kKBf6g+4u0+udCR9zfyM9Hc5dE6PEoH+kCMuYm6YxoGi4/
+WsrsYZXZ8QLTNFhpyxRV3xZco+bX3uD7Y3zd9E8iKrYkxBoiGNe93mI8fUiIn3Vf
+0JXH7Lz7mzH8n67ZNPn5RRNFrd21lLYfKVXyL9L0LZd2re7XNFuoUWj0GhHzXb+i
+uhV7g4U1WvvM6kTLf/oeEQ0bd5+oN1yZ/4CACpBXunK5OJsYmNOh4G1a9t2avnf3
+eIUcwvpF/VX0yY2hu3HqjGC8n3Qpc86GSGPxGy27NmEPiKAfefdtv9AYTqYImlSD
+yAffs3w1Gq40l+Dgaz3vyS7C0PcYOZScitXGpWwkmqYXlSfwWXd9EleUuWPT+I9k
+lDsy1KziJpP2s1GgRrNZt99dQiwcQ78s+wJ48manVqfh6WfdCAHFbQgHBtWjIuAe
+Ft6VSRmkW9TjEuOJdmCNw9U83OTlRxV7Y5Rzx1EFFgBBkFkENRDb0FKK36wlTpFo
+uzgaqIKSC+2jzj2jHh3mQlcjxXVPdkL33JTxMRcRIa35znpTeKVQwx/EuZ2v5t10
+SEP1j4PzVsdKLmHMhUbULKytDRDG1GZxG0bNRRsMo5nqbUBA2ekXiDaIPpuSIVrW
+0s7omIp7R+K40RdP4ZVxPImWrL5uhJgxP1U/PIdX6gLtU6wNvWVAPTuawMdbnoWB
+WiaX0opZHsZDZ5k/Wf54NudAm1HCIotRInN1ypC6Cg9s1swtBssX5UfcNyfk2x6f
+5wUQeFaAUvjEG9X47/JHxoGhwDZnkRQdCtTxqftTHxQ9/oY2uk9rUxn4soLD1S20
+avCDdE3czQ7iOFs7U4fGBvpEUG/ytzo5dt3qp/zP4ckOlQ1HFHxf0U8taTUblfYr
+OO4ID/2yy/IFNnUI65OnBoPUwPTf6kg7TpaAaLve/zp+QMHPO0wvWM7V/W4YU/CH
+sMKudXVBi0ED5WDNnJrtDSPB1ivSPLetuqcw+Icg5lQHROBBBM2NnZv46M7Iu1TF
+LXupp4n6YCm7RWFXmddCP88a5E0JjbJwwzmEmQ7BICjGmzk76LYA6xtPp1etMeF7
+rzukZx8v+DVS879jqcF31BAf/18f/pOQa58vOEHD7IRhD45cOPkLxg==
+-----END RSA PRIVATE KEY-----
+*** 証明書
+-----BEGIN CERTIFICATE-----
+MIIEqjCCA5KgAwIBAgIDBimXMA0GCSqGSIb3DQEBCwUAMEcxCzAJBgNVBAYTAlVT
+MRYwFAYDVQQKEw1HZW9UcnVzdCBJbmMuMSAwHgYDVQQDExdSYXBpZFNTTCBTSEEy
+NTYgQ0EgLSBHMzAeFw0xNTA4MDYxNTQ1NTdaFw0xNjA4MDcyMDQ2MTdaMIGRMRMw
+EQYDVQQLEwpHVDM2OTQwMDU0MTEwLwYDVQQLEyhTZWUgd3d3LnJhcGlkc3NsLmNv
+bS9yZXNvdXJjZXMvY3BzIChjKTE1MS8wLQYDVQQLEyZEb21haW4gQ29udHJvbCBW
+YWxpZGF0ZWQgLSBSYXBpZFNTTChSKTEWMBQGA1UEAwwNKi5ydWJ5LWRldi5qcDCC
+ASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALsB7Sh113WQL4PwigmwM3en
+FrTnCIaycrmusIzdmRYyyjo+Bvc8SUD8lpmIA5mWOnyfOQAj5lpBJAKTwObSnVzL
+0+hQi+XtArmWoxEUmt6mswMioVbnCDpo+H6PGhc4aWZja0RLZSmJKnLX8pwjzo2u
+xOXNs/HqxRh+nX0LbST4W6RiOshjlXJ2d0lMiaGW4tdKUJhG9C/kzuykJ333Q7/d
+0ouQxCvvSbY/jxgQ2sW0/045Zsl7xgjdklImf0IvK8/b98vUO3bMjF/jD7cCS4jh
+1UDfDtBcxeo7/iH7t3nn9WgHfy8PXnNvh6i/1AxiRtreiSVmYnUGvPkCT28Ttf8C
+AwEAAaOCAVIwggFOMB8GA1UdIwQYMBaAFMOc8/zTRgg0u85Gf6B8W/PiCMtZMFcG
+CCsGAQUFBwEBBEswSTAfBggrBgEFBQcwAYYTaHR0cDovL2d2LnN5bWNkLmNvbTAm
+BggrBgEFBQcwAoYaaHR0cDovL2d2LnN5bWNiLmNvbS9ndi5jcnQwDgYDVR0PAQH/
+BAQDAgWgMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAlBgNVHREEHjAc
+gg0qLnJ1YnktZGV2LmpwggtydWJ5LWRldi5qcDArBgNVHR8EJDAiMCCgHqAchhpo
+dHRwOi8vZ3Yuc3ltY2IuY29tL2d2LmNybDAMBgNVHRMBAf8EAjAAMEEGA1UdIAQ6
+MDgwNgYGZ4EMAQIBMCwwKgYIKwYBBQUHAgEWHmh0dHBzOi8vd3d3LnJhcGlkc3Ns
+LmNvbS9sZWdhbDANBgkqhkiG9w0BAQsFAAOCAQEAevRWVhva/MrHDPhizd+pCU1l
+15SKguB7Qjm0KhM9XaOIkb14be6VTrMLY6eM42xLQiW+aJ73v3F5gLcZr0jbiSBZ
+7DYigBuhZoqK0lkdiy5JpQIrSfx9b6edHj8MgXZ1ZuZt2mnxewPTMNYQunWR+q0V
+Bdo0Zcy8z9PV7xKH5UrVH3QY15j6pNvHWUsj/Dr+vKrM7jp2xjsyL1ETJdh9dO6H
+TS/HgDX9u0FPgqVGv3muMGM23FHsIMZ+EWf0S2WcMAB7CKdiu1Q+4z/JY7BBOuMy
+OBiayUiScXK8YyBEDsZajeeE6NDZ3sXPS9wEHsVGfZ7nWONwTnpIFXmG1ryIkg==
+-----END CERTIFICATE-----
+
+*** 証明書チェーン
+-----BEGIN CERTIFICATE-----
+MIIEJTCCAw2gAwIBAgIDAjp3MA0GCSqGSIb3DQEBCwUAMEIxCzAJBgNVBAYTAlVT
+MRYwFAYDVQQKEw1HZW9UcnVzdCBJbmMuMRswGQYDVQQDExJHZW9UcnVzdCBHbG9i
+YWwgQ0EwHhcNMTQwODI5MjEzOTMyWhcNMjIwNTIwMjEzOTMyWjBHMQswCQYDVQQG
+EwJVUzEWMBQGA1UEChMNR2VvVHJ1c3QgSW5jLjEgMB4GA1UEAxMXUmFwaWRTU0wg
+U0hBMjU2IENBIC0gRzMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCv
+VJvZWF0eLFbG1eh/9H0WA//Qi1rkjqfdVC7UBMBdmJyNkA+8EGVf2prWRHzAn7Xp
+SowLBkMEu/SW4ib2YQGRZjEiwzQ0Xz8/kS9EX9zHFLYDn4ZLDqP/oIACg8PTH2lS
+1p1kD8mD5xvEcKyU58Okaiy9uJ5p2L4KjxZjWmhxgHsw3hUEv8zTvz5IBVV6s9cQ
+DAP8m/0Ip4yM26eO8R5j3LMBL3+vV8M8SKeDaCGnL+enP/C1DPz1hNFTvA5yT2AM
+QriYrRmIV9cE7Ie/fodOoyH5U/02mEiN1vi7SPIpyGTRzFRIU4uvt2UevykzKdkp
+YEj4/5G8V1jlNS67abZZAgMBAAGjggEdMIIBGTAfBgNVHSMEGDAWgBTAephojYn7
+qwVkDBF9qn1luMrMTjAdBgNVHQ4EFgQUw5zz/NNGCDS7zkZ/oHxb8+IIy1kwEgYD
+VR0TAQH/BAgwBgEB/wIBADAOBgNVHQ8BAf8EBAMCAQYwNQYDVR0fBC4wLDAqoCig
+JoYkaHR0cDovL2cuc3ltY2IuY29tL2NybHMvZ3RnbG9iYWwuY3JsMC4GCCsGAQUF
+BwEBBCIwIDAeBggrBgEFBQcwAYYSaHR0cDovL2cuc3ltY2QuY29tMEwGA1UdIARF
+MEMwQQYKYIZIAYb4RQEHNjAzMDEGCCsGAQUFBwIBFiVodHRwOi8vd3d3Lmdlb3Ry
+dXN0LmNvbS9yZXNvdXJjZXMvY3BzMA0GCSqGSIb3DQEBCwUAA4IBAQCjWB7GQzKs
+rC+TeLfqrlRARy1+eI1Q9vhmrNZPc9ZE768LzFvB9E+aj0l+YK/CJ8cW8fuTgZCp
+fO9vfm5FlBaEvexJ8cQO9K8EWYOHDyw7l8NaEpt7BDV7o5UzCHuTcSJCs6nZb0+B
+kvwHtnm8hEqddwnxxYny8LScVKoSew26T++TGezvfU5ho452nFnPjJSxhJf3GrkH
+uLLGTxN5279PURt/aQ1RKsHWFf83UTRlUfQevjhq7A6rvz17OQV79PP7GqHQyH5O
+ZI3NjGFVkP46yl0lD/gdo0p0Vk8aVUBwdSWmMy66S6VdU5oNMOGNX2Esr8zvsJmh
+gP8L8mJMcCaY
+-----END CERTIFICATE-----
+
+** monitor.ruby-dev.jp
+ruby
+Taiv3iot
+
+** alive-monitr.ruby-dev.jp
+zabbix
+| admin  | Uyahvaf8uuv8xaeZ         |
+| ruby   | theiyaeghinaequae2vaiF2N |
+
+[2016-02-19 Fri]
+設定後のimageを壊したので、現在初期状態じゃないかなーと
+
+** amazon SES setting on Route53
+domain登録
+|----------------------------------------------------------+-----------------------------------------------------|
+| _amazonses.ruby-dev.jp.                                  | "KInygw87wR60FtcdxJ+7skrSdsXjPrjrEH+uiOLMJrs="      |
+|----------------------------------------------------------+-----------------------------------------------------|
+
+DKIM
+|----------------------------------------------------------+-----------------------------------------------------|
+| lc577z2ar6thliya5pbqecvoyaztwpxx._domainkey.ruby-dev.jp. | lc577z2ar6thliya5pbqecvoyaztwpxx.dkim.amazonses.com |
+| qmwb7aqvlyrf5cyujij75f55jksprggf._domainkey.ruby-dev.jp. | qmwb7aqvlyrf5cyujij75f55jksprggf.dkim.amazonses.com |
+| ucbwey6qw6qie5bhigzx7j2emqvqf4rr._domainkey.ruby-dev.jp. | ucbwey6qw6qie5bhigzx7j2emqvqf4rr.dkim.amazonses.com |
+|----------------------------------------------------------+-----------------------------------------------------|
+
+** staging
+- domain / ip
+  https://stg.ruby-dev.jp/
+  52.196.136.66
+
+- basic認証
+  ruby
+  Aidaquu4ooz2guyo
+
+** kibana
+https://kibana-test.ruby-dev.jp
+
+mruby101
+RubyDev101
+
+* facebook
+** s-numasawa@ruby-dev.jp
+s-numasawa@ruby-dev.jp
+Close0404
+
+1981/04/01
+Numa Sat

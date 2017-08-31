@@ -1,0 +1,58 @@
+admin login
+----------------------------------------------------------------
+http://52.69.224.113:3000/admin/main/login
+
+login押下後、エラー表記。要ログ確認。
+postgresとの結節点が無い様に見える。
+
+user login
+----------------------------------------------------------------
+http://52.69.224.113:3000/user/main/login
+
+初期状態確認。
+db/migrate参照
+
+もしくは、admin画面より確認
+
+**** rails / apach
+railsとweb server結節点が不明.
+apache, passenger?
+passenger buildには複数エラー有り。
+
+暫定として、nginxで稼働は可能と思われる。
+default repositoryに無いので、epelなどから
+
+**** rails / postgres
+rakeは通るが、rails serverで接続不可。
+対象gem?が依存関係でinstall不可。
+要確認
+
+**** access path
+主に以下3点を確認。他URL探査
+
+- admin/main/login
+- user/main/login
+- user/password/reminder_input
+
+**** env 整理
+各種方法でruby, rbenv, gem, railsなどをinstall。
+要整理。
+
+rubyについては、適切なversion確定が必要。
+恐らく、1.8.4 〜 1.8.6付近
+
+openssl, ruby.hなどでエラーが出やすい。
+versionによってはmakeも通らない。(ソースを多少修正する事で対応可能)
+
+**** mail setting error
+enviroment/production.yml # 28
+ActionMailer コメントアウトで暫定対処
+
+**** mail address
+config上のmynavi mail addressはコメントアウト。
+要grep
+
+**** 各種コマンド
+コマンド、optionが異なる部分あり
+
+- rails server  :  script/server

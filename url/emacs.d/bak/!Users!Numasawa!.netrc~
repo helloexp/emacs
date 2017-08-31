@@ -1,0 +1,5 @@
+#GEMNASIUM_TOKEN:2093a3ddd58807c4c71a6bbad4e194fa
+
+machine api.gemnasium.com
+	login s-numasawa@mruby.jp
+	password 2093a3ddd58807c4c71a6bbad4e194fa

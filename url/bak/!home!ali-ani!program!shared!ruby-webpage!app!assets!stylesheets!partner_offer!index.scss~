@@ -1,0 +1,18 @@
+.navbar-fixed-top {
+  .navbar-header {
+    height: 0px;
+  }
+  .navbar-brand {
+    img {
+      height: 80px;
+      width: 75px;
+    }
+  }
+}
+
+#navbar-menu {
+  img {
+    margin-right: 5px;
+  }
+}
+

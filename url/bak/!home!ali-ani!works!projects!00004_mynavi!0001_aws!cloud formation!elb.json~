@@ -1,0 +1,60 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Testing ",
+    "Resources": {
+        "RouteTableFront": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "vpcmynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-front"
+                    },
+                    {
+                        "Key": "Payment",
+                        "Value": "mynavi"
+                    }
+                ]
+            }
+        },
+        "RouteTableWeb": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "vpcmynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-web"
+                    },
+                    {
+                        "Key": "Payment",
+                        "Value": "mynavi"
+                    }
+                ]
+            }
+        },
+        "RouteTableBackend": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "vpcmynavi"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mynavi-product-backend"
+                    },
+                    {
+                        "Key": "Payment",
+                        "Value": "mynavi"
+                    }
+                ]
+            }
+        }
+    }
+}

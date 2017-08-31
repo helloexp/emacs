@@ -1,0 +1,30 @@
+HISTCONTROL=ignoreboth
+shopt -s histappend
+
+HISTSIZE=1000
+HISTFILESIZE=2000
+shopt -s checkwinsize
+
+
+
+PS1="\u@\h:\W $ "
+export EDITOR="emacs -nw"
+export HOMEBREW_GITHUB_API_TOKEN="5c683fe30fe13f8637883365d2e127e1a5c78307"
+
+
+alias ll='ls -l'
+#alias la='ls -A'
+#alias l='ls -CF'
+
+alias connect_sakura='bash /home/ali-ani/works_scripts/connect_sakura'
+alias emacs='emacs -nw'
+
+
+;; connect host console to docker vm
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.100:2376"
+export DOCKER_CERT_PATH="/Users/Numasawa/.docker/machine/machines/default"
+export DOCKER_MACHINE_NAME="default"
+
+;; for 外部接続 from in the docker container
+export DOCKER_HOST=tcp://localhost:4243

@@ -1,0 +1,7 @@
+(require 'recentf)
+(setq recentf-save-file "~/.recentf")
+(setq recentf-exclude '("~/.recentf"))
+(setq recentf-max-saved-items 10000)
+(setq recentf-auto-cleanup '10)
+(run-with-idle-timer 30 t 'recentf-save-list)
+(recentf-mode 1)

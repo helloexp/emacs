@@ -1,0 +1,51 @@
+    function expect_all(tasks) {
+        return new Promise( (resolve, reject) => {
+            Promise.all(tasks).then( (res) => {
+                resolve(res);
+            }).catch( (err) => {
+                reject(err);
+            });
+        });
+    }
+
+    function expect(result, crud_type) {
+        return new Promise( (resolve, reject) => {
+            if (typeof(result) == 'string') {
+                result = JSON.parse(result);
+            } else {
+                reject(new Error(result));
+            }
+
+            should.exist(result);
+            result.should.not.empty;
+            // result.should.empty;
+
+            result.type.should.equal('Feed');
+            result.action.should.equal(crud_type);
+
+            if (crud_type == 'delete') {
+                result.data.should.have.property('id');
+            } else {
+                result.data.should.have.property('id');
+                result.data.should.have.property('contents');
+                result.data.should.have.property('created_at');
+                result.data.should.have.property('updated_at');
+                result.data.should.have.property('posted_by');
+                result.data.should.have.property('likes');
+                result.data.should.have.property('attachments');
+                result.data.should.have.property('comments');
+
+                result.data.contents.should.eql(users.main.body.contents);
+                result.data.posted_by.should.equal(fixture.valid_seeds[0].account_id);
+            }
+
+            resolve();
+        });
+    }
+
+    function expect_timeout(result, timeout) {
+        return new Promise( (resolve) => {
+            result.message.should.equal(`Promise timed out after ${timeout} ms`);
+            resolve();
+        });
+    }

@@ -1,0 +1,6 @@
+bash "install pm2" do
+  code <<-EOC
+    su #{node['user']['name']} -l -c "npm install pm2 -g"
+  EOC
+  creates "/home/#{node['user']['name']}/.nvm/v#{node['node']['version']}/lib/node_modules/pm2/bin/pm2"
+end

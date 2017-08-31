@@ -1,0 +1,473 @@
+Uniqlo development / staging / production環境へのdeploy方法を記述。
+また、当ファイル内では、大まかな流れのみ記述する。
+
+
+
+description
+----------------------------------------------------------------
+    capistrano3を用い、コマンドでdeployを行う。
+
+    以下、設定が必要となる
+    - gitコマンド, githubアクセス設定
+    - ruby gem : capistrano install
+    - ssh 設定 (各種serveへの接続設定)
+    - ruby,rbenv install (repositoryによりruby versionが異なる)
+
+
+
+
+
+gitlab repository
+----------------------------------------------------------------
+    - repository一覧
+    --------------------------------
+        https://git.ruby-dev.jp/uniqlo/uniqlo-hashtag
+        https://git.ruby-dev.jp/uniqlo/uniqlo-hashtag-main
+        https://git.ruby-dev.jp/uniqlo/uniqlo-hashtag-crontab
+        https://git.ruby-dev.jp/uniqlo/uniqlo-hashtag-view
+
+
+    - repositoryと、対応server
+    --------------------------------
+        // 例とし、deplopmentの参照先URLのみ記述
+
+        - uniqlo-hashtag  |  admin server
+             管理機能と、ユーザー登録(influencer)を担当
+
+             https://uniqlo-influencer-adm-lb-1392900919.ap-northeast-1.elb.amazonaws.com/admin/sign_in
+
+
+        - uniqlo-hashtag-main  |  user server
+            uniqlo-hashtag-viewのJavascriptへのapi提供及び、一部SNS投稿一覧ページを担当
+            (指定されたSNS投稿データをjsonで返す)
+
+            http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/people/jeans
+            http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/api/v1/media.js?
+            http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/api/v2/media.js?
+
+
+        - uniqlo-hashtag-view  |  user server
+            uniqlo-hashtag-mainと連携し、sns投稿データを表示する
+            rails appではなく、js/html。
+
+            http://uniqlo-influencer-usr-lb-667400264.ap-northeast-1.elb.amazonaws.com/people/jeans
+
+
+        - uniqlo-hashtag-crontab  |  sns server (batch)
+            SNS投稿データの取得daemon担当
+            外部公開URL無し
+
+
+
+deploy環境構築 (local)
+----------------------------------------------------------------
+    - github
+    --------------------------------
+        以下の準備行う。
+        osや環境によって導入方法は異なるため、詳細は割愛。
+
+        - gitコマンド導入
+        - githubへの接続設定
+            参考サイト
+            http://qiita.com/drapon/items/441e18452b25060d61f1
+
+
+    - Capistrano3
+    --------------------------------
+        - Required gems
+            gem 'capistrano'
+            gem 'capistrano-rails'
+            gem 'capistrano-bundler'
+            gem 'capistrano3-unicorn'
+            gem 'capistrano-rbenv'
+
+        - install
+            # global installでも可
+            対象gemは、Rails ApplicationをDLし、[ bundle install ] にて必須gemをinstall。
+
+            // 以下例
+            $ git clone git@github.com:Ruby-Corporation/uniqlo-hashtag
+            $ cd uniqlo-hashtag
+            $ bundle install
+
+
+    ssh
+    --------------------------------
+        Local環境へ認証key設置。
+        keyは、同梱のkey fileをご使用下さい。
+        (keyの配置場所は下記固定)
+
+        - develop
+            ~/.ssh/uniq/uniqlo_influencer.pem            // 各server用
+            ~/.ssh/uniq/uniqlo_influencer_gateway.pem    // 踏み台用
+
+        - staging / production
+            ~/.ssh/uniq/prd/members.pem                  // 各server用
+            ~/.ssh/uniq/prd/members_gateway.pem          // 踏み台用
+
+
+    ruby / rbenv
+    --------------------------------
+        rbenvでのruby管理しています。
+        # ruby versionが上がる際には、事前に rubyのinstallが必要です。
+
+
+        - ruby version
+            - 2.2.5
+
+        - rbenv instal例 (linux向け、主にamazon linux)
+            別ファイル [ rbenv.txt ] 参照
+
+
+
+
+
+
+development
+----------------------------------------------------------------
+    uniqlo-hashtag
+    --------------------------------
+        - repitory clone
+            $ git clone git@github.com:Ruby-Corporation/uniqlo-hashtag
+
+
+        - run deploy
+            $ cd uniqlo-hashtag
+            $ cap development deploy
+
+            // コマンドが終えるまで待機。数分要する
+
+
+        - server上での手動作業
+            // 踏み台サーバーへ
+            $ ssh  alliance@54.65.232.249 -i ~/.ssh/uniqlo_influencer_gateway.pem
+
+            // admin serverへ
+            $ ssh mruby@app-admin
+
+            // rails current dirへ
+            $ cd /var/rails/influencer/current/
+
+            // image fileの移動
+            $ cp -r ./vendor/assets/fonts/* ./public/assets/
+
+
+    uniqlo-hashtag-main
+    --------------------------------
+        - repitory clone,
+            $ git clone git@github.com:Ruby-Corporation/uniqlo-hashtag-main
+
+
+        - run deploy
+            $ cd uniqlo-hashtag-main
+            $ cap development deploy
+
+
+        - server上での手動作業
+            無し.
+            アクセスする場合は以下手順
+
+            $ ssh  alliance@54.65.232.249 -i ~/.ssh/uniqlo_influencer_gateway.pem
+            $ ssh mruby@app-user
+            $ cd /var/rails/influencer/current/
+
+
+    uniqlo-hashtag-view
+    --------------------------------
+        - repitory clone,
+            $ git clone git@github.com:Ruby-Corporation/uniqlo-hashtag-view
+
+
+        - run deploy
+            $ cd uniqlo-hashtag-view
+            $ cap development deploy
+
+
+        - server上での手動作業
+            無し.
+            アクセスする場合は以下手順
+
+            $ ssh  alliance@54.65.232.249 -i ~/.ssh/uniqlo_influencer_gateway.pem
+            $ ssh mruby@app-user
+
+            // js/html設置dirへ
+            $ cd /usr/share/nginx/html/people/current/
+
+
+    uniqlo-hashtag-cron
+    --------------------------------
+        - repitory clone,
+            $ git clone git@github.com:Ruby-Corporation/uniqlo-hashtag-cron
+
+
+        - run deploy
+            $ cd uniqlo-hashtag-cron
+            $ cap development deploy
+
+
+        - server上での手動作業
+            $ ssh  alliance@54.65.232.249 -i ~/.ssh/uniqlo_influencer_gateway.pem
+            $ ssh mruby@app-sns
+            $ cd /var/rails/influencer/current/
+
+
+            - twitter daemon状態確認
+                $ ps aux | grep TwitterStreamingDaemon
+
+                当該daemonが存在するか確認。
+
+                ※ 当daemonは、一分毎に起動状態管理を行なっている。
+                ※ 通常、process削除後、自動起動する。
+                ※ ただし、Twitter APIのアクセス制限により、
+                ※ 数十分access不可となり起動できないケースがある
+
+                // 手動で起動する場合は以下
+                RAILS_ENV=production bundle exec rails runner TwitterStreamingDaemon.run run
+
+
+staging
+----------------------------------------------------------------
+    基本手順は、developmentに準じる。
+
+
+    uniqlo-hashtag
+    --------------------------------
+        - run deploy
+            $ cd uniqlo-hashtag
+            $ cap staging deploy
+
+
+        - server上での手動作業
+            // 踏み台サーバーへ
+            $ ssh members@54.250.223.60 -i ~/.ssh/members_gateway.pem
+
+            // admin serverへ
+            $ ssh www@stg_admin
+
+            // rails current dirへ
+            $ cd /var/rails/influencer/current/
+
+            // image fileの移動
+            $ cp -r ./vendor/assets/fonts/* ./public/assets/
+
+
+
+
+
+    uniqlo-hashtag-main
+    --------------------------------
+        - run deploy
+            $ cd uniqlo-hashtag-main
+            $ cap staging deploy
+
+
+        - server上での手動作業
+            無し.
+            アクセスする場合は以下手順
+
+            $ ssh members@54.250.223.60 -i ~/.ssh/members_gateway.pem
+            $ ssh www@stg_user
+
+
+    uniqlo-hashtag-view
+    --------------------------------
+        - run deploy
+            $ cd uniqlo-hashtag-view
+            $ cap staging deploy
+
+
+        - server上での手動作業
+            無し.
+            アクセスする場合は以下手順
+
+            $ ssh members@54.250.223.60 -i ~/.ssh/members_gateway.pem
+            $ ssh www@stg_user
+
+
+    uniqlo-hashtag-cron
+    --------------------------------
+        - run deploy
+            $ cd uniqlo-hashtag-cron
+            $ cap staging deploy
+
+
+        - server上での手動作業
+            $ ssh members@54.250.223.60 -i ~/.ssh/members_gateway.pem
+            $ ssh www@stg_batch
+            $ cd /var/rails/influencer/current/
+
+            - basic 認証設定
+                $ vim config/settings/production.yml
+
+                user / passを以下へ編集
+                ----------------------------------------------------------------
+                api_server:
+                  api_schema: 'http://'
+                  api_endpoint: <%= ENV['API_ENDPOINT'] %>
+                  api_basic_auth_user: uniql0inf7uencer
+                  api_basic_auth_password: uniql0mysty7e
+                ----------------------------------------------------------------
+
+
+            - rails 再起動
+                $ kill `cat tmp/pids/unicorn.pid`
+                $ RAIL_ENV=production bundle exec unicorn_rails -c config/unicorn.rb -E production -D
+
+
+            - twitter daemon 再起動
+                $ ps aux | grep TwitterStreamingDaemon
+                $ 当該PIDを削除
+                $ daemonを再起動
+
+                ※ 当daemonは、一分毎に起動状態管理を行なっている。
+                ※ 通常、process削除後、自動起動する。
+                ※ ただし、Twitter APIのアクセス制限により、
+                ※ 数十分access不可となり起動できないケースがある
+
+                // 手動で起動する場合は以下
+                RAILS_ENV=production bundle exec rails runner TwitterStreamingDaemon.run run
+
+
+
+production
+----------------------------------------------------------------
+    ※ productionにおいて
+    ※ uniqlo-hashtag-main, uniqlo-hashtag-viewをdeployする場合のみ
+    ※ 最低3台へのdeployと、Server Imageの作成が必要なる。
+    ※
+    ※ 詳細は以下ファイルを参照
+    ※ [ deploy_prd_auto_scaling.txt]
+    ※
+    ※
+    ※ 簡易説明
+    ※ productionのuser serverは、Auto Scalingで運用されている。
+    ※ 負荷に応じて起動server数が変動する。 (server imageを元にserver instanceを作成する)
+    ※
+    ※ instance server2台 + image元serverの1台
+    ※ へのdeployを行う
+    ※ 運用serverが2〜以上のケースも想定される。
+
+
+
+    uniqlo-hashtag
+    --------------------------------
+        - 事前に db backupを取ること
+
+        - run deploy
+            $ cap production deploy
+
+
+        - ssh to server
+            // 踏み台サーバーへ
+            $ ssh  alliance@54.65.232.249 -i ~/.ssh/uniqlo_influencer_gateway.pem
+
+            // admin serverへ
+            $ ssh mruby@app-admin
+
+            // rails current dirへ
+            $ cd /var/rails/influencer/current/
+
+            // image fileの移動
+            $ cp -r ./vendor/assets/fonts/* ./public/assets/
+
+
+
+    uniqlo-hashtag-main
+    --------------------------------
+        - productionのみの作業
+            最低3台へのdeployが必要となる。
+            server IP確認方法などは以下ファイルを参照。
+            [ deploy_prd_auto_scaling.txt]
+
+            ※ capistranoには基本サーバーのIPのみ記述されている。
+            ※ 以下ファイルのIPを書き換えることで、deploy対象serverを変更可能
+
+            ※ ./config/deploy/production.rb
+            ※ ----------------------------------------------------------------
+            ※ 37行目 : server '10.184.17.202', user: 'www', roles: %w[app web db],
+            ※ ----------------------------------------------------------------
+
+
+        - run deploy
+            $ cd uniqlo-hashtag-main
+            $ cap production deploy
+
+
+        - server上での手動作業なし
+            接続する際は以下
+            $ ssh members@54.250.223.60 -i ~/.ssh/members_gateway.pem
+            $ ssh www@prd_user
+
+
+    uniqlo-hashtag-view
+    --------------------------------
+        - productionのみの作業
+            最低3台へのdeployが必要となる。
+            server IP確認方法などは以下ファイルを参照。
+            [ deploy_prd_auto_scaling.txt]
+
+            ※ capistranoには基本サーバーのIPのみ記述されている。
+            ※ 以下ファイルのIPを書き換えることで、deploy対象serverを変更可能
+
+            ※ ./config/deploy/production.rb
+            ※ ----------------------------------------------------------------
+            ※ 37行目 : server '10.184.17.202', user: 'www', roles: %w[app web db],
+            ※ ----------------------------------------------------------------
+
+
+        - run deploy
+            $ cd uniqlo-hashtag-view
+            $ cap production deploy
+
+
+        - server上での手動作業なし
+            接続する際は以下
+            $ ssh members@54.250.223.60 -i ~/.ssh/members_gateway.pem
+            $ ssh www@prd_user
+
+
+    uniqlo-hashtag-cron
+    --------------------------------
+        - run deploy
+            $ cd uniqlo-hashtag-cron
+            $ cap production deploy
+
+
+        - server上での手動作業
+            $ ssh members@54.250.223.60 -i ~/.ssh/members_gateway.pem
+            $ ssh ssh www@prd_batch
+            $ cd /var/rails/influencer/current/
+
+            - basic 認証設定
+                $ vim config/settings/production.yml
+
+                user / passを以下へ編集
+                ----------------------------------------------------------------
+                api_server:
+                  api_schema: 'http://'
+                  api_endpoint: <%= ENV['API_ENDPOINT'] %>
+                  api_basic_auth_user: uniql0inf7uencer
+                  api_basic_auth_password: uniql0mysty7e
+                ----------------------------------------------------------------
+
+
+            - rails 再起動
+                $ kill `cat tmp/pids/unicorn.pid`
+                $ RAIL_ENV=production bundle exec unicorn_rails -c config/unicorn.rb -E production -D
+
+
+            - twitter daemon再起動
+                $ ps aux | grep TwitterStreamingDaemon
+                $ 当該PIDを削除
+                $ daemonを再起動
+
+                ※ 当daemonは、一分毎に起動状態管理を行なっている。
+                ※ 通常、process削除後、自動起動する。
+                ※ ただし、Twitter APIのアクセス制限により、
+                ※ 数十分access不可となり起動できないケースがある
+
+                // 手動で起動する場合は以下
+                RAILS_ENV=production bundle exec rails runner TwitterStreamingDaemon.run run
+
+                // もしくは
+                $bash /var/rails/influencer/script/sns/twitter_stream.sh

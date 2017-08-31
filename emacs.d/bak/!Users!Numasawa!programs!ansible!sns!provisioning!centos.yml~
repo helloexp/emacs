@@ -1,0 +1,108 @@
+- hosts: vagrants
+  user: vagrant
+  vars:
+    homedir: /home/vagrant/
+    workdir: /vagrant/
+    nvm:
+      version: v0.30.2
+    nodejs:
+      version: v5.5.0
+    npm:
+      path: /vagrant/.nvm/versions/node/v5.5.0/bin/npm
+    express:
+      version: 4.13.3
+    bower:
+      version: 1.7.2
+    gulp:
+      version: 3.9.0 # required lodash v3
+    lodash:
+      version: 3.0.0
+
+  tasks:
+    # common settings
+    - name: be sure common packages are installed
+      become: true # sudo
+      yum: name="{{ item }}" state=installed
+      with_items:
+        - git
+        - curl
+        - python
+        - libselinux-python
+      tags: common-packages
+
+    - name: disable selinux
+      become: true
+      selinux: state=disabled
+      changed_when: false
+
+    # install MongoDB
+    - name: pre_check mongdb installed?
+      shell: type mongo > /dev/null 2>&1 ; echo $?
+      register: is_installed_mongo
+      changed_when: is_installed_mongo.stdout == "1"
+
+    - name: copy mongodb.repo
+      become: true
+      copy: src="mongodb.repo" dest=/etc/yum.repos.d/mongodb.repo owner=root
+      when: is_installed_mongo.stdout == "1"
+
+    - name: install mongodb
+      become: true
+      yum: name=mongodb-org state=installed
+      when: is_installed_mongo.stdout == "1"
+
+    - name: start mongodb
+      become: true
+      service: name=mongod state=started
+      when: is_installed_mongo.stdout == "1"
+
+
+    # nodejs, packages
+    - name: precheck nvm installed?
+      shell: type nvm > /dev/null 2>&1 ; echo $?
+      register: is_installed_nvm
+      changed_when: is_installed_nvm.stdout == "1"
+
+    - name: install nvm
+      git: repo=git://github.com/creationix/nvm.git dest=/vagrant/.nvm
+        version="{{ nvm.version }}"
+        dest="{{ workdir  }}".nvm
+      when: is_installed_nvm.stdout == "1"
+
+    - name: write nvm path to bashrc
+      lineinfile:
+        dest: "{{ homedir }}.bashrc"
+        insertafter: EOF
+        line: "{{ item.line }}"
+      with_items:
+        - line: "if [[ -s /vagrant/.nvm/nvm.sh ]]; then"
+        - line: "  source /vagrant/.nvm/nvm.sh"
+        - line: "fi "
+      when: is_installed_nvm.stdout == "1"
+
+    # npm
+    # - name: precheck nvm installed?
+    #   shell: type npm > /dev/null 2>&1 ; echo $?
+    #   register: is_installed_npm
+    #   changed_when: is_installed_npm.stdout == "1"
+
+    # - name: nvm install nodejs, global install npm
+    #   raw: cd /vagrant; nvm install "{{ nodejs.version }}"; nvm alias default "{{ nodejs.version }}"; npm install -g npm
+    #   when: is_installed_npm.stdout == "1"
+
+    # - name: npm update required packages
+    #   raw: npm update {{ item }}
+    #   with_items:
+    #     - lodash
+
+    # npm install packages
+    # - name: precheck gulp installed?
+    # - name: precheck bower installed?
+    # - name: precheck express installed?
+
+    # - name: npm install packages
+    #   raw: cd /vagrant; npm install {{ item }}
+    #   with_items:
+    #     - "express@{{ express.version }}"
+    #     - "bower@{{ bower.version }} -g"
+    #     - "gulp@{{ gulp.version }} -g"

@@ -1,0 +1,134 @@
+'use strict';
+
+process.env.NODE_ENV = 'test';
+
+const co = require('co');
+
+
+describe('feeds', () => {
+    const mock_auth_node = require('../lib/mock_server');
+    const db      = require('../lib/db');
+    const mongodb = db.mongo();
+    const feed    = db.feed();
+
+    const url = '/api/v1/feeds/';
+
+    const factory = require('../lib/fixture');
+    const fixture = factory.fixture();
+    const users  = {
+        'main' : {
+            'token'   : fixture.valid_seeds[0].authorization.split(' ')[1],
+            'group'   : fixture.valid_seeds[0].group_id,
+            'account' : fixture.valid_seeds[0].account_id,
+            'header'  : fixture.valid_seeds[0].header,
+            'auth'    : fixture.valid_seeds[0].authorization,
+            'body'    : {'contents': 'this is test text'}
+        },
+        'other_company' : {
+            'token' : fixture.valid_seeds[2].authorization.split(' ')[1],
+            'group' : fixture.valid_seeds[2].group_id
+        },
+        'other_group' : {
+            'token' : fixture.valid_seeds[7].authorization.split(' ')[1],
+            'group' : fixture.valid_seeds[7].group_id
+        }
+    };
+
+    const wb      = require('../lib/ws');
+    const sockets = wb.clients_handler();
+
+
+
+
+    before( (done) => {
+        co(function *() {
+            // mongodb.connect();
+            done();
+        }).catch((err) => {
+            done();
+        });
+    });
+
+    beforeEach( (done) => {
+        co(function *() {
+            yield mongodb.clean();
+            yield fixture.create_feed_data();
+            mock_auth_node.create();
+            done();
+        }).catch((err) => {
+            done();
+        });
+    });
+
+    afterEach( (done) => {
+        co(function *() {
+            yield mock_auth_node.close();
+            done();
+        }).catch((err) => {
+            done();
+        });
+    });
+
+    after( (done) => {
+        co(function *() {
+            yield mongodb.clean();
+            mongodb.disconnect();
+            done();
+        }).catch((err) => {
+            done();
+        });
+    });
+
+
+
+
+    function classify (results, clients, crud_type) {
+        // token種類毎に check項目を選択.
+        // main tokenが主. 左記以外は、timeout(ws通知されない)を想定.
+
+        return new Promise( (resolve, reject) => {
+            let tasks = [];
+            for(let i = 0; i < results.length; i++) {
+                switch (clients[i].token) {
+                case users.main.token:
+                    tasks.push(expect.feed(results[i], crud_type));
+                    break;
+                case users.other_company.token:
+                    tasks.push(expect.timeout(results[i], clients[i].timeout));
+                    break;
+                case users.other_group.token:
+                    tasks.push(expect.timeout(results[i], clients[i].timeout));
+                    break;
+                default:
+                    reject(new Error);
+                    break;
+                }
+            }
+            resolve(tasks);
+        });
+    }
+
+
+
+
+
+    describe('create', () => {
+        const model_type = 'Feed';
+        const expect     = require('../lib/expect').ws(users, model_type);
+        const request = require('../lib/request').ws(url, feed);
+
+        const crud_type = 'create';
+
+        it('request分通知される事. request rusult と web client通知内容が同一である事', co.wrap(function *() {
+            // prepare ws
+            const client = yield wb.client(users.main);
+
+            // 1st post
+            request.post(users.main);
+            let result = yield client.wait_message();
+            yield expect.feed(result, crud_type);
+
+            yield client.disconnect();
+        }));
+    });
+});

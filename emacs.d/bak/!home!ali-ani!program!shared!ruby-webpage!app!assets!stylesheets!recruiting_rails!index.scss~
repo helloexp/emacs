@@ -1,0 +1,33 @@
+#technical-head {
+  min-width: 360px;
+  height: 250px;
+  background-image: url("../business/works_L.png");
+}
+
+#research-dev {
+  min-width: 360px;
+  height: 250px;
+  background-image: url("../business/works_R.png");
+}
+
+#business-outline {
+  margin: 0 auto 0 auto;
+  width: 870px;
+  height: 250px;
+  background-position: top left;
+  background-image: url("../business/works_divi_spt.png");
+  background-repeat: no-repeat;
+  div {
+    float: left;
+    width: 172px;
+    height: 220px;
+    padding: 0;
+    h5 {
+      color: white;
+      padding-top: 26px;
+    }
+    ul {
+      padding-top: 30px;
+    }
+  }
+}

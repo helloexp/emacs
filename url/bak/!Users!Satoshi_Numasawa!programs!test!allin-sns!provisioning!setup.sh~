@@ -1,0 +1,26 @@
+#!/bin/bash
+
+echo '----------------------------------------------------------------'
+echo 'install mongodb'
+echo '----------------------------------------------------------------'
+sudo yum install -y mongodb-server
+sudo yum install -y mongodb
+sudo su -lc "echo 'smallfiles = true' >> /etc/mongodb.conf"
+sudo chkconfig mongod on
+sudo /etc/init.d/mongod start
+
+
+echo '----------------------------------------------------------------'
+echo 'setting nodejs'
+echo '----------------------------------------------------------------'
+# gcc 4.8
+sudo wget http://people.centos.org/tru/devtools-2/devtools-2.repo -O /etc/yum.repos.d/devtools-2.repo
+sudo yum install -y devtoolset-2-gcc devtoolset-2-binutils devtoolset-2-gcc-c++ devtoolset-2-gcc-gfortran
+
+cd /vagrant/allin-sns
+npm install bower -g
+npm install supervisor -g
+npm install eslint -g
+npm install forever -g
+sudo su -lc 'source /opt/rh/devtoolset-2/enable; cd /vagrant/allin-sns; npm install' vagrant
+forever start app/app.js

@@ -1,0 +1,535 @@
+-*- mode: org -*-
+
+
+- allin
+    - QA向け serverの準備
+    - 新規機能の状況確認と, UIを触れていました
+
+本日は, 試験項目作成してQA勧めていきます.
+
+
+
+
+
+
+
+
+* todos
+** Todo [#G] 仙台定例ミーティング
+SCHEDULED: <2016-11-18 Tue +30d>
+- State "Done"       from "Todo"       [2016-10-21 Fri 18:24]
+- State "Done"       from "Todo"       [2016-10-20 Thu 07:33]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2016-10-21 Fri 18:24]
+:END:
+
+第3金曜日
+
+** Todo [#G] Plant : 水, 肥料
+SCHEDULED: <2016-11-19 Sat +10d>
+- State "Done"       from "Todo"       [2016-11-09 Wed 08:27]
+- State "Done"       from "Todo"       [2016-10-30 Sun 08:22]
+- State "Done"       from "Todo"       [2016-10-20 Thu 07:33]
+- State "Done"       from "Todo"       [2016-10-11 Tue 13:44]
+- State "Done"       from "Todo"       [2016-10-04 Tue 09:02]
+CLOCK: [2016-09-16 Fri 10:03]--[2016-09-16 Fri 10:03] =>  0:00
+CLOCK: [2016-09-02 Fri 11:21]--[2016-09-02 Fri 11:22] =>  0:01
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2016-11-09 Wed 08:27]
+:END:
+
+http://sodatekata.net/flowers/page/633.html
+
+*** バンブー
+[2016-10-05 Wed] 肥料
+
+*** パキラ
+[2016-11-08 Tue] water
+[2016-10-29 Sat] water
+[2016-10-11 Tue] water
+[2016-10-05 Wed] water / fertilizer
+** Todo [#G] AWS
+SCHEDULED: <2016-11-23 Wed +1w>
+- State "Done"       from "Todo"       [2016-11-16 Wed 19:32]
+- State "Done"       from "Todo"       [2016-11-09 Wed 08:35]
+- State "Done"       from "Todo"       [2016-11-04 Fri 10:03]
+- State "Done"       from "Todo"       [2016-10-26 Wed 10:01]
+- State "Done"       from "Todo"       [2016-10-25 Tue 08:34]
+- State "Done"       from "Todo"       [2016-10-21 Fri 08:14]
+- State "Done"       from "Todo"       [2016-10-20 Thu 07:33]
+- State "Done"       from "Todo"       [2016-10-19 Wed 07:53]
+CLOCK: [2016-09-16 Fri 10:03]--[2016-09-16 Fri 10:03] =>  0:00
+CLOCK: [2016-09-02 Fri 11:21]--[2016-09-02 Fri 11:22] =>  0:01
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2016-11-16 Wed 19:32]
+:END:
+
+- AWSの無駄なresource確認
+    - 随時追加
+    - 会話で出たものも考えて追加
+        - 一過性?
+        -利用サービスは?
+
+- 請求書参照
+- EC2 instance
+    - EIP
+    - ELB
+
+- RDS
+
+
+
+** Todo [#G] check
+SCHEDULED: <2016-11-19 Sat +1d>
+- State "Done"       from "Todo"       [2016-11-18 Fri 07:57]
+- State "Done"       from "Todo"       [2016-11-17 Thu 09:35]
+- State "Done"       from "Todo"       [2016-11-16 Wed 19:32]
+- State "Done"       from "Todo"       [2016-11-15 Tue 08:42]
+- State "Done"       from "Todo"       [2016-11-14 Mon 08:31]
+- State "Done"       from "Todo"       [2016-11-11 Fri 08:39]
+- State "Done"       from "Todo"       [2016-11-10 Thu 08:55]
+- State "Done"       from "Todo"       [2016-11-09 Wed 08:33]
+- State "Done"       from "Todo"       [2016-11-08 Tue 08:06]
+- State "Done"       from "Todo"       [2016-11-07 Mon 08:29]
+- State "Done"       from "Todo"       [2016-11-04 Fri 10:03]
+- State "Done"       from "Todo"       [2016-11-01 Tue 08:17]
+- State "Done"       from "Todo"       [2016-10-31 Mon 07:57]
+- State "Done"       from "Todo"       [2016-10-28 Fri 08:03]
+- State "Done"       from "Todo"       [2016-10-27 Thu 08:04]
+- State "Done"       from "Todo"       [2016-10-26 Wed 10:00]
+- State "Done"       from "Todo"       [2016-10-25 Tue 08:33]
+- State "Done"       from "Todo"       [2016-10-21 Fri 08:06]
+CLOCK: [2016-09-16 Fri 10:03]--[2016-09-16 Fri 10:03] =>  0:00
+CLOCK: [2016-09-02 Fri 11:21]--[2016-09-02 Fri 11:22] =>  0:01
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2016-11-18 Fri 07:57]
+:END:
+
+*** Chronograph
+- [ ] 有線で様子見
+- [ ] 有線 + 無線で様子見
+- [ ] 有線接続し, ケーブル切断後のエラー確認
+
+*** 時間記録忘れずに
+http://d.hatena.ne.jp/tamura70/20100221/org
+
+- start : c-cxi
+- stop  : c-cxo
+- list  : v l (in c-aa window)
+
+*** Server状態確認
+uniqlo server
+
+- unicorn
+- nginx
+- df
+- tw
+
+*** ruby-webpage
+https://support.google.com/webmasters/answer/6033088
+
+**** search console
+- crawl error
+- クエリ登録状態
+ - サイトマップ
+   インデックスに登録済みの項を参照
+   [2015-09-18 Fri] 現在、保留
+
+**** analytics
+とりあえず、観点がわからない
+アクセス状況みよう
+
+**** log
+- server上のログ確認
+- kibana
+http://54.65.87.72:5601/#/discover?_g=%28refreshInterval:%28display:Off,pause:!f,section:0,value:0%29,time:%28from:now%2Fd,mode:quick,to:now%2Fd%29%29&_a=%28columns:!%28_source%29,index:%27logstash-*%27,interval:auto,query:%28query_string:%28analyze_wildcard:!t,query:%27*%27%29%29,sort:!%28%27@timestamp%27,desc%29%29
+** Todo [#G] todo見直し
+SCHEDULED: <2016-11-19 Sat +2d>
+- State "Done"       from "Todo"       [2016-11-17 Thu 19:17]
+- State "Done"       from "Todo"       [2016-11-15 Tue 10:34]
+- State "Done"       from "Todo"       [2016-11-14 Mon 09:09]
+- State "Done"       from "Todo"       [2016-11-10 Thu 11:21]
+- State "Done"       from "Todo"       [2016-11-07 Mon 08:31]
+- State "Done"       from "Todo"       [2016-11-01 Tue 09:08]
+- State "Done"       from "Todo"       [2016-10-30 Sun 08:17]
+- State "Done"       from "Todo"       [2016-10-28 Fri 08:03]
+- State "Done"       from "Todo"       [2016-10-27 Thu 18:21]
+- State "Done"       from "Todo"       [2016-10-25 Tue 18:35]
+- State "Done"       from "Todo"       [2016-10-20 Thu 07:34]
+- State "Done"       from "Todo"       [2016-10-18 Tue 08:18]
+- State "Done"       from "Todo"       [2016-10-17 Mon 07:15]
+- State "Done"       from "Todo"       [2016-10-14 Fri 10:12]
+- State "Done"       from "Todo"       [2016-10-11 Tue 17:44]
+- State "Done"       from "Todo"       [2016-10-07 Fri 18:08]
+- State "Done"       from "Todo"       [2016-10-05 Wed 11:00]
+- State "Done"       from "Todo"       [2016-10-04 Tue 09:15]
+- State "Done"       from "Todo"       [2016-09-29 Thu 09:21]
+- State "Done"       from "Todo"       [2016-09-27 Tue 11:03]
+- State "Done"       from "Todo"       [2016-09-21 Wed 19:04]
+- State "Done"       from "Todo"       [2016-09-20 Tue 10:01]
+- State "Done"       from "Todo"       [2016-09-15 Thu 10:01]
+- State "Done"       from "Todo"       [2016-09-13 Tue 08:56]
+- State "Done"       from "Todo"       [2016-09-08 Thu 10:01]
+- State "Done"       from "Todo"       [2016-09-06 Tue 19:16]
+- State "Done"       from "Todo"       [2016-09-05 Mon 10:58]
+- State "Done"       from "Todo"       [2016-09-05 Mon 10:33]
+- State "Done"       from "Todo"       [2016-09-02 Fri 11:23]
+- State "Done"       from "Todo"       [2016-08-31 Wed 09:33]
+- State "Done"       from "Todo"       [2016-08-29 Mon 16:51]
+- State "Done"       from "Todo"       [2016-08-26 Fri 21:54]
+- State "Done"       from "Todo"       [2016-08-25 Thu 10:06]
+- State "Done"       from "Todo"       [2016-08-19 Fri 18:21]
+- State "Done"       from "Todo"       [2016-08-19 Fri 18:21]
+- State "Done"       from "Todo"       [2016-08-17 Wed 09:42]
+- State "Done"       from "Todo"       [2016-08-15 Mon 09:46]
+- State "Done"       from "Todo"       [2016-08-09 Tue 10:49]
+- State "Done"       from "Todo"       [2016-08-09 Tue 10:39]
+- State "Done"       from "Todo"       [2016-08-05 Fri 21:29]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2016-11-17 Thu 19:17]
+:END:
+
+** Todo [#G] reminder - work
+SCHEDULED: <2016-11-19 Sat +1d>
+- State "Done"       from "Todo"       [2016-11-18 Fri 07:59]
+- State "Done"       from "Todo"       [2016-11-17 Thu 09:35]
+- State "Done"       from "Todo"       [2016-11-16 Wed 19:32]
+- State "Done"       from "Todo"       [2016-11-15 Tue 08:42]
+- State "Done"       from "Todo"       [2016-11-14 Mon 08:33]
+- State "Done"       from "Todo"       [2016-11-11 Fri 08:40]
+- State "Done"       from "Todo"       [2016-11-10 Thu 08:52]
+- State "Done"       from "Todo"       [2016-11-09 Wed 08:32]
+- State "Done"       from "Todo"       [2016-11-08 Tue 08:04]
+- State "Done"       from "Todo"       [2016-11-01 Tue 08:19]
+- State "Done"       from "Todo"       [2016-10-31 Mon 07:52]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2016-11-18 Fri 07:59]
+:END:
+
+*** 全体
+- 休出時(代休取得時)は, 朝会docへ記述
+
+*** bb
+- 作業記録で消費時間を保存する
+
+*** 村上さんに
+芦田さんからの記念品を渡す
+
+** Todo [#G] End of day
+SCHEDULED: <2016-11-18 Fri +1d>
+- State "Done"       from "Todo"       [2016-11-17 Thu 19:34]
+- State "Done"       from "Todo"       [2016-11-16 Wed 19:32]
+- State "Done"       from "Todo"       [2016-11-15 Tue 08:42]
+- State "Done"       from "Todo"       [2016-11-14 Mon 08:33]
+- State "Done"       from "Todo"       [2016-11-11 Fri 08:40]
+- State "Done"       from "Todo"       [2016-11-10 Thu 08:52]
+- State "Done"       from "Todo"       [2016-11-09 Wed 08:32]
+- State "Done"       from "Todo"       [2016-11-08 Tue 08:04]
+- State "Done"       from "Todo"       [2016-11-01 Tue 08:19]
+- State "Done"       from "Todo"       [2016-10-31 Mon 07:52]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2016-11-17 Thu 19:34]
+:END:
+
+*** 全体
+- 休出時(代休取得時)は, 朝会docへ記述
+
+*** bb
+- 作業記録で消費時間を保存する
+
+*** 勤怠記述
+** Todo [#G] Roster                                                :daily:
+SCHEDULED: <2016-11-18 Fri +1d>
+- State "Done"       from "Todo"       [2016-11-17 Thu 19:33]
+- State "Done"       from "Todo"       [2016-11-16 Wed 19:32]
+- State "Done"       from "Todo"       [2016-11-14 Mon 09:09]
+- State "Done"       from "Todo"       [2016-11-08 Tue 18:36]
+- State "Done"       from "Todo"       [2016-10-27 Thu 18:21]
+- State "Done"       from "Todo"       [2016-10-25 Tue 18:34]
+- State "Done"       from "Todo"       [2016-10-20 Thu 18:11]
+- State "Done"       from "Todo"       [2016-10-20 Thu 07:34]
+- State "Done"       from "Todo"       [2016-10-17 Mon 18:16]
+- State "Done"       from "Todo"       [2016-10-12 Wed 19:51]
+- State "Done"       from "Todo"       [2016-10-07 Fri 18:08]
+- State "Done"       from "Todo"       [2016-10-06 Thu 01:00]
+- State "Done"       from "Todo"       [2016-10-04 Tue 18:27]
+- State "Done"       from "Todo"       [2016-09-29 Thu 09:23]
+- State "Done"       from "Todo"       [2016-09-29 Thu 09:20]
+- State "Done"       from "Todo"       [2016-09-21 Wed 19:28]
+- State "Done"       from "Todo"       [2016-09-13 Tue 19:26]
+- State "Done"       from "Todo"       [2016-09-12 Mon 19:50]
+- State "Done"       from "Todo"       [2016-09-09 Fri 20:57]
+- State "Done"       from "Todo"       [2016-09-08 Thu 09:59]
+- State "Done"       from "Todo"       [2016-09-06 Tue 19:16]
+- State "Done"       from "Todo"       [2016-09-05 Mon 20:12]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2016-11-17 Thu 19:33]
+:END:
+
+** Todo [#G] crusible / atlassian                                  :daily:
+SCHEDULED: <2016-11-18 Fri +1d>
+- State "Done"       from "Todo"       [2016-11-17 Thu 19:24]
+- State "Done"       from "Todo"       [2016-10-17 Mon 18:16]
+CLOCK: [2016-10-17 Mon 07:35]--[2016-10-17 Mon 07:42] =>  0:07
+- State "Done"       from "Todo"       [2016-10-12 Wed 19:51]
+- State "Done"       from "Todo"       [2016-10-07 Fri 18:09]
+- State "Done"       from "Todo"       [2016-10-07 Fri 08:22]
+- State "Done"       from "Todo"       [2016-10-07 Fri 08:15]
+- State "Done"       from "Todo"       [2016-10-04 Tue 18:27]
+- State "Done"       from "Todo"       [2016-09-29 Thu 09:20]
+- State "Done"       from "Todo"       [2016-09-21 Wed 19:28]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2016-11-17 Thu 19:24]
+:END:
+
+- ticket
+- review状態確認
+
+** Todo [#G] Roster                                              :monthly:
+SCHEDULED: <2016-11-27 Sun +30d>
+- State "Done"       from "Todo"       [2016-11-01 Tue 08:19]
+- State "Done"       from "Todo"       [2016-10-04 Tue 08:54]
+- State "Done"       from "Waiting"    [2016-09-01 Thu 12:39]
+- State "Done"       from "Waiting"    [2016-08-03 Wed 11:19]
+- State "Done"       from "Waiting"    [2016-07-01 Fri 09:56]
+- State "Done"       from "Waiting"    [2016-06-30 Thu 08:36]
+CLOCK: [2016-06-30 Thu 08:30]--[2016-06-30 Thu 08:36] =>  0:06
+- State "Done"       from "Waiting"    [2016-06-01 Wed 12:18]
+- State "Done"       from "Todo"       [2016-04-07 Thu 09:52]
+- State "Done"       from "Todo"       [2016-04-05 Tue 09:42]
+- State "Done"       from "Todo"       [2016-03-30 Wed 10:49]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2016-11-01 Tue 08:19]
+:END:
+
+- 月1勤務表
+
+メール送信先って、管理本部あてだっけ
+
+*** 通常
+- [ ] 勤務表
+- [ ] 大吉さんへのメール
+
+*** 代休
+全項目へ、日付照合を残す
+
+- [ ] 朝会doc. 当月分は残す。柴田さんが処理したものは削除
+- [ ] 申請書
+- [ ] 勤怠表へ
+- [ ] 大吉さんへメール
+
+** Todo [#G] security update確認
+SCHEDULED: <2016-11-29 Tue +3w>
+- State "Done"       from "Todo"       [2016-11-08 Tue 08:03]
+- State "Done"       from "Todo"       [2016-10-18 Tue 08:17]
+- State "Done"       from "Todo"       [2016-09-27 Tue 10:51]
+- State "Done"       from "Todo"       [2016-09-06 Tue 09:16]
+- State "Done"       from "Todo"       [2016-08-16 Tue 12:22]
+- State "Done"       from "Todo"       [2016-07-26 Tue 09:10]
+- State "Done"       from "Todo"       [2016-07-05 Tue 09:17]
+- State "Done"       from "Todo"       [2016-06-14 Tue 16:26]
+- State "Done"       from "Todo"       [2016-05-24 Tue 09:19]
+- State "Done"       from "Todo"       [2016-05-09 Mon 10:50]
+- State "Done"       from "Todo"       [2016-03-25 Fri 09:29]
+CLOCK: [2016-03-25 Fri 09:25]--[2016-03-25 Fri 09:29] =>  0:04
+- State "Done"       from "Todo"       [2016-03-24 Thu 09:52]
+- State "Done"       from "Todo"       [2016-03-08 Tue 09:49]
+CLOCK: [2016-03-08 Tue 09:47]--[2016-03-08 Tue 09:48] =>  0:01
+- State "Done"       from "Todo"       [2016-02-10 Wed 10:28]
+- State "Done"       from "Todo"       [2016-02-08 Mon 10:28]
+- State "Done"       from "Todo"       [2015-10-01 Thu 13:37]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2016-11-08 Tue 08:03]
+:END:
+
+- update rss確認
+- いい情報源があれば随時追加
+
+- slackに追加
+
+http://www.web116.jp/ced/support/version/index.html
+
+
+*** ruby-webpage
+- ruby
+- rails
+- gem
+- linxu package
+
+**** opswork
+ospworks Layerからの、rubygem version指定
+// 勉強不足。不一致の場合どうなるか確認していない
+// 2.2.3を指定したが、deploy時にエラーとなった
+// opsworksの対応状況次第か?
+// どうやら、初期作成時に指定されている模様
+// 更新されたらversion upも可能か
+
+*** uniqlo
+- ruby
+- rails
+- gem
+- linux package
+
+** Todo [#G] Router update確認
+SCHEDULED: <2016-11-25 Fri +3w>
+- State "Done"       from "Todo"       [2016-11-04 Fri 09:39]
+- State "Done"       from "Todo"       [2016-10-17 Mon 07:36]
+- State "Done"       from "Todo"       [2016-09-26 Mon 19:56]
+- State "Done"       from "Todo"       [2016-09-02 Fri 11:21]
+CLOCK: [2016-09-02 Fri 11:21]--[2016-09-02 Fri 11:21] =>  0:00
+- State "Done"       from "Todo"       [2016-08-15 Mon 09:46]
+- State "Done"       from "Todo"       [2016-07-22 Fri 09:23]
+CLOCK: [2016-07-22 Fri 09:22]--[2016-07-22 Fri 09:23] =>  0:01
+- State "Done"       from "Todo"       [2016-07-01 Fri 09:17]
+- State "Done"       from "Todo"       [2016-06-10 Fri 10:12]
+- State "Done"       from "Todo"       [2016-05-20 Fri 09:39]
+- State "Done"       from "Todo"       [2016-05-09 Mon 10:48]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2016-11-04 Fri 09:39]
+:END:
+
+https://web116.jp/ced/support/version/index.html
+RS-500KI
+
+- [X] 09/26更新
+
+** Todo [#G] security check 台帳 印刷
+SCHEDULED: <2016-12-01 Thu +1m>
+- State "Done"       from "Todo"       [2016-10-31 Mon 08:22]
+- State "Done"       from "Todo"       [2016-09-29 Thu 14:23]
+- State "Done"       from "Todo"       [2016-08-29 Mon 16:59]
+- State "Done"       from "Todo"       [2016-07-26 Tue 10:11]
+- State "Done"       from "Todo"       [2016-06-28 Tue 10:02]
+CLOCK: [2016-06-28 Tue 09:50]--[2016-06-28 Tue 10:02] =>  0:12
+- State "Done"       from "Todo"       [2016-05-26 Thu 09:57]
+- State "Done"       from "Todo"       [2016-04-26 Tue 09:41]
+CLOCK: [2016-04-26 Tue 09:33]--[2016-04-26 Tue 09:41] =>  0:08
+- State "Done"       from "Todo"       [2016-03-29 Tue 14:49]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2016-10-31 Mon 08:22]
+:END:
+
+
+** Todo [#G] 各serverのsecurityを考える
+SCHEDULED: <2016-11-15 Tue +1m>
+- State "Paused"     from "Todo"       [2016-10-18 Tue 08:19]
+- State "Paused"     from "Todo"       [2016-09-13 Tue 19:17]
+- State "Done"       from "Todo"       [2016-05-30 Mon 11:13]
+:PROPERTIES:
+:LAST_REPEAT: [2016-10-18 Tue 08:19]
+:END:
+:LOGGING:  DONE(!) logrepeat
+:STYLE:    habit
+:LAST_REPEAT: [2016-04-26 Tue 09:41]
+
+- これについて、30min時間をとろう
+
+- どんな項目を条件にあげるか? 考えよう
+
+- filtering状態
+- update
+   - linux package
+   - gem
+   - bower
+   - npm
+
+- starが多いもの
+- 更新されているもの
+
+
+
+** Todo ISMS
+SCHEDULED: <2016-11-22 Tue +1w>
+- State "Done"       from "Todo"       [2016-11-15 Tue 08:40]
+- State "Done"       from "Todo"       [2016-11-08 Tue 08:03]
+- State "Done"       from "Todo"       [2016-11-04 Fri 10:02]
+- State "Done"       from "Todo"       [2016-10-25 Tue 08:34]
+- State "Done"       from "Todo"       [2016-10-20 Thu 18:10]
+- State "Done"       from "Todo"       [2016-10-12 Wed 19:51]
+- State "Done"       from "Todo"       [2016-10-04 Tue 18:27]
+- State "Done"       from "Todo"       [2016-09-27 Tue 10:51]
+- State "Done"       from "Todo"       [2016-09-16 Fri 10:03]
+- State "Done"       from "Todo"       [2016-09-09 Fri 09:44]
+- State "Done"       from "Todo"       [2016-09-05 Mon 10:58]
+- State "Done"       from "Todo"       [2016-08-25 Thu 10:03]
+- State "Done"       from "Todo"       [2016-08-19 Fri 18:39]
+- State "Done"       from "Todo"       [2016-08-16 Tue 12:40]
+- State "Done"       from "Todo"       [2016-08-09 Tue 20:27]
+- State "Done"       from "Todo"       [2016-07-28 Thu 11:36]
+- State "Done"       from "Todo"       [2016-07-21 Thu 10:00]
+- State "Done"       from "Todo"       [2016-07-20 Wed 10:56]
+- State "Done"       from "Todo"       [2016-07-07 Thu 09:47]
+- State "Done"       from "Todo"       [2016-06-30 Thu 08:36]
+- State "Done"       from "Todo"       [2016-06-24 Fri 10:24]
+- State "Done"       from "Todo"       [2016-06-17 Fri 12:31]
+- State "Done"       from "Todo"       [2016-06-10 Fri 10:11]
+- State "Done"       from "Todo"       [2016-06-02 Thu 09:08]
+:PROPERTIES:
+:LOGGING: DONE(!) logrepeat
+:STYLE: habit
+:LAST_REPEAT: [2016-11-15 Tue 08:40]
+:END:
+
+*** rule
+**** Q : 自社の情報セキュリティ基本方針は把握してるか？
+社内と、自社HPに掲示してある。
+
+**** Q.重要な書類は、離席時どうしているか？
+所定の場所（鍵付き）に保管している
+
+**** Q.離席時、スクリーンセーバーは設定されているか？
+15分以内に作動し、パスワードを要求する設定にしている
+
+**** Q.パスワードは定期的に変更しているか？
+90日ごとに変更している
+
+**** Q.パスワードは充分に複雑か？
+英数字8桁以上（2種類×8桁以上）のルールで設定している
+
+**** Q.PCは帰宅時どうしているか？
+電源を落としてから帰宅している（執務エリアは施錠管理されているため安全）
+
+**** Q.アンチウィルスソフトは導入しているか？
+している。アップデートは自動で行われる設定にしている
+
+**** Q.自宅作業（テレワーキング）は可能か？
+障害対応時以外は、今のところ自宅作業は禁止されています
+
+**** Q.その他、社員が守るべきルールを把握しているか？
+Googleドライブにて以下の通り共有しています。
+・情報資産取扱い共通ルール   https://drive.google.com/open?id=0B32RFNW_xx8eYjh1WTFlQ3BzUT
+・情報セキュリティ共通ルール  https://drive.google.com/open?id=0B32RFNW_xx8eNWVOa19PQ2tEbVU
+
+*** base
+- 書類ないの、ISMS参照。
+- とりあえず、ppt再確認。
+
+*** 見直し
+- localには不要なファイルを残さない。
+- 保存する際は、場所を限定する。

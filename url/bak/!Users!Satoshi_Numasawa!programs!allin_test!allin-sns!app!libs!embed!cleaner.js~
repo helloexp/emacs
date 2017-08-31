@@ -1,0 +1,40 @@
+function deleteInactiveJobs() {
+    kue.Job.rangeByState( 'inactive', 0, 100000, 'asc', function( err, jobs ) {
+        jobs.forEach( function( job ) {
+            job.remove( function(){
+                console.log( 'removed ', job.id );
+            });
+        });
+    });
+}
+
+function deleteActiveJobs() {
+    kue.Job.rangeByState( 'active', 0, 100000, 'asc', function( err, jobs ) {
+        jobs.forEach( function( job ) {
+            job.remove( function(){
+                console.log( 'removed ', job.id );
+            });
+        });
+    });
+}
+
+
+function deleteDelayedJobs() {
+    kue.Job.rangeByState( 'delayed', 0, 100000, 'asc', function( err, jobs ) {
+        jobs.forEach( function( job ) {
+            job.remove( function(){
+                console.log( 'removed ', job.id );
+            });
+        });
+    });
+}
+
+function deleteCompleteJobs() {
+    kue.Job.rangeByState( 'complete', 0, 100000, 'asc', function( err, jobs ) {
+        jobs.forEach( function( job ) {
+            job.remove( function(){
+                console.log( 'removed ', job.id );
+            });
+        });
+    });
+}

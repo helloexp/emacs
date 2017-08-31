@@ -1,0 +1,13 @@
+  HostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      HostedZoneTags:
+      - Key: Name
+        Value: mynavi
+      Name: mynavi-procution
+      VPCs:
+      - VPCId:
+          Ref: *vpc_name
+        VPCRegion: ap-northeast-1
+
+

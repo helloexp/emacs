@@ -1,0 +1,355 @@
+                           marunouchi pics
+                           ===============
+
+
+Table of Contents
+=================
+1 image共有/初期設定/起動方法など 
+    1.1 image name 
+    1.2 nginx setting 
+        1.2.1 basic認証 
+        1.2.2 server_name設定 
+        1.2.3 location ~ /admin  # access 設定 
+        1.2.4 全体アクセスaccess設定 
+        1.2.5 redirect設定 
+    1.3 nginx 起動 
+    1.4 mysql 起動 
+    1.5 rails 起動 
+2 applications 
+    2.1 OS 
+    2.2 web 
+    2.3 language / framework 
+3 database 
+    3.1 login to mysql CUI 
+    3.2 rails database.yml 
+    3.3 DB / table 
+        3.3.1 DB 
+        3.3.2 tables 
+4 cron 
+    4.1 setting on cap user 
+5 basic認証 
+6 rails directory 
+    6.1 root 
+    6.2 nginx.conf内での読み込み先 (root dir指定) 
+7 http / ssh access 
+    7.1 http 
+    7.2 ssh 
+8 rake 
+
+
+
+
+
+1 image共有/初期設定/起動方法など 
+----------------------------------------------------------------
+    1.1 image name 
+    --------------------------------
+        maru-stg2
+
+
+    1.2 nginx setting 
+    --------------------------------
+        $ vim /etc/nginx/nginx.conf
+
+
+        1.2.1 basic認証 
+        ----------------
+            ID   : marupix
+            pass : mec_marupix
+
+            ;; 初期設定をそのまま使用
+            ;; http://~~/, http://~~/admin/ 双方で認証が入る
+
+
+        1.2.2 server_name設定 
+        ----------------------
+            74行目  :  server_name  stg-marupix.agsr.org  # コメントアウト
+            75行目  :  server_name  ec2-54-92-102-138.ap-northeast-1.compute.amazonaws.com;  # 追記
+
+            // ruby環境のURLへ変更している
+            // IP固定予定
+  
+
+        1.2.3 location ~ /admin  # access 設定 
+        ---------------------------------------
+            deny all;  # コメントアウト
+            allow all; # 追記
+
+            // [http://~~/admin] へのアクセス権限
+
+
+        1.2.4 全体アクセスaccess設定 
+        -----------------------------
+            128行目付近
+            allow all; # コメントを外す
+
+            // [http://~~~/] へのアクセス権限
+
+
+        1.2.5 redirect設定 
+        -------------------
+            156行目以下全てコメントアウト
+            marunouchipixの本HPへredirectしているため
+            // 開発環境では不要
+
+
+    1.3 nginx 起動 
+    ----------------------------------------------------------------
+        $ sudo service nginx start
+
+        // 前述の設定変更後に起動
+        // image起動直後は、nginxは未起動
+
+
+    1.4 mysql 起動 
+    ----------------------------------------------------------------
+        image起動直後、自動起動されている
+
+
+    1.5 rails 起動 
+    ----------------------------------------------------------------
+        $ sudo su - cap 
+        $ cd /var/rails/marunouchi_pix/current
+        $ bundle exec unicorn_rails -c config/unicorn/staging.rb -E staging -D
+
+        // ec2-userでは起動できず
+
+
+
+
+2 applications 
+----------------------------------------------------------------
+
+    2.1 OS 
+    --------------------------------
+        Linux marunouchi-stg 3.10.48-55.140.amzn1.x86_64 #1 SMP Wed Jul 9 23:32:19 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+
+
+    2.2 web 
+    --------------------------------
+        nginx   : 1.4.7
+        unicorn : 4.8.2
+        mysql   : mysql  Ver 14.14 Distrib 5.5.40, for Linux (x86_64) using readline 5.1
+
+
+    2.3 language / framework 
+    --------------------------------
+        ruby      : 2.1.2p95 (2014-05-08 revision 45877) [x86_64-linux]
+        rails     : 4.1.4
+        Bootstrap : 3.1.1
+
+
+
+
+3 database 
+----------------------------------------------------------------
+
+    3.1 login to mysql CUI 
+    --------------------------------
+        $ sudo mysql -u marupix -p
+        HyW9554ijBCAeWov1Sx5
+
+
+    3.2 rails database.yml 
+    --------------------------------
+        staging:
+            adapter: mysql2
+            encoding: utf8
+            database: marunouchi_pix_staging
+            pool: 5
+            username: marupix
+            password: HyW9554ijBCAeWov1Sx5
+
+        production:
+            adapter: mysql2
+            encoding: utf8
+            reconnect: false
+            host: marupix.ccuxzdz4ubgj.ap-northeast-1.rds.amazonaws.com
+            database: marunouchi_pix_production
+            pool: 5
+            username: marupix
+            password: 9kefnoMXvTs6vplNsWyn
+
+
+    3.3 DB / table 
+    --------------------------------
+
+        3.3.1 DB 
+        ---------
+            marunouchi_pix_staging
+
+
+        3.3.2 tables 
+        -------------
+            * admin_users 
+                Field                    Type           Null   Key   Default   Extra           
+                +------------------------+--------------+------+-----+---------+----------------
+                id                       int(11)        NO     PRI   NULL      auto_increment  
+                email                    varchar(255)   NO     UNI                             
+                encrypted_password       varchar(255)   NO                                     
+                role                     varchar(255)   NO           editor                    
+                reset_password_token     varchar(255)   YES    UNI   NULL                      
+                reset_password_sent_at   datetime       YES          NULL                      
+                remember_created_at      datetime       YES          NULL                      
+                sign_in_count            int(11)        NO           0                         
+                current_sign_in_at       datetime       YES          NULL                      
+                last_sign_in_at          datetime       YES          NULL                      
+                current_sign_in_ip       varchar(255)   YES          NULL                      
+                last_sign_in_ip          varchar(255)   YES          NULL                      
+                created_at               datetime       YES          NULL                      
+                updated_at               datetime       YES          NULL                      
+  
+
+            * comments 
+                Field           Type       Null   Key   Default   Extra           
+                +---------------+----------+------+-----+---------+----------------
+                id              int(11)    NO     PRI   NULL      auto_increment  
+                admin_user_id   int(11)    NO           NULL                      
+                medium_id       int(11)    NO           NULL                      
+                text            text       YES          NULL                      
+                created_at      datetime   YES          NULL                      
+                updated_at      datetime   YES          NULL                      
+  
+
+            * media 
+                Field               Type           Null   Key   Default   Extra           
+                +-------------------+--------------+------+-----+---------+----------------
+                id                  int(11)        NO     PRI   NULL      auto_increment  
+                instagram_comment   int(11)        NO           0                         
+                image_thumb         text           NO           NULL                      
+                image_low           text           NO           NULL                      
+                image_standard      text           NO           NULL                      
+                instagram_like      int(11)        NO           0                         
+                original_url        text           NO     UNI   NULL                      
+                posted_at           datetime       YES          NULL                      
+                status              varchar(255)   NO     MUL   active                    
+                text                text           YES          NULL                      
+                user_image          text           NO           NULL                      
+                user_name           varchar(255)   NO           NULL                      
+                created_at          datetime       YES          NULL                      
+                updated_at          datetime       YES          NULL                      
+                pickup_order        int(11)        YES    MUL   NULL                      
+                instagram_id        varchar(255)   YES          NULL                      
+                media_type          varchar(255)   NO           image                     
+                pickuped_at         datetime       YES          NULL                      
+  
+
+            * medium_ngs 
+                Field        Type           Null   Key   Default   Extra           
+                +------------+--------------+------+-----+---------+----------------
+                id           int(11)        NO     PRI   NULL      auto_increment  
+                word         varchar(255)   NO           NULL                      
+                created_at   datetime       YES          NULL                      
+                updated_at   datetime       YES          NULL                      
+  
+
+            * schema_migrations 
+                Field     Type           Null   Key   Default   Extra  
+                +---------+--------------+------+-----+---------+-------+
+                version   varchar(255)   NO     PRI   NULL             
+
+
+  
+
+4 cron 
+----------------------------------------------------------------
+
+    4.1 setting on cap user 
+    --------------------------------
+        $ crontab -e
+
+        05,15,25,35,45,55 1-23 * * * /bin/bash -l -c 'cd /var/rails/marunouchi_pix/releases/20140812091155 && RAILS_ENV=staging bundle exec rake instagram:get_tag_media --silent >> log/cron.log 2>&1'
+        05 0 * * * /bin/bash -l -c 'cd /var/rails/marunouchi_pix/releases/20140812091155 && RAILS_ENV=staging bundle exec rake instagram:update_info --silent >> log/cron.log 2>&1'
+        05 1 * * * /bin/bash -l -c 'cd /var/rails/marunouchi_pix/releases/20140812091155 && RAILS_ENV=staging bundle exec rake instagram:check_image --silent >> log/cron.log 2>&1'
+
+
+
+
+5 basic認証 
+----------------------------------------------------------------
+    以下、双方でbasic認証が入る
+        http://~~~~/
+        http://~~~~/admin
+
+    認証情報    
+        ID   : marupix
+        PASS : mec_marupix    
+
+    
+
+
+
+
+6 rails directory 
+----------------------------------------------------------------
+
+    6.1 root 
+    --------------------------------
+        /var/rails/marunouchi_pix
+
+
+    6.2 nginx.conf内での読み込み先 (root dir指定) 
+    --------------------------------
+        /var/rails/marunouchi_pix/current/public
+
+        // current dirは symbolic link
+        // 参照先は、/var/rails/marunouchi_pix/releases/20140812091155
+        // crontabの内容と合致
+
+
+
+
+7 http / ssh access 
+----------------------------------------------------------------
+
+    7.1 http 
+    --------------------------------
+        [http://ec2-54-92-102-138.ap-northeast-1.compute.amazonaws.com/]
+
+
+    7.2 ssh 
+    --------------------------------
+        ssh -i s-numasawa-key-pair-tokyo.pem root@54.92.102.138
+
+
+
+
+8 rake 
+----------------------------------------------------------------
+    以下、実行せずとも動いたので不要とも思える。
+    instagramデターの取得は、cronで自動実行されている。
+    根拠を特定できず。
+
+
+    以下、森氏よりの情報
+    ----------------------------------------------------------------
+    ですが、最初だけlib/taskの下のrakeを実行してください。
+    (ハッシュタグに紐づくinstaデータを取ってくるとかの処理)
+    cron自体は気にしなくてもよいです。スコープに関係ないのと取りすぎると
+    API制限に引っかかる恐れがあるためです。
+    ----------------------------------------------------------------
+
+
+    上記と、crontabの情報、rakeファイル内を参照し、実行可能な処理は以下。
+    ----------------------------------------------------------------
+    $ bundle exec rake db_load:medium_ng_by_csv RAILS_ENV=staging
+    
+    $ bundle exec rake instagram:get_tag_media      RAILS_ENV=staging  # instagramの特定のタグの付いた写真を取得
+    $ bundle exec rake instagram:update_info        RAILS_ENV=staging  # DB内のinstagram(media)の情報を最新に更新(最新1,500件)'
+    $ bundle exec rake instagram:check_image        RAILS_ENV=staging  # instagram(media)の画像の存在確認
+    $ bundle exec rake instagram:update_pickup_date RAILS_ENV=staging  # ステータスがpickupの場合はピックアップ日時を更新
+    ----------------------------------------------------------------
+
+
+    実行対象
+    // cronで自動実行されているので、基本実行しなくて良い様にみえる
+    ----------------------------------------------------------------
+    $ sudo su - cap 
+    $ cd /var/rails/marunouchi_pix/releases/20140812091155
+    
+    $ bundle exec rake instagram:get_tag_media      RAILS_ENV=staging  # instagramの特定のタグの付いた写真を取得
+    
+    $ bundle exec rake instagram:update_info        RAILS_ENV=staging  # DB内のinstagram(media)の情報を最新に更新(最新1,500件)'
+    
+    $ bundle exec rake instagram:check_image        RAILS_ENV=staging  # instagram(media)の画像の存在確認
+    ----------------------------------------------------------------

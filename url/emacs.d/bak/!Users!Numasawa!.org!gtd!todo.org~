@@ -1,0 +1,695 @@
+-*- mode: org -*-
+
+* next
+** Todo [#E] uniqlo admin                                         :uniqlo:
+Added: [2015-06-23 Tue 12:09]
+Account情報を失った。
+要salvage
+
+** Todo [#E] 資料確認
+Added: [2015-09-14 Mon 10:03]
+
+一読
+https://git.ruby-dev.jp/home/code-guide
+** Todo mail trapについて
+https://mailtrap.io/inboxes/101812/messages/173039729
+
+** Todo manatuku set SSL to cloudfront
+CloudFrontへの証明書設定
+
+*** 上げる事はできる模様
+http://dev.classmethod.jp/cloud/cloudfront-ssl-options-summary/
+具体的な方法は要調査
+
+http://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/SecureConnections.html
+ここらへんかな
+
+*** 証明書をもらう必要あり
+** Todo aws instance health
+status checkってどういう意味だっけ
+
+** Todo opensll update
+SCHEDULED: <2016-05-09 Mon>
+Added: [2016-05-09 Mon 09:35]
+
+- monitor
+- ruby-webpage
+
+** Todo [#A] close : security group                                   :bb:
+Added: [2016-05-11 Wed 09:27]
+SCHEDULED: <2016-05-12 Thu>
+
+*** allin server
+- ELB : sg-989b3bfc
+- EC2 : sg-259b3b41
+
+*** sns-instance
+sg-1b4c8a7f
+full openになっているため閉塞
+その後、動作確認
+
+*** 他のserver
+大丈夫か?
+
+** Todo uniqlo instagram token/account
+Added: [2016-05-11 Wed 13:40]
+
+- instagram account抽出
+- token抽出
+
+any other?
+
+https://www.instagram.com/accounts/login/?next=/developer/
+
+
+*** acc
+|---------+----------------+------------+-------------------------------+----------------------------|
+| env     | id             | pass       | mail                          |                            |
+|---------+----------------+------------+-------------------------------+----------------------------|
+| prd,stg | APPSTYLEUNIQLO | lifewr2015 | uniqloinfluencer@uniqlo.co.jp | prd token x1, stg token x3 |
+| prd     | ruby_dev       | mruby0225  | s-numasawa@mruby.jp           | prd token x5               |
+| dev     | mruby0901      | mruby0225  | sns@mruby.jp                  | dev token x5               |
+|---------+----------------+------------+-------------------------------+----------------------------|
+
+
+*** prd
+INSTAGRAM_CLIENT_ID=ffde84b110e248e895cc51fe63969f90
+INSTAGRAM_CLIENT_SECRET=a5293e59b7ac4de1916b94bed991539c
+
+INSTAGRAM_ACCESS_TOKENS=
+1725548089.ffde84b.d0991bd477024858a1758bf1a3bfbc69,
+1953644486.569cd68.e3b327f08fdd41aaae24cb5d8c09b7e6, # ruby-dev account
+1953644486.9d9d9eb.dc50f786802e474d8c50129c0fed9d2b, # ruby-dev account
+1953644486.ab28996.c325764d5daa4353a54bda1f252b0707, # ruby-dev account
+1953644486.7031d8f.027958c3327445d0b0b54fb75a7e1ef2, # ruby-dev account
+1953644486.28f8d14.d2c4fd086b4748f5aa0bbbb828e7d018  # ruby-dev account
+
+*** stg
+INSTAGRAM_CLIENT_ID=8fcf4dc63f5c49768ecea77ababdc0cb
+INSTAGRAM_CLIENT_SECRET=3eea1d53894d4e4dbac0778aef4f1f57
+
+INSTAGRAM_ACCESS_TOKENS=
+1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f,
+1725548089.0c56b3d.171c23a4c4fe45909c861600ab3d196e,
+1725548089.3156de7.3e357950bbef4816b881c1f68117bb7e
+
+https://api.instagram.com/oauth/authorize/?client_id=28f8d14d8ab64154a1e888df9e58d4eb&redirect_uri=http://localhost/&response_type=code
+
+curl \-F 'client_id=28f8d14d8ab64154a1e888df9e58d4eb' \
+    -F 'client_secret=e242d7977a0747a2867c1e20fd7367e5' \
+    -F 'grant_type=authorization_code' \
+    -F 'redirect_uri=http://localhost/' \
+    -F 'code=b80460d1df9d4a88923402a5d71b8709' \https://api.instagram.com/oauth/access_token
+
+
+*** dev
+INSTAGRAM_CLIENT_ID=65bfae25a972496985e349a3d5467dba
+INSTAGRAM_CLIENT_SECRET=64eb28aca5bd47f3bafda2fea7138477
+
+INSTAGRAM_ACCESS_TOKENS=
+1723080740.65bfae2.468ff3a301bd4612b27dc4630cb4188f, # u-hashtag-dev_1
+1723080740.3f5525a.7c8ab33166644e349324da2ca1afbd0e, # u-hashtag-dev_2
+1723080740.9b45723.1196e8df9b094989bbbc869d810d0921, # u-hashtag-dev_3
+1723080740.789672c.99653ff469cc4716aa04df4036f9b975, # u-hashtag-dev_4
+1723080740.76fc6c4.5b3c99971a7e493fa462ceccade7a707  # u-hashtag-dev_5
+
+
+** Done allin update
+CLOSED: [2016-05-11 Wed 11:42] SCHEDULED: <2016-05-11 Wed>
+CLOCK: [2016-05-11 Wed 11:40]--[2016-05-11 Wed 11:42] =>  0:02
+
+
+** Done [#A] ruby-webpage : move hub to lab
+CLOSED: [2016-04-19 Tue 09:21] SCHEDULED: <2016-04-18 Mon>
+CLOCK: [2016-04-18 Mon 11:00]--[2016-04-18 Mon 13:23] =>  2:23
+
+*** change repository : stg
+- [X] : 鍵?
+- [X] : berkshelf repo
+- [X] : main repo
+- [X] : deploy試験
+- [X] : 指定branchを、stagingへ戻す
+
+*** change repository : prd
+- [X] : 鍵?
+- [X] : berkshelf repo
+- [X] : main repo
+- [X] : deploy試験
+
+*** jenkins auto deploy
+- [X] : master branch以外でのdeploy試験
+// repository, 鍵変更などは不要だった
+
+** Done [#A] ruby-webpage staing
+CLOSED: [2016-04-13 Wed 11:19] SCHEDULED: <2016-04-12 Tue>
+CLOCK: [2016-04-12 Tue 16:00]--[2016-04-12 Tue 18:07] =>  2:07
+
+staging作成
+
+*** Done opsworks copy
+CLOSED: [2016-04-12 Tue 17:03]
+
+*** Done route53
+CLOSED: [2016-04-12 Tue 17:03]
+  stg.www.ruby-webpage
+
+*** Done nginx
+CLOSED: [2016-04-12 Tue 18:07]
+- [X] basic認証. .htpasswd作成
+- [X] nginx原盤修正
+*** Done deploy
+CLOSED: [2016-04-12 Tue 18:07]
+- [X] 手順作成
+- [X] 伝達
+*** flow
+- deploy
+    - open opsworks
+    - select [ruby-webpage-staging]
+    - select [Deployments]
+    - select [Deploy an App]
+    - select [Deploy]
+    - wait for complete
+    - you can watch deploy status at [Deployments]
+
+- change deploy branch
+    - open opsworks
+    - select [ruby-webpage-staging]
+    - select [Apps]
+    - select [edit]
+    - confirm [Branch/Revision] in [Application Source]
+
+** Done [#A] ruby-webpage staing - bug
+CLOCK: [2016-04-13 Wed 09:30]--[2016-04-13 Wed 11:55] =>  2:25
+
+staingだけdeploy失敗.
+- $ rails serverの段階でエラーだった
+- browserでアクセスすると、cssが読み込めないという状態
+
+** Done [#A] manatuku : 環境変数の新規読み込み
+CLOSED: [2016-03-28 Mon 18:20] SCHEDULED: <2016-03-28 Mon>
+なんとなくの根拠です
+
+pumaのhost restartは、SIGUSR2 signalで行っている
+以下、URLのrestartの項より
+https://github.com/puma/puma
+
+unicornも同様にSIGUSR2 signalを送ると、環境変数が適切に更新されない様です
+http://qiita.com/kenjiszk/items/51d5ad7d431d022f2962
+
+解決策は、上記のコメント欄に記述有り。
+deploy後に、環境変数を読み直す処理が必要との事。
+
+** Done [#A] manatuku
+CLOSED: [2016-03-23 Wed 18:26] SCHEDULED: <2016-03-23 Wed>
+Added: [2016-03-23 Wed 17:52]
+
+*** revision確認
+*** 手動
+手動で入れ替えたと
+
+** Done [#A] openssl update
+CLOSED: [2016-03-23 Wed 11:08] SCHEDULED: <2016-03-19 Sat>
+*** base
+CLOCK: [2016-03-18 Fri 09:30]--[2016-03-18 Fri 10:52] =>  1:22
+amazon linxuにはまだupdateがきていない [2016-03-02 Wed]
+upate情報でたら更新を
+
+[2016-03-10 Thu] づけでupdated
+
+*** pick up servers
+- [X] out
+    - [X] manatsuku : 伝達済み
+- [-] in
+    - [X] ruby-webpage
+    - [X] monitor
+    - [ ] jenkins - 助田さんへ伝達
+    - [X] skipfish : いらない
+    - [X] sakura
+
+** Done [#A] server構築, notifer
+CLOSED: [2016-05-10 Tue 18:52] SCHEDULED: <2016-05-10 Tue>
+CLOCK: [2016-05-10 Tue 15:00]--[2016-05-10 Tue 18:52] =>  3:52
+Added: [2016-05-10 Tue 14:17]
+
+・Notification
+リポジトリ: https://git.ruby-dev.jp/business_bank_group/allin-notification
+ブランチ: master
+実行ポート: 5100
+
+ポート番号が変わる以外はallin-snsとほぼ同じはずです。SNSと同じサーバにあげていただければ良いのではないかと思います。
+SNSとフロント側もデプロイする必要がありますが、まだ準備中なのでまずはNotifiationからお願い致します。
+
+
+
+{"message":"Invalid URI \"
+
+undefinedundefined?access_token=vvUMgOAHTPMNHm2deDhTlXT6Vqa8RFGPslFLPyJhyjPNuHXvv3NnWuZr4CwQRRfv4wUR8Z6dDtcqYvXTtICVfHQqcfmHOMqam3MGMHhR9S2wgJuiP4Kzj8FFooayjymH\"
+** Done [#B] manatuku : delete setting
+CLOSED: [2016-04-20 Wed 09:47]
+*** 死活監視
+- server上からscript削除. stop cron
+- cloudwatch設定削除
+
+- 消すタイミングは相談
+
+*** deploy
+- server上の鍵削除
+- gitlabから該当鍵の削除
+- 恐らくlocalの鍵と同一。
+  gitlabへ登録仕直しが必要。
+
+** Done メール消化
+CLOSED: [2016-05-09 Mon 14:22] SCHEDULED: <2016-05-09 Mon>
+CLOCK: [2016-05-09 Mon 13:28]--[2016-05-09 Mon 14:22] =>  0:54
+CLOCK: [2016-05-09 Mon 12:04]--[2016-05-09 Mon 12:20] =>  0:16
+Added: [2016-05-09 Mon 09:11]
+
+** Done create iam
+CLOSED: [2016-04-19 Tue 11:41]
+CLOCK: [2016-04-19 Tue 10:00]--[2016-04-19 Tue 11:41] =>  1:41
+*** base
+new accontでiam user作成
+
+助田さん、pierreさん
+双方admin
+
+*** accs
+s-numasawa
+JSx5Mf0V{HpQ
+
+m-suketa
+kenPjtZG7O[{
+
+pierre
+qQzal^mydZsy
+
+*** 実験
+ec2
+|---------------+----------------+-------------------+-------+------+----------+---------+---------+-----+-----+-----+---|
+| region        |                | $/hour (t2.small) | month |      | ping min |     ave |     max | los | ttl | hop |   |
+|---------------+----------------+-------------------+-------+------+----------+---------+---------+-----+-----+-----+---|
+| us east       | n. virginia    |             0.013 |  9.36 | 100% |  181.272 | 182.703 | 187.439 |   0 | 228 |  32 |   |
+|---------------+----------------+-------------------+-------+------+----------+---------+---------+-----+-----+-----+---|
+| us west       | oregon         |             0.013 |  9.36 | 100% |  133.495 | 134.182 | 137.231 |   0 | 237 |  16 |   |
+|               | california     |             0.017 | 12.24 | 130% |  116.240 | 117.073 | 120.851 |   0 | 241 |  14 |   |
+|---------------+----------------+-------------------+-------+------+----------+---------+---------+-----+-----+-----+---|
+| EU            | ireland        |             0.014 | 10.08 | 107% |  270.981 | 271.931 | 275.565 |   0 |     |     |   |
+|               | frankfurt      |             0.015 |  10.8 | 115% |  285.154 | 285.979 | 289.471 |   0 |     |     |   |
+|---------------+----------------+-------------------+-------+------+----------+---------+---------+-----+-----+-----+---|
+| asia          | singapore      |              0.02 |  14.4 | 153% |   84.962 |  85.505 |  88.092 |     |     |     |   |
+|               | tokyo          |              0.02 |  14.4 | 153% |   10.695 |  11.252 |  13.712 |     |     |     |   |
+|               | sydney         |              0.02 |  14.4 | 153% |  115.640 | 116.294 | 121.675 |     |     |     |   |
+|               | seoul          |              0.02 |  14.4 | 153% |   37.374 |  38.312 |  40.510 |     |     |     |   |
+|---------------+----------------+-------------------+-------+------+----------+---------+---------+-----+-----+-----+---|
+| south america | sao paulo      |             0.027 |       |      |          |         |         |     |     |     |   |
+|---------------+----------------+-------------------+-------+------+----------+---------+---------+-----+-----+-----+---|
+| AWS GovCloud  | for Government |             0.015 |       |      |          |         |         |     |     |     |   |
+|---------------+----------------+-------------------+-------+------+----------+---------+---------+-----+-----+-----+---|
+
+** Done manatuku check依頼
+CLOSED: [2016-04-14 Thu 11:35] SCHEDULED: <2016-04-14 Thu>
+CLOCK: [2016-04-14 Thu 10:45]--[2016-04-14 Thu 11:35] =>  0:50
+
+*** 依頼内容
+上記のメールの、特に保守終了後のタスクについて、追加すべき内容や、間違っているものがないか、チェックをお願いします:bow:
+
+*** text
+オーガニックスタイル株式会社 渡辺様 森様
+
+お世話になっております、Ruby開発の久保です。
+引き継ぎ資料を添付いたします。
+添付の資料は、以下の通りとなっております。
+
+　・Account.pdf　：　AWSのアカウント情報です
+　・Structure.pdf　：　サーバー構成資料１です。（先日一度提供済みです）
+　・Structure_CNAMES-IPなど.pdf　：　サーバー構成資料２です。
+　・業務フロー.pdf　：　共有していた資料をPDF化したものです。
+　・クーポン割引一覧.pdf　：　共有していた資料をPDF化したものです。
+
+他、ソースコードのルートディレクトリや、
+「docs」ディレクトリには以下のドキュメントがございますので、ご参考ください。
+
+　・README.md　：　Ruby開発記載。Vagrant を利用した開発環境の構築の仕方等
+　・DEPLOY.md　：　既存ベンダー様記載。デプロイについて
+　・DEVEL.md　：　既存ベンダー様記載。開発環境セットアップ方法について
+　・SERVER.md　：　既存ベンダー様記載。サーバー構成について
+
+
+また、今後、以下のタイミングにて、以下のタスクの対応をお願いいたします。
+
+　【保守契約終了後（4月末日）】
+　　Ruby開発のタスク
+　　　・監視設定等の削除
+　　オーガニックスタイル様のタスク（Ruby開発のタスク完了連絡後に対応をお願いいたします）
+　　　・AWSの「ruby-dev」アカウントの削除し、新しい管理用アカウントを作成する
+　　　・AWSの「manatuku-s3」アカウントのパスワード変更
+　　　・AWSのBasic認証パスワードの変更
+　　　・STG環境のまなつくサービスアカウントのパスワード変更
+
+　【Ruby開発の開発終了後（5月中の予定）】
+　　オーガニックスタイル様のタスク
+　　　・pemファイル（production.pem、staging.pem）の変更
+
+
+以上です。
+サービスのセキュリティ保守上必要となりますので、
+お手数ですが、ご対応をお願いいたします。
+
+**** points
+- deploy
+  repositoryの変更が必要か?
+
+-
+
+** Done ruby-webpage | account作成
+CLOSED: [2016-04-13 Wed 15:49]
+https://689978960272.signin.aws.amazon.com/console
+
+pierre
+hY7Z)7LPaD#I
+
+** Done ruby-webpage | mobile acces不可
+CLOSED: [2016-04-13 Wed 16:08]
+- [X] 大丈夫そう
+- [ ] 具体的情報があれば切り分けられるか
+
+** Done 面談 / 社長からの掲示
+CLOSED: [2016-04-13 Wed 15:05]
+CLOCK: [2016-04-13 Wed 13:30]--[2016-04-13 Wed 15:05] =>  1:35
+
+** Done 証明書のupload test
+CLOSED: [2016-04-11 Mon 10:30] SCHEDULED: <2016-04-08 Fri>
+CLOCK: [2016-04-11 Mon 09:41]--[2016-04-11 Mon 10:00] =>  0:19
+CLOCK: [2016-04-08 Fri 13:56]--[2016-04-08 Fri 14:33] =>  0:37
+CLOCK: [2016-04-07 Thu 10:10]--[2016-04-07 Thu 10:32] =>  0:22
+Added: [2016-03-30 Wed 09:16]
+
+*** Done upload
+CLOSED: [2016-04-07 Thu 10:32]
+http://qiita.com/syuhei/items/83cfbf29a32785c8bbc6
+
+aws iam upload-server-certificate \
+--server-certificate-name ruby-dev \
+--path /cloudfront/ \
+--private-key file:///Users/Numasawa/temp/server.key \
+--certificate-body file:///Users/Numasawa/temp/server.crt \
+--certificate-chain file:///Users/Numasawa/temp/server.ca
+
+*** Done https
+CLOSED: [2016-04-11 Mon 09:41]
+- [ ] cloudfrontへdomainを紐付ける. how
+    http://qiita.com/n0bisuke/items/a2a7d5efdc1311dc479a
+
+- [ ] httpsでのアクセス確認
+
+*** Done delete
+CLOSED: [2016-04-11 Mon 09:44]
+how to delete key on server
+
+**** 確認
+aws iam list-server-certificates
+
+**** 移動
+$ aws iam update-server-certificate --server-certificate-name アップロードした証明書名 ¥
+                                    --new-path /cloudfront/path/
+
+**** 名前の変更
+$ aws iam update-server-certificate --server-certificate-name アップロードした証明書名 ¥
+                                    --new-server-certificate-name 変更後の証明書名
+
+**** 証明書の削除
+$ aws iam delete-server-certificate --server-certificate-name アップロードした証明書名
+
+
+*** Done 久保さんへ伝達
+CLOSED: [2016-04-08 Fri 15:33]
+以下に設定手順を残させていただきます
+
+
+** Done review | update確認
+CLOSED: [2016-04-05 Tue 10:48] SCHEDULED: <2016-03-31 Thu>
+CLOCK: [2016-04-05 Tue 10:47]--[2016-04-05 Tue 10:48] =>  0:01
+Added: [2016-03-31 Thu 10:44]
+
+** Done manatuku
+CLOSED: [2016-03-24 Thu 14:48] SCHEDULED: <2016-03-24 Thu>
+CLOCK: [2016-03-24 Thu 14:00]--[2016-03-24 Thu 15:30] =>  1:30
+
+資料作成
+https://docs.google.com/drawings/d/1r4atTUyXWOiWZZX3hcTjsK0WPml3zbfVJljTFRyveKI/edit
+
+SSL証明書どこに保存している?という声から、記録として残す
+
+** Done todo整理
+CLOSED: [2016-03-22 Tue 13:24] SCHEDULED: <2016-03-22 Tue>
+CLOCK: [2016-03-22 Tue 13:14]--[2016-03-22 Tue 13:24] =>  0:10
+** Done いらないinstance落とす
+CLOSED: [2016-03-31 Thu 10:33] SCHEDULED: <2016-03-31 Thu>
+CLOCK: [2016-03-31 Thu 09:44]--[2016-03-31 Thu 10:33] =>  0:49
+Added: [2016-03-31 Thu 09:43]
+お疲れ様です。芦田です。
+
+Ruby AssociationのGold Sponserになりました。
+
+ロゴをHPのどこかに展開できるかな？
+
+あと、会社概要の沿革並びに
+TOPページのトピックスに展開ください。
+
+-------- Forwarded Message --------
+Subject: Re: 2016年度協賛会員申請いただきありがとうございます
+Date: Tue, 22 Mar 2016 12:00:45 +0900
+From: Sayuri Yokota <yokota@ruby.or.jp>
+Reply-To: RA事務局 <info@ruby.or.jp>
+To: Ruby開発）芦田様 <h-ashida@mruby.jp>
+CC: RA事務局 <info@ruby.or.jp>
+
+株式会社Ruby開発
+芦田 様
+
+お世話になっております。
+Rubyアソシエーション）事務局の横田です。
+
+Gold Sponsorのロゴデータを本メールに添付いたしますので、
+名刺やサイト等にご利用ください。
+
+今後ともどうぞよろしくお願いいたします。
+
+On 2016/02/29 10:21, Sayuri Yokota wrote:
+
+    株式会社Ruby開発
+    芦田 様
+
+    いつもお世話になっております。
+    Rubyアソシエーション）事務局の横田です。
+
+    継続申請書をお送りいただき、ありがとうございます。
+    確かに拝受いたしました。
+
+    来期は、Gold Sponsorでご登録いただますこと、誠に感謝申し上げます。
+    ４月より、Gold Sponsorでのご登録とさせていただきます。
+
+    以下のサイトに貴社の情報を掲載させていただいておりますが、
+    ロゴの変更等ございましたら、ご連絡下さい。
+
+    http://www.ruby.or.jp/ja/sponsors/list/
+
+    Gold Sponsorのロゴデータにつきましては、3月下旬にお送りさせていただきます。
+
+    今後もRubyの普及を通じて御社の発展に貢献させていただきたいと思います。
+    引き続きどうぞよろしくお願いいたします。
+
+
+
+** Done instance確認
+CLOSED: [2016-04-01 Fri 10:16]
+Added: [2016-04-01 Fri 09:59]
+
+メール
+i-968a7e32
+** Done いらない証明書の削除
+CLOSED: [2016-04-05 Tue 10:46] SCHEDULED: <2016-04-04 Mon>
+CLOCK: [2016-04-05 Tue 10:31]--[2016-04-05 Tue 10:46] =>  0:15
+Added: [2016-04-04 Mon 16:19]
+
+残すの
+- ruby-dev-cert
+- server (確か擬似証明書だったような)
+
+** Done 休み報告
+CLOSED: [2016-04-26 Tue 10:38] SCHEDULED: <2016-04-26 Tue>
+CLOCK: [2016-04-26 Tue 10:09]--[2016-04-26 Tue 10:38] =>  0:29
+CLOCK: [2016-04-26 Tue 09:42]--[2016-04-26 Tue 09:52] =>  0:10
+Added: [2016-04-26 Tue 09:41]
+
+- [X] カレンダー
+- [X] 大吉さん、柴田さんへ
+
+2016/02/20 (土) = 2016/03/07 (月)
+としました。
+
+
+02/27 [土] = 04/28 [木]　
+02/28 [日] = 05/02 [月]
+03/12 [土] = 05/06 [金]
+** Done 休出状況修正
+CLOSED: [2016-05-09 Mon 11:00] SCHEDULED: <2016-05-09 Mon>
+CLOCK: [2016-05-09 Mon 10:54]--[2016-05-09 Mon 11:00] =>  0:06
+Added: [2016-05-09 Mon 09:10]
+
+代休消化分
+朝会docへ記述
+** Done 代休誤り訂正
+CLOSED: [2016-05-09 Mon 11:49] SCHEDULED: <2016-05-09 Mon>
+CLOCK: [2016-05-09 Mon 11:35]--[2016-05-09 Mon 11:49] =>  0:14
+Added: [2016-05-09 Mon 11:15]
+
+
+- [X] 勤怠表
+- [X] 代休申請
+- [X] 大吉さんへの訂正メール
+- [X] 朝会doc
+
+02/27
+02/28
+午前中のみだったので、訂正が必要
+** Done Ruby gold 盾
+CLOSED: [2016-05-10 Tue 14:35] SCHEDULED: <2016-05-10 Tue>
+CLOCK: [2016-05-09 Mon 12:30]--[2016-05-09 Mon 13:28] =>  0:58
+Added: [2016-05-09 Mon 12:19]
+
+送付済み、受け取り返答待ち
+
+*** 本社へ送付だそうな
+
+----------------------------------------------------------------
+お疲れ様です。芦田です。
+
+仙台オフィスにある、
+Ruby Gold　認定楯を
+本社に送ってください。
+
+ケースは
+キャビネットに入っていると思う。
+
+できれば月曜中の発送＋火曜AM必着で送ってください。
+コンビニからの発送でも大丈夫かと。
+
+もし、ケースが見当たらない場合は、電話ください。
+
+よろしく。
+** Done ruby-webpage. deploy setting
+CLOSED: [2016-05-10 Tue 18:52] SCHEDULED: <2016-05-10 Tue>
+Added: [2016-05-10 Tue 09:08]
+
+
+前に手順を聞いたような気がしたのですが、どこで設定すれば良いかわからなかったので、対応をお願いさせてください。
+
+今、ruby-webpageの本番環境のリリースを gitlab の master ブランチからリリースするようになっているのですが、
+それを release ブランチからリリースするように修正していただけますでしょうか？
+
+今後は、以下のブランチ運用案で運用することになったためです。
+https://git.ruby-dev.jp/home/ruby-webpage/issues/29#note_2347
+** Paused [#B] manatuku : 構成図作成 / メンテナンス画面
+CLOSED: [2016-04-13 Wed 12:00] SCHEDULED: <2016-04-12 Tue>
+* others
+** tohoku developers memo
+*** twitter hashtags
+#tdc8th
+
+https://twitter.com/search?q=%23tdc8th&src=typd&lang=ja&lang=ja
+
+*** IBM
+http://researcher.ibm.com/researcher/view_person_subpage.php?id=5580
+**** jepardy!
+
+**** open data
+***** keyword
+- linked open data
+
+***** site...
+****** DBpedia
+****** NHTSA - 交通事故の情報
+****** pubMed
+遺伝時相互関係のサマリー生成
+論文そのものは載せられない
+概要など記述
+発表された論文は必ず入れられる。(米政府主導)
+
+MeSH terms
+論文の関連性を人工知能におわせる
+
+****** 災害早期発見
+twitter分析
+
+言葉の相互関連性を元にモジュール化
+相互関連性が高いものをまとめる
+
+**** beatmap.js
+client js to google spraed sheet
+get json
+google maps
+json
+
+**** IT dart
+http://itdart.org/
+
+情報支援
+*** ms
+https://docs.com/dmasubuchi/3090
+
+**** cortana
+**** line リンナ
+**** how-old.net
+顔検出API - project oxford
+**** what-dog.net
+犬種を判定する
+**** for business
+表情, 持ち物、色、様々な要素から欲しいものを予測して提供する
+**** nihongo library
+mecab, sensya?
+**** compair
+C# vs ML
+**** revolution R
+microsoft R (買収)
+R
+*** wife2d?
+life2d?
+*** LT
+**** IBM
+watson bluemix API
+**** MS
+
+**** etc
+あぷりかん
+コード一行でmobileアプリにできる？
+ニューフォリア
+
+GAMATHON
+まんがそん
+
+waifu2d?
+*** miyagi daigaku , kadoda sense
+open source robot?
+
+using rasberypie
+
+open jtalk
+
+まぐぼっと
+
+fablab
+
+replap?
+*** SoftBank
+pepper
+naoki OS
+
+3nengoまでには大学生レベルの知能に
+
+* 疑問
+** http packetを考える
+- [ ] request, responseいずれのパケット数が多いか
+- [ ] request, responseいずれの容量が多いか
+- [ ] 他にどういった観点があるか
+* memo

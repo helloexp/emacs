@@ -1,0 +1,30 @@
+"use strict";
+
+import { BaseSelectorDirectiveController } from "./base_selector_directive_controller";
+import { SelectorDirectiveBuilder } from "./selector_directive_builder";
+
+angular.module("allin").directive("formMarketingPlanSelectorField", () => {
+    return {
+        bindToController: Controller.getBindToController({
+            allowToCreateNewResource: "=?",
+            onCreateNewResourceSelected: "&"
+        }),
+        controller: Controller,
+        controllerAs: "self",
+        link: SelectorDirectiveBuilder.getLinkGenerator(),
+        require: ["form-marketing-plan-selector-field", "^?bootstrap-form"],
+        restrict: "E",
+        scope: {},
+        template: SelectorDirectiveBuilder.getTemplateGenerator()
+    };
+});
+
+class Controller extends BaseSelectorDirectiveController {
+    constructor($scope, selectorDependency, marketingPlanService) {
+        super($scope, selectorDependency, marketingPlanService);
+    }
+
+    getDisplayProperty() {
+        return "display_name";
+    }
+}

@@ -1,0 +1,182 @@
+                          -*- mode: org -*-
+                          =================
+
+Author: ali-ani <ali-ani@Bloodstone.Dreadspire>
+Date: 2015-02-20 16:53:07 JST
+
+
+Table of Contents
+=================
+1 VPC / subnet / IGW 
+    1.1 VPC 
+    1.2 subnet - 1a 
+    1.3 subnet - 1c 
+    1.4 internet gateway 
+2 踏み台 
+3 App server : user 
+4 App server : admin 
+5 App server : sns 
+6 App server : 共通 
+7 RDS 
+8 ELB 
+
+
+1 VPC / subnet / IGW 
+~~~~~~~~~~~~~~~~~~~~~
+
+1.1 VPC 
+========
+name  :  uniqlo
+CIDR  :  10.0.0.0/22
+
+1.2 subnet - 1a 
+================
+name        :  uniqlo_public_1a
+CIDR        :  10.0.1.0/25
+route table :  0.0.0.0/0  |  igw-3eb5405b
+
+1.3 subnet - 1c 
+================
+name        :  uniqlo_public_1c
+CIDR        :  10.0.1.128/25
+route table :  0.0.0.0/0  |  igw-3eb5405b
+
+1.4 internet gateway 
+=====================
+name        :  uniqlo
+attach VPC  :  vpc-2ac80641 (10.0.0.0/22 | uniqlo)
+
+2 踏み台 
+~~~~~~~~~
+- instance   :  t2.micro
+- AL         :  ap-northeast-1a
+
+- security group
+    name  :  uniqlo_influencer_gateway
+    port  :  22
+
+- linux user
+    - user  :  alliance
+    - pass  :  Ukzm3383
+
+    # sudo権付与
+    - user   :  mruby
+    - pass   :  Kimg4488
+
+3 App server : user 
+~~~~~~~~~~~~~~~~~~~~
+- instance    :  t2.midium
+- AL          :  ap-northeast-1a
+
+- private IP  :  10.0.1.10
+- global IP   :  ELB
+- host name   :  usr01-tky-a-uniqlo-influencer
+  
+- security group
+  name   : uniqlo_influencer_user
+  local  : 22 (10.0.0.0/22)
+  global : 80, 443
+
+- user
+    - name  :  mruby
+    - pass  :  mruby3826
+
+- installed app
+    rails, ruby, nginx, mysql(CLI)
+
+4 App server : admin 
+~~~~~~~~~~~~~~~~~~~~~
+- instance     :  t2.midium
+- AL           :  ap-northeast-1a
+
+- private IP   :  10.0.1.50
+- global IP    :  54.92.123.82
+- host name    :  adm01-tky-a-uniqlo-influencer
+
+- security group
+  name   : uniqlo_influencer_admin
+  local  : 22 (10.0.0.0/22)
+  global : 80, 443
+
+- user
+    - name  :  mruby
+    - pass  :  mruby3826
+
+- installed app
+    rails, ruby, nginx, mysql(cli)
+
+5 App server : sns 
+~~~~~~~~~~~~~~~~~~~
+- instance     :  t2.midium
+- AL           :  sns01-tky-a-uniqlo-influencer
+
+- private IP   :  10.0.1.60
+- global IP    :  現状では不要。
+- host name    :  sns01-tky-a-uniqlo-influencer
+  
+- security
+  name   :  uniqlo_influencer_sns
+  local  :  22 (10.0.0.0/22)
+  local  :  80, 443
+
+- user
+    - name  :  mruby
+    - pas   :  mruby3826
+
+- installed app
+    rails, ruby, nginx, mysql(cli)
+
+6 App server : 共通 
+~~~~~~~~~~~~~~~~~~~~
+
+7 RDS 
+~~~~~~
+- AL         :  ap-northeast-1a
+- private IP :  10.0.1.70
+- host       : db01-uniqlo-influencer.cvs9vjjju50z.ap-northeast-1.rds.amazonaws.com
+
+- DB engine  : mysql
+- DB version : 5.6.22
+
+- DB Instance Identifier : db01-uniqlo-influencer
+
+- VPC             :  uniqlo
+- subnet          :  uniqlo_public_default
+- public access   :  yes
+- AZ              :  1a
+
+- security
+    - name   :  uniqlo_influencer_db
+    - local  :  mysql (10.0.0.0/22)
+    - global :  全て閉塞
+
+- enable ecryption
+    - enable :  yes
+    - key    :  default
+    
++ master
+    - master user   :  root
+    - master pass   :  9xiRR828
+
++ 作業ユーザー
+    - DB name :  influencer
+    - user    :  influencer
+    - pass    :  Dim933Plw
+
+- bakcup       :  7day / start 01:00 / duration 0.5h
+- auto upgrate :  sunday  / start 02:00 / duration 0.5h
+
+- msyql portのみopen
+- 各種サーバーからのアクセスを許可する
+  user, admin, sns, 踏み台
+
+8 ELB 
+~~~~~~
+CNAME      :  uniqlo-influencer-adm-lb-1338278061.ap-northeast-1.elb.amazonaws.com
+forward to :  adm01-tky-a-uniqlo-influencer
+
+
+
+
+
+

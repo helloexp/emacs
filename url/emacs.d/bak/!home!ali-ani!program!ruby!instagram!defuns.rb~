@@ -1,0 +1,181 @@
+# -*- coding: utf-8 -*-
+
+
+
+class Organize
+    def initialize
+        @gender_db  = {"男" => "man", "女" => "woman"}
+        @gender_web = {"男" => "Male", "女" => "Female"}
+        @country = {"USA" => "us"}
+    end
+
+
+    def remove_return_from_address(row)
+        row[4].gsub!(/\n/, "")
+    end
+
+    
+    def remove_atmark_from_instagram(row)
+        row[9].gsub!(/^\@/, "")
+    end
+    
+    
+    def remove_url_from_instagram(row)
+        if row[9].match(/^http/) then
+            row[9] = File.basename(row[9])
+        end
+    end
+    
+    
+    def change_gender_to_num(row)
+        row[1] = @gender_db.fetch(row[1])
+    end
+
+
+    def change_gender_to_web_format(row)
+        row[1] = @gender_web.fetch(row[1])
+    end
+    
+    
+    def change_gender_to_db_format(row)
+        row[2] = @country.fetch(row[2])
+    end
+    
+    
+    def change_size_to_db_format(row)
+        row[14] = row[14].split("/")[0].chop
+    end
+
+
+    def blank_to_nil(row)
+    end
+end
+
+
+
+
+
+def mk_insert
+    organize = Organize.new
+    
+    table = []
+    CSV.foreach('./influencer.csv', { :encoding => "UTF-8", :col_sep => ",", :quote_char => '"' }) do |row|
+        organize.remove_atmark_from_instagram(row)
+        organize.remove_url_from_instagram(row)
+        organize.remove_return_from_address(row)
+        
+        organize.change_gender_to_num(row)
+        organize.change_gender_to_db_format(row)
+        organize.change_size_to_db_format(row)
+
+        organize.blank_to_nil(row)
+        
+        table << row
+    end
+    
+    client = Mysql2::Client.new(:host => "localhost", :username => "influencer", :password => "influencer", :database => "influencer")
+    
+    table.each { |row|
+        if row[10].nil?
+            pp insert = "INSERT INTO `influencer_profiles`(`name`,`gender`,`country`,`postal_code`,`address`,`phone_number`,`email_address`,`account_facebook`,`account_twitter`,`account_instagram`,`favorite_url1`,`tops_size`,`bottoms_size`,`bottoms_inner_size`,`size_comment`,`uniqlo_comment`,`topics_fashion`, `created_at`, `updated_at`) VALUES (\"#{row[0]}\",\"#{row[1]}\",\"#{row[2]}\",\"#{row[3]}\",\"#{row[4]}\",\"#{row[5]}\",\"#{row[6]}\", null, null,\"#{row[9]}\", null,\"#{row[13]}\",\"#{row[14]}\",\"#{row[15]}\",\"#{row[16]}\",\"#{row[17]}\", 1, \"2015-03-11\", \"2015-03-11\")"
+        else
+            pp insert = "INSERT INTO `influencer_profiles`(`name`,`gender`,`country`,`postal_code`,`address`,`phone_number`,`email_address`,`account_facebook`,`account_twitter`,`account_instagram`,`favorite_url1`,`tops_size`,`bottoms_size`,`bottoms_inner_size`,`size_comment`,`uniqlo_comment`,`topics_fashion`, `created_at`, `updated_at`) VALUES (\"#{row[0]}\",\"#{row[1]}\",\"#{row[2]}\",\"#{row[3]}\",\"#{row[4]}\",\"#{row[5]}\",\"#{row[6]}\", null, null,\"#{row[9]}\",\"#{row[10]}\",\"#{row[13]}\",\"#{row[14]}\",\"#{row[15]}\",\"#{row[16]}\",\"#{row[17]}\", 1, \"2015-03-11\", \"2015-03-11\")"
+        end
+
+        pp client.query(insert)
+    }
+end
+
+
+
+
+
+
+
+
+def mk_csv
+    organize = Organize.new
+    
+    table = []
+    CSV.foreach('./influencer.csv', { :encoding => "UTF-8", :col_sep => ",", :quote_char => '"' }) do |row|
+        organize.remove_atmark_from_instagram(row)
+        organize.remove_url_from_instagram(row)
+        organize.remove_return_from_address(row)
+        
+        organize.change_gender_to_num(row)
+        organize.change_gender_to_db_format(row)
+        organize.change_size_to_db_format(row)
+        
+        table << row
+    end
+    
+    table.each { |row|
+        puts insert = "\"#{row[0]}\",\"#{row[1]}\",\"#{row[2]}\",\"#{row[3]}\",\"#{row[4]}\",\"#{row[5]}\",\"#{row[6]}\",\"#{row[7]}\",\"#{row[8]}\",\"#{row[9]}\",\"#{row[10]}\",\"#{row[11]}\",\"#{row[12]}\",\"#{row[13]}\",\"#{row[14]}\",\"#{row[15]}\",\"#{row[16]}\",\"#{row[17]}\", \"1\"\\n"
+    }
+end
+
+
+
+
+
+
+
+
+def make_selenium
+    organize = Organize.new
+    
+    table = []
+    CSV.foreach('./influencer.csv', { :encoding => "UTF-8", :col_sep => ",", :quote_char => '"' }) do |row|
+        organize.remove_atmark_from_instagram(row)
+        organize.remove_url_from_instagram(row)
+        organize.remove_return_from_address(row)
+        
+        organize.change_gender_to_web_format(row)
+        organize.change_size_to_db_format(row)
+        
+        table << row
+    end
+
+
+    selenium_script = ""
+    selenium_script << "<tr><td>open</td><td>/admin/influencers</td><td></td></tr>"
+    pause = 2000
+    
+    table.each { |row|
+        selenium_script << "<tr><td>type</td>"
+        selenium_script << "<td>//input[@type='text']</td><td>#{row[0]}</td></tr><tr><td>click</td><td>css=span.input-group-addon.search</td>"
+        selenium_script << "<td></td></tr><tr><td>pause</td><td>#{pause}</td><td></td></tr>"
+
+        row.each { |value|
+            if !value.nil? then
+                selenium_script << "<tr><td>verifyTextPresent</td><td>#{value}</td><td></td></tr>"
+            end
+        }
+        selenium_script << "<tr><td>verifyTextPresent</td><td>Fashion</td><td></td></tr>"
+    }
+
+
+    puts selenium_script
+end
+
+
+
+
+
+
+
+def insert_instagram
+    client = Mysql2::Client.new(:host => "localhost", :username => "influencer", :password => "influencer", :database => "influencer")
+    insert = "INSERT INTO `media` (`type`, `sns_post_id`, `user_account_id`, `content`, `posted_at`, `post_url`, `photo_id`, `photo_url`)  VALUES('InstagramMedium', '939839126375870893_1482411', 1, 'test text', '2015-03-13 14:39:36', 'https://instagram.com/p/0K-rS5pbGt/', '939839126375870893_1482411', 'http://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11055589_621037988026465_37549960_n.jpg')"
+
+    1.upto(60) { |i|
+        p i.to_i * 10000
+
+        1.upto(10000) { |j|
+            pp client.query(insert)
+        }
+        
+        puts `mysql -u influencer --password=influencer  influencer -h localhost -e 'select        floor((data_length+index_length)) as all_Byte,       floor((data_length)) as data_Byte,       floor((index_length)) as index_Byte    from     information_schema.tables   where     table_schema=database()  and table_name="media" order by     (data_length+index_length) desc;'`
+        puts "pyscical " + `du -m /var/lib/mysql/ibdata1`
+    }
+end

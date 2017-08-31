@@ -1,0 +1,255 @@
+  # ----------------------------------------------------------------
+  # defun security group
+  # ----------------------------------------------------------------
+  &sg_jump_gate SgJumpGateway:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: jump_gateway
+      VpcId:
+        Ref: *vpc_name
+      Tags:
+      - Key: Name
+        Value: jump_gateway
+
+
+  &sg_nat SgNat:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: nat
+      VpcId:
+        Ref: *vpc_name
+      Tags:
+      - Key: Name
+        Value: nat
+
+
+  &sg_elb SgElb:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: elb
+      VpcId:
+        Ref: *vpc_name
+      Tags:
+      - Key: Name
+        Value: elb
+
+
+  &sg_web SgWeb:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: web
+      VpcId:
+        Ref: *vpc_name
+      Tags:
+      - Key: Name
+        Value: web
+
+
+  &sg_cms SgmCms:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: cms
+      VpcId:
+        Ref: *vpc_name
+      Tags:
+      - Key: Name
+        Value: cms
+
+
+  &sg_backend SgBackend:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: backend
+      VpcId:
+        Ref: *vpc_name
+      Tags:
+      - Key: Name
+        Value: backend
+
+
+
+  # ----------------------------------------------------------------
+  # add inbound rule to sg
+  # ----------------------------------------------------------------
+  IngresssSgJumpGateway:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId:
+        Ref: *sg_jump_gate
+      IpProtocol: tcp
+      FromPort: '22'
+      ToPort: '22'
+      CidrIp: 0.0.0.0/0
+      
+
+  ingressSgElb0:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId:
+        Ref: *sg_elb
+      IpProtocol: tcp
+      FromPort: '80'
+      ToPort: '80'
+      CidrIp: 0.0.0.0/0
+  ingressSgElb1:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId:
+        Ref: *sg_elb
+      IpProtocol: tcp
+      FromPort: '443'
+      ToPort: '443'
+      CidrIp: 0.0.0.0/0
+
+
+  IngressSgNat:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId:
+        Ref: *sg_nat
+      IpProtocol: tcp
+      FromPort: '0'
+      ToPort: '65535'
+      CidrIp: *vpc_cidr
+
+
+  IngressSgWeb0:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId:
+        Ref: *sg_web
+      IpProtocol: tcp
+      FromPort: '22'
+      ToPort: '22'
+      SourceSecurityGroupId:
+        Ref: *sg_jump_gate
+  IngressSgWeb1:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId:
+        Ref: *sg_web
+      IpProtocol: tcp
+      FromPort: '80'
+      ToPort: '80'
+      CidrIp: 0.0.0.0/0
+  IngressSgWeb2:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId:
+        Ref: *sg_web
+      IpProtocol: tcp
+      FromPort: '443'
+      ToPort: '443'
+      CidrIp: 0.0.0.0/0
+
+
+  IngressSgCms0:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId:
+        Ref: *sg_cms
+      IpProtocol: tcp
+      FromPort: '22'
+      ToPort: '22'
+      SourceSecurityGroupId:
+        Ref: *sg_jump_gate
+  IngressSgCms1:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId:
+        Ref: *sg_cms
+      IpProtocol: tcp
+      FromPort: '80'
+      ToPort: '80'
+      CidrIp: 0.0.0.0/0
+  IngressSgCms2:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId:
+        Ref: *sg_cms
+      IpProtocol: tcp
+      FromPort: '443'
+      ToPort: '443'
+      CidrIp: 0.0.0.0/0
+
+
+  IngressSgBackend0:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId:
+        Ref: *sg_backend
+      IpProtocol: tcp
+      FromPort: '3306'
+      ToPort: '3306'
+      SourceSecurityGroupId:
+        Ref: *sg_cms
+  IngressSgBackend1:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId:
+        Ref: *sg_backend
+      IpProtocol: tcp
+      FromPort: '3306'
+      ToPort: '3306'
+      SourceSecurityGroupId:
+        Ref: *sg_web
+
+
+
+
+
+  # ----------------------------------------------------------------
+  # add outbound rule to sg
+  # ----------------------------------------------------------------
+  EgressSgJumpGateway:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      GroupId:
+        Ref: *sg_jump_gate
+      IpProtocol: "-1"
+      CidrIp: 0.0.0.0/0
+
+
+  EgressSgElb:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      GroupId:
+        Ref: *sg_elb
+      IpProtocol: "-1"
+      CidrIp: 0.0.0.0/0
+
+
+  EgressSgNat:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      GroupId:
+        Ref: *sg_nat
+      IpProtocol: "-1"
+      CidrIp: 0.0.0.0/0
+
+
+  EgressSgWeb:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      GroupId:
+        Ref: *sg_web
+      IpProtocol: "-1"
+      CidrIp: 0.0.0.0/0
+
+
+  EgressSgCms:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      GroupId:
+        Ref: *sg_cms
+      IpProtocol: "-1"
+      CidrIp: 0.0.0.0/0
+
+
+  EgressSgBackend:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      GroupId:
+        Ref: *sg_backend
+      IpProtocol: "-1"
+      CidrIp: 0.0.0.0/0

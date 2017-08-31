@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+
+require 'pp'
+require 'csv'
+require 'mysql2'
+
+load 'defuns.rb'
+
+
+mk_insert
+#mk_csv
+#make_selenium
+
+
+

@@ -1,0 +1,6 @@
+
+
+http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#create-an-iam-user
+
+
+[Download Credentials] をクリックし、アクセスキーを安全な場所に保存します。アクセスキーは、AWS CLI、AWS SDK、HTTP API のいずれかを使用してプログラムから AWS にアクセスするために必要です。

@@ -1,0 +1,204 @@
+@charset "utf-8";
+
+#img-head-top {
+  width               : 100%;
+  height              : 470px;
+  margin              : 0px auto  20px auto;
+  padding             : 0px 0px 0px 0px;
+  background-image    : image-url("common/head_top01_sl.png"); /* トップページ */
+  background-repeat   : no-repeat;
+  background-position : center;
+  overflow            : hidden;
+
+  .main_imgBG_stf{
+	width               : 965px;
+	height              : 430px;
+	margin              : 20px auto 0px auto;
+	background-image    : image-url("recruiting/mein_04.png"); /* 社員募集 */
+	background-repeat   : no-repeat;
+	background-position : center;
+	overflow            : hidden;
+
+	.text_box_copL_E{
+	  float               : left;
+	  width               : 480px;
+	  margin              : 5px 0px 0px 0px;
+	  padding             : 15px 20px 15px 50px;
+	  line-height         : 2.4;
+	  font-size           : 120%;
+
+	  .head_Text_sm2_stf2 {
+		width                 : 500px;
+		margin                : 30px 5px 10px -10px;
+		font-size             : 150%;
+		font-weight           : normal;
+		padding               : 60px 10px 5px 0px;
+		line-height           : 2.1;
+	  }
+	}
+  }
+}
+
+.pan_out {
+  width               : 955px;
+  margin              : 30px auto 5px auto;
+  padding             : 5px 0px 0px 0px;
+  overflow            : hidden;
+  line-height         : 1.9;
+
+  .head_Text_N3 {
+	width               : 200px;
+	margin              : 30px 5px 5px 10px;
+	font-size           : 125%;
+	font-weight         : normal;
+	padding             : 5px;
+	line-height         : 2.1;
+	text-align          : center;
+	border              : 1px #000000 solid;
+	background          : #4682B4;
+
+	a:link    { color : #ffffff ; text-decoration : underline ; }
+	a:hover   { color : #ff0000 ; text-decoration : underline ; }
+	a:visited { color : #ffffff ; text-decoration : none ; }
+	a:active  { color : #ffffff ; text-decoration : none ; }
+  }
+
+  h1.head_Text_N2 {
+	width               : 900px;
+	margin              : 30px 5px 5px 10px;
+	font-size           : 200%;
+	font-weight         : normal;
+	padding             : 20px 5px 2px 5px;
+	line-height         : 2.1;
+
+    span{
+	  color               : #ea6125;
+    }
+  }
+}
+
+.pan_out:after {
+  content: "";
+  display: block;
+  clear: both;
+  height: 1px;
+  overflow: hidden;
+}
+
+
+#container{
+  height              : 1%;
+  font-size           : 12px;
+
+  #contents {
+	width               : 955px;
+	margin              : 10px auto 0px auto;
+	background          : #FFFFFF; /*#FFFFF0*/
+  }
+
+  .text_box01{
+	width               : 870px;
+	margin              : 5px 5px 60px 25px;
+	padding             : 15px 15px;
+	line-height         : 2.1;
+	font-size           : 120%;
+	background-position : top left;
+	background-image    : image-url("back_ground.png");
+	background-repeat   : repeat;
+
+	.text_box_L{
+	  float               : left;
+	  width               : 200px;
+	  margin              : 5px 0px 0px 20px;
+	  padding             : 15px 5px;
+	  line-height         : 2.1;
+	  border-top          : 1px #6a6a6a dotted;
+	}
+
+	.text_box_R{
+	  float               : left;
+	  width               : 600px;
+	  margin              : 5px 5px 0px 0px;
+	  padding             : 15px 5px 15px 15px;
+	  line-height         : 2.1;
+	  border-top          : 1px #6a6a6a dotted;
+
+      p {
+        a.link {
+		  vertical-align      : middle;
+        }
+      }
+	}
+
+	.last_line{
+	  margin              : 5px 0px 0px 15px;
+	  width               : 835px;
+	  border-top          : 1px #6a6a6a dotted;
+	}
+
+	.text_box05{
+	  width               : 870px;
+	  margin              : 5px 5px 60px 25px;
+	  padding             : 15px 15px;
+	  line-height         : 2.1;
+	  font-size           : 100%;
+	}
+
+	.text_box05:after {
+	  content             : "";
+	  display             : block;
+	  clear               : both;
+	  height              : 1px;
+	  overflow            : hidden;
+	}
+  }
+
+  .text_box01:after {
+	content: "";
+	display: block;
+	clear: both;
+	height: 1px;
+	overflow: hidden;
+  }
+
+  .head_Text_sm2N {
+	width               : 850px;
+	margin              : 30px 5px 20px 25px;
+	font-size           : 150%;
+	font-weight         : normal;
+	padding             : 5px 10px;
+	line-height         : 2.1;
+
+    span {
+	  color               : #ea6125;
+    }
+  }
+
+  .text_msg{
+	width               : 830px;
+	margin              : 5px 5px 60px 25px;
+	padding             : 25px 30px 15px 40px;
+	line-height         : 2.1;
+	font-size           : 120%;
+	border              : 1px #A9A9A9 solid;
+
+    b.tile_b{
+	  font-size           : 140%;
+	  margin             : 0 0 0 -10px;
+    }
+
+    span.r_txt{
+	  padding             : 5px 5px 5px 310px;
+	  font-weight         : bold;
+    }
+  }
+
+  .text_msg:after {
+	content: "";
+	display: block;
+	clear: both;
+	height: 1px;
+	overflow: hidden;
+  }
+}
+

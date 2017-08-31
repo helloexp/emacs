@@ -1,0 +1,747 @@
+;; Time-stamp: "Thu Oct 22 11:54:55 JST 2015"
+
+
+(setq system-time-locale "C")
+
+
+
+
+;; ----------------------------------------------------------------
+;; 短形
+;; ----------------------------------------------------------------
+;;(cua-mode t)
+;;(setq cua-enable-cua-keys nil) ; デフォルトキーバインドを無効化
+;;(define-key global-map (kbd "C-x SPC") 'cua-set-rectangle-mark)
+
+
+;; ----------------------------------------------------------------
+;; clip board
+;; ----------------------------------------------------------------
+(cond (window-system
+       (setq x-select-enable-clipboard t)
+       ))
+
+(setq x-select-enable-clipboard t)
+
+
+
+;; ----------------------------------------------------------------
+;; load-path
+;; ----------------------------------------------------------------
+(add-to-list 'load-path "/usr/share/emacs-snapshot/site-lisp/color-theme/")
+(add-to-list 'load-path "/usr/share/emacs-snapshot/site-lisp/")
+(add-to-list 'load-path "/home/ali-ani/.emacs.d/el/")
+(add-to-list 'load-path "/home/ali-ani/.emacs.d/ext/")
+(add-to-list 'load-path "/home/ali-ani/.emacs.d/auto-install/")
+(add-to-list 'load-path "/home/ali-ani/.emacs.d/site-lisp/")
+;;(require 'auto-install)
+
+
+
+;; ----------------------------------------------------------------
+;; auto byte compile lisp files
+;; ----------------------------------------------------------------
+;;(require 'auto-async-byte-compile)
+;;(setq auto-async-byte-compile-exclude-files-regexp "/junk/")
+;;(add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
+
+
+
+
+
+
+
+
+;; --------------------------------------------------------------------------------------------
+;;
+;; --------------------------------------------------------------------------------------------
+;;; 最終更新日の自動挿入
+;;;   ファイルの先頭から 8 行以内に Time-stamp: <Mon Oct 28 04:05:17 JST 2013> または
+;;;   Time-stamp: " " と書いてあれば、セーブ時に自動的に日付が挿入される
+
+(require 'time-stamp)
+
+;; 日本語で日付を入れたくないのでlocaleをCにする
+(defun time-stamp-with-locale-c ()
+  (let ((system-time-locale "C"))
+    (time-stamp)
+    nil))
+
+(if (not (memq 'time-stamp-with-locale-c write-file-hooks))
+    (add-hook 'write-file-hooks 'time-stamp-with-locale-c))
+
+(setq time-stamp-format "%3a %3b %02d %02H:%02M:%02S %Z %:y")
+
+
+
+;; --------------------------------------------------------------------------------------------------------
+;; 補完
+;; --------------------------------------------------------------------------------------------------------
+;; 補完可能な一覧を常に表示
+;; (icomplete-mode 1)
+
+;;; 補完時に大文字小文字を区別しない
+(setq completion-ignore-case t)
+
+;;; 強力な補完機能を使う
+;;; p-bでprint-bufferとか
+;;(load "complete")
+(partial-completion-mode 1)
+
+;; save時に行末スペース削除
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+
+
+;; --------------------------------------------------------------------------------------------------------
+;; setting etc
+;; --------------------------------------------------------------------------------------------------------
+;; hide startup
+(setq inhibit-startup-message t)
+
+;; hide menu, tool and scroll bars
+(menu-bar-mode 0)
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+
+;; show line and column number on modeline
+(line-number-mode 1)
+(column-number-mode 1)
+
+;; high light current line
+;; (global-hl-line-mode t)
+
+;; inteructive to y or n
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+;; 対応する括弧を光らせる
+(show-paren-mode 1)
+
+;; no dialog box
+(setq user-dialog-box nil)
+
+;;(global-linum-mode 0)
+;;(setq linum-format "%4d")
+
+;; ka-soru ga dono kannsuu naini iruka hyouzi
+;;(which-function-mode 1)
+
+;; vie time on modeline
+(display-time)
+;; 時刻表示の左隣に日付を追加。
+(setq display-time-kawakami-form t)
+;; 24 時間制
+(setq display-time-24hr-format t)
+
+;(setq display-time-string-forms
+;      '((format "%s/%s/%s(%s) %s:%s"
+;                year month day
+;                dayname
+;                24-hours minutes)))
+
+
+;; 自動でファイルを挿入する
+(auto-insert-mode t)
+
+
+
+
+
+
+
+
+;; --------------------------------------------------------------------------------------------
+;; memory, history and etc
+;; --------------------------------------------------------------------------------------------
+;; gc. low value = run gc so many time
+(setq gc-cons-threshold 500000)
+
+;; message log buffer
+(setq message-log-max 40000)
+
+;; mini buffer history
+(setq hitory-length 1000)
+
+;; juuhuku wo hozonn sinai
+;; (setq history-delete-duplicates t)
+
+
+
+
+
+
+
+
+
+;; --------------------------------------------------------------------------------------------
+;; key
+;; --------------------------------------------------------------------------------------------
+;; gyo-matu mo sakujo
+(setq kill-whole-line t)
+
+(global-set-key "\C-h" 'delete-backward-char)
+(global-set-key "\M-g" 'goto-line)
+
+;; tyokuzen no 1tango wo sakujo
+(global-set-key "\M-h" 'backward-kill-word)
+
+
+;; comment out
+(global-set-key "\C-c;" 'comment-region)
+
+;; delete comment
+(global-set-key "\C-c:" 'uncomment-region)
+
+
+
+
+
+
+
+;; --------------------------------------------------------------------------------------------
+;; recent
+;;     M-x recentf-open-files
+;; --------------------------------------------------------------------------------------------
+(require 'recentf)
+(setq recentf-save-file "~/.recentf")
+(setq recentf-exclude '("~/.recentf"))
+(setq recentf-max-saved-items 5000)
+(setq recentf-auto-cleanup '10)
+(run-with-idle-timer 30 t 'recentf-save-list)
+(recentf-mode 1)
+
+
+;; save session
+;;(desktop-load-default)
+;;(desktop-read)
+
+
+
+
+
+
+
+
+
+
+
+
+;; --------------------------------------------------------------------------------------------
+;; color-theme
+;; --------------------------------------------------------------------------------------------
+(require 'color-theme)
+(color-theme-initialize)
+(color-theme-billw)
+
+
+;; --------------------------------------------------------------------------------------------
+;; soft tab制限
+;; --------------------------------------------------------------------------------------------
+(setq-default tab-width 4 indent-tabs-mode nil)
+(add-hook 'text-mode-hook
+          (lambda ()
+            (setq tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 88 96 104 112 120))
+            (setq tab-width 4)))
+(setq tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100))
+
+
+;; ----------------------------------------------------------------
+;; highlihg white space / tab
+;; ----------------------------------------------------------------
+
+
+
+
+
+
+
+;; --------------------------------------------------------------------------------------------
+;; --------------------------------------------------------------------------------------------------------------------------------------------
+(custom-set-faces
+ '(font-lock-function-name-face ((t (:foreground "#A33" :weight bold :underline nil))))
+ '(font-lock-keyword-face ((t (:foreground "#55B" :weight bold))))
+ '(font-lock-comment-delimiter-face ((default (:inherit font-lock-comment-face :foreground "darkgreen" :weight bold)) (((class color) (min-colors 16)) nil)))
+ '(font-lock-comment-face ((t (:foreground "darkgreen" :weight bold))))
+ '(font-lock-warning-face ((t (:foreground "#888"))))
+ '(font-lock-string-face ((t (:foreground "#A8A8A8"  :underline nil))))
+ '(font-lock-negation-char-face ((t (:foreground "#888" :weight bold)))))
+;; '(default ((t (:foreground "#888" :weight bold)))))
+
+
+
+
+
+
+
+
+
+
+
+
+
+;; font ---------------------------------------------------------------------------------------------------------------------------
+;;(set-default-font "VL Gothic-16")
+;;(set-fontset-font (frame-parameter nil 'font)
+;;                  'japanese-jisx0208
+;;                  '("VL Gothic", "unicode-bmp"))
+
+;;(set-default-font "DejaVu Sans Mono-16")
+;;(set-fontset-font (frame-parameter nil 'font)
+;;                  'japanese-jisx0208
+;;                  '("Bitstream Vera Sans Mono", "unicode-bmp"))
+
+(set-default-font "DejaVu Sans Mono-17")
+(set-fontset-font (frame-parameter nil 'font)
+                  'japanese-jisx0208
+                  '("Dejavu Sans Mono" . "unicode-bmp"))
+
+
+
+
+
+;; -------------------------------------------------------------------------------------------------------------------------------------------------
+;; indent setting
+;;
+;;     if() { スタイル禁止. Kernighan & Ritchieスタイル
+;;     及び、tab禁止。スペースを使用し、幅は4
+;; -------------------------------------------------------------------------------------------------------------------------------------------------
+(setq c-default-style "K&R")
+(add-hook 'c-mode-hook '(lambda ()
+                          (setq c-basic-offset 4)
+                          (setq tab-width 4)
+                          (setq c-auto-newline t)
+                          )t)
+
+
+;; -------------------------------------------------------------------------------------------------------------------------------------------------
+;;defaultのfontをutf-8nに
+;; -------------------------------------------------------------------------------------------------------------------------------------------------
+(set-language-environment "Japanese")
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-buffer-file-coding-system 'utf-8)
+(setq default-buffer-file-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+
+
+
+;; -------------------------------------------------------------------------------------------------------------------------------------------------
+;; xmingから呼び出した際にemacsの入力モ方式が初期化されてしまい、uim-gtik-methodが使えない
+;; また、通常のanthy_elだと重すぎる。という理由からanthy-uim利用
+;; debian etch以降は、uimが標準らしい
+;;(load-library "anthy")
+;;(setq default-input-method "japanese-anthy-uim")
+;; 初期モードを変更
+;;(setq uim-default-im-prop
+;;      '("action_anthy_hiragana" "action_skk_hiragana" ))
+
+
+
+;; -------------------------------------------------------------------------------------------------------------------------------------------------
+;;(load-library "canna")
+;;(setq default-input-method "japanese-canna-uim")
+
+;;(require 'uim)
+;;(global-set-key "\C-\\" 'uim-mode)
+;;(setq uim-default-im-engine "anthy")
+;;(setq uim-candldate-display-inline t)
+
+
+
+
+
+
+;; -------------------------------------------------------------------------------------------------------------------------------------------------
+;; php mode
+;;(require 'php-mode)
+;;(add-hook 'php-mode-user-hook
+;;  '(lambda ()
+;;     (setq-default tab-width 4)
+;;        (setq indent-tabs-mode nil)
+;;     (setq c-basic-offset 4)))
+
+
+
+;; ----------------------------------------------------------------
+;; ruby-mode setting
+;; ----------------------------------------------------------------
+(defun ruby-custom()
+  "ruby-mode-hook"
+  (set (make-local-variable 'ruby-insert-encoding-magic-comment) nil)
+  (set (make-local-variable 'ruby-indent-level) 2)
+  (set (make-local-variable 'ruby-indent-tabs-mode) nil))
+
+(add-hook 'ruby-mode-hook
+  '(lambda() (ruby-custom)))
+
+
+;; ----------------------------------------------------------------
+;; testing , code folding
+;; ----------------------------------------------------------------
+(add-hook 'ruby-mode-hook
+          '(lambda()
+             (hs-minor-mode 1)))
+
+
+(let ((ruby-mode-hs-info
+       '(ruby-mode
+          "class\\|module\\|def\\|if\\|unless\\|case\\|while\\|until\\|for\\|begin\\|do"
+          "end"
+          "#"
+          ruby-move-to-block
+          nil)))
+  (if (not (member ruby-mode-hs-info hs-special-modes-alist))
+      (setq hs-special-modes-alist
+            (cons ruby-mode-hs-info hs-special-modes-alist))))
+
+
+;; -------------------------------------------------------------------------------------------------------------------------------------------------
+;; lisp mode
+;; -------------------------------------------------------------------------------------------------------------------------------------------------
+(setq auto-mode-alist
+      (cons (cons "\\.cl$" 'lisp-mode) auto-mode-alist))
+
+
+;; -------------------------------------------------------------------------------------------------------------------------------------------------
+;; scss mode
+;; -------------------------------------------------------------------------------------------------------------------------------------------------
+;; パスを指定
+(require 'scss-mode)
+(add-to-list 'auto-mode-alist '("\\.scss$" . scss-mode))
+
+(defun scss-custom ()
+  "scss-mode-hook"
+  (and
+   (set (make-local-variable 'css-indent-offset) 2)
+   (set (make-local-variable 'scss-compile-at-save) nil)
+   )
+  )
+(add-hook 'scss-mode-hook
+  '(lambda() (scss-custom)))
+
+
+
+
+
+;; -------------------------------------------------------------------------------------------------------------------------------------------------
+;; key setting
+
+
+;; -------------------------------------------------------------------------------------------------------------------------------------------------
+;; silent beep
+;;(set-message-beep 'silent)
+
+
+;; -------------------------------------------------------------------------------------------------------------------------------------------------
+;; auto-complete default set to True
+;;(require 'auto-complete)
+;;(global-auto-complete-mode t)
+
+
+
+;; -------------------------------------------------------------------------------------------------------------------------------------------------
+;;   SBCL
+;;(require 'hyperspec)
+;;(setq common-lisp-hyperspec-root "file:/usr/share/doc/hyperspec/")
+;;(setq slime-net-coding-system 'utf-8-unix)
+;;(setq inferior-lisp-program "sbcl")
+;;(require 'slime)
+;;(add-hook 'lisp-mode-hook (lambda()
+;;                            (slime-mode t)
+;;                            (show-parent-mode)
+;;                            (global-set-key "\C-cH" 'hyperspec-lookup)))
+;;(slime-setup)
+
+
+;; -------------------------------------------------------------------------------------------------------------------------------------------------
+(setq calendar-location-name "Japan, JP")
+(setq calendar-starndard-time-zone-name "JST")
+(setq calendar-latitude 38.27)
+(setq calendar-longitude 140.88)
+
+
+
+;; ----------------------------------------------------------------
+;; バックアップファイルをすべて、~/.emacs.d/bak内へ保存
+;; ----------------------------------------------------------------
+(setq make-backup-file t)
+(setq backup-directory-alist
+      (cons (cons ".*" (expand-file-name "~/.emacs.d/bak"))
+            backup-directory-alist))
+
+
+;; ----------------------------------------------------------------
+;; stop auto-save
+;; ----------------------------------------------------------------
+(setq auto-save-default nil)
+
+
+
+
+
+
+
+;; ----------------------------------------------------------------------------------------------------------------------------------------------------
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-buffer-file-coding-system 'utf-8)
+(setq default-buffer-file-coding-system 'utf-8)
+
+
+
+;; ----------------------------------------------------------------------------------------------------------------------------------------------------
+;; 折り返し表示off
+(set-default 'truncate-lines t)
+
+
+
+
+;; ----------------------------------------------------------------------------------------------------------------------------------------------------
+;; org-mode setting
+;; ----------------------------------------------------------------------------------------------------------------------------------------------------
+(add-to-list 'auto-mode-alist '("\\.org$", org-mode))
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(define-key global-map "\C-cr" 'org-remember)
+
+(setq org-directroy "~/.org/")
+(setq org-default-notes-file "~/.org/gtd/todo.org")
+
+(add-hook 'org-mode-hook 'turn-on-font-lock)  ;; org-modeのみでfont-lockを有効化
+(setq org-indent-indentation-per-level 4)  ;; indent-modeでの階層レベル
+
+(setq org-log-done 'time)
+(setq org-deadline-warning-days 10) ;; deadline warning
+
+(setq org-agenda-files "~/.org/agenda.org") ;; agenda file list
+
+(setq org-todo-keywords '((type "Todo(t)" "Waiting(w)" "|" "Done(d)" "Cancel(c)" "Paused(p)" "Iam(i)")
+                          (type "Project(P)" "|" "Done(d)" "Cancel(c)" "Paused(p)" "Iam(i)")))
+
+
+;;
+(org-remember-insinuate)
+(setq org-remember-templates
+      '(("Project" ?p "* Project %^{Des} %^g\nAdded:      %U \n%?"  "~/.org/gtd/todo.org"  "todos")
+        ("Todo"    ?t "* Todo    %^{Des} %^g\nAdded:      %U \n%?"  "~/.org/gtd/todo.org"  "next")
+        ("Gathere" ?m "* Gathere %^{Desc} :memo: \nAdded: %U \n%?"  "~/.org/gtd/todo.org"  "gather")
+        ("iam"     ?i "* Iam     %^{Desc} %^g\nAdded:     %U \n%?"  "~/.org/gtd/todo.org"  "iam")
+        ))
+
+
+;;
+(setq org-tag-alist '((":mynavi" . ?m)
+                      ("uniqlo" . ?u)
+                      ("insider" . ?i)
+                      ("organic_style" . ?o)
+                      ;;(:endgroup . nil)))
+                      ))
+
+
+;; priority
+(setq org-highest-priority ?A)
+(setq org-lowest-priority ?G)
+(setq org-default-priority ?G)
+
+;; priority color
+(setq org-priority-faces '((?A . (:foreground "orange" :weight "bold"))
+                           (?B . (:foreground "#44D"))
+                           (?C . (:foreground "#44D"))
+                           (?D . (:foreground "#4A4"))
+                           (?E . (:foreground "#4A4"))
+                           (?F . (:foreground "#888"))
+                           (?G . (:foreground "#888"))))
+
+
+
+(setq org-agenda-custom-commands
+      '(("h" . "memo tag searches") ; describe prefix "h"
+        ("hx" tags-togo "+test+")
+        ("hu" tags-todo "+uniqlo+")
+        ("ho" tags-todo "+organic_style+")
+        ("hm" tags-todo "+mynavi+")))
+
+
+
+(setq org-startup-indented t)
+
+(require 'org-habit)
+
+
+
+
+
+;;(define-key
+;  global-map
+;  (kbd "C-c @") 'hs-toggle-hiding)
+
+
+
+
+;; -------------------------------------------------------------------------------------------------------------------------------------------------
+;; default browser setting
+;; -------------------------------------------------------------------------------------------------------------------------------------------------
+(setq browse-url-browser-function 'browse-url-generic)
+(setq browse-url-generic-program
+      (if (file-exists-p "~/0000_local/0010_applications/firefox/")
+          "~/0000_local/0010_applications/firefox/firefox"))
+
+
+
+;; ----------------------------------------------------------------
+;;  tabbar
+;; ----------------------------------------------------------------
+(require 'tabbar)
+(tabbar-mode 1)
+
+;; 外観変更
+(set-face-attribute
+ 'tabbar-default nil
+ :family (face-attribute 'default :family)
+ :background (face-attribute 'mode-line-inactive :background)
+ :height 0.9)
+(set-face-attribute
+ 'tabbar-unselected nil
+ :background (face-attribute 'mode-line-inactive :background)
+ :foreground (face-attribute 'mode-line-inactive :foreground)
+ :box nil)
+(set-face-attribute
+ 'tabbar-selected nil
+ :background (face-attribute 'mode-line :background)
+ :foreground (face-attribute 'mode-line :foreground)
+ :box nil)
+
+;; 左に表示されるボタンを無効化
+(dolist (btn '(tabbar-buffer-home-button
+               tabbar-scroll-left-button
+               tabbar-scroll-right-button))
+  (set btn (cons (cons "" nil)
+                 (cons "" nil))))
+
+;; グループ化しない
+(setq tabbar-buffer-groups-function nil)
+
+
+;; タブ同士の間隔
+(setq tabbar-separator '(0.8))
+
+;; no mouse wheel
+(tabbar-mwheel-mode -1)
+
+;; auto scroll
+(setq tabbar-auto-scroll-flag t)
+
+;; tabを省略
+(setq tabbar-auto-scroll-flag nil)
+
+;; tab移動
+;;(global-set-key (kbd "<S-s-right>") 'tabbar-forward-tab)
+;;(global-set-key (kbd "<S-s-left>") 'tabbar-backward-tab)
+
+
+;; tab表示設定
+
+(defvar my-tabbar-displayed-buffers
+  '("*scratch*" "*Messages*" "*Backtrace*" "*Colors*" "*Faces*" "*vc-")
+  "*Regexps matches buffer names always included tabs.")
+
+(defun my-tabbar-buffer-list ()
+  "Return the list of buffers to show in tabs.
+Exclude buffers whose name starts with a space or an asterisk.
+The current buffer and buffers matches `my-tabbar-displayed-buffers'
+are always included."
+  (let* ((hides (list ?\  ?\*))
+         (re (regexp-opt my-tabbar-displayed-buffers))
+         (cur-buf (current-buffer))
+         (tabs (delq nil
+                     (mapcar (lambda (buf)
+                               (let ((name (buffer-name buf)))
+                                 (when (or (string-match re name)
+                                           (not (memq (aref name 0) hides)))
+                                   buf)))
+                             (buffer-list)))))
+    ;; Always include the current buffer.
+    (if (memq cur-buf tabs)
+        tabs
+      (cons cur-buf tabs))))
+
+(setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
+
+
+
+
+
+
+;; ----------------------------------------------------------------
+;;  dired
+;; ----------------------------------------------------------------
+(require 'dired)
+;;(require 'color-moccur)
+;;(require 'sorter)
+
+;; sort, dir first
+(setq ls-lisp-dirs-first t)
+
+;; alternate enable for no new buffer when open something
+(put 'dired-find-alternate-file 'disabled nil)
+
+;; file/dirlist 出力形式
+;; diredは、裏でlsが動いてるらしい
+(setq dired-listing-switches "-lhA")
+
+;; 再帰的にdirectory copy
+(setq dired-recursive-copies 'always)
+
+;; 再帰的 delete directory
+;;(setq dired-recursive-deletes 'always)
+
+
+;; ファイルなら別バッファで、ディレクトリなら同じバッファで開く
+(defun dired-open-in-accordance-with-situation ()
+  (interactive)
+  (let ((file (dired-get-filename)))
+    (cond ((file-directory-p file)
+           (dired-find-alternate-file))
+          ((file-regular-p file)
+           (dired-find-file)))))
+
+
+;; RET 標準の dired-find-file では dired バッファが複数作られるので
+;; dired-find-alternate-file を代わりに使う
+(define-key dired-mode-map (kbd "RET") 'dired-open-in-accordance-with-situation)
+(define-key dired-mode-map (kbd "a") 'dired-find-file)
+(define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
+(define-key dired-mode-map "c" (lambda () (interactive) (find-alternate-file "..")))
+
+
+
+
+
+;; powerline
+;;(load "powerline.el")
+
+
+;; popup
+;; select window from auto-install-from-emacswiki
+;; popup from  github
+;;(require 'popup)
+;;(require 'popup-select-window)
+;;(global-set-key "\C-xo" 'popup-select-window)
+;;(setq popup-select-window-popup-windows 2)
+;;(setq popup-select-window-window-highlight-face '(:foreground "white" :background "#CC5000"))
+
+
+
+
+;; ----------------------------------------------------------------
+;; json format
+;; ----------------------------------------------------------------
+(require 'json-reformat)
+(global-set-key "\C-xj" 'json-reformat-region)
+
+
+;; ----------------------------------------------------------------
+;; yaml format
+;; ----------------------------------------------------------------
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
